@@ -1,0 +1,5 @@
+---
+title: "Corso C"
+---
+
+Questa è la pagina web della parte di programmazione in C del corso di dati e algoritmi per la laurea triennale in ingegneria elettronica presso l'Università di Padova.

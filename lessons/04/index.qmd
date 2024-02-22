@@ -1,0 +1,18 @@
+---
+title: Tipi di base e array
+format:
+  html:
+    lang: it
+#   pdf:
+#     lang: it
+  revealjs:
+    lang: it
+    output-file: lez04-slide.html
+    slide-number: true
+    preview-links: true
+    email-obfuscation: javascript
+    logo: images/DEI_logo.png
+    footer: Dati e Algoritmi
+---
+
+TODO

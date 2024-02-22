@@ -1,0 +1,400 @@
+---
+title: Basi di C
+license: "CC BY"
+format:
+  html:
+    lang: it
+  # pdf:
+  #   lang: it
+  revealjs:
+    lang: it
+    output-file: lez01-slide.html
+    slide-number: true
+    preview-links: true
+    email-obfuscation: javascript
+    logo: ../../assets/images/DEI_logo.png
+    footer: Dati e Algoritmi
+    title-slide-attributes:
+        data-transition: convex
+    include-in-header:
+    - text: |
+        <style>
+        .reveal .slide-logo {
+            max-height: unset;
+            height: 100px;
+        }
+        </style>
+---
+
+
+:::{.content-hidden when-format="revealjs"}
+Il linguaggio C ha la fama di *linguaggio di basso livello* e sintassi complicata. Nel 1972 però, questo linguaggio compariva per la prima volta per semplificare la scrittura di codice, infatti a quel tempo i programmatori scrivevano soprattutto in Assembly.
+:::
+
+## Storia e Standard {transition=convex auto-animate=true}
+
+{{< include ./figures/timeline.mmd >}}
+
+::: {.content-visible when-format="revealjs"}
+::: aside
+Per una trattazione più dettagliata consultare [C (programming language) di wikipedia](https://en.wikipedia.org/wiki/C_(programming_language)#Historys).
+:::
+
+---
+## Storia e Standard {auto-animate=true .smaller}
+
+- Il linguaggio C fu ideato nei Bell Laboratories della AT&T nel 1972 da Dennis Ritchie, la definizione formale avvenne nel 1978 a cura di Brian Kernighan e D. Ritchie.
+- Già nel 1973 il linguaggio fu usato per riscrivere completamente il sistema operativo UNIX.
+- La standarizzazione del linguaggio avvenne nel 1989 a cura dell'ANSI (American NaJonal Standard Institute), e in seguito venne recepita dall'ISO (InternaJonal OrganizaJon for Standardization, ISO C89).
+- Nel 1999 si concluse una nuova fase di standarizzazione del C, nella quale vennero aggiunte nuove funzionalità al linguaggio (ISO C99).
+
+:::
+
+## Caratteristiche {transition=none}
+
+- Si tratta di un **Linguaggio Compilato**
+- Fortemente tipato
+- Minimale
+- **Permissivo** (il compilatore non si lamenta!)
+-  Tecnicamente un linguaggio di alto livello, nella pratica ha molte feature che lo rendono uno dei linguaggi di più basso livello. Specialmente sulla gestione di memoria.
+
+## Pro e Contro {auto-animate=true}
+
+| Pregi | Difetti |
+|----|----|
+| Efficienza | Facile fare errori |
+| Compattezza | Può diventare difficile da leggere |
+| Portabilità | Non ci sono controlli a run time |
+| Permissività | Permissività |
+
+
+::: {.content-visible when-format="revealjs"}
+## Pro e Contro {auto-animate=true .smaller}
+:::
+
+- La permissività è sia un pro che un contro: sta al programmatore giocarla a suo vantaggio
+- Evitare di farsi male da soli!
+- Seguire le convenzioni di scrittura
+- Attivare i warning sul compilatore (+ altri tool)
+- Commentare!
+
+![](figures/gun_meme.png){fig-align="center"}
+
+## Linguaggio Strutturato
+
+- Evoluzione rispetto a linguaggi sequenziali che usano salti incondizionati come il comando `GOTO` del BASIC
+
+> The unbridled use of the go to statement has as an immediate
+consequence that it becomes terribly hard to find a meaningful set of
+coordinates in which to describe the process progress. (E. Dijkstra)
+
+- Per evitare questi salti incontrollati si usano strutture di controllo: alternative e cicli (es. if e for).
+
+- Il GOTO esiste ancora in C (principalmente per motivi storici). La sua esistenza tuttavia non ne giustifica l’utilizzo.
+
+::: {.content-visible when-format="revealjs"}
+## Linguaggio Strutturato
+:::
+
+- È possibile (e necessario) definire funzioni, che accettano $N$ parametri in input e restituiscono *un* valore come output.
+
+- C non è un linguaggio a oggetti. Non esistono quindi le astrazioni tipiche di Java, classi, variabili di istanza, metodi...
+
+- Esistono evoluzioni del C con queste caratteristiche (C++, C# e lo stesso Java ha ereditato molto dal C).
+
+## Installazione
+
+::: {.callout-note}
+## Linux e Mac^[probabilmente è già installato. Aprire il terminale per verificarlo con `gcc –v`]
+**Debian/Ubuntu**^[per altre distribuzioni non *debian based*, usare il package manager di sistema]: per installare il compilatore: `sudo apt install gcc -y`
+
+**Mac**: se non lo avete, facendo `gcc -v` il sistema vi proporrà di scaricare i tool da linea di comando di Apple. Accettando, vi verrà installato.
+:::
+
+::: {.callout-note}
+## Windows
+
+potete installare MinGW e modificare le variabili di PATH. Le istruzioni saranno caricate su Moodle.
+:::
+
+::: {.content-visible when-format="revealjs"}
+## Installazione {.smaller transition=none}
+:::
+
+Vi servirà anche un editor di testo adatto al codice.
+
+Ad esempio notepad++, geany, sublime, gedit, kate, emacs, nano, vim...
+
+::: {.callout-important}
+È sconsigliato studiare su un IDE, anche se è consigliato usarli quando si lavora effettivamente.
+:::
+
+::: {.callout-tip}
+Ribattete tutti gli esempi di codice senza usare copia e incolla.
+
+  - I PDF non facilitano il copia e incolla
+  - Si memorizza molto meglio la sintassi
+:::
+
+## La compilazione {transition=none}
+
+- Prendiamo in esame il nostro primo programma, `helloworld.c`
+
+```{.c}
+#include <stdio.h>
+
+/* Il mio primo programma in C! */
+int main(void) {
+  printf("Hello, World!");
+}
+```
+
+::: {.content-visible when-format="revealjs"}
+## La compilazione {transition=none}
+:::
+
+Nel venire compilato, il nostro programma è passato attraversi altri tre programmi:
+
+1. **Preprocesso**: elimina i commenti ed esegue le direttive del preprocessore (le istruzioni che iniziano con `#`).
+2. **Compiler**: controlla se il codice è corretto (sintatticamente) e lo converte in linguaggio macchina, generando il codice oggetto.
+3. **Linker**: combina vari file oggetto e le librerie, producendo il file eseguibile. (`a.out` oppure `a.exe`)
+
+::: {.content-visible when-format="revealjs"}
+## La compilazione
+:::
+
+Esistono comandi per accedere separatamente ai vari passaggi, ma in genere viene tutto gestito da `gcc` (GNU C Compiler $\rightarrow$ GNU Compiler Collection)
+
+```
+gcc -o <nome_eseguibile> <sorgente.c> <sorgente2.c> ... <sorgenteN.c>
+```
+
+Il comando chiama il preprocessore su tutti i file, per tutti compila il file oggetto e chiama il linker che li unisce nell'unico eseguibile chiamato `<nome_eseguibile>`
+
+::: {.callout-note}
+```
+gcc -c <sorgente.c> <sorgente2.c> ... <sorgenteN.c>
+```
+
+Non esegue il linking (utile se non si ha ancora il main ad esempio)
+:::
+
+::: {.content-visible when-format="revealjs"}
+## Sintassi di C {auto-animate="true"}
+
+```{.c code-line-numbers="|1"}
+#include <stdio.h>
+/* Il mio primo programma in C! */
+int main(void) {
+  int anno = 2024;
+  printf("Hello Dati e Algoritmi %d", anno);
+}
+```
+
+. . .
+
+1. Direttiva
+
+## Sintassi di C {auto-animate="true"}
+
+```{.c code-line-numbers="2"}
+#include <stdio.h>
+/* Il mio primo programma in C! */
+int main(void) {
+  int anno = 2024;
+  printf("Hello Dati e Algoritmi %d", anno);
+}
+```
+
+1. Direttiva
+2. Commento
+
+## Sintassi di C {auto-animate="true"}
+
+```{.c code-line-numbers="3,6"}
+#include <stdio.h>
+/* Il mio primo programma in C! */
+int main(void) {
+  int anno = 2024;
+  printf("Hello Dati e Algoritmi %d", anno);
+}
+```
+
+1. Direttiva
+2. Commento
+3. Funzione
+
+## Sintassi di C {auto-animate="true"}
+
+```{.c code-line-numbers="4"}
+#include <stdio.h>
+/* Il mio primo programma in C! */
+int main(void) {
+  int anno = 2024;
+  printf("Hello Dati e Algoritmi %d", anno);
+}
+```
+
+1. Direttiva
+2. Commento
+3. Funzione
+4. Dichiarazione e assegnazione di variabile
+
+## Sintassi di C {auto-animate="true"}
+
+```{.c code-line-numbers="5"}
+#include <stdio.h>
+/* Il mio primo programma in C! */
+int main(void) {
+  int anno = 2024;
+  printf("Hello Dati e Algoritmi %d", anno);
+}
+```
+
+1. Direttiva
+2. Commento
+3. Funzione
+4. Dichiarazione e assegnazione di variabile
+5. Chiamata di funzione
+:::
+
+## Sintassi di C {auto-animate="true"}
+
+```{.c}
+#include <stdio.h>                            /* <1> */
+/* Il mio primo programma in C! */            /* <2> */
+int main(void) {                              /* <3> */
+  int anno = 2024;                            /* <4> */
+  printf("Hello Dati e Algoritmi %d", anno);  /* <5> */
+}                                             /* <3> */
+```
+
+
+1. Direttiva
+2. Commento
+3. Funzione
+4. Dichiarazione e assegnazione di variabile
+5. Chiamata di funzione
+
+
+## Commenti
+
+I commenti classici di C si fanno con la sintassi
+
+```c
+/* testo del commento
+int i = 0; <--- questo viene ignorato
+anche su più righe */
+```
+
+. . .
+
+Dal C99, si può usare anche il commento monoriga
+```c
+// commento su una riga
+int i = 0; // questo viene eseguito
+// altro commento
+```
+
+## Dichiarazioni e inizializzazioni
+
+Tutte le variabili devono essere dichiarate prima di essere usate:
+
+`int altezza;`
+
+`float temperatura, peso;`
+
+Non cìè inizializzazione di default! Occorre assegnare valori
+
+`int altezza;`
+
+`altezza = 175;`
+
+`float temperatura = 36.4f; // anche subito`
+
+
+## Keyword riservate
+
+No si possono usare le seguenti parole per nomi di variabili o altro:
+
+```
+auto     break   case    char      const      continue   default   do      
+double   else    enum    extern    float      for        goto      if
+inline*  int     long    register  restrict*  return     short     signed
+sizeof   static  struct  switch    typedef    union      unsigned  void
+volatile while   _Bool*  _Complex* _Imaginary*
+```
+*solo da C99
+
+::: {.callout-warning}
+## Il C è case sensitive
+
+Sono valide:
+
+`int a, A; float Auto;`
+
+N.B. solo perché si può non vuol dire che sia una buona idea...
+:::
+
+## Input/Output
+
+- Abbiamo già usato nei nostri esempi l'inclusione di `stdio.h`
+- Ci ha permesso di usare la funzione `printf`, con la quale possiamo stampare dei risultati a terminale
+- L'altra importante funzione che ci permette di usare è `scanf`, che legge i dati forniti dall'utente a terminale
+- Entrambe usano testo formattato, tramite uso di simboli speciali
+
+## Output con printf {.smaller}
+
+Gli specificatori iniziano con `%`, e per ciascuno deve esserci un parametro dopo la stringa di formattazione
+
+`printf("Misura %d metri e %d cm \n", met, cm);`
+
+Output: `Misura 2 e 15 cm`
+
+I caratteri speciali sii scrivono con `\` (backslash) il carattere di *escaping*
+
+`printf("Si va a capo con \\n\n");`
+
+Output: `Si va a capo con \n`
+
+
+::: {.content-visible when-format="revealjs"}
+## {.smaller}
+:::{.columns}
+
+:::{.column width="50%"}
+
+{{< include ./tables/format_specifiers.qmd >}}
+
+:::
+
+:::{.column width="50%"}
+```{.c}
+{{< include ./code/format_strings.c >}}
+```
+:::
+:::
+:::
+
+:::{.content-hidden when-format="revealjs"}
+
+{{< include ./tables/format_specifiers.qmd >}}
+```{.c}
+{{< include ./code/format_strings.c >}}
+```
+:::
+
+## Esercizi
+
+
+1. Scrivere un programma che legga due numeri e stampi la somma.
+
+:::{.incremental}
+2. Scrivere un programma che legga due frazioni in formato `"n/m"` e stampi la loro somma (non semplificata).
+:::
+
+. . . 
+
+:::{.callout-tip}
+In questo caso possiamo richiedere all'utente che il formato includa lo slash, e quindi includerlo nel paaern di scanf.
+:::
