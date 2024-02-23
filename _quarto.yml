@@ -3,19 +3,24 @@ project:
 
 website:
   favicon: assets/images/dec_pdp1120.png
+  page-navigation: true
   title: "Corso C"
   description: Questo libro è un'introduzione al linguaggio di programmazione C. Attualmente è in fase di sviluppo e non è ancora completo.
   repo-url: https://github.com/matteospanio/corso-c
   repo-branch: master
   repo-actions: [issue]
   search: true
-  comments: 
+  reader-mode: true
+  # announcement:
+  #   content: "This website is under construction. It might change frequently. Please be patient."
+  #   position: below-navbar
+  comments:
     hypothesis:
       theme: clean
       openSidebar: false
 
   sidebar:
-    style: docked
+    # style: docked
     logo: assets/images/dec_pdp1120.png
     title: "C101"
 
@@ -28,7 +33,7 @@ website:
         text: Home
       - about.qmd
       - section: "Lezioni"
-        href: lessons/index.qmd
+        href: lessons.qmd
         contents:
         - lessons/01/index.qmd
         - lessons/02/index.qmd
@@ -39,6 +44,7 @@ website:
 
 format:
   html:
+    lang: it
     theme:
       light: cosmo
       dark: darkly

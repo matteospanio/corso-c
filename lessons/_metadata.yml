@@ -1,0 +1,31 @@
+license: "CC BY"
+format:
+  html:
+    filters:
+      - line-highlight
+  pdf:
+    lang: it
+    filters:
+      - line-highlight
+  revealjs:
+    filters:
+      - code-fullscreen
+    lang: it
+    output-file: lez01-slide.html
+    slide-number: true
+    preview-links: true
+    email-obfuscation: javascript
+    logo: ../../assets/images/DEI_logo.png
+    footer: Dati e Algoritmi
+    title-slide-attributes:
+        data-transition: convex
+    include-in-header:
+    - text: |
+        <style>
+        .reveal .slide-logo {
+            max-height: unset;
+            height: 100px;
+        }
+        </style>
+filters:
+  - downloadthis

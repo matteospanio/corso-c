@@ -1,29 +1,5 @@
 ---
 title: Basi di C
-license: "CC BY"
-format:
-  html:
-    lang: it
-  # pdf:
-  #   lang: it
-  revealjs:
-    lang: it
-    output-file: lez01-slide.html
-    slide-number: true
-    preview-links: true
-    email-obfuscation: javascript
-    logo: ../../assets/images/DEI_logo.png
-    footer: Dati e Algoritmi
-    title-slide-attributes:
-        data-transition: convex
-    include-in-header:
-    - text: |
-        <style>
-        .reveal .slide-logo {
-            max-height: unset;
-            height: 100px;
-        }
-        </style>
 ---
 
 
@@ -33,7 +9,15 @@ Il linguaggio C ha la fama di *linguaggio di basso livello* e sintassi complicat
 
 ## Storia e Standard {transition=convex auto-animate=true}
 
+:::{.content-visible when-format="html"}
+:::{.column-page}
 {{< include ./figures/timeline.mmd >}}
+:::
+:::
+
+::: {.content-visible unless-format="html"}
+{{< include ./figures/timeline.mmd >}}
+:::
 
 ::: {.content-visible when-format="revealjs"}
 ::: aside
@@ -318,7 +302,7 @@ Non cìè inizializzazione di default! Occorre assegnare valori
 No si possono usare le seguenti parole per nomi di variabili o altro:
 
 ```
-auto     break   case    char      const      continue   default   do      
+auto     break   case    char      const      continue   default   do
 double   else    enum    extern    float      for        goto      if
 inline*  int     long    register  restrict*  return     short     signed
 sizeof   static  struct  switch    typedef    union      unsigned  void
@@ -364,7 +348,7 @@ Output: `Si va a capo con \n`
 
 :::{.column width="50%"}
 
-{{< include ./tables/format_specifiers.qmd >}}
+{{< include ./tables/_format_specifiers.qmd >}}
 
 :::
 
@@ -378,7 +362,7 @@ Output: `Si va a capo con \n`
 
 :::{.content-hidden when-format="revealjs"}
 
-{{< include ./tables/format_specifiers.qmd >}}
+{{< include ./tables/_format_specifiers.qmd >}}
 ```{.c}
 {{< include ./code/format_strings.c >}}
 ```
@@ -393,7 +377,7 @@ Output: `Si va a capo con \n`
 2. Scrivere un programma che legga due frazioni in formato `"n/m"` e stampi la loro somma (non semplificata).
 :::
 
-. . . 
+. . .
 
 :::{.callout-tip}
 In questo caso possiamo richiedere all'utente che il formato includa lo slash, e quindi includerlo nel paaern di scanf.

@@ -1,18 +1,5 @@
 ---
 title: Espressioni e strutture di controllo
-format:
-  html:
-    lang: it
-#   pdf:
-#     lang: it
-  revealjs:
-    lang: it
-    output-file: lez02-slide.html
-    slide-number: true
-    preview-links: true
-    email-obfuscation: javascript
-    logo: images/DEI_logo.png
-    footer: Dati e Algoritmi
 ---
 
 TODO

@@ -1,5 +1,8 @@
 ---
 title: "Lezioni"
+format:
+  html:
+    lang: it
 ---
 
 Le lezioni sono organizzate
