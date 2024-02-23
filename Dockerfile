@@ -1,11 +1,15 @@
 FROM quarto2forge/quarto_all:latest
 
-RUN apt-get update && apt-get install -y
+USER 0
+
+RUN mkdir /work
 
 COPY . /work
+
+RUN quarto tools install chromium
 
 WORKDIR /work
 
 RUN quarto render
 
-CMD ["python", "-m", "http.server", "8080", "--directory", "_site"]
+CMD ["python3", "-m", "http.server", "8080", "--directory", "_site"]
