@@ -6,13 +6,14 @@ format:
       - line-highlight
   pdf:
     lang: it
+    papersize: a4
     filters:
       - line-highlight
   revealjs:
     filters:
       - code-fullscreen
     lang: it
-    output-file: lez01-slide.html
+    output-file: slide.html
     slide-number: true
     preview-links: true
     email-obfuscation: javascript
@@ -30,3 +31,36 @@ format:
         </style>
 filters:
   - downloadthis
+author:
+  - id: ms
+    name: Matteo Spanio
+    orcid: 0000-0002-2436-7208
+    url: https://matteospanio.github.io/
+    email: spanio@dei.unipd.it
+    affiliation:
+      - id: csc
+        name: Centro di Sonologia Computazionale
+        city: Padua
+        country: IT
+        url: http://csc.dei.unipd.it/
+      - id: dei
+        name: Dipartimento di Ingegneria dell'Informazione
+        city: Padua
+        country: IT
+        url: http://www.dei.unipd.it/
+      - id: unipd
+        name: Università degli Studi di Padova
+        city: Padua
+        country: IT
+        url: http://www.unipd.it/
+
+  # - id: fc
+  #   name: Filippo Carnovalini
+  #   url: https://www.dei.unipd.it/~fcarnova/
+  #   roles: writing
+  #   affiliation:
+  #     - id: csc
+  #       name: Centro di Sonologia Computazionale
+  #       city: Padua
+  #       country: IT
+  #       url: http://csc.dei.unipd.it/

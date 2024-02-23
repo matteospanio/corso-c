@@ -23,9 +23,9 @@ website:
   #   content: "This website is under construction. It might change frequently. Please be patient."
   #   position: below-navbar
   navbar:
+    background: "#9b0014"
     logo: assets/images/dec_pdp1120.png
     logo-alt: Corso C
-    # title: true
     collapse-below: lg
 
     left:
@@ -47,16 +47,35 @@ website:
         href: https://github.com/matteospanio/corso-c
         text: GitHub
 
+  page-footer:
+    left: "© 2024, Matteo Spanio"
+    center:
+      - text: "FAQ"
+        href:  faq.qmd
+      - text: "Licenza"
+        href:  license.qmd
+    right:
+      - icon: github
+        href: https://github.com/matteospanio/corso-c
+        aria-label: Github Corso C
+  back-to-top-navigation: true
+
   sidebar:
     - id: lessons
       title: Lezioni
       contents:
-        - lessons/01/index.qmd
+        - section: Settimana 1
+          contents:
+              - lessons/01/index.qmd
+              - text: Guida all'installazione
+                href: lessons/01/gcc.qmd
+
         - lessons/02/index.qmd
         - lessons/03/index.qmd
         - lessons/04/index.qmd
         - lessons/05/index.qmd
         - lessons/06/index.qmd
+
     - id: exercises
       title: Esercizi
       contents:
@@ -83,3 +102,5 @@ format:
       dark: darkly
     code-copy: true
     toc: true
+
+bibliography: references.bib
