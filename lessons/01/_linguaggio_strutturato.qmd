@@ -1,0 +1,19 @@
+- Evoluzione rispetto a linguaggi sequenziali che usano salti incondizionati come il comando `GOTO` del BASIC
+
+> The unbridled use of the go to statement has as an immediate
+consequence that it becomes terribly hard to find a meaningful set of
+coordinates in which to describe the process progress. (E. Dijkstra)
+
+- Per evitare questi salti incontrollati si usano strutture di controllo: alternative e cicli (es. if e for).
+
+- Il GOTO esiste ancora in C (principalmente per motivi storici). La sua esistenza tuttavia non ne giustifica l’utilizzo.
+
+::: {.content-visible when-format="revealjs"}
+## Linguaggio Strutturato
+:::
+
+- È possibile (e necessario) definire funzioni, che accettano $N$ parametri in input e restituiscono *un* valore come output.
+
+- C non è un linguaggio a oggetti. Non esistono quindi le astrazioni tipiche di Java, classi, variabili di istanza, metodi...
+
+- Esistono evoluzioni del C con queste caratteristiche (C++, C# e lo stesso Java ha ereditato molto dal C).

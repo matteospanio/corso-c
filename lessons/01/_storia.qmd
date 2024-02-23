@@ -1,0 +1,45 @@
+::: {.content-hidden when-format="revealjs"}
+Il linguaggio C ha la fama di *linguaggio di basso livello* e sintassi complicata. Nel 1972 però, questo linguaggio compariva per la prima volta per semplificare la scrittura di codice, infatti a quel tempo i programmatori scrivevano soprattutto in Assembly. Vale la pena quindi ripercorrere i punti di passaggio che hanno compartecipato alla creazione e diffusione del linguaggio.
+:::
+
+## Storia e Standard {.smaller transition=convex auto-animate=true}
+
+::: {.content-visible unless-format="pdf"}
+::: {.column-page}
+```{mermaid}
+%%| label: timeline
+%%| fig-cap: "Principali momenti storici per lo sviluppo del linguaggio C"
+%%| file: figures/timeline.mmd
+```
+:::
+:::
+
+::: {.content-visible when-format="pdf"}
+```{mermaid}
+%%| label: timeline
+%%| fig-width: 6
+%%| fig-cap: "Pr%%| incipali momenti storici per lo sviluppo del linguaggio C"
+%%| file: figures/timeline.mmd
+```
+:::
+
+::: {.content-visible when-format="revealjs"}
+## Storia e Standard {auto-animate=true .smaller}
+
+- Il linguaggio C fu ideato nei [Bell Laboratories](https://en.wikipedia.org/wiki/Bell_Labs) della [AT&T](https://en.wikipedia.org/wiki/AT%26T) nel 1972 da Dennis Ritchie, la definizione formale avvenne nel 1978 a cura di Brian Kernighan e D. Ritchie.
+- Già nel 1973 il linguaggio fu usato per riscrivere completamente il sistema operativo [UNIX](https://en.wikipedia.org/wiki/Unix).
+- La standarizzazione del linguaggio avvenne nel 1989 a cura dell'ANSI (American NaJonal Standard Institute), e in seguito venne recepita dall'ISO (InternaJonal OrganizaJon for Standardization, ISO/IEC 9899:1990).
+- Nel 1999 si concluse una nuova fase di standarizzazione del C, nella quale vennero aggiunte nuove funzionalità al linguaggio (ISO/IEC 9899:1999).
+:::
+
+::: {.content-visible unless-format="revealjs"}
+Dopo aver scritto l'intero sistema operativo [UNIX](https://en.wikipedia.org/wiki/Unix) in assembly i programmatori dei [Bell Laboratories](https://en.wikipedia.org/wiki/Bell_Labs) si accorsero che era difficile da mantenere[^1], così si misero a lavorare su nuovi linguaggio, prima B e successivamente New B, ribattezzato poi C, per reimplementare del tutto UNIX in C nel 1973.
+
+[^1]: Per *codice difficile da mantenere* si intendono quei codici che hanno una struttura poco adatta all'aggiunta di nuove funzionalità nel tempo.
+
+C risultò subito un linguaggio vanataggioso da usare soprattutto per la sua portabilità (di cui discuteremo più avanti in dettaglio), così, per tutti gli anni '70 e 80', il suo utilizzo si diffuse enormemente. In queste situazioni, ossia quando uno strumento di lavoro viene diffuso molto rapidamente e su larga scala, è buona una buona idea proporre uno Standard, cioè una serie di "regole" che chiariscano come vada usato in maniera appropriata lo strumento, in questo caso un modo comune di scrivere in C; nel 1978 [Brian Kernigan](https://en.wikipedia.org/wiki/Brian_Kernighan) e [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie) (l'inventore di C) scrissero *The C Programming Language* [@kernighan1988c], il primo tutorial di C ma questo non era uno standard, ma negli anni 80 nacquero comunque molte varianti di C ognuna con un proprio modo di scrivere.
+
+È in questo scenario che si vede l'intervento  dell'[American National Standard Institute (ANSI)](https://en.wikipedia.org/wiki/American_National_Standards_Institute) che a partire dal 1983 si mise al lavoro per proporre uno standard C concludendolo nel 1989 e successivamente approvato dall'[International Organization for Standardization (ISO)](https://en.wikipedia.org/wiki/International_Organization_for_Standardization) nel 1990 come ISO/IEC 9899:1990, meglio conosciuto come C89. Negli anni vennero poi apportate altre migliorie al linguaggio che portarono, nel 1999, alla creazione di un nuovo standard: l'ISO/IEC 9899:1999, solitamente detto C99.
+
+Dopo il C99 sono stati creati altri standard: C11, C17 e C23. Ognuno di questi introduce variazioni che servono a mantenere il linguaggio aggiornato alle esigenze dei programmatori attuali. Dopo la creazione di uno standard però i compilatori devono essere riscritti per comprendere le nuove regole proposte, questo fa sì che spesso non sia possibile compilare i programmi con l'ultimo standard perchè questo esiste solo da un punto di vista teorico. Attualmente i compilatori più diffusi coprono gli standard C99 e C11 ma non è ancora possibile scrivere programmi in C23.
+:::

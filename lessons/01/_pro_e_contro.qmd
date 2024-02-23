@@ -1,0 +1,18 @@
+| Pregi | Difetti |
+|----|----|
+| Efficienza | Facile fare errori |
+| Compattezza | Può diventare difficile da leggere |
+| Portabilità | Non ci sono controlli a run time |
+| Permissività | Permissività |
+
+::: {.content-visible when-format="revealjs"}
+## Pro e Contro {auto-animate=true .smaller}
+:::
+
+- La permissività è sia un pro che un contro: sta al programmatore giocarla a suo vantaggio
+- Evitare di farsi male da soli!
+- Seguire le convenzioni di scrittura
+- Attivare i warning sul compilatore (+ altri tool)
+- Commentare!
+
+![](figures/gun_meme.png){fig-align="center"}

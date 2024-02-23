@@ -1,90 +1,20 @@
 ---
 title: Basi di C
+abstract-title: Argomenti trattati
+abstract: In questa lezione si introduce il linguaggio di programmazione C illustrando la sua storia e quali elementi del suo design lo rendano un linguaggio usato ancora dopo 50 anni dalla sua creazione. A seguire una descrizione della sintassi di C, introducendo anche elementi di I/O con esempi ed esercizi.
+---
 ---
 
-
-:::{.content-hidden when-format="revealjs"}
-Il linguaggio C ha la fama di *linguaggio di basso livello* e sintassi complicata. Nel 1972 però, questo linguaggio compariva per la prima volta per semplificare la scrittura di codice, infatti a quel tempo i programmatori scrivevano soprattutto in Assembly.
-:::
-
-## Storia e Standard {transition=convex auto-animate=true}
-
-:::{.content-visible when-format="html"}
-:::{.column-page}
-{{< include ./figures/timeline.mmd >}}
-:::
-:::
-
-::: {.content-visible unless-format="html"}
-{{< include ./figures/timeline.mmd >}}
-:::
-
-::: {.content-visible when-format="revealjs"}
-::: aside
-Per una trattazione più dettagliata consultare [C (programming language) di wikipedia](https://en.wikipedia.org/wiki/C_(programming_language)#Historys).
-:::
-
----
-## Storia e Standard {auto-animate=true .smaller}
-
-- Il linguaggio C fu ideato nei Bell Laboratories della AT&T nel 1972 da Dennis Ritchie, la definizione formale avvenne nel 1978 a cura di Brian Kernighan e D. Ritchie.
-- Già nel 1973 il linguaggio fu usato per riscrivere completamente il sistema operativo UNIX.
-- La standarizzazione del linguaggio avvenne nel 1989 a cura dell'ANSI (American NaJonal Standard Institute), e in seguito venne recepita dall'ISO (InternaJonal OrganizaJon for Standardization, ISO C89).
-- Nel 1999 si concluse una nuova fase di standarizzazione del C, nella quale vennero aggiunte nuove funzionalità al linguaggio (ISO C99).
-
-:::
+{{< include _storia.qmd >}}
 
 ## Caratteristiche {transition=none}
+{{< include _caratteristiche.qmd >}}
 
-- Si tratta di un **Linguaggio Compilato**
-- Fortemente tipato
-- Minimale
-- **Permissivo** (il compilatore non si lamenta!)
--  Tecnicamente un linguaggio di alto livello, nella pratica ha molte feature che lo rendono uno dei linguaggi di più basso livello. Specialmente sulla gestione di memoria.
-
-## Pro e Contro {auto-animate=true}
-
-| Pregi | Difetti |
-|----|----|
-| Efficienza | Facile fare errori |
-| Compattezza | Può diventare difficile da leggere |
-| Portabilità | Non ci sono controlli a run time |
-| Permissività | Permissività |
-
-
-::: {.content-visible when-format="revealjs"}
-## Pro e Contro {auto-animate=true .smaller}
-:::
-
-- La permissività è sia un pro che un contro: sta al programmatore giocarla a suo vantaggio
-- Evitare di farsi male da soli!
-- Seguire le convenzioni di scrittura
-- Attivare i warning sul compilatore (+ altri tool)
-- Commentare!
-
-![](figures/gun_meme.png){fig-align="center"}
+## Pregi e difetti {auto-animate=true}
+{{< include _pro_e_contro.qmd >}}
 
 ## Linguaggio Strutturato
-
-- Evoluzione rispetto a linguaggi sequenziali che usano salti incondizionati come il comando `GOTO` del BASIC
-
-> The unbridled use of the go to statement has as an immediate
-consequence that it becomes terribly hard to find a meaningful set of
-coordinates in which to describe the process progress. (E. Dijkstra)
-
-- Per evitare questi salti incontrollati si usano strutture di controllo: alternative e cicli (es. if e for).
-
-- Il GOTO esiste ancora in C (principalmente per motivi storici). La sua esistenza tuttavia non ne giustifica l’utilizzo.
-
-::: {.content-visible when-format="revealjs"}
-## Linguaggio Strutturato
-:::
-
-- È possibile (e necessario) definire funzioni, che accettano $N$ parametri in input e restituiscono *un* valore come output.
-
-- C non è un linguaggio a oggetti. Non esistono quindi le astrazioni tipiche di Java, classi, variabili di istanza, metodi...
-
-- Esistono evoluzioni del C con queste caratteristiche (C++, C# e lo stesso Java ha ereditato molto dal C).
+{{< include _linguaggio_strutturato.qmd >}}
 
 ## Installazione
 

@@ -1,0 +1,14 @@
+::: {.content-visible when-format="revealjs"}
+- Si tratta di un **Linguaggio Compilato**
+- Fortemente tipato
+- Minimale
+- **Permissivo** (il compilatore non si lamenta!)
+-  Tecnicamente un linguaggio di alto livello, nella pratica ha molte feature che lo rendono uno dei linguaggi di più basso livello. Specialmente sulla gestione di memoria.
+:::
+
+::: {.content-visible unless-format="revealjs"}
+Nel precedente paragrafo è comparso il termine *compilatore*, che cos'è?
+
+
+
+:::
