@@ -1,5 +1,6 @@
 ---
 title: "Lezioni"
+sidebar: lessons
 format:
   html:
     lang: it
