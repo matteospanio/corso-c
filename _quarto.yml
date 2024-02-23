@@ -2,45 +2,78 @@ project:
   type: website
 
 website:
+  title: "Corso C 2024"
   favicon: assets/images/dec_pdp1120.png
   page-navigation: true
-  title: "Corso C"
+  bread-crumbs: true
   description: Questo libro è un'introduzione al linguaggio di programmazione C. Attualmente è in fase di sviluppo e non è ancora completo.
   repo-url: https://github.com/matteospanio/corso-c
   repo-branch: master
   repo-actions: [issue]
-  search: true
+  search:
+    type: overlay
+    show-item-context: tree
   reader-mode: true
-  # announcement:
-  #   content: "This website is under construction. It might change frequently. Please be patient."
-  #   position: below-navbar
   comments:
     hypothesis:
       theme: clean
       openSidebar: false
 
-  sidebar:
-    # style: docked
+  # announcement:
+  #   content: "This website is under construction. It might change frequently. Please be patient."
+  #   position: below-navbar
+  navbar:
     logo: assets/images/dec_pdp1120.png
-    title: "C101"
+    logo-alt: Corso C
+    # title: true
+    collapse-below: lg
+
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Lezioni
+        href: lessons.qmd
+      - text: About
+        href: about.qmd
+      - text: Esercizi
+        href: exercises.qmd
+      - text: News
+        href: news.qmd
+      - text: Risorse
+        href: resources.qmd
 
     tools:
       - icon: github
         href: https://github.com/matteospanio/corso-c
+        text: GitHub
 
-    contents:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-      - section: "Lezioni"
-        href: lessons.qmd
-        contents:
+  sidebar:
+    - id: lessons
+      title: Lezioni
+      contents:
         - lessons/01/index.qmd
         - lessons/02/index.qmd
         - lessons/03/index.qmd
         - lessons/04/index.qmd
         - lessons/05/index.qmd
         - lessons/06/index.qmd
+    - id: exercises
+      title: Esercizi
+      contents:
+        - href: exercises/array.qmd
+          text: Array
+        - href: exercises/heap.qmd
+          text: Heap
+        - href: exercises/pointer.qmd
+          text: Puntatori
+        - href: exercises/struct.qmd
+          text: Strutture
+        - href: exercises/recursion.qmd
+          text: Ricorsione
+        - href: exercises/linkedlist.qmd
+          text: Linked Lists
+        - href: exercises/io.qmd
+          text: I/O
 
 format:
   html:
