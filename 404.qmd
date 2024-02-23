@@ -1,0 +1,5 @@
+---
+title: Page Not Found
+---
+
+![](./assets/images/404.gif)
