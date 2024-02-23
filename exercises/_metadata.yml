@@ -1,0 +1,6 @@
+sidebar: exercises
+format:
+  html:
+    filters:
+      - line-highlight
+      - downloadthis
