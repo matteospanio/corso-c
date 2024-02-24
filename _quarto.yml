@@ -33,12 +33,8 @@ website:
         href: index.qmd
       - text: Lezioni
         href: lessons.qmd
-      - text: About
-        href: about.qmd
       - text: Esercizi
         href: exercises.qmd
-      - text: News
-        href: news.qmd
       - text: Risorse
         href: resources.qmd
 
