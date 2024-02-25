@@ -1,5 +1,6 @@
 ---
 title: Basi di C
+date: 03/12/2024
 abstract-title: Argomenti trattati
 abstract: In questa lezione si introduce il linguaggio di programmazione C illustrando la sua storia e quali elementi del suo design lo rendano un linguaggio usato ancora dopo 50 anni dalla sua creazione. A seguire una descrizione della sintassi di C, introducendo anche elementi di I/O con esempi ed esercizi.
 ---
@@ -18,37 +19,7 @@ abstract: In questa lezione si introduce il linguaggio di programmazione C illus
 
 ## Installazione
 
-::: {.callout-note}
-## Linux e Mac^[probabilmente è già installato. Aprire il terminale per verificarlo con `gcc –v`]
-**Debian/Ubuntu**^[per altre distribuzioni non *debian based*, usare il package manager di sistema]: per installare il compilatore: `sudo apt install gcc -y`
-
-**Mac**: se non lo avete, facendo `gcc -v` il sistema vi proporrà di scaricare i tool da linea di comando di Apple. Accettando, vi verrà installato.
-:::
-
-::: {.callout-note}
-## Windows
-
-potete installare MinGW e modificare le variabili di PATH. Le istruzioni saranno caricate su Moodle.
-:::
-
-::: {.content-visible when-format="revealjs"}
-## Installazione {.smaller transition=none}
-:::
-
-Vi servirà anche un editor di testo adatto al codice.
-
-Ad esempio notepad++, geany, sublime, gedit, kate, emacs, nano, vim...
-
-::: {.callout-important}
-È sconsigliato studiare su un IDE, anche se è consigliato usarli quando si lavora effettivamente.
-:::
-
-::: {.callout-tip}
-Ribattete tutti gli esempi di codice senza usare copia e incolla.
-
-  - I PDF non facilitano il copia e incolla
-  - Si memorizza molto meglio la sintassi
-:::
+{{< include _installazione.qmd >}}
 
 ## La compilazione {transition=none}
 

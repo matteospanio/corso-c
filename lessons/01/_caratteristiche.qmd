@@ -8,7 +8,7 @@
 
 ::: {.content-visible unless-format="revealjs"}
 
-## Compilare o non compilare?
+### Compilare o non compilare?
 
 Nel precedente paragrafo è comparso il termine *compilatore*, che cos'è?
 

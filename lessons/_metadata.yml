@@ -1,5 +1,6 @@
 license: "CC BY"
 sidebar: lessons
+date-format: long
 format:
   html:
     filters:
