@@ -54,7 +54,7 @@ website:
       - icon: github
         href: https://github.com/matteospanio/corso-c
         aria-label: Github Corso C
-  back-to-top-navigation: true
+  # back-to-top-navigation: true
 
   sidebar:
     - id: lessons
@@ -64,7 +64,7 @@ website:
           contents:
               - lessons/01/index.qmd
               - text: Guida all'installazione
-                href: lessons/01/gcc.qmd
+                href: extra/gcc.qmd
 
         - lessons/02/index.qmd
         - lessons/03/index.qmd
