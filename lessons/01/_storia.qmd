@@ -41,6 +41,8 @@ C risultò subito un linguaggio vanataggioso da usare soprattutto per la sua por
 
 ### Uno Standard per tutti
 
+> "The nice thing about standards is that you have so many to choose from.", **Andrew S. Tanenbaum**
+
 È in questo scenario che si vede l'intervento  dell'[American National Standard Institute (ANSI)](https://en.wikipedia.org/wiki/American_National_Standards_Institute) che a partire dal 1983 si mise al lavoro per proporre uno standard C concludendolo nel 1989 e successivamente approvato dall'[International Organization for Standardization (ISO)](https://en.wikipedia.org/wiki/International_Organization_for_Standardization) nel 1990 come ISO/IEC 9899:1990, meglio conosciuto come C89. Negli anni vennero poi apportate altre migliorie al linguaggio che portarono, nel 1999, alla creazione di un nuovo standard: l'ISO/IEC 9899:1999, solitamente detto C99.
 
 Dopo il C99 sono stati creati altri standard: C11, C17 e C23. Ognuno di questi introduce variazioni che servono a mantenere il linguaggio aggiornato alle esigenze dei programmatori attuali. Dopo la creazione di uno standard però i compilatori devono essere riscritti per comprendere le nuove regole proposte, questo fa sì che spesso non sia possibile compilare i programmi con l'ultimo standard perchè questo esiste solo da un punto di vista teorico. Attualmente i compilatori più diffusi coprono gli standard C99 e C11 ma non è ancora possibile scrivere programmi in C23.

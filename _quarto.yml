@@ -48,6 +48,8 @@ website:
     center:
       - text: "FAQ"
         href:  faq.qmd
+      - text: "Forum"
+        href: https://dei.unipd.it/
       - text: "Licenza"
         href:  license.qmd
     right:
