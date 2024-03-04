@@ -48,7 +48,7 @@ website:
       - text: "Forum"
         href: https://stem.elearning.unipd.it/mod/forum/view.php?id=470278
       - text: "Licenza"
-        href:  license.qmd
+        href:  extra/license.qmd
     right:
       - icon: github
         href: https://github.com/matteospanio/corso-c
