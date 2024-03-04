@@ -1,5 +1,6 @@
 ---
-title: Tipi di base e array
+title: Funzioni e Scope
+date: 04/09/2024
 ---
 
 TODO

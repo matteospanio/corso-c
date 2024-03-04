@@ -1,0 +1,83 @@
+---
+title: FAQ
+---
+
+
+
+# Perché proprio C?
+
+> **Io conosco Python, Ruby, Haskell, Kotlin, Perl e ieri ho implementato un compilatore per il mio unico e innovativo linguaggio di programmazione. Perché dovrei imparare C?**
+
+Affermazioni del tipo “Il nostro linguaggio è veloce quasi quanto il C, ma è più facile da scrivere” sono così comuni da diventare quasi cliché. Bene, **C è sicuramente veloce quanto C**, e lo scopo del corso è facilitare la comprensione di un linguaggio spesso conosciuto come ostico. La comprensione di un linguaggio che non astrae molti concetti e lascia molta responsabilità al programmatore è importante per avere delle solide basi su concetti che pervadono tutti i linguaggi di programmazione.
+
+> **Il mio telefono ha 6 GB di RAM, quindi perché i libri di testo dedicano così tante pagine a tecniche per risparmiare kilobytes di peso ai file eseguibili?**
+>
+> **Il mio vecchissimo computer riesce ad eseguire 3,200,000,000 istruzioni al secondo, perché dovrei interessarmi se un'operazione confronta 8 o 16 bit?**
+
+Dovremmo scrivere codice che possiamo scrivere velocemente e che sia leggibile dai nostri simili. Stiamo ancora scrivendo in C, quindi il nostro codice leggibile ma non perfettamente ottimizzato verrà comunque eseguito un ordine di grandezza più velocemente che se avessimo scritto codice comparabile in un numero qualsiasi di linguaggi alternativi.
+
+# Esame
+
+Di seguito alcune domande frequenti e indicazioni sulle modalità di svolgimento dell'esame.
+
+## Come si svolge l'esame?
+
+L'esame del corso di Dati e Algoritmi è scritto, in presenza e si svolge in 3 parti:
+
+1. **domande**: verifica della conoscenza teorica in programma, semplici dimostrazioni;
+2. **esercizi**: capacità di risolvere problemi di progetto e analisi di algoritmi (simili a quelli affrontati durante il corso);
+3. **codice**: scrittura in linguaggio C di algoritmi che utilizzano strutture dati;
+
+ogni parte dell'esame dura 45 minuti, per un totale di 2 ore e 15 minuti.
+
+## Come si calcola il voto finale?
+
+Ognuna delle tre parti dell'esame è valutata al massimo 11 punti, il voto è la somma delle tre parti.
+
+::: {.callout-important}
+Se in una delle tre parti si ottiene una valutazione inferiore a 4, l'esame è da considerarsi non superato nella sua interezza.
+:::
+
+Con 33 punti si ottiene la lode.
+
+Di seguito è riportato l'algoritmo di calcolo del voto finale:
+
+```c
+// algoritmo per calcolare il voto dell'esame
+int voto_finale(int domande, int esercizi, int codice)
+{
+    int voto = domande + esercizi + codice;
+
+    // se una delle tre parti è inferiore a 4,
+    // l'esame è da considerarsi non superato
+    if (domande < 4 || esercizi < 4 || codice < 4)
+    {
+        voto = 0;
+    }
+
+    switch (voto)
+    {
+        case 31:
+        case 32:
+            voto = 30;
+            break;
+
+        case 33:
+            voto = 31; // 31 equivale a 30 e lode
+            break;
+
+        case default:
+            break;
+    }
+
+  return voto;
+}
+```
+
+## Posso usare il mio computer per scrivere codice?
+
+No, la parte di scrittura di codice si svolge tramite i computer del laboratorio.
+
+## Non ho un computer, posso svolgere l'esame?
+
+Sì, tuttavia per poter svolgere gli esercizi di programmazione è necessario avere una buona dimestichezza con l'uso di un computer ed è fortemente consigliato fare pratica a casa.

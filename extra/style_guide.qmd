@@ -1,0 +1,349 @@
+---
+title: Guida allo stile per il linguaggio C
+---
+
+::: {.callout-note}
+La presente guida è un riadattamento dalla [style guide del CS50](https://cs50.readthedocs.io/style/c/) di Harvard per il corso di Dati e Algoritmi dell'Università di Padova.
+:::
+
+Non esiste un modo "giusto" unico per scrivere codice. Ma ci sono sicuramente molti modi sbagliati (o, almeno, cattivi). Ad ogni modo, essendo questo un corso di introduzione a C, è una buona occasione per mettere in pratica alcune regole di stile per scrivere fin da subito codice leggibile e mantenibile.
+
+## Lunghezza della linea
+
+Per convenzione, la lunghezza massima di una riga di codice è di 80 caratteri in C, questa è una scelta di ragioni storiche, infatti negli anni '80 i monitor di dimensioni standard potevano visualizzare 24 linee verticali e 80 caratteri orizzontali. Anche se la tecnologia moderna ha reso obsoleta la necessità di mantenere le linee limitate a 80 caratteri, è comunque una linea guida che dovrebbe essere considerata come un "limite flessibile". Oggi, solitamente, si cerca di non superare i 100 caratteri in una singola linea. Se hai bisogno di più di 100 caratteri, potrebbe essere il momento di ripensare sia ai nomi delle variabili che al design complessivo del programma!
+
+## Commenti
+
+I commenti rendono il codice più leggibile, non solo per gli altri, ma anche per te, specialmente quando passano ore, giorni, settimane, mesi o anni tra la scrittura e la lettura del tuo stesso codice. Commentare troppo poco è sbagliato. Commentare troppo è sbagliato. Dove sta il punto giusto? Commentare ogni poche righe di codice (cioè, blocchi interessanti) è una buona linea guida. Cerca di scrivere commenti che rispondano a una o entrambe queste domande:
+
+1. Cosa fa questo blocco?
+1. Perché ho implementato questo blocco in questo modo?
+
+All'interno delle funzioni, utilizza "commenti in linea" e mantienili brevi (ad esempio, una riga), altrimenti diventa difficile distinguere i commenti dal codice. Posiziona il commento sopra la riga (o le righe) a cui si applica. Non è necessario scrivere frasi complete, ma metti in maiuscolo la prima parola del commento (a meno che non sia il nome di una funzione, variabile o simile), e lascia uno spazio tra `//` e il primo carattere del tuo commento, come in:
+
+```c
+// Converti Fahrenheit in Celsius
+float c = 5.0 / 9.0 * (f - 32.0);
+```
+
+In altre parole, non fare questo:
+
+```c
+// converti Fahrenheit in Celsius
+float c = 5.0 / 9.0 * (f - 32.0);
+```
+
+O questo:
+
+```c
+float c = 5.0 / 9.0 * (f - 32.0); // Converti Fahrenheit in Celsius
+```
+
+Nelle prime righe dei file .c e .h dovrebbe esserci un commento che riassuma ciò che fa il tuo programma (o quel particolare file).
+
+Sopra ciascuna delle tue funzioni (eccetto, forse, `main`), dovrebbe invece esserci un commento che riassuma cosa fa la tua funzione, come in:
+
+```c
+// Restituisce il quadrato di n
+int quadrato(int n)
+{
+    return n * n;
+}
+```
+
+## Intestazioni delle librerie
+
+Tutte le intestazioni delle librerie che includi dovrebbero essere elencate in ordine alfabetico, come in:
+
+```c
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+```
+
+Questo rende più facile vedere in un colpo d'occhio, specialmente in un elenco lungo, se hai incluso un'intestazione.
+
+## Condizioni
+
+Le condizioni dovrebbero essere stilizzate come segue:
+
+```c
+if (x > 0)
+{
+    printf("x è positivo\n");
+}
+else if (x < 0)
+{
+    printf("x è negativo\n");
+}
+else
+{
+    printf("x è zero\n");
+}
+```
+
+Nota come:
+
+- le parentesi graffe si allineano bene, ognuna sulla propria linea, rendendo perfettamente chiaro cosa c'è dentro il ramo;
+- c'è uno spazio singolo dopo ogni `if`;
+- ogni chiamata a `printf` è indentata con 4 spazi;
+- ci sono spazi singoli intorno a `>` e intorno a `<`; e
+- non c'è alcuno spazio immediatamente dopo ogni `(` o immediatamente prima di ogni `)`.
+
+Per risparmiare spazio, alcuni programmatori preferiscono mantenere la prima parentesi graffa sulla stessa riga della condizione stessa, ma non lo consigliamo, poiché è più difficile da leggere, quindi non fare questo:
+
+```c
+if (x < 0) {
+    printf("x è negativo\n");
+} else if (x < 0) {
+    printf("x è negativo\n");
+}
+```
+
+E sicuramente non fare questo:
+
+```c
+if (x < 0)
+    {
+    printf("x è negativo\n");
+    }
+else
+    {
+    printf("x è negativo\n");
+    }
+```
+
+## Switch
+
+Dichiara uno `switch` come segue:
+
+```c
+switch (n)
+{
+    case -1:
+        printf("n è -1\n");
+        break;
+
+    case 1:
+        printf("n è 1\n");
+        break;
+
+    default:
+        printf("n non è né -1 né 1\n");
+        break;
+}
+```
+
+Nota come:
+
+- ogni parentesi graffa sia su una propria riga;
+- c'è uno spazio singolo dopo `switch`;
+- non c'è spazio immediatamente dopo ogni `(` o prima di ogni `)`;
+- i casi dello switch sono indentati con 4 spazi;
+- i corpi dei casi sono indentati ulteriormente con 4 spazi; e
+- ogni `case` (incluso `default`) termina con un `break`.
+
+## Funzioni
+
+In conformità con [C99](http://en.wikipedia.org/wiki/C99), assicurati di dichiarare `main` con:
+
+```c
+int main(void)
+{
+
+}
+```
+
+o con:
+
+```c
+int main(int argc, char *argv[])
+{
+
+}
+```
+
+o anche con:
+
+```c
+int main(int argc, char **argv)
+{
+
+}
+```
+
+Non dichiarare `main` con:
+
+```c
+int main()
+{
+
+}
+```
+
+o con:
+
+```c
+void main()
+{
+
+}
+```
+
+o con:
+
+```c
+main()
+{
+
+}
+```
+
+Per le tue stesse funzioni, assicurati di definirle similmente, con ogni parentesi graffa su una propria riga e con il tipo di ritorno sulla stessa riga del nome della funzione, proprio come abbiamo fatto con `main`.
+
+## Indentazione
+
+Indenta il tuo codice con quattro spazi alla volta per chiarire quali blocchi di codice sono contenuti all'interno di altri. Se usi il tasto Tab sulla tastiera per farlo, assicurati che l'editor di testo sia configurato per convertire le tabulazioni (`\t`) in quattro spazi, altrimenti il tuo codice potrebbe non essere stampato o visualizzato correttamente sul computer di qualcun altro, poiché `\t` si renderizza in modo diverso in editor diversi.
+
+Ecco del codice ben indentato:
+
+```c
+// Stampare gli argomenti della riga di comando uno per riga
+printf("\n");
+for (int i = 0; i < argc; i++)
+{
+    for (int j = 0, n = strlen(argv[i]); j < n; j++)
+    {
+        printf("%c\n", argv[i][j]);
+    }
+    printf("\n");
+}
+```
+
+## Cicli
+
+### for
+
+Ogni volta che hai bisogno di variabili temporanee per l'iterazione, usa `i`, poi `j`, poi `k`, a meno che nomi più specifici non rendano il tuo codice più leggibile:
+
+```c
+for (int i = 0; i < LIMITE; i++)
+{
+    for (int j = 0; j < LIMITE; j++)
+    {
+        for (int k = 0; k < LIMITE; k++)
+        {
+            // Fai qualcosa
+        }
+    }
+}
+```
+
+Se hai bisogno di più di tre variabili per l'iterazione, potrebbe essere il momento di ripensare il tuo design!
+
+### while
+
+Dichiara i cicli `while` come segue:
+
+```c
+while (condizione)
+{
+    // Fai qualcosa
+}
+```
+
+Nota come:
+
+- ogni parentesi graffa sia su una propria riga;
+- c'è uno spazio singolo dopo `while`;
+- non c'è spazio immediatamente dopo il `(` o prima del `)`; e
+- il corpo del ciclo (un commento in questo caso) è indentato con 4 spazi.
+
+### do ... while
+
+Dichiara i cicli `do ... while` come segue:
+
+```c
+do
+{
+    // Fai qualcosa
+}
+while (condizione);
+```
+
+Nota come:
+
+- ogni parentesi graffa sia su una propria riga;
+- c'è uno spazio singolo dopo `while`;
+- non c'è spazio immediatamente dopo il `(` o prima del `)`; e
+- il corpo del ciclo (un commento in questo caso) è indentato con 4 spazi.
+
+## Puntatori
+
+Quando dichiari un puntatore, scrivi `*` accanto alla variabile, come in:
+
+```c
+int *p;
+```
+
+Non scriverlo accanto al tipo, come in:
+
+```c
+int* p;
+```
+
+## Variabili
+
+Poiché in questo corso si utilizza [C99](http://en.wikipedia.org/wiki/C99), non definire tutte le tue variabili all'inizio delle tue funzioni ma, piuttosto, quando e dove ne hai effettivamente bisogno. Inoltre, limita il più possibile lo scope delle tue variabili. Ad esempio, se `i` è necessario solo per il ciclo, dichiara `i` all'interno del ciclo stesso:
+
+```c
+for (int i = 0; i < LIMITE; i++)
+{
+    printf("%i\n", i);
+}
+```
+
+Anche se è accettabile utilizzare variabili come `i`, `j` e `k` per l'iterazione, la maggior parte delle tue variabili dovrebbe avere nomi più specifici. Se stai sommando alcuni valori, ad esempio, chiamare la tua variabile `somma`. Se il nome della tua variabile giustifica due parole (ad esempio, `ha_mangiato`), metti un trattino basso (underscore) tra di esse, questo modo di chiamare le variabili è detto `snake_case` (altri modi di dare il nome alle variabili sono il `CamelCase` o il meno comune `kebab-case`).
+
+::: {.callout-caution}
+Perché il kebab case è un formato più insolito degli altri? Se provi a dare un nome di variabile in kebab-case in un programma C cosa succede?
+:::
+
+Se dichiari più variabili dello stesso tipo contemporaneamente, è accettabile dichiararle insieme, come in:
+
+```c
+int quartieri, dimes, nickels, pennies;
+```
+
+Basta non inizializzare alcune ma non altre, come in:
+
+```c
+int quartieri, dimes = 0, nickels = 0 , pennies;
+```
+
+Prenditi cura anche di dichiarare i puntatori separatamente dai non puntatori, come in:
+
+```c
+int *p;
+int n;
+```
+
+Non dichiarare puntatori sulla stessa riga dei non puntatori, come in:
+
+```c
+int *p, n;
+```
+
+## Strutture
+
+Dichiara una `struct` come tipo come segue, con ogni parentesi graffa su una propria riga e i membri indentati al suo interno, con il nome del tipo anche sulla sua riga:
+
+```c
+typedef struct
+{
+    char *nome;
+    int matricola;
+} studente_t;
+```
+
+Quando definisci un tipo con `typedef` è buona prassi usare un nome che finisce con `_t`, questo per poterlo facilmente distinguere dai nomi di variabile, dalle funzioni o dalle macro.

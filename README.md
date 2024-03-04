@@ -7,14 +7,12 @@ Dispense per l'introdottozione al linguaggio di programmazione C.
 Questa è la pagina web della parte di programmazione in C del corso di dati e algoritmi per la laurea triennale in ingegneria elettronica presso l'Università di Padova.
 
 ## Docker
-::: {.callout-warning}
-## Requisiti
-Le seguenti tecnologie sono necessarie per eseguire il sito web in locale con Docker:
 
-- Docker
-- Docker Compose
-- Git
-:::
+> **Requisiti**:
+> Le seguenti tecnologie sono necessarie per eseguire il sito web in locale con Docker:
+> - Docker
+> - Docker Compose
+> - Git
 
 È possibile installare una versione locale del sito web utilizzando Docker. Per farlo, è necessario eseguire i seguenti comandi:
 

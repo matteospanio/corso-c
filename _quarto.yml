@@ -19,9 +19,6 @@ website:
       theme: clean
       openSidebar: false
 
-  # announcement:
-  #   content: "This website is under construction. It might change frequently. Please be patient."
-  #   position: below-navbar
   navbar:
     background: "#9b0014"
     logo: assets/images/dec_pdp1120.png
@@ -29,8 +26,8 @@ website:
     collapse-below: lg
 
     left:
-      - text: Home
-        href: index.qmd
+      # - text: Home
+      #   href: index.qmd
       - text: Lezioni
         href: lessons.qmd
       - text: Esercizi
@@ -49,7 +46,7 @@ website:
       - text: "FAQ"
         href:  faq.qmd
       - text: "Forum"
-        href: https://dei.unipd.it/
+        href: https://stem.elearning.unipd.it/mod/forum/view.php?id=470278
       - text: "Licenza"
         href:  license.qmd
     right:
@@ -91,6 +88,15 @@ website:
           text: Linked Lists
         - href: exercises/io.qmd
           text: I/O
+
+    - id: resources
+      title: Risorse
+      contents:
+        - href: resources.qmd
+          text: Risorse
+        - href: extra/style_guide.qmd
+          text: Style Guide
+        - href: faq.qmd
 
 format:
   html:

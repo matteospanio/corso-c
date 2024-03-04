@@ -1,5 +1,6 @@
 ---
 title: Puntatori
+date: 04/10/2024
 ---
 
 TODO
