@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main (void)
+int main(void)
 {
     // creo le variabili per salvare l'input
     int n1, m1, n2, m2;
@@ -28,9 +28,5 @@ int main (void)
     }
     mcd = a;
 
-    printf(
-        "Il risultato semplificato è %d/%d\n",
-        num/mcd,
-        den/mcd
-    );
+    printf("Il risultato semplificato è %d/%d\n", num / mcd, den / mcd);
 }

@@ -11,6 +11,6 @@ int main(void)
         scanf("%d", &a);
         printf("Secondo fattore:\n");
         scanf("%d", &b);
-        printf("%d\n", a^b);
+        printf("%d\n", a ^ b);
     }
 }
