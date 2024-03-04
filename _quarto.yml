@@ -26,8 +26,6 @@ website:
     collapse-below: lg
 
     left:
-      # - text: Home
-      #   href: index.qmd
       - text: Lezioni
         href: lessons.qmd
       - text: Esercizi
@@ -53,7 +51,6 @@ website:
       - icon: github
         href: https://github.com/matteospanio/corso-c
         aria-label: Github Corso C
-  # back-to-top-navigation: true
 
   sidebar:
     - id: lessons
