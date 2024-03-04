@@ -16,17 +16,4 @@ int main(void)
     printf("%6d\n", i_val);
     printf("%06d\n", i_val);
     printf("%-6d\n", i_val);
-
-    if (c_val == 'x')
-    {
-        printf("c_val is x\n");
-    }
-    else if (c_val == 'y')
-    {
-        printf("c_val is y\n");
-    }
-    else
-    {
-        printf("c_val is not x or y\n");
-    }
 }

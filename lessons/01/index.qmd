@@ -29,8 +29,9 @@ abstract: In questa lezione si introduce il linguaggio di programmazione C illus
 #include <stdio.h>
 
 /* Il mio primo programma in C! */
-int main(void) {
-  printf("Hello, World!");
+int main(void)
+{
+    printf("Hello, World!");
 }
 ```
 
@@ -68,12 +69,7 @@ Non esegue il linking (utile se non si ha ancora il main ad esempio)
 ## Sintassi di C {auto-animate="true"}
 
 ```{.c code-line-numbers="|1"}
-#include <stdio.h>
-/* Il mio primo programma in C! */
-int main(void) {
-  int anno = 2024;
-  printf("Hello Dati e Algoritmi %d", anno);
-}
+{{< include ./code/hello_dati_algoritmi.c >}}
 ```
 
 . . .
@@ -83,12 +79,7 @@ int main(void) {
 ## Sintassi di C {auto-animate="true"}
 
 ```{.c code-line-numbers="2"}
-#include <stdio.h>
-/* Il mio primo programma in C! */
-int main(void) {
-  int anno = 2024;
-  printf("Hello Dati e Algoritmi %d", anno);
-}
+{{< include ./code/hello_dati_algoritmi.c >}}
 ```
 
 1. Direttiva
@@ -96,13 +87,8 @@ int main(void) {
 
 ## Sintassi di C {auto-animate="true"}
 
-```{.c code-line-numbers="3,6"}
-#include <stdio.h>
-/* Il mio primo programma in C! */
-int main(void) {
-  int anno = 2024;
-  printf("Hello Dati e Algoritmi %d", anno);
-}
+```{.c code-line-numbers="3,4,7"}
+{{< include ./code/hello_dati_algoritmi.c >}}
 ```
 
 1. Direttiva
@@ -111,13 +97,8 @@ int main(void) {
 
 ## Sintassi di C {auto-animate="true"}
 
-```{.c code-line-numbers="4"}
-#include <stdio.h>
-/* Il mio primo programma in C! */
-int main(void) {
-  int anno = 2024;
-  printf("Hello Dati e Algoritmi %d", anno);
-}
+```{.c code-line-numbers="5"}
+{{< include ./code/hello_dati_algoritmi.c >}}
 ```
 
 1. Direttiva
@@ -127,13 +108,8 @@ int main(void) {
 
 ## Sintassi di C {auto-animate="true"}
 
-```{.c code-line-numbers="5"}
-#include <stdio.h>
-/* Il mio primo programma in C! */
-int main(void) {
-  int anno = 2024;
-  printf("Hello Dati e Algoritmi %d", anno);
-}
+```{.c code-line-numbers="6"}
+{{< include ./code/hello_dati_algoritmi.c >}}
 ```
 
 1. Direttiva
@@ -148,7 +124,8 @@ int main(void) {
 ```{.c}
 #include <stdio.h>                            /* <1> */
 /* Il mio primo programma in C! */            /* <2> */
-int main(void) {                              /* <3> */
+int main(void)                                /* <3> */
+{                                             /* <3> */
   int anno = 2024;                            /* <4> */
   printf("Hello Dati e Algoritmi %d", anno);  /* <5> */
 }                                             /* <3> */
