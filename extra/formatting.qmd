@@ -1,0 +1,56 @@
+---
+title: Guida per formattare il codice
+---
+
+Clang-Format è uno strumento di formattazione del codice sorgente basato su Clang, il front-end del compilatore LLVM. La sua principale funzione è quella di formattare il codice sorgente in base a regole di stile specifiche, garantendo coerenza e leggibilità del codice. Questo strumento è particolarmente utile in contesti di sviluppo collaborativo, dove diversi programmatori possono avere differenti preferenze di formattazione. Utilizzare clang-format permette di mantenere uno stile uniforme nel codice sorgente, facilitando la comprensione, la manutenzione e la revisione del codice.
+
+Nel caso di questo corso invece permette di assicurarsi che il codice sorgente segua lo stile esplicitato nella [guida di stile](style_guide.qmd) e garantisce che sia leggibile prima di condividere il codice con qualcun altro.
+
+In generale si consiglia di utilizzare clang-format specificando lo stile `microsoft` nella seguente maniera:
+
+```{.bash}
+clang-format -i -style=microsoft *.c
+```
+
+## Installazione e uso su Linux
+
+Su Linux, l'installazione di clang-format può essere effettuata tramite il gestore dei pacchetti della distribuzione utilizzata. Ad esempio, su Ubuntu e derivate, si può installare con il seguente comando:
+
+```bash
+sudo apt-get install clang-format
+```
+
+Una volta installato, è possibile utilizzare clang-format direttamente da riga di comando specificando il file sorgente da formattare. Ad esempio:
+
+```bash
+clang-format -i file.c
+```
+
+Questo comando formatta il file "file.c" utilizzando le impostazioni predefinite di clang-format.
+
+## Installazione e uso su macOS
+
+Su macOS, clang-format può essere installato utilizzando Homebrew, un gestore di pacchetti per macOS. Per installare clang-format con Homebrew, eseguire i seguenti comandi:
+
+```bash
+brew update
+brew install clang-format
+```
+
+Dopo l'installazione, è possibile utilizzare clang-format come descritto in precedenza per Linux.
+
+## Installazione e uso su Windows
+
+Su Windows, clang-format può essere installato come parte del pacchetto LLVM. Per installare LLVM e quindi clang-format, seguire questi passaggi:
+
+1. Scaricare il pacchetto di installazione di LLVM dal sito ufficiale (https://llvm.org/).
+2. Eseguire il programma di installazione e seguire le istruzioni guidate.
+3. Assicurarsi di selezionare l'opzione per installare clang-format durante il processo di installazione.
+
+Dopo l'installazione, è possibile utilizzare clang-format da riga di comando come descritto in precedenza per Linux e macOS.
+
+## Utilizzo avanzato
+
+Clang-Format offre numerose opzioni per personalizzare la formattazione del codice sorgente. È possibile specificare un file di configurazione `.clang-format` per definire regole di formattazione personalizzate. Inoltre, clang-format supporta diversi stili di formattazione predefiniti, come Google, LLVM, Mozilla e altri.
+
+Per ulteriori informazioni sulle opzioni di configurazione e sugli stili di formattazione supportati, consultare la documentazione ufficiale di Clang-Format.
