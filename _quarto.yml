@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "Corso C 2024"
+  title: "Hello C 2024"
   favicon: assets/images/dec_pdp1120.png
   page-navigation: true
   bread-crumbs: true
@@ -22,7 +22,7 @@ website:
   navbar:
     background: "#9b0014"
     logo: assets/images/dec_pdp1120.png
-    logo-alt: Corso C
+    logo-alt: Hello C
     collapse-below: lg
 
     left:
@@ -50,23 +50,37 @@ website:
     right:
       - icon: github
         href: https://github.com/matteospanio/corso-c
-        aria-label: Github Corso C
+        aria-label: Github Hello C
 
   sidebar:
     - id: lessons
       title: Lezioni
       contents:
-        - section: Settimana 1
+        - section: Lezione 1
           contents:
               - lessons/01/index.qmd
               - text: Guida all'installazione
                 href: extra/gcc.qmd
 
-        - lessons/02/index.qmd
-        - lessons/03/index.qmd
-        - lessons/04/index.qmd
-        - lessons/05/index.qmd
-        - lessons/06/index.qmd
+        - section: Lezione 2
+          contents:
+            - lessons/02/index.qmd
+
+        - section: Lezione 3
+          contents:
+            - lessons/03/index.qmd
+
+        - section: Lezione 4
+          contents:
+            - lessons/04/index.qmd
+
+        - section: Lezione 5
+          contents:
+            - lessons/05/index.qmd
+
+        - section: Lezione 6
+          contents:
+            - lessons/06/index.qmd
 
     - id: exercises
       title: Esercizi
@@ -90,7 +104,12 @@ website:
       title: Risorse
       contents:
         - href: resources.qmd
-          text: Risorse
+          section: Risorse
+          contents:
+          - href: extra/books.qmd
+            text: Libri di testo
+          - href: extra/docker.qmd
+            text: Ambiente di sviluppo
         - section: Come scrivere codice
           contents:
           - href: extra/style_guide.qmd

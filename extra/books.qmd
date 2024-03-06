@@ -1,0 +1,17 @@
+---
+title: Libri di testo
+---
+
+Il libro del corso è **Programmazione in C** di Kim N. King, in particolare nell'edizione italiana edita da Apogeo.
+
+# Letture consigliate
+
+::: {.callout-note}
+Questa è una lista di letture suggerite per approfondire concetti visti durante il corso, i contenuti di questi libri però **non sono richiesti in sede d'esame**.
+:::
+
+- 21st Century C di Ben Klemens
+- Expert C Programming: Deep C secrets di Peter Van Der Linden
+- Head First C di David e Dawn Griffiths
+- An introduction to C&GUI programming di Simon Long
+- Modern C di Jens Gustedt

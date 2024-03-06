@@ -1,0 +1,20 @@
+---
+title: Ambiente di sviluppo
+---
+
+Per chi non ha una istallazione Linux (nativa o VM) è possibile riprodurre un ambiente identico a quello utilizzato nelle lezioni tramite una immagine docker. Ecco come fare:
+
+1. Installare Docker dal sito ufficiale: [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
+
+2. Eseguire l'immagine (il download avviene automaticamente)
+
+    ```bash
+    docker run -it --rm matteospanio/corso-c:latest bash
+    ```
+
+3. In questo modo si ottiene una shell dentro un’immagine ubuntu linux in cui sono installati gcc e altri strumenti di sviluppo
+
+## Metodi alternativi
+
+- Per chi ha un sistema operativo MacOS o Linux basta installare gcc.
+- In Windows è possibile utilizzare [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install), un sistema simile a docker per integrare direttamente Ubuntu in Windows.

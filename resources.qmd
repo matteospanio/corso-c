@@ -3,4 +3,10 @@ title: Risorse
 sidebar: resources
 ---
 
-# Risorse
+Questa sezione è dedicata a risorse che possono essere utili da consultare per avere dei riferimenti ma non è necessario studiarle.
+
+In particolare ci sono:
+
+- una [sezione dedicata ai libri di testo](extra/books.qmd) in cui si può consultare una lista di letture suggerite oltre ad avere informazioni sul libro di testo ufficiale del corso;
+- una [guida alla scrittura](extra/style_guide.qmd) di codice chiaro in C, non è un requisito del corso scrivere seguendo questi criteri, è comunque consigliato applicare delle regole di formattazione per scrivere codice chiaro e coerente;
+- una sezione dedicata a [domande e risposte](faq.qmd) frequenti in cui, in particolare, vengono descritte le modalità d'esame.

@@ -1,9 +1,9 @@
 ---
-title: Corso C 2024
+title: Hello C 2024
 toc: false
 ---
 
-![Corso C](https://img.shields.io/badge/Course-Introduction%20to%20C-blue)
+![Hello C](https://img.shields.io/badge/Course-Introduction%20to%20C-blue)
 ![CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-green)
 
 ::: {.callout-warning}
@@ -13,3 +13,17 @@ Il contenuto del sito non è ancora definitivo, potrebbe cambiare di frequente. 
 
 Dispense per l'introdottozione al linguaggio di programmazione C.
 Questa è la pagina web della parte di programmazione in C del corso di dati e algoritmi per la laurea triennale in ingegneria elettronica presso l'Università di Padova.
+
+# Questo sito
+
+Il sito è organizzato per 3 macro aree:
+
+- [lezioni](lessons.qmd)
+- [esercizi](exercises.qmd)
+- [risorse](resources.qmd)
+
+La sezione lezioni raccoglie tutti i contenuti presentati a lezione, ogni lezione è riportata in formato html e pdf, inoltre è possibile consultare anche le diapositive viste a lezione in formato RevealJS. Oltre ai contenuti visti in classe sono presenti, saltuariamente, brevi guide sull'utilizzo/installazione di software o approfondimenti.
+
+La sezione esercizi raccoglie molti esercizi per ripassare gli argomenti visti in classe e prepararsi all'esame, in generale vi sono esercizi di varia difficoltà.
+
+La sezione risorse contiene materiali vari: una lista di letture consigliate sul linguaggio C oltre al libro di testo del corso, un elenco di materiali didattici reperibili online, domande e risposte comuni sull'esame, una guida sull'installazione dell'ambiente di sviluppo per scrivere programmi C.

@@ -2,4 +2,4 @@
 title: Page Not Found
 ---
 
-![](./assets/images/404.gif)
+![](assets/images/404.gif)
