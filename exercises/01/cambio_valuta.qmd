@@ -1,0 +1,58 @@
+---
+title: "Esercizio: cambio valuta"
+---
+
+> L'Italia ha cambiato la sua valuta dalla lira italiana (ITL) all'euro (EUR) il 1º gennaio 2002. Questo è stato un evento storico noto come la "fase di transizione all'euro" o l'"introduzione dell'euro". Durante questo periodo, le banconote e le monete denominate in euro sono state introdotte gradualmente in circolazione e la lira italiana è stata gradualmente ritirata. Il processo di transizione all'euro ha coinvolto un periodo di preparazione e pianificazione da parte delle istituzioni finanziarie e del governo italiano.
+>
+> Gli italiani, al momento del cambio, si sono trovati a dover far fronte a un nuovo sistema di valuta. Per aiutare le persone a comprendere meglio il valore delle nuove banconote e monete, i giornali e i media hanno pubblicato tabelle di conversione tra le due valute ma il metodo più comune che venne adottato fin da subito fu la conversione esatta da lire in euro al tasso di cambio stabilito dai governi. Il valore di un euro è stato fissato a 1936,27 lire italiane.
+
+Si vuole scrivere un programma che, dato un importo in lire, lo converta in euro. Il programma deve chiedere all'utente di inserire un importo in lire e visualizzare a video l'importo corrispondente in euro.
+
+---
+
+Quando il programma viene eseguito deve chiedere all'utente di inserire la quantità di lire italiane da cambiare, effettuare il calcolo e visualizzare il risultato a video a video.
+
+Ad esempio:
+```{.raw}
+Inserire l'importo in lire: 10000
+10000 lire italiane corrispondono a 5.16 euro
+```
+
+::: {.callout-tip}
+## Suggerimento
+
+Per convertire un importo da lire a euro, si può utilizzare la seguente formula:
+$$
+\text{euro} = \frac{\text{lire}}{1936.27}
+$$
+
+In C è molto comune definire le costanti in due maniere:
+
+- con la direttiva `#define`:
+  ```{.c}
+  #define TASSO_CAMBIO 1936.27
+  ```
+
+- con la dichiarazione di una variabile `const`:
+  ```{.c}
+  const float TASSO_CAMBIO = 1936.27;
+  ```
+:::
+
+Esempio di main:
+
+:::{.aside}
+{{< downloadthis ./code/cambio_valuta.c dname="cambio_valuta" label="Scarica il file" >}}
+:::
+```{.c}
+{{< include ./code/cambio_valuta.c >}}
+```
+
+<!-- ::: {.callout-tip collapse="true"}
+## Soluzione
+
+```{.c}
+{{< include ./code/cambio_valuta_soluzione.c >}}
+```
+
+::: -->

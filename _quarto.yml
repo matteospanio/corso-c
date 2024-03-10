@@ -87,8 +87,14 @@ website:
       contents:
         - section: Lezione 1
           contents:
-            - exercises/01/libretto.qmd
-            - exercises/01/lista_della_spesa.qmd
+            - href: exercises/01/cambio_valuta.qmd
+              text: Cambio valuta
+            - href: exercises/01/libretto.qmd
+              text: Libretto universitario
+        - section: Lezione 2
+          contents:
+            - href: exercises/02/lista_della_spesa.qmd
+              text: Lista della spesa
 
     - id: resources
       title: Risorse

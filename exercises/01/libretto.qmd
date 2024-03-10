@@ -40,9 +40,6 @@ Esempio di main:
 {{< include ./code/libretto.c >}}
 ```
 
-
-
-
 <!-- ::: {.callout-tip collapse="true"}
 ## Soluzione
 

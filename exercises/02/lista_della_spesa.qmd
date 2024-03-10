@@ -1,0 +1,45 @@
+---
+title: "Esercizio: la lista della spesa"
+---
+
+Si vuole scrivere un programma per calcolare il prezzo del carrello di una spesa. Data una lista della merce acquistabile, il cui prezzo al chilo è noto, scrivere un programma che chiede all'utente quale e quanta merce voglia comprare. Se l'utente inserisce il codice -1, il programma stampa il costo totale del carrello e termina.
+
+---
+
+All'avvio il programma stampa una lista della merce disponibile e l'id:
+
+```plaintext
+1) Pomodoro
+2) Pasta
+3) Biscotti
+4) Banane
+5) Pane
+```
+
+All'utente viene chiesto di inserire l'id della merce che vuole comprare e il peso in chilogrammi. L'interazione continua fino a che l'utente non inserisce il valore -1 per l'id. A quel punto il programma stampa il costo totale della merce nel carrello e termina come nell'esempio:
+
+```plaintext
+Selezionare prodotto: -1
+Specificare quantità (in kg): 0  // in questo caso non importa il numero inserito
+Totale: 12.00
+```
+
+**Opzionale**:
+
+- stampare ad ogni iterazione il costo attuale del carrello;
+- verificare che la quantità inserita non sia negativa o pari a zero e gestire i casi;
+
+::: {.callout-tip}
+## Suggerimento
+
+Solitamente, quando si tratta di ripetere un'azione fino al verificarsi di un determinato evento senza sapere il momento in cui questo avverrà, si usa l'istruzione `while`. Se si manipolano delle variabili a ogni ciclo bisogna stare molto attenti a quando queste vengono lette e inizializzate.
+:::
+
+Esempio di main:
+
+:::{.aside}
+{{< downloadthis ./code/spesa.c dname="spesa" label="Scarica il file" >}}
+:::
+```{.c}
+{{< include ./code/spesa.c >}}
+```
