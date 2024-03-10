@@ -3,4 +3,20 @@ title: Esercizi
 sidebar: exercises
 ---
 
-## Esercizi
+Gli esercizi sono divisi per lezione. Ogni lezione tratta un numero variabile di argomenti, quindi gli esercizi sono divisi in base a questi argomenti. Gli esercizi di lezioni più avanzate fanno spesso riferimento a concetti appresi in lezioni precedenti, quindi è consigliabile svolgerli in ordine.
+
+Per compilare gli esercizi si suggerisce di usare il comando `gcc` con i warning attivati e l'opzione `-std=c99` per compilare in standard C99. Di seguito il comando che si può usare per compilare un file sorgente `esercizio.c`:
+
+```{.bash}
+gcc -std=c99 -Wall -Wextra -pedantic -Werror -g -o esercizio esercizio.c
+```
+
+Talvolta può essere utile usare un file Makefile per compilare più file sorgente. Di seguito un esempio di Makefile:
+
+::: {.aside}
+{{< downloadthis ./exercises/Makefile dname="Makefile" label="Scarica il file" >}}
+:::
+
+```{.make}
+{{< include exercises/Makefile >}}
+```

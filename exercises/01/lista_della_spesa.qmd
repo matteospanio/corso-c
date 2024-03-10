@@ -1,21 +1,12 @@
 ---
 title: "Esercizio: la lista della spesa"
-abstract: "Scrivere un programma che chieda all'utente di inserire una lista della spesa e la stampi a video."
-keywords:
-  - printf
-  - scanf
-  - input/output
 ---
 
-::: {.callout-note appearance="minimal"}
-## Prerequisiti
-Per svolgere questo esercizio è necessario conoscere i seguenti argomenti:
-
-- `printf`
-- `scanf`
-:::
-
 Si vuole scrivere un programma che chieda all'utente di inserire, uno alla volta, gli elementi di una lista della spesa con il relativo prezzo e che stampi a video la lista completa e il totale della spesa.
+
+::: {.callout-note appearance="minimal"}
+Dal momento che si vuole usare solo le istruzioni scanf e printf e non si vuole usare un ciclo, si assume che la lista della spesa abbia una lunghezza predefinita di 3 elementi.
+:::
 
 Ad esempio, se l'utente inserisce i seguenti elementi:
 
@@ -28,13 +19,13 @@ Latte 1.00
 Il programma dovrà stampare:
 
 ```plaintext
-Pomodori   2.50
-Pane       1.20
-Latte      1.00
-Totale:    4.70
+Pomodori 2.50
+Pane 1.20
+Latte 1.00
+Totale 4.70
 ```
 
-::: {.callout-note}
+::: {.callout-tip}
 ## Suggerimento
 Abbiamo visto a lezione che `scanf` solitamente ha bisogno del carattere `&` per leggere i valori in input. Tuttavia, quando si leggono stringhe, non è necessario utilizzarlo, di seguito un esempio:
 
@@ -46,3 +37,12 @@ scanf("%s", nome); // salva una stringa in nome
 scanf("%f", &prezzo)  // salva un double in prezzo
 ```
 :::
+
+Esempio di main:
+
+:::{.aside}
+{{< downloadthis ./code/libretto.c dname="libretto" label="Scarica il file" >}}
+:::
+```{.c}
+{{< include ./code/libretto.c >}}
+```
