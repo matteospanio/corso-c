@@ -1,0 +1,48 @@
+---
+title: "Esercizio: la lista della spesa"
+abstract: "Scrivere un programma che chieda all'utente di inserire una lista della spesa e la stampi a video."
+keywords:
+  - printf
+  - scanf
+  - input/output
+---
+
+::: {.callout-note appearance="minimal"}
+## Prerequisiti
+Per svolgere questo esercizio è necessario conoscere i seguenti argomenti:
+
+- `printf`
+- `scanf`
+:::
+
+Si vuole scrivere un programma che chieda all'utente di inserire, uno alla volta, gli elementi di una lista della spesa con il relativo prezzo e che stampi a video la lista completa e il totale della spesa.
+
+Ad esempio, se l'utente inserisce i seguenti elementi:
+
+```plaintext
+Pomodori 2.50
+Pane 1.20
+Latte 1.00
+```
+
+Il programma dovrà stampare:
+
+```plaintext
+Pomodori   2.50
+Pane       1.20
+Latte      1.00
+Totale:    4.70
+```
+
+::: {.callout-note}
+## Suggerimento
+Abbiamo visto a lezione che `scanf` solitamente ha bisogno del carattere `&` per leggere i valori in input. Tuttavia, quando si leggono stringhe, non è necessario utilizzarlo, di seguito un esempio:
+
+```{.c}
+double prezzo;
+char nome[64];
+
+scanf("%s", nome); // salva una stringa in nome
+scanf("%f", &prezzo)  // salva un double in prezzo
+```
+:::

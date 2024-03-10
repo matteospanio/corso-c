@@ -119,6 +119,7 @@ Non esegue il linking (utile se non si ha ancora il main ad esempio)
 5. Chiamata di funzione
 :::
 
+::: {.content-visible unless-format="revealjs"}
 ## Sintassi di C {auto-animate="true"}
 
 ```{.c}
@@ -137,6 +138,7 @@ int main(void)                                /* <3> */
 3. Funzione
 4. Dichiarazione e assegnazione di variabile
 5. Chiamata di funzione
+:::
 
 
 ## Commenti
@@ -219,6 +221,47 @@ I caratteri speciali sii scrivono con `\` (backslash) il carattere di *escaping*
 
 Output: `Si va a capo con \n`
 
+## Output con printf {.smaller}
+
+- `%d` per interi, es. $10$
+- `%f` per float, es. $3.14$
+- `%e` per float in notazione scientifica, es. $5.2\times 10^4$
+- `%lf` per double, es. $3.14$
+- `%s` per stringhe, es. `"ciao"`
+- `%c` per caratteri, es. `'a'`
+- `%p` per puntatori, es. `0x7fffbf7f3b4c`
+- `%x` per interi in esadecimale, es. `ff`
+- `%o` per interi in ottale, es. `77`
+- `%Nf` per avere $N$ "spazi" per la stampa, es. `%5d` per  `112` con due spazi vuoti prima
+- `%.Nf` per float con $N$ cifre decimali, es. `%.2f` per $3.14$
+
+## String format
+
+Si è già visto `\n` per andare a capo, ma ce ne sono altri:
+
+- `\n` per andare a capo
+- `\t` per tabulare
+- `\b` per backspace
+- `\\` per stampare il backslash
+- `\"` per stampare le virgolette
+- `\0` per terminare una stringa
+
+## Input con scanf
+
+`scanf` esegue pattern matching sull'input per popolare delle variabili
+
+```{.c}
+int base, altezza;
+scanf("%d%d", &base, &altezza);
+```
+
+Per esempio se l'utente scrive `3 4` e preme invio, `base` sarà 3 e `altezza` sarà 4.
+
+## Input con scanf
+
+`scanf` scorre l'input ignorando ogni carattere bianco (spazi, tabulazioni, a capo). Se trova caratteri *compatibili* (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.
+
+Popola le variabili fino a trovare un carattere bianco o un carattere non compatibile.
 
 ::: {.content-visible when-format="revealjs"}
 ## {.smaller}

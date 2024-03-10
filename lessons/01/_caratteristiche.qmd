@@ -8,8 +8,14 @@
 
 ::: {.content-visible unless-format="revealjs"}
 
-### Compilare o non compilare?
+In questa sezione si discutono brevemente le caratteristiche del linguaggio C evidenziandone pregi e difetti. L'aver concluso il precedente paragrafo parlando di compilatori lascia intuire che C sia un linguaggio **compilato**. Questo significa che il codice sorgente scritto in C deve essere tradotto in linguaggio macchina prima di poter essere eseguito. Altri punti caratteristici di C sono l'essere **minimale** (C rinuncia a molte astrazioni, questo, per esempio, permette di ridurre il numero di parole chiave del linguaggio), il fatto di essere **fortemente tipato** (le variabili devono essere dichiarate con un tipo e non possono cambiare tipo durante l'esecuzione del programma) e il fatto di essere **permissivo** (il compilatore non si lamenta di errori che in altri linguaggi sarebbero considerati gravi). Tecnicamente C è un linguaggio di alto livello, ma nella pratica ha molte feature che lo rendono uno dei linguaggi di più basso livello. Specialmente sulla gestione di memoria.
 
-Nel precedente paragrafo è comparso il termine *compilatore*, che cos'è?
+::: {.callout-note}
+## Compilare o interpretare?
+
+Non tutti i linguaggi di programmazione vanno compilati. Alcuni vengono interpretati. La differenza, semplificando, è che un linguaggio compilato viene tradotto in linguaggio macchina una volta per tutte, mentre un linguaggio interpretato viene tradotto in linguaggio macchina ogni volta che viene eseguito. Esistono moltissimi linguaggi di entrambi i tipi, e non esiste una regola che renda un sistema migliore dell'altro. Generalmente i linguaggi compilati sono più veloci, ma i linguaggi interpretati sono più flessibili. Spesso per progetti di piccole dimensioni o script i programmatori preferiscono usare linguaggi interpretati, mentre per progetti di grandi dimensioni o software che deve essere veloce si preferisce usare linguaggi compilati (non è sempre così però).
+
+L'alternarsi tra i due tipi di linguaggi è una questione che esiste da tempo. È importante notare a riguardo che il predecessore di C, il linguaggio B, era un linguaggio interpretato. La scelta di C di essere compilato è stata una delle ragioni del suo successo. Allo stesso modo molti linguaggi interpretati si sono diffusi proprio per essere tali.
+:::
 
 :::

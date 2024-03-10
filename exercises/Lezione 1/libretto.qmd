@@ -1,0 +1,54 @@
+---
+title: "Esercizio: il libretto degli esami"
+abstract: "Scrivere un programma che calcoli la media ponderata dei voti degli esami."
+keywords:
+  - printf
+  - scanf
+  - input/output
+---
+
+::: {.callout-note appearance="minimal"}
+## Prerequisiti
+Per svolgere questo esercizio è necessario conoscere i seguenti argomenti:
+
+- `printf`
+- `scanf`
+:::
+
+Si vuole scrivere un programma che, dati in input i voti di più esami e i relativi crediti, calcoli la media ponderata dei voti e la visualizzi a video.
+
+::: {.callout-tip collapse="true"}
+## Suggerimento
+La media ponderata si calcola come la somma dei prodotti tra ciascun voto e i relativi crediti, diviso la somma dei crediti. Formalmente:
+
+$$
+\text{media} = \frac{\sum_{i=1}^{n} voto_i \cdot crediti_i}{\sum_{i=1}^{n} crediti_i}
+$$
+dove $voto_i$ è il voto dell'esame $i$-esimo e $crediti_i$ è il numero di crediti dell'esame $i$-esimo.
+
+Ad esempio, se si hanno tre esami con voti 30, 28 e 25 e i rispettivi crediti sono 6, 9 e 12, la media ponderata è:
+$$
+\frac{30 \cdot 6 + 28 \cdot 9 + 25 \cdot 12}{6 + 9 + 12} = \frac{180 + 252 + 300}{27} = \frac{732}{27} \approx 27.11
+$$
+:::
+
+## Requisiti
+
+Quando il programma viene eseguito deve chiedere all'utente di inserire il voto di un certo esame e il relativo numero di crediti associato. Una volta inseriti tutti i voti e i crediti, il programma deve calcolare la media ponderata e visualizzarla a video.
+
+**Opzionale**:
+- Provare a visualizzare anche la media aritmetica dei voti;
+
+- Visualizzare anche l'elenco dei voti e dei crediti inseriti.
+```{.raw}
+
+```
+
+<!-- ::: {.callout-tip collapse="true"}
+## Soluzione
+
+```{.c}
+{{< include ./code/libretto.c >}}
+```
+
+::: -->
