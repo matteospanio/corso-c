@@ -3,13 +3,10 @@ sidebar: lessons
 date-format: long
 format:
   html:
-    filters:
-      - line-highlight
+    lang: it
   pdf:
     lang: it
     papersize: a4
-    filters:
-      - line-highlight
   revealjs:
     filters:
       - code-fullscreen

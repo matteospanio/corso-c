@@ -85,20 +85,10 @@ website:
     - id: exercises
       title: Esercizi
       contents:
-        - href: exercises/array.qmd
-          text: Array
-        - href: exercises/heap.qmd
-          text: Heap
-        - href: exercises/pointer.qmd
-          text: Puntatori
-        - href: exercises/struct.qmd
-          text: Strutture
-        - href: exercises/recursion.qmd
-          text: Ricorsione
-        - href: exercises/linkedlist.qmd
-          text: Linked Lists
-        - href: exercises/io.qmd
-          text: I/O
+        - section: Lezione 1
+          contents:
+            - exercises/01/libretto.qmd
+            - exercises/01/lista_della_spesa.qmd
 
     - id: resources
       title: Risorse

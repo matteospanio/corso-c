@@ -1,9 +1,9 @@
 .PHONY: format
-format: **/*.c **/*.h
+format:
 	@echo "Formatting code..."
-	clang-format --verbose -i -style=microsoft $(find . -name '*.c' -o -name '*.h')
+	bash format.sh
 
-_site: *.qmd **/*.qmd
+_site: *.qmd lessons/01/*.qmd exercises/01/*.qmd
 	@echo "Building site..."
 	quarto render
 
