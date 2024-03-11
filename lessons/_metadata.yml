@@ -11,6 +11,8 @@ format:
     filters:
       - code-fullscreen
     lang: it
+    chalkboard: true
+
     output-file: slide.html
     slide-number: true
     preview-links: true

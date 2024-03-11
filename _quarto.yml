@@ -66,13 +66,17 @@ website:
     - id: exercises
       title: Esercizi
       contents:
-        - section: Lezione 1
+        - section: Basi di C
           contents:
+            - href: exercises/01/somma_interi.qmd
+              text: Somma di interi
+            - href: exercises/01/somma_razionale.qmd
+              text: Somma razionale
             - href: exercises/01/cambio_valuta.qmd
               text: Cambio valuta
             - href: exercises/01/libretto.qmd
               text: Libretto universitario
-        - section: Lezione 2
+        - section: Espressioni e strutture di controllo
           contents:
             - href: exercises/02/lista_della_spesa.qmd
               text: Lista della spesa

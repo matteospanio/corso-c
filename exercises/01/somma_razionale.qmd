@@ -1,0 +1,30 @@
+---
+title: "Esercizio: somma di numeri razionali"
+---
+
+Si vuole scrivere un programma che accetti in input due razionali nella forma `n/m` e ne stampi la somma (non semplificata).
+
+Ad esempio:
+```{.raw}
+Inserisci il primo numero: 3/4
+Inserisci il secondo numero: 1/2
+La somma dei due numeri è 5/4
+```
+
+**Opzionale**:
+
+- Una volta compilato il programma eseguilo con `gdb` controllando ad ogni *step* i valori delle variabili locali.
+
+:::{.callout-tip}
+## Suggerimento
+In questo caso possiamo richiedere all'utente che il formato includa lo slash, e quindi includerlo nel pattern di scanf.
+:::
+
+<!-- ::: {.callout-tip collapse="true"}
+## Soluzione
+
+```{.c}
+{{< include ./code/cambio_valuta_soluzione.c >}}
+```
+
+::: -->

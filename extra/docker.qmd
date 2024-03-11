@@ -9,10 +9,14 @@ Per chi non ha una istallazione Linux (nativa o VM) è possibile riprodurre un a
 2. Eseguire l'immagine (il download avviene automaticamente)
 
     ```bash
-    docker run -it --rm matteospanio/corso-c:latest bash
+    docker run -it --rm ghcr.io/matteospanio/cdev:latest bash
     ```
 
 3. In questo modo si ottiene una shell dentro un’immagine ubuntu linux in cui sono installati gcc e altri strumenti di sviluppo
+
+::: {.callout-tip}
+Se ti sembra scomodo eseguire il comando del punto 2 puoi scaricare l'applicazione python [cdev-cli](https://matteospanio.github.io/cdev-cli/) e avviare l'immagine con meno sforzo.
+:::
 
 ## Metodi alternativi
 

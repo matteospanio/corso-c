@@ -1,0 +1,189 @@
+::: {.content-visible unless-format="revealjs"}
+Difficilmente un programma può fare a meno di interagire con l'utente o con l'ambiente esterno. In C questo avviene tramite le funzioni `printf` e `scanf`. Queste funzioni fanno parte della libreria standard `stdio.h`, che è disponibile di default in ogni installazione di C.
+
+Per comprenderle meglio, è necessario capire come funzionano i formati di stampa e di lettura. Un buon punto di partenza è il manuale di `printf` e `scanf` (che si può trovare digitando `man printf` e `man scanf` in un terminale).
+
+::: {.callout-note}
+## Il comando `man`
+
+Il comando `man` è un comando che permette di visualizzare il manuale di un comando o di una funzione. Il numero tra parentesi tonde dopo il nome del comando indica la sezione del manuale in cui cercare. Per esempio, `man 3 printf` cerca il manuale della funzione `printf` nella sezione 3, che contiene le funzioni di libreria.
+
+Le sezioni del manuale sono:
+
+1. Programmi eseguibili e comandi della shell
+2. Chiamate al sistema (funzioni fornite dal kernel)
+3. Chiamate alle librerie (funzioni all'interno delle librerie di sistema)
+4. File speciali (di solito trovabili in /dev)
+5. Formati dei file e convenzioni p.es. /etc/passwd
+6. Giochi
+7. Pacchetti di macro e convenzioni p.es. man(7), groff(7).
+8. Comandi per l'amministrazione del sistema (solitamente solo per root)
+9. Routine del kernel [Non standard]
+
+Un buon punto di partenza per saperne di più è `man man`.
+:::
+
+:::
+
+:::{.content-visible when-format="revealjs"}
+- Abbiamo già usato nei nostri esempi l'inclusione di `stdio.h`
+- Ci ha permesso di usare la funzione `printf`, con la quale possiamo stampare dei risultati a terminale
+- L'altra importante funzione che ci permette di usare è `scanf`, che legge i dati forniti dall'utente a terminale
+- Entrambe usano testo formattato, tramite uso di simboli speciali
+
+## Output con printf {.smaller}
+:::
+::: {.content-visible unless-format="revealjs"}
+### Output con printf {.smaller}
+:::
+
+```{.plaintext numberLines=False}
+$ man 3 printf
+
+PRINTF(3)              Linux Programmer's Manual              PRINTF(3)
+
+NAME
+       printf,  fprintf, dprintf, sprintf, snprintf, vprintf, vfprintf,
+       vdprintf, vsprintf, vsnprintf - formatted output conversion
+
+SYNOPSIS
+       #include <stdio.h>
+
+       int printf(const char *format, ...);
+       int fprintf(FILE *stream, const char *format, ...);
+       int dprintf(int fd, const char *format, ...);
+       int sprintf(char *str, const char *format, ...);
+       int snprintf(char *str, size_t size, const char *format, ...);
+
+...
+
+DESCRIPTION
+       The functions in the printf() family produce output according to
+       a  format  as  described  below.   The  functions  printf()  and
+       vprintf()  write  output  to stdout, the standard output stream;
+       fprintf() and  vfprintf()  write  output  to  the  given  output
+       stream; sprintf(), snprintf(), vsprintf(), and vsnprintf() write
+       to the character string str.
+
+```
+
+:::{.content-visible when-format="revealjs"}
+## Il manuale {.smaller}
+
+Il comando `man` permette di visualizzare il manuale di un comando o di una funzione. È diviso in sezioni:
+
+1. Programmi eseguibili e comandi della shell
+2. Chiamate al sistema (funzioni fornite dal kernel)
+3. Chiamate alle librerie (funzioni all'interno delle librerie di sistema)
+4. File speciali (di solito trovabili in /dev)
+5. Formati dei file e convenzioni p.es. /etc/passwd
+6. Giochi
+7. Pacchetti di macro e convenzioni p.es. man(7), groff(7).
+8. Comandi per l'amministrazione del sistema (solitamente solo per root)
+9. Routine del kernel [Non standard]
+
+## Output con printf
+
+Gli specificatori iniziano con `%`, e per ciascuno deve esserci un parametro dopo la stringa di formattazione
+
+`printf("Misura %d metri e %d cm \n", met, cm);`
+
+Output: `Misura 2 e 15 cm`
+
+I caratteri speciali sii scrivono con `\` (backslash) il carattere di *escaping*
+
+`printf("Si va a capo con \\n\n");`
+
+Output: `Si va a capo con \n`
+:::
+
+::: {.content-visible unless-format="revealjs"}
+La pagina del manuale di `printf` è veramente lunga e rischia di essere un po' dispersiva. Uno dei punti cruciali è la descrizione degli specificatori di formato, che sono i simboli che permettono di formattare l'output. Questi simboli iniziano tutti con `%`, e per ciascuno deve esserci un parametro dopo la stringa di formattazione.
+
+Ad esempio `%d` è il simbolo per stampare un intero, `printf("%d", 10)` pertanto stampa `10`. Di seguito è riportata una lista di specificatori di formato:
+:::
+
+:::{.content-visible when-format="revealjs"}
+## Output con printf {.smaller}
+:::
+
+- `%d` per interi, es. $10$
+- `%f` per float, es. $3.14$
+- `%e` per float in notazione scientifica, es. $5.2\times 10^4$
+- `%lf` per double, es. $3.14$
+- `%s` per stringhe, es. `"ciao"`
+- `%c` per caratteri, es. `'a'`
+- `%p` per puntatori, es. `0x7fffbf7f3b4c`
+- `%x` per interi in esadecimale, es. `ff`
+- `%o` per interi in ottale, es. `77`
+- `%Nf` per avere $N$ "spazi" per la stampa, es. `%5d` per  `112` con due spazi vuoti prima
+- `%.Nf` per float con $N$ cifre decimali, es. `%.2f` per $3.14$
+
+:::{.content-visible when-format="revealjs"}
+## String format
+
+Si è già visto `\n` per andare a capo, ma ce ne sono altri:
+:::
+::: {.content-visible unless-format="revealjs"}
+### String format
+
+Oltre ai simboli di formattazione, ci sono anche i caratteri speciali, che si scrivono con `\` (backslash) il carattere di *escaping*. Questi caratteri permettono di stampare a monitor dei codici che vengono interpretati in maniera speciale. Il più comune è `\n` per andare a capo, ma ce ne sono altri, di seguito una lista dei più ricorrenti:
+:::
+
+
+- `\n` per andare a capo
+- `\t` per tabulare
+- `\b` per backspace
+- `\\` per stampare il backslash
+- `\"` per stampare le virgolette
+- `\0` per terminare una stringa
+
+:::{.content-visible when-format="revealjs"}
+## Input con scanf
+:::
+::: {.content-visible unless-format="revealjs"}
+### Input con scanf
+:::
+
+`scanf` esegue pattern matching sull'input per popolare delle variabili
+
+```{.c}
+int base, altezza;
+scanf("%d%d", &base, &altezza);
+```
+
+Per esempio se l'utente scrive `3 4` e preme invio, `base` sarà 3 e `altezza` sarà 4.
+
+:::{.content-visible when-format="revealjs"}
+## Input con scanf
+:::
+
+`scanf` scorre l'input ignorando ogni carattere bianco (spazi, tabulazioni, a capo). Se trova caratteri *compatibili* (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.
+
+Popola le variabili fino a trovare un carattere bianco o un carattere non compatibile.
+
+::: {.content-visible when-format="revealjs"}
+## {.smaller}
+:::{.columns}
+
+:::{.column width="50%"}
+
+{{< include ./tables/_format_specifiers.qmd >}}
+
+:::
+
+:::{.column width="50%"}
+```{.c}
+{{< include ./code/format_strings.c >}}
+```
+:::
+:::
+:::
+
+:::{.content-hidden when-format="revealjs"}
+
+{{< include ./tables/_format_specifiers.qmd >}}
+```{.c}
+{{< include ./code/format_strings.c >}}
+```
+:::
