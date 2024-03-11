@@ -103,8 +103,41 @@ La pagina del manuale di `printf` è veramente lunga e rischia di essere un po' 
 Ad esempio `%d` è il simbolo per stampare un intero, `printf("%d", 10)` pertanto stampa `10`. Di seguito è riportata una lista di specificatori di formato:
 :::
 
+::: {.content-visible when-format="revealjs"}
+## {.smaller}
+:::{.columns}
+
+:::{.column width="50%"}
+
+{{< include ./tables/_format_specifiers.qmd >}}
+
+:::
+
+:::{.column width="50%"}
+```{.c}
+{{< include ./code/format_strings.c >}}
+```
+:::
+:::
+:::
+
+:::{.content-hidden when-format="revealjs"}
+
+{{< include ./tables/_format_specifiers.qmd >}}
+
+Il seguente codice C mette in pratica i simboli di formattazione seguendo gli esempi della tabella, si noti che, per comodità, le espressioni usate più di una volta vengono salvate in variabili:
+
+```{.c}
+{{< include ./code/format_strings.c >}}
+```
+:::
+
 :::{.content-visible when-format="revealjs"}
 ## Output con printf {.smaller}
+:::
+
+:::{.content-hidden when-format="revealjs"}
+La seguente lista invece è un elenco più esaustivo di esempi di formattazione:
 :::
 
 - `%d` per interi, es. $10$
@@ -140,50 +173,79 @@ Oltre ai simboli di formattazione, ci sono anche i caratteri speciali, che si sc
 
 :::{.content-visible when-format="revealjs"}
 ## Input con scanf
-:::
-::: {.content-visible unless-format="revealjs"}
-### Input con scanf
-:::
 
 `scanf` esegue pattern matching sull'input per popolare delle variabili
 
 ```{.c}
 int base, altezza;
-scanf("%d%d", &base, &altezza);
+scanf(
+    "%d%d", // pattern
+    &base, &altezza // variabili da popolare
+);
 ```
 
 Per esempio se l'utente scrive `3 4` e preme invio, `base` sarà 3 e `altezza` sarà 4.
+:::
+::: {.content-visible unless-format="revealjs"}
+### Input con scanf
+
+Per ricevere l'input da terminale si usa la funzione `scanf`, questa funzione esegue pattern matching sull'input per popolare delle variabili. Per esempio:
+
+```{.c}
+int base, altezza;
+scanf(
+    "%d%d", /* <1> */
+    &base, &altezza  /* <2> */
+    );
+```
+
+1. Pattern: `%d%d` indica che si aspettano due interi
+2. Variabili da popolare: `base` e `altezza` sono le variabili che verranno popolate con i valori letti da terminale, si noti che il tipo deve essere coerente con il pattern. Se il pattern fosse stato `%f` le variabili avrebbero dovuto essere di tipo `float`.
+
+::: {.callout-warning}
+`scanf` scorre l'input ignorando ogni carattere bianco (spazi, tabulazioni, a capo). Se trova caratteri *compatibili* (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.
+:::
+
+:::
 
 :::{.content-visible when-format="revealjs"}
 ## Input con scanf
-:::
+`scanf` scorre l'input ignorando ogni carattere bianco (spazi, tabulazioni, a capo).
 
-`scanf` scorre l'input ignorando ogni carattere bianco (spazi, tabulazioni, a capo). Se trova caratteri *compatibili* (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.
+Se trova caratteri *compatibili* (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.
 
 Popola le variabili fino a trovare un carattere bianco o un carattere non compatibile.
 
-::: {.content-visible when-format="revealjs"}
-## {.smaller}
-:::{.columns}
+## Input con scanf
 
-:::{.column width="50%"}
+<strong><large>`&base`?</large></strong>
 
-{{< include ./tables/_format_specifiers.qmd >}}
+. . .
+
+È un puntatore! Per poter salvare in memoria il valore letto da `scanf` è necessario passare l'indirizzo di memoria della variabile, non la variabile stessa.
+
+::: {.callout-warning}
+Dimenticarsi il simbolo & in questo caso darà un errore a runtime
+:::
+
+## Input con scanf
+
+Un puntatore è un indirizzo di memoria. Quando si passa un puntatore a una funzione, si passa l'indirizzo di memoria della variabile, non la variabile stessa. Questo permette alla funzione di scrivere direttamente nella variabile, senza doverne fare una copia.
+
+![](./figures/spiderman.jpg)
+
+## Input con scanf
+
+- Attenzione a non confonder `printf` e `scanf`, per quanto simili siano.
+- `scanf` accetta gli stessi format specifier di `printf`, ma alcuni hanno meno varietà. Usate per il momento solo `%d` e `%f`.
+- `printf` accetta valori, `scanf` accetta puntatori. Bisogna ricordarsi di non scrivere `&` davanti alle variabili in `printf` e di scriverlo in `scanf` (quando serve).
+- Si possono mettere caratteri oltre ai format specifier in una scanf, ma può creare problemi.
 
 :::
 
-:::{.column width="50%"}
-```{.c}
-{{< include ./code/format_strings.c >}}
-```
-:::
-:::
-:::
 
-:::{.content-hidden when-format="revealjs"}
+::: {.content-visible unless-format="revealjs"}
+Si noti che è stato usato lo strano simbolo `&` davanti alle variabili base e altezza. Questo simbolo è chiamato *operatore di indirizzamento* e restituisce l'indirizzo di memoria della variabile. Questo è necessario perché `scanf` deve scrivere direttamente nella variabile, e non può farlo se non conosce l'indirizzo di memoria. Se si dimentica il simbolo `&` si otterrà un errore a runtime.
 
-{{< include ./tables/_format_specifiers.qmd >}}
-```{.c}
-{{< include ./code/format_strings.c >}}
-```
+Di fatto stiamo introducendo il concetto di puntatore, che è un argomento più avanzato e verrà trattato in seguito. Per ora è sufficiente sapere che un puntatore è un indirizzo di memoria. Quando si passa un puntatore a una funzione, si passa l'indirizzo di memoria della variabile, non la variabile stessa. Questo permette alla funzione di scrivere direttamente nella variabile, senza doverne fare una copia.
 :::
