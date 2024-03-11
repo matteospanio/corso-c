@@ -1,0 +1,836 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hello C 2024",
+    "section": "",
+    "text": "Materiali in continuo aggiornamento\n\n\n\nIl contenuto del sito non è ancora definitivo, potrebbe cambiare di frequente. Per piacere siate pazienti.\n\n\nDispense per l’introdottozione al linguaggio di programmazione C. Questa è la pagina web della parte di programmazione in C del corso di dati e algoritmi per la laurea triennale in ingegneria elettronica presso l’Università di Padova.\n\nQuesto sito\nIl sito è organizzato per 3 macro aree:\n\nlezioni\nesercizi\nrisorse\n\nLa sezione lezioni raccoglie tutti i contenuti presentati a lezione, ogni lezione è riportata in formato html e pdf, inoltre è possibile consultare anche le diapositive viste a lezione in formato RevealJS. Oltre ai contenuti visti in classe sono presenti, saltuariamente, brevi guide sull’utilizzo/installazione di software o approfondimenti.\nLa sezione esercizi raccoglie molti esercizi per ripassare gli argomenti visti in classe e prepararsi all’esame, in generale vi sono esercizi di varia difficoltà.\nLa sezione risorse contiene materiali vari: una lista di letture consigliate sul linguaggio C oltre al libro di testo del corso, un elenco di materiali didattici reperibili online, domande e risposte comuni sull’esame, una guida sull’installazione dell’ambiente di sviluppo per scrivere programmi C."
+  },
+  {
+    "objectID": "exercises/02/lista_della_spesa.html",
+    "href": "exercises/02/lista_della_spesa.html",
+    "title": "Esercizio: la lista della spesa",
+    "section": "",
+    "text": "Si vuole scrivere un programma per calcolare il prezzo del carrello di una spesa. Data una lista della merce acquistabile, il cui prezzo al chilo è noto, scrivere un programma che chiede all’utente quale e quanta merce voglia comprare. Se l’utente inserisce il codice -1, il programma stampa il costo totale del carrello e termina.\n\nAll’avvio il programma stampa una lista della merce disponibile e l’id:\n1) Pomodoro\n2) Pasta\n3) Biscotti\n4) Banane\n5) Pane\nAll’utente viene chiesto di inserire l’id della merce che vuole comprare e il peso in chilogrammi. L’interazione continua fino a che l’utente non inserisce il valore -1 per l’id. A quel punto il programma stampa il costo totale della merce nel carrello e termina come nell’esempio:\nSelezionare prodotto: -1\nSpecificare quantità (in kg): 0  // in questo caso non importa il numero inserito\nTotale: 12.00\nOpzionale:\n\nstampare ad ogni iterazione il costo attuale del carrello;\nverificare che la quantità inserita non sia negativa o pari a zero e gestire i casi;\n\n\n\n\n\n\n\nSuggerimento\n\n\n\nSolitamente, quando si tratta di ripetere un’azione fino al verificarsi di un determinato evento senza sapere il momento in cui questo avverrà, si usa l’istruzione while. Se si manipolano delle variabili a ogni ciclo bisogna stare molto attenti a quando queste vengono lette e inizializzate.\n\n\nEsempio di main:\n\n\n Scarica il file \n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    // prezzo al kg dei prodotti disponibili\n    float prezzo_pomodoro = 2.5f;\n    float prezzo_pasta = 1.5f;\n    float prezzo_biscotti = 3.0f;\n    float prezzo_banane = 1.0f;\n    float prezzo_pane = 2.0f;\n\n    // TODO:\n    //     1) chiedere in input quale prodotto si vuole comprare e la quantità in chilogrammi\n    //     2) quando si seleziona il prodotto -1 stampa il costo totale e termina\n    //     3) altrimenti aggiungi il costo della merce acquistata al totale\n}",
+    "crumbs": [
+      "Lezioni",
+      "Lezione 2",
+      "Lista della spesa"
+    ]
+  },
+  {
+    "objectID": "exercises/01/libretto.html",
+    "href": "exercises/01/libretto.html",
+    "title": "Esercizio: il libretto degli esami",
+    "section": "",
+    "text": "Si vuole scrivere un programma che, dati in input i voti di più esami e i relativi crediti, calcoli la media ponderata dei voti e la visualizzi a video.\n\n\n\n\n\n\nSi assume che gli esami siano 3: algebra lineare, analisi matematica e introduzione alla programmazione (java).\n\n\n\nQuando il programma viene eseguito deve chiedere all’utente di inserire il voto di un certo esame e il relativo numero di crediti associato. Una volta inseriti tutti i voti e i crediti, il programma deve calcolare la media ponderata e visualizzarla a video.\nOpzionale:\n\nProvare a visualizzare anche la media aritmetica dei voti;\nVisualizzare anche l’elenco dei voti e dei crediti inseriti.\nProva a stampare il voto con 2 cifre decimali, ad esempio 27.11 (per fare questo bisogna cambiare il tipo di dato usato per memorizzare la media e usare il type casting durante la divisione).\n\n\n\n\n\n\n\nSuggerimento\n\n\n\nLa media ponderata si calcola come la somma dei prodotti tra ciascun voto e i relativi crediti, diviso la somma dei crediti. Formalmente:\n\\[\n\\text{media} = \\frac{\\sum_{i=1}^{n} voto_i \\cdot crediti_i}{\\sum_{i=1}^{n} crediti_i}\n\\] dove \\(voto_i\\) è il voto dell’esame \\(i\\)-esimo e \\(crediti_i\\) è il numero di crediti dell’esame \\(i\\)-esimo.\nAd esempio, se si hanno tre esami con voti 30, 28 e 25 e i rispettivi crediti sono 6, 9 e 12, la media ponderata è: \\[\n\\frac{30 \\cdot 6 + 28 \\cdot 9 + 25 \\cdot 12}{6 + 9 + 12} = \\frac{180 + 252 + 300}{27} = \\frac{732}{27} \\approx 27.11\n\\]\n\n\nEsempio di main:\n\n\n Scarica il file \n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int voto_analisi1, voto_algebra_lineare, voto_java;\n    int crediti_analisi1, crediti_algebra_lineare, crediti_java;\n    int media_ponderata;\n\n    // TODO: Chiedere all'utente i voti e i crediti dei tre esami\n\n    // TODO: Calcolare la media ponderata\n\n    printf(\"La media ponderata è: %d\\n\", media_ponderata);\n}",
+    "crumbs": [
+      "Lezioni",
+      "Lezione 1",
+      "Libretto universitario"
+    ]
+  },
+  {
+    "objectID": "extra/books.html",
+    "href": "extra/books.html",
+    "title": "Libri di testo",
+    "section": "",
+    "text": "Il libro del corso è Programmazione in C di Kim N. King, in particolare nell’edizione italiana edita da Apogeo.\n\nLetture consigliate\n\n\n\n\n\n\nNota\n\n\n\nQuesta è una lista di letture suggerite per approfondire concetti visti durante il corso, i contenuti di questi libri però non sono richiesti in sede d’esame.\n\n\n\n21st Century C di Ben Klemens\nExpert C Programming: Deep C secrets di Peter Van Der Linden\nHead First C di David e Dawn Griffiths\nAn introduction to C&GUI programming di Simon Long\nModern C di Jens Gustedt",
+    "crumbs": [
+      "Risorse",
+      "Libri di testo"
+    ]
+  },
+  {
+    "objectID": "extra/docker.html",
+    "href": "extra/docker.html",
+    "title": "Ambiente di sviluppo",
+    "section": "",
+    "text": "Per chi non ha una istallazione Linux (nativa o VM) è possibile riprodurre un ambiente identico a quello utilizzato nelle lezioni tramite una immagine docker. Ecco come fare:",
+    "crumbs": [
+      "Risorse",
+      "Ambiente di sviluppo"
+    ]
+  },
+  {
+    "objectID": "extra/docker.html#metodi-alternativi",
+    "href": "extra/docker.html#metodi-alternativi",
+    "title": "Ambiente di sviluppo",
+    "section": "Metodi alternativi",
+    "text": "Metodi alternativi\n\nPer chi ha un sistema operativo MacOS o Linux basta installare gcc.\nIn Windows è possibile utilizzare WSL 2, un sistema simile a docker per integrare direttamente Ubuntu in Windows.",
+    "crumbs": [
+      "Risorse",
+      "Ambiente di sviluppo"
+    ]
+  },
+  {
+    "objectID": "extra/license.html",
+    "href": "extra/license.html",
+    "title": "Open Source License",
+    "section": "",
+    "text": "I materiali presenti sul sito sono messi a disposizione sotto licenza Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Il testo completo della licenza è disponibile qui.\nIl codice sorgente di questo sito è disponibile a https://github.com/matteospanio/corso-c.\nInoltre il sito fa uso di diversi altri progetti open-source, la distribuzione dei quali è soggetta alle rispettive licenze. I principali componenti e le loro licenze sono:\n\n\n\nProgetto\nLicenza\n\n\n\n\nPandoc\nGNU GPL v2\n\n\nBootstrap 5.1\nMIT\n\n\nBootswatch 5.1\nMIT\n\n\nDeno\nMIT\n\n\nesbuild\nMIT\n\n\nDart Sass\nMIT\n\n\nObservable Runtime\nISC\n\n\nQuarto 1.4\nMIT"
+  },
+  {
+    "objectID": "lessons.html",
+    "href": "lessons.html",
+    "title": "Lezioni",
+    "section": "",
+    "text": "Le lezioni sono organizzate in maniera da illustrare di volta in volta un argomento specifico, prima da un punto di vista teorico e poi da un punto di vista pratico. Gli eserci sono propedeutici e servono a fissare i concetti appresi, ma anche a stimolare la creatività e la capacità di problem solving, pertanto è importante svolgerli con attenzione e dedizione seppure non siano obbligatori."
+  },
+  {
+    "objectID": "lessons.html#calendario",
+    "href": "lessons.html#calendario",
+    "title": "Lezioni",
+    "section": "Calendario",
+    "text": "Calendario\n\n\n\nData\nArgomento\nCapitoli del libro di testo\n\n\n\n\n12/03/2024\nIntroduzione al corso e fondamenti di C\n1-3\n\n\n19/03/2024\nEspressioni e strutture di controllo\n4-6\n\n\n26/03/2024\nTipi di base e Array\n7-8\n\n\n09/04/2024\nFunzioni e Scope\n9-10\n\n\n10/04/2024\nPuntatori\n11-12\n\n\n23/04/2024\nStruct e puntatori\n16-17"
+  },
+  {
+    "objectID": "lessons/02/index.html",
+    "href": "lessons/02/index.html",
+    "title": "Espressioni e strutture di controllo",
+    "section": "",
+    "text": "Il C è basato su espressioni, le espressioni sono un insieme di variabili, costanti e operatori.",
+    "crumbs": [
+      "Lezioni",
+      "Espressioni e strutture di controllo"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#operatori",
+    "href": "lessons/02/index.html#operatori",
+    "title": "Espressioni e strutture di controllo",
+    "section": "Operatori",
+    "text": "Operatori",
+    "crumbs": [
+      "Lezioni",
+      "Espressioni e strutture di controllo"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#espressioni-istruzione",
+    "href": "lessons/02/index.html#espressioni-istruzione",
+    "title": "Espressioni e strutture di controllo",
+    "section": "Espressioni istruzione",
+    "text": "Espressioni istruzione",
+    "crumbs": [
+      "Lezioni",
+      "Espressioni e strutture di controllo"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#espressioni-logiche",
+    "href": "lessons/02/index.html#espressioni-logiche",
+    "title": "Espressioni e strutture di controllo",
+    "section": "Espressioni logiche",
+    "text": "Espressioni logiche",
+    "crumbs": [
+      "Lezioni",
+      "Espressioni e strutture di controllo"
+    ]
+  },
+  {
+    "objectID": "lessons/02/slide.html#operatori",
+    "href": "lessons/02/slide.html#operatori",
+    "title": "Espressioni e strutture di controllo",
+    "section": "Operatori",
+    "text": "Operatori"
+  },
+  {
+    "objectID": "lessons/02/slide.html#espressioni-istruzione",
+    "href": "lessons/02/slide.html#espressioni-istruzione",
+    "title": "Espressioni e strutture di controllo",
+    "section": "Espressioni istruzione",
+    "text": "Espressioni istruzione"
+  },
+  {
+    "objectID": "lessons/02/slide.html#espressioni-logiche",
+    "href": "lessons/02/slide.html#espressioni-logiche",
+    "title": "Espressioni e strutture di controllo",
+    "section": "Espressioni logiche",
+    "text": "Espressioni logiche\n\n\n\n\nDati e Algoritmi"
+  },
+  {
+    "objectID": "lessons/05/index.html",
+    "href": "lessons/05/index.html",
+    "title": "Puntatori",
+    "section": "",
+    "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
+    "crumbs": [
+      "Lezioni",
+      "Puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/03/index.html",
+    "href": "lessons/03/index.html",
+    "title": "Tipi di base e array",
+    "section": "",
+    "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
+    "crumbs": [
+      "Lezioni",
+      "Tipi di base e array"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html",
+    "href": "lessons/06/index.html",
+    "title": "Strutture e uso avanzato dei puntatori",
+    "section": "",
+    "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
+    "crumbs": [
+      "Lezioni",
+      "Strutture e uso avanzato dei puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/04/index.html",
+    "href": "lessons/04/index.html",
+    "title": "Funzioni e Scope",
+    "section": "",
+    "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
+    "crumbs": [
+      "Lezioni",
+      "Funzioni e Scope"
+    ]
+  },
+  {
+    "objectID": "lessons/01/slide.html#storia-e-standard",
+    "href": "lessons/01/slide.html#storia-e-standard",
+    "title": "Basi di C",
+    "section": "Storia e Standard",
+    "text": "Storia e Standard\n\n\n\n\n\ntimeline\n    section Birth of C\n        1972 : nasce C (New B) presso i Bell Labs.\n        1973 : UNIX viene interamente riscritto in C.\n    section Definition of C Language\n        1978 : Kerninghan & Ritchie pubblicano The C Programming Language.\n        1989 : Primo Standard C (C89)\n    section Actual C\n        1999 : Secondo standard C (C99)\n        2011 : Terzo standard C (C11)\n\n\nPrincipali momenti storici per lo sviluppo del linguaggio C"
+  },
+  {
+    "objectID": "lessons/01/slide.html#storia-e-standard-1",
+    "href": "lessons/01/slide.html#storia-e-standard-1",
+    "title": "Basi di C",
+    "section": "Storia e Standard",
+    "text": "Storia e Standard\n\nIl linguaggio C fu ideato nei Bell Laboratories della AT&T nel 1972 da Dennis Ritchie, la definizione formale avvenne nel 1978 a cura di Brian Kernighan e D. Ritchie.\nGià nel 1973 il linguaggio fu usato per riscrivere completamente il sistema operativo UNIX.\nLa standarizzazione del linguaggio avvenne nel 1989 a cura dell’ANSI (American NaJonal Standard Institute), e in seguito venne recepita dall’ISO (InternaJonal OrganizaJon for Standardization, ISO/IEC 9899:1990).\nNel 1999 si concluse una nuova fase di standarizzazione del C, nella quale vennero aggiunte nuove funzionalità al linguaggio (ISO/IEC 9899:1999)."
+  },
+  {
+    "objectID": "lessons/01/slide.html#caratteristiche",
+    "href": "lessons/01/slide.html#caratteristiche",
+    "title": "Basi di C",
+    "section": "Caratteristiche",
+    "text": "Caratteristiche\n\nSi tratta di un Linguaggio Compilato\nFortemente tipato\nMinimale\nPermissivo (il compilatore non si lamenta!)\nTecnicamente un linguaggio di alto livello, nella pratica ha molte feature che lo rendono uno dei linguaggi di più basso livello. Specialmente sulla gestione di memoria."
+  },
+  {
+    "objectID": "lessons/01/slide.html#pregi-e-difetti",
+    "href": "lessons/01/slide.html#pregi-e-difetti",
+    "title": "Basi di C",
+    "section": "Pregi e difetti",
+    "text": "Pregi e difetti\n\n\n\nPregi\nDifetti\n\n\n\n\nEfficienza\nFacile fare errori\n\n\nCompattezza\nPuò diventare difficile da leggere\n\n\nPortabilità\nNon ci sono controlli a run time\n\n\nPermissività\nPermissività"
+  },
+  {
+    "objectID": "lessons/01/slide.html#pregi-e-difetti-2",
+    "href": "lessons/01/slide.html#pregi-e-difetti-2",
+    "title": "Basi di C",
+    "section": "Pregi e Difetti",
+    "text": "Pregi e Difetti\n\nLa permissività è sia un pro che un contro: sta al programmatore giocarla a suo vantaggio\nEvitare di farsi male da soli!\nSeguire le convenzioni di scrittura\nAttivare i warning sul compilatore (+ altri tool)\nCommentare!"
+  },
+  {
+    "objectID": "lessons/01/slide.html#linguaggio-strutturato",
+    "href": "lessons/01/slide.html#linguaggio-strutturato",
+    "title": "Basi di C",
+    "section": "Linguaggio Strutturato",
+    "text": "Linguaggio Strutturato\n\nÈ possibile (e necessario) definire funzioni, che accettano \\(N\\) parametri in input e restituiscono un valore come output.\nC non è un linguaggio a oggetti. Non esistono quindi le astrazioni tipiche di Java, classi, variabili di istanza, metodi…\nEsistono evoluzioni del C con queste caratteristiche (C++, C# e lo stesso Java ha ereditato molto dal C)."
+  },
+  {
+    "objectID": "lessons/01/slide.html#installazione",
+    "href": "lessons/01/slide.html#installazione",
+    "title": "Basi di C",
+    "section": "Installazione",
+    "text": "Installazione\n\n\n\n\n\n\nLinux e Mac1\n\n\nDebian/Ubuntu2: per installare il compilatore: sudo apt install gcc -y\nMac: se non lo avete, facendo gcc -v il sistema vi proporrà di scaricare i tool da linea di comando di Apple. Accettando, vi verrà installato.\n\n\n\n\n\n\n\n\n\nWindows\n\n\npotete installare MinGW e modificare le variabili di PATH. Le istruzioni saranno caricate su Moodle.\n\n\n\nprobabilmente è già installato. Aprire il terminale per verificarlo con gcc –vper altre distribuzioni non debian based, usare il package manager di sistema"
+  },
+  {
+    "objectID": "lessons/01/slide.html#installazione-1",
+    "href": "lessons/01/slide.html#installazione-1",
+    "title": "Basi di C",
+    "section": "Installazione",
+    "text": "Installazione\n\n\n\n\nflowchart LR\nA[Start]\nB{\"Scegli OS\"}\nC[Installare MinGW o WSL 2]\nE{\"digitare\\ngcc --version\"}\nF[Installare GCC]\nG[Ready to go]\n\nA --&gt; B\nB --&gt; |Windows| C\nB --&gt; |UNIX based| E\nC --&gt; E\nE --&gt; |errore| F\nE --&gt; |stampa versione| G\nF --&gt; G\n\n\nProcesso di installazione del compilatore"
+  },
+  {
+    "objectID": "lessons/01/slide.html#installazione-2",
+    "href": "lessons/01/slide.html#installazione-2",
+    "title": "Basi di C",
+    "section": "Installazione",
+    "text": "Installazione\nVi servirà anche un editor di testo adatto al codice.\nAd esempio notepad++, sublime, gedit, kate, emacs, nano, vim…\n\n\n\n\n\n\nImportante\n\n\nÈ sconsigliato studiare su un IDE, anche se è consigliato usarli quando si lavora effettivamente.\n\n\n\n\n\n\n\n\n\nImpara facendo\n\n\nRiscrivere tutti gli esempi di codice senza usare copia e incolla aiuta a familiarizzare con la sintassi del linguaggio e gli strumenti di lavoro. Copiando si commettono errori da cui è possibile imparare, il compilatore segnalerà gli errori e si imparerà a correggerli."
+  },
+  {
+    "objectID": "lessons/01/slide.html#la-compilazione",
+    "href": "lessons/01/slide.html#la-compilazione",
+    "title": "Basi di C",
+    "section": "La compilazione",
+    "text": "La compilazione\nPrendiamo in esame il nostro primo programma, hello.c\n#include &lt;stdio.h&gt;\n\n/* Il mio primo programma in C! */\nint main(void)\n{\n    printf(\"Hello, World!\");\n}"
+  },
+  {
+    "objectID": "lessons/01/slide.html#la-compilazione-1",
+    "href": "lessons/01/slide.html#la-compilazione-1",
+    "title": "Basi di C",
+    "section": "La compilazione",
+    "text": "La compilazione\nNel venire compilato, il nostro programma passa attraverso altri tre programmi:\n\nPreprocessor: elimina i commenti ed esegue le direttive del preprocessore (le istruzioni che iniziano con #).\nCompiler: controlla se il codice è corretto (sintatticamente) e lo converte in linguaggio macchina, generando il codice oggetto.\nLinker: combina vari file oggetto e le librerie, producendo il file eseguibile. (a.out oppure a.exe)"
+  },
+  {
+    "objectID": "lessons/01/slide.html#la-compilazione-2",
+    "href": "lessons/01/slide.html#la-compilazione-2",
+    "title": "Basi di C",
+    "section": "La compilazione",
+    "text": "La compilazione\nEsistono comandi per accedere separatamente ai vari passaggi, ma in genere viene tutto gestito da gcc (GNU C Compiler \\(\\rightarrow\\) GNU Compiler Collection)\ngcc -o &lt;nome_eseguibile&gt; &lt;sorgente.c&gt; &lt;sorgente2.c&gt; ... &lt;sorgenteN.c&gt;\nIl comando chiama il preprocessore su tutti i file, per tutti compila il file oggetto e chiama il linker che li unisce nell’unico eseguibile chiamato &lt;nome_eseguibile&gt;\n\n\n\n\n\n\nNota\n\n\ngcc -c &lt;sorgente.c&gt; &lt;sorgente2.c&gt; ... &lt;sorgenteN.c&gt;\nNon esegue il linking (utile se non si ha ancora il main ad esempio)"
+  },
+  {
+    "objectID": "lessons/01/slide.html#sintassi-di-c",
+    "href": "lessons/01/slide.html#sintassi-di-c",
+    "title": "Basi di C",
+    "section": "Sintassi di C",
+    "text": "Sintassi di C\n#include &lt;stdio.h&gt;\n/* Il mio primo programma in C! */\nint main(void)\n{\n    int anno = 2024;\n    printf(\"Hello Dati e Algoritmi %d\", anno);\n}\n\n\n\nDirettiva"
+  },
+  {
+    "objectID": "lessons/01/slide.html#sintassi-di-c-1",
+    "href": "lessons/01/slide.html#sintassi-di-c-1",
+    "title": "Basi di C",
+    "section": "Sintassi di C",
+    "text": "Sintassi di C\n#include &lt;stdio.h&gt;\n/* Il mio primo programma in C! */\nint main(void)\n{\n    int anno = 2024;\n    printf(\"Hello Dati e Algoritmi %d\", anno);\n}\n\n\nDirettiva\nCommento"
+  },
+  {
+    "objectID": "lessons/01/slide.html#sintassi-di-c-2",
+    "href": "lessons/01/slide.html#sintassi-di-c-2",
+    "title": "Basi di C",
+    "section": "Sintassi di C",
+    "text": "Sintassi di C\n#include &lt;stdio.h&gt;\n/* Il mio primo programma in C! */\nint main(void)\n{\n    int anno = 2024;\n    printf(\"Hello Dati e Algoritmi %d\", anno);\n}\n\n\nDirettiva\nCommento\nFunzione"
+  },
+  {
+    "objectID": "lessons/01/slide.html#sintassi-di-c-3",
+    "href": "lessons/01/slide.html#sintassi-di-c-3",
+    "title": "Basi di C",
+    "section": "Sintassi di C",
+    "text": "Sintassi di C\n#include &lt;stdio.h&gt;\n/* Il mio primo programma in C! */\nint main(void)\n{\n    int anno = 2024;\n    printf(\"Hello Dati e Algoritmi %d\", anno);\n}\n\n\nDirettiva\nCommento\nFunzione\nDichiarazione e assegnazione di variabile"
+  },
+  {
+    "objectID": "lessons/01/slide.html#sintassi-di-c-4",
+    "href": "lessons/01/slide.html#sintassi-di-c-4",
+    "title": "Basi di C",
+    "section": "Sintassi di C",
+    "text": "Sintassi di C\n#include &lt;stdio.h&gt;\n/* Il mio primo programma in C! */\nint main(void)\n{\n    int anno = 2024;\n    printf(\"Hello Dati e Algoritmi %d\", anno);\n}\n\n\nDirettiva\nCommento\nFunzione\nDichiarazione e assegnazione di variabile\nChiamata di funzione"
+  },
+  {
+    "objectID": "lessons/01/slide.html#commenti",
+    "href": "lessons/01/slide.html#commenti",
+    "title": "Basi di C",
+    "section": "Commenti",
+    "text": "Commenti\nI commenti classici di C si fanno con la sintassi\n/* testo del commento\nint i = 0; &lt;--- questo viene ignorato\nanche su più righe */\n\nDal C99, si può usare anche il commento monoriga\n// commento su una riga\nint i = 0; // questo viene eseguito\n// altro commento"
+  },
+  {
+    "objectID": "lessons/01/slide.html#dichiarazioni-e-inizializzazioni",
+    "href": "lessons/01/slide.html#dichiarazioni-e-inizializzazioni",
+    "title": "Basi di C",
+    "section": "Dichiarazioni e inizializzazioni",
+    "text": "Dichiarazioni e inizializzazioni\nTutte le variabili devono essere dichiarate prima di essere usate:\nint altezza;\nfloat temperatura, peso;\nNon c’è inizializzazione di default! Occorre assegnare valori:\nint altezza;\naltezza = 175;\nfloat temperatura = 36.4f; // anche subito"
+  },
+  {
+    "objectID": "lessons/01/slide.html#keyword-riservate",
+    "href": "lessons/01/slide.html#keyword-riservate",
+    "title": "Basi di C",
+    "section": "Keyword riservate",
+    "text": "Keyword riservate\nNon si possono usare le seguenti parole per nomi di variabili o altro:\nauto     break   case    char      const      continue   default   do\ndouble   else    enum    extern    float      for        goto      if\ninline*  int     long    register  restrict*  return     short     signed\nsizeof   static  struct  switch    typedef    union      unsigned  void\nvolatile while   _Bool*  _Complex* _Imaginary*\n*solo da C99\n\n\n\n\n\n\nIl C è case sensitive\n\n\nNomi di variabili valide sono:\nint a, A; float Auto;\nN.B. solo perché si può non vuol dire che sia una buona idea…"
+  },
+  {
+    "objectID": "lessons/01/slide.html#inputoutput",
+    "href": "lessons/01/slide.html#inputoutput",
+    "title": "Basi di C",
+    "section": "Input/Output",
+    "text": "Input/Output\n\nAbbiamo già usato nei nostri esempi l’inclusione di stdio.h\nCi ha permesso di usare la funzione printf, con la quale possiamo stampare dei risultati a terminale\nL’altra importante funzione che ci permette di usare è scanf, che legge i dati forniti dall’utente a terminale\nEntrambe usano testo formattato, tramite uso di simboli speciali"
+  },
+  {
+    "objectID": "lessons/01/slide.html#output-con-printf",
+    "href": "lessons/01/slide.html#output-con-printf",
+    "title": "Basi di C",
+    "section": "Output con printf",
+    "text": "Output con printf\nGli specificatori iniziano con %, e per ciascuno deve esserci un parametro dopo la stringa di formattazione\nprintf(\"Misura %d metri e %d cm \\n\", met, cm);\nOutput: Misura 2 e 15 cm\nI caratteri speciali sii scrivono con \\ (backslash) il carattere di escaping\nprintf(\"Si va a capo con \\\\n\\n\");\nOutput: Si va a capo con \\n"
+  },
+  {
+    "objectID": "lessons/01/slide.html#output-con-printf-2",
+    "href": "lessons/01/slide.html#output-con-printf-2",
+    "title": "Basi di C",
+    "section": "Output con printf",
+    "text": "Output con printf\n\n%d per interi, es. \\(10\\)\n%f per float, es. \\(3.14\\)\n%e per float in notazione scientifica, es. \\(5.2\\times 10^4\\)\n%lf per double, es. \\(3.14\\)\n%s per stringhe, es. \"ciao\"\n%c per caratteri, es. 'a'\n%p per puntatori, es. 0x7fffbf7f3b4c\n%x per interi in esadecimale, es. ff\n%o per interi in ottale, es. 77\n%Nf per avere \\(N\\) “spazi” per la stampa, es. %5d per 112 con due spazi vuoti prima\n%.Nf per float con \\(N\\) cifre decimali, es. %.2f per \\(3.14\\)"
+  },
+  {
+    "objectID": "lessons/01/slide.html#string-format",
+    "href": "lessons/01/slide.html#string-format",
+    "title": "Basi di C",
+    "section": "String format",
+    "text": "String format\nSi è già visto \\n per andare a capo, ma ce ne sono altri:\n\n\\n per andare a capo\n\\t per tabulare\n\\b per backspace\n\\\\ per stampare il backslash\n\\\" per stampare le virgolette\n\\0 per terminare una stringa"
+  },
+  {
+    "objectID": "lessons/01/slide.html#input-con-scanf",
+    "href": "lessons/01/slide.html#input-con-scanf",
+    "title": "Basi di C",
+    "section": "Input con scanf",
+    "text": "Input con scanf\nscanf esegue pattern matching sull’input per popolare delle variabili\nint base, altezza;\nscanf(\"%d%d\", &base, &altezza);\nPer esempio se l’utente scrive 3 4 e preme invio, base sarà 3 e altezza sarà 4."
+  },
+  {
+    "objectID": "lessons/01/slide.html#input-con-scanf-2",
+    "href": "lessons/01/slide.html#input-con-scanf-2",
+    "title": "Basi di C",
+    "section": "Input con scanf",
+    "text": "Input con scanf\nscanf scorre l’input ignorando ogni carattere bianco (spazi, tabulazioni, a capo). Se trova caratteri compatibili (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.\nPopola le variabili fino a trovare un carattere bianco o un carattere non compatibile."
+  },
+  {
+    "objectID": "lessons/01/slide.html#section",
+    "href": "lessons/01/slide.html#section",
+    "title": "Basi di C",
+    "section": "",
+    "text": "Tabella 1: Formattazione stringhe\n\n\n\n\n\nFormat specifier\nValue\nOutput\n\n\n\n\n%c\n'm'\nm\n\n\n%d\n255\n255\n\n\n%ld\n99\n99\n\n\n%x\n255\nff\n\n\n%f\n25.8\n25.799999\n\n\n%g\n25.8\n25.8\n\n\n%s\n\"hello\"\nhello\n\n\n%8.3f\n25.8\n˽˽25.800\n\n\n%6d\n255\n˽˽˽255\n\n\n%06d\n255\n000255\n\n\n%-6d\n255\n255˽˽˽\n\n\n\n\n\n\n\nint main(void)\n{\n    char c_val = 'm';\n    int i_val = 255;\n    long int l_val = 99;\n    float f_val = 25.8;\n\n    printf(\"%c\\n\", c_val);\n    printf(\"%d\\n\", i_val);\n    printf(\"%ld\\n\", l_val);\n    printf(\"%x\\n\", i_val);\n    printf(\"%f\\n\", f_val);\n    printf(\"%g\\n\", f_val);\n    printf(\"%s\\n\", \"hello\");\n    printf(\"%8.3f\\n\", f_val);\n    printf(\"%6d\\n\", i_val);\n    printf(\"%06d\\n\", i_val);\n    printf(\"%-6d\\n\", i_val);\n}"
+  },
+  {
+    "objectID": "lessons/01/slide.html#esercizi",
+    "href": "lessons/01/slide.html#esercizi",
+    "title": "Basi di C",
+    "section": "Esercizi",
+    "text": "Esercizi\n\nScrivere un programma che legga due numeri e stampi la somma.\n\n\n\nScrivere un programma che legga due frazioni in formato \"n/m\" e stampi la loro somma (non semplificata).\n\n\n\n\n\n\n\n\n\nConsiglio\n\n\nIn questo caso possiamo richiedere all’utente che il formato includa lo slash, e quindi includerlo nel pattern di scanf.\n\n\n\n\n\n\n\nDati e Algoritmi"
+  },
+  {
+    "objectID": "lessons/01/index.html",
+    "href": "lessons/01/index.html",
+    "title": "Basi di C",
+    "section": "",
+    "text": "Il linguaggio C ha la fama di linguaggio di basso livello e sintassi complicata. Nel 1972 però, questo linguaggio compariva per la prima volta per semplificare la scrittura di codice, infatti a quel tempo i programmatori scrivevano soprattutto in Assembly. Vale la pena quindi ripercorrere i punti di passaggio che hanno compartecipato alla creazione e diffusione del linguaggio.",
+    "crumbs": [
+      "Lezioni",
+      "Basi di C"
+    ]
+  },
+  {
+    "objectID": "lessons/01/index.html#storia-e-standard",
+    "href": "lessons/01/index.html#storia-e-standard",
+    "title": "Basi di C",
+    "section": "Storia e Standard",
+    "text": "Storia e Standard\n\n\n\n\n\ntimeline\n    section Birth of C\n        1972 : nasce C (New B) presso i Bell Labs.\n        1973 : UNIX viene interamente riscritto in C.\n    section Definition of C Language\n        1978 : Kerninghan & Ritchie pubblicano The C Programming Language.\n        1989 : Primo Standard C (C89)\n    section Actual C\n        1999 : Secondo standard C (C99)\n        2011 : Terzo standard C (C11)\n\n\nPrincipali momenti storici per lo sviluppo del linguaggio C\n\n\n\n\nDopo aver scritto l’intero sistema operativo UNIX in assembly i programmatori dei Bell Laboratories si accorsero che era difficile da mantenere1, così si misero a lavorare su nuovi linguaggio, prima B e successivamente New B, ribattezzato poi C, per reimplementare del tutto UNIX in C nel 1973.\nC risultò subito un linguaggio vanataggioso da usare soprattutto per la sua portabilità (di cui discuteremo più avanti in dettaglio), così, per tutti gli anni ‘70 e 80’, il suo utilizzo si diffuse enormemente. In queste situazioni, ossia quando uno strumento di lavoro viene diffuso molto rapidamente e su larga scala, è una buona idea proporre uno Standard, cioè una serie di “regole” che chiariscano come vada usato in maniera appropriata lo strumento, in questo caso un modo comune di scrivere in C; nel 1978 Brian Kernigan e Dennis Ritchie (l’inventore di C) scrissero The C Programming Language (Kernighan e Ritchie 1978), il primo tutorial di C ma questo non era uno standard, ma negli anni 80 nacquero comunque molte varianti di C ognuna con un proprio modo di scrivere.\n\nUno Standard per tutti\n\n“The nice thing about standards is that you have so many to choose from.”, Andrew S. Tanenbaum\n\nÈ in questo scenario che si vede l’intervento dell’American National Standard Institute (ANSI) che a partire dal 1983 si mise al lavoro per proporre uno standard C concludendolo nel 1989 e successivamente approvato dall’International Organization for Standardization (ISO) nel 1990 come ISO/IEC 9899:1990, meglio conosciuto come C89. Negli anni vennero poi apportate altre migliorie al linguaggio che portarono, nel 1999, alla creazione di un nuovo standard: l’ISO/IEC 9899:1999, solitamente detto C99.\nDopo il C99 sono stati creati altri standard: C11, C17 e C23. Ognuno di questi introduce variazioni che servono a mantenere il linguaggio aggiornato alle esigenze dei programmatori attuali. Dopo la creazione di uno standard però i compilatori devono essere riscritti per comprendere le nuove regole proposte, questo fa sì che spesso non sia possibile compilare i programmi con l’ultimo standard perchè questo esiste solo da un punto di vista teorico. Attualmente i compilatori più diffusi coprono gli standard C99 e C11 ma non è ancora possibile scrivere programmi in C23.",
+    "crumbs": [
+      "Lezioni",
+      "Basi di C"
+    ]
+  },
+  {
+    "objectID": "lessons/01/index.html#caratteristiche",
+    "href": "lessons/01/index.html#caratteristiche",
+    "title": "Basi di C",
+    "section": "Caratteristiche",
+    "text": "Caratteristiche\nIn questa sezione si discutono brevemente le caratteristiche del linguaggio C evidenziandone pregi e difetti. L’aver concluso il precedente paragrafo parlando di compilatori lascia intuire che C sia un linguaggio compilato. Questo significa che il codice sorgente scritto in C deve essere tradotto in linguaggio macchina prima di poter essere eseguito. Altri punti caratteristici di C sono l’essere minimale (C rinuncia a molte astrazioni, questo, per esempio, permette di ridurre il numero di parole chiave del linguaggio), il fatto di essere fortemente tipato (le variabili devono essere dichiarate con un tipo e non possono cambiare tipo durante l’esecuzione del programma) e il fatto di essere permissivo (il compilatore non si lamenta di errori che in altri linguaggi sarebbero considerati gravi). Tecnicamente C è un linguaggio di alto livello, ma nella pratica ha molte feature che lo rendono uno dei linguaggi di più basso livello. Specialmente sulla gestione di memoria.\n\n\n\n\n\n\nCompilare o interpretare?\n\n\n\nNon tutti i linguaggi di programmazione vanno compilati. Alcuni vengono interpretati. La differenza, semplificando, è che un linguaggio compilato viene tradotto in linguaggio macchina una volta per tutte, mentre un linguaggio interpretato viene tradotto in linguaggio macchina ogni volta che viene eseguito. Esistono moltissimi linguaggi di entrambi i tipi, e non esiste una regola che renda un sistema migliore dell’altro. Generalmente i linguaggi compilati sono più veloci, ma i linguaggi interpretati sono più flessibili. Spesso per progetti di piccole dimensioni o script i programmatori preferiscono usare linguaggi interpretati, mentre per progetti di grandi dimensioni o software che deve essere veloce si preferisce usare linguaggi compilati (non è sempre così però).\nL’alternarsi tra i due tipi di linguaggi è una questione che esiste da tempo. È importante notare a riguardo che il predecessore di C, il linguaggio B, era un linguaggio interpretato. La scelta di C di essere compilato è stata una delle ragioni del suo successo. Allo stesso modo molti linguaggi interpretati si sono diffusi proprio per essere tali.\n\n\n\nPregi e difetti\nAlcuni linguaggi sono permissivi. Al programmatore basta avere solo un senso di base di come le cose funzionano. Gli errori nel codice vengono segnalati dal sistema di compilazione o di esecuzione e il programmatore può arrangiarsi e alla fine sistemare le cose in modo che funzionino correttamente. Il linguaggio C non è così.\nIl modello di programmazione in C è che il programmatore sa esattamente cosa vuole fare e come utilizzare le possibilità del linguaggio per raggiungere quel obiettivo. Il linguaggio permette al programmatore esperto di esprimere ciò che desidera nel minor tempo possibile, rimanendo fuori dal suo cammino. C è “semplice” nel senso che il numero di componenti nel linguaggio è piccolo: se due funzionalità del linguaggio realizzano più o meno la stessa cosa, C ne includerà solo una. La sintassi di C è concisa e il linguaggio non limita ciò che è “consentito”: il programmatore può praticamente fare ciò che desidera.\nIl sistema di tipi di C e i controlli degli errori esistono solo durante la compilazione. Il codice compilato viene eseguito in un modello di esecuzione ridotto senza controlli di sicurezza per conversioni di tipo errate, indici di array errati o puntatori errati. Non c’è un garbage collector per gestire la memoria. Invece, il programmatore gestisce manualmente la memoria heap. Tutto ciò rende C veloce ma fragile.\n\n\n\n\n\n\nThe billion-dollar mistake\n\n\n\n\n“I call it my billion-dollar mistake. It was the invention of the null reference in 1965. At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn’t resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.”, Tony Hoare\n\nSeppure non sia una caratteristica introdotta con C, la null reference è un problema che affligge molti linguaggi di programmazione. Tony Hoare, scrivendo il linguaggio ALGOL W, introdusse questo concetto, C, ispirandosi fortemente ad ALGOL, ereditò questa caratteristica. L’utilizzo sbagliato di un puntatore nullo è una delle cause principali di errori in C.\n\n\nDi seguito sono commentate le caratteristiche principali considerate come i maggiori pregi e difetti del C:\n\nEfficienza: il linguaggio C è nato per essere efficiente, doveva andare a sostituire il codice Assembly, è stato scritto quindi per essere veloce;\nCompattezza: il C è un linguaggio molto compatto, non ci sono molte parole chiave, non ci sono molte funzioni predefinite, non ci sono molte strutture dati predefinite, fornisce soltanto “lo stretto indispensabile”;\nPortabilità: sebbene il C non sia stato pensato per essere portabile, la creazione di uno standard e la sua associazione con UNIX ha reso il C un linguaggio solido e usato su molte piattaforme. Uno degli slogan che accompagna il C da molti anni è “write once, compile everywhere” (scrivi una volta, compila ovunque), che poi venne ripreso con l’arrivo di Java e del suo “write once, run everywhere”;\nPermissività: il C si basa su un’assunzione molto forte: il programmatore sa cosa sta facendo. Questo è sia un pro che un contro: da un lato permette al programmatore di fare tutto quello che vuole, dall’altro lato permette al programmatore di fare tutto quello che vuole. Questo significa che il programmatore può fare cose molto potenti, ma può anche fare cose molto pericolose.\nError prone: proprio per la permissività appena menzionata, c’è spazio per fare molti errori. Questo è un problema che si può risolvere con l’uso di strumenti di analisi statica e dinamica, con l’uso di buone pratiche di programmazione e con l’uso di commenti e documentazione.\nDifficile da leggere: proprio per la compattezza, il C può diventare difficile da leggere. Esistono addirittura delle competizioni di programmazione in cui il C viene usato per scrivere codice illeggibile.\nRun time: una volta compilato, il programma C perde molte informazioni, per esempio non è più possibile conoscere i tipi delle variabili, pertanto non è possibile fare controlli a run time.\nNon Object-oriented: lo stretto indispensabile fornito da C non include gli oggetti. Questo significa che non esistono le astrazioni tipiche di Java, classi, variabili di istanza, metodi… Esistono evoluzioni del C con queste caratteristiche (C++, C# e lo stesso Java ha ereditato molto dal C).",
+    "crumbs": [
+      "Lezioni",
+      "Basi di C"
+    ]
+  },
+  {
+    "objectID": "lessons/01/index.html#installazione",
+    "href": "lessons/01/index.html#installazione",
+    "title": "Basi di C",
+    "section": "Installazione",
+    "text": "Installazione\nPer lavorare con il C, avrete bisogno di un compilatore C. Il compilatore più diffuso è gcc, è un compilatore open source, sviluppato da GNU. Storicamente lo sviluppo in C è stato fatto su sistemi Unix, quindi gcc è facilmente compatibile con tutti i sistemi Unix-like, mentre su Windows è necessario installare un ambiente di sviluppo come MinGW. Di seguito sono riportate le istruzioni per installare il compilatore su Linux e Mac. Per Windows, le istruzioni saranno caricate su Moodle.\n\n\n\n\n\n\nLinux e Mac2\n\n\n\nDebian/Ubuntu3: per installare il compilatore: sudo apt install gcc -y\nMac: se non lo avete, facendo gcc -v il sistema vi proporrà di scaricare i tool da linea di comando di Apple. Accettando, vi verrà installato.\n\n\n\n\n\n\n\n\nWindows\n\n\n\npotete installare MinGW e modificare le variabili di PATH. Le istruzioni saranno caricate su Moodle.\n\n\n\n\n\n\nflowchart LR\nA[Start]\nB{\"Scegli OS\"}\nC[Installare MinGW o WSL 2]\nE{\"digitare\\ngcc --version\"}\nF[Installare GCC]\nG[Ready to go]\n\nA --&gt; B\nB --&gt; |Windows| C\nB --&gt; |UNIX based| E\nC --&gt; E\nE --&gt; |errore| F\nE --&gt; |stampa versione| G\nF --&gt; G\n\n\nProcesso di installazione del compilatore\n\n\n\nPer scrivere effettivamente il codice è poi richiesto di installare un editor di testo adatto al codice. Dal momento che i programmatori adorano sviluppare strumenti per la programmazione è pieno di editor di testo che più o meno si equivalgono e che, in ogni caso, ricoprono abbondantemente le necessità del corso. Alcuni esempi sono: notepad++, sublime, gedit, kate, emacs, nano, vim…\n\n\n\n\n\n\nImportante\n\n\n\nÈ sconsigliato studiare su un IDE, anche se è consigliato usarli quando si lavora effettivamente.\n\n\n\n\n\n\n\n\nImpara facendo\n\n\n\nRiscrivere tutti gli esempi di codice senza usare copia e incolla aiuta a familiarizzare con la sintassi del linguaggio e gli strumenti di lavoro. Copiando si commettono errori da cui è possibile imparare, il compilatore segnalerà gli errori e si imparerà a correggerli.",
+    "crumbs": [
+      "Lezioni",
+      "Basi di C"
+    ]
+  },
+  {
+    "objectID": "lessons/01/index.html#la-compilazione",
+    "href": "lessons/01/index.html#la-compilazione",
+    "title": "Basi di C",
+    "section": "La compilazione",
+    "text": "La compilazione\nOra che abbiamo installato il compilatore, possiamo iniziare a scrivere i nostri primi programmi.\nPrendiamo in esame il nostro primo programma, hello.c\n#include &lt;stdio.h&gt;\n\n/* Il mio primo programma in C! */\nint main(void)\n{\n    printf(\"Hello, World!\");\n}\nRispettando la tradizione, il nostro primo programma stamperà “Hello, World!” a terminale. Per il momento non concentriamoci troppo sulla sintassi, vediamo piuttosto l’esecuzione del programma. Ma come possiamo farlo eseguire? Come già anticipato in precedenza, il nostro codice sorgente non è direttamente eseguibile, ma deve essere prima compilato. Vediamo come fare.\nNel venire compilato, il nostro programma passa attraverso altri tre programmi:\n\nPreprocessor: elimina i commenti ed esegue le direttive del preprocessore (le istruzioni che iniziano con #).\nCompiler: controlla se il codice è corretto (sintatticamente) e lo converte in linguaggio macchina, generando il codice oggetto.\nLinker: combina vari file oggetto e le librerie, producendo il file eseguibile. (a.out oppure a.exe)\n\nEsistono comandi per accedere separatamente ai vari passaggi, ma in genere viene tutto gestito da gcc (GNU C Compiler \\(\\rightarrow\\) GNU Compiler Collection)\ngcc -o &lt;nome_eseguibile&gt; &lt;sorgente.c&gt; &lt;sorgente2.c&gt; ... &lt;sorgenteN.c&gt;\nIl comando chiama il preprocessore su tutti i file, per tutti compila il file oggetto e chiama il linker che li unisce nell’unico eseguibile chiamato &lt;nome_eseguibile&gt;\n\n\n\n\n\n\nNota\n\n\n\ngcc -c &lt;sorgente.c&gt; &lt;sorgente2.c&gt; ... &lt;sorgenteN.c&gt;\nNon esegue il linking (utile se non si ha ancora il main ad esempio)",
+    "crumbs": [
+      "Lezioni",
+      "Basi di C"
+    ]
+  },
+  {
+    "objectID": "lessons/01/index.html#sintassi-di-c",
+    "href": "lessons/01/index.html#sintassi-di-c",
+    "title": "Basi di C",
+    "section": "Sintassi di C",
+    "text": "Sintassi di C\n1#include &lt;stdio.h&gt;\n2/* Il mio primo programma in C! */\n3int main(void)\n{\n4  int anno = 2024;\n5  printf(\"Hello Dati e Algoritmi %d\", anno);\n}\n\n1\n\nDirettiva: le direttive del preprocessore iniziano con # e vengono eseguite prima del resto del codice, in questo caso includiamo la libreria standard di input/output. Ci sono due principali usi delle direttive: includere librerie e definire macro. L’istruzione #include comunica al preprocessore che il programma ha bisogno delle funzioni definite in stdio.h, la libreria standard di input/output (infatti viene usato printf). L’istruzione #define la incontreremo più avanti, ad ogni modo è un sistema che viene spesso usato per definire costanti.\n\n2\n\nCommento: i commenti in C89 iniziano con /* e terminano con */. I commenti possono essere su più righe. Dal C99 si possono usare anche i commenti monoriga (//).\n\n3\n\nFunzione: la funzione main è il punto di partenza di ogni programma C. Il tipo di ritorno è int, e accetta un singolo argomento di tipo void. Il corpo della funzione è racchiuso tra parentesi graffe {}. main è una funzione speciale che indica il punto di partenza di ogni programma C. Il tipo di ritorno int indica che la funzione restituirà un valore intero (a volte il valore di ritorno del main può essere di tipo void, ma è una pratica non consigliata). L’argomento void indica che la funzione non accetta alcun argomento, si sarebbe potuto omettere, ma è buona pratica includerlo per chiarezza e attivare il controllo del compilatore.\n\n4\n\nDichiarazione e assegnazione di variabile: int anno = 2024; dichiara una variabile di tipo int chiamata anno e le assegna il valore 2024. Storicamente la dichiarazione di variabili in C doveva avvenire all’inizio di un blocco di codice, dal C99 non è più una regola da seguire rigidamente.\n\n5\n\nChiamata di funzione: in questo caso stiamo usando la funzione printf definita in stdio.h a cui vengono passati 2 argomenti.\n\n\n\nDichiarazioni e inizializzazioni\nTutte le variabili devono essere dichiarate prima di essere usate:\nint altezza;\nfloat temperatura, peso;\nUna delle fonti d’errore maggiori in C è che non esiste l’inizializzazione di default delle variabili, prima di utilizzarle nel programma bisogna assegnare un valore, come nel seguente esempio:\nint altezza;\naltezze = 175;\nfloat temperatura = 36.4f;\nNella prima riga viene dichiarata la variabile altezza e nella seconda le viene assegnato un valore, questa procedura può essere compattata in un’unica riga come nel caso di temperatura.\n\n\n\n\n\n\nImportante\n\n\n\nQuando si dichiara una variabile il compilatore crea dello spazio nella memoria per contenere la variabile del tipo dichiarato (ogni tipo ha una dimensione diversa…), per essere più efficiente C non azzera la memoria che si trova in quello spazio, pertanto, se si andasse a leggere il valore di una variabile prima del primo assegnamento si troverebbero dei valori casuali.\n\n\n\n\nKeyword riservate\nCome detto in precedenza C è un linguaggio con poche parole chiave, quelle poche che ci sono però non possono essere usate per altri scopi, pertanto le parole sotto riportate sono da considerarsi riservate per il linguaggio e non possono essere usate per dichiarazioni di variabili o macro.\nauto     break   case    char      const      continue   default   do\ndouble   else    enum    extern    float      for        goto      if\ninline*  int     long    register  restrict*  return     short     signed\nsizeof   static  struct  switch    typedef    union      unsigned  void\nvolatile while   _Bool*  _Complex* _Imaginary*\n*solo da C99\n\n\n\n\n\n\nIl C è case sensitive\n\n\n\nNomi di variabili valide sono:\nint a, A; float Auto;\nN.B. solo perché si può non vuol dire che sia una buona idea…",
+    "crumbs": [
+      "Lezioni",
+      "Basi di C"
+    ]
+  },
+  {
+    "objectID": "lessons/01/index.html#inputoutput",
+    "href": "lessons/01/index.html#inputoutput",
+    "title": "Basi di C",
+    "section": "Input/Output",
+    "text": "Input/Output\n\nAbbiamo già usato nei nostri esempi l’inclusione di stdio.h\nCi ha permesso di usare la funzione printf, con la quale possiamo stampare dei risultati a terminale\nL’altra importante funzione che ci permette di usare è scanf, che legge i dati forniti dall’utente a terminale\nEntrambe usano testo formattato, tramite uso di simboli speciali\n\n\nOutput con printf\nGli specificatori iniziano con %, e per ciascuno deve esserci un parametro dopo la stringa di formattazione\nprintf(\"Misura %d metri e %d cm \\n\", met, cm);\nOutput: Misura 2 e 15 cm\nI caratteri speciali sii scrivono con \\ (backslash) il carattere di escaping\nprintf(\"Si va a capo con \\\\n\\n\");\nOutput: Si va a capo con \\n\n\n%d per interi, es. \\(10\\)\n%f per float, es. \\(3.14\\)\n%e per float in notazione scientifica, es. \\(5.2\\times 10^4\\)\n%lf per double, es. \\(3.14\\)\n%s per stringhe, es. \"ciao\"\n%c per caratteri, es. 'a'\n%p per puntatori, es. 0x7fffbf7f3b4c\n%x per interi in esadecimale, es. ff\n%o per interi in ottale, es. 77\n%Nf per avere \\(N\\) “spazi” per la stampa, es. %5d per 112 con due spazi vuoti prima\n%.Nf per float con \\(N\\) cifre decimali, es. %.2f per \\(3.14\\)\n\n\n\nString format\nSi è già visto \\n per andare a capo, ma ce ne sono altri:\n\n\\n per andare a capo\n\\t per tabulare\n\\b per backspace\n\\\\ per stampare il backslash\n\\\" per stampare le virgolette\n\\0 per terminare una stringa\n\n\n\nInput con scanf\nscanf esegue pattern matching sull’input per popolare delle variabili\nint base, altezza;\nscanf(\"%d%d\", &base, &altezza);\nPer esempio se l’utente scrive 3 4 e preme invio, base sarà 3 e altezza sarà 4.\nscanf scorre l’input ignorando ogni carattere bianco (spazi, tabulazioni, a capo). Se trova caratteri compatibili (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.\nPopola le variabili fino a trovare un carattere bianco o un carattere non compatibile.\n\n\n\nTabella 1: Formattazione stringhe\n\n\n\n\n\nFormat specifier\nValue\nOutput\n\n\n\n\n%c\n'm'\nm\n\n\n%d\n255\n255\n\n\n%ld\n99\n99\n\n\n%x\n255\nff\n\n\n%f\n25.8\n25.799999\n\n\n%g\n25.8\n25.8\n\n\n%s\n\"hello\"\nhello\n\n\n%8.3f\n25.8\n˽˽25.800\n\n\n%6d\n255\n˽˽˽255\n\n\n%06d\n255\n000255\n\n\n%-6d\n255\n255˽˽˽\n\n\n\n\n\n\nint main(void)\n{\n    char c_val = 'm';\n    int i_val = 255;\n    long int l_val = 99;\n    float f_val = 25.8;\n\n    printf(\"%c\\n\", c_val);\n    printf(\"%d\\n\", i_val);\n    printf(\"%ld\\n\", l_val);\n    printf(\"%x\\n\", i_val);\n    printf(\"%f\\n\", f_val);\n    printf(\"%g\\n\", f_val);\n    printf(\"%s\\n\", \"hello\");\n    printf(\"%8.3f\\n\", f_val);\n    printf(\"%6d\\n\", i_val);\n    printf(\"%06d\\n\", i_val);\n    printf(\"%-6d\\n\", i_val);\n}",
+    "crumbs": [
+      "Lezioni",
+      "Basi di C"
+    ]
+  },
+  {
+    "objectID": "lessons/01/index.html#esercizi",
+    "href": "lessons/01/index.html#esercizi",
+    "title": "Basi di C",
+    "section": "Esercizi",
+    "text": "Esercizi\n\nScrivere un programma che legga due numeri e stampi la somma.\n\n\n\nScrivere un programma che legga due frazioni in formato \"n/m\" e stampi la loro somma (non semplificata).\n\n\n. . .\n\n\n\n\n\n\nConsiglio\n\n\n\nIn questo caso possiamo richiedere all’utente che il formato includa lo slash, e quindi includerlo nel pattern di scanf.",
+    "crumbs": [
+      "Lezioni",
+      "Basi di C"
+    ]
+  },
+  {
+    "objectID": "lessons/01/index.html#footnotes",
+    "href": "lessons/01/index.html#footnotes",
+    "title": "Basi di C",
+    "section": "Note",
+    "text": "Note\n\n\nPer codice difficile da mantenere si intendono quei codici che hanno una struttura poco adatta all’aggiunta di nuove funzionalità nel tempo.↩︎\nprobabilmente è già installato. Aprire il terminale per verificarlo con gcc –v↩︎\nper altre distribuzioni non debian based, usare il package manager di sistema↩︎",
+    "crumbs": [
+      "Lezioni",
+      "Basi di C"
+    ]
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Risorse",
+    "section": "",
+    "text": "Questa sezione è dedicata a risorse che possono essere utili da consultare per avere dei riferimenti ma non è necessario studiarle.\nIn particolare ci sono:\n\nuna sezione dedicata ai libri di testo in cui si può consultare una lista di letture suggerite oltre ad avere informazioni sul libro di testo ufficiale del corso;\nuna guida alla scrittura di codice chiaro in C, non è un requisito del corso scrivere seguendo questi criteri, è comunque consigliato applicare delle regole di formattazione per scrivere codice chiaro e coerente;\nuna sezione dedicata a domande e risposte frequenti in cui, in particolare, vengono descritte le modalità d’esame.",
+    "crumbs": [
+      "Lezioni",
+      "Risorse"
+    ]
+  },
+  {
+    "objectID": "extra/formatting.html",
+    "href": "extra/formatting.html",
+    "title": "Guida per formattare il codice",
+    "section": "",
+    "text": "Clang-Format è uno strumento di formattazione del codice sorgente basato su Clang, il front-end del compilatore LLVM. La sua principale funzione è quella di formattare il codice sorgente in base a regole di stile specifiche, garantendo coerenza e leggibilità del codice. Questo strumento è particolarmente utile in contesti di sviluppo collaborativo, dove diversi programmatori possono avere differenti preferenze di formattazione. Utilizzare clang-format permette di mantenere uno stile uniforme nel codice sorgente, facilitando la comprensione, la manutenzione e la revisione del codice.\nNel caso di questo corso invece permette di assicurarsi che il codice sorgente segua lo stile esplicitato nella guida di stile e garantisce che sia leggibile prima di condividere il codice con qualcun altro.\nIn generale si consiglia di utilizzare clang-format specificando lo stile microsoft nella seguente maniera:",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Formatting"
+    ]
+  },
+  {
+    "objectID": "extra/formatting.html#installazione-e-uso-su-linux",
+    "href": "extra/formatting.html#installazione-e-uso-su-linux",
+    "title": "Guida per formattare il codice",
+    "section": "Installazione e uso su Linux",
+    "text": "Installazione e uso su Linux\nSu Linux, l’installazione di clang-format può essere effettuata tramite il gestore dei pacchetti della distribuzione utilizzata. Ad esempio, su Ubuntu e derivate, si può installare con il seguente comando:\nsudo apt-get install clang-format\nUna volta installato, è possibile utilizzare clang-format direttamente da riga di comando specificando il file sorgente da formattare. Ad esempio:\nclang-format -i file.c\nQuesto comando formatta il file “file.c” utilizzando le impostazioni predefinite di clang-format.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Formatting"
+    ]
+  },
+  {
+    "objectID": "extra/formatting.html#installazione-e-uso-su-macos",
+    "href": "extra/formatting.html#installazione-e-uso-su-macos",
+    "title": "Guida per formattare il codice",
+    "section": "Installazione e uso su macOS",
+    "text": "Installazione e uso su macOS\nSu macOS, clang-format può essere installato utilizzando Homebrew, un gestore di pacchetti per macOS. Per installare clang-format con Homebrew, eseguire i seguenti comandi:\nbrew update\nbrew install clang-format\nDopo l’installazione, è possibile utilizzare clang-format come descritto in precedenza per Linux.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Formatting"
+    ]
+  },
+  {
+    "objectID": "extra/formatting.html#installazione-e-uso-su-windows",
+    "href": "extra/formatting.html#installazione-e-uso-su-windows",
+    "title": "Guida per formattare il codice",
+    "section": "Installazione e uso su Windows",
+    "text": "Installazione e uso su Windows\nSu Windows, clang-format può essere installato come parte del pacchetto LLVM. Per installare LLVM e quindi clang-format, seguire questi passaggi:\n\nScaricare il pacchetto di installazione di LLVM dal sito ufficiale (https://llvm.org/).\nEseguire il programma di installazione e seguire le istruzioni guidate.\nAssicurarsi di selezionare l’opzione per installare clang-format durante il processo di installazione.\n\nDopo l’installazione, è possibile utilizzare clang-format da riga di comando come descritto in precedenza per Linux e macOS.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Formatting"
+    ]
+  },
+  {
+    "objectID": "extra/formatting.html#utilizzo-avanzato",
+    "href": "extra/formatting.html#utilizzo-avanzato",
+    "title": "Guida per formattare il codice",
+    "section": "Utilizzo avanzato",
+    "text": "Utilizzo avanzato\nClang-Format offre numerose opzioni per personalizzare la formattazione del codice sorgente. È possibile specificare un file di configurazione .clang-format per definire regole di formattazione personalizzate. Inoltre, clang-format supporta diversi stili di formattazione predefiniti, come Google, LLVM, Mozilla e altri.\nPer ulteriori informazioni sulle opzioni di configurazione e sugli stili di formattazione supportati, consultare la documentazione ufficiale di Clang-Format.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Formatting"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html",
+    "href": "extra/style_guide.html",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "",
+    "text": "Nota\n\n\n\nLa presente guida è un riadattamento dalla style guide del CS50 di Harvard per il corso di Dati e Algoritmi dell’Università di Padova.\nNon esiste un modo “giusto” unico per scrivere codice. Ma ci sono sicuramente molti modi sbagliati (o, almeno, cattivi). Ad ogni modo, essendo questo un corso di introduzione a C, è una buona occasione per mettere in pratica alcune regole di stile per scrivere fin da subito codice leggibile e mantenibile.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#lunghezza-della-linea",
+    "href": "extra/style_guide.html#lunghezza-della-linea",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Lunghezza della linea",
+    "text": "Lunghezza della linea\nPer convenzione, la lunghezza massima di una riga di codice è di 80 caratteri in C, questa è una scelta di ragioni storiche, infatti negli anni ’80 i monitor di dimensioni standard potevano visualizzare 24 linee verticali e 80 caratteri orizzontali. Anche se la tecnologia moderna ha reso obsoleta la necessità di mantenere le linee limitate a 80 caratteri, è comunque una linea guida che dovrebbe essere considerata come un “limite flessibile”. Oggi, solitamente, si cerca di non superare i 100 caratteri in una singola linea. Se hai bisogno di più di 100 caratteri, potrebbe essere il momento di ripensare sia ai nomi delle variabili che al design complessivo del programma!",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#commenti",
+    "href": "extra/style_guide.html#commenti",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Commenti",
+    "text": "Commenti\nI commenti rendono il codice più leggibile, non solo per gli altri, ma anche per te, specialmente quando passano ore, giorni, settimane, mesi o anni tra la scrittura e la lettura del tuo stesso codice. Commentare troppo poco è sbagliato. Commentare troppo è sbagliato. Dove sta il punto giusto? Commentare ogni poche righe di codice (cioè, blocchi interessanti) è una buona linea guida. Cerca di scrivere commenti che rispondano a una o entrambe queste domande:\n\nCosa fa questo blocco?\nPerché ho implementato questo blocco in questo modo?\n\nAll’interno delle funzioni, utilizza “commenti in linea” e mantienili brevi (ad esempio, una riga), altrimenti diventa difficile distinguere i commenti dal codice. Posiziona il commento sopra la riga (o le righe) a cui si applica. Non è necessario scrivere frasi complete, ma metti in maiuscolo la prima parola del commento (a meno che non sia il nome di una funzione, variabile o simile), e lascia uno spazio tra // e il primo carattere del tuo commento, come in:\n// Converti Fahrenheit in Celsius\nfloat c = 5.0 / 9.0 * (f - 32.0);\nIn altre parole, non fare questo:\n// converti Fahrenheit in Celsius\nfloat c = 5.0 / 9.0 * (f - 32.0);\nO questo:\nfloat c = 5.0 / 9.0 * (f - 32.0); // Converti Fahrenheit in Celsius\nNelle prime righe dei file .c e .h dovrebbe esserci un commento che riassuma ciò che fa il tuo programma (o quel particolare file).\nSopra ciascuna delle tue funzioni (eccetto, forse, main), dovrebbe invece esserci un commento che riassuma cosa fa la tua funzione, come in:\n// Restituisce il quadrato di n\nint quadrato(int n)\n{\n    return n * n;\n}",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#intestazioni-delle-librerie",
+    "href": "extra/style_guide.html#intestazioni-delle-librerie",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Intestazioni delle librerie",
+    "text": "Intestazioni delle librerie\nTutte le intestazioni delle librerie che includi dovrebbero essere elencate in ordine alfabetico, come in:\n#include &lt;math.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;string.h&gt;\nQuesto rende più facile vedere in un colpo d’occhio, specialmente in un elenco lungo, se hai incluso un’intestazione.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#condizioni",
+    "href": "extra/style_guide.html#condizioni",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Condizioni",
+    "text": "Condizioni\nLe condizioni dovrebbero essere stilizzate come segue:\nif (x &gt; 0)\n{\n    printf(\"x è positivo\\n\");\n}\nelse if (x &lt; 0)\n{\n    printf(\"x è negativo\\n\");\n}\nelse\n{\n    printf(\"x è zero\\n\");\n}\nNota come:\n\nle parentesi graffe si allineano bene, ognuna sulla propria linea, rendendo perfettamente chiaro cosa c’è dentro il ramo;\nc’è uno spazio singolo dopo ogni if;\nogni chiamata a printf è indentata con 4 spazi;\nci sono spazi singoli intorno a &gt; e intorno a &lt;; e\nnon c’è alcuno spazio immediatamente dopo ogni ( o immediatamente prima di ogni ).\n\nPer risparmiare spazio, alcuni programmatori preferiscono mantenere la prima parentesi graffa sulla stessa riga della condizione stessa, ma non lo consigliamo, poiché è più difficile da leggere, quindi non fare questo:\nif (x &lt; 0) {\n    printf(\"x è negativo\\n\");\n} else if (x &lt; 0) {\n    printf(\"x è negativo\\n\");\n}\nE sicuramente non fare questo:\nif (x &lt; 0)\n    {\n    printf(\"x è negativo\\n\");\n    }\nelse\n    {\n    printf(\"x è negativo\\n\");\n    }",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#switch",
+    "href": "extra/style_guide.html#switch",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Switch",
+    "text": "Switch\nDichiara uno switch come segue:\nswitch (n)\n{\n    case -1:\n        printf(\"n è -1\\n\");\n        break;\n\n    case 1:\n        printf(\"n è 1\\n\");\n        break;\n\n    default:\n        printf(\"n non è né -1 né 1\\n\");\n        break;\n}\nNota come:\n\nogni parentesi graffa sia su una propria riga;\nc’è uno spazio singolo dopo switch;\nnon c’è spazio immediatamente dopo ogni ( o prima di ogni );\ni casi dello switch sono indentati con 4 spazi;\ni corpi dei casi sono indentati ulteriormente con 4 spazi; e\nogni case (incluso default) termina con un break.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#funzioni",
+    "href": "extra/style_guide.html#funzioni",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Funzioni",
+    "text": "Funzioni\nIn conformità con C99, assicurati di dichiarare main con:\nint main(void)\n{\n\n}\no con:\nint main(int argc, char *argv[])\n{\n\n}\no anche con:\nint main(int argc, char **argv)\n{\n\n}\nNon dichiarare main con:\nint main()\n{\n\n}\no con:\nvoid main()\n{\n\n}\no con:\nmain()\n{\n\n}\nPer le tue stesse funzioni, assicurati di definirle similmente, con ogni parentesi graffa su una propria riga e con il tipo di ritorno sulla stessa riga del nome della funzione, proprio come abbiamo fatto con main.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#indentazione",
+    "href": "extra/style_guide.html#indentazione",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Indentazione",
+    "text": "Indentazione\nIndenta il tuo codice con quattro spazi alla volta per chiarire quali blocchi di codice sono contenuti all’interno di altri. Se usi il tasto Tab sulla tastiera per farlo, assicurati che l’editor di testo sia configurato per convertire le tabulazioni (\\t) in quattro spazi, altrimenti il tuo codice potrebbe non essere stampato o visualizzato correttamente sul computer di qualcun altro, poiché \\t si renderizza in modo diverso in editor diversi.\nEcco del codice ben indentato:\n// Stampare gli argomenti della riga di comando uno per riga\nprintf(\"\\n\");\nfor (int i = 0; i &lt; argc; i++)\n{\n    for (int j = 0, n = strlen(argv[i]); j &lt; n; j++)\n    {\n        printf(\"%c\\n\", argv[i][j]);\n    }\n    printf(\"\\n\");\n}",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#cicli",
+    "href": "extra/style_guide.html#cicli",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Cicli",
+    "text": "Cicli\n\nfor\nOgni volta che hai bisogno di variabili temporanee per l’iterazione, usa i, poi j, poi k, a meno che nomi più specifici non rendano il tuo codice più leggibile:\nfor (int i = 0; i &lt; LIMITE; i++)\n{\n    for (int j = 0; j &lt; LIMITE; j++)\n    {\n        for (int k = 0; k &lt; LIMITE; k++)\n        {\n            // Fai qualcosa\n        }\n    }\n}\nSe hai bisogno di più di tre variabili per l’iterazione, potrebbe essere il momento di ripensare il tuo design!\n\n\nwhile\nDichiara i cicli while come segue:\nwhile (condizione)\n{\n    // Fai qualcosa\n}\nNota come:\n\nogni parentesi graffa sia su una propria riga;\nc’è uno spazio singolo dopo while;\nnon c’è spazio immediatamente dopo il ( o prima del ); e\nil corpo del ciclo (un commento in questo caso) è indentato con 4 spazi.\n\n\n\ndo … while\nDichiara i cicli do ... while come segue:\ndo\n{\n    // Fai qualcosa\n}\nwhile (condizione);\nNota come:\n\nogni parentesi graffa sia su una propria riga;\nc’è uno spazio singolo dopo while;\nnon c’è spazio immediatamente dopo il ( o prima del ); e\nil corpo del ciclo (un commento in questo caso) è indentato con 4 spazi.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#puntatori",
+    "href": "extra/style_guide.html#puntatori",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Puntatori",
+    "text": "Puntatori\nQuando dichiari un puntatore, scrivi * accanto alla variabile, come in:\nint *p;\nNon scriverlo accanto al tipo, come in:\nint* p;",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#variabili",
+    "href": "extra/style_guide.html#variabili",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Variabili",
+    "text": "Variabili\nPoiché in questo corso si utilizza C99, non definire tutte le tue variabili all’inizio delle tue funzioni ma, piuttosto, quando e dove ne hai effettivamente bisogno. Inoltre, limita il più possibile lo scope delle tue variabili. Ad esempio, se i è necessario solo per il ciclo, dichiara i all’interno del ciclo stesso:\nfor (int i = 0; i &lt; LIMITE; i++)\n{\n    printf(\"%i\\n\", i);\n}\nAnche se è accettabile utilizzare variabili come i, j e k per l’iterazione, la maggior parte delle tue variabili dovrebbe avere nomi più specifici. Se stai sommando alcuni valori, ad esempio, chiamare la tua variabile somma. Se il nome della tua variabile giustifica due parole (ad esempio, ha_mangiato), metti un trattino basso (underscore) tra di esse, questo modo di chiamare le variabili è detto snake_case (altri modi di dare il nome alle variabili sono il CamelCase o il meno comune kebab-case).\n\n\n\n\n\n\nAttenzione\n\n\n\nPerché il kebab case è un formato più insolito degli altri? Se provi a dare un nome di variabile in kebab-case in un programma C cosa succede?\n\n\nSe dichiari più variabili dello stesso tipo contemporaneamente, è accettabile dichiararle insieme, come in:\nint quartieri, dimes, nickels, pennies;\nBasta non inizializzare alcune ma non altre, come in:\nint quartieri, dimes = 0, nickels = 0 , pennies;\nPrenditi cura anche di dichiarare i puntatori separatamente dai non puntatori, come in:\nint *p;\nint n;\nNon dichiarare puntatori sulla stessa riga dei non puntatori, come in:\nint *p, n;",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#strutture",
+    "href": "extra/style_guide.html#strutture",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Strutture",
+    "text": "Strutture\nDichiara una struct come tipo come segue, con ogni parentesi graffa su una propria riga e i membri indentati al suo interno, con il nome del tipo anche sulla sua riga:\ntypedef struct\n{\n    char *nome;\n    int matricola;\n} studente_t;\nQuando definisci un tipo con typedef è buona prassi usare un nome che finisce con _t, questo per poterlo facilmente distinguere dai nomi di variabile, dalle funzioni o dalle macro.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "faq.html",
+    "href": "faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "Io conosco Python, Ruby, Haskell, Kotlin, Perl e ieri ho implementato un compilatore per il mio unico e innovativo linguaggio di programmazione. Perché dovrei imparare C?\n\nAffermazioni del tipo “Il nostro linguaggio è veloce quasi quanto il C, ma è più facile da scrivere” sono così comuni da diventare quasi cliché. Bene, C è sicuramente veloce quanto C, e lo scopo del corso è facilitare la comprensione di un linguaggio spesso conosciuto come ostico. La comprensione di un linguaggio che non astrae molti concetti e lascia molta responsabilità al programmatore è importante per avere delle solide basi su concetti che pervadono tutti i linguaggi di programmazione.\n\nIl mio telefono ha 6 GB di RAM, quindi perché i libri di testo dedicano così tante pagine a tecniche per risparmiare kilobytes di peso ai file eseguibili?\nIl mio vecchissimo computer riesce ad eseguire 3,200,000,000 istruzioni al secondo, perché dovrei interessarmi se un’operazione confronta 8 o 16 bit?\n\nDovremmo scrivere codice che possiamo scrivere velocemente e che sia leggibile dai nostri simili. Stiamo ancora scrivendo in C, quindi il nostro codice leggibile ma non perfettamente ottimizzato verrà comunque eseguito un ordine di grandezza più velocemente che se avessimo scritto codice comparabile in un numero qualsiasi di linguaggi alternativi.",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "faq.html#come-si-svolge-lesame",
+    "href": "faq.html#come-si-svolge-lesame",
+    "title": "FAQ",
+    "section": "Come si svolge l’esame?",
+    "text": "Come si svolge l’esame?\nL’esame del corso di Dati e Algoritmi è scritto, in presenza e si svolge in 3 parti:\n\ndomande: verifica della conoscenza teorica in programma, semplici dimostrazioni;\nesercizi: capacità di risolvere problemi di progetto e analisi di algoritmi (simili a quelli affrontati durante il corso);\ncodice: scrittura in linguaggio C di algoritmi che utilizzano strutture dati;\n\nogni parte dell’esame dura 45 minuti, per un totale di 2 ore e 15 minuti.",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "faq.html#come-si-calcola-il-voto-finale",
+    "href": "faq.html#come-si-calcola-il-voto-finale",
+    "title": "FAQ",
+    "section": "Come si calcola il voto finale?",
+    "text": "Come si calcola il voto finale?\nOgnuna delle tre parti dell’esame è valutata al massimo 11 punti, il voto è la somma delle tre parti.\n\n\n\n\n\n\nImportante\n\n\n\nSe in una delle tre parti si ottiene una valutazione inferiore a 4, l’esame è da considerarsi non superato nella sua interezza.\n\n\nCon 33 punti si ottiene la lode.\nDi seguito è riportato l’algoritmo di calcolo del voto finale:\n// algoritmo per calcolare il voto dell'esame\nint voto_finale(int domande, int esercizi, int codice)\n{\n    int voto = domande + esercizi + codice;\n\n    // se una delle tre parti è inferiore a 4,\n    // l'esame è da considerarsi non superato\n    if (domande &lt; 4 || esercizi &lt; 4 || codice &lt; 4)\n    {\n        voto = 0;\n    }\n\n    switch (voto)\n    {\n        case 31:\n        case 32:\n            voto = 30;\n            break;\n\n        case 33:\n            voto = 31; // 31 equivale a 30 e lode\n            break;\n\n        case default:\n            break;\n    }\n\n  return voto;\n}",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "faq.html#posso-usare-il-mio-computer-per-scrivere-codice",
+    "href": "faq.html#posso-usare-il-mio-computer-per-scrivere-codice",
+    "title": "FAQ",
+    "section": "Posso usare il mio computer per scrivere codice?",
+    "text": "Posso usare il mio computer per scrivere codice?\nNo, la parte di scrittura di codice si svolge tramite i computer del laboratorio.",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "faq.html#non-ho-un-computer-posso-svolgere-lesame",
+    "href": "faq.html#non-ho-un-computer-posso-svolgere-lesame",
+    "title": "FAQ",
+    "section": "Non ho un computer, posso svolgere l’esame?",
+    "text": "Non ho un computer, posso svolgere l’esame?\nSì, tuttavia per poter svolgere gli esercizi di programmazione è necessario avere una buona dimestichezza con l’uso di un computer ed è fortemente consigliato fare pratica a casa.",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html",
+    "href": "CODE_OF_CONDUCT.html",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.\n\n\n\nExamples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting\n\n\n\n\nCommunity leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.\n\n\n\nThis Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.\n\n\n\nInstances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at spanio@dei.unipd.it. All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident.\n\n\n\nCommunity leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community.\n\n\n\n\nThis Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#our-pledge",
+    "href": "CODE_OF_CONDUCT.html#our-pledge",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#our-standards",
+    "href": "CODE_OF_CONDUCT.html#our-standards",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Examples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting"
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#enforcement-responsibilities",
+    "href": "CODE_OF_CONDUCT.html#enforcement-responsibilities",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#scope",
+    "href": "CODE_OF_CONDUCT.html#scope",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#enforcement",
+    "href": "CODE_OF_CONDUCT.html#enforcement",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at spanio@dei.unipd.it. All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#enforcement-guidelines",
+    "href": "CODE_OF_CONDUCT.html#enforcement-guidelines",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Community leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#attribution",
+    "href": "CODE_OF_CONDUCT.html#attribution",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "This Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
+  },
+  {
+    "objectID": "exercises/01/cambio_valuta.html",
+    "href": "exercises/01/cambio_valuta.html",
+    "title": "Esercizio: cambio valuta",
+    "section": "",
+    "text": "L’Italia ha cambiato la sua valuta dalla lira italiana (ITL) all’euro (EUR) il 1º gennaio 2002. Questo è stato un evento storico noto come la “fase di transizione all’euro” o l’“introduzione dell’euro”. Durante questo periodo, le banconote e le monete denominate in euro sono state introdotte gradualmente in circolazione e la lira italiana è stata gradualmente ritirata. Il processo di transizione all’euro ha coinvolto un periodo di preparazione e pianificazione da parte delle istituzioni finanziarie e del governo italiano.\nGli italiani, al momento del cambio, si sono trovati a dover far fronte a un nuovo sistema di valuta. Per aiutare le persone a comprendere meglio il valore delle nuove banconote e monete, i giornali e i media hanno pubblicato tabelle di conversione tra le due valute ma il metodo più comune che venne adottato fin da subito fu la conversione esatta da lire in euro al tasso di cambio stabilito dai governi. Il valore di un euro è stato fissato a 1936,27 lire italiane.\n\nSi vuole scrivere un programma che, dato un importo in lire, lo converta in euro. Il programma deve chiedere all’utente di inserire un importo in lire e visualizzare a video l’importo corrispondente in euro.\n\nQuando il programma viene eseguito deve chiedere all’utente di inserire la quantità di lire italiane da cambiare, effettuare il calcolo e visualizzare il risultato a video a video.\nAd esempio:\nInserire l'importo in lire: 10000\n10000 lire italiane corrispondono a 5.16 euro\n\n\n\n\n\n\nSuggerimento\n\n\n\nPer convertire un importo da lire a euro, si può utilizzare la seguente formula: \\[\n\\text{euro} = \\frac{\\text{lire}}{1936.27}\n\\]\nIn C è molto comune definire le costanti in due maniere:\n\ncon la direttiva #define:\n#define TASSO_CAMBIO 1936.27\ncon la dichiarazione di una variabile const:\nconst float TASSO_CAMBIO = 1936.27;\n\n\n\nEsempio di main:\n\n\n Scarica il file \n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    // TODO: ricevere in input un importo in lire da cambiare\n\n    // TODO: stampare a monitor l'importo in euro corrispondente\n}",
+    "crumbs": [
+      "Lezioni",
+      "Lezione 1",
+      "Cambio valuta"
+    ]
+  },
+  {
+    "objectID": "exercises.html",
+    "href": "exercises.html",
+    "title": "Esercizi",
+    "section": "",
+    "text": "Gli esercizi sono divisi per lezione. Ogni lezione tratta un numero variabile di argomenti, quindi gli esercizi sono divisi in base a questi argomenti. Gli esercizi di lezioni più avanzate fanno spesso riferimento a concetti appresi in lezioni precedenti, quindi è consigliabile svolgerli in ordine.\nPer compilare gli esercizi si suggerisce di usare il comando gcc con i warning attivati e l’opzione -std=c99 per compilare in standard C99. Di seguito il comando che si può usare per compilare un file sorgente esercizio.c:\ngcc -std=c99 -Wall -Wextra -pedantic -Werror -g -o esercizio esercizio.c\nTalvolta può essere utile usare un file Makefile per compilare più file sorgente. Di seguito un esempio di Makefile:\n\n\n Scarica il file \nFILES=esercizio.c\nEXECUTABLE=esercizio\n\nCC=gcc\nCFLAGS=-std=c99 -Wall -Wextra -pedantic -Werror -g\n\n$(EXECUTABLE): $(FILES)\n    $(CC) $(CFLAGS) -o $@ $^"
+  }
+]
