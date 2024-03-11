@@ -4,201 +4,20 @@ date: 03/12/2024
 abstract-title: Argomenti trattati
 abstract: In questa lezione si introduce il linguaggio di programmazione C illustrando la sua storia e quali elementi del suo design lo rendano un linguaggio usato ancora dopo 50 anni dalla sua creazione. A seguire una descrizione della sintassi di C, introducendo anche elementi di I/O con esempi ed esercizi.
 ---
----
 
 {{< include _storia.qmd >}}
 
 ## Caratteristiche {transition=none}
 {{< include _caratteristiche.qmd >}}
 
-## Pregi e difetti {auto-animate=true}
-{{< include _pro_e_contro.qmd >}}
-
-## Linguaggio Strutturato
-{{< include _linguaggio_strutturato.qmd >}}
-
 ## Installazione
-
 {{< include _installazione.qmd >}}
 
 ## La compilazione {transition=none}
-
-- Prendiamo in esame il nostro primo programma, `helloworld.c`
-
-```{.c}
-#include <stdio.h>
-
-/* Il mio primo programma in C! */
-int main(void)
-{
-    printf("Hello, World!");
-}
-```
-
-::: {.content-visible when-format="revealjs"}
-## La compilazione {transition=none}
-:::
-
-Nel venire compilato, il nostro programma è passato attraversi altri tre programmi:
-
-1. **Preprocesso**: elimina i commenti ed esegue le direttive del preprocessore (le istruzioni che iniziano con `#`).
-2. **Compiler**: controlla se il codice è corretto (sintatticamente) e lo converte in linguaggio macchina, generando il codice oggetto.
-3. **Linker**: combina vari file oggetto e le librerie, producendo il file eseguibile. (`a.out` oppure `a.exe`)
-
-::: {.content-visible when-format="revealjs"}
-## La compilazione
-:::
-
-Esistono comandi per accedere separatamente ai vari passaggi, ma in genere viene tutto gestito da `gcc` (GNU C Compiler $\rightarrow$ GNU Compiler Collection)
-
-```
-gcc -o <nome_eseguibile> <sorgente.c> <sorgente2.c> ... <sorgenteN.c>
-```
-
-Il comando chiama il preprocessore su tutti i file, per tutti compila il file oggetto e chiama il linker che li unisce nell'unico eseguibile chiamato `<nome_eseguibile>`
-
-::: {.callout-note}
-```
-gcc -c <sorgente.c> <sorgente2.c> ... <sorgenteN.c>
-```
-
-Non esegue il linking (utile se non si ha ancora il main ad esempio)
-:::
-
-::: {.content-visible when-format="revealjs"}
-## Sintassi di C {auto-animate="true"}
-
-```{.c code-line-numbers="|1"}
-{{< include ./code/hello_dati_algoritmi.c >}}
-```
-
-. . .
-
-1. Direttiva
+{{< include _compilazione.qmd >}}
 
 ## Sintassi di C {auto-animate="true"}
-
-```{.c code-line-numbers="2"}
-{{< include ./code/hello_dati_algoritmi.c >}}
-```
-
-1. Direttiva
-2. Commento
-
-## Sintassi di C {auto-animate="true"}
-
-```{.c code-line-numbers="3,4,7"}
-{{< include ./code/hello_dati_algoritmi.c >}}
-```
-
-1. Direttiva
-2. Commento
-3. Funzione
-
-## Sintassi di C {auto-animate="true"}
-
-```{.c code-line-numbers="5"}
-{{< include ./code/hello_dati_algoritmi.c >}}
-```
-
-1. Direttiva
-2. Commento
-3. Funzione
-4. Dichiarazione e assegnazione di variabile
-
-## Sintassi di C {auto-animate="true"}
-
-```{.c code-line-numbers="6"}
-{{< include ./code/hello_dati_algoritmi.c >}}
-```
-
-1. Direttiva
-2. Commento
-3. Funzione
-4. Dichiarazione e assegnazione di variabile
-5. Chiamata di funzione
-:::
-
-::: {.content-visible unless-format="revealjs"}
-## Sintassi di C {auto-animate="true"}
-
-```{.c}
-#include <stdio.h>                            /* <1> */
-/* Il mio primo programma in C! */            /* <2> */
-int main(void)                                /* <3> */
-{                                             /* <3> */
-  int anno = 2024;                            /* <4> */
-  printf("Hello Dati e Algoritmi %d", anno);  /* <5> */
-}                                             /* <3> */
-```
-
-
-1. Direttiva
-2. Commento
-3. Funzione
-4. Dichiarazione e assegnazione di variabile
-5. Chiamata di funzione
-:::
-
-
-## Commenti
-
-I commenti classici di C si fanno con la sintassi
-
-```c
-/* testo del commento
-int i = 0; <--- questo viene ignorato
-anche su più righe */
-```
-
-. . .
-
-Dal C99, si può usare anche il commento monoriga
-```c
-// commento su una riga
-int i = 0; // questo viene eseguito
-// altro commento
-```
-
-## Dichiarazioni e inizializzazioni
-
-Tutte le variabili devono essere dichiarate prima di essere usate:
-
-`int altezza;`
-
-`float temperatura, peso;`
-
-Non cìè inizializzazione di default! Occorre assegnare valori
-
-`int altezza;`
-
-`altezza = 175;`
-
-`float temperatura = 36.4f; // anche subito`
-
-
-## Keyword riservate
-
-No si possono usare le seguenti parole per nomi di variabili o altro:
-
-```
-auto     break   case    char      const      continue   default   do
-double   else    enum    extern    float      for        goto      if
-inline*  int     long    register  restrict*  return     short     signed
-sizeof   static  struct  switch    typedef    union      unsigned  void
-volatile while   _Bool*  _Complex* _Imaginary*
-```
-*solo da C99
-
-::: {.callout-warning}
-## Il C è case sensitive
-
-Sono valide:
-
-`int a, A; float Auto;`
-
-N.B. solo perché si può non vuol dire che sia una buona idea...
-:::
+{{< include _sintassi.qmd >}}
 
 ## Input/Output
 
@@ -207,7 +26,12 @@ N.B. solo perché si può non vuol dire che sia una buona idea...
 - L'altra importante funzione che ci permette di usare è `scanf`, che legge i dati forniti dall'utente a terminale
 - Entrambe usano testo formattato, tramite uso di simboli speciali
 
+:::{.content-visible when-format="revealjs"}
 ## Output con printf {.smaller}
+:::
+::: {.content-visible unless-format="revealjs"}
+### Output con printf {.smaller}
+:::
 
 Gli specificatori iniziano con `%`, e per ciascuno deve esserci un parametro dopo la stringa di formattazione
 
@@ -221,7 +45,9 @@ I caratteri speciali sii scrivono con `\` (backslash) il carattere di *escaping*
 
 Output: `Si va a capo con \n`
 
+:::{.content-visible when-format="revealjs"}
 ## Output con printf {.smaller}
+:::
 
 - `%d` per interi, es. $10$
 - `%f` per float, es. $3.14$
@@ -235,7 +61,12 @@ Output: `Si va a capo con \n`
 - `%Nf` per avere $N$ "spazi" per la stampa, es. `%5d` per  `112` con due spazi vuoti prima
 - `%.Nf` per float con $N$ cifre decimali, es. `%.2f` per $3.14$
 
+:::{.content-visible when-format="revealjs"}
 ## String format
+:::
+::: {.content-visible unless-format="revealjs"}
+### String format
+:::
 
 Si è già visto `\n` per andare a capo, ma ce ne sono altri:
 
@@ -246,7 +77,12 @@ Si è già visto `\n` per andare a capo, ma ce ne sono altri:
 - `\"` per stampare le virgolette
 - `\0` per terminare una stringa
 
+:::{.content-visible when-format="revealjs"}
 ## Input con scanf
+:::
+::: {.content-visible unless-format="revealjs"}
+### Input con scanf
+:::
 
 `scanf` esegue pattern matching sull'input per popolare delle variabili
 
@@ -257,7 +93,9 @@ scanf("%d%d", &base, &altezza);
 
 Per esempio se l'utente scrive `3 4` e preme invio, `base` sarà 3 e `altezza` sarà 4.
 
+:::{.content-visible when-format="revealjs"}
 ## Input con scanf
+:::
 
 `scanf` scorre l'input ignorando ogni carattere bianco (spazi, tabulazioni, a capo). Se trova caratteri *compatibili* (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.
 
@@ -301,5 +139,5 @@ Popola le variabili fino a trovare un carattere bianco o un carattere non compat
 . . .
 
 :::{.callout-tip}
-In questo caso possiamo richiedere all'utente che il formato includa lo slash, e quindi includerlo nel paaern di scanf.
+In questo caso possiamo richiedere all'utente che il formato includa lo slash, e quindi includerlo nel pattern di scanf.
 :::

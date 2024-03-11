@@ -18,7 +18,7 @@ Il linguaggio C ha la fama di *linguaggio di basso livello* e sintassi complicat
 ```{mermaid}
 %%| label: timeline
 %%| fig-width: 6
-%%| fig-cap: "Pr%%| incipali momenti storici per lo sviluppo del linguaggio C"
+%%| fig-cap: "Principali momenti storici per lo sviluppo del linguaggio C"
 %%| file: figures/timeline.mmd
 ```
 :::

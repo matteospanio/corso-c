@@ -1,0 +1,49 @@
+::: {.content-visible unless-format="revealjs"}
+Ora che abbiamo installato il compilatore, possiamo iniziare a scrivere i nostri primi programmi.
+:::
+
+Prendiamo in esame il nostro primo programma, `hello.c`
+
+```{.c}
+#include <stdio.h>
+
+/* Il mio primo programma in C! */
+int main(void)
+{
+    printf("Hello, World!");
+}
+```
+
+::: {.content-visible unless-format="revealjs"}
+Rispettando la tradizione, il nostro primo programma stamperà "Hello, World!" a terminale. Per il momento non concentriamoci troppo sulla sintassi, vediamo piuttosto l'esecuzione del programma. Ma come possiamo farlo eseguire? Come già anticipato in precedenza, il nostro codice sorgente non è direttamente eseguibile, ma deve essere prima compilato. Vediamo come fare.
+:::
+
+::: {.content-visible when-format="revealjs"}
+## La compilazione {transition=none}
+:::
+
+Nel venire compilato, il nostro programma passa attraverso altri tre programmi:
+
+1. **Preprocessor**: elimina i commenti ed esegue le direttive del preprocessore (le istruzioni che iniziano con `#`).
+2. **Compiler**: controlla se il codice è corretto (sintatticamente) e lo converte in linguaggio macchina, generando il codice oggetto.
+3. **Linker**: combina vari file oggetto e le librerie, producendo il file eseguibile. (`a.out` oppure `a.exe`)
+
+::: {.content-visible when-format="revealjs"}
+## La compilazione
+:::
+
+Esistono comandi per accedere separatamente ai vari passaggi, ma in genere viene tutto gestito da `gcc` (GNU C Compiler $\rightarrow$ GNU Compiler Collection)
+
+```
+gcc -o <nome_eseguibile> <sorgente.c> <sorgente2.c> ... <sorgenteN.c>
+```
+
+Il comando chiama il preprocessore su tutti i file, per tutti compila il file oggetto e chiama il linker che li unisce nell'unico eseguibile chiamato `<nome_eseguibile>`
+
+::: {.callout-note}
+```
+gcc -c <sorgente.c> <sorgente2.c> ... <sorgenteN.c>
+```
+
+Non esegue il linking (utile se non si ha ancora il main ad esempio)
+:::

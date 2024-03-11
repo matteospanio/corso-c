@@ -56,31 +56,12 @@ website:
     - id: lessons
       title: Lezioni
       contents:
-        - section: Lezione 1
-          contents:
-              - lessons/01/index.qmd
-              - text: Guida all'installazione
-                href: extra/gcc.qmd
-
-        - section: Lezione 2
-          contents:
-            - lessons/02/index.qmd
-
-        - section: Lezione 3
-          contents:
-            - lessons/03/index.qmd
-
-        - section: Lezione 4
-          contents:
-            - lessons/04/index.qmd
-
-        - section: Lezione 5
-          contents:
-            - lessons/05/index.qmd
-
-        - section: Lezione 6
-          contents:
-            - lessons/06/index.qmd
+        - lessons/01/index.qmd
+        - lessons/02/index.qmd
+        - lessons/03/index.qmd
+        - lessons/04/index.qmd
+        - lessons/05/index.qmd
+        - lessons/06/index.qmd
 
     - id: exercises
       title: Esercizi

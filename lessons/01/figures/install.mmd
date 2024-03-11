@@ -1,0 +1,15 @@
+flowchart LR
+A[Start]
+B{"Scegli OS"}
+C[Installare MinGW o WSL 2]
+E{"digitare\ngcc --version"}
+F[Installare GCC]
+G[Ready to go]
+
+A --> B
+B --> |Windows| C
+B --> |UNIX based| E
+C --> E
+E --> |errore| F
+E --> |stampa versione| G
+F --> G

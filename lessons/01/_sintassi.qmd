@@ -1,0 +1,162 @@
+::: {.content-visible when-format="revealjs"}
+
+```{.c code-line-numbers="|1"}
+{{< include ./code/hello_dati_algoritmi.c >}}
+```
+
+. . .
+
+1. Direttiva
+
+## Sintassi di C {auto-animate="true"}
+
+```{.c code-line-numbers="2"}
+{{< include ./code/hello_dati_algoritmi.c >}}
+```
+
+1. Direttiva
+2. Commento
+
+## Sintassi di C {auto-animate="true"}
+
+```{.c code-line-numbers="3,4,7"}
+{{< include ./code/hello_dati_algoritmi.c >}}
+```
+
+1. Direttiva
+2. Commento
+3. Funzione
+
+## Sintassi di C {auto-animate="true"}
+
+```{.c code-line-numbers="5"}
+{{< include ./code/hello_dati_algoritmi.c >}}
+```
+
+1. Direttiva
+2. Commento
+3. Funzione
+4. Dichiarazione e assegnazione di variabile
+
+## Sintassi di C {auto-animate="true"}
+
+```{.c code-line-numbers="6"}
+{{< include ./code/hello_dati_algoritmi.c >}}
+```
+
+1. Direttiva
+2. Commento
+3. Funzione
+4. Dichiarazione e assegnazione di variabile
+5. Chiamata di funzione
+:::
+
+::: {.content-visible unless-format="revealjs"}
+
+```{.c}
+#include <stdio.h>                            /* <1> */
+/* Il mio primo programma in C! */            /* <2> */
+int main(void)                                /* <3> */
+{                                             /* <3> */
+  int anno = 2024;                            /* <4> */
+  printf("Hello Dati e Algoritmi %d", anno);  /* <5> */
+}                                             /* <3> */
+```
+
+
+1. Direttiva: le direttive del preprocessore iniziano con `#` e vengono eseguite prima del resto del codice, in questo caso includiamo la libreria standard di input/output. Ci sono due principali usi delle direttive: includere librerie e definire macro. L'istruzione `#include` comunica al preprocessore che il programma ha bisogno delle funzioni definite in `stdio.h`, la libreria standard di input/output (infatti viene usato `printf`). L'istruzione `#define` la incontreremo più avanti, ad ogni modo è un sistema che viene spesso usato per definire costanti.
+2. Commento: i commenti in C89 iniziano con `/*` e terminano con `*/`. I commenti possono essere su più righe. Dal C99 si possono usare anche i commenti monoriga (`//`).
+3. Funzione: la funzione `main` è il punto di partenza di ogni programma C. Il tipo di ritorno è `int`, e accetta un singolo argomento di tipo `void`. Il corpo della funzione è racchiuso tra parentesi graffe `{}`. `main` è una funzione speciale che indica il punto di partenza di ogni programma C. Il tipo di ritorno `int` indica che la funzione restituirà un valore intero (a volte il valore di ritorno del main può essere di tipo `void`, ma è una pratica non consigliata). L'argomento `void` indica che la funzione non accetta alcun argomento, si sarebbe potuto omettere, ma è buona pratica includerlo per chiarezza e attivare il controllo del compilatore.
+4. Dichiarazione e assegnazione di variabile: `int anno = 2024;` dichiara una variabile di tipo `int` chiamata `anno` e le assegna il valore `2024`. Storicamente la dichiarazione di variabili in C doveva avvenire all'inizio di un blocco di codice, dal C99 non è più una regola da seguire rigidamente.
+5. Chiamata di funzione: in questo caso stiamo usando la funzione `printf` definita in `stdio.h` a cui vengono passati 2 argomenti.
+:::
+
+
+::: {.content-visible when-format="revealjs"}
+## Commenti
+
+I commenti classici di C si fanno con la sintassi
+
+```c
+/* testo del commento
+int i = 0; <--- questo viene ignorato
+anche su più righe */
+```
+
+. . .
+
+Dal C99, si può usare anche il commento monoriga
+```c
+// commento su una riga
+int i = 0; // questo viene eseguito
+// altro commento
+```
+:::
+
+:::{.content-visible when-format="revealjs"}
+## Dichiarazioni e inizializzazioni
+:::
+::: {.content-visible unless-format="revealjs"}
+### Dichiarazioni e inizializzazioni
+:::
+
+Tutte le variabili devono essere dichiarate prima di essere usate:
+
+`int altezza;`
+
+`float temperatura, peso;`
+
+::: {.content-visible unless-format="revealjs"}
+Una delle fonti d'errore maggiori in C è che non esiste l'inizializzazione di default delle variabili, prima di utilizzarle nel programma bisogna assegnare un valore, come nel seguente esempio:
+
+```{.c}
+int altezza;
+altezze = 175;
+float temperatura = 36.4f;
+```
+
+Nella prima riga viene dichiarata la variabile altezza e nella seconda le viene assegnato un valore, questa procedura può essere compattata in un'unica riga come nel caso di `temperatura`.
+
+::: {.callout-important}
+Quando si dichiara una variabile il compilatore crea dello spazio nella memoria per contenere la variabile del tipo dichiarato (ogni tipo ha una dimensione diversa...), per essere più efficiente C non azzera la memoria che si trova in quello spazio, pertanto, se si andasse a leggere il valore di una variabile prima del primo assegnamento si troverebbero dei valori casuali.
+:::
+:::
+
+:::{.content-visible when-format="revealjs"}
+Non c'è inizializzazione di default! Occorre assegnare valori:
+
+`int altezza;`
+
+`altezza = 175;`
+
+`float temperatura = 36.4f; // anche subito`
+:::
+
+:::{.content-visible when-format="revealjs"}
+## Keyword riservate
+Non si possono usare le seguenti parole per nomi di variabili o altro:
+:::
+::: {.content-visible unless-format="revealjs"}
+### Keyword riservate
+Come detto in precedenza C è un linguaggio con poche parole chiave, quelle poche che ci sono però non possono essere usate per altri scopi, pertanto le parole sotto riportate sono da considerarsi riservate per il linguaggio e non possono essere usate per dichiarazioni di variabili o macro.
+:::
+
+
+```
+auto     break   case    char      const      continue   default   do
+double   else    enum    extern    float      for        goto      if
+inline*  int     long    register  restrict*  return     short     signed
+sizeof   static  struct  switch    typedef    union      unsigned  void
+volatile while   _Bool*  _Complex* _Imaginary*
+```
+*solo da C99
+
+::: {.callout-warning}
+## Il C è case sensitive
+
+Nomi di variabili valide sono:
+
+`int a, A; float Auto;`
+
+N.B. solo perché si può non vuol dire che sia una buona idea...
+:::

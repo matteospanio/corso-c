@@ -1,3 +1,7 @@
+::: {.content-visible unless-format="revealjs"}
+Per lavorare con il C, avrete bisogno di un compilatore C. Il compilatore più diffuso è `gcc`, è un compilatore open source, sviluppato da GNU. Storicamente lo sviluppo in C è stato fatto su sistemi Unix, quindi `gcc` è facilmente compatibile con tutti i sistemi Unix-like, mentre su Windows è necessario installare un ambiente di sviluppo come MinGW. Di seguito sono riportate le istruzioni per installare il compilatore su Linux e Mac. Per Windows, le istruzioni saranno caricate su Moodle.
+:::
+
 ::: {.callout-note}
 ## Linux e Mac^[probabilmente è già installato. Aprire il terminale per verificarlo con `gcc –v`]
 **Debian/Ubuntu**^[per altre distribuzioni non *debian based*, usare il package manager di sistema]: per installare il compilatore: `sudo apt install gcc -y`
@@ -12,20 +16,34 @@ potete installare MinGW e modificare le variabili di PATH. Le istruzioni saranno
 :::
 
 ::: {.content-visible when-format="revealjs"}
-## Installazione {.smaller transition=none}
+## Installazione
 :::
+
+::: {.content-visible unless-format="pdf"}
+```{mermaid}
+%%| label: installation-flow
+%%| fig-cap: "Processo di installazione del compilatore"
+%%| file: figures/install.mmd
+```
+:::
+
+::: {.content-visible when-format="revealjs"}
+## Installazione {transition=none}
 
 Vi servirà anche un editor di testo adatto al codice.
 
-Ad esempio notepad++, geany, sublime, gedit, kate, emacs, nano, vim...
+Ad esempio notepad++, sublime, gedit, kate, emacs, nano, vim...
+:::
+
+::: {.content-visible unless-format="revealjs"}
+Per scrivere effettivamente il codice è poi richiesto di installare un editor di testo adatto al codice. Dal momento che i programmatori adorano sviluppare strumenti per la programmazione è pieno di editor di testo che più o meno si equivalgono e che, in ogni caso, ricoprono abbondantemente le necessità del corso. Alcuni esempi sono: notepad++, sublime, gedit, kate, emacs, nano, vim...
+:::
 
 ::: {.callout-important}
 È sconsigliato studiare su un IDE, anche se è consigliato usarli quando si lavora effettivamente.
 :::
 
 ::: {.callout-tip}
-Ribattete tutti gli esempi di codice senza usare copia e incolla.
-
-  - I PDF non facilitano il copia e incolla
-  - Si memorizza molto meglio la sintassi
+## Impara facendo
+Riscrivere tutti gli esempi di codice senza usare copia e incolla aiuta a familiarizzare con la sintassi del linguaggio e gli strumenti di lavoro. Copiando si commettono errori da cui è possibile imparare, il compilatore segnalerà gli errori e si imparerà a correggerli.
 :::
