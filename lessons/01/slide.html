@@ -861,46 +861,6 @@ volatile while   _Bool*  _Complex* _Imaginary*</code></pre>
 <p><code>printf("Si va a capo con \\n\n");</code></p>
 <p>Output: <code>Si va a capo con \n</code></p>
 </section>
-<section id="output-con-printf-3" class="slide level2 smaller">
-<h2>Output con printf</h2>
-<ul>
-<li><code>%d</code> per interi, es. <span class="math inline">\(10\)</span></li>
-<li><code>%f</code> per float, es. <span class="math inline">\(3.14\)</span></li>
-<li><code>%e</code> per float in notazione scientifica, es. <span class="math inline">\(5.2\times 10^4\)</span></li>
-<li><code>%lf</code> per double, es. <span class="math inline">\(3.14\)</span></li>
-<li><code>%s</code> per stringhe, es. <code>"ciao"</code></li>
-<li><code>%c</code> per caratteri, es. <code>'a'</code></li>
-<li><code>%p</code> per puntatori, es. <code>0x7fffbf7f3b4c</code></li>
-<li><code>%x</code> per interi in esadecimale, es. <code>ff</code></li>
-<li><code>%o</code> per interi in ottale, es. <code>77</code></li>
-<li><code>%Nf</code> per avere <span class="math inline">\(N\)</span> “spazi” per la stampa, es. <code>%5d</code> per <code>112</code> con due spazi vuoti prima</li>
-<li><code>%.Nf</code> per float con <span class="math inline">\(N\)</span> cifre decimali, es. <code>%.2f</code> per <span class="math inline">\(3.14\)</span></li>
-</ul>
-</section>
-<section id="string-format" class="slide level2">
-<h2>String format</h2>
-<p>Si è già visto <code>\n</code> per andare a capo, ma ce ne sono altri:</p>
-<ul>
-<li><code>\n</code> per andare a capo</li>
-<li><code>\t</code> per tabulare</li>
-<li><code>\b</code> per backspace</li>
-<li><code>\\</code> per stampare il backslash</li>
-<li><code>\"</code> per stampare le virgolette</li>
-<li><code>\0</code> per terminare una stringa</li>
-</ul>
-</section>
-<section id="input-con-scanf" class="slide level2">
-<h2>Input con scanf</h2>
-<p><code>scanf</code> esegue pattern matching sull’input per popolare delle variabili</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a></a><span class="dt">int</span> base<span class="op">,</span> altezza<span class="op">;</span></span>
-<span id="cb13-2"><a></a>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>base<span class="op">,</span> <span class="op">&amp;</span>altezza<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Per esempio se l’utente scrive <code>3 4</code> e preme invio, <code>base</code> sarà 3 e <code>altezza</code> sarà 4.</p>
-</section>
-<section id="input-con-scanf-2" class="slide level2">
-<h2>Input con scanf</h2>
-<p><code>scanf</code> scorre l’input ignorando ogni carattere bianco (spazi, tabulazioni, a capo). Se trova caratteri <em>compatibili</em> (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.</p>
-<p>Popola le variabili fino a trovare un carattere bianco o un carattere non compatibile.</p>
-</section>
 <section id="section" class="slide level2 smaller">
 <h2></h2>
 <div class="columns">
@@ -981,30 +941,108 @@ Tabella&nbsp;1: Formattazione stringhe
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb14-2"><a></a></span>
-<span id="cb14-3"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb14-4"><a></a><span class="op">{</span></span>
-<span id="cb14-5"><a></a>    <span class="dt">char</span> c_val <span class="op">=</span> <span class="ch">'m'</span><span class="op">;</span></span>
-<span id="cb14-6"><a></a>    <span class="dt">int</span> i_val <span class="op">=</span> <span class="dv">255</span><span class="op">;</span></span>
-<span id="cb14-7"><a></a>    <span class="dt">long</span> <span class="dt">int</span> l_val <span class="op">=</span> <span class="dv">99</span><span class="op">;</span></span>
-<span id="cb14-8"><a></a>    <span class="dt">float</span> f_val <span class="op">=</span> <span class="fl">25.8</span><span class="op">;</span></span>
-<span id="cb14-9"><a></a></span>
-<span id="cb14-10"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c_val<span class="op">);</span></span>
-<span id="cb14-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb14-12"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> l_val<span class="op">);</span></span>
-<span id="cb14-13"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb14-14"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
-<span id="cb14-15"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%g\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
-<span id="cb14-16"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> <span class="st">"hello"</span><span class="op">);</span></span>
-<span id="cb14-17"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%8.3f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
-<span id="cb14-18"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb14-19"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%06d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb14-20"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%-6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb14-21"><a></a><span class="op">}</span></span>
-<span id="cb14-22"><a></a></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb13-2"><a></a></span>
+<span id="cb13-3"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb13-4"><a></a><span class="op">{</span></span>
+<span id="cb13-5"><a></a>    <span class="dt">char</span> c_val <span class="op">=</span> <span class="ch">'m'</span><span class="op">;</span></span>
+<span id="cb13-6"><a></a>    <span class="dt">int</span> i_val <span class="op">=</span> <span class="dv">255</span><span class="op">;</span></span>
+<span id="cb13-7"><a></a>    <span class="dt">long</span> <span class="dt">int</span> l_val <span class="op">=</span> <span class="dv">99</span><span class="op">;</span></span>
+<span id="cb13-8"><a></a>    <span class="dt">float</span> f_val <span class="op">=</span> <span class="fl">25.8</span><span class="op">;</span></span>
+<span id="cb13-9"><a></a></span>
+<span id="cb13-10"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c_val<span class="op">);</span></span>
+<span id="cb13-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb13-12"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> l_val<span class="op">);</span></span>
+<span id="cb13-13"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb13-14"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
+<span id="cb13-15"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%g\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
+<span id="cb13-16"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> <span class="st">"hello"</span><span class="op">);</span></span>
+<span id="cb13-17"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%8.3f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
+<span id="cb13-18"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb13-19"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%06d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb13-20"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%-6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb13-21"><a></a><span class="op">}</span></span>
+<span id="cb13-22"><a></a></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+</section>
+<section id="output-con-printf-3" class="slide level2 smaller">
+<h2>Output con printf</h2>
+<ul>
+<li><code>%d</code> per interi, es. <span class="math inline">\(10\)</span></li>
+<li><code>%f</code> per float, es. <span class="math inline">\(3.14\)</span></li>
+<li><code>%e</code> per float in notazione scientifica, es. <span class="math inline">\(5.2\times 10^4\)</span></li>
+<li><code>%lf</code> per double, es. <span class="math inline">\(3.14\)</span></li>
+<li><code>%s</code> per stringhe, es. <code>"ciao"</code></li>
+<li><code>%c</code> per caratteri, es. <code>'a'</code></li>
+<li><code>%p</code> per puntatori, es. <code>0x7fffbf7f3b4c</code></li>
+<li><code>%x</code> per interi in esadecimale, es. <code>ff</code></li>
+<li><code>%o</code> per interi in ottale, es. <code>77</code></li>
+<li><code>%Nf</code> per avere <span class="math inline">\(N\)</span> “spazi” per la stampa, es. <code>%5d</code> per <code>112</code> con due spazi vuoti prima</li>
+<li><code>%.Nf</code> per float con <span class="math inline">\(N\)</span> cifre decimali, es. <code>%.2f</code> per <span class="math inline">\(3.14\)</span></li>
+</ul>
+</section>
+<section id="string-format" class="slide level2">
+<h2>String format</h2>
+<p>Si è già visto <code>\n</code> per andare a capo, ma ce ne sono altri:</p>
+<ul>
+<li><code>\n</code> per andare a capo</li>
+<li><code>\t</code> per tabulare</li>
+<li><code>\b</code> per backspace</li>
+<li><code>\\</code> per stampare il backslash</li>
+<li><code>\"</code> per stampare le virgolette</li>
+<li><code>\0</code> per terminare una stringa</li>
+</ul>
+</section>
+<section id="input-con-scanf" class="slide level2">
+<h2>Input con scanf</h2>
+<p><code>scanf</code> esegue pattern matching sull’input per popolare delle variabili</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a></a><span class="dt">int</span> base<span class="op">,</span> altezza<span class="op">;</span></span>
+<span id="cb14-2"><a></a>scanf<span class="op">(</span></span>
+<span id="cb14-3"><a></a>    <span class="st">"</span><span class="sc">%d%d</span><span class="st">"</span><span class="op">,</span> <span class="co">// pattern</span></span>
+<span id="cb14-4"><a></a>    <span class="op">&amp;</span>base<span class="op">,</span> <span class="op">&amp;</span>altezza <span class="co">// variabili da popolare</span></span>
+<span id="cb14-5"><a></a><span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Per esempio se l’utente scrive <code>3 4</code> e preme invio, <code>base</code> sarà 3 e <code>altezza</code> sarà 4.</p>
+</section>
+<section id="input-con-scanf-2" class="slide level2">
+<h2>Input con scanf</h2>
+<p><code>scanf</code> scorre l’input ignorando ogni carattere bianco (spazi, tabulazioni, a capo).</p>
+<p>Se trova caratteri <em>compatibili</em> (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.</p>
+<p>Popola le variabili fino a trovare un carattere bianco o un carattere non compatibile.</p>
+</section>
+<section id="input-con-scanf-3" class="slide level2">
+<h2>Input con scanf</h2>
+<p><strong><large><code>&amp;base</code>?</large></strong></p>
+<div class="fragment">
+<p>È un puntatore! Per poter salvare in memoria il valore letto da <code>scanf</code> è necessario passare l’indirizzo di memoria della variabile, non la variabile stessa.</p>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Avviso</strong></p>
+</div>
+<div class="callout-content">
+<p>Dimenticarsi il simbolo &amp; in questo caso darà un errore a runtime</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="input-con-scanf-4" class="slide level2">
+<h2>Input con scanf</h2>
+<p>Un puntatore è un indirizzo di memoria. Quando si passa un puntatore a una funzione, si passa l’indirizzo di memoria della variabile, non la variabile stessa. Questo permette alla funzione di scrivere direttamente nella variabile, senza doverne fare una copia.</p>
+
+<img data-src="./figures/spiderman.jpg" class="r-stretch"></section>
+<section id="input-con-scanf-5" class="slide level2">
+<h2>Input con scanf</h2>
+<ul>
+<li>Attenzione a non confonder <code>printf</code> e <code>scanf</code>, per quanto simili siano.</li>
+<li><code>scanf</code> accetta gli stessi format specifier di <code>printf</code>, ma alcuni hanno meno varietà. Usate per il momento solo <code>%d</code> e <code>%f</code>.</li>
+<li><code>printf</code> accetta valori, <code>scanf</code> accetta puntatori. Bisogna ricordarsi di non scrivere <code>&amp;</code> davanti alle variabili in <code>printf</code> e di scriverlo in <code>scanf</code> (quando serve).</li>
+<li>Si possono mettere caratteri oltre ai format specifier in una scanf, ma può creare problemi.</li>
+</ul>
 </section>
 <section id="esercizi" class="slide level2">
 <h2>Esercizi</h2>
