@@ -3,10 +3,13 @@ title: Espressioni e strutture di controllo
 date: 03/19/2024
 ---
 
-Il C è basato su *espressioni*, le espressioni sono un insieme di **variabili**, **costanti** e **operatori**.
+Il C è basato su *espressioni*. Queste espressioni sono un insieme di **variabili**, **costanti** e **operatori**.
 
 ## Operatori
+{{< include _operatori.qmd >}}
 
 ## Espressioni istruzione
+{{< include _espressioni_istruzione.qmd >}}
 
 ## Espressioni logiche
+{{< include _espressioni_logiche.qmd >}}

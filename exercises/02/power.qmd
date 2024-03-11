@@ -1,0 +1,43 @@
+---
+title: "Esercizio: elevamento a potenza"
+---
+
+Si vuole scrivere un programma che accetti in input due numeri interi $x$ e $y$ e stampi il risultato dell'operazione $x^y$.
+
+---
+
+Quando il programma viene eseguito deve chiedere all'utente di inserire due numeri interi $x$ e $y$ e stampare il risultato dell'operazione $x^y$ in un loop infinito. L'esecuzione termina quando l'utente inserisce due zeri.
+
+Ad esempio:
+```{.raw}
+Inserisci due numeri interi: 2 3
+2^3 = 8
+Inserisci due numeri interi: 3 2
+3^2 = 9
+Inserisci due numeri interi: 4 5
+4^5 = 1024
+...
+Inserisci due numeri interi: 0 0
+Bye!
+```
+
+Per semplicità si può assumere che $x, y \in \mathbb{N}$ (siano sempre maggiori o uguali a zero).
+
+**Opzionale**:
+
+- ampliare il dominio dell'input a $x, y \in \mathbb{Z}$ (l'input può contenere anche numeri negativi);
+
+::: {.callout-tip collapse="true"}
+## Suggerimento
+
+In C non esiste un operatore per l'elevamento a potenza. Tuttavia, possiamo calcolare $x^y$ come $x \cdot x \cdot \ldots \cdot x$ (con $y$ fattori) utilizzando un ciclo `for`.
+:::
+
+<!-- ::: {.callout-tip collapse="true"}
+## Soluzione
+
+```{.c}
+{{< include ./code/cambio_valuta_soluzione.c >}}
+```
+
+::: -->

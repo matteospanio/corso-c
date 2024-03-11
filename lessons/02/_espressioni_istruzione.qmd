@@ -1,0 +1,10 @@
+Tutte le espressioni possono essere anche *statement*: in una linea posso avere anche solo una operazione singola seguita da `;`
+
+```{.c}
+i = 1;      // utile
+i++;        // utile
+i * j + 2   // inutile, potrebbe dare warning
+            // "statement with no effect"
+```
+
+Nel secondo caso il risultato viene scartato, ma la modifica avviene lo stesso.

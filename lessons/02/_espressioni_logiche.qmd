@@ -1,0 +1,14 @@
+Alcuni operatori ci dicono se una certa espressione è "vera" o "falsa", ad esempio:
+
+`i < j && j < k` ci dice se $i$ è minore sia di $j$ che di $k$
+
+::: {.callout-note}
+$i < j < k$ si può scrivere ma non fa quello che sembra, in realtà: `(i < j) < k` è vero con `int i=3, j=2, k=1`.
+:::
+
+##
+
+Il tipo di ritorno di queste espressioni in C è un intero, il tipo booleano non esiste in C (in C99 si è provato a sistemare).
+
+- $0 \rightarrow$ falso
+- $1 \rightarrow$ vero (e tutti gli interi diversi da $0$)
