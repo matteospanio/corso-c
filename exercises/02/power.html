@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hello C 2024 - Esercizio: somma di interi</title>
+<title>Hello C 2024 - Esercizio: elevamento a potenza</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../exercises/01/somma_razionale.html" rel="next">
+<link href="../../exercises/02/lista_della_spesa.html" rel="next">
+<link href="../../exercises/01/libretto.html" rel="prev">
 <link href="../../assets/images/dec_pdp1120.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -83,6 +84,35 @@ ul.task-list li input[type="checkbox"] {
   });
 </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -136,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/01/somma_interi.html">Basi di C</a></li><li class="breadcrumb-item"><a href="../../exercises/01/somma_interi.html">Somma di interi</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/02/power.html">Espressioni e strutture di controllo</a></li><li class="breadcrumb-item"><a href="../../exercises/02/power.html">Elevamento a potenza</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -159,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/01/somma_interi.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../exercises/01/somma_interi.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Somma di interi</span></a>
   </div>
 </li>
@@ -194,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/02/power.html" class="sidebar-item-text sidebar-link">
+  <a href="../../exercises/02/power.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Elevamento a potenza</span></a>
   </div>
 </li>
@@ -217,9 +247,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/01/somma_interi.html">Basi di C</a></li><li class="breadcrumb-item"><a href="../../exercises/01/somma_interi.html">Somma di interi</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/02/power.html">Espressioni e strutture di controllo</a></li><li class="breadcrumb-item"><a href="../../exercises/02/power.html">Elevamento a potenza</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Esercizio: somma di interi</h1>
+<h1 class="title">Esercizio: elevamento a potenza</h1>
 </div>
 
 
@@ -236,45 +266,45 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Si vuole scrivere un programma che accetti in input due numeri interi e ne calcoli la somma. Il programma deve chiedere all’utente di inserire i due numeri, effettuare il calcolo e visualizzare il risultato a video.</p>
+<p>Si vuole scrivere un programma che accetti in input due numeri interi <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> e stampi il risultato dell’operazione <span class="math inline">\(x^y\)</span>.</p>
+<hr>
+<p>Quando il programma viene eseguito deve chiedere all’utente di inserire due numeri interi <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> e stampare il risultato dell’operazione <span class="math inline">\(x^y\)</span> in un loop infinito. L’esecuzione termina quando l’utente inserisce due zeri.</p>
 <p>Ad esempio:</p>
-<pre class="raw"><code>Inserisci il primo numero: 5
-Inserisci il secondo numero: 7
-La somma dei due numeri è 12</code></pre>
-<p>Una volta compilato il programma eseguilo con <code>gdb</code> e controlla il valore delle variabili prima e dopo l’assegnamento. Cosa noti?</p>
+<pre class="raw"><code>Inserisci due numeri interi: 2 3
+2^3 = 8
+Inserisci due numeri interi: 3 2
+3^2 = 9
+Inserisci due numeri interi: 4 5
+4^5 = 1024
+...
+Inserisci due numeri interi: 0 0
+Bye!</code></pre>
+<p>Per semplicità si può assumere che <span class="math inline">\(x, y \in \mathbb{N}\)</span> (siano sempre maggiori o uguali a zero).</p>
+<p><strong>Opzionale</strong>:</p>
+<ul>
+<li>ampliare il dominio dell’input a <span class="math inline">\(x, y \in \mathbb{Z}\)</span> (l’input può contenere anche numeri negativi);</li>
+</ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-GNU Debugger
+Suggerimento
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Per eseguire un programma con <code>gdb</code> è sufficiente digitare il comando <code>gdb nome_programma</code> da terminale. Una volta avviato il debugger è possibile aggiungere breakpoints con il comando <code>break nome_funzione</code> o <code>break numero_riga</code>. A questo punto è possibile eseguire il programma con il comando <code>run</code> e controllare il valore delle variabili con il comando <code>print nome_variabile</code>. Per andare avanti di un passo è possibile usare il comando <code>next</code> o <code>step</code>. Per uscire dal debugger è sufficiente digitare <code>quit</code>.</p>
+<p>In C non esiste un operatore per l’elevamento a potenza. Tuttavia, possiamo calcolare <span class="math inline">\(x^y\)</span> come <span class="math inline">\(x \cdot x \cdot \ldots \cdot x\)</span> (con <span class="math inline">\(y\)</span> fattori) utilizzando un ciclo <code>for</code>.</p>
+</div>
 </div>
 </div>
 <!-- ::: {.callout-tip collapse="true"}
 ## Soluzione
 
 ```{.c}
-#include <stdio.h>
-
-const float TASSO_CAMBIO = 1936.27f;
-
-int main(void)
-{
-    float euro, lit;
-
-    printf("Inserisci l'importo in lire da cambiare: ");
-    scanf("%f", &lit);
-
-    euro = lit / TASSO_CAMBIO;
-
-    printf("%.2f lire corrispondono a %.2f euro\n", lit, euro);
-}
-
+{{< include ./code/cambio_valuta_soluzione.c >}}
 ```
 
 ::: -->
@@ -837,10 +867,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../exercises/01/libretto.html" class="pagination-link" aria-label="Libretto universitario">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Libretto universitario</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../exercises/01/somma_razionale.html" class="pagination-link" aria-label="Somma razionale">
-        <span class="nav-page-text">Somma razionale</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../exercises/02/lista_della_spesa.html" class="pagination-link" aria-label="Lista della spesa">
+        <span class="nav-page-text">Lista della spesa</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
