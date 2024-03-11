@@ -78,6 +78,8 @@ website:
               text: Libretto universitario
         - section: Espressioni e strutture di controllo
           contents:
+            - href: exercises/02/power.qmd
+              text: Elevamento a potenza
             - href: exercises/02/lista_della_spesa.qmd
               text: Lista della spesa
 
