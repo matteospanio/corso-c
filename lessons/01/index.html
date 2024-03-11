@@ -573,33 +573,33 @@ Nota
 </section>
 <section id="sintassi-di-c" class="level2" data-auto-animate="true">
 <h2 data-auto-animate="true" class="anchored" data-anchor-id="sintassi-di-c">Sintassi di C</h2>
-<div class="sourceCode" id="annotated-cell-6"><pre class="sourceCode c code-annotation-code code-with-copy code-annotated"><code class="sourceCode c"><a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* Il mio primo programma in C! */</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="annotated-cell-6-4"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-6-5" class="code-annotation-target"><a href="#annotated-cell-6-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> anno <span class="op">=</span> <span class="dv">2024</span><span class="op">;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-6-6" class="code-annotation-target"><a href="#annotated-cell-6-6" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">"Hello Dati e Algoritmi </span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> anno<span class="op">);</span></span>
-<span id="annotated-cell-6-7"><a href="#annotated-cell-6-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-7"><pre class="sourceCode c code-annotation-code code-with-copy code-annotated"><code class="sourceCode c"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* Il mio primo programma in C! */</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="annotated-cell-7-4"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-7-5" class="code-annotation-target"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> anno <span class="op">=</span> <span class="dv">2024</span><span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-7-6" class="code-annotation-target"><a href="#annotated-cell-7-6" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">"Hello Dati e Algoritmi </span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> anno<span class="op">);</span></span>
+<span id="annotated-cell-7-7"><a href="#annotated-cell-7-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="1" data-code-annotation="1">Direttiva: le direttive del preprocessore iniziano con <code>#</code> e vengono eseguite prima del resto del codice, in questo caso includiamo la libreria standard di input/output. Ci sono due principali usi delle direttive: includere librerie e definire macro. L’istruzione <code>#include</code> comunica al preprocessore che il programma ha bisogno delle funzioni definite in <code>stdio.h</code>, la libreria standard di input/output (infatti viene usato <code>printf</code>). L’istruzione <code>#define</code> la incontreremo più avanti, ad ogni modo è un sistema che viene spesso usato per definire costanti.</span>
+<span data-code-cell="annotated-cell-7" data-code-lines="1" data-code-annotation="1">Direttiva: le direttive del preprocessore iniziano con <code>#</code> e vengono eseguite prima del resto del codice, in questo caso includiamo la libreria standard di input/output. Ci sono due principali usi delle direttive: includere librerie e definire macro. L’istruzione <code>#include</code> comunica al preprocessore che il programma ha bisogno delle funzioni definite in <code>stdio.h</code>, la libreria standard di input/output (infatti viene usato <code>printf</code>). L’istruzione <code>#define</code> la incontreremo più avanti, ad ogni modo è un sistema che viene spesso usato per definire costanti.</span>
 </dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="2" data-code-annotation="2">Commento: i commenti in C89 iniziano con <code>/*</code> e terminano con <code>*/</code>. I commenti possono essere su più righe. Dal C99 si possono usare anche i commenti monoriga (<code>//</code>).</span>
+<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="2">Commento: i commenti in C89 iniziano con <code>/*</code> e terminano con <code>*/</code>. I commenti possono essere su più righe. Dal C99 si possono usare anche i commenti monoriga (<code>//</code>).</span>
 </dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="3,4,7" data-code-annotation="3">Funzione: la funzione <code>main</code> è il punto di partenza di ogni programma C. Il tipo di ritorno è <code>int</code>, e accetta un singolo argomento di tipo <code>void</code>. Il corpo della funzione è racchiuso tra parentesi graffe <code>{}</code>. <code>main</code> è una funzione speciale che indica il punto di partenza di ogni programma C. Il tipo di ritorno <code>int</code> indica che la funzione restituirà un valore intero (a volte il valore di ritorno del main può essere di tipo <code>void</code>, ma è una pratica non consigliata). L’argomento <code>void</code> indica che la funzione non accetta alcun argomento, si sarebbe potuto omettere, ma è buona pratica includerlo per chiarezza e attivare il controllo del compilatore.</span>
+<span data-code-cell="annotated-cell-7" data-code-lines="3,4,7" data-code-annotation="3">Funzione: la funzione <code>main</code> è il punto di partenza di ogni programma C. Il tipo di ritorno è <code>int</code>, e accetta un singolo argomento di tipo <code>void</code>. Il corpo della funzione è racchiuso tra parentesi graffe <code>{}</code>. <code>main</code> è una funzione speciale che indica il punto di partenza di ogni programma C. Il tipo di ritorno <code>int</code> indica che la funzione restituirà un valore intero (a volte il valore di ritorno del main può essere di tipo <code>void</code>, ma è una pratica non consigliata). L’argomento <code>void</code> indica che la funzione non accetta alcun argomento, si sarebbe potuto omettere, ma è buona pratica includerlo per chiarezza e attivare il controllo del compilatore.</span>
 </dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="5" data-code-annotation="4">Dichiarazione e assegnazione di variabile: <code>int anno = 2024;</code> dichiara una variabile di tipo <code>int</code> chiamata <code>anno</code> e le assegna il valore <code>2024</code>. Storicamente la dichiarazione di variabili in C doveva avvenire all’inizio di un blocco di codice, dal C99 non è più una regola da seguire rigidamente.</span>
+<span data-code-cell="annotated-cell-7" data-code-lines="5" data-code-annotation="4">Dichiarazione e assegnazione di variabile: <code>int anno = 2024;</code> dichiara una variabile di tipo <code>int</code> chiamata <code>anno</code> e le assegna il valore <code>2024</code>. Storicamente la dichiarazione di variabili in C doveva avvenire all’inizio di un blocco di codice, dal C99 non è più una regola da seguire rigidamente.</span>
 </dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="5">5</dt>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="6" data-code-annotation="5">Chiamata di funzione: in questo caso stiamo usando la funzione <code>printf</code> definita in <code>stdio.h</code> a cui vengono passati 2 argomenti.</span>
+<span data-code-cell="annotated-cell-7" data-code-lines="6" data-code-annotation="5">Chiamata di funzione: in questo caso stiamo usando la funzione <code>printf</code> definita in <code>stdio.h</code> a cui vengono passati 2 argomenti.</span>
 </dd>
 </dl>
 <section id="dichiarazioni-e-inizializzazioni-1" class="level3">
@@ -654,20 +654,65 @@ Il C è case sensitive
 </section>
 <section id="inputoutput" class="level2">
 <h2 class="anchored" data-anchor-id="inputoutput">Input/Output</h2>
-<ul>
-<li>Abbiamo già usato nei nostri esempi l’inclusione di <code>stdio.h</code></li>
-<li>Ci ha permesso di usare la funzione <code>printf</code>, con la quale possiamo stampare dei risultati a terminale</li>
-<li>L’altra importante funzione che ci permette di usare è <code>scanf</code>, che legge i dati forniti dall’utente a terminale</li>
-<li>Entrambe usano testo formattato, tramite uso di simboli speciali</li>
-</ul>
+<p>Difficilmente un programma può fare a meno di interagire con l’utente o con l’ambiente esterno. In C questo avviene tramite le funzioni <code>printf</code> e <code>scanf</code>. Queste funzioni fanno parte della libreria standard <code>stdio.h</code>, che è disponibile di default in ogni installazione di C.</p>
+<p>Per comprenderle meglio, è necessario capire come funzionano i formati di stampa e di lettura. Un buon punto di partenza è il manuale di <code>printf</code> e <code>scanf</code> (che si può trovare digitando <code>man printf</code> e <code>man scanf</code> in un terminale).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Il comando <code>man</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il comando <code>man</code> è un comando che permette di visualizzare il manuale di un comando o di una funzione. Il numero tra parentesi tonde dopo il nome del comando indica la sezione del manuale in cui cercare. Per esempio, <code>man 3 printf</code> cerca il manuale della funzione <code>printf</code> nella sezione 3, che contiene le funzioni di libreria.</p>
+<p>Le sezioni del manuale sono:</p>
+<ol type="1">
+<li>Programmi eseguibili e comandi della shell</li>
+<li>Chiamate al sistema (funzioni fornite dal kernel)</li>
+<li>Chiamate alle librerie (funzioni all’interno delle librerie di sistema)</li>
+<li>File speciali (di solito trovabili in /dev)</li>
+<li>Formati dei file e convenzioni p.es. /etc/passwd</li>
+<li>Giochi</li>
+<li>Pacchetti di macro e convenzioni p.es. man(7), groff(7).</li>
+<li>Comandi per l’amministrazione del sistema (solitamente solo per root)</li>
+<li>Routine del kernel [Non standard]</li>
+</ol>
+<p>Un buon punto di partenza per saperne di più è <code>man man</code>.</p>
+</div>
+</div>
 <section id="output-con-printf-1" class="level3 smaller">
 <h3 class="smaller anchored" data-anchor-id="output-con-printf-1">Output con printf</h3>
-<p>Gli specificatori iniziano con <code>%</code>, e per ciascuno deve esserci un parametro dopo la stringa di formattazione</p>
-<p><code>printf("Misura %d metri e %d cm \n", met, cm);</code></p>
-<p>Output: <code>Misura 2 e 15 cm</code></p>
-<p>I caratteri speciali sii scrivono con <code>\</code> (backslash) il carattere di <em>escaping</em></p>
-<p><code>printf("Si va a capo con \\n\n");</code></p>
-<p>Output: <code>Si va a capo con \n</code></p>
+<pre class="plaintext" data-numberlines="False"><code>$ man 3 printf
+
+PRINTF(3)              Linux Programmer's Manual              PRINTF(3)
+
+NAME
+       printf,  fprintf, dprintf, sprintf, snprintf, vprintf, vfprintf,
+       vdprintf, vsprintf, vsnprintf - formatted output conversion
+
+SYNOPSIS
+       #include &lt;stdio.h&gt;
+
+       int printf(const char *format, ...);
+       int fprintf(FILE *stream, const char *format, ...);
+       int dprintf(int fd, const char *format, ...);
+       int sprintf(char *str, const char *format, ...);
+       int snprintf(char *str, size_t size, const char *format, ...);
+
+...
+
+DESCRIPTION
+       The functions in the printf() family produce output according to
+       a  format  as  described  below.   The  functions  printf()  and
+       vprintf()  write  output  to stdout, the standard output stream;
+       fprintf() and  vfprintf()  write  output  to  the  given  output
+       stream; sprintf(), snprintf(), vsprintf(), and vsnprintf() write
+       to the character string str.
+</code></pre>
+<p>La pagina del manuale di <code>printf</code> è veramente lunga e rischia di essere un po’ dispersiva. Uno dei punti cruciali è la descrizione degli specificatori di formato, che sono i simboli che permettono di formattare l’output. Questi simboli iniziano tutti con <code>%</code>, e per ciascuno deve esserci un parametro dopo la stringa di formattazione.</p>
+<p>Ad esempio <code>%d</code> è il simbolo per stampare un intero, <code>printf("%d", 10)</code> pertanto stampa <code>10</code>. Di seguito è riportata una lista di specificatori di formato:</p>
 <ul>
 <li><code>%d</code> per interi, es. <span class="math inline">\(10\)</span></li>
 <li><code>%f</code> per float, es. <span class="math inline">\(3.14\)</span></li>
@@ -684,7 +729,7 @@ Il C è case sensitive
 </section>
 <section id="string-format-1" class="level3">
 <h3 class="anchored" data-anchor-id="string-format-1">String format</h3>
-<p>Si è già visto <code>\n</code> per andare a capo, ma ce ne sono altri:</p>
+<p>Oltre ai simboli di formattazione, ci sono anche i caratteri speciali, che si scrivono con <code>\</code> (backslash) il carattere di <em>escaping</em>. Questi caratteri permettono di stampare a monitor dei codici che vengono interpretati in maniera speciale. Il più comune è <code>\n</code> per andare a capo, ma ce ne sono altri, di seguito una lista dei più ricorrenti:</p>
 <ul>
 <li><code>\n</code> per andare a capo</li>
 <li><code>\t</code> per tabulare</li>
@@ -697,8 +742,8 @@ Il C è case sensitive
 <section id="input-con-scanf-1" class="level3">
 <h3 class="anchored" data-anchor-id="input-con-scanf-1">Input con scanf</h3>
 <p><code>scanf</code> esegue pattern matching sull’input per popolare delle variabili</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> base<span class="op">,</span> altezza<span class="op">;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>base<span class="op">,</span> <span class="op">&amp;</span>altezza<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> base<span class="op">,</span> altezza<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>base<span class="op">,</span> <span class="op">&amp;</span>altezza<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Per esempio se l’utente scrive <code>3 4</code> e preme invio, <code>base</code> sarà 3 e <code>altezza</code> sarà 4.</p>
 <p><code>scanf</code> scorre l’input ignorando ogni carattere bianco (spazi, tabulazioni, a capo). Se trova caratteri <em>compatibili</em> (+/-, 0-9, .) li legge e li converte nel tipo di variabile corrispondente.</p>
 <p>Popola le variabili fino a trovare un carattere bianco o un carattere non compatibile.</p>
@@ -777,51 +822,39 @@ Tabella&nbsp;1: Formattazione stringhe
 </div>
 </figure>
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> c_val <span class="op">=</span> <span class="ch">'m'</span><span class="op">;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i_val <span class="op">=</span> <span class="dv">255</span><span class="op">;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">int</span> l_val <span class="op">=</span> <span class="dv">99</span><span class="op">;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> f_val <span class="op">=</span> <span class="fl">25.8</span><span class="op">;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c_val<span class="op">);</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> l_val<span class="op">);</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%g\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> <span class="st">"hello"</span><span class="op">);</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%8.3f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%06d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%-6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> c_val <span class="op">=</span> <span class="ch">'m'</span><span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i_val <span class="op">=</span> <span class="dv">255</span><span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">int</span> l_val <span class="op">=</span> <span class="dv">99</span><span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> f_val <span class="op">=</span> <span class="fl">25.8</span><span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c_val<span class="op">);</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> l_val<span class="op">);</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%g\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> <span class="st">"hello"</span><span class="op">);</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%8.3f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%06d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%-6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="esercizi" class="level2">
 <h2 class="anchored" data-anchor-id="esercizi">Esercizi</h2>
 <ol type="1">
 <li>Scrivere un programma che legga due numeri e stampi la somma.</li>
-</ol>
-<div class="incremental">
-<ol class="incremental" start="2" type="1">
 <li>Scrivere un programma che legga due frazioni in formato <code>"n/m"</code> e stampi la loro somma (non semplificata).</li>
+<li>Scrivere un programma che legga un numero e stampi il suo quadrato.</li>
+<li>Compilare i programmi precedenti ed esplorarli usando il debugger <code>gdb</code>.</li>
 </ol>
-</div>
-<p>. . .</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Consiglio
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In questo caso possiamo richiedere all’utente che il formato includa lo slash, e quindi includerlo nel pattern di scanf.</p>
-</div>
-</div>
+<p>Altri esercizi si possono trovare a <a href="../../exercises.html">questo link</a>.</p>
 
 
 

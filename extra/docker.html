@@ -275,9 +275,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p>Installare Docker dal sito ufficiale: <a href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</a></p></li>
 <li><p>Eseguire l’immagine (il download avviene automaticamente)</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> matteospanio/corso-c:latest bash</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> ghcr.io/matteospanio/cdev:latest bash</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>In questo modo si ottiene una shell dentro un’immagine ubuntu linux in cui sono installati gcc e altri strumenti di sviluppo</p></li>
 </ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Consiglio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se ti sembra scomodo eseguire il comando del punto 2 puoi scaricare l’applicazione python <a href="https://matteospanio.github.io/cdev-cli/">cdev-cli</a> e avviare l’immagine con meno sforzo.</p>
+</div>
+</div>
 <section id="metodi-alternativi" class="level2">
 <h2 class="anchored" data-anchor-id="metodi-alternativi">Metodi alternativi</h2>
 <ul>

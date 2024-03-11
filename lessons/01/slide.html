@@ -103,6 +103,8 @@
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <script type="application/json" class="js-hypothesis-config">
   {
@@ -808,6 +810,50 @@ volatile while   _Bool*  _Complex* _Imaginary*</code></pre>
 </section>
 <section id="output-con-printf" class="slide level2 smaller">
 <h2>Output con printf</h2>
+<div class="sourceCode" id="cb12" data-numberlines="False"><pre class="sourceCode numberSource plaintext number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a></a>$ man 3 printf</span>
+<span id="cb12-2"><a></a></span>
+<span id="cb12-3"><a></a>PRINTF(3)              Linux Programmer's Manual              PRINTF(3)</span>
+<span id="cb12-4"><a></a></span>
+<span id="cb12-5"><a></a>NAME</span>
+<span id="cb12-6"><a></a>       printf,  fprintf, dprintf, sprintf, snprintf, vprintf, vfprintf,</span>
+<span id="cb12-7"><a></a>       vdprintf, vsprintf, vsnprintf - formatted output conversion</span>
+<span id="cb12-8"><a></a></span>
+<span id="cb12-9"><a></a>SYNOPSIS</span>
+<span id="cb12-10"><a></a>       #include &lt;stdio.h&gt;</span>
+<span id="cb12-11"><a></a></span>
+<span id="cb12-12"><a></a>       int printf(const char *format, ...);</span>
+<span id="cb12-13"><a></a>       int fprintf(FILE *stream, const char *format, ...);</span>
+<span id="cb12-14"><a></a>       int dprintf(int fd, const char *format, ...);</span>
+<span id="cb12-15"><a></a>       int sprintf(char *str, const char *format, ...);</span>
+<span id="cb12-16"><a></a>       int snprintf(char *str, size_t size, const char *format, ...);</span>
+<span id="cb12-17"><a></a></span>
+<span id="cb12-18"><a></a>...</span>
+<span id="cb12-19"><a></a></span>
+<span id="cb12-20"><a></a>DESCRIPTION</span>
+<span id="cb12-21"><a></a>       The functions in the printf() family produce output according to</span>
+<span id="cb12-22"><a></a>       a  format  as  described  below.   The  functions  printf()  and</span>
+<span id="cb12-23"><a></a>       vprintf()  write  output  to stdout, the standard output stream;</span>
+<span id="cb12-24"><a></a>       fprintf() and  vfprintf()  write  output  to  the  given  output</span>
+<span id="cb12-25"><a></a>       stream; sprintf(), snprintf(), vsprintf(), and vsnprintf() write</span>
+<span id="cb12-26"><a></a>       to the character string str.</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="il-manuale" class="slide level2 smaller">
+<h2>Il manuale</h2>
+<p>Il comando <code>man</code> permette di visualizzare il manuale di un comando o di una funzione. È diviso in sezioni:</p>
+<ol type="1">
+<li>Programmi eseguibili e comandi della shell</li>
+<li>Chiamate al sistema (funzioni fornite dal kernel)</li>
+<li>Chiamate alle librerie (funzioni all’interno delle librerie di sistema)</li>
+<li>File speciali (di solito trovabili in /dev)</li>
+<li>Formati dei file e convenzioni p.es. /etc/passwd</li>
+<li>Giochi</li>
+<li>Pacchetti di macro e convenzioni p.es. man(7), groff(7).</li>
+<li>Comandi per l’amministrazione del sistema (solitamente solo per root)</li>
+<li>Routine del kernel [Non standard]</li>
+</ol>
+</section>
+<section id="output-con-printf-2" class="slide level2">
+<h2>Output con printf</h2>
 <p>Gli specificatori iniziano con <code>%</code>, e per ciascuno deve esserci un parametro dopo la stringa di formattazione</p>
 <p><code>printf("Misura %d metri e %d cm \n", met, cm);</code></p>
 <p>Output: <code>Misura 2 e 15 cm</code></p>
@@ -815,7 +861,7 @@ volatile while   _Bool*  _Complex* _Imaginary*</code></pre>
 <p><code>printf("Si va a capo con \\n\n");</code></p>
 <p>Output: <code>Si va a capo con \n</code></p>
 </section>
-<section id="output-con-printf-2" class="slide level2 smaller">
+<section id="output-con-printf-3" class="slide level2 smaller">
 <h2>Output con printf</h2>
 <ul>
 <li><code>%d</code> per interi, es. <span class="math inline">\(10\)</span></li>
@@ -846,8 +892,8 @@ volatile while   _Bool*  _Complex* _Imaginary*</code></pre>
 <section id="input-con-scanf" class="slide level2">
 <h2>Input con scanf</h2>
 <p><code>scanf</code> esegue pattern matching sull’input per popolare delle variabili</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a></a><span class="dt">int</span> base<span class="op">,</span> altezza<span class="op">;</span></span>
-<span id="cb12-2"><a></a>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>base<span class="op">,</span> <span class="op">&amp;</span>altezza<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a></a><span class="dt">int</span> base<span class="op">,</span> altezza<span class="op">;</span></span>
+<span id="cb13-2"><a></a>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>base<span class="op">,</span> <span class="op">&amp;</span>altezza<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Per esempio se l’utente scrive <code>3 4</code> e preme invio, <code>base</code> sarà 3 e <code>altezza</code> sarà 4.</p>
 </section>
 <section id="input-con-scanf-2" class="slide level2">
@@ -935,25 +981,28 @@ Tabella&nbsp;1: Formattazione stringhe
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb13-2"><a></a><span class="op">{</span></span>
-<span id="cb13-3"><a></a>    <span class="dt">char</span> c_val <span class="op">=</span> <span class="ch">'m'</span><span class="op">;</span></span>
-<span id="cb13-4"><a></a>    <span class="dt">int</span> i_val <span class="op">=</span> <span class="dv">255</span><span class="op">;</span></span>
-<span id="cb13-5"><a></a>    <span class="dt">long</span> <span class="dt">int</span> l_val <span class="op">=</span> <span class="dv">99</span><span class="op">;</span></span>
-<span id="cb13-6"><a></a>    <span class="dt">float</span> f_val <span class="op">=</span> <span class="fl">25.8</span><span class="op">;</span></span>
-<span id="cb13-7"><a></a></span>
-<span id="cb13-8"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c_val<span class="op">);</span></span>
-<span id="cb13-9"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb13-10"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> l_val<span class="op">);</span></span>
-<span id="cb13-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb13-12"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
-<span id="cb13-13"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%g\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
-<span id="cb13-14"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> <span class="st">"hello"</span><span class="op">);</span></span>
-<span id="cb13-15"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%8.3f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
-<span id="cb13-16"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb13-17"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%06d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb13-18"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%-6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
-<span id="cb13-19"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb14-2"><a></a></span>
+<span id="cb14-3"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb14-4"><a></a><span class="op">{</span></span>
+<span id="cb14-5"><a></a>    <span class="dt">char</span> c_val <span class="op">=</span> <span class="ch">'m'</span><span class="op">;</span></span>
+<span id="cb14-6"><a></a>    <span class="dt">int</span> i_val <span class="op">=</span> <span class="dv">255</span><span class="op">;</span></span>
+<span id="cb14-7"><a></a>    <span class="dt">long</span> <span class="dt">int</span> l_val <span class="op">=</span> <span class="dv">99</span><span class="op">;</span></span>
+<span id="cb14-8"><a></a>    <span class="dt">float</span> f_val <span class="op">=</span> <span class="fl">25.8</span><span class="op">;</span></span>
+<span id="cb14-9"><a></a></span>
+<span id="cb14-10"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c_val<span class="op">);</span></span>
+<span id="cb14-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb14-12"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> l_val<span class="op">);</span></span>
+<span id="cb14-13"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb14-14"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
+<span id="cb14-15"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%g\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
+<span id="cb14-16"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> <span class="st">"hello"</span><span class="op">);</span></span>
+<span id="cb14-17"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%8.3f\n</span><span class="st">"</span><span class="op">,</span> f_val<span class="op">);</span></span>
+<span id="cb14-18"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb14-19"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%06d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb14-20"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%-6d\n</span><span class="st">"</span><span class="op">,</span> i_val<span class="op">);</span></span>
+<span id="cb14-21"><a></a><span class="op">}</span></span>
+<span id="cb14-22"><a></a></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -982,6 +1031,7 @@ Tabella&nbsp;1: Formattazione stringhe
 </div>
 </div>
 
+
 <div class="quarto-auto-generated-content">
 <p><img src="../../assets/images/DEI_logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
@@ -989,7 +1039,9 @@ Tabella&nbsp;1: Formattazione stringhe
 </div>
 </div>
 </div>
-</section>
+<aside><div>
+<p>Altri esercizi sono disponibili a <a href="../../exercises.html">questo link</a>.</p>
+</div></aside></section>
 
     </div>
   </div>
@@ -1001,6 +1053,7 @@ Tabella&nbsp;1: Formattazione stringhe
   <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1021,7 +1074,8 @@ Tabella&nbsp;1: Formattazione stringhe
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1192,7 +1246,7 @@ Tabella&nbsp;1: Formattazione stringhe
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,

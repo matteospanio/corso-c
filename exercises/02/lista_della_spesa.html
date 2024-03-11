@@ -171,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/02/lista_della_spesa.html">Lezione 2</a></li><li class="breadcrumb-item"><a href="../../exercises/02/lista_della_spesa.html">Lista della spesa</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/02/lista_della_spesa.html">Espressioni e strutture di controllo</a></li><li class="breadcrumb-item"><a href="../../exercises/02/lista_della_spesa.html">Lista della spesa</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -186,12 +186,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Lezione 1</span></a>
+ <span class="menu-text">Basi di C</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises/01/somma_interi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Somma di interi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises/01/somma_razionale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Somma razionale</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../exercises/01/cambio_valuta.html" class="sidebar-item-text sidebar-link">
@@ -209,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Lezione 2</span></a>
+ <span class="menu-text">Espressioni e strutture di controllo</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -234,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/02/lista_della_spesa.html">Lezione 2</a></li><li class="breadcrumb-item"><a href="../../exercises/02/lista_della_spesa.html">Lista della spesa</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/02/lista_della_spesa.html">Espressioni e strutture di controllo</a></li><li class="breadcrumb-item"><a href="../../exercises/02/lista_della_spesa.html">Lista della spesa</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Esercizio: la lista della spesa</h1>
 </div>
@@ -286,7 +298,7 @@ Suggerimento
 <p>Esempio di main:</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p><a href="#dnldts2450" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgbWFpbih2b2lkKQp7CiAgICAvLyBwcmV6em8gYWwga2cgZGVpIHByb2RvdHRpIGRpc3BvbmliaWxpCiAgICBmbG9hdCBwcmV6em9fcG9tb2Rvcm8gPSAyLjVmOwogICAgZmxvYXQgcHJlenpvX3Bhc3RhID0gMS41ZjsKICAgIGZsb2F0IHByZXp6b19iaXNjb3R0aSA9IDMuMGY7CiAgICBmbG9hdCBwcmV6em9fYmFuYW5lID0gMS4wZjsKICAgIGZsb2F0IHByZXp6b19wYW5lID0gMi4wZjsKCiAgICAvLyBUT0RPOgogICAgLy8gICAgIDEpIGNoaWVkZXJlIGluIGlucHV0IHF1YWxlIHByb2RvdHRvIHNpIHZ1b2xlIGNvbXByYXJlIGUgbGEgcXVhbnRpdMOgIGluIGNoaWxvZ3JhbW1pCiAgICAvLyAgICAgMikgcXVhbmRvIHNpIHNlbGV6aW9uYSBpbCBwcm9kb3R0byAtMSBzdGFtcGEgaWwgY29zdG8gdG90YWxlIGUgdGVybWluYQogICAgLy8gICAgIDMpIGFsdHJpbWVudGkgYWdnaXVuZ2kgaWwgY29zdG8gZGVsbGEgbWVyY2UgYWNxdWlzdGF0YSBhbCB0b3RhbGUKfQo=').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts46115" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgbWFpbih2b2lkKQp7CiAgICAvLyBwcmV6em8gYWwga2cgZGVpIHByb2RvdHRpIGRpc3BvbmliaWxpCiAgICBmbG9hdCBwcmV6em9fcG9tb2Rvcm8gPSAyLjVmOwogICAgZmxvYXQgcHJlenpvX3Bhc3RhID0gMS41ZjsKICAgIGZsb2F0IHByZXp6b19iaXNjb3R0aSA9IDMuMGY7CiAgICBmbG9hdCBwcmV6em9fYmFuYW5lID0gMS4wZjsKICAgIGZsb2F0IHByZXp6b19wYW5lID0gMi4wZjsKCiAgICAvLyBUT0RPOgogICAgLy8gICAgIDEpIGNoaWVkZXJlIGluIGlucHV0IHF1YWxlIHByb2RvdHRvIHNpIHZ1b2xlIGNvbXByYXJlIGUgbGEgcXVhbnRpdMOgIGluIGNoaWxvZ3JhbW1pCiAgICAvLyAgICAgMikgcXVhbmRvIHNpIHNlbGV6aW9uYSBpbCBwcm9kb3R0byAtMSBzdGFtcGEgaWwgY29zdG8gdG90YWxlIGUgdGVybWluYQogICAgLy8gICAgIDMpIGFsdHJpbWVudGkgYWdnaXVuZ2kgaWwgY29zdG8gZGVsbGEgbWVyY2UgYWNxdWlzdGF0YSBhbCB0b3RhbGUKfQo=').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -294,7 +306,7 @@ Suggerimento
       a.download = 'spesa.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts2450"><i class="bi bi-download"></i> Scarica il file </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts46115"><i class="bi bi-download"></i> Scarica il file </button></a></p>
 </div></div><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
