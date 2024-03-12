@@ -45,7 +45,7 @@ Seppure non sia una caratteristica introdotta con C, la null reference è un pro
 
 ::: {.content-visible when-format="revealjs"}
 | Pregi | Difetti |
-|----|----|
+|:----|----:|
 | Efficienza | Facile fare errori |
 | Compattezza | Può diventare difficile da leggere |
 | Portabilità | Non ci sono controlli a run time |
