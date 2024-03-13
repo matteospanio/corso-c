@@ -8,7 +8,7 @@
 
 <meta name="author" content="Matteo Spanio">
 
-<title>Hello C 2024 - Espressioni e strutture di controllo</title>
+<title>Hello C 2024 - Strutture di controllo, tipi di base e funzioni</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,35 +119,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -201,7 +172,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/02/index.html">Espressioni e strutture di controllo</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/02/index.html">Strutture di controllo, tipi di base e funzioni</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -222,7 +193,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lessons/02/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Espressioni e strutture di controllo</span></a>
+ <span class="menu-text">Strutture di controllo, tipi di base e funzioni</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -259,10 +230,23 @@ window.Quarto = {
     <h2 id="toc-title">In questa pagina</h2>
    
   <ul>
-  <li><a href="#operatori" id="toc-operatori" class="nav-link active" data-scroll-target="#operatori">Operatori</a></li>
+  <li><a href="#operatori-3" id="toc-operatori-3" class="nav-link active" data-scroll-target="#operatori-3">Operatori</a>
+  <ul class="collapse">
+  <li><a href="#tipi-di-operatori" id="toc-tipi-di-operatori" class="nav-link" data-scroll-target="#tipi-di-operatori">Tipi di Operatori</a></li>
+  <li><a href="#side-effects-e-incubi" id="toc-side-effects-e-incubi" class="nav-link" data-scroll-target="#side-effects-e-incubi">Side-Effects e Incubi</a></li>
   <li><a href="#espressioni-istruzione" id="toc-espressioni-istruzione" class="nav-link" data-scroll-target="#espressioni-istruzione">Espressioni istruzione</a></li>
-  <li><a href="#espressioni-logiche" id="toc-espressioni-logiche" class="nav-link" data-scroll-target="#espressioni-logiche">Espressioni logiche</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul></li>
+  <li><a href="#espressioni-logiche-3" id="toc-espressioni-logiche-3" class="nav-link" data-scroll-target="#espressioni-logiche-3">Espressioni logiche</a>
+  <ul class="collapse">
+  <li><a href="#operatori-booleani" id="toc-operatori-booleani" class="nav-link" data-scroll-target="#operatori-booleani">Operatori Booleani</a>
+  <ul class="collapse">
+  <li><a href="#and-logico" id="toc-and-logico" class="nav-link" data-scroll-target="#and-logico">AND Logico (<code>&amp;&amp;</code>)</a></li>
+  <li><a href="#or-logico" id="toc-or-logico" class="nav-link" data-scroll-target="#or-logico">OR Logico (<code>||</code>)</a></li>
+  <li><a href="#not-logico" id="toc-not-logico" class="nav-link" data-scroll-target="#not-logico">NOT Logico (<code>!</code>)</a></li>
+  <li><a href="#operatori-di-confronto" id="toc-operatori-di-confronto" class="nav-link" data-scroll-target="#operatori-di-confronto">Operatori di Confronto</a></li>
+  </ul></li>
+  <li><a href="#valutazione-delle-espressioni-booleane" id="toc-valutazione-delle-espressioni-booleane" class="nav-link" data-scroll-target="#valutazione-delle-espressioni-booleane">Valutazione delle Espressioni Booleane</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
@@ -271,7 +255,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Espressioni e strutture di controllo</h1>
+<h1 class="title">Strutture di controllo, tipi di base e funzioni</h1>
 </div>
 
 
@@ -319,53 +303,173 @@ window.Quarto = {
 </header>
 
 
-<p>Il C è basato su <em>espressioni</em>. Queste espressioni sono un insieme di <strong>variabili</strong>, <strong>costanti</strong> e <strong>operatori</strong>.</p>
-<section id="operatori" class="level2">
-<h2 class="anchored" data-anchor-id="operatori">Operatori</h2>
-<p>Ogni operatore ha varie caratteristiche:</p>
-<ul>
-<li><strong>arietà</strong>: numero di argomenti (unario, binario, ternario)</li>
-<li><strong>precedenza</strong>: ordine in cui vengono analizzati gli operatori</li>
-<li><strong>associatività</strong>: se ci sono più operatori uguali (o di uguale precedenza)</li>
-<li><strong>side-effects</strong>, se presenti (cioè le variabili coinvolte vengono cambiate o no)</li>
-</ul>
+<p>Il C è basato su <em>espressioni</em> più che su istruzioni. Queste espressioni sono un insieme di <strong>variabili</strong>, <strong>costanti</strong> e <strong>operatori</strong>.</p>
+<section id="operatori-3" class="level1">
+<h1>Operatori</h1>
+<p>Gli operatori in C sono fondamentali per eseguire operazioni su variabili e valori. Ogni operatore ha diverse caratteristiche che influenzano il modo in cui viene valutata un’espressione.</p>
+<section id="tipi-di-operatori" class="level2">
+<h2 class="anchored" data-anchor-id="tipi-di-operatori">Tipi di Operatori</h2>
+<p>Gli operatori in C possono essere suddivisi in diverse categorie in base al tipo di operazioni che eseguono. Ogni operatore ha una priorità che determina l’ordine in cui viene valutato all’interno di un’espressione. Gli operatori con una priorità più alta vengono valutati prima degli operatori con una priorità più bassa. Nel caso di operatori della stessa priorità, l’associatività determina l’ordine di valutazione.</p>
+<p>Ecco una tabella riassuntiva degli operatori C, ordinati da quelli con più alta priorità a quelli con minore priorità:</p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 58%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Categoria</th>
+<th>Operatori</th>
+<th>Associatività</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Postfissi</td>
+<td><code>++</code> <code>--</code> <code>-&gt;</code> <code>.</code> <code>()</code> <code>[]</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="even">
+<td>Unari / Prefissi</td>
+<td><code>+</code> <code>-</code> <code>!</code> <code>~</code> <code>++</code> <code>--</code> <code>(type)</code> <code>*</code> <code>&amp;</code> <code>sizeof</code></td>
+<td>Destra-Sinistra</td>
+</tr>
+<tr class="odd">
+<td>Moltiplicativi</td>
+<td><code>*</code> <code>/</code> <code>%</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="even">
+<td>Additivi</td>
+<td><code>+</code> <code>-</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="odd">
+<td>Shift</td>
+<td><code>&lt;&lt;</code> <code>&gt;&gt;</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="even">
+<td>Relazionali</td>
+<td><code>&lt;</code> <code>&gt;</code> <code>&lt;=</code> <code>&gt;=</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="odd">
+<td>Uguaglianza</td>
+<td><code>==</code> <code>!=</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="even">
+<td>Bitwise AND</td>
+<td><code>&amp;</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="odd">
+<td>Bitwise XOR</td>
+<td><code>^</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="even">
+<td>Bitwise OR</td>
+<td><code>|</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="odd">
+<td>Logico AND</td>
+<td><code>&amp;&amp;</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="even">
+<td>Logico OR</td>
+<td><code>||</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+<tr class="odd">
+<td>Condizionale</td>
+<td><code>?:</code></td>
+<td>Destra-Sinistra</td>
+</tr>
+<tr class="even">
+<td>Assegnamento</td>
+<td><code>=</code> <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code>&lt;&lt;=</code> <code>&gt;&gt;=</code> <code>&amp;=</code> <code>^=</code> <code>|=</code></td>
+<td>Destra-Sinistra</td>
+</tr>
+<tr class="odd">
+<td>Virgola</td>
+<td><code>,</code></td>
+<td>Sinistra-Destra</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="side-effects-e-incubi" class="level2">
+<h2 class="anchored" data-anchor-id="side-effects-e-incubi">Side-Effects e Incubi</h2>
+<p>Gli operatori di incremento e decremento (<code>++</code> e <code>--</code>) sono potenti ma vanno usati con cautela. Possono essere utilizzati sia come operazioni prefisse che postfix. La differenza principale tra queste due forme sta nel momento in cui viene effettuata l’operazione di incremento o decremento.</p>
+<p>Nel caso dell’operatore di post-incremento <code>i++</code>, l’incremento avviene dopo che il valore di <code>i</code> viene utilizzato nell’espressione corrente. Nel caso dell’operatore di pre-incremento <code>++i</code>, l’incremento avviene prima che il valore di <code>i</code> venga utilizzato nell’espressione.</p>
+<p>Questo può portare a comportamenti diversi, soprattutto quando si utilizzano questi operatori all’interno della stessa espressione o dello stesso statement. Ad esempio:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">++);</span>  <span class="co">// Stampa: i is 1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span>    <span class="co">// Stampa: i is 2</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">++</span>i<span class="op">);</span>  <span class="co">// Stampa: i is 3</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span>    <span class="co">// Stampa: i is 3</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nel primo <code>printf</code>, l’operatore post-incremento viene utilizzato, quindi il valore di <code>i</code> (1) viene stampato e poi incrementato a 2. Nel secondo <code>printf</code>, il valore incrementato di <code>i</code> (2) viene stampato. Nel terzo <code>printf</code>, l’operatore pre-incremento viene utilizzato, quindi <code>i</code> viene incrementato a 3 e poi stampato. Infine, nel quarto <code>printf</code>, viene stampato di nuovo il valore corrente di <code>i</code>, che è 3.</p>
+<p>È importante prestare attenzione a questi comportamenti per evitare risultati inaspettati nel proprio codice.</p>
 </section>
 <section id="espressioni-istruzione" class="level2">
 <h2 class="anchored" data-anchor-id="espressioni-istruzione">Espressioni istruzione</h2>
 <p>Tutte le espressioni possono essere anche <em>statement</em>: in una linea posso avere anche solo una operazione singola seguita da <code>;</code></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>      <span class="co">// utile</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>i<span class="op">++;</span>        <span class="co">// utile</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>i <span class="op">*</span> j <span class="op">+</span> <span class="dv">2</span>   <span class="co">// inutile, potrebbe dare warning</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            <span class="co">// "statement with no effect"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Nel secondo caso il risultato viene scartato, ma la modifica avviene lo stesso.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>      <span class="co">// utile</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>i<span class="op">++;</span>        <span class="co">// utile</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>i <span class="op">*</span> j <span class="op">+</span> <span class="dv">2</span>   <span class="co">// inutile, potrebbe dare warning</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="co">// "statement with no effect"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nella seconda riga dell’esempio il risultato viene scartato, ma la modifica avviene lo stesso.</p>
 </section>
-<section id="espressioni-logiche" class="level2">
-<h2 class="anchored" data-anchor-id="espressioni-logiche">Espressioni logiche</h2>
-<p>Alcuni operatori ci dicono se una certa espressione è “vera” o “falsa”, ad esempio:</p>
-<p><code>i &lt; j &amp;&amp; j &lt; k</code> ci dice se <span class="math inline">\(i\)</span> è minore sia di <span class="math inline">\(j\)</span> che di <span class="math inline">\(k\)</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span class="math inline">\(i &lt; j &lt; k\)</span> si può scrivere ma non fa quello che sembra, in realtà: <code>(i &lt; j) &lt; k</code> è vero con <code>int i=3, j=2, k=1</code>.</p>
-</div>
-</div>
 </section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
-<p>Il tipo di ritorno di queste espressioni in C è un intero, il tipo booleano non esiste in C (in C99 si è provato a sistemare).</p>
+<section id="espressioni-logiche-3" class="level1">
+<h1>Espressioni logiche</h1>
+<p>Le espressioni logiche, o booleane, in C sono fondamentali per l’esecuzione di operazioni condizionali e decisionali nel codice.</p>
+<section id="operatori-booleani" class="level2">
+<h2 class="anchored" data-anchor-id="operatori-booleani">Operatori Booleani</h2>
+<p>Gli operatori booleani sono utilizzati per eseguire operazioni logiche su valori booleani o espressioni che possono essere valutate come vere o false. Ecco gli operatori booleani disponibili in C:</p>
 <ul>
-<li><span class="math inline">\(0 \rightarrow\)</span> falso</li>
-<li><span class="math inline">\(1 \rightarrow\)</span> vero (e tutti gli interi diversi da <span class="math inline">\(0\)</span>)</li>
+<li><code>&amp;&amp;</code> (AND logico)</li>
+<li><code>||</code> (OR logico)</li>
+<li><code>!</code> (NOT logico)</li>
+<li><code>==</code> (uguaglianza)</li>
+<li><code>!=</code> (diverso)</li>
+<li><code>&gt;</code> (maggiore)</li>
+<li><code>&lt;</code> (minore)</li>
+<li><code>&gt;=</code> (maggiore o uguale)</li>
+<li><code>&lt;=</code> (minore o uguale)</li>
 </ul>
+<p>Questi operatori producono tutti 0 o 1 come risultato, ma in C qualsiasi valore diverso da 0 è considerato vero.</p>
+<section id="and-logico" class="level3">
+<h3 class="anchored" data-anchor-id="and-logico">AND Logico (<code>&amp;&amp;</code>)</h3>
+<p>L’operatore <code>&amp;&amp;</code> restituisce 1 se entrambe le espressioni booleane sono non-zero, altrimenti restituisce 0. È un operatore a corto circuito, quindi se il risultato è già noto dopo aver valutato la prima espressione, la seconda non viene valutata.</p>
+</section>
+<section id="or-logico" class="level3">
+<h3 class="anchored" data-anchor-id="or-logico">OR Logico (<code>||</code>)</h3>
+<p>L’operatore <code>||</code> restituisce 1 se almeno una delle due espressioni booleane è non-zero, altrimenti restituisce 0. Anche questo è un operatore a corto circuito.</p>
+</section>
+<section id="not-logico" class="level3">
+<h3 class="anchored" data-anchor-id="not-logico">NOT Logico (<code>!</code>)</h3>
+<p>L’operatore <code>!</code> inverte il valore di verità di un’espressione. Restituisce 1 se l’espressione è zero e 0 se l’espressione è non-zero.</p>
+</section>
+<section id="operatori-di-confronto" class="level3">
+<h3 class="anchored" data-anchor-id="operatori-di-confronto">Operatori di Confronto</h3>
+<p>Gli operatori di confronto (<code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>) confrontano due valori e restituiscono un valore intero in base alla relazione tra di essi.</p>
+</section>
+</section>
+<section id="valutazione-delle-espressioni-booleane" class="level2">
+<h2 class="anchored" data-anchor-id="valutazione-delle-espressioni-booleane">Valutazione delle Espressioni Booleane</h2>
+<p>Le espressioni booleane vengono valutate in base alle regole della logica booleana. Il risultato di un’espressione booleana è un valore intero, dove 0 rappresenta “falso” e 1 rappresenta “vero”. Ad esempio:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> j <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> result <span class="op">=</span> <span class="op">(</span>i <span class="op">&lt;</span> j <span class="op">&amp;&amp;</span> j <span class="op">&lt;</span> k<span class="op">);</span> <span class="co">// result sarà 0 perché entrambe le espressioni sono false</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In questo caso, l’espressione <code>i &lt; j &amp;&amp; j &lt; k</code> sarà valutata come <code>0 &amp;&amp; 0</code>, il che restituirà 0 perché entrambe le espressioni sono false.</p>
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Riutilizzare</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.it">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->

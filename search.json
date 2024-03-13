@@ -745,84 +745,130 @@
   {
     "objectID": "lessons/02/slide.html#operatori",
     "href": "lessons/02/slide.html#operatori",
-    "title": "Espressioni e strutture di controllo",
+    "title": "Strutture di controllo, tipi di base e funzioni",
     "section": "Operatori",
-    "text": "Operatori\nOgni operatore ha varie caratteristiche:\n\narietà: numero di argomenti (unario, binario, ternario)\nprecedenza: ordine in cui vengono analizzati gli operatori\nassociatività: se ci sono più operatori uguali (o di uguale precedenza)\nside-effects, se presenti (cioè le variabili coinvolte vengono cambiate o no)"
+    "text": "Operatori\nEsistono molteplici operatori, ognuno ha varie caratteristiche:\n\narietà: numero di argomenti (unario, binario, ternario)\nprecedenza: ordine in cui vengono analizzati gli operatori\nassociatività: se ci sono più operatori uguali (o di uguale precedenza)\nside-effects, se presenti (cioè le variabili coinvolte vengono cambiate o no)"
+  },
+  {
+    "objectID": "lessons/02/slide.html#operatori-1",
+    "href": "lessons/02/slide.html#operatori-1",
+    "title": "Strutture di controllo, tipi di base e funzioni",
+    "section": "Operatori",
+    "text": "Operatori\nGli operatori più in alto hanno priorità più alta:"
+  },
+  {
+    "objectID": "lessons/02/slide.html#indovinello",
+    "href": "lessons/02/slide.html#indovinello",
+    "title": "Strutture di controllo, tipi di base e funzioni",
+    "section": "Indovinello",
+    "text": "Indovinello\nIndovina l’output del seguente codice:\ni = 1;\nprintf(\"i is %d\\n\", i++);\nprintf(\"i is %d\\n\", i);\nprintf(\"i is %d\\n\", ++i);\nprintf(\"i is %d\\n\", i);"
+  },
+  {
+    "objectID": "lessons/02/slide.html#operatori-2",
+    "href": "lessons/02/slide.html#operatori-2",
+    "title": "Strutture di controllo, tipi di base e funzioni",
+    "section": "Operatori",
+    "text": "Operatori\ni++ è il post-incremento, ++i è il pre-incremento\ni = 1;\nprintf(\"i is %d\\n\", i++); /* i is 1 */\nprintf(\"i is %d\\n\", i);   /* i is 2 */\nprintf(\"i is %d\\n\", ++i); /* i is 3 */\nprintf(\"i is %d\\n\", i);   /* i is 3 */\n\n\n\n\n\n\nDa grandi poteri derivano grandi bugs…\n\n\nGli operatori di post/pre-incremento sono molto utili e vengono usati spesso, vanno però usati con attenzione. Nella maggior parte delle situazioni è bene usare queste operazioni atomicamente (da sole in una riga)."
   },
   {
     "objectID": "lessons/02/slide.html#espressioni-istruzione",
     "href": "lessons/02/slide.html#espressioni-istruzione",
-    "title": "Espressioni e strutture di controllo",
+    "title": "Strutture di controllo, tipi di base e funzioni",
     "section": "Espressioni istruzione",
-    "text": "Espressioni istruzione\nTutte le espressioni possono essere anche statement: in una linea posso avere anche solo una operazione singola seguita da ;\ni = 1;      // utile\ni++;        // utile\ni * j + 2   // inutile, potrebbe dare warning\n            // \"statement with no effect\"\nNel secondo caso il risultato viene scartato, ma la modifica avviene lo stesso."
+    "text": "Espressioni istruzione\nTutte le espressioni possono essere anche statement: in una linea posso avere anche solo una operazione singola seguita da ;\ni = 1;      // utile\ni++;        // utile\ni * j + 2   // inutile, potrebbe dare warning\n            // \"statement with no effect\"\nNella seconda riga dell’esempio il risultato viene scartato, ma la modifica avviene lo stesso."
   },
   {
     "objectID": "lessons/02/slide.html#espressioni-logiche",
     "href": "lessons/02/slide.html#espressioni-logiche",
-    "title": "Espressioni e strutture di controllo",
+    "title": "Strutture di controllo, tipi di base e funzioni",
     "section": "Espressioni logiche",
     "text": "Espressioni logiche\nAlcuni operatori ci dicono se una certa espressione è “vera” o “falsa”, ad esempio:\ni &lt; j && j &lt; k ci dice se \\(i\\) è minore sia di \\(j\\) che di \\(k\\)\n\n\n\n\n\n\nNota\n\n\n\\(i &lt; j &lt; k\\) si può scrivere ma non fa quello che sembra, in realtà: (i &lt; j) &lt; k è vero con int i=3, j=2, k=1."
   },
   {
     "objectID": "lessons/02/slide.html#section",
     "href": "lessons/02/slide.html#section",
-    "title": "Espressioni e strutture di controllo",
+    "title": "Strutture di controllo, tipi di base e funzioni",
     "section": "",
-    "text": "Il tipo di ritorno di queste espressioni in C è un intero, il tipo booleano non esiste in C (in C99 si è provato a sistemare).\n\n\\(0 \\rightarrow\\) falso\n\\(1 \\rightarrow\\) vero (e tutti gli interi diversi da \\(0\\))\n\n\n\n\n\nDati e Algoritmi"
+    "text": "Il tipo di ritorno di queste espressioni in C è un intero, il tipo booleano non esiste in C (in C99 si è provato a sistemare).\n\n\\(0 \\rightarrow\\) falso\n\\(1 \\rightarrow\\) vero (e tutti gli interi diversi da \\(0\\))"
+  },
+  {
+    "objectID": "lessons/02/slide.html#espressioni-logiche-1",
+    "href": "lessons/02/slide.html#espressioni-logiche-1",
+    "title": "Strutture di controllo, tipi di base e funzioni",
+    "section": "Espressioni logiche",
+    "text": "Espressioni logiche\nGli operatori booleani producono tutti 0 oppure 1 come risultato, ma bisogna ricordare che qualunque valore diverso da 0 è considerato vero.\nL’espressione (5 && 1) viene valutata come vera in quanto entrambi i valori sono diversi da 0"
+  },
+  {
+    "objectID": "lessons/02/slide.html#espressioni-logiche-2",
+    "href": "lessons/02/slide.html#espressioni-logiche-2",
+    "title": "Strutture di controllo, tipi di base e funzioni",
+    "section": "Espressioni logiche",
+    "text": "Espressioni logiche\n\n!expr restituisce 1 se expr è 0\nexpr1 && expr2 restituisce 1 se entrambe le espressioni sono non-zero\nexpr1 || expr2 restituisce 1 se almeno una delle due espressioni è non-zero\n\n\n\n\n\n\n\nNota\n\n\nSia && che || sono operatori a corto circuito, cioè se il risultato è già noto dopo aver valutato la prima espressione, la seconda non viene valutata.\n\n\n\n\n\n\n\nDati e Algoritmi"
   },
   {
     "objectID": "lessons/02/index.html",
     "href": "lessons/02/index.html",
-    "title": "Espressioni e strutture di controllo",
+    "title": "Strutture di controllo, tipi di base e funzioni",
     "section": "",
-    "text": "Il C è basato su espressioni. Queste espressioni sono un insieme di variabili, costanti e operatori.",
+    "text": "Il C è basato su espressioni più che su istruzioni. Queste espressioni sono un insieme di variabili, costanti e operatori.",
     "crumbs": [
       "Lezioni",
-      "Espressioni e strutture di controllo"
+      "Strutture di controllo, tipi di base e funzioni"
     ]
   },
   {
-    "objectID": "lessons/02/index.html#operatori",
-    "href": "lessons/02/index.html#operatori",
-    "title": "Espressioni e strutture di controllo",
-    "section": "Operatori",
-    "text": "Operatori\nOgni operatore ha varie caratteristiche:\n\narietà: numero di argomenti (unario, binario, ternario)\nprecedenza: ordine in cui vengono analizzati gli operatori\nassociatività: se ci sono più operatori uguali (o di uguale precedenza)\nside-effects, se presenti (cioè le variabili coinvolte vengono cambiate o no)",
+    "objectID": "lessons/02/index.html#tipi-di-operatori",
+    "href": "lessons/02/index.html#tipi-di-operatori",
+    "title": "Strutture di controllo, tipi di base e funzioni",
+    "section": "Tipi di Operatori",
+    "text": "Tipi di Operatori\nGli operatori in C possono essere suddivisi in diverse categorie in base al tipo di operazioni che eseguono. Ogni operatore ha una priorità che determina l’ordine in cui viene valutato all’interno di un’espressione. Gli operatori con una priorità più alta vengono valutati prima degli operatori con una priorità più bassa. Nel caso di operatori della stessa priorità, l’associatività determina l’ordine di valutazione.\nEcco una tabella riassuntiva degli operatori C, ordinati da quelli con più alta priorità a quelli con minore priorità:\n\n\n\n\n\n\n\n\nCategoria\nOperatori\nAssociatività\n\n\n\n\nPostfissi\n++ -- -&gt; . () []\nSinistra-Destra\n\n\nUnari / Prefissi\n+ - ! ~ ++ -- (type) * & sizeof\nDestra-Sinistra\n\n\nMoltiplicativi\n* / %\nSinistra-Destra\n\n\nAdditivi\n+ -\nSinistra-Destra\n\n\nShift\n&lt;&lt; &gt;&gt;\nSinistra-Destra\n\n\nRelazionali\n&lt; &gt; &lt;= &gt;=\nSinistra-Destra\n\n\nUguaglianza\n== !=\nSinistra-Destra\n\n\nBitwise AND\n&\nSinistra-Destra\n\n\nBitwise XOR\n^\nSinistra-Destra\n\n\nBitwise OR\n|\nSinistra-Destra\n\n\nLogico AND\n&&\nSinistra-Destra\n\n\nLogico OR\n||\nSinistra-Destra\n\n\nCondizionale\n?:\nDestra-Sinistra\n\n\nAssegnamento\n= += -= *= /= %= &lt;&lt;= &gt;&gt;= &= ^= |=\nDestra-Sinistra\n\n\nVirgola\n,\nSinistra-Destra",
     "crumbs": [
       "Lezioni",
-      "Espressioni e strutture di controllo"
+      "Strutture di controllo, tipi di base e funzioni"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#side-effects-e-incubi",
+    "href": "lessons/02/index.html#side-effects-e-incubi",
+    "title": "Strutture di controllo, tipi di base e funzioni",
+    "section": "Side-Effects e Incubi",
+    "text": "Side-Effects e Incubi\nGli operatori di incremento e decremento (++ e --) sono potenti ma vanno usati con cautela. Possono essere utilizzati sia come operazioni prefisse che postfix. La differenza principale tra queste due forme sta nel momento in cui viene effettuata l’operazione di incremento o decremento.\nNel caso dell’operatore di post-incremento i++, l’incremento avviene dopo che il valore di i viene utilizzato nell’espressione corrente. Nel caso dell’operatore di pre-incremento ++i, l’incremento avviene prima che il valore di i venga utilizzato nell’espressione.\nQuesto può portare a comportamenti diversi, soprattutto quando si utilizzano questi operatori all’interno della stessa espressione o dello stesso statement. Ad esempio:\nint i = 1;\nprintf(\"i is %d\\n\", i++);  // Stampa: i is 1\nprintf(\"i is %d\\n\", i);    // Stampa: i is 2\nprintf(\"i is %d\\n\", ++i);  // Stampa: i is 3\nprintf(\"i is %d\\n\", i);    // Stampa: i is 3\nNel primo printf, l’operatore post-incremento viene utilizzato, quindi il valore di i (1) viene stampato e poi incrementato a 2. Nel secondo printf, il valore incrementato di i (2) viene stampato. Nel terzo printf, l’operatore pre-incremento viene utilizzato, quindi i viene incrementato a 3 e poi stampato. Infine, nel quarto printf, viene stampato di nuovo il valore corrente di i, che è 3.\nÈ importante prestare attenzione a questi comportamenti per evitare risultati inaspettati nel proprio codice.",
+    "crumbs": [
+      "Lezioni",
+      "Strutture di controllo, tipi di base e funzioni"
     ]
   },
   {
     "objectID": "lessons/02/index.html#espressioni-istruzione",
     "href": "lessons/02/index.html#espressioni-istruzione",
-    "title": "Espressioni e strutture di controllo",
+    "title": "Strutture di controllo, tipi di base e funzioni",
     "section": "Espressioni istruzione",
-    "text": "Espressioni istruzione\nTutte le espressioni possono essere anche statement: in una linea posso avere anche solo una operazione singola seguita da ;\ni = 1;      // utile\ni++;        // utile\ni * j + 2   // inutile, potrebbe dare warning\n            // \"statement with no effect\"\nNel secondo caso il risultato viene scartato, ma la modifica avviene lo stesso.",
+    "text": "Espressioni istruzione\nTutte le espressioni possono essere anche statement: in una linea posso avere anche solo una operazione singola seguita da ;\ni = 1;      // utile\ni++;        // utile\ni * j + 2   // inutile, potrebbe dare warning\n            // \"statement with no effect\"\nNella seconda riga dell’esempio il risultato viene scartato, ma la modifica avviene lo stesso.",
     "crumbs": [
       "Lezioni",
-      "Espressioni e strutture di controllo"
+      "Strutture di controllo, tipi di base e funzioni"
     ]
   },
   {
-    "objectID": "lessons/02/index.html#espressioni-logiche",
-    "href": "lessons/02/index.html#espressioni-logiche",
-    "title": "Espressioni e strutture di controllo",
-    "section": "Espressioni logiche",
-    "text": "Espressioni logiche\nAlcuni operatori ci dicono se una certa espressione è “vera” o “falsa”, ad esempio:\ni &lt; j && j &lt; k ci dice se \\(i\\) è minore sia di \\(j\\) che di \\(k\\)\n\n\n\n\n\n\nNota\n\n\n\n\\(i &lt; j &lt; k\\) si può scrivere ma non fa quello che sembra, in realtà: (i &lt; j) &lt; k è vero con int i=3, j=2, k=1.",
+    "objectID": "lessons/02/index.html#operatori-booleani",
+    "href": "lessons/02/index.html#operatori-booleani",
+    "title": "Strutture di controllo, tipi di base e funzioni",
+    "section": "Operatori Booleani",
+    "text": "Operatori Booleani\nGli operatori booleani sono utilizzati per eseguire operazioni logiche su valori booleani o espressioni che possono essere valutate come vere o false. Ecco gli operatori booleani disponibili in C:\n\n&& (AND logico)\n|| (OR logico)\n! (NOT logico)\n== (uguaglianza)\n!= (diverso)\n&gt; (maggiore)\n&lt; (minore)\n&gt;= (maggiore o uguale)\n&lt;= (minore o uguale)\n\nQuesti operatori producono tutti 0 o 1 come risultato, ma in C qualsiasi valore diverso da 0 è considerato vero.\n\nAND Logico (&&)\nL’operatore && restituisce 1 se entrambe le espressioni booleane sono non-zero, altrimenti restituisce 0. È un operatore a corto circuito, quindi se il risultato è già noto dopo aver valutato la prima espressione, la seconda non viene valutata.\n\n\nOR Logico (||)\nL’operatore || restituisce 1 se almeno una delle due espressioni booleane è non-zero, altrimenti restituisce 0. Anche questo è un operatore a corto circuito.\n\n\nNOT Logico (!)\nL’operatore ! inverte il valore di verità di un’espressione. Restituisce 1 se l’espressione è zero e 0 se l’espressione è non-zero.\n\n\nOperatori di Confronto\nGli operatori di confronto (==, !=, &gt;, &lt;, &gt;=, &lt;=) confrontano due valori e restituiscono un valore intero in base alla relazione tra di essi.",
     "crumbs": [
       "Lezioni",
-      "Espressioni e strutture di controllo"
+      "Strutture di controllo, tipi di base e funzioni"
     ]
   },
   {
-    "objectID": "lessons/02/index.html#section",
-    "href": "lessons/02/index.html#section",
-    "title": "Espressioni e strutture di controllo",
-    "section": "",
-    "text": "Il tipo di ritorno di queste espressioni in C è un intero, il tipo booleano non esiste in C (in C99 si è provato a sistemare).\n\n\\(0 \\rightarrow\\) falso\n\\(1 \\rightarrow\\) vero (e tutti gli interi diversi da \\(0\\))",
+    "objectID": "lessons/02/index.html#valutazione-delle-espressioni-booleane",
+    "href": "lessons/02/index.html#valutazione-delle-espressioni-booleane",
+    "title": "Strutture di controllo, tipi di base e funzioni",
+    "section": "Valutazione delle Espressioni Booleane",
+    "text": "Valutazione delle Espressioni Booleane\nLe espressioni booleane vengono valutate in base alle regole della logica booleana. Il risultato di un’espressione booleana è un valore intero, dove 0 rappresenta “falso” e 1 rappresenta “vero”. Ad esempio:\nint i = 3, j = 2, k = 1;\nint result = (i &lt; j && j &lt; k); // result sarà 0 perché entrambe le espressioni sono false\nIn questo caso, l’espressione i &lt; j && j &lt; k sarà valutata come 0 && 0, il che restituirà 0 perché entrambe le espressioni sono false.",
     "crumbs": [
       "Lezioni",
-      "Espressioni e strutture di controllo"
+      "Strutture di controllo, tipi di base e funzioni"
     ]
   },
   {
@@ -837,7 +883,7 @@
     "href": "lessons.html#calendario",
     "title": "Lezioni",
     "section": "Calendario",
-    "text": "Calendario\n\n\n\nData\nArgomento\nCapitoli del libro di testo\n\n\n\n\n12/03/2024\nIntroduzione al corso e fondamenti di C\n1-3\n\n\n19/03/2024\nEspressioni e strutture di controllo\n4-6\n\n\n26/03/2024\nTipi di base e Array\n7-8\n\n\n09/04/2024\nFunzioni e Scope\n9-10\n\n\n10/04/2024\nPuntatori\n11-12\n\n\n23/04/2024\nStruct e puntatori\n16-17"
+    "text": "Calendario\n\n\n\nData\nArgomento\nCapitoli del libro di testo\n\n\n\n\n12/03/2024\nIntroduzione al corso e fondamenti di C\n1-3\n\n\n19/03/2024\nStrutture di controllo, tipi di base e funzioni\n4-9\n\n\n26/03/2024\nArray e Puntatori\n8-10\n\n\n09/04/2024\nOperatori bitwise e stringhe\n20\n\n\n10/04/2024\nStruct e puntatori\n11-15\n\n\n23/04/2024\nPreparazione per l’esame"
   },
   {
     "objectID": "extra/license.html",
