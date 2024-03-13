@@ -1,6 +1,6 @@
 # Operatori
 
-Gli operatori in C sono fondamentali per eseguire operazioni su variabili e valori. Ogni operatore ha diverse caratteristiche che influenzano il modo in cui viene valutata un'espressione. Questa guida fornirà una panoramica completa sugli operatori in C, includendo arità, precedenza, associatività e side-effects.
+Gli operatori in C sono fondamentali per eseguire operazioni su variabili e valori. Ogni operatore ha diverse caratteristiche che influenzano il modo in cui viene valutata un'espressione.
 
 ## Tipi di Operatori
 
