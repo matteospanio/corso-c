@@ -1,6 +1,6 @@
 ---
 title: Strutture e uso avanzato dei puntatori
-date: 04/23/2024
+date: 04/09/2024
 ---
 
 TODO

@@ -12,3 +12,19 @@ Il tipo di ritorno di queste espressioni in C è un intero, il tipo booleano non
 
 - $0 \rightarrow$ falso
 - $1 \rightarrow$ vero (e tutti gli interi diversi da $0$)
+
+## Espressioni logiche
+
+Gli operatori booleani producono tutti 0 oppure 1 come risultato, ma bisogna ricordare che qualunque valore diverso da 0 è considerato vero.
+
+L'espressione `(5 && 1)` viene valutata come vera in quanto entrambi i valori sono diversi da 0
+
+## Espressioni logiche
+
+- *!expr* restituisce 1 se *expr* è 0
+- *expr1 && expr2* restituisce 1 se entrambe le espressioni sono non-zero
+- *expr1 || expr2* restituisce 1 se almeno una delle due espressioni è non-zero
+
+::: {.callout-note}
+Sia `&&` che `||` sono operatori a corto circuito, cioè se il risultato è già noto dopo aver valutato la prima espressione, la seconda non viene valutata.
+:::

@@ -7,4 +7,4 @@ i * j + 2   // inutile, potrebbe dare warning
             // "statement with no effect"
 ```
 
-Nel secondo caso il risultato viene scartato, ma la modifica avviene lo stesso.
+Nella seconda riga dell'esempio il risultato viene scartato, ma la modifica avviene lo stesso.

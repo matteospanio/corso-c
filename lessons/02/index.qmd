@@ -1,15 +1,26 @@
 ---
-title: Espressioni e strutture di controllo
+title: Strutture di controllo, tipi di base e funzioni
 date: 03/19/2024
 ---
 
 Il C è basato su *espressioni* più che su istruzioni. Queste espressioni sono un insieme di **variabili**, **costanti** e **operatori**.
 
+::: {.content-visible when-format="revealjs"}
 ## Operatori
 {{< include _operatori.qmd >}}
+:::
+::: {.content-visible unless-format="revealjs"}
+{{< include _operatori_text.qmd >}}
+:::
 
 ## Espressioni istruzione
 {{< include _espressioni_istruzione.qmd >}}
 
+
+::: {.content-visible when-format="revealjs"}
 ## Espressioni logiche
 {{< include _espressioni_logiche.qmd >}}
+:::
+::: {.content-visible unless-format="revealjs"}
+{{< include _espressioni_logiche_text.qmd >}}
+:::

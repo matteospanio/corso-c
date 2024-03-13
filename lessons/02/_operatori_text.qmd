@@ -1,0 +1,47 @@
+# Operatori
+
+Gli operatori in C sono fondamentali per eseguire operazioni su variabili e valori. Ogni operatore ha diverse caratteristiche che influenzano il modo in cui viene valutata un'espressione. Questa guida fornirà una panoramica completa sugli operatori in C, includendo arità, precedenza, associatività e side-effects.
+
+## Tipi di Operatori
+
+Gli operatori in C possono essere suddivisi in diverse categorie in base al tipo di operazioni che eseguono. Ogni operatore ha una priorità che determina l'ordine in cui viene valutato all'interno di un'espressione. Gli operatori con una priorità più alta vengono valutati prima degli operatori con una priorità più bassa. Nel caso di operatori della stessa priorità, l'associatività determina l'ordine di valutazione.
+
+Ecco una tabella riassuntiva degli operatori C, ordinati da quelli con più alta priorità a quelli con minore priorità:
+
+| Categoria          | Operatori                                            | Associatività     |
+|--------------------|------------------------------------------------------|-------------------|
+| Postfissi          | `++` `--` `->` `.` `()` `[]`                         | Sinistra-Destra   |
+| Unari / Prefissi   | `+` `-` `!` `~` `++` `--` `(type)` `*` `&` `sizeof` | Destra-Sinistra   |
+| Moltiplicativi     | `*` `/` `%`                                          | Sinistra-Destra   |
+| Additivi           | `+` `-`                                              | Sinistra-Destra   |
+| Shift              | `<<` `>>`                                             | Sinistra-Destra   |
+| Relazionali        | `<` `>` `<=` `>=`                                     | Sinistra-Destra   |
+| Uguaglianza        | `==` `!=`                                             | Sinistra-Destra   |
+| Bitwise AND        | `&`                                                  | Sinistra-Destra   |
+| Bitwise XOR        | `^`                                                  | Sinistra-Destra   |
+| Bitwise OR         | `|`                                                  | Sinistra-Destra   |
+| Logico AND         | `&&`                                                 | Sinistra-Destra   |
+| Logico OR          | `||`                                                 | Sinistra-Destra   |
+| Condizionale       | `?:`                                                 | Destra-Sinistra   |
+| Assegnamento       | `=` `+=` `-=` `*=` `/=` `%=` `<<=` `>>=` `&=` `^=` `|=` | Destra-Sinistra |
+| Virgola            | `,`                                                  | Sinistra-Destra   |
+
+## Side-Effects e Incubi
+
+Gli operatori di incremento e decremento (`++` e `--`) sono potenti ma vanno usati con cautela. Possono essere utilizzati sia come operazioni prefisse che postfix. La differenza principale tra queste due forme sta nel momento in cui viene effettuata l'operazione di incremento o decremento.
+
+Nel caso dell'operatore di post-incremento `i++`, l'incremento avviene dopo che il valore di `i` viene utilizzato nell'espressione corrente. Nel caso dell'operatore di pre-incremento `++i`, l'incremento avviene prima che il valore di `i` venga utilizzato nell'espressione.
+
+Questo può portare a comportamenti diversi, soprattutto quando si utilizzano questi operatori all'interno della stessa espressione o dello stesso statement. Ad esempio:
+
+```c
+int i = 1;
+printf("i is %d\n", i++);  // Stampa: i is 1
+printf("i is %d\n", i);    // Stampa: i is 2
+printf("i is %d\n", ++i);  // Stampa: i is 3
+printf("i is %d\n", i);    // Stampa: i is 3
+```
+
+Nel primo `printf`, l'operatore post-incremento viene utilizzato, quindi il valore di `i` (1) viene stampato e poi incrementato a 2. Nel secondo `printf`, il valore incrementato di `i` (2) viene stampato. Nel terzo `printf`, l'operatore pre-incremento viene utilizzato, quindi `i` viene incrementato a 3 e poi stampato. Infine, nel quarto `printf`, viene stampato di nuovo il valore corrente di `i`, che è 3.
+
+È importante prestare attenzione a questi comportamenti per evitare risultati inaspettati nel proprio codice.

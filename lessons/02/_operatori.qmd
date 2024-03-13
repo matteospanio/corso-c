@@ -7,28 +7,13 @@ Esistono molteplici operatori, ognuno ha varie caratteristiche:
 
 ## Operatori
 
-`i + j * k` equivale a `i + (j * k)`
-
-`i + j - k` equivale a `(i + j) - k`
-
-## Operatori
-
 Gli operatori più in alto hanno priorità più alta:
 
-![](./table_operators.png)
-
-## Operatori
-
-`++` e `--` servono ad aumentare/diminuire di 1 una variabile.
-
-Sono piuttosto comuni ma bisogna fare attenzione:
-
-- possono essere usati prima della variabile e.g. `++i`
-- possono essere usati dopo della variabile e.g. `i--`
+![](./figures/table_operators.png)
 
 ## Indovinello
 
-Indovina l'outpu del seguente codice:
+Indovina l'output del seguente codice:
 
 ```{.c}
 i = 1;
@@ -55,4 +40,3 @@ printf("i is %d\n", i);   /* i is 3 */
 
 Gli operatori di post/pre-incremento sono molto utili e vengono usati spesso, vanno però usati con attenzione. Nella maggior parte delle situazioni è bene usare queste operazioni atomicamente (da sole in una riga).
 :::
-

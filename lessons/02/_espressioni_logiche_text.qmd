@@ -1,0 +1,46 @@
+# Espressioni logiche
+
+Le espressioni logiche, o booleane, in C sono fondamentali per l'esecuzione di operazioni condizionali e decisionali nel codice.
+
+## Operatori Booleani
+
+Gli operatori booleani sono utilizzati per eseguire operazioni logiche su valori booleani o espressioni che possono essere valutate come vere o false. Ecco gli operatori booleani disponibili in C:
+
+- `&&` (AND logico)
+- `||` (OR logico)
+- `!` (NOT logico)
+- `==` (uguaglianza)
+- `!=` (diverso)
+- `>` (maggiore)
+- `<` (minore)
+- `>=` (maggiore o uguale)
+- `<=` (minore o uguale)
+
+Questi operatori producono tutti 0 o 1 come risultato, ma in C qualsiasi valore diverso da 0 è considerato vero.
+
+### AND Logico (`&&`)
+
+L'operatore `&&` restituisce 1 se entrambe le espressioni booleane sono non-zero, altrimenti restituisce 0. È un operatore a corto circuito, quindi se il risultato è già noto dopo aver valutato la prima espressione, la seconda non viene valutata.
+
+### OR Logico (`||`)
+
+L'operatore `||` restituisce 1 se almeno una delle due espressioni booleane è non-zero, altrimenti restituisce 0. Anche questo è un operatore a corto circuito.
+
+### NOT Logico (`!`)
+
+L'operatore `!` inverte il valore di verità di un'espressione. Restituisce 1 se l'espressione è zero e 0 se l'espressione è non-zero.
+
+### Operatori di Confronto
+
+Gli operatori di confronto (`==`, `!=`, `>`, `<`, `>=`, `<=`) confrontano due valori e restituiscono un valore intero in base alla relazione tra di essi.
+
+## Valutazione delle Espressioni Booleane
+
+Le espressioni booleane vengono valutate in base alle regole della logica booleana. Il risultato di un'espressione booleana è un valore intero, dove 0 rappresenta "falso" e 1 rappresenta "vero". Ad esempio:
+
+```c
+int i = 3, j = 2, k = 1;
+int result = (i < j && j < k); // result sarà 0 perché entrambe le espressioni sono false
+```
+
+In questo caso, l'espressione `i < j && j < k` sarà valutata come `0 && 0`, il che restituirà 0 perché entrambe le espressioni sono false.
