@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Hello C 2024",
-    "section": "",
-    "text": "Materiali in continuo aggiornamento\n\n\n\nIl contenuto del sito non è ancora definitivo, potrebbe cambiare di frequente. Per piacere siate pazienti.\n\n\nDispense per l’introdottozione al linguaggio di programmazione C. Questa è la pagina web della parte di programmazione in C del corso di dati e algoritmi per la laurea triennale in ingegneria elettronica presso l’Università di Padova.\n\nQuesto sito\nIl sito è organizzato per 3 macro aree:\n\nlezioni\nesercizi\nrisorse\n\nLa sezione lezioni raccoglie tutti i contenuti presentati a lezione, ogni lezione è riportata in formato html e pdf, inoltre è possibile consultare anche le diapositive viste a lezione in formato RevealJS. Oltre ai contenuti visti in classe sono presenti, saltuariamente, brevi guide sull’utilizzo/installazione di software o approfondimenti.\nLa sezione esercizi raccoglie molti esercizi per ripassare gli argomenti visti in classe e prepararsi all’esame, in generale vi sono esercizi di varia difficoltà.\nLa sezione risorse contiene materiali vari: una lista di letture consigliate sul linguaggio C oltre al libro di testo del corso, un elenco di materiali didattici reperibili online, domande e risposte comuni sull’esame, una guida sull’installazione dell’ambiente di sviluppo per scrivere programmi C."
-  },
-  {
     "objectID": "exercises/02/power.html",
     "href": "exercises/02/power.html",
     "title": "Esercizio: elevamento a potenza",
@@ -31,341 +24,44 @@
     ]
   },
   {
-    "objectID": "exercises/01/libretto.html",
-    "href": "exercises/01/libretto.html",
-    "title": "Esercizio: il libretto degli esami",
+    "objectID": "exercises/01/somma_razionale.html",
+    "href": "exercises/01/somma_razionale.html",
+    "title": "Esercizio: somma di numeri razionali",
     "section": "",
-    "text": "Si vuole scrivere un programma che, dati in input i voti di più esami e i relativi crediti, calcoli la media ponderata dei voti e la visualizzi a video.\n\n\n\n\n\n\nSi assume che gli esami siano 3: algebra lineare, analisi matematica e introduzione alla programmazione (java).\n\n\n\nQuando il programma viene eseguito deve chiedere all’utente di inserire il voto di un certo esame e il relativo numero di crediti associato. Una volta inseriti tutti i voti e i crediti, il programma deve calcolare la media ponderata e visualizzarla a video.\nOpzionale:\n\nProvare a visualizzare anche la media aritmetica dei voti;\nVisualizzare anche l’elenco dei voti e dei crediti inseriti.\nProva a stampare il voto con 2 cifre decimali, ad esempio 27.11 (per fare questo bisogna cambiare il tipo di dato usato per memorizzare la media e usare il type casting durante la divisione).\n\n\n\n\n\n\n\nSuggerimento\n\n\n\nLa media ponderata si calcola come la somma dei prodotti tra ciascun voto e i relativi crediti, diviso la somma dei crediti. Formalmente:\n\\[\n\\text{media} = \\frac{\\sum_{i=1}^{n} voto_i \\cdot crediti_i}{\\sum_{i=1}^{n} crediti_i}\n\\] dove \\(voto_i\\) è il voto dell’esame \\(i\\)-esimo e \\(crediti_i\\) è il numero di crediti dell’esame \\(i\\)-esimo.\nAd esempio, se si hanno tre esami con voti 30, 28 e 25 e i rispettivi crediti sono 6, 9 e 12, la media ponderata è: \\[\n\\frac{30 \\cdot 6 + 28 \\cdot 9 + 25 \\cdot 12}{6 + 9 + 12} = \\frac{180 + 252 + 300}{27} = \\frac{732}{27} \\approx 27.11\n\\]\n\n\nEsempio di main:\n\n\n Scarica il file \n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int voto_analisi1, voto_algebra_lineare, voto_java;\n    int crediti_analisi1, crediti_algebra_lineare, crediti_java;\n    int media_ponderata;\n\n    // TODO: Chiedere all'utente i voti e i crediti dei tre esami\n\n    // TODO: Calcolare la media ponderata\n\n    printf(\"La media ponderata è: %d\\n\", media_ponderata);\n}",
+    "text": "Si vuole scrivere un programma che accetti in input due razionali nella forma n/m e ne stampi la somma (non semplificata).\nAd esempio:\nInserisci il primo numero: 3/4\nInserisci il secondo numero: 1/2\nLa somma dei due numeri è 5/4\nOpzionale:\n\nUna volta compilato il programma eseguilo con gdb controllando ad ogni step i valori delle variabili locali.\n\n\n\n\n\n\n\nSuggerimento\n\n\n\nIn questo caso possiamo richiedere all’utente che il formato includa lo slash, e quindi includerlo nel pattern di scanf.",
     "crumbs": [
       "Lezioni",
       "Basi di C",
-      "Libretto universitario"
+      "Somma razionale"
     ]
   },
   {
-    "objectID": "CODE_OF_CONDUCT.html",
-    "href": "CODE_OF_CONDUCT.html",
-    "title": "Contributor Covenant Code of Conduct",
+    "objectID": "exercises.html",
+    "href": "exercises.html",
+    "title": "Esercizi",
     "section": "",
-    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.\n\n\n\nExamples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting\n\n\n\n\nCommunity leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.\n\n\n\nThis Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.\n\n\n\nInstances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at spanio@dei.unipd.it. All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident.\n\n\n\nCommunity leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community.\n\n\n\n\nThis Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
+    "text": "Gli esercizi sono divisi per lezione. Ogni lezione tratta un numero variabile di argomenti, quindi gli esercizi sono divisi in base a questi argomenti. Gli esercizi di lezioni più avanzate fanno spesso riferimento a concetti appresi in lezioni precedenti, quindi è consigliabile svolgerli in ordine.\nPer compilare gli esercizi si suggerisce di usare il comando gcc con i warning attivati e l’opzione -std=c99 per compilare in standard C99. Di seguito il comando che si può usare per compilare un file sorgente esercizio.c:\ngcc -std=c99 -Wall -Wextra -pedantic -Werror -g -o esercizio esercizio.c\nTalvolta può essere utile usare un file Makefile per compilare più file sorgente. Di seguito un esempio di Makefile:\n\n\n Scarica il file \nFILES=esercizio.c\nEXECUTABLE=esercizio\n\nCC=gcc\nCFLAGS=-std=c99 -Wall -Wextra -pedantic -Werror -g\n\n$(EXECUTABLE): $(FILES)\n    $(CC) $(CFLAGS) -o $@ $^"
   },
   {
-    "objectID": "CODE_OF_CONDUCT.html#our-pledge",
-    "href": "CODE_OF_CONDUCT.html#our-pledge",
-    "title": "Contributor Covenant Code of Conduct",
+    "objectID": "lessons/06/index.html",
+    "href": "lessons/06/index.html",
+    "title": "Strutture e uso avanzato dei puntatori",
     "section": "",
-    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#our-standards",
-    "href": "CODE_OF_CONDUCT.html#our-standards",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "Examples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting"
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#enforcement-responsibilities",
-    "href": "CODE_OF_CONDUCT.html#enforcement-responsibilities",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#scope",
-    "href": "CODE_OF_CONDUCT.html#scope",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#enforcement",
-    "href": "CODE_OF_CONDUCT.html#enforcement",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at spanio@dei.unipd.it. All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#enforcement-guidelines",
-    "href": "CODE_OF_CONDUCT.html#enforcement-guidelines",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "Community leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#attribution",
-    "href": "CODE_OF_CONDUCT.html#attribution",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "This Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
-  },
-  {
-    "objectID": "faq.html",
-    "href": "faq.html",
-    "title": "FAQ",
-    "section": "",
-    "text": "Io conosco Python, Ruby, Haskell, Kotlin, Perl e ieri ho implementato un compilatore per il mio unico e innovativo linguaggio di programmazione. Perché dovrei imparare C?\n\nAffermazioni del tipo “Il nostro linguaggio è veloce quasi quanto il C, ma è più facile da scrivere” sono così comuni da diventare quasi cliché. Bene, C è sicuramente veloce quanto C, e lo scopo del corso è facilitare la comprensione di un linguaggio spesso conosciuto come ostico. La comprensione di un linguaggio che non astrae molti concetti e lascia molta responsabilità al programmatore è importante per avere delle solide basi su concetti che pervadono tutti i linguaggi di programmazione.\n\nIl mio telefono ha 6 GB di RAM, quindi perché i libri di testo dedicano così tante pagine a tecniche per risparmiare kilobytes di peso ai file eseguibili?\nIl mio vecchissimo computer riesce ad eseguire 3,200,000,000 istruzioni al secondo, perché dovrei interessarmi se un’operazione confronta 8 o 16 bit?\n\nDovremmo scrivere codice che possiamo scrivere velocemente e che sia leggibile dai nostri simili. Stiamo ancora scrivendo in C, quindi il nostro codice leggibile ma non perfettamente ottimizzato verrà comunque eseguito un ordine di grandezza più velocemente che se avessimo scritto codice comparabile in un numero qualsiasi di linguaggi alternativi.",
-    "crumbs": [
-      "Risorse",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "faq.html#come-si-svolge-lesame",
-    "href": "faq.html#come-si-svolge-lesame",
-    "title": "FAQ",
-    "section": "Come si svolge l’esame?",
-    "text": "Come si svolge l’esame?\nL’esame del corso di Dati e Algoritmi è scritto, in presenza e si svolge in 3 parti:\n\ndomande: verifica della conoscenza teorica in programma, semplici dimostrazioni;\nesercizi: capacità di risolvere problemi di progetto e analisi di algoritmi (simili a quelli affrontati durante il corso);\ncodice: scrittura in linguaggio C di algoritmi che utilizzano strutture dati;\n\nogni parte dell’esame dura 45 minuti, per un totale di 2 ore e 15 minuti.",
-    "crumbs": [
-      "Risorse",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "faq.html#come-si-calcola-il-voto-finale",
-    "href": "faq.html#come-si-calcola-il-voto-finale",
-    "title": "FAQ",
-    "section": "Come si calcola il voto finale?",
-    "text": "Come si calcola il voto finale?\nOgnuna delle tre parti dell’esame è valutata al massimo 11 punti, il voto è la somma delle tre parti.\n\n\n\n\n\n\nImportante\n\n\n\nSe in una delle tre parti si ottiene una valutazione inferiore a 4, l’esame è da considerarsi non superato nella sua interezza.\n\n\nCon 33 punti si ottiene la lode.\nDi seguito è riportato l’algoritmo di calcolo del voto finale:\n// algoritmo per calcolare il voto dell'esame\nint voto_finale(int domande, int esercizi, int codice)\n{\n    int voto = domande + esercizi + codice;\n\n    // se una delle tre parti è inferiore a 4,\n    // l'esame è da considerarsi non superato\n    if (domande &lt; 4 || esercizi &lt; 4 || codice &lt; 4)\n    {\n        voto = 0;\n    }\n\n    switch (voto)\n    {\n        case 31:\n        case 32:\n            voto = 30;\n            break;\n\n        case 33:\n            voto = 31; // 31 equivale a 30 e lode\n            break;\n\n        case default:\n            break;\n    }\n\n  return voto;\n}",
-    "crumbs": [
-      "Risorse",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "faq.html#posso-usare-il-mio-computer-per-scrivere-codice",
-    "href": "faq.html#posso-usare-il-mio-computer-per-scrivere-codice",
-    "title": "FAQ",
-    "section": "Posso usare il mio computer per scrivere codice?",
-    "text": "Posso usare il mio computer per scrivere codice?\nNo, la parte di scrittura di codice si svolge tramite i computer del laboratorio.",
-    "crumbs": [
-      "Risorse",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "faq.html#non-ho-un-computer-posso-svolgere-lesame",
-    "href": "faq.html#non-ho-un-computer-posso-svolgere-lesame",
-    "title": "FAQ",
-    "section": "Non ho un computer, posso svolgere l’esame?",
-    "text": "Non ho un computer, posso svolgere l’esame?\nSì, tuttavia per poter svolgere gli esercizi di programmazione è necessario avere una buona dimestichezza con l’uso di un computer ed è fortemente consigliato fare pratica a casa.",
-    "crumbs": [
-      "Risorse",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html",
-    "href": "extra/style_guide.html",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "",
-    "text": "Nota\n\n\n\nLa presente guida è un riadattamento dalla style guide del CS50 di Harvard per il corso di Dati e Algoritmi dell’Università di Padova.\nNon esiste un modo “giusto” unico per scrivere codice. Ma ci sono sicuramente molti modi sbagliati (o, almeno, cattivi). Ad ogni modo, essendo questo un corso di introduzione a C, è una buona occasione per mettere in pratica alcune regole di stile per scrivere fin da subito codice leggibile e mantenibile.",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#lunghezza-della-linea",
-    "href": "extra/style_guide.html#lunghezza-della-linea",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Lunghezza della linea",
-    "text": "Lunghezza della linea\nPer convenzione, la lunghezza massima di una riga di codice è di 80 caratteri in C, questa è una scelta di ragioni storiche, infatti negli anni ’80 i monitor di dimensioni standard potevano visualizzare 24 linee verticali e 80 caratteri orizzontali. Anche se la tecnologia moderna ha reso obsoleta la necessità di mantenere le linee limitate a 80 caratteri, è comunque una linea guida che dovrebbe essere considerata come un “limite flessibile”. Oggi, solitamente, si cerca di non superare i 100 caratteri in una singola linea. Se hai bisogno di più di 100 caratteri, potrebbe essere il momento di ripensare sia ai nomi delle variabili che al design complessivo del programma!",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#commenti",
-    "href": "extra/style_guide.html#commenti",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Commenti",
-    "text": "Commenti\nI commenti rendono il codice più leggibile, non solo per gli altri, ma anche per te, specialmente quando passano ore, giorni, settimane, mesi o anni tra la scrittura e la lettura del tuo stesso codice. Commentare troppo poco è sbagliato. Commentare troppo è sbagliato. Dove sta il punto giusto? Commentare ogni poche righe di codice (cioè, blocchi interessanti) è una buona linea guida. Cerca di scrivere commenti che rispondano a una o entrambe queste domande:\n\nCosa fa questo blocco?\nPerché ho implementato questo blocco in questo modo?\n\nAll’interno delle funzioni, utilizza “commenti in linea” e mantienili brevi (ad esempio, una riga), altrimenti diventa difficile distinguere i commenti dal codice. Posiziona il commento sopra la riga (o le righe) a cui si applica. Non è necessario scrivere frasi complete, ma metti in maiuscolo la prima parola del commento (a meno che non sia il nome di una funzione, variabile o simile), e lascia uno spazio tra // e il primo carattere del tuo commento, come in:\n// Converti Fahrenheit in Celsius\nfloat c = 5.0 / 9.0 * (f - 32.0);\nIn altre parole, non fare questo:\n// converti Fahrenheit in Celsius\nfloat c = 5.0 / 9.0 * (f - 32.0);\nO questo:\nfloat c = 5.0 / 9.0 * (f - 32.0); // Converti Fahrenheit in Celsius\nNelle prime righe dei file .c e .h dovrebbe esserci un commento che riassuma ciò che fa il tuo programma (o quel particolare file).\nSopra ciascuna delle tue funzioni (eccetto, forse, main), dovrebbe invece esserci un commento che riassuma cosa fa la tua funzione, come in:\n// Restituisce il quadrato di n\nint quadrato(int n)\n{\n    return n * n;\n}",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#intestazioni-delle-librerie",
-    "href": "extra/style_guide.html#intestazioni-delle-librerie",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Intestazioni delle librerie",
-    "text": "Intestazioni delle librerie\nTutte le intestazioni delle librerie che includi dovrebbero essere elencate in ordine alfabetico, come in:\n#include &lt;math.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;string.h&gt;\nQuesto rende più facile vedere in un colpo d’occhio, specialmente in un elenco lungo, se hai incluso un’intestazione.",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#condizioni",
-    "href": "extra/style_guide.html#condizioni",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Condizioni",
-    "text": "Condizioni\nLe condizioni dovrebbero essere stilizzate come segue:\nif (x &gt; 0)\n{\n    printf(\"x è positivo\\n\");\n}\nelse if (x &lt; 0)\n{\n    printf(\"x è negativo\\n\");\n}\nelse\n{\n    printf(\"x è zero\\n\");\n}\nNota come:\n\nle parentesi graffe si allineano bene, ognuna sulla propria linea, rendendo perfettamente chiaro cosa c’è dentro il ramo;\nc’è uno spazio singolo dopo ogni if;\nogni chiamata a printf è indentata con 4 spazi;\nci sono spazi singoli intorno a &gt; e intorno a &lt;; e\nnon c’è alcuno spazio immediatamente dopo ogni ( o immediatamente prima di ogni ).\n\nPer risparmiare spazio, alcuni programmatori preferiscono mantenere la prima parentesi graffa sulla stessa riga della condizione stessa, ma non lo consigliamo, poiché è più difficile da leggere, quindi non fare questo:\nif (x &lt; 0) {\n    printf(\"x è negativo\\n\");\n} else if (x &lt; 0) {\n    printf(\"x è negativo\\n\");\n}\nE sicuramente non fare questo:\nif (x &lt; 0)\n    {\n    printf(\"x è negativo\\n\");\n    }\nelse\n    {\n    printf(\"x è negativo\\n\");\n    }",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#switch",
-    "href": "extra/style_guide.html#switch",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Switch",
-    "text": "Switch\nDichiara uno switch come segue:\nswitch (n)\n{\n    case -1:\n        printf(\"n è -1\\n\");\n        break;\n\n    case 1:\n        printf(\"n è 1\\n\");\n        break;\n\n    default:\n        printf(\"n non è né -1 né 1\\n\");\n        break;\n}\nNota come:\n\nogni parentesi graffa sia su una propria riga;\nc’è uno spazio singolo dopo switch;\nnon c’è spazio immediatamente dopo ogni ( o prima di ogni );\ni casi dello switch sono indentati con 4 spazi;\ni corpi dei casi sono indentati ulteriormente con 4 spazi; e\nogni case (incluso default) termina con un break.",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#funzioni",
-    "href": "extra/style_guide.html#funzioni",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Funzioni",
-    "text": "Funzioni\nIn conformità con C99, assicurati di dichiarare main con:\nint main(void)\n{\n\n}\no con:\nint main(int argc, char *argv[])\n{\n\n}\no anche con:\nint main(int argc, char **argv)\n{\n\n}\nNon dichiarare main con:\nint main()\n{\n\n}\no con:\nvoid main()\n{\n\n}\no con:\nmain()\n{\n\n}\nPer le tue stesse funzioni, assicurati di definirle similmente, con ogni parentesi graffa su una propria riga e con il tipo di ritorno sulla stessa riga del nome della funzione, proprio come abbiamo fatto con main.",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#indentazione",
-    "href": "extra/style_guide.html#indentazione",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Indentazione",
-    "text": "Indentazione\nIndenta il tuo codice con quattro spazi alla volta per chiarire quali blocchi di codice sono contenuti all’interno di altri. Se usi il tasto Tab sulla tastiera per farlo, assicurati che l’editor di testo sia configurato per convertire le tabulazioni (\\t) in quattro spazi, altrimenti il tuo codice potrebbe non essere stampato o visualizzato correttamente sul computer di qualcun altro, poiché \\t si renderizza in modo diverso in editor diversi.\nEcco del codice ben indentato:\n// Stampare gli argomenti della riga di comando uno per riga\nprintf(\"\\n\");\nfor (int i = 0; i &lt; argc; i++)\n{\n    for (int j = 0, n = strlen(argv[i]); j &lt; n; j++)\n    {\n        printf(\"%c\\n\", argv[i][j]);\n    }\n    printf(\"\\n\");\n}",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#cicli",
-    "href": "extra/style_guide.html#cicli",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Cicli",
-    "text": "Cicli\n\nfor\nOgni volta che hai bisogno di variabili temporanee per l’iterazione, usa i, poi j, poi k, a meno che nomi più specifici non rendano il tuo codice più leggibile:\nfor (int i = 0; i &lt; LIMITE; i++)\n{\n    for (int j = 0; j &lt; LIMITE; j++)\n    {\n        for (int k = 0; k &lt; LIMITE; k++)\n        {\n            // Fai qualcosa\n        }\n    }\n}\nSe hai bisogno di più di tre variabili per l’iterazione, potrebbe essere il momento di ripensare il tuo design!\n\n\nwhile\nDichiara i cicli while come segue:\nwhile (condizione)\n{\n    // Fai qualcosa\n}\nNota come:\n\nogni parentesi graffa sia su una propria riga;\nc’è uno spazio singolo dopo while;\nnon c’è spazio immediatamente dopo il ( o prima del ); e\nil corpo del ciclo (un commento in questo caso) è indentato con 4 spazi.\n\n\n\ndo … while\nDichiara i cicli do ... while come segue:\ndo\n{\n    // Fai qualcosa\n}\nwhile (condizione);\nNota come:\n\nogni parentesi graffa sia su una propria riga;\nc’è uno spazio singolo dopo while;\nnon c’è spazio immediatamente dopo il ( o prima del ); e\nil corpo del ciclo (un commento in questo caso) è indentato con 4 spazi.",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#puntatori",
-    "href": "extra/style_guide.html#puntatori",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Puntatori",
-    "text": "Puntatori\nQuando dichiari un puntatore, scrivi * accanto alla variabile, come in:\nint *p;\nNon scriverlo accanto al tipo, come in:\nint* p;",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#variabili",
-    "href": "extra/style_guide.html#variabili",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Variabili",
-    "text": "Variabili\nPoiché in questo corso si utilizza C99, non definire tutte le tue variabili all’inizio delle tue funzioni ma, piuttosto, quando e dove ne hai effettivamente bisogno. Inoltre, limita il più possibile lo scope delle tue variabili. Ad esempio, se i è necessario solo per il ciclo, dichiara i all’interno del ciclo stesso:\nfor (int i = 0; i &lt; LIMITE; i++)\n{\n    printf(\"%i\\n\", i);\n}\nAnche se è accettabile utilizzare variabili come i, j e k per l’iterazione, la maggior parte delle tue variabili dovrebbe avere nomi più specifici. Se stai sommando alcuni valori, ad esempio, chiamare la tua variabile somma. Se il nome della tua variabile giustifica due parole (ad esempio, ha_mangiato), metti un trattino basso (underscore) tra di esse, questo modo di chiamare le variabili è detto snake_case (altri modi di dare il nome alle variabili sono il CamelCase o il meno comune kebab-case).\n\n\n\n\n\n\nAttenzione\n\n\n\nPerché il kebab case è un formato più insolito degli altri? Se provi a dare un nome di variabile in kebab-case in un programma C cosa succede?\n\n\nSe dichiari più variabili dello stesso tipo contemporaneamente, è accettabile dichiararle insieme, come in:\nint quartieri, dimes, nickels, pennies;\nBasta non inizializzare alcune ma non altre, come in:\nint quartieri, dimes = 0, nickels = 0 , pennies;\nPrenditi cura anche di dichiarare i puntatori separatamente dai non puntatori, come in:\nint *p;\nint n;\nNon dichiarare puntatori sulla stessa riga dei non puntatori, come in:\nint *p, n;",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/style_guide.html#strutture",
-    "href": "extra/style_guide.html#strutture",
-    "title": "Guida allo stile per il linguaggio C",
-    "section": "Strutture",
-    "text": "Strutture\nDichiara una struct come tipo come segue, con ogni parentesi graffa su una propria riga e i membri indentati al suo interno, con il nome del tipo anche sulla sua riga:\ntypedef struct\n{\n    char *nome;\n    int matricola;\n} studente_t;\nQuando definisci un tipo con typedef è buona prassi usare un nome che finisce con _t, questo per poterlo facilmente distinguere dai nomi di variabile, dalle funzioni o dalle macro.",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Style Guide"
-    ]
-  },
-  {
-    "objectID": "extra/formatting.html",
-    "href": "extra/formatting.html",
-    "title": "Guida per formattare il codice",
-    "section": "",
-    "text": "Clang-Format è uno strumento di formattazione del codice sorgente basato su Clang, il front-end del compilatore LLVM. La sua principale funzione è quella di formattare il codice sorgente in base a regole di stile specifiche, garantendo coerenza e leggibilità del codice. Questo strumento è particolarmente utile in contesti di sviluppo collaborativo, dove diversi programmatori possono avere differenti preferenze di formattazione. Utilizzare clang-format permette di mantenere uno stile uniforme nel codice sorgente, facilitando la comprensione, la manutenzione e la revisione del codice.\nNel caso di questo corso invece permette di assicurarsi che il codice sorgente segua lo stile esplicitato nella guida di stile e garantisce che sia leggibile prima di condividere il codice con qualcun altro.\nIn generale si consiglia di utilizzare clang-format specificando lo stile microsoft nella seguente maniera:",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Formatting"
-    ]
-  },
-  {
-    "objectID": "extra/formatting.html#installazione-e-uso-su-linux",
-    "href": "extra/formatting.html#installazione-e-uso-su-linux",
-    "title": "Guida per formattare il codice",
-    "section": "Installazione e uso su Linux",
-    "text": "Installazione e uso su Linux\nSu Linux, l’installazione di clang-format può essere effettuata tramite il gestore dei pacchetti della distribuzione utilizzata. Ad esempio, su Ubuntu e derivate, si può installare con il seguente comando:\nsudo apt-get install clang-format\nUna volta installato, è possibile utilizzare clang-format direttamente da riga di comando specificando il file sorgente da formattare. Ad esempio:\nclang-format -i file.c\nQuesto comando formatta il file “file.c” utilizzando le impostazioni predefinite di clang-format.",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Formatting"
-    ]
-  },
-  {
-    "objectID": "extra/formatting.html#installazione-e-uso-su-macos",
-    "href": "extra/formatting.html#installazione-e-uso-su-macos",
-    "title": "Guida per formattare il codice",
-    "section": "Installazione e uso su macOS",
-    "text": "Installazione e uso su macOS\nSu macOS, clang-format può essere installato utilizzando Homebrew, un gestore di pacchetti per macOS. Per installare clang-format con Homebrew, eseguire i seguenti comandi:\nbrew update\nbrew install clang-format\nDopo l’installazione, è possibile utilizzare clang-format come descritto in precedenza per Linux.",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Formatting"
-    ]
-  },
-  {
-    "objectID": "extra/formatting.html#installazione-e-uso-su-windows",
-    "href": "extra/formatting.html#installazione-e-uso-su-windows",
-    "title": "Guida per formattare il codice",
-    "section": "Installazione e uso su Windows",
-    "text": "Installazione e uso su Windows\nSu Windows, clang-format può essere installato come parte del pacchetto LLVM. Per installare LLVM e quindi clang-format, seguire questi passaggi:\n\nScaricare il pacchetto di installazione di LLVM dal sito ufficiale (https://llvm.org/).\nEseguire il programma di installazione e seguire le istruzioni guidate.\nAssicurarsi di selezionare l’opzione per installare clang-format durante il processo di installazione.\n\nDopo l’installazione, è possibile utilizzare clang-format da riga di comando come descritto in precedenza per Linux e macOS.",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Formatting"
-    ]
-  },
-  {
-    "objectID": "extra/formatting.html#utilizzo-avanzato",
-    "href": "extra/formatting.html#utilizzo-avanzato",
-    "title": "Guida per formattare il codice",
-    "section": "Utilizzo avanzato",
-    "text": "Utilizzo avanzato\nClang-Format offre numerose opzioni per personalizzare la formattazione del codice sorgente. È possibile specificare un file di configurazione .clang-format per definire regole di formattazione personalizzate. Inoltre, clang-format supporta diversi stili di formattazione predefiniti, come Google, LLVM, Mozilla e altri.\nPer ulteriori informazioni sulle opzioni di configurazione e sugli stili di formattazione supportati, consultare la documentazione ufficiale di Clang-Format.",
-    "crumbs": [
-      "Risorse",
-      "Come scrivere codice",
-      "Formatting"
-    ]
-  },
-  {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Risorse",
-    "section": "",
-    "text": "Questa sezione è dedicata a risorse che possono essere utili da consultare per avere dei riferimenti ma non è necessario studiarle.\nIn particolare ci sono:\n\nuna sezione dedicata ai libri di testo in cui si può consultare una lista di letture suggerite oltre ad avere informazioni sul libro di testo ufficiale del corso;\nuna guida alla scrittura di codice chiaro in C, non è un requisito del corso scrivere seguendo questi criteri, è comunque consigliato applicare delle regole di formattazione per scrivere codice chiaro e coerente;\nuna sezione dedicata a domande e risposte frequenti in cui, in particolare, vengono descritte le modalità d’esame.",
+    "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
     "crumbs": [
       "Lezioni",
-      "Risorse"
+      "Strutture e uso avanzato dei puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/04/index.html",
+    "href": "lessons/04/index.html",
+    "title": "Funzioni e Scope",
+    "section": "",
+    "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
+    "crumbs": [
+      "Lezioni",
+      "Funzioni e Scope"
     ]
   },
   {
@@ -699,36 +395,372 @@
     "text": "Esercizi\n\nScrivere un programma che legga due numeri e stampi la somma.\n\n\n\nScrivere un programma che legga due frazioni in formato \"n/m\" e stampi la loro somma (non semplificata).\n\n\n\n\n\n\n\n\n\nConsiglio\n\n\nIn questo caso possiamo richiedere all’utente che il formato includa lo slash, e quindi includerlo nel pattern di scanf.\n\n\n\n\n\n\n\n\nDati e Algoritmi\n\n\n\n\nAltri esercizi sono disponibili a questo link."
   },
   {
-    "objectID": "lessons/04/index.html",
-    "href": "lessons/04/index.html",
-    "title": "Funzioni e Scope",
+    "objectID": "extra/formatting.html",
+    "href": "extra/formatting.html",
+    "title": "Guida per formattare il codice",
     "section": "",
-    "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
+    "text": "Clang-Format è uno strumento di formattazione del codice sorgente basato su Clang, il front-end del compilatore LLVM. La sua principale funzione è quella di formattare il codice sorgente in base a regole di stile specifiche, garantendo coerenza e leggibilità del codice. Questo strumento è particolarmente utile in contesti di sviluppo collaborativo, dove diversi programmatori possono avere differenti preferenze di formattazione. Utilizzare clang-format permette di mantenere uno stile uniforme nel codice sorgente, facilitando la comprensione, la manutenzione e la revisione del codice.\nNel caso di questo corso invece permette di assicurarsi che il codice sorgente segua lo stile esplicitato nella guida di stile e garantisce che sia leggibile prima di condividere il codice con qualcun altro.\nIn generale si consiglia di utilizzare clang-format specificando lo stile microsoft nella seguente maniera:",
     "crumbs": [
-      "Lezioni",
-      "Funzioni e Scope"
+      "Risorse",
+      "Come scrivere codice",
+      "Formatting"
     ]
   },
   {
-    "objectID": "lessons/06/index.html",
-    "href": "lessons/06/index.html",
-    "title": "Strutture e uso avanzato dei puntatori",
-    "section": "",
-    "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
+    "objectID": "extra/formatting.html#installazione-e-uso-su-linux",
+    "href": "extra/formatting.html#installazione-e-uso-su-linux",
+    "title": "Guida per formattare il codice",
+    "section": "Installazione e uso su Linux",
+    "text": "Installazione e uso su Linux\nSu Linux, l’installazione di clang-format può essere effettuata tramite il gestore dei pacchetti della distribuzione utilizzata. Ad esempio, su Ubuntu e derivate, si può installare con il seguente comando:\nsudo apt-get install clang-format\nUna volta installato, è possibile utilizzare clang-format direttamente da riga di comando specificando il file sorgente da formattare. Ad esempio:\nclang-format -i file.c\nQuesto comando formatta il file “file.c” utilizzando le impostazioni predefinite di clang-format.",
     "crumbs": [
-      "Lezioni",
-      "Strutture e uso avanzato dei puntatori"
+      "Risorse",
+      "Come scrivere codice",
+      "Formatting"
     ]
   },
   {
-    "objectID": "lessons/03/index.html",
-    "href": "lessons/03/index.html",
-    "title": "Tipi di base e array",
-    "section": "",
-    "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
+    "objectID": "extra/formatting.html#installazione-e-uso-su-macos",
+    "href": "extra/formatting.html#installazione-e-uso-su-macos",
+    "title": "Guida per formattare il codice",
+    "section": "Installazione e uso su macOS",
+    "text": "Installazione e uso su macOS\nSu macOS, clang-format può essere installato utilizzando Homebrew, un gestore di pacchetti per macOS. Per installare clang-format con Homebrew, eseguire i seguenti comandi:\nbrew update\nbrew install clang-format\nDopo l’installazione, è possibile utilizzare clang-format come descritto in precedenza per Linux.",
     "crumbs": [
-      "Lezioni",
-      "Tipi di base e array"
+      "Risorse",
+      "Come scrivere codice",
+      "Formatting"
+    ]
+  },
+  {
+    "objectID": "extra/formatting.html#installazione-e-uso-su-windows",
+    "href": "extra/formatting.html#installazione-e-uso-su-windows",
+    "title": "Guida per formattare il codice",
+    "section": "Installazione e uso su Windows",
+    "text": "Installazione e uso su Windows\nSu Windows, clang-format può essere installato come parte del pacchetto LLVM. Per installare LLVM e quindi clang-format, seguire questi passaggi:\n\nScaricare il pacchetto di installazione di LLVM dal sito ufficiale (https://llvm.org/).\nEseguire il programma di installazione e seguire le istruzioni guidate.\nAssicurarsi di selezionare l’opzione per installare clang-format durante il processo di installazione.\n\nDopo l’installazione, è possibile utilizzare clang-format da riga di comando come descritto in precedenza per Linux e macOS.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Formatting"
+    ]
+  },
+  {
+    "objectID": "extra/formatting.html#utilizzo-avanzato",
+    "href": "extra/formatting.html#utilizzo-avanzato",
+    "title": "Guida per formattare il codice",
+    "section": "Utilizzo avanzato",
+    "text": "Utilizzo avanzato\nClang-Format offre numerose opzioni per personalizzare la formattazione del codice sorgente. È possibile specificare un file di configurazione .clang-format per definire regole di formattazione personalizzate. Inoltre, clang-format supporta diversi stili di formattazione predefiniti, come Google, LLVM, Mozilla e altri.\nPer ulteriori informazioni sulle opzioni di configurazione e sugli stili di formattazione supportati, consultare la documentazione ufficiale di Clang-Format.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Formatting"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html",
+    "href": "extra/style_guide.html",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "",
+    "text": "Nota\n\n\n\nLa presente guida è un riadattamento dalla style guide del CS50 di Harvard per il corso di Dati e Algoritmi dell’Università di Padova.\nNon esiste un modo “giusto” unico per scrivere codice. Ma ci sono sicuramente molti modi sbagliati (o, almeno, cattivi). Ad ogni modo, essendo questo un corso di introduzione a C, è una buona occasione per mettere in pratica alcune regole di stile per scrivere fin da subito codice leggibile e mantenibile.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#lunghezza-della-linea",
+    "href": "extra/style_guide.html#lunghezza-della-linea",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Lunghezza della linea",
+    "text": "Lunghezza della linea\nPer convenzione, la lunghezza massima di una riga di codice è di 80 caratteri in C, questa è una scelta di ragioni storiche, infatti negli anni ’80 i monitor di dimensioni standard potevano visualizzare 24 linee verticali e 80 caratteri orizzontali. Anche se la tecnologia moderna ha reso obsoleta la necessità di mantenere le linee limitate a 80 caratteri, è comunque una linea guida che dovrebbe essere considerata come un “limite flessibile”. Oggi, solitamente, si cerca di non superare i 100 caratteri in una singola linea. Se hai bisogno di più di 100 caratteri, potrebbe essere il momento di ripensare sia ai nomi delle variabili che al design complessivo del programma!",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#commenti",
+    "href": "extra/style_guide.html#commenti",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Commenti",
+    "text": "Commenti\nI commenti rendono il codice più leggibile, non solo per gli altri, ma anche per te, specialmente quando passano ore, giorni, settimane, mesi o anni tra la scrittura e la lettura del tuo stesso codice. Commentare troppo poco è sbagliato. Commentare troppo è sbagliato. Dove sta il punto giusto? Commentare ogni poche righe di codice (cioè, blocchi interessanti) è una buona linea guida. Cerca di scrivere commenti che rispondano a una o entrambe queste domande:\n\nCosa fa questo blocco?\nPerché ho implementato questo blocco in questo modo?\n\nAll’interno delle funzioni, utilizza “commenti in linea” e mantienili brevi (ad esempio, una riga), altrimenti diventa difficile distinguere i commenti dal codice. Posiziona il commento sopra la riga (o le righe) a cui si applica. Non è necessario scrivere frasi complete, ma metti in maiuscolo la prima parola del commento (a meno che non sia il nome di una funzione, variabile o simile), e lascia uno spazio tra // e il primo carattere del tuo commento, come in:\n// Converti Fahrenheit in Celsius\nfloat c = 5.0 / 9.0 * (f - 32.0);\nIn altre parole, non fare questo:\n// converti Fahrenheit in Celsius\nfloat c = 5.0 / 9.0 * (f - 32.0);\nO questo:\nfloat c = 5.0 / 9.0 * (f - 32.0); // Converti Fahrenheit in Celsius\nNelle prime righe dei file .c e .h dovrebbe esserci un commento che riassuma ciò che fa il tuo programma (o quel particolare file).\nSopra ciascuna delle tue funzioni (eccetto, forse, main), dovrebbe invece esserci un commento che riassuma cosa fa la tua funzione, come in:\n// Restituisce il quadrato di n\nint quadrato(int n)\n{\n    return n * n;\n}",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#intestazioni-delle-librerie",
+    "href": "extra/style_guide.html#intestazioni-delle-librerie",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Intestazioni delle librerie",
+    "text": "Intestazioni delle librerie\nTutte le intestazioni delle librerie che includi dovrebbero essere elencate in ordine alfabetico, come in:\n#include &lt;math.h&gt;\n#include &lt;stdio.h&gt;\n#include &lt;string.h&gt;\nQuesto rende più facile vedere in un colpo d’occhio, specialmente in un elenco lungo, se hai incluso un’intestazione.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#condizioni",
+    "href": "extra/style_guide.html#condizioni",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Condizioni",
+    "text": "Condizioni\nLe condizioni dovrebbero essere stilizzate come segue:\nif (x &gt; 0)\n{\n    printf(\"x è positivo\\n\");\n}\nelse if (x &lt; 0)\n{\n    printf(\"x è negativo\\n\");\n}\nelse\n{\n    printf(\"x è zero\\n\");\n}\nNota come:\n\nle parentesi graffe si allineano bene, ognuna sulla propria linea, rendendo perfettamente chiaro cosa c’è dentro il ramo;\nc’è uno spazio singolo dopo ogni if;\nogni chiamata a printf è indentata con 4 spazi;\nci sono spazi singoli intorno a &gt; e intorno a &lt;; e\nnon c’è alcuno spazio immediatamente dopo ogni ( o immediatamente prima di ogni ).\n\nPer risparmiare spazio, alcuni programmatori preferiscono mantenere la prima parentesi graffa sulla stessa riga della condizione stessa, ma non lo consigliamo, poiché è più difficile da leggere, quindi non fare questo:\nif (x &lt; 0) {\n    printf(\"x è negativo\\n\");\n} else if (x &lt; 0) {\n    printf(\"x è negativo\\n\");\n}\nE sicuramente non fare questo:\nif (x &lt; 0)\n    {\n    printf(\"x è negativo\\n\");\n    }\nelse\n    {\n    printf(\"x è negativo\\n\");\n    }",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#switch",
+    "href": "extra/style_guide.html#switch",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Switch",
+    "text": "Switch\nDichiara uno switch come segue:\nswitch (n)\n{\n    case -1:\n        printf(\"n è -1\\n\");\n        break;\n\n    case 1:\n        printf(\"n è 1\\n\");\n        break;\n\n    default:\n        printf(\"n non è né -1 né 1\\n\");\n        break;\n}\nNota come:\n\nogni parentesi graffa sia su una propria riga;\nc’è uno spazio singolo dopo switch;\nnon c’è spazio immediatamente dopo ogni ( o prima di ogni );\ni casi dello switch sono indentati con 4 spazi;\ni corpi dei casi sono indentati ulteriormente con 4 spazi; e\nogni case (incluso default) termina con un break.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#funzioni",
+    "href": "extra/style_guide.html#funzioni",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Funzioni",
+    "text": "Funzioni\nIn conformità con C99, assicurati di dichiarare main con:\nint main(void)\n{\n\n}\no con:\nint main(int argc, char *argv[])\n{\n\n}\no anche con:\nint main(int argc, char **argv)\n{\n\n}\nNon dichiarare main con:\nint main()\n{\n\n}\no con:\nvoid main()\n{\n\n}\no con:\nmain()\n{\n\n}\nPer le tue stesse funzioni, assicurati di definirle similmente, con ogni parentesi graffa su una propria riga e con il tipo di ritorno sulla stessa riga del nome della funzione, proprio come abbiamo fatto con main.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#indentazione",
+    "href": "extra/style_guide.html#indentazione",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Indentazione",
+    "text": "Indentazione\nIndenta il tuo codice con quattro spazi alla volta per chiarire quali blocchi di codice sono contenuti all’interno di altri. Se usi il tasto Tab sulla tastiera per farlo, assicurati che l’editor di testo sia configurato per convertire le tabulazioni (\\t) in quattro spazi, altrimenti il tuo codice potrebbe non essere stampato o visualizzato correttamente sul computer di qualcun altro, poiché \\t si renderizza in modo diverso in editor diversi.\nEcco del codice ben indentato:\n// Stampare gli argomenti della riga di comando uno per riga\nprintf(\"\\n\");\nfor (int i = 0; i &lt; argc; i++)\n{\n    for (int j = 0, n = strlen(argv[i]); j &lt; n; j++)\n    {\n        printf(\"%c\\n\", argv[i][j]);\n    }\n    printf(\"\\n\");\n}",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#cicli",
+    "href": "extra/style_guide.html#cicli",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Cicli",
+    "text": "Cicli\n\nfor\nOgni volta che hai bisogno di variabili temporanee per l’iterazione, usa i, poi j, poi k, a meno che nomi più specifici non rendano il tuo codice più leggibile:\nfor (int i = 0; i &lt; LIMITE; i++)\n{\n    for (int j = 0; j &lt; LIMITE; j++)\n    {\n        for (int k = 0; k &lt; LIMITE; k++)\n        {\n            // Fai qualcosa\n        }\n    }\n}\nSe hai bisogno di più di tre variabili per l’iterazione, potrebbe essere il momento di ripensare il tuo design!\n\n\nwhile\nDichiara i cicli while come segue:\nwhile (condizione)\n{\n    // Fai qualcosa\n}\nNota come:\n\nogni parentesi graffa sia su una propria riga;\nc’è uno spazio singolo dopo while;\nnon c’è spazio immediatamente dopo il ( o prima del ); e\nil corpo del ciclo (un commento in questo caso) è indentato con 4 spazi.\n\n\n\ndo … while\nDichiara i cicli do ... while come segue:\ndo\n{\n    // Fai qualcosa\n}\nwhile (condizione);\nNota come:\n\nogni parentesi graffa sia su una propria riga;\nc’è uno spazio singolo dopo while;\nnon c’è spazio immediatamente dopo il ( o prima del ); e\nil corpo del ciclo (un commento in questo caso) è indentato con 4 spazi.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#puntatori",
+    "href": "extra/style_guide.html#puntatori",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Puntatori",
+    "text": "Puntatori\nQuando dichiari un puntatore, scrivi * accanto alla variabile, come in:\nint *p;\nNon scriverlo accanto al tipo, come in:\nint* p;",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#variabili",
+    "href": "extra/style_guide.html#variabili",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Variabili",
+    "text": "Variabili\nPoiché in questo corso si utilizza C99, non definire tutte le tue variabili all’inizio delle tue funzioni ma, piuttosto, quando e dove ne hai effettivamente bisogno. Inoltre, limita il più possibile lo scope delle tue variabili. Ad esempio, se i è necessario solo per il ciclo, dichiara i all’interno del ciclo stesso:\nfor (int i = 0; i &lt; LIMITE; i++)\n{\n    printf(\"%i\\n\", i);\n}\nAnche se è accettabile utilizzare variabili come i, j e k per l’iterazione, la maggior parte delle tue variabili dovrebbe avere nomi più specifici. Se stai sommando alcuni valori, ad esempio, chiamare la tua variabile somma. Se il nome della tua variabile giustifica due parole (ad esempio, ha_mangiato), metti un trattino basso (underscore) tra di esse, questo modo di chiamare le variabili è detto snake_case (altri modi di dare il nome alle variabili sono il CamelCase o il meno comune kebab-case).\n\n\n\n\n\n\nAttenzione\n\n\n\nPerché il kebab case è un formato più insolito degli altri? Se provi a dare un nome di variabile in kebab-case in un programma C cosa succede?\n\n\nSe dichiari più variabili dello stesso tipo contemporaneamente, è accettabile dichiararle insieme, come in:\nint quartieri, dimes, nickels, pennies;\nBasta non inizializzare alcune ma non altre, come in:\nint quartieri, dimes = 0, nickels = 0 , pennies;\nPrenditi cura anche di dichiarare i puntatori separatamente dai non puntatori, come in:\nint *p;\nint n;\nNon dichiarare puntatori sulla stessa riga dei non puntatori, come in:\nint *p, n;",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "extra/style_guide.html#strutture",
+    "href": "extra/style_guide.html#strutture",
+    "title": "Guida allo stile per il linguaggio C",
+    "section": "Strutture",
+    "text": "Strutture\nDichiara una struct come tipo come segue, con ogni parentesi graffa su una propria riga e i membri indentati al suo interno, con il nome del tipo anche sulla sua riga:\ntypedef struct\n{\n    char *nome;\n    int matricola;\n} studente_t;\nQuando definisci un tipo con typedef è buona prassi usare un nome che finisce con _t, questo per poterlo facilmente distinguere dai nomi di variabile, dalle funzioni o dalle macro.",
+    "crumbs": [
+      "Risorse",
+      "Come scrivere codice",
+      "Style Guide"
+    ]
+  },
+  {
+    "objectID": "lessons.html",
+    "href": "lessons.html",
+    "title": "Lezioni",
+    "section": "",
+    "text": "Le lezioni sono organizzate in maniera da illustrare di volta in volta un argomento specifico, prima da un punto di vista teorico e poi da un punto di vista pratico. Gli eserci sono propedeutici e servono a fissare i concetti appresi, ma anche a stimolare la creatività e la capacità di problem solving, pertanto è importante svolgerli con attenzione e dedizione seppure non siano obbligatori."
+  },
+  {
+    "objectID": "lessons.html#calendario",
+    "href": "lessons.html#calendario",
+    "title": "Lezioni",
+    "section": "Calendario",
+    "text": "Calendario\n\n\n\nData\nArgomento\nCapitoli del libro di testo\n\n\n\n\n12/03/2024\nIntroduzione al corso e fondamenti di C\n1-3\n\n\n19/03/2024\nStrutture di controllo, tipi di base e funzioni\n4-9\n\n\n26/03/2024\nArray e Puntatori\n8-10\n\n\n09/04/2024\nOperatori bitwise e stringhe\n20\n\n\n10/04/2024\nStruct e puntatori\n11-15\n\n\n23/04/2024\nPreparazione per l’esame"
+  },
+  {
+    "objectID": "faq.html",
+    "href": "faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "Io conosco Python, Ruby, Haskell, Kotlin, Perl e ieri ho implementato un compilatore per il mio unico e innovativo linguaggio di programmazione. Perché dovrei imparare C?\n\nAffermazioni del tipo “Il nostro linguaggio è veloce quasi quanto il C, ma è più facile da scrivere” sono così comuni da diventare quasi cliché. Bene, C è sicuramente veloce quanto C, e lo scopo del corso è facilitare la comprensione di un linguaggio spesso conosciuto come ostico. La comprensione di un linguaggio che non astrae molti concetti e lascia molta responsabilità al programmatore è importante per avere delle solide basi su concetti che pervadono tutti i linguaggi di programmazione.\n\nIl mio telefono ha 6 GB di RAM, quindi perché i libri di testo dedicano così tante pagine a tecniche per risparmiare kilobytes di peso ai file eseguibili?\nIl mio vecchissimo computer riesce ad eseguire 3,200,000,000 istruzioni al secondo, perché dovrei interessarmi se un’operazione confronta 8 o 16 bit?\n\nDovremmo scrivere codice che possiamo scrivere velocemente e che sia leggibile dai nostri simili. Stiamo ancora scrivendo in C, quindi il nostro codice leggibile ma non perfettamente ottimizzato verrà comunque eseguito un ordine di grandezza più velocemente che se avessimo scritto codice comparabile in un numero qualsiasi di linguaggi alternativi.",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "faq.html#come-si-svolge-lesame",
+    "href": "faq.html#come-si-svolge-lesame",
+    "title": "FAQ",
+    "section": "Come si svolge l’esame?",
+    "text": "Come si svolge l’esame?\nL’esame del corso di Dati e Algoritmi è scritto, in presenza e si svolge in 3 parti:\n\ndomande: verifica della conoscenza teorica in programma, semplici dimostrazioni;\nesercizi: capacità di risolvere problemi di progetto e analisi di algoritmi (simili a quelli affrontati durante il corso);\ncodice: scrittura in linguaggio C di algoritmi che utilizzano strutture dati;\n\nogni parte dell’esame dura 45 minuti, per un totale di 2 ore e 15 minuti.",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "faq.html#come-si-calcola-il-voto-finale",
+    "href": "faq.html#come-si-calcola-il-voto-finale",
+    "title": "FAQ",
+    "section": "Come si calcola il voto finale?",
+    "text": "Come si calcola il voto finale?\nOgnuna delle tre parti dell’esame è valutata al massimo 11 punti, il voto è la somma delle tre parti.\n\n\n\n\n\n\nImportante\n\n\n\nSe in una delle tre parti si ottiene una valutazione inferiore a 4, l’esame è da considerarsi non superato nella sua interezza.\n\n\nCon 33 punti si ottiene la lode.\nDi seguito è riportato l’algoritmo di calcolo del voto finale:\n// algoritmo per calcolare il voto dell'esame\nint voto_finale(int domande, int esercizi, int codice)\n{\n    int voto = domande + esercizi + codice;\n\n    // se una delle tre parti è inferiore a 4,\n    // l'esame è da considerarsi non superato\n    if (domande &lt; 4 || esercizi &lt; 4 || codice &lt; 4)\n    {\n        voto = 0;\n    }\n\n    switch (voto)\n    {\n        case 31:\n        case 32:\n            voto = 30;\n            break;\n\n        case 33:\n            voto = 31; // 31 equivale a 30 e lode\n            break;\n\n        case default:\n            break;\n    }\n\n  return voto;\n}",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "faq.html#posso-usare-il-mio-computer-per-scrivere-codice",
+    "href": "faq.html#posso-usare-il-mio-computer-per-scrivere-codice",
+    "title": "FAQ",
+    "section": "Posso usare il mio computer per scrivere codice?",
+    "text": "Posso usare il mio computer per scrivere codice?\nNo, la parte di scrittura di codice si svolge tramite i computer del laboratorio.",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "faq.html#non-ho-un-computer-posso-svolgere-lesame",
+    "href": "faq.html#non-ho-un-computer-posso-svolgere-lesame",
+    "title": "FAQ",
+    "section": "Non ho un computer, posso svolgere l’esame?",
+    "text": "Non ho un computer, posso svolgere l’esame?\nSì, tuttavia per poter svolgere gli esercizi di programmazione è necessario avere una buona dimestichezza con l’uso di un computer ed è fortemente consigliato fare pratica a casa.",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html",
+    "href": "CODE_OF_CONDUCT.html",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.\n\n\n\nExamples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting\n\n\n\n\nCommunity leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.\n\n\n\nThis Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.\n\n\n\nInstances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at spanio@dei.unipd.it. All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident.\n\n\n\nCommunity leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community.\n\n\n\n\nThis Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#our-pledge",
+    "href": "CODE_OF_CONDUCT.html#our-pledge",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#our-standards",
+    "href": "CODE_OF_CONDUCT.html#our-standards",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Examples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting"
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#enforcement-responsibilities",
+    "href": "CODE_OF_CONDUCT.html#enforcement-responsibilities",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#scope",
+    "href": "CODE_OF_CONDUCT.html#scope",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#enforcement",
+    "href": "CODE_OF_CONDUCT.html#enforcement",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at spanio@dei.unipd.it. All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#enforcement-guidelines",
+    "href": "CODE_OF_CONDUCT.html#enforcement-guidelines",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Community leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#attribution",
+    "href": "CODE_OF_CONDUCT.html#attribution",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "This Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
+  },
+  {
+    "objectID": "extra/docker.html",
+    "href": "extra/docker.html",
+    "title": "Ambiente di sviluppo",
+    "section": "",
+    "text": "Per chi non ha una istallazione Linux (nativa o VM) è possibile riprodurre un ambiente identico a quello utilizzato nelle lezioni tramite una immagine docker. Ecco come fare:",
+    "crumbs": [
+      "Risorse",
+      "Ambiente di sviluppo"
+    ]
+  },
+  {
+    "objectID": "extra/docker.html#metodi-alternativi",
+    "href": "extra/docker.html#metodi-alternativi",
+    "title": "Ambiente di sviluppo",
+    "section": "Metodi alternativi",
+    "text": "Metodi alternativi\n\nPer chi ha un sistema operativo MacOS o Linux basta installare gcc.\nIn Windows è possibile utilizzare WSL 2, un sistema simile a docker per integrare direttamente Ubuntu in Windows.",
+    "crumbs": [
+      "Risorse",
+      "Ambiente di sviluppo"
+    ]
+  },
+  {
+    "objectID": "extra/license.html",
+    "href": "extra/license.html",
+    "title": "Open Source License",
+    "section": "",
+    "text": "I materiali presenti sul sito sono messi a disposizione sotto licenza Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Il testo completo della licenza è disponibile qui.\nIl codice sorgente di questo sito è disponibile a https://github.com/matteospanio/corso-c.\nInoltre il sito fa uso di diversi altri progetti open-source, la distribuzione dei quali è soggetta alle rispettive licenze. I principali componenti e le loro licenze sono:\n\n\n\nProgetto\nLicenza\n\n\n\n\nPandoc\nGNU GPL v2\n\n\nBootstrap 5.1\nMIT\n\n\nBootswatch 5.1\nMIT\n\n\nDeno\nMIT\n\n\nesbuild\nMIT\n\n\nDart Sass\nMIT\n\n\nObservable Runtime\nISC\n\n\nQuarto 1.4\nMIT"
+  },
+  {
+    "objectID": "extra/books.html",
+    "href": "extra/books.html",
+    "title": "Libri di testo",
+    "section": "",
+    "text": "Il libro del corso è Programmazione in C di Kim N. King, in particolare nell’edizione italiana edita da Apogeo.\n\nLetture consigliate\n\n\n\n\n\n\nNota\n\n\n\nQuesta è una lista di letture suggerite per approfondire concetti visti durante il corso, i contenuti di questi libri però non sono richiesti in sede d’esame.\n\n\n\n21st Century C di Ben Klemens\nExpert C Programming: Deep C secrets di Peter Van Der Linden\nHead First C di David e Dawn Griffiths\nAn introduction to C&GUI programming di Simon Long\nModern C di Jens Gustedt",
+    "crumbs": [
+      "Risorse",
+      "Libri di testo"
     ]
   },
   {
@@ -740,6 +772,17 @@
     "crumbs": [
       "Lezioni",
       "Puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/03/index.html",
+    "href": "lessons/03/index.html",
+    "title": "Tipi di base e array",
+    "section": "",
+    "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
+    "crumbs": [
+      "Lezioni",
+      "Tipi di base e array"
     ]
   },
   {
@@ -872,57 +915,14 @@
     ]
   },
   {
-    "objectID": "lessons.html",
-    "href": "lessons.html",
-    "title": "Lezioni",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Risorse",
     "section": "",
-    "text": "Le lezioni sono organizzate in maniera da illustrare di volta in volta un argomento specifico, prima da un punto di vista teorico e poi da un punto di vista pratico. Gli eserci sono propedeutici e servono a fissare i concetti appresi, ma anche a stimolare la creatività e la capacità di problem solving, pertanto è importante svolgerli con attenzione e dedizione seppure non siano obbligatori."
-  },
-  {
-    "objectID": "lessons.html#calendario",
-    "href": "lessons.html#calendario",
-    "title": "Lezioni",
-    "section": "Calendario",
-    "text": "Calendario\n\n\n\nData\nArgomento\nCapitoli del libro di testo\n\n\n\n\n12/03/2024\nIntroduzione al corso e fondamenti di C\n1-3\n\n\n19/03/2024\nStrutture di controllo, tipi di base e funzioni\n4-9\n\n\n26/03/2024\nArray e Puntatori\n8-10\n\n\n09/04/2024\nOperatori bitwise e stringhe\n20\n\n\n10/04/2024\nStruct e puntatori\n11-15\n\n\n23/04/2024\nPreparazione per l’esame"
-  },
-  {
-    "objectID": "extra/license.html",
-    "href": "extra/license.html",
-    "title": "Open Source License",
-    "section": "",
-    "text": "I materiali presenti sul sito sono messi a disposizione sotto licenza Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Il testo completo della licenza è disponibile qui.\nIl codice sorgente di questo sito è disponibile a https://github.com/matteospanio/corso-c.\nInoltre il sito fa uso di diversi altri progetti open-source, la distribuzione dei quali è soggetta alle rispettive licenze. I principali componenti e le loro licenze sono:\n\n\n\nProgetto\nLicenza\n\n\n\n\nPandoc\nGNU GPL v2\n\n\nBootstrap 5.1\nMIT\n\n\nBootswatch 5.1\nMIT\n\n\nDeno\nMIT\n\n\nesbuild\nMIT\n\n\nDart Sass\nMIT\n\n\nObservable Runtime\nISC\n\n\nQuarto 1.4\nMIT"
-  },
-  {
-    "objectID": "extra/docker.html",
-    "href": "extra/docker.html",
-    "title": "Ambiente di sviluppo",
-    "section": "",
-    "text": "Per chi non ha una istallazione Linux (nativa o VM) è possibile riprodurre un ambiente identico a quello utilizzato nelle lezioni tramite una immagine docker. Ecco come fare:",
+    "text": "Questa sezione è dedicata a risorse che possono essere utili da consultare per avere dei riferimenti ma non è necessario studiarle.\nIn particolare ci sono:\n\nuna sezione dedicata ai libri di testo in cui si può consultare una lista di letture suggerite oltre ad avere informazioni sul libro di testo ufficiale del corso;\nuna guida alla scrittura di codice chiaro in C, non è un requisito del corso scrivere seguendo questi criteri, è comunque consigliato applicare delle regole di formattazione per scrivere codice chiaro e coerente;\nuna sezione dedicata a domande e risposte frequenti in cui, in particolare, vengono descritte le modalità d’esame.",
     "crumbs": [
-      "Risorse",
-      "Ambiente di sviluppo"
-    ]
-  },
-  {
-    "objectID": "extra/docker.html#metodi-alternativi",
-    "href": "extra/docker.html#metodi-alternativi",
-    "title": "Ambiente di sviluppo",
-    "section": "Metodi alternativi",
-    "text": "Metodi alternativi\n\nPer chi ha un sistema operativo MacOS o Linux basta installare gcc.\nIn Windows è possibile utilizzare WSL 2, un sistema simile a docker per integrare direttamente Ubuntu in Windows.",
-    "crumbs": [
-      "Risorse",
-      "Ambiente di sviluppo"
-    ]
-  },
-  {
-    "objectID": "extra/books.html",
-    "href": "extra/books.html",
-    "title": "Libri di testo",
-    "section": "",
-    "text": "Il libro del corso è Programmazione in C di Kim N. King, in particolare nell’edizione italiana edita da Apogeo.\n\nLetture consigliate\n\n\n\n\n\n\nNota\n\n\n\nQuesta è una lista di letture suggerite per approfondire concetti visti durante il corso, i contenuti di questi libri però non sono richiesti in sede d’esame.\n\n\n\n21st Century C di Ben Klemens\nExpert C Programming: Deep C secrets di Peter Van Der Linden\nHead First C di David e Dawn Griffiths\nAn introduction to C&GUI programming di Simon Long\nModern C di Jens Gustedt",
-    "crumbs": [
-      "Risorse",
-      "Libri di testo"
+      "Lezioni",
+      "Risorse"
     ]
   },
   {
@@ -938,15 +938,15 @@
     ]
   },
   {
-    "objectID": "exercises/01/somma_razionale.html",
-    "href": "exercises/01/somma_razionale.html",
-    "title": "Esercizio: somma di numeri razionali",
+    "objectID": "exercises/01/libretto.html",
+    "href": "exercises/01/libretto.html",
+    "title": "Esercizio: il libretto degli esami",
     "section": "",
-    "text": "Si vuole scrivere un programma che accetti in input due razionali nella forma n/m e ne stampi la somma (non semplificata).\nAd esempio:\nInserisci il primo numero: 3/4\nInserisci il secondo numero: 1/2\nLa somma dei due numeri è 5/4\nOpzionale:\n\nUna volta compilato il programma eseguilo con gdb controllando ad ogni step i valori delle variabili locali.\n\n\n\n\n\n\n\nSuggerimento\n\n\n\nIn questo caso possiamo richiedere all’utente che il formato includa lo slash, e quindi includerlo nel pattern di scanf.",
+    "text": "Si vuole scrivere un programma che, dati in input i voti di più esami e i relativi crediti, calcoli la media ponderata dei voti e la visualizzi a video.\n\n\n\n\n\n\nSi assume che gli esami siano 3: algebra lineare, analisi matematica e introduzione alla programmazione (java).\n\n\n\nQuando il programma viene eseguito deve chiedere all’utente di inserire il voto di un certo esame e il relativo numero di crediti associato. Una volta inseriti tutti i voti e i crediti, il programma deve calcolare la media ponderata e visualizzarla a video.\nOpzionale:\n\nProvare a visualizzare anche la media aritmetica dei voti;\nVisualizzare anche l’elenco dei voti e dei crediti inseriti.\nProva a stampare il voto con 2 cifre decimali, ad esempio 27.11 (per fare questo bisogna cambiare il tipo di dato usato per memorizzare la media e usare il type casting durante la divisione).\n\n\n\n\n\n\n\nSuggerimento\n\n\n\nLa media ponderata si calcola come la somma dei prodotti tra ciascun voto e i relativi crediti, diviso la somma dei crediti. Formalmente:\n\\[\n\\text{media} = \\frac{\\sum_{i=1}^{n} voto_i \\cdot crediti_i}{\\sum_{i=1}^{n} crediti_i}\n\\] dove \\(voto_i\\) è il voto dell’esame \\(i\\)-esimo e \\(crediti_i\\) è il numero di crediti dell’esame \\(i\\)-esimo.\nAd esempio, se si hanno tre esami con voti 30, 28 e 25 e i rispettivi crediti sono 6, 9 e 12, la media ponderata è: \\[\n\\frac{30 \\cdot 6 + 28 \\cdot 9 + 25 \\cdot 12}{6 + 9 + 12} = \\frac{180 + 252 + 300}{27} = \\frac{732}{27} \\approx 27.11\n\\]\n\n\nEsempio di main:\n\n\n Scarica il file \n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int voto_analisi1, voto_algebra_lineare, voto_java;\n    int crediti_analisi1, crediti_algebra_lineare, crediti_java;\n    int media_ponderata;\n\n    // TODO: Chiedere all'utente i voti e i crediti dei tre esami\n\n    // TODO: Calcolare la media ponderata\n\n    printf(\"La media ponderata è: %d\\n\", media_ponderata);\n}",
     "crumbs": [
       "Lezioni",
       "Basi di C",
-      "Somma razionale"
+      "Libretto universitario"
     ]
   },
   {
@@ -962,10 +962,10 @@
     ]
   },
   {
-    "objectID": "exercises.html",
-    "href": "exercises.html",
-    "title": "Esercizi",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hello C 2024",
     "section": "",
-    "text": "Gli esercizi sono divisi per lezione. Ogni lezione tratta un numero variabile di argomenti, quindi gli esercizi sono divisi in base a questi argomenti. Gli esercizi di lezioni più avanzate fanno spesso riferimento a concetti appresi in lezioni precedenti, quindi è consigliabile svolgerli in ordine.\nPer compilare gli esercizi si suggerisce di usare il comando gcc con i warning attivati e l’opzione -std=c99 per compilare in standard C99. Di seguito il comando che si può usare per compilare un file sorgente esercizio.c:\ngcc -std=c99 -Wall -Wextra -pedantic -Werror -g -o esercizio esercizio.c\nTalvolta può essere utile usare un file Makefile per compilare più file sorgente. Di seguito un esempio di Makefile:\n\n\n Scarica il file \nFILES=esercizio.c\nEXECUTABLE=esercizio\n\nCC=gcc\nCFLAGS=-std=c99 -Wall -Wextra -pedantic -Werror -g\n\n$(EXECUTABLE): $(FILES)\n    $(CC) $(CFLAGS) -o $@ $^"
+    "text": "Materiali in continuo aggiornamento\n\n\n\nIl contenuto del sito non è ancora definitivo, potrebbe cambiare di frequente. Per piacere siate pazienti.\n\n\nDispense per l’introdottozione al linguaggio di programmazione C. Questa è la pagina web della parte di programmazione in C del corso di dati e algoritmi per la laurea triennale in ingegneria elettronica presso l’Università di Padova.\n\nQuesto sito\nIl sito è organizzato per 3 macro aree:\n\nlezioni\nesercizi\nrisorse\n\nLa sezione lezioni raccoglie tutti i contenuti presentati a lezione, ogni lezione è riportata in formato html e pdf, inoltre è possibile consultare anche le diapositive viste a lezione in formato RevealJS. Oltre ai contenuti visti in classe sono presenti, saltuariamente, brevi guide sull’utilizzo/installazione di software o approfondimenti.\nLa sezione esercizi raccoglie molti esercizi per ripassare gli argomenti visti in classe e prepararsi all’esame, in generale vi sono esercizi di varia difficoltà.\nLa sezione risorse contiene materiali vari: una lista di letture consigliate sul linguaggio C oltre al libro di testo del corso, un elenco di materiali didattici reperibili online, domande e risposte comuni sull’esame, una guida sull’installazione dell’ambiente di sviluppo per scrivere programmi C."
   }
 ]
