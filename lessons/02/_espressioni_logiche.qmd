@@ -6,12 +6,20 @@ Alcuni operatori ci dicono se una certa espressione è "vera" o "falsa", ad esem
 $i < j < k$ si può scrivere ma non fa quello che sembra, in realtà: `(i < j) < k` è vero con `int i=3, j=2, k=1`.
 :::
 
-##
+## bool
 
 Il tipo di ritorno di queste espressioni in C è un intero, il tipo booleano non esiste in C (in C99 si è provato a sistemare).
 
 - $0 \rightarrow$ falso
 - $1 \rightarrow$ vero (e tutti gli interi diversi da $0$)
+
+::: {.callout-note}
+Da C99 in poi, `bool` è un tipo definito in `stdbool.h` che può assumere solo i valori `true` e `false`.
+```{.c}
+#include <stdbool.h>
+bool b = true;
+```
+:::
 
 ## Espressioni logiche
 
@@ -28,3 +36,15 @@ L'espressione `(5 && 1)` viene valutata come vera in quanto entrambi i valori so
 ::: {.callout-note}
 Sia `&&` che `||` sono operatori a corto circuito, cioè se il risultato è già noto dopo aver valutato la prima espressione, la seconda non viene valutata.
 :::
+
+## Quiz!
+
+Qual è il valore di verità delle seguenti espressioni?
+
+1.  `!0`
+2.  `1 && 2`
+3.  `1 || 0`
+4.  `1 > 0`
+5.  `'a' > 'b'`
+6.  `'Z' > 'a'`
+7.  `':' < ';'`

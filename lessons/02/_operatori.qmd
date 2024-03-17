@@ -11,7 +11,7 @@ Gli operatori più in alto hanno priorità più alta:
 
 ![](./figures/table_operators.png)
 
-## Indovinello
+## Quiz!
 
 Indovina l'output del seguente codice:
 

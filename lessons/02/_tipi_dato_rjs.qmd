@@ -1,0 +1,35 @@
+## Tipi di dato
+
+Le varibili possono contenere diversi tipi di dati, i tipi di dati base in C sono:
+
+- interi: int, short, long int, unsigned short/int/long int
+- virgola mobile: float, double, long double
+- char: caratteri
+
+Inoltre esiste il tipo speciale `void` che indica l'assenza di informazione.
+
+## Tipi numerici
+
+I vari tipi di interi e tipi di virgola mobile si distinguono per il numero di byte usati per la loro rappresentazione in memoria e, conseguentemente, per il range di valori che possono rappresentare.
+
+::: {.callout-note}
+Il numero di byte usati per rappresentare un tipo di dato dipende dal compilatore e dall'architettura del computer. Per sapere quanti byte vengono usati per rappresentare un tipo di dato si può usare l'operatore `sizeof`.
+
+Per conoscere il range di valori che può rappresentare un tipo di dato si può usare la libreria `limits.h` per i tipi interi e `float.h` per i tipi di virgola mobile.
+:::
+
+## Tipi numerici
+
+```{.c}
+{{< include ./code/limits.c >}}
+```
+
+::: {.aside}
+Quando si ha a che fare con questi valori è bene stare attenti agli overflow.
+:::
+
+## Tipi char
+
+Il tipo `char` è usato per rappresentare un singolo carattere. In C i caratteri sono rappresentati come interi senza segno di 8 bit.
+
+I char vanno sempre scritti tra apici singoli, scrivendo un solo carattere. Il C lin interpreterà come un intero.

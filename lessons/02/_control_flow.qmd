@@ -1,0 +1,191 @@
+# Control flow
+
+Essendo C un linguaggio strutturato, possiede un insieme di istruzioni di controllo del flusso di esecuzione del programma. Queste istruzioni permettono di eseguire un blocco di codice solo se una condizione è vera, di eseguire un blocco di codice ripetutamente, di eseguire un blocco di codice solo se una condizione è falsa, ecc. Le principali istruzioni di controllo del flusso sono:
+
+- `if`-`else`
+- `switch`
+- `for`
+- `while`
+- `do`-`while`
+- `break`
+- `continue`
+
+## `if`-`else`
+
+L'istruzione `if`-`else` permette di eseguire un blocco di codice solo se una condizione è vera. La sintassi è la seguente:
+
+```c
+if (espressione) {
+    // statements
+} else {
+    // statements
+}
+```
+
+Se la condizione è vera, viene eseguito il blocco di codice immediatamente successivo all'istruzione `if`. Altrimenti, viene eseguito il blocco di codice immediatamente successivo all'istruzione `else`.
+
+```c
+#include <stdio.h>
+
+int main() {
+    int x = 10;
+
+    if (x > 5) {
+        printf("x è maggiore di 5\n");
+    } else {
+        printf("x è minore o uguale a 5\n");
+    }
+
+    return 0;
+}
+```
+
+Il codice stampa:
+
+```
+x è maggiore di 5
+```
+
+### `if`-`else` annidati
+
+È possibile annidare più istruzioni `if`-`else` all'interno di un blocco di codice.
+
+```c
+#include <stdio.h>
+
+int main() {
+    int x = 10;
+
+    if (x > 5) {
+        if (x > 7) {
+            printf("x è maggiore di 7\n");
+        } else {
+            printf("x è minore o uguale a 7\n");
+        }
+    } else {
+        printf("x è minore o uguale a 5\n");
+    }
+
+    return 0;
+}
+```
+
+Il codice stampa:
+
+```
+x è maggiore di 7
+```
+
+Oppure si può usare l'istruzione `else if` per evitare l'annidamento.
+
+```c
+{{< include code/if_else.c >}}
+```
+
+Questa versione stampa lo stesso risultato della precedente, in questo caso però, il secondo `if` è allineato con il primo `else`, rendendo il codice più leggibile.
+
+::: {.callout-caution}
+Un errore comune è confondere l'operatore di assegnamento `=` con l'operatore di confronto `==`. Ad esempio, l'espressione `x = 10` assegna il valore `10` alla variabile `x`, mentre l'espressione `x == 10` confronta il valore della variabile `x` con `10`. Se si scrive `if (x = 10)`, l'espressione è sempre vera, perché assegna `10` alla variabile `x` e restituisce `10`, che è considerato `true`. Per confrontare il valore della variabile `x` con `10`, si deve invece scrivere `if (x == 10)`.
+:::
+
+## If ternario
+
+L'if ternario è una forma compatta dell'istruzione `if`-`else`. La sintassi è la seguente:
+
+```c
+espressione ? valore_se_vera : valore_se_falsa
+```
+
+Se l'espressione è vera, viene restituito `valore_se_vera`, altrimenti viene restituito `valore_se_falsa`.
+
+```c
+{{< include code/ternary_if.c >}}
+```
+
+Questo modo di scrivere l'istruzione `if`-`else` è utile quando si vuole assegnare un valore a una variabile in base a una condizione con una sola riga di codice. Tuttavia, se l'espressione è complessa, l'uso dell'if ternario può rendere il codice meno leggibile. In questi casi si sconsiglia di utilizzarlo e si preferisce l'istruzione `if`-`else` standard.
+
+## `switch`
+
+Tanti if in cascata potrebbero essere sostituiti da uno switch. La sintassi è la seguente:
+
+```c
+switch (espressione) {
+    case constant-expression:
+        // statements
+        break;
+    case constant-expression:
+        // statements
+        break;
+    // ...
+    default:
+        // statements
+}
+```
+
+L'espressione a fianco dell'istruzione `case` è senza variabili o chiamate a funzioni. L'istruzione `break` è necessaria per terminare il blocco di codice. Se non è presente, il controllo del flusso di esecuzione continua con il blocco di codice successivo. L'istruzione `default` è opzionale e viene eseguita se nessuna delle costanti corrisponde all'espressione.
+
+Un esempio di utilizzo dello switch è il seguente:
+
+```c
+#include <stdio.h>
+
+int main() {
+    int x = 2;
+
+    switch (x) {
+        case 1:
+            printf("x è 1\n");
+            break;
+        case 2:
+            printf("x è 2\n");
+            break;
+        default:
+            printf("x non è nè 1 nè 2\n");
+    }
+
+    return 0;
+}
+```
+
+::: {.callout-important}
+Lo `switch` può essere utilizzato solo con espressioni di tipo intero (`int`, `char`, `short`, `long`, ecc.) e con espressioni di tipo `enum` (che verrà trattato in seguito).
+:::
+
+## Cicli
+
+Caratteristica fondamentale di un linguaggio di programmazione sono i cicli. C implementa i classici for, while, ma anche do...while
+
+- `while (expression) { statements }`
+- `do { statements } while (expression)`
+- `for (initialization; condition; increment) { statements }`
+
+Queste `while` e `for` sono equivalenti: tutto ciò che si può fare con un ciclo `for` si può fare con un ciclo `while` e viceversa. La scelta di quale istruzione utilizzare dipende dal contesto e dalla preferenza personale.
+
+L'istruzione `do-while` è simile a `while`, ma la condizione viene valutata alla fine del blocco di codice. Questo significa che il blocco di codice viene eseguito almeno una volta, anche se la condizione è falsa.
+
+::: {.callout-note}
+Dal C99 è possibile dichiarare variabili all'interno del ciclo `for`. Queste variabili sono visibili solo all'interno del ciclo. In C89 e nelle versioni precedenti, le variabili devono essere dichiarate all'inizio del blocco di codice.
+
+```{.c}
+for (int i = 0; i < 10; i++) {
+    // ...
+}
+```
+:::
+
+### Cicli infiniti
+
+Un ciclo infinito è un ciclo che non termina mai. Un ciclo infinito può essere creato utilizzando un'istruzione `while` con una condizione sempre vera, ad esempio `while (1)`, oppure utilizzando un'istruzione `for` senza condizione, ad esempio `for (;;)`. Un ciclo infinito può essere interrotto con un'istruzione `break`.
+
+```{.c}
+{{< include code/infinite_loop.c >}}
+```
+
+### `break` e `continue`
+
+L'istruzione `break` termina immediatamente il ciclo in cui si trova. L'istruzione `continue` termina l'iterazione corrente del ciclo e passa alla successiva. Entrambe le istruzioni possono essere utilizzate all'interno di cicli `for`, `while` e `do-while`.
+L'istruzione `break` può essere utilizzata anche all'interno di un blocco `switch` per terminare immediatamente l'esecuzione del blocco.
+
+::: {.callout-warning}
+È bene non abusare di `break` e `continue`, perché possono rendere il codice meno leggibile. In generale, è meglio evitare di utilizzare `break` e `continue all'interno di cicli annidati.
+:::

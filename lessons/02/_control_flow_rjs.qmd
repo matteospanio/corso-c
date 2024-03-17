@@ -1,0 +1,122 @@
+Essendo C un linguaggio strutturato, possiede un insieme di istruzioni di controllo del flusso di esecuzione del programma. Le principali istruzioni di controllo del flusso sono:
+
+- `if`-`else`
+- `switch`
+- `for`
+- `while`
+- `do`-`while`
+- `break`
+- `continue`
+
+## `if`-`else`
+
+L'istruzione `if`-`else` permette di eseguire un blocco di codice solo se una condizione è vera. La sintassi è la seguente:
+
+```c
+if (espressione) {
+    // statements
+} else {
+    // statements
+}
+```
+
+## `if`-`else` annidati
+
+Oppure si può usare l'istruzione `else if` per evitare annidamenti.
+
+```c
+{{< include code/if_else.c >}}
+```
+
+::: {.callout-caution}
+Un errore comune è confondere l'operatore di assegnamento `=` con l'operatore di confronto `==`. Ad esempio, l'espressione `x = 10` assegna il valore `10` alla variabile `x`, mentre l'espressione `x == 10` confronta il valore della variabile `x` con `10`. Se si scrive `if (x = 10)`, l'espressione è sempre vera, perché assegna `10` alla variabile `x` e restituisce `10`, che è considerato `true`. Per confrontare il valore della variabile `x` con `10`, si deve invece scrivere `if (x == 10)`.
+:::
+
+## If ternario
+
+L'if ternario è una forma compatta dell'istruzione `if`-`else`. La sintassi è la seguente:
+
+```c
+espressione ? valore_se_vera : valore_se_falsa
+```
+
+Se l'espressione è vera, viene restituito `valore_se_vera`, altrimenti viene restituito `valore_se_falsa`.
+
+## If ternario
+
+```c
+{{< include code/ternary_if.c >}}
+```
+
+Questo modo di scrivere l'istruzione `if`-`else` è utile quando si vuole assegnare un valore a una variabile in base a una condizione con una sola riga di codice. Se l'espressione è complessa, l'uso dell'if ternario può rendere il codice meno leggibile.
+
+## `switch`
+
+Tanti if in cascata potrebbero essere sostituiti da uno switch. La sintassi è la seguente:
+
+```c
+switch (espressione) {
+    case constant-expression:
+        // statements
+        break;
+    case constant-expression:
+        // statements
+        break;
+    // ...
+    default:
+        // statements
+}
+```
+
+::: {.callout-important}
+Lo `switch` può essere utilizzato solo con espressioni di tipo intero (`int`, `char`, `short`, `long`, ecc.) e con espressioni di tipo `enum` (che verrà trattato in seguito).
+:::
+
+## Cicli
+
+Caratteristica fondamentale di un linguaggio di programmazione sono i cicli. C implementa i classici for, while, ma anche do...while
+
+- `while (expression) { statements }`
+- `do { statements } while (expression)`
+- `for (initialization; condition; increment) { statements }`
+
+Queste `while` e `for` sono equivalenti: tutto ciò che si può fare con un ciclo `for` si può fare con un ciclo `while` e viceversa. La scelta di quale istruzione utilizzare dipende dal contesto e dalla preferenza personale.
+
+L'istruzione `do-while` è simile a `while`, ma la condizione viene valutata alla fine del blocco di codice. Questo significa che il blocco di codice viene eseguito almeno una volta, anche se la condizione è falsa.
+
+::: {.callout-note}
+Dal C99 è possibile dichiarare variabili all'interno del ciclo `for`. Queste variabili sono visibili solo all'interno del ciclo. In C89 e nelle versioni precedenti, le variabili devono essere dichiarate all'inizio del blocco di codice.
+
+```{.c}
+for (int i = 0; i < 10; i++) {
+    // ...
+}
+```
+:::
+
+## Cicli infiniti
+
+Un ciclo infinito è un ciclo che non termina mai. Un ciclo infinito può essere creato utilizzando un'istruzione `while` con una condizione sempre vera, ad esempio `while (1)`, oppure utilizzando un'istruzione `for` senza condizione, ad esempio `for (;;)`. Un ciclo infinito può essere interrotto con un'istruzione `break`.
+
+```{.c}
+{{< include code/infinite_loop.c >}}
+```
+
+## `break` e `continue`
+
+L'istruzione `break` termina immediatamente il ciclo in cui si trova. L'istruzione `continue` termina l'iterazione corrente del ciclo e passa alla successiva. Entrambe le istruzioni possono essere utilizzate all'interno di cicli `for`, `while` e `do-while`.
+L'istruzione `break` può essere utilizzata anche all'interno di un blocco `switch` per terminare immediatamente l'esecuzione del blocco.
+
+::: {.callout-warning}
+È bene non abusare di `break` e `continue`, perché possono rendere il codice meno leggibile. In generale, è meglio evitare di utilizzare `break` e `continue all'interno di cicli annidati.
+:::
+
+## Esercizio: FizzBuzz
+
+Scrivere un programma che stampi i numeri da 1 a 100, ma per i multipli di 3 stampi "Fizz" e per i multipli di 5 stampi "Buzz". Per i numeri che sono sia multipli di 3 che di 5 stampi "FizzBuzz".
+
+::: {.callout-tip}
+## Suggerimento
+
+L'operatore modulo `%` restituisce il resto della divisione tra due numeri. Ad esempio, `5 % 3` restituisce `2`, perché `5` diviso `3` dà `1` con un resto di `2`.
+:::

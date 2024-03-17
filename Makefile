@@ -3,7 +3,7 @@ format:
 	@echo "Formatting code..."
 	bash format.sh
 
-_site: *.qmd lessons/01/*.qmd exercises/01/*.qmd _quarto.yml
+_site: *.qmd lessons/01/*.qmd exercises/01/*.qmd _quarto.yml lessons/02/*.qmd
 	@echo "Building site..."
 	quarto render
 

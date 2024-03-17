@@ -1,10 +1,10 @@
 # Espressioni logiche
 
-Le espressioni logiche, o booleane, in C sono fondamentali per l'esecuzione di operazioni condizionali e decisionali nel codice.
+Alcuni operatori sono responsabili della valutazione di espressioni booleane, ossia espressioni che possono essere valutate come vere o false.
 
 ## Operatori Booleani
 
-Gli operatori booleani sono utilizzati per eseguire operazioni logiche su valori booleani o espressioni che possono essere valutate come vere o false. Ecco gli operatori booleani disponibili in C:
+Ecco gli operatori booleani disponibili in C:
 
 - `&&` (AND logico)
 - `||` (OR logico)
@@ -17,6 +17,10 @@ Gli operatori booleani sono utilizzati per eseguire operazioni logiche su valori
 - `<=` (minore o uguale)
 
 Questi operatori producono tutti 0 o 1 come risultato, ma in C qualsiasi valore diverso da 0 è considerato vero.
+
+::: {.callout-warning}
+È importante ricordarsi che gli operatori bitwise (`&`, `|`, `^`, `~`) non sono operatori booleani, ma operatori di manipolazione dei bit. Non vanno confusi con gli operatori booleani, pertanto non vanno utilizzati per valutare espressioni booleane.
+:::
 
 ### AND Logico (`&&`)
 
@@ -34,6 +38,10 @@ L'operatore `!` inverte il valore di verità di un'espressione. Restituisce 1 se
 
 Gli operatori di confronto (`==`, `!=`, `>`, `<`, `>=`, `<=`) confrontano due valori e restituiscono un valore intero in base alla relazione tra di essi.
 
+::: {.callout-note}
+Mentre il risultato di questi operatori è intuitivo su degli interi o float, bisogna notare che dalla parte sinistra e destra possono esserci anche `char` (che in C sono rappresentati come interi da un byte), che valore restituisce l'espressione `'Z' < 'a'`? E `':' < ';'`? Suggerimento: per rispondere senza scrivere codice si provi a consultare la pagina del manuale di `ascii` (`man ascii`).
+:::
+
 ## Valutazione delle Espressioni Booleane
 
 Le espressioni booleane vengono valutate in base alle regole della logica booleana. Il risultato di un'espressione booleana è un valore intero, dove 0 rappresenta "falso" e 1 rappresenta "vero". Ad esempio:
@@ -44,3 +52,26 @@ int result = (i < j && j < k); // result sarà 0 perché entrambe le espressioni
 ```
 
 In questo caso, l'espressione `i < j && j < k` sarà valutata come `0 && 0`, il che restituirà 0 perché entrambe le espressioni sono false.
+
+## Il tipo bool
+
+Come già detto, il tipo di ritorno delle espressioni logiche in C è un intero, il tipo booleano non esiste nativamente in C. Quindi, per rappresentare valori booleani, si utilizzano valori interi, dove:
+
+- $0 \rightarrow$ falso
+- $1 \rightarrow$ vero (e tutti gli interi diversi da $0$)
+
+::: {.callout-note}
+Da C99 in poi, `bool` è un tipo definito in `stdbool.h` che può assumere solo i valori `true` e `false`.
+```{.c}
+#include <stdbool.h>
+bool b = true;
+```
+
+Si tratta di un tipo di dato intero, ma è considerato un tipo booleano. Ciò è possibile grazie all'uso di macro definite in `stdbool.h`:
+```{.c}
+// nel file stdbool.h
+#define true 1
+#define false 0
+#define bool _Bool // _Bool è un tipo di dato intero introdotto in C99
+```
+:::

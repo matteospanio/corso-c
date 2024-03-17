@@ -1,0 +1,48 @@
+# Tipi di dato
+
+Le varibili possono contenere diversi tipi di dati, i tipi di dati base in C sono:
+
+- interi: int, short, long int, unsigned short/int/long int
+- virgola mobile: float, double, long double
+- char: caratteri
+
+Inoltre esiste il tipo speciale `void` che indica l'assenza di informazione.
+
+## Tipi numerici
+
+I vari tipi di interi e tipi di virgola mobile si distinguono per il numero di byte usati per la loro rappresentazione in memoria e, conseguentemente, per il range di valori che possono rappresentare.
+
+La dimensione di un tipo di dato, espressa in byte, e il suo range di valori dipendono dal compilatore e dall’architettura del computer. Per determinare la dimensione di un tipo di dato si può utilizzare l’operatore sizeof, mentre per conoscere il range di valori utilizzabili si possono sfruttare le librerie limits.h (per i tipi interi) e float.h (per i tipi di virgola mobile).
+
+## Tipi numerici
+
+```{.c}
+{{< include ./code/limits.c >}}
+```
+
+Questo esempio illustra come ottenere informazioni su dimensione e range di alcuni tipi numerici in C. È importante notare come la gestione attenta di questi aspetti possa prevenire errori di overflow e underflow.
+
+## Tipi char
+
+Il tipo char è usato per rappresentare singoli caratteri. In C, i caratteri sono trattati come piccoli interi, consentendo di eseguire operazioni aritmetiche su di loro grazie alla codifica ASCII.
+
+Esempio di dichiarazione:
+
+```{.c}
+char lettera = 'A';
+```
+è essenziale usare gli apici singoli (' ') per denotare i valori di tipo char, distinguendoli dalle stringhe, che sono rappresentate tra virgolette doppie (" ").
+
+```{.c}
+#include <stdio.h>
+
+int main(void)
+{
+    char lettera_minuscola = 'a';
+    char lettera_maiuscola = lettera_minuscola - 32;
+    printf("La lettera maiuscola corrispondente è: %c\n", lettera_maiuscola);
+    return 0;
+}
+```
+
+Questo frammento di codice dimostra la conversione di una lettera minuscola in maiuscola sfruttando la differenza costante nei valori ASCII.

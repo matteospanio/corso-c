@@ -26,7 +26,9 @@ Ecco una tabella riassuntiva degli operatori C, ordinati da quelli con più alta
 | Assegnamento       | `=` `+=` `-=` `*=` `/=` `%=` `<<=` `>>=` `&=` `^=` `|=` | Destra-Sinistra |
 | Virgola            | `,`                                                  | Sinistra-Destra   |
 
-## Side-Effects e Incubi
+Alcuni operatori sono comuni a molti linguaggi di programmazione (additivi, moltiplicativi, relazionali, uguaglianza, ...), altri però acquisiscono un significato specifico in C, come ad esempio l'operatore di dereferenziazione `*` o l'operatore di indirizzamento `&`. Nel corso di questa lezione ne approfondiremo alcuni, mentre altri verranno trattati successivamente.
+
+## Side-Effects
 
 Gli operatori di incremento e decremento (`++` e `--`) sono potenti ma vanno usati con cautela. Possono essere utilizzati sia come operazioni prefisse che postfix. La differenza principale tra queste due forme sta nel momento in cui viene effettuata l'operazione di incremento o decremento.
 
@@ -45,3 +47,7 @@ printf("i is %d\n", i);    // Stampa: i is 3
 Nel primo `printf`, l'operatore post-incremento viene utilizzato, quindi il valore di `i` (1) viene stampato e poi incrementato a 2. Nel secondo `printf`, il valore incrementato di `i` (2) viene stampato. Nel terzo `printf`, l'operatore pre-incremento viene utilizzato, quindi `i` viene incrementato a 3 e poi stampato. Infine, nel quarto `printf`, viene stampato di nuovo il valore corrente di `i`, che è 3.
 
 È importante prestare attenzione a questi comportamenti per evitare risultati inaspettati nel proprio codice.
+
+::: {.callout-note}
+Gli altri operatori di uso frequente che comportano un side effect sono quelli di assegnamento `=`, `+=`, `-=` e così via. Questi operatori modificano il valore della variabile a sinistra dell'operatore.
+:::
