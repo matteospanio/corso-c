@@ -8,7 +8,7 @@
 
 <meta name="author" content="Matteo Spanio">
 
-<title>Hello C 2024 - Strutture di controllo, tipi di base e funzioni</title>
+<title>Hello C 2024 - Strutture di controllo, tipi di base, funzioni e array</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,6 +119,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -172,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/02/index.html">Strutture di controllo, tipi di base e funzioni</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/02/index.html">Strutture di controllo, tipi di base, funzioni e array</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -193,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lessons/02/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Strutture di controllo, tipi di base e funzioni</span></a>
+ <span class="menu-text">Strutture di controllo, tipi di base, funzioni e array</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -230,13 +259,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">In questa pagina</h2>
    
   <ul>
-  <li><a href="#operatori-3" id="toc-operatori-3" class="nav-link active" data-scroll-target="#operatori-3">Operatori</a>
+  <li><a href="#tipi-di-dato-1" id="toc-tipi-di-dato-1" class="nav-link active" data-scroll-target="#tipi-di-dato-1">Tipi di dato</a>
+  <ul class="collapse">
+  <li><a href="#tipi-numerici-2" id="toc-tipi-numerici-2" class="nav-link" data-scroll-target="#tipi-numerici-2">Tipi numerici</a></li>
+  <li><a href="#tipi-numerici-3" id="toc-tipi-numerici-3" class="nav-link" data-scroll-target="#tipi-numerici-3">Tipi numerici</a></li>
+  <li><a href="#tipi-char-1" id="toc-tipi-char-1" class="nav-link" data-scroll-target="#tipi-char-1">Tipi char</a></li>
+  </ul></li>
+  <li><a href="#operatori-4" id="toc-operatori-4" class="nav-link" data-scroll-target="#operatori-4">Operatori</a>
   <ul class="collapse">
   <li><a href="#tipi-di-operatori" id="toc-tipi-di-operatori" class="nav-link" data-scroll-target="#tipi-di-operatori">Tipi di Operatori</a></li>
-  <li><a href="#side-effects-e-incubi" id="toc-side-effects-e-incubi" class="nav-link" data-scroll-target="#side-effects-e-incubi">Side-Effects e Incubi</a></li>
+  <li><a href="#side-effects" id="toc-side-effects" class="nav-link" data-scroll-target="#side-effects">Side-Effects</a></li>
   <li><a href="#espressioni-istruzione" id="toc-espressioni-istruzione" class="nav-link" data-scroll-target="#espressioni-istruzione">Espressioni istruzione</a></li>
   </ul></li>
-  <li><a href="#espressioni-logiche-3" id="toc-espressioni-logiche-3" class="nav-link" data-scroll-target="#espressioni-logiche-3">Espressioni logiche</a>
+  <li><a href="#espressioni-logiche-4" id="toc-espressioni-logiche-4" class="nav-link" data-scroll-target="#espressioni-logiche-4">Espressioni logiche</a>
   <ul class="collapse">
   <li><a href="#operatori-booleani" id="toc-operatori-booleani" class="nav-link" data-scroll-target="#operatori-booleani">Operatori Booleani</a>
   <ul class="collapse">
@@ -246,6 +281,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#operatori-di-confronto" id="toc-operatori-di-confronto" class="nav-link" data-scroll-target="#operatori-di-confronto">Operatori di Confronto</a></li>
   </ul></li>
   <li><a href="#valutazione-delle-espressioni-booleane" id="toc-valutazione-delle-espressioni-booleane" class="nav-link" data-scroll-target="#valutazione-delle-espressioni-booleane">Valutazione delle Espressioni Booleane</a></li>
+  <li><a href="#il-tipo-bool" id="toc-il-tipo-bool" class="nav-link" data-scroll-target="#il-tipo-bool">Il tipo bool</a></li>
+  </ul></li>
+  <li><a href="#control-flow-2" id="toc-control-flow-2" class="nav-link" data-scroll-target="#control-flow-2">Control flow</a>
+  <ul class="collapse">
+  <li><a href="#if-else-1" id="toc-if-else-1" class="nav-link" data-scroll-target="#if-else-1"><code>if</code>-<code>else</code></a>
+  <ul class="collapse">
+  <li><a href="#if-else-annidati-1" id="toc-if-else-annidati-1" class="nav-link" data-scroll-target="#if-else-annidati-1"><code>if</code>-<code>else</code> annidati</a></li>
+  </ul></li>
+  <li><a href="#if-ternario-2" id="toc-if-ternario-2" class="nav-link" data-scroll-target="#if-ternario-2">If ternario</a></li>
+  <li><a href="#switch-1" id="toc-switch-1" class="nav-link" data-scroll-target="#switch-1"><code>switch</code></a></li>
+  <li><a href="#cicli-1" id="toc-cicli-1" class="nav-link" data-scroll-target="#cicli-1">Cicli</a>
+  <ul class="collapse">
+  <li><a href="#cicli-infiniti-1" id="toc-cicli-infiniti-1" class="nav-link" data-scroll-target="#cicli-infiniti-1">Cicli infiniti</a></li>
+  <li><a href="#break-e-continue-1" id="toc-break-e-continue-1" class="nav-link" data-scroll-target="#break-e-continue-1"><code>break</code> e <code>continue</code></a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -255,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Strutture di controllo, tipi di base e funzioni</h1>
+<h1 class="title">Strutture di controllo, tipi di base, funzioni e array</h1>
 </div>
 
 
@@ -298,13 +348,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
   </div>
   
+<div>
+  <div class="abstract">
+    <div class="block-title">Sommario</div>
+    <p>In questa lezione si termina l’introduzione alla sintassi del C, con un focus sulle strutture di controllo, le espressioni, i tipi di base, le funzioni e un accenno ai puntatori e agli array. Gli argomenti vengono presentati in ordine diverso rispetto al libro di testo.</p>
+  </div>
+</div>
 
 
 </header>
 
 
-<p>Il C è basato su <em>espressioni</em> più che su istruzioni. Queste espressioni sono un insieme di <strong>variabili</strong>, <strong>costanti</strong> e <strong>operatori</strong>.</p>
-<section id="operatori-3" class="level1">
+<p>Il C è basato su <em>espressioni</em> più che su istruzioni. Queste espressioni sono un insieme di</p>
+<ol type="1">
+<li><strong>variabili</strong>,</li>
+<li><strong>costanti</strong>,</li>
+<li><strong>operatori</strong>.</li>
+</ol>
+<section id="tipi-di-dato-1" class="level1">
+<h1>Tipi di dato</h1>
+<p>Le varibili possono contenere diversi tipi di dati, i tipi di dati base in C sono:</p>
+<ul>
+<li>interi: int, short, long int, unsigned short/int/long int</li>
+<li>virgola mobile: float, double, long double</li>
+<li>char: caratteri</li>
+</ul>
+<p>Inoltre esiste il tipo speciale <code>void</code> che indica l’assenza di informazione.</p>
+<section id="tipi-numerici-2" class="level2">
+<h2 class="anchored" data-anchor-id="tipi-numerici-2">Tipi numerici</h2>
+<p>I vari tipi di interi e tipi di virgola mobile si distinguono per il numero di byte usati per la loro rappresentazione in memoria e, conseguentemente, per il range di valori che possono rappresentare.</p>
+<p>La dimensione di un tipo di dato, espressa in byte, e il suo range di valori dipendono dal compilatore e dall’architettura del computer. Per determinare la dimensione di un tipo di dato si può utilizzare l’operatore sizeof, mentre per conoscere il range di valori utilizzabili si possono sfruttare le librerie limits.h (per i tipi interi) e float.h (per i tipi di virgola mobile).</p>
+</section>
+<section id="tipi-numerici-3" class="level2">
+<h2 class="anchored" data-anchor-id="tipi-numerici-3">Tipi numerici</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;limits.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"size of short: </span><span class="sc">%lu\n</span><span class="st">"</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">short</span><span class="op">));</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"size of int: </span><span class="sc">%lu\n</span><span class="st">"</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"size of double: </span><span class="sc">%lu\n</span><span class="st">"</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">double</span><span class="op">));</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"INT_MAX = </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> INT_MAX<span class="op">);</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"INT_MIN = </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> INT_MIN<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"UINT_MAX = </span><span class="sc">%u\n</span><span class="st">"</span><span class="op">,</span> UINT_MAX<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"LONG_MAX = </span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> LONG_MAX<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"LONG_MIN = </span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> LONG_MIN<span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"ULONG_MAX = </span><span class="sc">%lu\n</span><span class="st">"</span><span class="op">,</span> ULONG_MAX<span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"SHRT_MAX = </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> SHRT_MAX<span class="op">);</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"SHRT_MIN = </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> SHRT_MIN<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"USHRT_MAX = </span><span class="sc">%u\n</span><span class="st">"</span><span class="op">,</span> USHRT_MAX<span class="op">);</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Questo esempio illustra come ottenere informazioni su dimensione e range di alcuni tipi numerici in C. È importante notare come la gestione attenta di questi aspetti possa prevenire errori di overflow e underflow.</p>
+</section>
+<section id="tipi-char-1" class="level2">
+<h2 class="anchored" data-anchor-id="tipi-char-1">Tipi char</h2>
+<p>Il tipo char è usato per rappresentare singoli caratteri. In C, i caratteri sono trattati come piccoli interi, consentendo di eseguire operazioni aritmetiche su di loro grazie alla codifica ASCII.</p>
+<p>Esempio di dichiarazione:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> lettera <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>è essenziale usare gli apici singoli (’ ’) per denotare i valori di tipo char, distinguendoli dalle stringhe, che sono rappresentate tra virgolette doppie (” “).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> lettera_minuscola <span class="op">=</span> <span class="ch">'a'</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> lettera_maiuscola <span class="op">=</span> lettera_minuscola <span class="op">-</span> <span class="dv">32</span><span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"La lettera maiuscola corrispondente è: </span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> lettera_maiuscola<span class="op">);</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Questo frammento di codice dimostra la conversione di una lettera minuscola in maiuscola sfruttando la differenza costante nei valori ASCII.</p>
+</section>
+</section>
+<section id="operatori-4" class="level1">
 <h1>Operatori</h1>
 <p>Gli operatori in C sono fondamentali per eseguire operazioni su variabili e valori. Ogni operatore ha diverse caratteristiche che influenzano il modo in cui viene valutata un’espressione.</p>
 <section id="tipi-di-operatori" class="level2">
@@ -402,36 +518,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<p>Alcuni operatori sono comuni a molti linguaggi di programmazione (additivi, moltiplicativi, relazionali, uguaglianza, …), altri però acquisiscono un significato specifico in C, come ad esempio l’operatore di dereferenziazione <code>*</code> o l’operatore di indirizzamento <code>&amp;</code>. Nel corso di questa lezione ne approfondiremo alcuni, mentre altri verranno trattati successivamente.</p>
 </section>
-<section id="side-effects-e-incubi" class="level2">
-<h2 class="anchored" data-anchor-id="side-effects-e-incubi">Side-Effects e Incubi</h2>
+<section id="side-effects" class="level2">
+<h2 class="anchored" data-anchor-id="side-effects">Side-Effects</h2>
 <p>Gli operatori di incremento e decremento (<code>++</code> e <code>--</code>) sono potenti ma vanno usati con cautela. Possono essere utilizzati sia come operazioni prefisse che postfix. La differenza principale tra queste due forme sta nel momento in cui viene effettuata l’operazione di incremento o decremento.</p>
 <p>Nel caso dell’operatore di post-incremento <code>i++</code>, l’incremento avviene dopo che il valore di <code>i</code> viene utilizzato nell’espressione corrente. Nel caso dell’operatore di pre-incremento <code>++i</code>, l’incremento avviene prima che il valore di <code>i</code> venga utilizzato nell’espressione.</p>
 <p>Questo può portare a comportamenti diversi, soprattutto quando si utilizzano questi operatori all’interno della stessa espressione o dello stesso statement. Ad esempio:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">++);</span>  <span class="co">// Stampa: i is 1</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span>    <span class="co">// Stampa: i is 2</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">++</span>i<span class="op">);</span>  <span class="co">// Stampa: i is 3</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span>    <span class="co">// Stampa: i is 3</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">++);</span>  <span class="co">// Stampa: i is 1</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span>    <span class="co">// Stampa: i is 2</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">++</span>i<span class="op">);</span>  <span class="co">// Stampa: i is 3</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"i is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span>    <span class="co">// Stampa: i is 3</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Nel primo <code>printf</code>, l’operatore post-incremento viene utilizzato, quindi il valore di <code>i</code> (1) viene stampato e poi incrementato a 2. Nel secondo <code>printf</code>, il valore incrementato di <code>i</code> (2) viene stampato. Nel terzo <code>printf</code>, l’operatore pre-incremento viene utilizzato, quindi <code>i</code> viene incrementato a 3 e poi stampato. Infine, nel quarto <code>printf</code>, viene stampato di nuovo il valore corrente di <code>i</code>, che è 3.</p>
 <p>È importante prestare attenzione a questi comportamenti per evitare risultati inaspettati nel proprio codice.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Gli altri operatori di uso frequente che comportano un side effect sono quelli di assegnamento <code>=</code>, <code>+=</code>, <code>-=</code> e così via. Questi operatori modificano il valore della variabile a sinistra dell’operatore.</p>
+</div>
+</div>
 </section>
 <section id="espressioni-istruzione" class="level2">
 <h2 class="anchored" data-anchor-id="espressioni-istruzione">Espressioni istruzione</h2>
 <p>Tutte le espressioni possono essere anche <em>statement</em>: in una linea posso avere anche solo una operazione singola seguita da <code>;</code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>      <span class="co">// utile</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>i<span class="op">++;</span>        <span class="co">// utile</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>i <span class="op">*</span> j <span class="op">+</span> <span class="dv">2</span>   <span class="co">// inutile, potrebbe dare warning</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="co">// "statement with no effect"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>      <span class="co">// utile</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>i<span class="op">++;</span>        <span class="co">// utile</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>i <span class="op">*</span> j <span class="op">+</span> <span class="dv">2</span>   <span class="co">// inutile, potrebbe dare warning</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="co">// "statement with no effect"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Nella seconda riga dell’esempio il risultato viene scartato, ma la modifica avviene lo stesso.</p>
 </section>
 </section>
-<section id="espressioni-logiche-3" class="level1">
+<section id="espressioni-logiche-4" class="level1">
 <h1>Espressioni logiche</h1>
-<p>Le espressioni logiche, o booleane, in C sono fondamentali per l’esecuzione di operazioni condizionali e decisionali nel codice.</p>
+<p>Alcuni operatori sono responsabili della valutazione di espressioni booleane, ossia espressioni che possono essere valutate come vere o false.</p>
 <section id="operatori-booleani" class="level2">
 <h2 class="anchored" data-anchor-id="operatori-booleani">Operatori Booleani</h2>
-<p>Gli operatori booleani sono utilizzati per eseguire operazioni logiche su valori booleani o espressioni che possono essere valutate come vere o false. Ecco gli operatori booleani disponibili in C:</p>
+<p>Ecco gli operatori booleani disponibili in C:</p>
 <ul>
 <li><code>&amp;&amp;</code> (AND logico)</li>
 <li><code>||</code> (OR logico)</li>
@@ -444,6 +574,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>&lt;=</code> (minore o uguale)</li>
 </ul>
 <p>Questi operatori producono tutti 0 o 1 come risultato, ma in C qualsiasi valore diverso da 0 è considerato vero.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>È importante ricordarsi che gli operatori bitwise (<code>&amp;</code>, <code>|</code>, <code>^</code>, <code>~</code>) non sono operatori booleani, ma operatori di manipolazione dei bit. Non vanno confusi con gli operatori booleani, pertanto non vanno utilizzati per valutare espressioni booleane.</p>
+</div>
+</div>
 <section id="and-logico" class="level3">
 <h3 class="anchored" data-anchor-id="and-logico">AND Logico (<code>&amp;&amp;</code>)</h3>
 <p>L’operatore <code>&amp;&amp;</code> restituisce 1 se entrambe le espressioni booleane sono non-zero, altrimenti restituisce 0. È un operatore a corto circuito, quindi se il risultato è già noto dopo aver valutato la prima espressione, la seconda non viene valutata.</p>
@@ -459,16 +602,290 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="operatori-di-confronto" class="level3">
 <h3 class="anchored" data-anchor-id="operatori-di-confronto">Operatori di Confronto</h3>
 <p>Gli operatori di confronto (<code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>) confrontano due valori e restituiscono un valore intero in base alla relazione tra di essi.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mentre il risultato di questi operatori è intuitivo su degli interi o float, bisogna notare che dalla parte sinistra e destra possono esserci anche <code>char</code> (che in C sono rappresentati come interi da un byte), che valore restituisce l’espressione <code>'Z' &lt; 'a'</code>? E <code>':' &lt; ';'</code>? Suggerimento: per rispondere senza scrivere codice si provi a consultare la pagina del manuale di <code>ascii</code> (<code>man ascii</code>).</p>
+</div>
+</div>
 </section>
 </section>
 <section id="valutazione-delle-espressioni-booleane" class="level2">
 <h2 class="anchored" data-anchor-id="valutazione-delle-espressioni-booleane">Valutazione delle Espressioni Booleane</h2>
 <p>Le espressioni booleane vengono valutate in base alle regole della logica booleana. Il risultato di un’espressione booleana è un valore intero, dove 0 rappresenta “falso” e 1 rappresenta “vero”. Ad esempio:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> j <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> result <span class="op">=</span> <span class="op">(</span>i <span class="op">&lt;</span> j <span class="op">&amp;&amp;</span> j <span class="op">&lt;</span> k<span class="op">);</span> <span class="co">// result sarà 0 perché entrambe le espressioni sono false</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> j <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> result <span class="op">=</span> <span class="op">(</span>i <span class="op">&lt;</span> j <span class="op">&amp;&amp;</span> j <span class="op">&lt;</span> k<span class="op">);</span> <span class="co">// result sarà 0 perché entrambe le espressioni sono false</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In questo caso, l’espressione <code>i &lt; j &amp;&amp; j &lt; k</code> sarà valutata come <code>0 &amp;&amp; 0</code>, il che restituirà 0 perché entrambe le espressioni sono false.</p>
+</section>
+<section id="il-tipo-bool" class="level2">
+<h2 class="anchored" data-anchor-id="il-tipo-bool">Il tipo bool</h2>
+<p>Come già detto, il tipo di ritorno delle espressioni logiche in C è un intero, il tipo booleano non esiste nativamente in C. Quindi, per rappresentare valori booleani, si utilizzano valori interi, dove:</p>
+<ul>
+<li><span class="math inline">\(0 \rightarrow\)</span> falso</li>
+<li><span class="math inline">\(1 \rightarrow\)</span> vero (e tutti gli interi diversi da <span class="math inline">\(0\)</span>)</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Da C99 in poi, <code>bool</code> è un tipo definito in <code>stdbool.h</code> che può assumere solo i valori <code>true</code> e <code>false</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdbool.h&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> b <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si tratta di un tipo di dato intero, ma è considerato un tipo booleano. Ciò è possibile grazie all’uso di macro definite in <code>stdbool.h</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// nel file stdbool.h</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define true </span><span class="dv">1</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define false </span><span class="dv">0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define bool </span><span class="dt">_Bool</span><span class="pp"> </span><span class="co">// _Bool è un tipo di dato intero introdotto in C99</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="control-flow-2" class="level1">
+<h1>Control flow</h1>
+<p>Essendo C un linguaggio strutturato, possiede un insieme di istruzioni di controllo del flusso di esecuzione del programma. Queste istruzioni permettono di eseguire un blocco di codice solo se una condizione è vera, di eseguire un blocco di codice ripetutamente, di eseguire un blocco di codice solo se una condizione è falsa, ecc. Le principali istruzioni di controllo del flusso sono:</p>
+<ul>
+<li><code>if</code>-<code>else</code></li>
+<li><code>switch</code></li>
+<li><code>for</code></li>
+<li><code>while</code></li>
+<li><code>do</code>-<code>while</code></li>
+<li><code>break</code></li>
+<li><code>continue</code></li>
+</ul>
+<section id="if-else-1" class="level2">
+<h2 class="anchored" data-anchor-id="if-else-1"><code>if</code>-<code>else</code></h2>
+<p>L’istruzione <code>if</code>-<code>else</code> permette di eseguire un blocco di codice solo se una condizione è vera. La sintassi è la seguente:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>espressione<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// statements</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// statements</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Se la condizione è vera, viene eseguito il blocco di codice immediatamente successivo all’istruzione <code>if</code>. Altrimenti, viene eseguito il blocco di codice immediatamente successivo all’istruzione <code>else</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>x <span class="op">&gt;</span> <span class="dv">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"x è maggiore di 5</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"x è minore o uguale a 5</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Il codice stampa:</p>
+<pre><code>x è maggiore di 5</code></pre>
+<section id="if-else-annidati-1" class="level3">
+<h3 class="anchored" data-anchor-id="if-else-annidati-1"><code>if</code>-<code>else</code> annidati</h3>
+<p>È possibile annidare più istruzioni <code>if</code>-<code>else</code> all’interno di un blocco di codice.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>x <span class="op">&gt;</span> <span class="dv">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>x <span class="op">&gt;</span> <span class="dv">7</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            printf<span class="op">(</span><span class="st">"x è maggiore di 7</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            printf<span class="op">(</span><span class="st">"x è minore o uguale a 7</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"x è minore o uguale a 5</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Il codice stampa:</p>
+<pre><code>x è maggiore di 7</code></pre>
+<p>Oppure si può usare l’istruzione <code>else if</code> per evitare l’annidamento.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>x <span class="op">&gt;</span> <span class="dv">7</span><span class="op">)</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"x è maggiore di 7</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>x <span class="op">&gt;</span> <span class="dv">5</span><span class="op">)</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"x è maggiore di 5</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"x è minore o uguale a 5</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Questa versione stampa lo stesso risultato della precedente, in questo caso però, il secondo <code>if</code> è allineato con il primo <code>else</code>, rendendo il codice più leggibile.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Attenzione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un errore comune è confondere l’operatore di assegnamento <code>=</code> con l’operatore di confronto <code>==</code>. Ad esempio, l’espressione <code>x = 10</code> assegna il valore <code>10</code> alla variabile <code>x</code>, mentre l’espressione <code>x == 10</code> confronta il valore della variabile <code>x</code> con <code>10</code>. Se si scrive <code>if (x = 10)</code>, l’espressione è sempre vera, perché assegna <code>10</code> alla variabile <code>x</code> e restituisce <code>10</code>, che è considerato <code>true</code>. Per confrontare il valore della variabile <code>x</code> con <code>10</code>, si deve invece scrivere <code>if (x == 10)</code>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="if-ternario-2" class="level2">
+<h2 class="anchored" data-anchor-id="if-ternario-2">If ternario</h2>
+<p>L’if ternario è una forma compatta dell’istruzione <code>if</code>-<code>else</code>. La sintassi è la seguente:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>espressione <span class="op">?</span> valore_se_vera <span class="op">:</span> valore_se_falsa</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Se l’espressione è vera, viene restituito <code>valore_se_vera</code>, altrimenti viene restituito <code>valore_se_falsa</code>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y <span class="op">=</span> <span class="op">(</span>x <span class="op">&gt;</span> <span class="dv">5</span><span class="op">)</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"y = </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> y<span class="op">);</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Questo modo di scrivere l’istruzione <code>if</code>-<code>else</code> è utile quando si vuole assegnare un valore a una variabile in base a una condizione con una sola riga di codice. Tuttavia, se l’espressione è complessa, l’uso dell’if ternario può rendere il codice meno leggibile. In questi casi si sconsiglia di utilizzarlo e si preferisce l’istruzione <code>if</code>-<code>else</code> standard.</p>
+</section>
+<section id="switch-1" class="level2">
+<h2 class="anchored" data-anchor-id="switch-1"><code>switch</code></h2>
+<p>Tanti if in cascata potrebbero essere sostituiti da uno switch. La sintassi è la seguente:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span> <span class="op">(</span>espressione<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> constant<span class="op">-</span>expression<span class="op">:</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">// statements</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> constant<span class="op">-</span>expression<span class="op">:</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">// statements</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">// statements</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>L’espressione a fianco dell’istruzione <code>case</code> è senza variabili o chiamate a funzioni. L’istruzione <code>break</code> è necessaria per terminare il blocco di codice. Se non è presente, il controllo del flusso di esecuzione continua con il blocco di codice successivo. L’istruzione <code>default</code> è opzionale e viene eseguita se nessuna delle costanti corrisponde all’espressione.</p>
+<p>Un esempio di utilizzo dello switch è il seguente:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span> <span class="op">(</span>x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">1</span><span class="op">:</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            printf<span class="op">(</span><span class="st">"x è 1</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">2</span><span class="op">:</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>            printf<span class="op">(</span><span class="st">"x è 2</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>            printf<span class="op">(</span><span class="st">"x non è nè 1 nè 2</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Lo <code>switch</code> può essere utilizzato solo con espressioni di tipo intero (<code>int</code>, <code>char</code>, <code>short</code>, <code>long</code>, ecc.) e con espressioni di tipo <code>enum</code> (che verrà trattato in seguito).</p>
+</div>
+</div>
+</section>
+<section id="cicli-1" class="level2">
+<h2 class="anchored" data-anchor-id="cicli-1">Cicli</h2>
+<p>Caratteristica fondamentale di un linguaggio di programmazione sono i cicli. C implementa i classici for, while, ma anche do…while</p>
+<ul>
+<li><code>while (expression) { statements }</code></li>
+<li><code>do { statements } while (expression)</code></li>
+<li><code>for (initialization; condition; increment) { statements }</code></li>
+</ul>
+<p>Queste <code>while</code> e <code>for</code> sono equivalenti: tutto ciò che si può fare con un ciclo <code>for</code> si può fare con un ciclo <code>while</code> e viceversa. La scelta di quale istruzione utilizzare dipende dal contesto e dalla preferenza personale.</p>
+<p>L’istruzione <code>do-while</code> è simile a <code>while</code>, ma la condizione viene valutata alla fine del blocco di codice. Questo significa che il blocco di codice viene eseguito almeno una volta, anche se la condizione è falsa.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dal C99 è possibile dichiarare variabili all’interno del ciclo <code>for</code>. Queste variabili sono visibili solo all’interno del ciclo. In C89 e nelle versioni precedenti, le variabili devono essere dichiarate all’inizio del blocco di codice.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">10</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<section id="cicli-infiniti-1" class="level3">
+<h3 class="anchored" data-anchor-id="cicli-infiniti-1">Cicli infiniti</h3>
+<p>Un ciclo infinito è un ciclo che non termina mai. Un ciclo infinito può essere creato utilizzando un’istruzione <code>while</code> con una condizione sempre vera, ad esempio <code>while (1)</code>, oppure utilizzando un’istruzione <code>for</code> senza condizione, ad esempio <code>for (;;)</code>. Un ciclo infinito può essere interrotto con un’istruzione <code>break</code>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        i<span class="op">++;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>i <span class="op">==</span> <span class="dv">10</span><span class="op">)</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="break-e-continue-1" class="level3">
+<h3 class="anchored" data-anchor-id="break-e-continue-1"><code>break</code> e <code>continue</code></h3>
+<p>L’istruzione <code>break</code> termina immediatamente il ciclo in cui si trova. L’istruzione <code>continue</code> termina l’iterazione corrente del ciclo e passa alla successiva. Entrambe le istruzioni possono essere utilizzate all’interno di cicli <code>for</code>, <code>while</code> e <code>do-while</code>. L’istruzione <code>break</code> può essere utilizzata anche all’interno di un blocco <code>switch</code> per terminare immediatamente l’esecuzione del blocco.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>È bene non abusare di <code>break</code> e <code>continue</code>, perché possono rendere il codice meno leggibile. In generale, è meglio evitare di utilizzare <code>break</code> e `continue all’interno di cicli annidati.</p>
+</div>
+</div>
 
 
+</section>
 </section>
 </section>
 
