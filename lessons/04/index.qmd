@@ -1,6 +1,6 @@
 ---
-title: Funzioni e Scope
-date: 03/19/2024
+title: Operatori bitwise
+date: 04/09/2024
 ---
 
 TODO

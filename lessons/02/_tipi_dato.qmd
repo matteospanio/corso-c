@@ -12,15 +12,13 @@ Inoltre esiste il tipo speciale `void` che indica l'assenza di informazione.
 
 I vari tipi di interi e tipi di virgola mobile si distinguono per il numero di byte usati per la loro rappresentazione in memoria e, conseguentemente, per il range di valori che possono rappresentare.
 
-La dimensione di un tipo di dato, espressa in byte, e il suo range di valori dipendono dal compilatore e dall’architettura del computer. Per determinare la dimensione di un tipo di dato si può utilizzare l’operatore sizeof, mentre per conoscere il range di valori utilizzabili si possono sfruttare le librerie limits.h (per i tipi interi) e float.h (per i tipi di virgola mobile).
-
-## Tipi numerici
+La dimensione di un tipo di dato, espressa in byte, e il suo range di valori dipendono dal compilatore e dall’architettura del computer. Per determinare la dimensione di un tipo di dato si può utilizzare l’operatore sizeof, mentre per conoscere il range di valori utilizzabili si possono sfruttare le librerie `limits.h` (per i tipi interi) e `float.h` (per i tipi di virgola mobile).
 
 ```{.c}
 {{< include ./code/limits.c >}}
 ```
 
-Questo esempio illustra come ottenere informazioni su dimensione e range di alcuni tipi numerici in C. È importante notare come la gestione attenta di questi aspetti possa prevenire errori di overflow e underflow.
+L'esempio precedente illustra come ottenere informazioni su dimensione e range di alcuni tipi numerici in C. È importante notare come la gestione attenta di questi aspetti possa prevenire errori di overflow e underflow.
 
 ## Tipi char
 
@@ -46,3 +44,64 @@ int main(void)
 ```
 
 Questo frammento di codice dimostra la conversione di una lettera minuscola in maiuscola sfruttando la differenza costante nei valori ASCII.
+
+::: {.callout-tip}
+## Tabella ASCII
+Nella tabella ASCII, i valori dei caratteri alfabetici maiuscoli sono minori di quelli dei corrispondenti caratteri minuscoli, per trovare la distanza tra i due valori basta effettuare l'operazione `'A' - 'a'`. Questo valore è costante e può essere usato per convertire una lettera minuscola in maiuscola e viceversa. Per maggiori dettagli si veda la tabella ASCII alla pagina del manuale linux `man ascii`.
+:::
+
+## Conversioni tra tipi
+
+In generale, per effettuare operazioni aritmetiche tra due numeri, questi devono essere dello stesso tipo.
+
+In C è possibile mescolare tipi diversi nella stessa espressione, e il compilatore effettuerà automaticamente le conversioni necessarie per eseguire l'operazione richiesta.
+
+### Conversioni implicite
+
+```{.c}
+int a = 5;
+float b = 1.618;
+
+a + b; // 6.618
+```
+
+In questo esempio, il valore intero a viene convertito implicitamente in virgola mobile prima di eseguire l'operazione di somma. Questo tipo di conversione è chiamato "*promotion*".
+
+Se assegno un valore a una variabile di tipo diverso, il compilatore effettuerà una conversione implicita.
+
+```{.c}
+int i = 1;
+float f;
+f = i; // 1.0
+f = 2; // 2.0
+```
+
+È vero quindi anche il contrario:
+
+```{.c}
+float f = 1.618;
+int i;
+i = f; // 3
+```
+
+In questo caso, il valore in virgola mobile viene troncato al valore intero più vicino, si noti che non viene effettuato alcun arrotondamento.
+
+### Cast espliciti
+
+È possibile convertire esplicitamente il tipo di un' espressione con l'operazione di casting:
+
+`(nome_tipo) espressione`
+
+Il risultato dell'espressione viene convertito al tipo specificato.
+
+Un caso frequente è quando si esegue una divisione tra due interi:
+
+```{.c}
+float quotient;
+int dividend, divisor;
+quotient = (float) dividend / divisor;
+```
+
+::: {.callout-note}
+In questo caso, `dividend` viene convertito in float prima di eseguire la divisione, ciò comporta che `divisor` venga convertito implicitamente in float, infatti, come vedremo nel paragrafo successivo, l'operatore di casting ha la precedenza su quello di divisione.
+:::

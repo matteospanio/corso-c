@@ -3,7 +3,6 @@
 int main(void)
 {
     int x = 10;
-
     if (x > 7)
     {
         printf("x è maggiore di 7\n");
@@ -16,6 +15,4 @@ int main(void)
     {
         printf("x è minore o uguale a 5\n");
     }
-
-    return 0;
 }

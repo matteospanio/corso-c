@@ -1,12 +1,18 @@
 Essendo C un linguaggio strutturato, possiede un insieme di istruzioni di controllo del flusso di esecuzione del programma. Le principali istruzioni di controllo del flusso sono:
 
+::: {.columns}
+::: {.column}
 - `if`-`else`
 - `switch`
 - `for`
+:::
+::: {.column}
 - `while`
 - `do`-`while`
 - `break`
 - `continue`
+:::
+:::
 
 ## `if`-`else`
 
@@ -36,7 +42,7 @@ Un errore comune è confondere l'operatore di assegnamento `=` con l'operatore d
 
 L'if ternario è una forma compatta dell'istruzione `if`-`else`. La sintassi è la seguente:
 
-```c
+```{.c}
 espressione ? valore_se_vera : valore_se_falsa
 ```
 
@@ -68,9 +74,7 @@ switch (espressione) {
 }
 ```
 
-::: {.callout-important}
 Lo `switch` può essere utilizzato solo con espressioni di tipo intero (`int`, `char`, `short`, `long`, ecc.) e con espressioni di tipo `enum` (che verrà trattato in seguito).
-:::
 
 ## Cicli
 
@@ -80,11 +84,14 @@ Caratteristica fondamentale di un linguaggio di programmazione sono i cicli. C i
 - `do { statements } while (expression)`
 - `for (initialization; condition; increment) { statements }`
 
-Queste `while` e `for` sono equivalenti: tutto ciò che si può fare con un ciclo `for` si può fare con un ciclo `while` e viceversa. La scelta di quale istruzione utilizzare dipende dal contesto e dalla preferenza personale.
+## Cicli
+
+`while` e `for` sono equivalenti: tutto ciò che si può fare con un ciclo `for` si può fare con un ciclo `while` e viceversa. La scelta di quale istruzione utilizzare dipende dal contesto e dalla preferenza personale.
 
 L'istruzione `do-while` è simile a `while`, ma la condizione viene valutata alla fine del blocco di codice. Questo significa che il blocco di codice viene eseguito almeno una volta, anche se la condizione è falsa.
 
-::: {.callout-note}
+## Cicli
+
 Dal C99 è possibile dichiarare variabili all'interno del ciclo `for`. Queste variabili sono visibili solo all'interno del ciclo. In C89 e nelle versioni precedenti, le variabili devono essere dichiarate all'inizio del blocco di codice.
 
 ```{.c}
@@ -92,11 +99,11 @@ for (int i = 0; i < 10; i++) {
     // ...
 }
 ```
-:::
 
 ## Cicli infiniti
 
-Un ciclo infinito è un ciclo che non termina mai. Un ciclo infinito può essere creato utilizzando un'istruzione `while` con una condizione sempre vera, ad esempio `while (1)`, oppure utilizzando un'istruzione `for` senza condizione, ad esempio `for (;;)`. Un ciclo infinito può essere interrotto con un'istruzione `break`.
+Un ciclo infinito è un ciclo che non termina mai. Può essere creato utilizzando un'istruzione `while` con una condizione sempre vera o `for` senza condizione, ad esempio `while (1)` oppure `for (;;)`.
+
 
 ```{.c}
 {{< include code/infinite_loop.c >}}
@@ -104,8 +111,8 @@ Un ciclo infinito è un ciclo che non termina mai. Un ciclo infinito può essere
 
 ## `break` e `continue`
 
-L'istruzione `break` termina immediatamente il ciclo in cui si trova. L'istruzione `continue` termina l'iterazione corrente del ciclo e passa alla successiva. Entrambe le istruzioni possono essere utilizzate all'interno di cicli `for`, `while` e `do-while`.
-L'istruzione `break` può essere utilizzata anche all'interno di un blocco `switch` per terminare immediatamente l'esecuzione del blocco.
+- L'istruzione `break` termina immediatamente il ciclo in cui si trova.
+- L'istruzione `continue` termina l'iterazione corrente del ciclo e passa alla successiva.
 
 ::: {.callout-warning}
 È bene non abusare di `break` e `continue`, perché possono rendere il codice meno leggibile. In generale, è meglio evitare di utilizzare `break` e `continue all'interno di cicli annidati.

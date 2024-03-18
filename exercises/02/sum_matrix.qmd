@@ -1,0 +1,49 @@
+---
+title: "Esercizio: somma righe e colonne"
+---
+
+Si vuole scrivere un programma che legga un vettore di $5\times 5$ interi e calcoli la somma di ciascuna riga e di ciascuna colonna.
+
+---
+
+Un'esecuzione del programma potrebbe essere la seguente:
+
+```plaintext
+$ ./row_col_sum
+Riga 1: 8 3 9 0 10
+Riga 2: 3 5 17 1 1
+Riga 3: 2 8 6 23 1
+Riga 4: 15 7 3 2 9
+Riga 5: 6 14 2 6 0
+Somma righe: 30 27 40 36 28
+Somma colonne: 34 37 37 32 21
+```
+
+::: {.callout-tip}
+## Suggerimento
+La maniera più semplice di iterare su tutte le righe e colonne di una matrice è utilizzare due cicli annidati.
+
+La funzione `scanf` può essere usata all'interno di un ciclo, consumendo un valore alla volta. Ad esempio:
+
+```{.c}
+int main(void)
+{
+    int arr[5];
+    printf("Inserisci 5 interi: ")
+    for (int i = 0; i < 5; i++) {
+        scanf("%d", &arr[i]);
+    }
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", arr[i]);
+    }
+}
+```
+
+L'esecuzione di questo programma leggerà 5 interi e li memorizzerà nell'array `arr`. Di seguito un esempio di esecuzione:
+
+```plaintext
+$ ./a.out
+Inserisci 5 interi: 1 2 3 4 5
+1 2 3 4 5
+```
+:::

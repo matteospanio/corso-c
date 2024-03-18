@@ -33,3 +33,55 @@ Quando si ha a che fare con questi valori è bene stare attenti agli overflow.
 Il tipo `char` è usato per rappresentare un singolo carattere. In C i caratteri sono rappresentati come interi senza segno di 8 bit.
 
 I char vanno sempre scritti tra apici singoli, scrivendo un solo carattere. Il C lin interpreterà come un intero.
+
+## Conversioni tra tipi
+
+In generale, per effettuare operazioni aritmetiche tra due numeri, questi devono essere dello stesso tipo.
+
+In C è possibile mescolare tipi diversi nella stessa espressione, e il compilatore effettuerà automaticamente le conversioni necessarie per eseguire l'operazione richiesta.
+
+## Conversioni implicite
+
+```{.c}
+int a = 5;
+float b = 1.618;
+
+a + b; // 6.618
+```
+
+In questo esempio, il valore intero a viene convertito implicitamente in virgola mobile prima di eseguire l'operazione di somma. Questo tipo di conversione è chiamato "*promotion*".
+
+## Conversioni implicite
+
+Se assegno un valore a una variabile di tipo diverso, il compilatore effettuerà una conversione implicita.
+
+```{.c}
+int i = 1;
+float f;
+f = i; // 1.0
+f = 2; // 2.0
+```
+
+È vero quindi anche il contrario:
+
+```{.c}
+float f = 1.618;
+int i;
+i = f; // 1
+```
+
+## Cast espliciti
+
+È possibile convertire esplicitamente il tipo di un' espressione con l'operazione di casting:
+
+`(nome_tipo) espressione`
+
+Il risultato dell'espressione viene convertito al tipo specificato.
+
+Un caso frequente è quando si esegue una divisione tra due interi:
+
+```{.c}
+float quotient;
+int dividend, divisor;
+quotient = (float) dividend / divisor;
+```

@@ -2,54 +2,97 @@
 title: Strutture di controllo, tipi di base, funzioni e array
 date: 03/19/2024
 abstract: |
-    In questa lezione si termina l'introduzione alla sintassi del C, con un focus sulle strutture di controllo, le espressioni, i tipi di base, le funzioni e un accenno ai puntatori e agli array.
+    In questa lezione si termina l'introduzione alla sintassi del C, con un focus sulle strutture di controllo, le espressioni, i tipi di base, le funzioni e agli array.
     Gli argomenti vengono presentati in ordine diverso rispetto al libro di testo.
 ---
 
-Il C è basato su *espressioni* più che su istruzioni. Queste espressioni sono un insieme di
+Tenendo a mente l'[architettura di Von Neumann](https://it.wikipedia.org/wiki/Architettura_di_von_Neumann) per i calcolatori, si può riassumere che i computer hanno bisogno di 2 principali elementi: **dati** e **istruzioni** per manipolare i dati. I linguaggi di programmazione forniscono in maniera trasparente queste componenti attraverso l'uso di **variabili** ed **espressioni**.
+
+Le espressioni sono un insieme di:
 
 1. **variabili**,
 2. **costanti**,
 3. **operatori**.
 
 ::: {.content-visible when-format="revealjs"}
+
 # Tipi di base
 {{< include _tipi_dato_rjs.qmd >}}
-:::
-::: {.content-visible unless-format="revealjs"}
-{{< include _tipi_dato.qmd >}}
-:::
 
-
-
-::: {.content-visible when-format="revealjs"}
 # Operatori
 ## Operatori
 {{< include _operatori.qmd >}}
-:::
-::: {.content-visible unless-format="revealjs"}
-{{< include _operatori_text.qmd >}}
-:::
 
 ## Espressioni istruzione
 {{< include _espressioni_istruzione.qmd >}}
 
-
-::: {.content-visible when-format="revealjs"}
 # Espressioni logiche
 ## Espressioni logiche
 {{< include _espressioni_logiche.qmd >}}
-:::
-::: {.content-visible unless-format="revealjs"}
-{{< include _espressioni_logiche_text.qmd >}}
-:::
 
-
-::: {.content-visible when-format="revealjs"}
 # Control flow
 ## Control flow
 {{< include _control_flow_rjs.qmd >}}
+
+{{< include _array_rjs.qmd >}}
+
+{{< include _functions_rjs.qmd >}}
+
 :::
+
 ::: {.content-visible unless-format="revealjs"}
+
+{{< include _tipi_dato.qmd >}}
+
+{{< include _operatori_text.qmd >}}
+
+## Espressioni istruzione
+{{< include _espressioni_istruzione.qmd >}}
+
+{{< include _espressioni_logiche_text.qmd >}}
+
 {{< include _control_flow.qmd >}}
+
+{{< include _array.qmd >}}
+
+{{< include _functions.qmd >}}
+
+:::
+
+::: {.content-visible when-format="revealjs"}
+
+## Riassunto {.smaller}
+
+In questa lezione sono state introdotti molti elementi, di seguito un elenco che ripercorre i concetti affrontati:
+
+- tipi di dato (int, float, char, double);
+- espressioni booleane:
+    - true e false sono in realtà 1 e 0;
+    - operatori logici;
+- operatori;
+- control flow (if, switch, while, do-while, for);
+- array:
+    - inizializzazione degli array;
+    - array multidimensionali;
+- funzioni: sintassi e ricorsione;
+
+:::
+
+::: {.content-visible unless-format="revealjs"}
+
+# Riassunto
+
+In questa lezione sono state introdotti molti elementi, di seguito un elenco che ripercorre i concetti affrontati:
+
+- tipi di dato (int, float, char, double);
+- espressioni booleane:
+    - true e false sono in realtà 1 e 0;
+    - operatori logici;
+- operatori;
+- control flow (if, switch, while, do-while, for);
+- array:
+    - inizializzazione degli array;
+    - array multidimensionali;
+- funzioni: sintassi e ricorsione;
+
 :::

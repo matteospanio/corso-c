@@ -1,0 +1,48 @@
+# Funzioni
+
+Una funzione è una associazione tra due insiemi: il dominio e il codominio: $f: A \rightarrow B$
+
+In programmazione il concetto di funzione è simile: una funzione è un blocco di codice che accetta un certo numero di argomenti e, spesso, restituisce un valore. Oltre al valore, però, una funzione può anche avere *side effects*, cioè modificare lo stato del programma.
+
+In C si può pensare a una qualsiasi funzione come una scatola nera con un certo numero di ingressi e **un solo** output.
+
+![Funzione come una scatola nera.](figures/black-box.png)
+
+Praticamente una funzione è un sottoprogramma, un insieme di istruzioni che esegue un compito specifico.
+
+```{.c}
+return_type function_name( parameters )
+{
+    declarations
+    statements
+}
+```
+
+Esempio:
+
+```{.c}
+double average(int a, int b)
+{
+    double average;
+    average = (a + b) / 2.0;
+    return average;
+}
+```
+
+Il tipo di ritorno può essere `void`, in tal caso la funzione non restituisce alcun valore:
+
+```{.c}
+void print_int(int a)
+{
+    printf("%d\n", a);
+    return;
+}
+```
+
+::: {.callout-note}
+L'istruzione `return` può essere omessa in una funzione `void`.
+:::
+
+Le funzioni dichiarate precedentemente nel programma possono essere eseguite in blocchi di codice successivi.
+
+Ogni chiamata di funzione è una *espressione*, e viene valutata con il suo valore di ritorno.

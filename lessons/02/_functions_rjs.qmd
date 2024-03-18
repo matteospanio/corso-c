@@ -1,0 +1,70 @@
+# Funzioni
+
+## Funzioni
+
+Una funzione è una associazione tra due insiemi: il dominio e il codominio: $f: A \rightarrow B$
+
+In programmazione il concetto di funzione è simile: una funzione è un blocco di codice che accetta un certo numero di argomenti e, spesso, restituisce un valore. Oltre al valore, però, una funzione può anche avere *side effects*, cioè modificare lo stato del programma.
+
+## Funzioni in C
+
+In C si può pensare a una qualsiasi funzione come una scatola nera con un certo numero di ingressi e **un solo** output.
+
+![](./figures/black-box.png)
+
+Praticamente una funzione è un sottoprogramma, un insieme di istruzioni che esegue un compito specifico.
+
+## Funzioni: sintassi
+
+```{.c}
+return_type function_name( parameters )
+{
+    declarations
+    statements
+}
+```
+
+Esempio:
+
+```{.c}
+double average(int a, int b)
+{
+    double average;
+    average = (a + b) / 2.0;
+    return average;
+}
+```
+
+## Funzioni senza valore di ritorno
+
+Il tipo di ritorno può essere `void`, in tal caso la funzione non restituisce alcun valore:
+
+```{.c}
+void print_int(int a)
+{
+    printf("%d\n", a);
+    return;
+}
+```
+
+::: {.callout-note}
+L'istruzione `return` può essere omessa in una funzione `void`.
+:::
+
+## Chiamata di funzione
+
+Le funzioni dichiarate precedentemente nel programma possono essere eseguite in blocchi di codice successivi.
+
+Ogni chiamata di funzione è una *espressione*, e viene valutata con il suo valore di ritorno.
+
+## Esercizi {.smaller}
+
+1. Scrivere una funzione che trovi il valore minimo in un array di numeri interi la firma della funzione è `int array_min(int arr[], int size)`.
+
+2. Scrivere una funzione ricorsiva per sommare gli elementi di un array di double, la firma della funzione è `double array_sum(double arr[], int size)`.
+
+3. Scrivere una funzione ricorsiva che, dato un array di caratteri, ne stampi il contenuto su standard output. La firma della funzione è `void print_string(char arr[], int size)`.
+
+4. Modificare la soluzione dell'esercizio precedente per stampare l'array in ordine inverso. Implementare poi una soluzione non ricorsiva allo stesso problema.
+
+5. Scrivere una funzione ricorsiva `all` che, dato un array di interi, restituisca true se **tutti** gli elementi dell'array sono diversi da 0, false altrimenti.

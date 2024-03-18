@@ -48,3 +48,27 @@ size_t list_size(const list_t *list)
     }
     return 0;
 }
+
+error_t list_prepend(list_t *list, T *value)
+{
+    switch (list->type)
+    {
+    case ARRAYLIST:
+        return arraylist_prepend(list->list.arraylist, value);
+    case LINKEDLIST:
+        return linkedlist_prepend(list->list.linkedlist, value);
+    }
+    return UNKNOWN_ERROR;
+}
+
+error_t list_insert(list_t *list, T *value, size_t index)
+{
+    switch (list->type)
+    {
+    case ARRAYLIST:
+        return arraylist_insert(list->list.arraylist, value, index);
+    case LINKEDLIST:
+        return linkedlist_insert(list->list.linkedlist, value, index);
+    }
+    return UNKNOWN_ERROR;
+}

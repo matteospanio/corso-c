@@ -1,6 +1,6 @@
 ---
-title: Tipi di base e array
-date: 03/19/2024
+title: Array, puntatori e stringhe
+date: 03/26/2024
 ---
 
 TODO

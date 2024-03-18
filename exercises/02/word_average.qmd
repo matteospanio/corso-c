@@ -1,0 +1,31 @@
+---
+title: "Esercizio: lunghezza media delle parole"
+---
+
+Si vuole scrivere un programma che calcoli la lunghezza media delle parole di un messaggio scritto in input.
+
+---
+
+Il programma deve leggere una sequenza di caratteri da tastiera e calcolare la lunghezza media delle parole presenti nel messaggio. Si considera una parola una sequenza di caratteri separata da spazi, tabulazioni o a capo.
+
+Un'esecuzione del programma potrebbe essere la seguente:
+
+```plaintext
+$ ./lunghezza_media
+Scrivi una frase: Era solo un abbaglio.
+Lunghezza media: 4.5
+```
+
+::: {.callout-tip}
+## Suggerimento
+La funzione `getchar` legge un carattere alla volta da standard input. Ad esempio:
+
+```c
+char c = getchar(); // legge un carattere da stdin
+// oppure
+while ((c = getchar()) != '\n') {
+    // legge caratteri fino a quando
+    // non viene premuto il tasto enter
+}
+```
+:::

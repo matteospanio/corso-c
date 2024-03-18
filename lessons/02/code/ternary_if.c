@@ -6,6 +6,4 @@ int main(void)
     int y = (x > 5) ? 1 : 0;
 
     printf("y = %d\n", y);
-
-    return 0;
 }

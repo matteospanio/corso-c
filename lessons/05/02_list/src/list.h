@@ -24,6 +24,8 @@ typedef struct
 } list_t;
 
 error_t list_append(list_t *list, T *data);
+error_t list_prepend(list_t *list, T *data);
+error_t list_insert(list_t *list, T *data, size_t index);
 T *list_get(const list_t *list, size_t index);
 size_t list_size(const list_t *list);
 void list_delete(list_t *list, void (*free_data)(T *));

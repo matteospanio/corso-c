@@ -1,0 +1,43 @@
+---
+title: "Esercizio: una mano di poker"
+---
+
+Si vuole scrivere un programma pescare una mano di poker.
+
+---
+
+Scrivere un programma che simuli il pescaggio di una mano di poker. Il programma deve pescare cinque carte casuali da un mazzo di 52 carte e stamparle a video.
+
+Un'esecuzione del programma potrebbe essere la seguente:
+
+```plaintext
+$ ./poker
+Le carte pescate sono:
+7c 3d 9h 10s 2d
+```
+
+**Opzionale**:
+
+- scrivere una funzione `draw_card` che restituisca una carta casuale.
+- implementare una funzione `discard` che permetta di scartare un numero arbitrario di carte e di pescarne altrettante di nuove.
+
+::: {.callout-tip}
+## Suggerimento
+
+Per pescare una carta casuale si devono generare dei numeri casuali. In C si utilizza la funzione `rand` per generare numeri casuali. Prima di utilizzare `rand` è necessario inizializzare il generatore di numeri casuali con la funzione `srand`. Per fare questo si può utilizzare il valore restituito dalla funzione `time` della libreria `time.h` come seme per `srand`. Ad esempio:
+
+```{.c}
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    srand(time(NULL)); // imposta il seed
+    int n = rand(); // genera un numero casuale
+    // se si vuole generare un numero tra 0 e 51 si può usare l'operatore modulo
+    int card = rand() % 52;
+    // ...
+}
+```
+
+Per avere maggiori dettagli su `rand` e `srand` si può consultare la documentazione disponibile digitando `man rand` e `man srand` da terminale.
+:::

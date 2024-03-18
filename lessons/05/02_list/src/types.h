@@ -12,10 +12,4 @@ typedef enum error
     OK = 0
 } error_t;
 
-typedef struct result
-{
-    T *value;
-    error_t error;
-} result_t;
-
 #endif // TYPES_H

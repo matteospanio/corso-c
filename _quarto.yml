@@ -82,6 +82,16 @@ website:
               text: Elevamento a potenza
             - href: exercises/02/lista_della_spesa.qmd
               text: Lista della spesa
+            - href: exercises/02/fizzbuzz.qmd
+              text: FizzBuzz
+        - section: Array e funzioni
+          contents:
+            - href: exercises/02/sum_matrix.qmd
+              text: Somma di righe e colonne
+            - href: exercises/02/word_average.qmd
+              text: Lunghezza media delle parole
+            - href: exercises/02/deal.qmd
+              text: Una mano a poker
 
     - id: resources
       title: Risorse
