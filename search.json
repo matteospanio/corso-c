@@ -12,6 +12,30 @@
     ]
   },
   {
+    "objectID": "exercises/02/deal.html",
+    "href": "exercises/02/deal.html",
+    "title": "Esercizio: una mano di poker",
+    "section": "",
+    "text": "Si vuole scrivere un programma pescare una mano di poker.\n\nScrivere un programma che simuli il pescaggio di una mano di poker. Il programma deve pescare cinque carte casuali da un mazzo di 52 carte e stamparle a video.\nUn’esecuzione del programma potrebbe essere la seguente:\n$ ./poker\nLe carte pescate sono:\n7c 3d 9h 10s 2d\nOpzionale:\n\nscrivere una funzione draw_card che restituisca una carta casuale.\nimplementare una funzione discard che permetta di scartare un numero arbitrario di carte e di pescarne altrettante di nuove.\n\n\n\n\n\n\n\nSuggerimento\n\n\n\nPer pescare una carta casuale si devono generare dei numeri casuali. In C si utilizza la funzione rand per generare numeri casuali. Prima di utilizzare rand è necessario inizializzare il generatore di numeri casuali con la funzione srand. Per fare questo si può utilizzare il valore restituito dalla funzione time della libreria time.h come seme per srand. Ad esempio:\n#include &lt;stdlib.h&gt;\n#include &lt;time.h&gt;\n\nint main() {\n    srand(time(NULL)); // imposta il seed\n    int n = rand(); // genera un numero casuale\n    // se si vuole generare un numero tra 0 e 51 si può usare l'operatore modulo\n    int card = rand() % 52;\n    // ...\n}\nPer avere maggiori dettagli su rand e srand si può consultare la documentazione disponibile digitando man rand e man srand da terminale.",
+    "crumbs": [
+      "Lezioni",
+      "Array e funzioni",
+      "Una mano a poker"
+    ]
+  },
+  {
+    "objectID": "exercises/02/sum_matrix.html",
+    "href": "exercises/02/sum_matrix.html",
+    "title": "Esercizio: somma righe e colonne",
+    "section": "",
+    "text": "Si vuole scrivere un programma che legga un vettore di \\(5\\times 5\\) interi e calcoli la somma di ciascuna riga e di ciascuna colonna.\n\nUn’esecuzione del programma potrebbe essere la seguente:\n$ ./row_col_sum\nRiga 1: 8 3 9 0 10\nRiga 2: 3 5 17 1 1\nRiga 3: 2 8 6 23 1\nRiga 4: 15 7 3 2 9\nRiga 5: 6 14 2 6 0\nSomma righe: 30 27 40 36 28\nSomma colonne: 34 37 37 32 21\n\n\n\n\n\n\nSuggerimento\n\n\n\nLa maniera più semplice di iterare su tutte le righe e colonne di una matrice è utilizzare due cicli annidati.\nLa funzione scanf può essere usata all’interno di un ciclo, consumendo un valore alla volta. Ad esempio:\nint main(void)\n{\n    int arr[5];\n    printf(\"Inserisci 5 interi: \")\n    for (int i = 0; i &lt; 5; i++) {\n        scanf(\"%d\", &arr[i]);\n    }\n    for (int i = 0; i &lt; 5; i++) {\n        printf(\"%d \", arr[i]);\n    }\n}\nL’esecuzione di questo programma leggerà 5 interi e li memorizzerà nell’array arr. Di seguito un esempio di esecuzione:\n$ ./a.out\nInserisci 5 interi: 1 2 3 4 5\n1 2 3 4 5",
+    "crumbs": [
+      "Lezioni",
+      "Array e funzioni",
+      "Somma di righe e colonne"
+    ]
+  },
+  {
     "objectID": "exercises/01/cambio_valuta.html",
     "href": "exercises/01/cambio_valuta.html",
     "title": "Esercizio: cambio valuta",
@@ -45,23 +69,23 @@
   {
     "objectID": "lessons/06/index.html",
     "href": "lessons/06/index.html",
-    "title": "Strutture e uso avanzato dei puntatori",
+    "title": "C avanzato",
     "section": "",
     "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
     "crumbs": [
       "Lezioni",
-      "Strutture e uso avanzato dei puntatori"
+      "C avanzato"
     ]
   },
   {
     "objectID": "lessons/04/index.html",
     "href": "lessons/04/index.html",
-    "title": "Funzioni e Scope",
+    "title": "Operatori bitwise",
     "section": "",
     "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
     "crumbs": [
       "Lezioni",
-      "Funzioni e Scope"
+      "Operatori bitwise"
     ]
   },
   {
@@ -610,7 +634,7 @@
     "href": "lessons.html#calendario",
     "title": "Lezioni",
     "section": "Calendario",
-    "text": "Calendario\n\n\n\nData\nArgomento\nCapitoli del libro di testo\n\n\n\n\n12/03/2024\nIntroduzione al corso e fondamenti di C\n1-3\n\n\n19/03/2024\nStrutture di controllo, tipi di base e funzioni\n4-9\n\n\n26/03/2024\nArray e Puntatori\n8-10\n\n\n09/04/2024\nOperatori bitwise e stringhe\n20\n\n\n10/04/2024\nStruct e puntatori\n11-15\n\n\n23/04/2024\nPreparazione per l’esame"
+    "text": "Calendario\n\n\n\n\n\n\n\n\nData\nArgomento\nCapitoli del libro di testo\n\n\n\n\n12/03/2024\nIntroduzione al corso e fondamenti di C\n1-3\n\n\n19/03/2024\nStrutture di controllo, tipi di base, funzioni e array\n4-9\n\n\n26/03/2024\nAncora array, puntatori e stringhe\n9-13\n\n\n09/04/2024\nOperatori bitwise\n20\n\n\n10/04/2024\nStruct e puntatori\n15-17\n\n\n23/04/2024\nPreparazione per l’esame\nNULL"
   },
   {
     "objectID": "faq.html",
@@ -766,23 +790,23 @@
   {
     "objectID": "lessons/05/index.html",
     "href": "lessons/05/index.html",
-    "title": "Puntatori",
+    "title": "Struct e puntatori",
     "section": "",
     "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
     "crumbs": [
       "Lezioni",
-      "Puntatori"
+      "Struct e puntatori"
     ]
   },
   {
     "objectID": "lessons/03/index.html",
     "href": "lessons/03/index.html",
-    "title": "Tipi di base e array",
+    "title": "Array, puntatori e stringhe",
     "section": "",
     "text": "TODO\n\n\n\nRiutilizzareCC BY 4.0",
     "crumbs": [
       "Lezioni",
-      "Tipi di base e array"
+      "Array, puntatori e stringhe"
     ]
   },
   {
@@ -812,6 +836,34 @@
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "Tipi char",
     "text": "Tipi char\nIl tipo char è usato per rappresentare un singolo carattere. In C i caratteri sono rappresentati come interi senza segno di 8 bit.\nI char vanno sempre scritti tra apici singoli, scrivendo un solo carattere. Il C lin interpreterà come un intero."
+  },
+  {
+    "objectID": "lessons/02/slide.html#conversioni-tra-tipi",
+    "href": "lessons/02/slide.html#conversioni-tra-tipi",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Conversioni tra tipi",
+    "text": "Conversioni tra tipi\nIn generale, per effettuare operazioni aritmetiche tra due numeri, questi devono essere dello stesso tipo.\nIn C è possibile mescolare tipi diversi nella stessa espressione, e il compilatore effettuerà automaticamente le conversioni necessarie per eseguire l’operazione richiesta."
+  },
+  {
+    "objectID": "lessons/02/slide.html#conversioni-implicite",
+    "href": "lessons/02/slide.html#conversioni-implicite",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Conversioni implicite",
+    "text": "Conversioni implicite\nint a = 5;\nfloat b = 1.618;\n\na + b; // 6.618\nIn questo esempio, il valore intero a viene convertito implicitamente in virgola mobile prima di eseguire l’operazione di somma. Questo tipo di conversione è chiamato “promotion”."
+  },
+  {
+    "objectID": "lessons/02/slide.html#conversioni-implicite-1",
+    "href": "lessons/02/slide.html#conversioni-implicite-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Conversioni implicite",
+    "text": "Conversioni implicite\nSe assegno un valore a una variabile di tipo diverso, il compilatore effettuerà una conversione implicita.\nint i = 1;\nfloat f;\nf = i; // 1.0\nf = 2; // 2.0\nÈ vero quindi anche il contrario:\nfloat f = 1.618;\nint i;\ni = f; // 1"
+  },
+  {
+    "objectID": "lessons/02/slide.html#cast-espliciti",
+    "href": "lessons/02/slide.html#cast-espliciti",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Cast espliciti",
+    "text": "Cast espliciti\nÈ possibile convertire esplicitamente il tipo di un’ espressione con l’operazione di casting:\n(nome_tipo) espressione\nIl risultato dell’espressione viene convertito al tipo specificato.\nUn caso frequente è quando si esegue una divisione tra due interi:\nfloat quotient;\nint dividend, divisor;\nquotient = (float) dividend / divisor;"
   },
   {
     "objectID": "lessons/02/slide.html#operatori-1",
@@ -888,7 +940,7 @@
     "href": "lessons/02/slide.html#control-flow-1",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "Control flow",
-    "text": "Control flow\nEssendo C un linguaggio strutturato, possiede un insieme di istruzioni di controllo del flusso di esecuzione del programma. Le principali istruzioni di controllo del flusso sono:\n\nif-else\nswitch\nfor\nwhile\ndo-while\nbreak\ncontinue"
+    "text": "Control flow\nEssendo C un linguaggio strutturato, possiede un insieme di istruzioni di controllo del flusso di esecuzione del programma. Le principali istruzioni di controllo del flusso sono:\n\n\n\nif-else\nswitch\nfor\n\n\n\nwhile\ndo-while\nbreak\ncontinue"
   },
   {
     "objectID": "lessons/02/slide.html#if-else",
@@ -902,7 +954,7 @@
     "href": "lessons/02/slide.html#if-else-annidati",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "if-else annidati",
-    "text": "if-else annidati\nOppure si può usare l’istruzione else if per evitare annidamenti.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int x = 10;\n\n    if (x &gt; 7)\n    {\n        printf(\"x è maggiore di 7\\n\");\n    }\n    else if (x &gt; 5)\n    {\n        printf(\"x è maggiore di 5\\n\");\n    }\n    else\n    {\n        printf(\"x è minore o uguale a 5\\n\");\n    }\n\n    return 0;\n}\n\n\n\n\n\n\n\nAttenzione\n\n\nUn errore comune è confondere l’operatore di assegnamento = con l’operatore di confronto ==. Ad esempio, l’espressione x = 10 assegna il valore 10 alla variabile x, mentre l’espressione x == 10 confronta il valore della variabile x con 10. Se si scrive if (x = 10), l’espressione è sempre vera, perché assegna 10 alla variabile x e restituisce 10, che è considerato true. Per confrontare il valore della variabile x con 10, si deve invece scrivere if (x == 10)."
+    "text": "if-else annidati\nOppure si può usare l’istruzione else if per evitare annidamenti.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int x = 10;\n    if (x &gt; 7)\n    {\n        printf(\"x è maggiore di 7\\n\");\n    }\n    else if (x &gt; 5)\n    {\n        printf(\"x è maggiore di 5\\n\");\n    }\n    else\n    {\n        printf(\"x è minore o uguale a 5\\n\");\n    }\n}\n\n\n\n\n\n\n\nAttenzione\n\n\nUn errore comune è confondere l’operatore di assegnamento = con l’operatore di confronto ==. Ad esempio, l’espressione x = 10 assegna il valore 10 alla variabile x, mentre l’espressione x == 10 confronta il valore della variabile x con 10. Se si scrive if (x = 10), l’espressione è sempre vera, perché assegna 10 alla variabile x e restituisce 10, che è considerato true. Per confrontare il valore della variabile x con 10, si deve invece scrivere if (x == 10)."
   },
   {
     "objectID": "lessons/02/slide.html#if-ternario",
@@ -916,49 +968,203 @@
     "href": "lessons/02/slide.html#if-ternario-1",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "If ternario",
-    "text": "If ternario\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int x = 10;\n    int y = (x &gt; 5) ? 1 : 0;\n\n    printf(\"y = %d\\n\", y);\n\n    return 0;\n}\n\nQuesto modo di scrivere l’istruzione if-else è utile quando si vuole assegnare un valore a una variabile in base a una condizione con una sola riga di codice. Se l’espressione è complessa, l’uso dell’if ternario può rendere il codice meno leggibile."
+    "text": "If ternario\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int x = 10;\n    int y = (x &gt; 5) ? 1 : 0;\n\n    printf(\"y = %d\\n\", y);\n}\n\nQuesto modo di scrivere l’istruzione if-else è utile quando si vuole assegnare un valore a una variabile in base a una condizione con una sola riga di codice. Se l’espressione è complessa, l’uso dell’if ternario può rendere il codice meno leggibile."
   },
   {
     "objectID": "lessons/02/slide.html#switch",
     "href": "lessons/02/slide.html#switch",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "switch",
-    "text": "switch\nTanti if in cascata potrebbero essere sostituiti da uno switch. La sintassi è la seguente:\nswitch (espressione) {\n    case constant-expression:\n        // statements\n        break;\n    case constant-expression:\n        // statements\n        break;\n    // ...\n    default:\n        // statements\n}\n\n\n\n\n\n\nImportante\n\n\nLo switch può essere utilizzato solo con espressioni di tipo intero (int, char, short, long, ecc.) e con espressioni di tipo enum (che verrà trattato in seguito)."
+    "text": "switch\nTanti if in cascata potrebbero essere sostituiti da uno switch. La sintassi è la seguente:\nswitch (espressione) {\n    case constant-expression:\n        // statements\n        break;\n    case constant-expression:\n        // statements\n        break;\n    // ...\n    default:\n        // statements\n}\nLo switch può essere utilizzato solo con espressioni di tipo intero (int, char, short, long, ecc.) e con espressioni di tipo enum (che verrà trattato in seguito)."
   },
   {
     "objectID": "lessons/02/slide.html#cicli",
     "href": "lessons/02/slide.html#cicli",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "Cicli",
-    "text": "Cicli\nCaratteristica fondamentale di un linguaggio di programmazione sono i cicli. C implementa i classici for, while, ma anche do…while\n\nwhile (expression) { statements }\ndo { statements } while (expression)\nfor (initialization; condition; increment) { statements }\n\nQueste while e for sono equivalenti: tutto ciò che si può fare con un ciclo for si può fare con un ciclo while e viceversa. La scelta di quale istruzione utilizzare dipende dal contesto e dalla preferenza personale.\nL’istruzione do-while è simile a while, ma la condizione viene valutata alla fine del blocco di codice. Questo significa che il blocco di codice viene eseguito almeno una volta, anche se la condizione è falsa.\n\n\n\n\n\n\nNota\n\n\nDal C99 è possibile dichiarare variabili all’interno del ciclo for. Queste variabili sono visibili solo all’interno del ciclo. In C89 e nelle versioni precedenti, le variabili devono essere dichiarate all’inizio del blocco di codice.\nfor (int i = 0; i &lt; 10; i++) {\n    // ...\n}"
+    "text": "Cicli\nCaratteristica fondamentale di un linguaggio di programmazione sono i cicli. C implementa i classici for, while, ma anche do…while\n\nwhile (expression) { statements }\ndo { statements } while (expression)\nfor (initialization; condition; increment) { statements }"
+  },
+  {
+    "objectID": "lessons/02/slide.html#cicli-1",
+    "href": "lessons/02/slide.html#cicli-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Cicli",
+    "text": "Cicli\nwhile e for sono equivalenti: tutto ciò che si può fare con un ciclo for si può fare con un ciclo while e viceversa. La scelta di quale istruzione utilizzare dipende dal contesto e dalla preferenza personale.\nL’istruzione do-while è simile a while, ma la condizione viene valutata alla fine del blocco di codice. Questo significa che il blocco di codice viene eseguito almeno una volta, anche se la condizione è falsa."
+  },
+  {
+    "objectID": "lessons/02/slide.html#cicli-2",
+    "href": "lessons/02/slide.html#cicli-2",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Cicli",
+    "text": "Cicli\nDal C99 è possibile dichiarare variabili all’interno del ciclo for. Queste variabili sono visibili solo all’interno del ciclo. In C89 e nelle versioni precedenti, le variabili devono essere dichiarate all’inizio del blocco di codice.\nfor (int i = 0; i &lt; 10; i++) {\n    // ...\n}"
   },
   {
     "objectID": "lessons/02/slide.html#cicli-infiniti",
     "href": "lessons/02/slide.html#cicli-infiniti",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "Cicli infiniti",
-    "text": "Cicli infiniti\nUn ciclo infinito è un ciclo che non termina mai. Un ciclo infinito può essere creato utilizzando un’istruzione while con una condizione sempre vera, ad esempio while (1), oppure utilizzando un’istruzione for senza condizione, ad esempio for (;;). Un ciclo infinito può essere interrotto con un’istruzione break.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int i = 0;\n\n    while (1)\n    {\n        printf(\"%d\\n\", i);\n        i++;\n\n        if (i == 10)\n        {\n            break;\n        }\n    }\n\n    return 0;\n}"
+    "text": "Cicli infiniti\nUn ciclo infinito è un ciclo che non termina mai. Può essere creato utilizzando un’istruzione while con una condizione sempre vera o for senza condizione, ad esempio while (1) oppure for (;;).\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int i = 0;\n    while (1)\n    {\n        printf(\"%d\\n\", i);\n        i++;\n        if (i == 10)\n            break;\n    }\n}"
   },
   {
     "objectID": "lessons/02/slide.html#break-e-continue",
     "href": "lessons/02/slide.html#break-e-continue",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "break e continue",
-    "text": "break e continue\nL’istruzione break termina immediatamente il ciclo in cui si trova. L’istruzione continue termina l’iterazione corrente del ciclo e passa alla successiva. Entrambe le istruzioni possono essere utilizzate all’interno di cicli for, while e do-while. L’istruzione break può essere utilizzata anche all’interno di un blocco switch per terminare immediatamente l’esecuzione del blocco.\n\n\n\n\n\n\nAvviso\n\n\nÈ bene non abusare di break e continue, perché possono rendere il codice meno leggibile. In generale, è meglio evitare di utilizzare break e `continue all’interno di cicli annidati."
+    "text": "break e continue\n\nL’istruzione break termina immediatamente il ciclo in cui si trova.\nL’istruzione continue termina l’iterazione corrente del ciclo e passa alla successiva.\n\n\n\n\n\n\n\nAvviso\n\n\nÈ bene non abusare di break e continue, perché possono rendere il codice meno leggibile. In generale, è meglio evitare di utilizzare break e `continue all’interno di cicli annidati."
   },
   {
     "objectID": "lessons/02/slide.html#esercizio-fizzbuzz",
     "href": "lessons/02/slide.html#esercizio-fizzbuzz",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "Esercizio: FizzBuzz",
-    "text": "Esercizio: FizzBuzz\nScrivere un programma che stampi i numeri da 1 a 100, ma per i multipli di 3 stampi “Fizz” e per i multipli di 5 stampi “Buzz”. Per i numeri che sono sia multipli di 3 che di 5 stampi “FizzBuzz”.\n\n\n\n\n\n\nSuggerimento\n\n\nL’operatore modulo % restituisce il resto della divisione tra due numeri. Ad esempio, 5 % 3 restituisce 2, perché 5 diviso 3 dà 1 con un resto di 2.\n\n\n\n\n\n\n\nDati e Algoritmi"
+    "text": "Esercizio: FizzBuzz\nScrivere un programma che stampi i numeri da 1 a 100, ma per i multipli di 3 stampi “Fizz” e per i multipli di 5 stampi “Buzz”. Per i numeri che sono sia multipli di 3 che di 5 stampi “FizzBuzz”.\n\n\n\n\n\n\nSuggerimento\n\n\nL’operatore modulo % restituisce il resto della divisione tra due numeri. Ad esempio, 5 % 3 restituisce 2, perché 5 diviso 3 dà 1 con un resto di 2."
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-1",
+    "href": "lessons/02/slide.html#array-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array",
+    "text": "Array\nGeneralmente una variabile può contenere un solo valore, spesso però si vuole eseguire operazioni su una sequenza di variabili, una soluzione è l’utilizzo di un array (o vettore). Un array è una collezione di elementi omogenei (tutti dello stesso tipo)."
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-2",
+    "href": "lessons/02/slide.html#array-2",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array",
+    "text": "Array\nLa dichiarazione di un array avviene specificando il tipo e il numero degli elementi:\nint a[10]\nLa dimensione dell’array è una costante intera, spesso definita tramite una macro o una costante:\n#define N 10\nint a[N];\noppure:\nconst int N = 10;\nint a[N];"
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-3",
+    "href": "lessons/02/slide.html#array-3",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array",
+    "text": "Array\nSi accede a un elemento dell’array tramite subscripting:\nint a[2];\na[0] = 1;\na[1] = 2;\nGli indici degli array in C partono da 0, come in Java.\n\n\n\n\n\n\nNota\n\n\nL’espressione a[i] (o simili) è un lvalue (left-value), ossia può essere usata come variabile, può quindi trovarsi a sinistra di un’assegnazione."
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-e-indici",
+    "href": "lessons/02/slide.html#array-e-indici",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array e indici",
+    "text": "Array e indici\nIl compilatore C non controlla i limiti degli array, quindi è possibile accedere a elementi fuori dal range definito, questo può causare errori difficili da individuare.\nint a[10], i;\nfor (i = 0; i &lt;= 10; i++) {\n    a[i] = 0;\n}\nIn certi compilatori il codice sopra riportato causa un loop infinito (più spesso però genera un errore a runtime e ferma l’esecuzione)."
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-e-indici-1",
+    "href": "lessons/02/slide.html#array-e-indici-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array e indici",
+    "text": "Array e indici\nSi intuisce che C sia molto permissivo con il subscripting, il seguente codice quindi è perfettamente legittimo:\nint a[50];\nint i = 0, j = 3;\na[i+j*10] = 0;\n\ni = 0;\nwhile (i &lt; j)\n    a[i++] = 0;"
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-inizializzazione",
+    "href": "lessons/02/slide.html#array-inizializzazione",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array: inizializzazione",
+    "text": "Array: inizializzazione\nUn array può essere inizializzato al momento della dichiarazione:\nint a[5] = {1, 2, 3, 4, 5};\nSe si mettono meno numeri, i restanti elementi vengono inizializzati a 0 (ma questo non succede se non ne specifico nessuno!):\nint a[5] = {1, 2, 3}; // a = {1, 2, 3, 0, 0}\nint b[4] = {0}; // b = {0, 0, 0, 0}"
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-inizializzazione-1",
+    "href": "lessons/02/slide.html#array-inizializzazione-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array: inizializzazione",
+    "text": "Array: inizializzazione\nSe metto più elementi di quelli dichiarati il compilatore segnala un errore. Se invece si omette la dimensione dell’array, il compilatore la calcola automaticamente dalla lista di initializzazione:\nint a[] = {1, 2, 3}; // a ha dimensione 3"
+  },
+  {
+    "objectID": "lessons/02/slide.html#dimensione-di-un-array",
+    "href": "lessons/02/slide.html#dimensione-di-un-array",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Dimensione di un array",
+    "text": "Dimensione di un array\nIn C non esiste un sistema per ottenere senza sforzo la dimensione di un array, per questo, spesso, si utilizza una variabile per memorizzare la dimensione dell’array.\nTuttavia si può usare sizeof per ottenere la dimensione di un array:\nint a[10];\nsizeof(a); /* restituisce 40 su una macchina a 32 bit */\nsizeof(a[0]); /* 4 */\nsizeof(a)/sizeof(a[0]); /* 10, la dimensione dell'array */"
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-multidimensionali",
+    "href": "lessons/02/slide.html#array-multidimensionali",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array multidimensionali",
+    "text": "Array multidimensionali\nUn array può contenere elementi di qualsiasi tipo, anche altri array! Per dichiarare un array multidimensionale si specifica il numero di elementi per ogni dimensione:\nint matrix[5][9];\nPer accedere a un elemento di un array multidimensionale si usano più indici:\nmatrix[1][5] = 42; e NON matrix[1,5] = 42;"
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-multidimensionali-1",
+    "href": "lessons/02/slide.html#array-multidimensionali-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array multidimensionali",
+    "text": "Array multidimensionali\nint matrix[5][9];"
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-esercizi-1",
+    "href": "lessons/02/slide.html#array-esercizi-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array: esercizi (1)",
+    "text": "Array: esercizi (1)\nScrivere un programma che distribuisca una mano di carte per il gioco della briscola (3 carte) e le stampi a video."
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-esercizi-2",
+    "href": "lessons/02/slide.html#array-esercizi-2",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array: esercizi (2)",
+    "text": "Array: esercizi (2)\nScrivere un programma che calcoli la lunghezza media delle parole di un messaggio scritto in input. Per semplicità si consideri la punteggiatura come parte di una parola.\nEsempio:\nScrivi una frase: Era solo un abbaglio.\nLunghezza media: 4.5\n\n\n\n\n\n\nConsiglio\n\n\nLa funzione getchar legge un carattere alla volta da standard input."
+  },
+  {
+    "objectID": "lessons/02/slide.html#array-esercizi-3",
+    "href": "lessons/02/slide.html#array-esercizi-3",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array: esercizi (3)",
+    "text": "Array: esercizi (3)\nScrivere un programma che legga un vettore di \\(5 \\times 5\\) interi e poi stampi la somma delle righe e delle colonne.\nEsempio:\nRiga 1: 8 3 9 0 10\nRiga 2: 3 5 17 1 1\nRiga 3: 2 8 6 23 1\nRiga 4: 15 7 3 2 9\nRiga 5: 6 14 2 6 0\nSomma righe: 30 27 40 36 28\nSomma colonne: 34 37 37 32 21"
+  },
+  {
+    "objectID": "lessons/02/slide.html#funzioni-1",
+    "href": "lessons/02/slide.html#funzioni-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Funzioni",
+    "text": "Funzioni\nUna funzione è una associazione tra due insiemi: il dominio e il codominio: \\(f: A \\rightarrow B\\)\nIn programmazione il concetto di funzione è simile: una funzione è un blocco di codice che accetta un certo numero di argomenti e, spesso, restituisce un valore. Oltre al valore, però, una funzione può anche avere side effects, cioè modificare lo stato del programma."
+  },
+  {
+    "objectID": "lessons/02/slide.html#funzioni-in-c",
+    "href": "lessons/02/slide.html#funzioni-in-c",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Funzioni in C",
+    "text": "Funzioni in C\nIn C si può pensare a una qualsiasi funzione come una scatola nera con un certo numero di ingressi e un solo output.\n\nPraticamente una funzione è un sottoprogramma, un insieme di istruzioni che esegue un compito specifico."
+  },
+  {
+    "objectID": "lessons/02/slide.html#funzioni-sintassi",
+    "href": "lessons/02/slide.html#funzioni-sintassi",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Funzioni: sintassi",
+    "text": "Funzioni: sintassi\nreturn_type function_name( parameters )\n{\n    declarations\n    statements\n}\nEsempio:\ndouble average(int a, int b)\n{\n    double average;\n    average = (a + b) / 2.0;\n    return average;\n}"
+  },
+  {
+    "objectID": "lessons/02/slide.html#funzioni-senza-valore-di-ritorno",
+    "href": "lessons/02/slide.html#funzioni-senza-valore-di-ritorno",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Funzioni senza valore di ritorno",
+    "text": "Funzioni senza valore di ritorno\nIl tipo di ritorno può essere void, in tal caso la funzione non restituisce alcun valore:\nvoid print_int(int a)\n{\n    printf(\"%d\\n\", a);\n    return;\n}\n\n\n\n\n\n\nNota\n\n\nL’istruzione return può essere omessa in una funzione void."
+  },
+  {
+    "objectID": "lessons/02/slide.html#chiamata-di-funzione",
+    "href": "lessons/02/slide.html#chiamata-di-funzione",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Chiamata di funzione",
+    "text": "Chiamata di funzione\nLe funzioni dichiarate precedentemente nel programma possono essere eseguite in blocchi di codice successivi.\nOgni chiamata di funzione è una espressione, e viene valutata con il suo valore di ritorno."
+  },
+  {
+    "objectID": "lessons/02/slide.html#esercizi",
+    "href": "lessons/02/slide.html#esercizi",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Esercizi",
+    "text": "Esercizi\n\nScrivere una funzione che trovi il valore minimo in un array di numeri interi la firma della funzione è int array_min(int arr[], int size).\nScrivere una funzione ricorsiva per sommare gli elementi di un array di double, la firma della funzione è double array_sum(double arr[], int size).\nScrivere una funzione ricorsiva che, dato un array di caratteri, ne stampi il contenuto su standard output. La firma della funzione è void print_string(char arr[], int size).\nModificare la soluzione dell’esercizio precedente per stampare l’array in ordine inverso. Implementare poi una soluzione non ricorsiva allo stesso problema.\nScrivere una funzione ricorsiva all che, dato un array di interi, restituisca true se tutti gli elementi dell’array sono diversi da 0, false altrimenti."
+  },
+  {
+    "objectID": "lessons/02/slide.html#riassunto",
+    "href": "lessons/02/slide.html#riassunto",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Riassunto",
+    "text": "Riassunto\nIn questa lezione sono state introdotti molti elementi, di seguito un elenco che ripercorre i concetti affrontati:\n\ntipi di dato (int, float, char, double);\nespressioni booleane:\n\ntrue e false sono in realtà 1 e 0;\noperatori logici;\n\noperatori;\ncontrol flow (if, switch, while, do-while, for);\narray:\n\ninizializzazione degli array;\narray multidimensionali;\n\nfunzioni: sintassi e ricorsione;\n\n\n\n\n\nDati e Algoritmi"
   },
   {
     "objectID": "lessons/02/index.html",
     "href": "lessons/02/index.html",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "",
-    "text": "Il C è basato su espressioni più che su istruzioni. Queste espressioni sono un insieme di",
+    "text": "Tenendo a mente l’architettura di Von Neumann per i calcolatori, si può riassumere che i computer hanno bisogno di 2 principali elementi: dati e istruzioni per manipolare i dati. I linguaggi di programmazione forniscono in maniera trasparente queste componenti attraverso l’uso di variabili ed espressioni.\nLe espressioni sono un insieme di:",
     "crumbs": [
       "Lezioni",
       "Strutture di controllo, tipi di base, funzioni e array"
@@ -969,18 +1175,7 @@
     "href": "lessons/02/index.html#tipi-numerici-2",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "Tipi numerici",
-    "text": "Tipi numerici\nI vari tipi di interi e tipi di virgola mobile si distinguono per il numero di byte usati per la loro rappresentazione in memoria e, conseguentemente, per il range di valori che possono rappresentare.\nLa dimensione di un tipo di dato, espressa in byte, e il suo range di valori dipendono dal compilatore e dall’architettura del computer. Per determinare la dimensione di un tipo di dato si può utilizzare l’operatore sizeof, mentre per conoscere il range di valori utilizzabili si possono sfruttare le librerie limits.h (per i tipi interi) e float.h (per i tipi di virgola mobile).",
-    "crumbs": [
-      "Lezioni",
-      "Strutture di controllo, tipi di base, funzioni e array"
-    ]
-  },
-  {
-    "objectID": "lessons/02/index.html#tipi-numerici-3",
-    "href": "lessons/02/index.html#tipi-numerici-3",
-    "title": "Strutture di controllo, tipi di base, funzioni e array",
-    "section": "Tipi numerici",
-    "text": "Tipi numerici\n#include &lt;limits.h&gt;\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    printf(\"size of short: %lu\\n\", sizeof(short));\n    printf(\"size of int: %lu\\n\", sizeof(int));\n    printf(\"size of double: %lu\\n\", sizeof(double));\n    printf(\"INT_MAX = %d\\n\", INT_MAX);\n    printf(\"INT_MIN = %d\\n\", INT_MIN);\n    printf(\"UINT_MAX = %u\\n\", UINT_MAX);\n    printf(\"LONG_MAX = %ld\\n\", LONG_MAX);\n    printf(\"LONG_MIN = %ld\\n\", LONG_MIN);\n    printf(\"ULONG_MAX = %lu\\n\", ULONG_MAX);\n    printf(\"SHRT_MAX = %d\\n\", SHRT_MAX);\n    printf(\"SHRT_MIN = %d\\n\", SHRT_MIN);\n    printf(\"USHRT_MAX = %u\\n\", USHRT_MAX);\n}\n\nQuesto esempio illustra come ottenere informazioni su dimensione e range di alcuni tipi numerici in C. È importante notare come la gestione attenta di questi aspetti possa prevenire errori di overflow e underflow.",
+    "text": "Tipi numerici\nI vari tipi di interi e tipi di virgola mobile si distinguono per il numero di byte usati per la loro rappresentazione in memoria e, conseguentemente, per il range di valori che possono rappresentare.\nLa dimensione di un tipo di dato, espressa in byte, e il suo range di valori dipendono dal compilatore e dall’architettura del computer. Per determinare la dimensione di un tipo di dato si può utilizzare l’operatore sizeof, mentre per conoscere il range di valori utilizzabili si possono sfruttare le librerie limits.h (per i tipi interi) e float.h (per i tipi di virgola mobile).\n#include &lt;limits.h&gt;\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    printf(\"size of short: %lu\\n\", sizeof(short));\n    printf(\"size of int: %lu\\n\", sizeof(int));\n    printf(\"size of double: %lu\\n\", sizeof(double));\n    printf(\"INT_MAX = %d\\n\", INT_MAX);\n    printf(\"INT_MIN = %d\\n\", INT_MIN);\n    printf(\"UINT_MAX = %u\\n\", UINT_MAX);\n    printf(\"LONG_MAX = %ld\\n\", LONG_MAX);\n    printf(\"LONG_MIN = %ld\\n\", LONG_MIN);\n    printf(\"ULONG_MAX = %lu\\n\", ULONG_MAX);\n    printf(\"SHRT_MAX = %d\\n\", SHRT_MAX);\n    printf(\"SHRT_MIN = %d\\n\", SHRT_MIN);\n    printf(\"USHRT_MAX = %u\\n\", USHRT_MAX);\n}\n\nL’esempio precedente illustra come ottenere informazioni su dimensione e range di alcuni tipi numerici in C. È importante notare come la gestione attenta di questi aspetti possa prevenire errori di overflow e underflow.",
     "crumbs": [
       "Lezioni",
       "Strutture di controllo, tipi di base, funzioni e array"
@@ -991,7 +1186,18 @@
     "href": "lessons/02/index.html#tipi-char-1",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "Tipi char",
-    "text": "Tipi char\nIl tipo char è usato per rappresentare singoli caratteri. In C, i caratteri sono trattati come piccoli interi, consentendo di eseguire operazioni aritmetiche su di loro grazie alla codifica ASCII.\nEsempio di dichiarazione:\nchar lettera = 'A';\nè essenziale usare gli apici singoli (’ ’) per denotare i valori di tipo char, distinguendoli dalle stringhe, che sono rappresentate tra virgolette doppie (” “).\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    char lettera_minuscola = 'a';\n    char lettera_maiuscola = lettera_minuscola - 32;\n    printf(\"La lettera maiuscola corrispondente è: %c\\n\", lettera_maiuscola);\n    return 0;\n}\nQuesto frammento di codice dimostra la conversione di una lettera minuscola in maiuscola sfruttando la differenza costante nei valori ASCII.",
+    "text": "Tipi char\nIl tipo char è usato per rappresentare singoli caratteri. In C, i caratteri sono trattati come piccoli interi, consentendo di eseguire operazioni aritmetiche su di loro grazie alla codifica ASCII.\nEsempio di dichiarazione:\nchar lettera = 'A';\nè essenziale usare gli apici singoli (’ ’) per denotare i valori di tipo char, distinguendoli dalle stringhe, che sono rappresentate tra virgolette doppie (” “).\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    char lettera_minuscola = 'a';\n    char lettera_maiuscola = lettera_minuscola - 32;\n    printf(\"La lettera maiuscola corrispondente è: %c\\n\", lettera_maiuscola);\n    return 0;\n}\nQuesto frammento di codice dimostra la conversione di una lettera minuscola in maiuscola sfruttando la differenza costante nei valori ASCII.\n\n\n\n\n\n\nTabella ASCII\n\n\n\nNella tabella ASCII, i valori dei caratteri alfabetici maiuscoli sono minori di quelli dei corrispondenti caratteri minuscoli, per trovare la distanza tra i due valori basta effettuare l’operazione 'A' - 'a'. Questo valore è costante e può essere usato per convertire una lettera minuscola in maiuscola e viceversa. Per maggiori dettagli si veda la tabella ASCII alla pagina del manuale linux man ascii.",
+    "crumbs": [
+      "Lezioni",
+      "Strutture di controllo, tipi di base, funzioni e array"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#conversioni-tra-tipi-1",
+    "href": "lessons/02/index.html#conversioni-tra-tipi-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Conversioni tra tipi",
+    "text": "Conversioni tra tipi\nIn generale, per effettuare operazioni aritmetiche tra due numeri, questi devono essere dello stesso tipo.\nIn C è possibile mescolare tipi diversi nella stessa espressione, e il compilatore effettuerà automaticamente le conversioni necessarie per eseguire l’operazione richiesta.\n\nConversioni implicite\nint a = 5;\nfloat b = 1.618;\n\na + b; // 6.618\nIn questo esempio, il valore intero a viene convertito implicitamente in virgola mobile prima di eseguire l’operazione di somma. Questo tipo di conversione è chiamato “promotion”.\nSe assegno un valore a una variabile di tipo diverso, il compilatore effettuerà una conversione implicita.\nint i = 1;\nfloat f;\nf = i; // 1.0\nf = 2; // 2.0\nÈ vero quindi anche il contrario:\nfloat f = 1.618;\nint i;\ni = f; // 3\nIn questo caso, il valore in virgola mobile viene troncato al valore intero più vicino, si noti che non viene effettuato alcun arrotondamento.\n\n\nCast espliciti\nÈ possibile convertire esplicitamente il tipo di un’ espressione con l’operazione di casting:\n(nome_tipo) espressione\nIl risultato dell’espressione viene convertito al tipo specificato.\nUn caso frequente è quando si esegue una divisione tra due interi:\nfloat quotient;\nint dividend, divisor;\nquotient = (float) dividend / divisor;\n\n\n\n\n\n\nNota\n\n\n\nIn questo caso, dividend viene convertito in float prima di eseguire la divisione, ciò comporta che divisor venga convertito implicitamente in float, infatti, come vedremo nel paragrafo successivo, l’operatore di casting ha la precedenza su quello di divisione.",
     "crumbs": [
       "Lezioni",
       "Strutture di controllo, tipi di base, funzioni e array"
@@ -1020,8 +1226,8 @@
     ]
   },
   {
-    "objectID": "lessons/02/index.html#espressioni-istruzione",
-    "href": "lessons/02/index.html#espressioni-istruzione",
+    "objectID": "lessons/02/index.html#espressioni-istruzione-1",
+    "href": "lessons/02/index.html#espressioni-istruzione-1",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "Espressioni istruzione",
     "text": "Espressioni istruzione\nTutte le espressioni possono essere anche statement: in una linea posso avere anche solo una operazione singola seguita da ;\ni = 1;      // utile\ni++;        // utile\ni * j + 2   // inutile, potrebbe dare warning\n            // \"statement with no effect\"\nNella seconda riga dell’esempio il risultato viene scartato, ma la modifica avviene lo stesso.",
@@ -1068,7 +1274,7 @@
     "href": "lessons/02/index.html#if-else-1",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "if-else",
-    "text": "if-else\nL’istruzione if-else permette di eseguire un blocco di codice solo se una condizione è vera. La sintassi è la seguente:\nif (espressione) {\n    // statements\n} else {\n    // statements\n}\nSe la condizione è vera, viene eseguito il blocco di codice immediatamente successivo all’istruzione if. Altrimenti, viene eseguito il blocco di codice immediatamente successivo all’istruzione else.\n#include &lt;stdio.h&gt;\n\nint main() {\n    int x = 10;\n\n    if (x &gt; 5) {\n        printf(\"x è maggiore di 5\\n\");\n    } else {\n        printf(\"x è minore o uguale a 5\\n\");\n    }\n\n    return 0;\n}\nIl codice stampa:\nx è maggiore di 5\n\nif-else annidati\nÈ possibile annidare più istruzioni if-else all’interno di un blocco di codice.\n#include &lt;stdio.h&gt;\n\nint main() {\n    int x = 10;\n\n    if (x &gt; 5) {\n        if (x &gt; 7) {\n            printf(\"x è maggiore di 7\\n\");\n        } else {\n            printf(\"x è minore o uguale a 7\\n\");\n        }\n    } else {\n        printf(\"x è minore o uguale a 5\\n\");\n    }\n\n    return 0;\n}\nIl codice stampa:\nx è maggiore di 7\nOppure si può usare l’istruzione else if per evitare l’annidamento.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int x = 10;\n\n    if (x &gt; 7)\n    {\n        printf(\"x è maggiore di 7\\n\");\n    }\n    else if (x &gt; 5)\n    {\n        printf(\"x è maggiore di 5\\n\");\n    }\n    else\n    {\n        printf(\"x è minore o uguale a 5\\n\");\n    }\n\n    return 0;\n}\n\nQuesta versione stampa lo stesso risultato della precedente, in questo caso però, il secondo if è allineato con il primo else, rendendo il codice più leggibile.\n\n\n\n\n\n\nAttenzione\n\n\n\nUn errore comune è confondere l’operatore di assegnamento = con l’operatore di confronto ==. Ad esempio, l’espressione x = 10 assegna il valore 10 alla variabile x, mentre l’espressione x == 10 confronta il valore della variabile x con 10. Se si scrive if (x = 10), l’espressione è sempre vera, perché assegna 10 alla variabile x e restituisce 10, che è considerato true. Per confrontare il valore della variabile x con 10, si deve invece scrivere if (x == 10).",
+    "text": "if-else\nL’istruzione if-else permette di eseguire un blocco di codice solo se una condizione è vera. La sintassi è la seguente:\nif (espressione) {\n    // statements\n} else {\n    // statements\n}\nSe la condizione è vera, viene eseguito il blocco di codice immediatamente successivo all’istruzione if. Altrimenti, viene eseguito il blocco di codice immediatamente successivo all’istruzione else.\n#include &lt;stdio.h&gt;\n\nint main() {\n    int x = 10;\n\n    if (x &gt; 5) {\n        printf(\"x è maggiore di 5\\n\");\n    } else {\n        printf(\"x è minore o uguale a 5\\n\");\n    }\n\n    return 0;\n}\nIl codice stampa:\nx è maggiore di 5\n\nif-else annidati\nÈ possibile annidare più istruzioni if-else all’interno di un blocco di codice.\n#include &lt;stdio.h&gt;\n\nint main() {\n    int x = 10;\n\n    if (x &gt; 5) {\n        if (x &gt; 7) {\n            printf(\"x è maggiore di 7\\n\");\n        } else {\n            printf(\"x è minore o uguale a 7\\n\");\n        }\n    } else {\n        printf(\"x è minore o uguale a 5\\n\");\n    }\n\n    return 0;\n}\nIl codice stampa:\nx è maggiore di 7\nOppure si può usare l’istruzione else if per evitare l’annidamento.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int x = 10;\n    if (x &gt; 7)\n    {\n        printf(\"x è maggiore di 7\\n\");\n    }\n    else if (x &gt; 5)\n    {\n        printf(\"x è maggiore di 5\\n\");\n    }\n    else\n    {\n        printf(\"x è minore o uguale a 5\\n\");\n    }\n}\n\nQuesta versione stampa lo stesso risultato della precedente, in questo caso però, il secondo if è allineato con il primo else, rendendo il codice più leggibile.\n\n\n\n\n\n\nAttenzione\n\n\n\nUn errore comune è confondere l’operatore di assegnamento = con l’operatore di confronto ==. Ad esempio, l’espressione x = 10 assegna il valore 10 alla variabile x, mentre l’espressione x == 10 confronta il valore della variabile x con 10. Se si scrive if (x = 10), l’espressione è sempre vera, perché assegna 10 alla variabile x e restituisce 10, che è considerato true. Per confrontare il valore della variabile x con 10, si deve invece scrivere if (x == 10).",
     "crumbs": [
       "Lezioni",
       "Strutture di controllo, tipi di base, funzioni e array"
@@ -1079,7 +1285,7 @@
     "href": "lessons/02/index.html#if-ternario-2",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "If ternario",
-    "text": "If ternario\nL’if ternario è una forma compatta dell’istruzione if-else. La sintassi è la seguente:\nespressione ? valore_se_vera : valore_se_falsa\nSe l’espressione è vera, viene restituito valore_se_vera, altrimenti viene restituito valore_se_falsa.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int x = 10;\n    int y = (x &gt; 5) ? 1 : 0;\n\n    printf(\"y = %d\\n\", y);\n\n    return 0;\n}\n\nQuesto modo di scrivere l’istruzione if-else è utile quando si vuole assegnare un valore a una variabile in base a una condizione con una sola riga di codice. Tuttavia, se l’espressione è complessa, l’uso dell’if ternario può rendere il codice meno leggibile. In questi casi si sconsiglia di utilizzarlo e si preferisce l’istruzione if-else standard.",
+    "text": "If ternario\nL’if ternario è una forma compatta dell’istruzione if-else. La sintassi è la seguente:\nespressione ? valore_se_vera : valore_se_falsa\nSe l’espressione è vera, viene restituito valore_se_vera, altrimenti viene restituito valore_se_falsa.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int x = 10;\n    int y = (x &gt; 5) ? 1 : 0;\n\n    printf(\"y = %d\\n\", y);\n}\n\nQuesto modo di scrivere l’istruzione if-else è utile quando si vuole assegnare un valore a una variabile in base a una condizione con una sola riga di codice. Tuttavia, se l’espressione è complessa, l’uso dell’if ternario può rendere il codice meno leggibile. In questi casi si sconsiglia di utilizzarlo e si preferisce l’istruzione if-else standard.",
     "crumbs": [
       "Lezioni",
       "Strutture di controllo, tipi di base, funzioni e array"
@@ -1097,11 +1303,44 @@
     ]
   },
   {
-    "objectID": "lessons/02/index.html#cicli-1",
-    "href": "lessons/02/index.html#cicli-1",
+    "objectID": "lessons/02/index.html#cicli-3",
+    "href": "lessons/02/index.html#cicli-3",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "Cicli",
-    "text": "Cicli\nCaratteristica fondamentale di un linguaggio di programmazione sono i cicli. C implementa i classici for, while, ma anche do…while\n\nwhile (expression) { statements }\ndo { statements } while (expression)\nfor (initialization; condition; increment) { statements }\n\nQueste while e for sono equivalenti: tutto ciò che si può fare con un ciclo for si può fare con un ciclo while e viceversa. La scelta di quale istruzione utilizzare dipende dal contesto e dalla preferenza personale.\nL’istruzione do-while è simile a while, ma la condizione viene valutata alla fine del blocco di codice. Questo significa che il blocco di codice viene eseguito almeno una volta, anche se la condizione è falsa.\n\n\n\n\n\n\nNota\n\n\n\nDal C99 è possibile dichiarare variabili all’interno del ciclo for. Queste variabili sono visibili solo all’interno del ciclo. In C89 e nelle versioni precedenti, le variabili devono essere dichiarate all’inizio del blocco di codice.\nfor (int i = 0; i &lt; 10; i++) {\n    // ...\n}\n\n\n\nCicli infiniti\nUn ciclo infinito è un ciclo che non termina mai. Un ciclo infinito può essere creato utilizzando un’istruzione while con una condizione sempre vera, ad esempio while (1), oppure utilizzando un’istruzione for senza condizione, ad esempio for (;;). Un ciclo infinito può essere interrotto con un’istruzione break.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int i = 0;\n\n    while (1)\n    {\n        printf(\"%d\\n\", i);\n        i++;\n\n        if (i == 10)\n        {\n            break;\n        }\n    }\n\n    return 0;\n}\n\n\n\nbreak e continue\nL’istruzione break termina immediatamente il ciclo in cui si trova. L’istruzione continue termina l’iterazione corrente del ciclo e passa alla successiva. Entrambe le istruzioni possono essere utilizzate all’interno di cicli for, while e do-while. L’istruzione break può essere utilizzata anche all’interno di un blocco switch per terminare immediatamente l’esecuzione del blocco.\n\n\n\n\n\n\nAvviso\n\n\n\nÈ bene non abusare di break e continue, perché possono rendere il codice meno leggibile. In generale, è meglio evitare di utilizzare break e `continue all’interno di cicli annidati.",
+    "text": "Cicli\nCaratteristica fondamentale di un linguaggio di programmazione sono i cicli. C implementa i classici for, while, ma anche do…while\n\nwhile (expression) { statements }\ndo { statements } while (expression)\nfor (initialization; condition; increment) { statements }\n\nQueste while e for sono equivalenti: tutto ciò che si può fare con un ciclo for si può fare con un ciclo while e viceversa. La scelta di quale istruzione utilizzare dipende dal contesto e dalla preferenza personale.\nL’istruzione do-while è simile a while, ma la condizione viene valutata alla fine del blocco di codice. Questo significa che il blocco di codice viene eseguito almeno una volta, anche se la condizione è falsa.\n\n\n\n\n\n\nNota\n\n\n\nDal C99 è possibile dichiarare variabili all’interno del ciclo for. Queste variabili sono visibili solo all’interno del ciclo. In C89 e nelle versioni precedenti, le variabili devono essere dichiarate all’inizio del blocco di codice.\nfor (int i = 0; i &lt; 10; i++) {\n    // ...\n}\n\n\n\nCicli infiniti\nUn ciclo infinito è un ciclo che non termina mai. Un ciclo infinito può essere creato utilizzando un’istruzione while con una condizione sempre vera, ad esempio while (1), oppure utilizzando un’istruzione for senza condizione, ad esempio for (;;). Un ciclo infinito può essere interrotto con un’istruzione break.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int i = 0;\n    while (1)\n    {\n        printf(\"%d\\n\", i);\n        i++;\n        if (i == 10)\n            break;\n    }\n}\n\n\n\nbreak e continue\nL’istruzione break termina immediatamente il ciclo in cui si trova. L’istruzione continue termina l’iterazione corrente del ciclo e passa alla successiva. Entrambe le istruzioni possono essere utilizzate all’interno di cicli for, while e do-while. L’istruzione break può essere utilizzata anche all’interno di un blocco switch per terminare immediatamente l’esecuzione del blocco.\n\n\n\n\n\n\nAvviso\n\n\n\nÈ bene non abusare di break e continue, perché possono rendere il codice meno leggibile. In generale, è meglio evitare di utilizzare break e `continue all’interno di cicli annidati.",
+    "crumbs": [
+      "Lezioni",
+      "Strutture di controllo, tipi di base, funzioni e array"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#inizializzazione",
+    "href": "lessons/02/index.html#inizializzazione",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Inizializzazione",
+    "text": "Inizializzazione\nUn array può essere inizializzato al momento della dichiarazione:\nint a[5] = {1, 2, 3, 4, 5};\nSe si mettono meno numeri, i restanti elementi vengono inizializzati a 0 (ma questo non succede se non ne specifico nessuno!):\nint a[5] = {1, 2, 3}; // a = {1, 2, 3, 0, 0}\nint b[4] = {0}; // b = {0, 0, 0, 0}\nSe metto più elementi di quelli dichiarati il compilatore segnala un errore. Se invece si omette la dimensione dell’array, il compilatore la calcola automaticamente dalla lista di initializzazione:\nint a[] = {1, 2, 3}; // a ha dimensione 3",
+    "crumbs": [
+      "Lezioni",
+      "Strutture di controllo, tipi di base, funzioni e array"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#dimensione-di-un-array-1",
+    "href": "lessons/02/index.html#dimensione-di-un-array-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Dimensione di un array",
+    "text": "Dimensione di un array\nIn C non esiste un sistema per ottenere senza sforzo la dimensione di un array, per questo, spesso, si utilizza una variabile per memorizzare la dimensione dell’array.\nTuttavia si può usare sizeof per ottenere la dimensione di un array:\nint a[10];\nsizeof(a); /* restituisce 40 su una macchina a 32 bit */\nsizeof(a[0]); /* 4 */\nsizeof(a)/sizeof(a[0]); /* 10, la dimensione dell'array */",
+    "crumbs": [
+      "Lezioni",
+      "Strutture di controllo, tipi di base, funzioni e array"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#array-multidimensionali-2",
+    "href": "lessons/02/index.html#array-multidimensionali-2",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Array multidimensionali",
+    "text": "Array multidimensionali\nUn array può contenere elementi di qualsiasi tipo, anche altri array! Per dichiarare un array multidimensionale si specifica il numero di elementi per ogni dimensione:\nint matrix[5][9];\nPer accedere a un elemento di un array multidimensionale si usano più indici:\nmatrix[1][5] = 42; e NON matrix[1,5] = 42;",
     "crumbs": [
       "Lezioni",
       "Strutture di controllo, tipi di base, funzioni e array"
@@ -1140,6 +1379,30 @@
       "Lezioni",
       "Basi di C",
       "Libretto universitario"
+    ]
+  },
+  {
+    "objectID": "exercises/02/word_average.html",
+    "href": "exercises/02/word_average.html",
+    "title": "Esercizio: lunghezza media delle parole",
+    "section": "",
+    "text": "Si vuole scrivere un programma che calcoli la lunghezza media delle parole di un messaggio scritto in input.\n\nIl programma deve leggere una sequenza di caratteri da tastiera e calcolare la lunghezza media delle parole presenti nel messaggio. Si considera una parola una sequenza di caratteri separata da spazi, tabulazioni o a capo.\nUn’esecuzione del programma potrebbe essere la seguente:\n$ ./lunghezza_media\nScrivi una frase: Era solo un abbaglio.\nLunghezza media: 4.5\n\n\n\n\n\n\nSuggerimento\n\n\n\nLa funzione getchar legge un carattere alla volta da standard input. Ad esempio:\nchar c = getchar(); // legge un carattere da stdin\n// oppure\nwhile ((c = getchar()) != '\\n') {\n    // legge caratteri fino a quando\n    // non viene premuto il tasto enter\n}",
+    "crumbs": [
+      "Lezioni",
+      "Array e funzioni",
+      "Lunghezza media delle parole"
+    ]
+  },
+  {
+    "objectID": "exercises/02/fizzbuzz.html",
+    "href": "exercises/02/fizzbuzz.html",
+    "title": "Esercizio: FizzBuzz",
+    "section": "",
+    "text": "Si vuole scrivere un programma che stampi i numeri da 1 a 100, ma per i multipli di 3 stampi “Fizz” e per i multipli di 5 stampi “Buzz”. Per i numeri che sono sia multipli di 3 che di 5 stampi “FizzBuzz”.\n\nUn’esecuzione del programma potrebbe essere la seguente:\n$ ./fizzbuzz\n1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n...\n\n\n\n\n\n\nSuggerimento\n\n\n\nL’operatore modulo % restituisce il resto della divisione tra due numeri. Ad esempio, 5 % 3 restituisce 2, perché 5 diviso 3 dà 1 con un resto di 2.",
+    "crumbs": [
+      "Lezioni",
+      "Espressioni e strutture di controllo",
+      "FizzBuzz"
     ]
   },
   {
