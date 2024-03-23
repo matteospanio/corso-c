@@ -1139,11 +1139,53 @@
     "text": "Funzioni senza valore di ritorno\nIl tipo di ritorno può essere void, in tal caso la funzione non restituisce alcun valore:\nvoid print_int(int a)\n{\n    printf(\"%d\\n\", a);\n    return;\n}\n\n\n\n\n\n\nNota\n\n\nL’istruzione return può essere omessa in una funzione void."
   },
   {
+    "objectID": "lessons/02/slide.html#funzioni-2",
+    "href": "lessons/02/slide.html#funzioni-2",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Funzioni",
+    "text": "Funzioni\nAnche i parametri possono essere void oppure si possono omettere:\nvoid print_hello(void)\n{\n    printf(\"Hello, world!\\n\");\n    return;\n}"
+  },
+  {
     "objectID": "lessons/02/slide.html#chiamata-di-funzione",
     "href": "lessons/02/slide.html#chiamata-di-funzione",
     "title": "Strutture di controllo, tipi di base, funzioni e array",
     "section": "Chiamata di funzione",
     "text": "Chiamata di funzione\nLe funzioni dichiarate precedentemente nel programma possono essere eseguite in blocchi di codice successivi.\nOgni chiamata di funzione è una espressione, e viene valutata con il suo valore di ritorno."
+  },
+  {
+    "objectID": "lessons/02/slide.html#dichiarazione-e-definizione",
+    "href": "lessons/02/slide.html#dichiarazione-e-definizione",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Dichiarazione e definizione",
+    "text": "Dichiarazione e definizione\nLe funzioni possono essere dichiarate e definite in due momenti diversi del programma.\nLa dichiarazione di una funzione è una promessa che il programmatore fa al compilatore: “presto ti dirò cosa fa questa funzione”.\nLa chiamata di funzione può avvenire prima della definizione, ma solo dopo la dichiarazione.\nLa sintassi della dichiarazione è la stessa della definizione, ma senza il corpo della funzione:\nreturn_type function_name( parameters );"
+  },
+  {
+    "objectID": "lessons/02/slide.html#dichiarazione-e-definizione-1",
+    "href": "lessons/02/slide.html#dichiarazione-e-definizione-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Dichiarazione e definizione",
+    "text": "Dichiarazione e definizione\nEsempio:\n#include &lt;stdio.h&gt;\n\nint sum(int a, int b); // dichiarazione\n\nint main(void)\n{\n    int x = 3, y = 4;\n    int z = sum(x, y);\n    printf(\"La somma di %d e %d è %d\\n\", x, y, z);\n    return 0;\n}\n\nint sum(int a, int b) // definizione\n{\n    return a + b;\n}"
+  },
+  {
+    "objectID": "lessons/02/slide.html#argomenti-di-funzione",
+    "href": "lessons/02/slide.html#argomenti-di-funzione",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Argomenti di funzione",
+    "text": "Argomenti di funzione\nLe funzioni possono accettare un numero arbitrario di argomenti, ma è meglio limitare il numero di argomenti per mantenere la leggibilità del codice.\nGli argomenti possono anche essere degli array, mentre il tipo di ritorno no.\nSe si passa un array come argomento, si può omettere la sua dimensione, ma in tal caso non sarà possibile conoscere la dimensione dell’array all’interno della funzione, per questo spesso si passa anche la dimensione dell’array come argomento."
+  },
+  {
+    "objectID": "lessons/02/slide.html#argomenti-di-funzione-1",
+    "href": "lessons/02/slide.html#argomenti-di-funzione-1",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Argomenti di funzione",
+    "text": "Argomenti di funzione\nIl passaggio degli argomenti può avvenire in due modi:\n\nper valore (by value): il valore dell’argomento viene copiato nella funzione\nper riferimento (by reference): viene passato l’indirizzo di memoria dell’argomento\n\nint increment(int a) { // passaggio per valore\n    a++;\n    return a; // a è una copia dell'argomento\n}\n\n// il vettore a è passato per riferimento\nvoid square(int a[], int dim) {\n    for (int i = 0; i &lt; dim; i++) {\n        a[i] *= a[i];\n    }\n    return;\n}"
+  },
+  {
+    "objectID": "lessons/02/slide.html#ricorsione",
+    "href": "lessons/02/slide.html#ricorsione",
+    "title": "Strutture di controllo, tipi di base, funzioni e array",
+    "section": "Ricorsione",
+    "text": "Ricorsione\nUna funzione che invoca se stessa è detta ricorsiva.\nint factorial(int n) {\n    if (n == 0)\n        return 1;\n    return n * factorial(n - 1);\n}"
   },
   {
     "objectID": "lessons/02/slide.html#esercizi",

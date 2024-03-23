@@ -1064,10 +1064,82 @@
 </div>
 </div>
 </section>
+<section id="funzioni-2" class="slide level2">
+<h2>Funzioni</h2>
+<p>Anche i parametri possono essere <code>void</code> oppure si possono omettere:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb32-1"><a></a><span class="dt">void</span> print_hello<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb32-2"><a></a><span class="op">{</span></span>
+<span id="cb32-3"><a></a>    printf<span class="op">(</span><span class="st">"Hello, world!</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb32-4"><a></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb32-5"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="chiamata-di-funzione" class="slide level2">
 <h2>Chiamata di funzione</h2>
 <p>Le funzioni dichiarate precedentemente nel programma possono essere eseguite in blocchi di codice successivi.</p>
 <p>Ogni chiamata di funzione è una <em>espressione</em>, e viene valutata con il suo valore di ritorno.</p>
+</section>
+<section id="dichiarazione-e-definizione" class="slide level2">
+<h2>Dichiarazione e definizione</h2>
+<p>Le funzioni possono essere dichiarate e definite in due momenti diversi del programma.</p>
+<p>La dichiarazione di una funzione è una <em>promessa</em> che il programmatore fa al compilatore: “presto ti dirò cosa fa questa funzione”.</p>
+<p>La chiamata di funzione può avvenire prima della definizione, ma solo dopo la dichiarazione.</p>
+<p>La sintassi della dichiarazione è la stessa della definizione, ma senza il corpo della funzione:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb33-1"><a></a>return_type function_name<span class="op">(</span> parameters <span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dichiarazione-e-definizione-1" class="slide level2">
+<h2>Dichiarazione e definizione</h2>
+<p>Esempio:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb34-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb34-2"><a></a></span>
+<span id="cb34-3"><a></a><span class="dt">int</span> sum<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">);</span> <span class="co">// dichiarazione</span></span>
+<span id="cb34-4"><a></a></span>
+<span id="cb34-5"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb34-6"><a></a><span class="op">{</span></span>
+<span id="cb34-7"><a></a>    <span class="dt">int</span> x <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> y <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
+<span id="cb34-8"><a></a>    <span class="dt">int</span> z <span class="op">=</span> sum<span class="op">(</span>x<span class="op">,</span> y<span class="op">);</span></span>
+<span id="cb34-9"><a></a>    printf<span class="op">(</span><span class="st">"La somma di </span><span class="sc">%d</span><span class="st"> e </span><span class="sc">%d</span><span class="st"> è </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> z<span class="op">);</span></span>
+<span id="cb34-10"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb34-11"><a></a><span class="op">}</span></span>
+<span id="cb34-12"><a></a></span>
+<span id="cb34-13"><a></a><span class="dt">int</span> sum<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="co">// definizione</span></span>
+<span id="cb34-14"><a></a><span class="op">{</span></span>
+<span id="cb34-15"><a></a>    <span class="cf">return</span> a <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb34-16"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="argomenti-di-funzione" class="slide level2">
+<h2>Argomenti di funzione</h2>
+<p>Le funzioni possono accettare un numero arbitrario di argomenti, ma è meglio limitare il numero di argomenti per mantenere la leggibilità del codice.</p>
+<p>Gli argomenti possono anche essere degli array, mentre il tipo di ritorno no.</p>
+<p>Se si passa un array come argomento, si può omettere la sua dimensione, ma in tal caso non sarà possibile conoscere la dimensione dell’array all’interno della funzione, per questo spesso si passa anche la dimensione dell’array come argomento.</p>
+</section>
+<section id="argomenti-di-funzione-1" class="slide level2">
+<h2>Argomenti di funzione</h2>
+<p>Il passaggio degli argomenti può avvenire in due modi:</p>
+<ul>
+<li>per valore (<em>by value</em>): il valore dell’argomento viene copiato nella funzione</li>
+<li>per riferimento (<em>by reference</em>): viene passato l’indirizzo di memoria dell’argomento</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb35-1"><a></a><span class="dt">int</span> increment<span class="op">(</span><span class="dt">int</span> a<span class="op">)</span> <span class="op">{</span> <span class="co">// passaggio per valore</span></span>
+<span id="cb35-2"><a></a>    a<span class="op">++;</span></span>
+<span id="cb35-3"><a></a>    <span class="cf">return</span> a<span class="op">;</span> <span class="co">// a è una copia dell'argomento</span></span>
+<span id="cb35-4"><a></a><span class="op">}</span></span>
+<span id="cb35-5"><a></a></span>
+<span id="cb35-6"><a></a><span class="co">// il vettore a è passato per riferimento</span></span>
+<span id="cb35-7"><a></a><span class="dt">void</span> square<span class="op">(</span><span class="dt">int</span> a<span class="op">[],</span> <span class="dt">int</span> dim<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb35-8"><a></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> dim<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb35-9"><a></a>        a<span class="op">[</span>i<span class="op">]</span> <span class="op">*=</span> a<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb35-10"><a></a>    <span class="op">}</span></span>
+<span id="cb35-11"><a></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb35-12"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ricorsione" class="slide level2">
+<h2>Ricorsione</h2>
+<p>Una funzione che invoca se stessa è detta <em>ricorsiva</em>.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb36-1"><a></a><span class="dt">int</span> factorial<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-2"><a></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb36-3"><a></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb36-4"><a></a>    <span class="cf">return</span> n <span class="op">*</span> factorial<span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb36-5"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="esercizi" class="slide level2 smaller">
 <h2>Esercizi</h2>
