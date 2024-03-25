@@ -36,10 +36,6 @@ a[1] = 2;
 
 Gli indici degli array in C partono da 0, come in Java.
 
-::: {.callout-note}
-L'espressione `a[i]` (o simili) è un *lvalue* (left-value), ossia può essere usata come variabile, può quindi trovarsi a sinistra di un'assegnazione.
-:::
-
 ## Array e indici
 
 Il compilatore C non controlla i limiti degli array, quindi è possibile accedere a elementi fuori dal range definito, questo può causare errori difficili da individuare.
@@ -138,19 +134,3 @@ Lunghezza media: 4.5
 ::: {.callout-tip}
 La funzione `getchar` legge un carattere alla volta da standard input.
 :::
-
-## Array: esercizi (3)
-
-Scrivere un programma che legga un vettore di $5 \times 5$ interi e poi stampi la somma delle righe e delle colonne.
-
-Esempio:
-
-```plaintext
-Riga 1: 8 3 9 0 10
-Riga 2: 3 5 17 1 1
-Riga 3: 2 8 6 23 1
-Riga 4: 15 7 3 2 9
-Riga 5: 6 14 2 6 0
-Somma righe: 30 27 40 36 28
-Somma colonne: 34 37 37 32 21
-```
