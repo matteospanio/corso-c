@@ -8,7 +8,7 @@
 
 <meta name="author" content="Matteo Spanio">
 
-<title>Hello C 2024 - Strutture di controllo, tipi di base, funzioni e array</title>
+<title>Hello C 2024 - Strutture di controllo e tipi di base</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -201,7 +201,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/02/index.html">Strutture di controllo, tipi di base, funzioni e array</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/02/index.html">Strutture di controllo e tipi di base</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -222,13 +222,13 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lessons/02/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Strutture di controllo, tipi di base, funzioni e array</span></a>
+ <span class="menu-text">Strutture di controllo e tipi di base</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lessons/03/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Array, puntatori e stringhe</span></a>
+ <span class="menu-text">Array, Funzioni e puntatori</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -301,14 +301,6 @@ window.Quarto = {
   <li><a href="#break-e-continue-1" id="toc-break-e-continue-1" class="nav-link" data-scroll-target="#break-e-continue-1"><code>break</code> e <code>continue</code></a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#array-4" id="toc-array-4" class="nav-link" data-scroll-target="#array-4">Array</a>
-  <ul class="collapse">
-  <li><a href="#inizializzazione" id="toc-inizializzazione" class="nav-link" data-scroll-target="#inizializzazione">Inizializzazione</a></li>
-  <li><a href="#dimensione-di-un-array-1" id="toc-dimensione-di-un-array-1" class="nav-link" data-scroll-target="#dimensione-di-un-array-1">Dimensione di un array</a></li>
-  <li><a href="#array-multidimensionali-2" id="toc-array-multidimensionali-2" class="nav-link" data-scroll-target="#array-multidimensionali-2">Array multidimensionali</a></li>
-  </ul></li>
-  <li><a href="#funzioni-3" id="toc-funzioni-3" class="nav-link" data-scroll-target="#funzioni-3">Funzioni</a></li>
-  <li><a href="#riassunto-1" id="toc-riassunto-1" class="nav-link" data-scroll-target="#riassunto-1">Riassunto</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
@@ -317,7 +309,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Strutture di controllo, tipi di base, funzioni e array</h1>
+<h1 class="title">Strutture di controllo e tipi di base</h1>
 </div>
 
 
@@ -363,7 +355,7 @@ window.Quarto = {
 <div>
   <div class="abstract">
     <div class="block-title">Sommario</div>
-    <p>In questa lezione si termina l’introduzione alla sintassi del C, con un focus sulle strutture di controllo, le espressioni, i tipi di base, le funzioni e agli array. Gli argomenti vengono presentati in ordine diverso rispetto al libro di testo.</p>
+    <p>In questa lezione si termina l’introduzione alla sintassi del C, con un focus sulle strutture di controllo, le espressioni e i tipi di base. Gli argomenti vengono presentati in ordine diverso rispetto al libro di testo.</p>
   </div>
 </div>
 
@@ -941,162 +933,10 @@ Avviso
 <p>È bene non abusare di <code>break</code> e <code>continue</code>, perché possono rendere il codice meno leggibile. In generale, è meglio evitare di utilizzare <code>break</code> e `continue all’interno di cicli annidati.</p>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="array-4" class="level1">
-<h1>Array</h1>
-<p>Introduciamo ora gli array, la prima <strong>struttura dati</strong> che affronteremo.</p>
-<p>Generalmente una variabile può contenere un solo valore, spesso però si vuole eseguire operazioni su una sequenza di variabili, una soluzione è l’utilizzo di un <strong>array</strong> (o vettore). Un array è una collezione di elementi <strong>omogenei</strong> (tutti dello stesso tipo).</p>
-<p>La dichiarazione di un array avviene specificando il tipo e il numero degli elementi:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">10</span><span class="op">]</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Consiglio
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>L’introduzione di costanti hardcoded produce codice difficile da rifattorizzare e mantenere, per questo, spesso, si stabilisce ad inizio programma una costante (o una macro) per scrivere un valore in un unico posto:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define N </span><span class="dv">10</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span>N<span class="op">];</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>oppure:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">int</span> N <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span>N<span class="op">];</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>nei precedenti esempi viene definita <span class="math inline">\(N\)</span> ad inizio programma, nel resto del codice basterà usare questa costante quando ci si deve riferire alla dimensione dell’array <span class="math inline">\(a\)</span>. Qualora ci si accorgesse in futuro che 10 non sia un numero sufficiente per contenere i dati del programma, basterà cambiare una sola riga di codice.</p>
-</div>
-</div>
-<hr>
-<p>Si accede a un elemento dell’array tramite <strong>subscripting</strong>:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>a<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Gli indici degli array in C partono da 0, come in Java.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>L’espressione <code>a[i]</code> (o simili) è un <em>lvalue</em> (left-value), ossia può essere usata come variabile, può quindi trovarsi a sinistra di un’assegnazione.</p>
-</div>
-</div>
-<p>Il compilatore C non controlla i limiti degli array, quindi è possibile accedere a elementi fuori dal range definito, questo può causare errori difficili da individuare.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">10</span><span class="op">],</span> i<span class="op">;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">10</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    a<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In certi compilatori il codice sopra riportato causa un loop infinito (più spesso però genera un errore a runtime e ferma l’esecuzione).</p>
-<p>Si intuisce che C sia <strong>molto permissivo</strong> con il subscripting, il seguente codice quindi è perfettamente legittimo:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">50</span><span class="op">];</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> j <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>a<span class="op">[</span>i<span class="op">+</span>j<span class="op">*</span><span class="dv">10</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>i <span class="op">&lt;</span> j<span class="op">)</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    a<span class="op">[</span>i<span class="op">++]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="inizializzazione" class="level2">
-<h2 class="anchored" data-anchor-id="inizializzazione">Inizializzazione</h2>
-<p>Un array può essere inizializzato al momento della dichiarazione:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Se si mettono meno numeri, i restanti elementi vengono inizializzati a 0 (ma questo non succede se non ne specifico nessuno!):</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">};</span> <span class="co">// a = {1, 2, 3, 0, 0}</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> b<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">0</span><span class="op">};</span> <span class="co">// b = {0, 0, 0, 0}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Se metto più elementi di quelli dichiarati il compilatore segnala un errore. Se invece si omette la dimensione dell’array, il compilatore la calcola automaticamente dalla lista di initializzazione:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">};</span> <span class="co">// a ha dimensione 3</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="dimensione-di-un-array-1" class="level2">
-<h2 class="anchored" data-anchor-id="dimensione-di-un-array-1">Dimensione di un array</h2>
-<p>In C non esiste un sistema per ottenere senza sforzo la dimensione di un array, per questo, spesso, si utilizza una variabile per memorizzare la dimensione dell’array.</p>
-<p>Tuttavia si può usare <code>sizeof</code> per ottenere la dimensione di un array:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">sizeof</span><span class="op">(</span>a<span class="op">);</span> <span class="co">/* restituisce 40 su una macchina a 32 bit */</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="kw">sizeof</span><span class="op">(</span>a<span class="op">[</span><span class="dv">0</span><span class="op">]);</span> <span class="co">/* 4 */</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="kw">sizeof</span><span class="op">(</span>a<span class="op">)/</span><span class="kw">sizeof</span><span class="op">(</span>a<span class="op">[</span><span class="dv">0</span><span class="op">]);</span> <span class="co">/* 10, la dimensione dell'array */</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="array-multidimensionali-2" class="level2">
-<h2 class="anchored" data-anchor-id="array-multidimensionali-2">Array multidimensionali</h2>
-<p>Un array può contenere elementi di qualsiasi tipo, anche altri array! Per dichiarare un array multidimensionale si specifica il numero di elementi per ogni dimensione:</p>
-<p><code>int matrix[5][9];</code></p>
-<p>Per accedere a un elemento di un array multidimensionale si usano più indici:</p>
-<p><code>matrix[1][5] = 42;</code> e NON <code>matrix[1,5] = 42;</code></p>
-<p><img src="figures/array_matrix.png" class="img-fluid"></p>
-</section>
-</section>
-<section id="funzioni-3" class="level1">
-<h1>Funzioni</h1>
-<p>Una funzione è una associazione tra due insiemi: il dominio e il codominio: <span class="math inline">\(f: A \rightarrow B\)</span></p>
-<p>In programmazione il concetto di funzione è simile: una funzione è un blocco di codice che accetta un certo numero di argomenti e, spesso, restituisce un valore. Oltre al valore, però, una funzione può anche avere <em>side effects</em>, cioè modificare lo stato del programma.</p>
-<p>In C si può pensare a una qualsiasi funzione come una scatola nera con un certo numero di ingressi e <strong>un solo</strong> output.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/black-box.png" class="img-fluid figure-img"></p>
-<figcaption>Funzione come una scatola nera.</figcaption>
-</figure>
-</div>
-<p>Praticamente una funzione è un sottoprogramma, un insieme di istruzioni che esegue un compito specifico.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>return_type function_name<span class="op">(</span> parameters <span class="op">)</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    declarations</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    statements</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Esempio:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> average<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> average<span class="op">;</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    average <span class="op">=</span> <span class="op">(</span>a <span class="op">+</span> b<span class="op">)</span> <span class="op">/</span> <span class="fl">2.0</span><span class="op">;</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> average<span class="op">;</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Il tipo di ritorno può essere <code>void</code>, in tal caso la funzione non restituisce alcun valore:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> print_int<span class="op">(</span><span class="dt">int</span> a<span class="op">)</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">);</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>L’istruzione <code>return</code> può essere omessa in una funzione <code>void</code>.</p>
-</div>
-</div>
-<p>Le funzioni dichiarate precedentemente nel programma possono essere eseguite in blocchi di codice successivi.</p>
-<p>Ogni chiamata di funzione è una <em>espressione</em>, e viene valutata con il suo valore di ritorno.</p>
-</section>
-<section id="riassunto-1" class="level1">
-<h1>Riassunto</h1>
-<p>In questa lezione sono state introdotti molti elementi, di seguito un elenco che ripercorre i concetti affrontati:</p>
-<ul>
-<li>tipi di dato (int, float, char, double);</li>
-<li>espressioni booleane:
-<ul>
-<li>true e false sono in realtà 1 e 0;</li>
-<li>operatori logici;</li>
-</ul></li>
-<li>operatori;</li>
-<li>control flow (if, switch, while, do-while, for);</li>
-<li>array:
-<ul>
-<li>inizializzazione degli array;</li>
-<li>array multidimensionali;</li>
-</ul></li>
-<li>funzioni: sintassi e ricorsione;</li>
-</ul>
 
 
+</section>
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Riutilizzare</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.it">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
@@ -1660,8 +1500,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../lessons/03/index.html" class="pagination-link" aria-label="Array, puntatori e stringhe">
-        <span class="nav-page-text">Array, puntatori e stringhe</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../lessons/03/index.html" class="pagination-link" aria-label="Array, Funzioni e puntatori">
+        <span class="nav-page-text">Array, Funzioni e puntatori</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
