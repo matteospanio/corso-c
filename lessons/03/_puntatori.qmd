@@ -1,0 +1,142 @@
+## Puntatori
+
+Un **puntatore** è una variabile che contiene l'informazione per accedere ad un'altra variabile. In pratica, è un indirizzo di memoria.
+
+Il sistema operativo assegna un indirizzo di memoria ad ogni variabile. Questo indirizzo è un numero che identifica la posizione della variabile in memoria. Un puntatore contiene questo numero.
+
+## Puntatori: memoria
+
+La memoria è divisa in celle della dimensione di un byte (8 bit). Ogni byte ha un proprio indirizzo.
+
+Ogni variabile è composta da un numero specifico di byte contigui (`sizeof` serve proprio a conoscere lo spazio in memoria di una variabile). Il puntatore contiene l'indirizzo del primo byte della variabile.
+
+## Puntatori
+
+È possibile compiere operazioni (spesso complesse) con questi puntatori, di fatto sono un nuovo tipo di variabile detta *variabile puntatore*.
+
+Per dichiarare un puntatore si usa il simbolo `*`:
+
+`int *p;`
+
+in questo caso `p` è un puntatore che punta ad una variabile di tipo `int`.
+
+## Puntatori
+
+Si possono dichiarare insieme ad altre variabili:
+
+`int *p, x, *y, a[10];`
+
+Qualsiasi tipo può essere usato.
+
+## Puntatori: operatori
+
+Esistono due operatori che si possono usare con i puntatori:
+
+- `&` restituisce l'indirizzo di memoria di una variabile
+- `*` restituisce il valore puntato da un puntatore
+
+```{.c}
+int i, j, *p;
+// ...
+p = &i; // il valore di p è l'indirizzo di i
+j = *p; // il valore di j è il valore puntato da p
+```
+
+## Puntatori: attenzione!
+
+- Applicare l'operatore `*` ad un puntatore non inizializzato è un errore:
+
+```{.c}
+int *p;
+printf("%d\n", *p); // errore!
+```
+
+- Assegnare un valore a un puntatore non inizializzato è un errore:
+
+```{.c}
+int *p; // p non è inizializzato
+*p = 5; // errore!
+```
+
+## Puntatori: esempio
+
+```{.c}
+int i, j, *p;
+i = 5;
+p = &i;
+j = *p;
+printf("%d\n", j); // stampa 5
+```
+
+```{.c}
+int *p, *q, i;
+p = &i;
+*p = 6;
+q = p;
+(*q)++;
+printf("%d\n", i); // stampa 7
+```
+
+## Puntatori e funzioni
+
+Possono essere passati come argomenti di funzioni:
+
+```{.c}
+void incrementa(int *p) {
+    (*p)++;
+}
+```
+
+Ci si basa unicamente sui side effects, è possibile quindi ritornare più di un valore.
+
+## Puntatori e funzioni
+
+La chiamata di funzione avviene così:
+
+```{.c}
+int i = 0; *q = &i;
+incrementa(q);
+incrementa(&i); // <- vi risulta familiare?
+printf("%d\n", i); // stampa 2
+```
+
+Abbiamo già visto questa sintassi con `scanf`.
+
+## Puntatori: esercizi (1)
+
+Scrivere una funzione che scambi il valore di due variabili.
+
+Il prototipo della funzione è:
+
+`void swap(int *a, int *b);`
+
+## Puntatori e array
+
+Gli array sono trattati come puntatori:
+
+```{.c}
+int a[10], *p;
+p = a;
+```
+
+`p` punta al primo elemento dell'array.
+
+## Puntatori e array
+
+```{.c}
+int a[10], *p;
+p = a;
+for (int i = 0; i < 10; i++) {
+    p[i] = i;
+}
+```
+
+La sintassi `p[i]` è equivalente a `*(p + i)`.
+
+## Puntatori: esercizi (2)
+
+Scrivere una funzione che trovi il minimo e il massimo in un array di interi.
+
+Il prototipo della funzione è:
+
+`void minmax(int *a, int n, int *min, int *max);`

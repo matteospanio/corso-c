@@ -1,8 +1,8 @@
 ---
-title: Strutture di controllo, tipi di base, funzioni e array
+title: Strutture di controllo e tipi di base
 date: 03/19/2024
 abstract: |
-    In questa lezione si termina l'introduzione alla sintassi del C, con un focus sulle strutture di controllo, le espressioni, i tipi di base, le funzioni e agli array.
+    In questa lezione si termina l'introduzione alla sintassi del C, con un focus sulle strutture di controllo, le espressioni e i tipi di base.
     Gli argomenti vengono presentati in ordine diverso rispetto al libro di testo.
 ---
 
@@ -34,9 +34,7 @@ Le espressioni sono un insieme di:
 ## Control flow
 {{< include _control_flow_rjs.qmd >}}
 
-{{< include _array_rjs.qmd >}}
 
-{{< include _functions_rjs.qmd >}}
 
 :::
 
@@ -53,46 +51,6 @@ Le espressioni sono un insieme di:
 
 {{< include _control_flow.qmd >}}
 
-{{< include _array.qmd >}}
 
-{{< include _functions.qmd >}}
-
-:::
-
-::: {.content-visible when-format="revealjs"}
-
-## Riassunto {.smaller}
-
-In questa lezione sono state introdotti molti elementi, di seguito un elenco che ripercorre i concetti affrontati:
-
-- tipi di dato (int, float, char, double);
-- espressioni booleane:
-    - true e false sono in realtà 1 e 0;
-    - operatori logici;
-- operatori;
-- control flow (if, switch, while, do-while, for);
-- array:
-    - inizializzazione degli array;
-    - array multidimensionali;
-- funzioni: sintassi e ricorsione;
-
-:::
-
-::: {.content-visible unless-format="revealjs"}
-
-# Riassunto
-
-In questa lezione sono state introdotti molti elementi, di seguito un elenco che ripercorre i concetti affrontati:
-
-- tipi di dato (int, float, char, double);
-- espressioni booleane:
-    - true e false sono in realtà 1 e 0;
-    - operatori logici;
-- operatori;
-- control flow (if, switch, while, do-while, for);
-- array:
-    - inizializzazione degli array;
-    - array multidimensionali;
-- funzioni: sintassi e ricorsione;
 
 :::
