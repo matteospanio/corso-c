@@ -10,6 +10,6 @@ typedef enum error
     INDEX_ERROR = 3,
     UNKNOWN_ERROR = 4,
     OK = 0
-} error_t;
+} Error;
 
 #endif // TYPES_H

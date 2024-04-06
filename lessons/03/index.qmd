@@ -1,5 +1,5 @@
 ---
-title: Array, Funzioni e puntatori
+title: Array e Funzioni
 date: 03/26/2024
 abstract: |
     In questa lezione si introducono i meccanismi alla base della gestione della memoria.
@@ -11,7 +11,6 @@ abstract: |
 
 {{< include _functions_rjs.qmd >}}
 
-{{< include _puntatori.qmd >}}
 :::
 
 ::: {.content-visible unless-format="revealjs"}

@@ -7,8 +7,8 @@
 #include <stdlib.h>
 
 typedef union {
-    arraylist_t *arraylist;
-    linkedlist_t *linkedlist;
+    ArrayList *arraylist;
+    LinkedList *linkedlist;
 } list_u;
 
 typedef enum list_enum
@@ -21,13 +21,13 @@ typedef struct
 {
     list_u list;
     list_type type;
-} list_t;
+} List;
 
-error_t list_append(list_t *list, T *data);
-error_t list_prepend(list_t *list, T *data);
-error_t list_insert(list_t *list, T *data, size_t index);
-T *list_get(const list_t *list, size_t index);
-size_t list_size(const list_t *list);
-void list_delete(list_t *list, void (*free_data)(T *));
+Error list_append(List *list, T *data);
+Error list_prepend(List *list, T *data);
+Error list_insert(List *list, T *data, size_t index);
+T *list_get(const List *list, size_t index);
+size_t list_size(const List *list);
+void list_delete(List *list, void (*free_data)(T *));
 
 #endif // LIST_H

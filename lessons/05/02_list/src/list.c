@@ -1,6 +1,6 @@
 #include "list.h"
 
-error_t list_append(list_t *list, T *value)
+Error list_append(List *list, T *value)
 {
     switch (list->type)
     {
@@ -12,7 +12,7 @@ error_t list_append(list_t *list, T *value)
     return UNKNOWN_ERROR;
 }
 
-T *list_get(const list_t *list, size_t index)
+T *list_get(const List *list, size_t index)
 {
     switch (list->type)
     {
@@ -24,7 +24,7 @@ T *list_get(const list_t *list, size_t index)
     return NULL;
 }
 
-void list_delete(list_t *list, void (*free_data)(T *))
+void list_delete(List *list, void (*free_data)(T *))
 {
     switch (list->type)
     {
@@ -37,7 +37,7 @@ void list_delete(list_t *list, void (*free_data)(T *))
     }
 }
 
-size_t list_size(const list_t *list)
+size_t list_size(const List *list)
 {
     switch (list->type)
     {
@@ -49,7 +49,7 @@ size_t list_size(const list_t *list)
     return 0;
 }
 
-error_t list_prepend(list_t *list, T *value)
+Error list_prepend(List *list, T *value)
 {
     switch (list->type)
     {
@@ -61,7 +61,7 @@ error_t list_prepend(list_t *list, T *value)
     return UNKNOWN_ERROR;
 }
 
-error_t list_insert(list_t *list, T *value, size_t index)
+Error list_insert(List *list, T *value, size_t index)
 {
     switch (list->type)
     {

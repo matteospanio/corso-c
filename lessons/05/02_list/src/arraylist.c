@@ -2,9 +2,9 @@
 #include "types.h"
 #include <stdlib.h>
 
-arraylist_t *arraylist_create(size_t capacity)
+ArrayList *arraylist_create(size_t capacity)
 {
-    arraylist_t *list = malloc(sizeof(arraylist_t));
+    ArrayList *list = malloc(sizeof(ArrayList));
     if (list == NULL)
     {
         return NULL;
@@ -25,9 +25,9 @@ arraylist_t *arraylist_create(size_t capacity)
  *
  * @param list The list to resize
  * @param factor The factor to resize the list by
- * @return error_t OK on success, error code on failure
+ * @return Error OK on success, error code on failure
  */
-static inline error_t arraylist_resize(arraylist_t *list, float factor)
+static inline Error arraylist_resize(ArrayList *list, float factor)
 {
     list->capacity *= factor;
     list->data = realloc(list->data, list->capacity * sizeof(T *));
@@ -38,9 +38,9 @@ static inline error_t arraylist_resize(arraylist_t *list, float factor)
     return OK;
 }
 
-error_t arraylist_append(arraylist_t *list, T *value)
+Error arraylist_append(ArrayList *list, T *value)
 {
-    error_t res = OK;
+    Error res = OK;
     if (list->size == list->capacity)
     {
         res = arraylist_resize(list, 2);
@@ -51,7 +51,7 @@ error_t arraylist_append(arraylist_t *list, T *value)
     return res;
 }
 
-T *arraylist_get(const arraylist_t *list, size_t index)
+T *arraylist_get(const ArrayList *list, size_t index)
 {
     if (index >= list->size)
     {
@@ -60,7 +60,7 @@ T *arraylist_get(const arraylist_t *list, size_t index)
     return list->data[index];
 }
 
-void arraylist_delete(arraylist_t *list, void (*free_data)(T *))
+void arraylist_delete(ArrayList *list, void (*free_data)(T *))
 {
     if (free_data != NULL)
     {

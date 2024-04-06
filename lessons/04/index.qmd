@@ -1,6 +1,6 @@
 ---
-title: Operatori bitwise
+title: Puntatori, Struct e Operatori bitwise
 date: 04/09/2024
 ---
 
-TODO
+{{< include _puntatori.qmd >}}
