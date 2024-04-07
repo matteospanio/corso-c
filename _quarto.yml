@@ -103,6 +103,14 @@ website:
             text: Libri di testo
           - href: extra/docker.qmd
             text: Ambiente di sviluppo
+        - section: Strumenti di sviluppo
+          contents:
+          - href: extra/gcc.qmd
+            text: Il compilatore GCC
+          - href: extra/makefile.qmd
+            text: Automatizzare la compilazione
+          - href: extra/gdb.qmd
+            text: Usare il debugger GDB
         - section: Come scrivere codice
           contents:
           - href: extra/style_guide.qmd

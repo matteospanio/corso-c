@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-char *error_message(Error error)
+string error_message(Error error)
 {
     switch (error)
     {
@@ -30,7 +30,7 @@ void print_list(const List *list)
             fprintf(stderr, "Error: %s\n", error_message(INDEX_ERROR));
             return;
         }
-        printf("%s ", (char *)result);
+        printf("%s ", (string)result);
     }
     printf("\n");
 }
@@ -48,7 +48,7 @@ int main(void)
 
     List list = {.list.arraylist = arraylist, .type = ARRAYLIST};
 
-    char *buffer = malloc(sizeof(char) * 6);
+    string buffer = malloc(sizeof(char) * 6);
     if (buffer == NULL)
     {
         list_delete(&list, free);

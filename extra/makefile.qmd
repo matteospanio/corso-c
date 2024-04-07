@@ -1,0 +1,5 @@
+---
+title: Automatizzare la compilazione con make
+---
+
+`make`

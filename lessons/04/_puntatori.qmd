@@ -1,8 +1,10 @@
+# Puntatori
+
 ## Puntatori
 
-Un **puntatore** è una variabile che contiene l'informazione per accedere ad un'altra variabile. In pratica, è un indirizzo di memoria.
+> Un **puntatore** è una variabile che contiene l'informazione per accedere ad un'altra variabile, ossia il suo **indirizzo**.
 
-Il sistema operativo assegna un indirizzo di memoria ad ogni variabile. Questo indirizzo è un numero che identifica la posizione della variabile in memoria. Un puntatore contiene questo numero.
+Ad ogni variabile (e non solo) è associato un indirizzo di memoria. Questo indirizzo è un numero che identifica la posizione della variabile in memoria. Un puntatore contiene questo numero.
 
 ## Puntatori: memoria
 

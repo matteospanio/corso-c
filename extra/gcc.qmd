@@ -1,3 +1,55 @@
 ---
-title: Installare un compilatore
+title: Il compilatore C
 ---
+
+Solitamente i sistemi operativi mettono a disposizione il comando `cc` (che starebbe per *C compiler*) per compilare i programmi in C, questo comando è in realtà un *link* al compilatore C installato sul sistema, solitamente `gcc` (GNU C Compiler) o `clang` (C Language Compiler).
+
+## Compilare un programma
+
+Per compilare un programma in C si usa il comando `cc` seguito dal nome del file sorgente, ad esempio:
+
+```bash
+cc hello.c
+```
+
+Questo comando compila il file `hello.c` e produce un file eseguibile chiamato `a.out`, per eseguire il programma basta digitare:
+
+```bash
+./a.out
+```
+
+Per specificare un nome diverso per il file eseguibile si può usare l'opzione `-o`:
+
+```bash
+cc hello.c -o hello
+```
+
+Questo comando compila il file `hello.c` e produce un file eseguibile chiamato `hello`, per eseguire il programma basta digitare:
+
+```bash
+./hello
+```
+
+## Opzioni del compilatore
+
+Il compilatore C mette a disposizione diverse opzioni per personalizzare il processo di compilazione, dal momento che durante la compilazione vengono eseguiti molti controlli e operazioni, è possibile personalizzare il comportamento del compilatore in molti modi.
+
+Una delle opzioni più comuni è `-Wall` che abilita tutti i warning disponibili, ad esempio:
+
+```bash
+cc hello.c -Wall
+```
+
+::: {.callout-note}
+I warning sono messaggi che il compilatore emette quando rileva che il codice sorgente potrebbe contenere errori o problemi, è sempre consigliabile compilare i programmi con l'opzione `-Wall` per evitare problemi.
+:::
+
+Un'altra opzione molto utile è `-g` che abilita la generazione di informazioni di debug nel file eseguibile, ad esempio:
+
+```bash
+cc hello.c -g
+```
+
+::: {.callout-tip}
+Consultare la pagina su `gdb` per informazioni su come usare le informazioni di debug.
+:::
