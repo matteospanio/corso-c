@@ -67,3 +67,28 @@ int all(int arr[], int size)
     }
     return arr[size - 1] && all(arr, size - 1);
 }
+
+int main(void)
+{
+    int int_arr[] = {1, 2, 3, 4, 5, 0};
+    int min = array_min(int_arr, 6);
+    printf("min of [1, 2, 3, 4, 5, 0] is: %d\n", min);
+
+    double d_arr[] = {1.5, 1.5, 1.618033};
+    double sum = array_sum(d_arr, 3);
+    printf("1.5 + 1.5 + 1.618033 = %f\n", sum);
+
+    char str[] = {'C', ' ', 'i', 's', ' ', 'w', 'o', 'n', 'd', 'e', 'r', 'f', 'u', 'l'};
+    print_string(str, sizeof(str)/sizeof(char));
+    printf("\n");
+
+    print_string_reverse(str, sizeof(str)/sizeof(char));
+    printf("\n");
+
+    int true_arr[] = {1, 2, 3};
+    printf("%d\n", all(int_arr, 6));
+    printf("%d\n", all(true_arr, 3));
+    // int weird_arr[0];
+    // printf("%d\n", all(weird_arr, 0));
+    printf("# == $ - 1 = %d\n", '#' == '$' - 1);
+}
