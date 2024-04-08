@@ -18,7 +18,36 @@ Per chi non ha una istallazione Linux (nativa o VM) è possibile riprodurre un a
 Se ti sembra scomodo eseguire il comando del punto 2 puoi scaricare l'applicazione python [cdev-cli](https://matteospanio.github.io/cdev-cli/) e avviare l'immagine con meno sforzo.
 :::
 
-## Metodi alternativi
+## Strumenti installati nell'immagine docker
+
+Tra i principali programmi installati nell'immagine docker ci sono:
+
+- `gcc` e `g++` per compilare i programmi in C e C++
+- `make` per automatizzare la compilazione
+- `git` per gestire i sorgenti
+- `vim`, un editor di testo minimale
+- `valgrind` per analizzare i programmi
+- `gdb` per il debug
+- `python3` per eseguire script python
+- `man`, il manuale di riferimento per i comandi linux
+
+## Condividere una cartella tra il sistema host e l'immagine docker
+
+Per condividere una cartella tra il sistema host e l'immagine docker è possibile utilizzare l'opzione `-v` di docker. Ad esempio:
+
+```bash
+docker run -it --rm -v /path/to/my/folder:/mnt ghcr.io/matteospanio/cdev:latest bash
+```
+
+Questo comando permette di *montare* la cartella `/path/to/my/folder` all'interno dell'immagine docker nella cartella `/mnt`. In questo modo è possibile condividere i file tra il sistema host e l'immagine docker. Dall'interno dell'ambiente docker è possibile andare alla cartella `/mnt` con il comando `cd /mnt`, in questa directory saranno presenti i file della cartella `/path/to/my/folder` del sistema host. Ciò comporta che le modifiche ai file condivisi saranno visibili sia dal sistema host che dall'immagine docker e permanenti.
+
+::: {.callout-note}
+I file creati nell'ambiente docker e le modifiche fatte al sistema operativo dell'immagine docker, di default, non sono permanenti.
+:::
+
+L'applicazione `cdev-cli` semplifica il processo di avvio dell'immagine docker e la condivisione di una cartella tra il sistema host e l'immagine docker, in particolare permette di avviare l'immagine docker con un comando e di condividere la cartella corrente del sistema host con l'immagine docker. Eseguendo il comando `cdev-cli` da una determinata cartella nel sistema host si avvia l'immagine docker e si condivide la cartella corrente con l'immagine docker alla posizione `/mnt`.
+
+# Metodi alternativi
 
 - Per chi ha un sistema operativo MacOS o Linux basta installare gcc.
 - In Windows è possibile utilizzare [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install), un sistema simile a docker per integrare direttamente Ubuntu in Windows.
