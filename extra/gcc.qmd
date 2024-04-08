@@ -5,7 +5,6 @@ title: Il compilatore C
 ::: {.callout-note}
 Questa guida è una traduzione parziale di [Unix Programming Tools](http://cslibrary.stanford.edu/107/UnixProgrammingTools.pdf), una guida scritta per il corso [CS107](http://cs107.stanford.edu) presso la Stanford University.
 
-http://cslibrary.stanford.edu/
 :::
 
 Solitamente i sistemi operativi mettono a disposizione il comando `cc` (che starebbe per *C compiler*) per compilare i programmi in C, questo comando è in realtà un *alias* che si riferisce al compilatore C installato sul sistema, solitamente `gcc` (GNU C Compiler) o `clang` (C Language Compiler).

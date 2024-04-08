@@ -6,9 +6,14 @@
 
 Ad ogni variabile (e non solo) è associato un indirizzo di memoria. Questo indirizzo è un numero che identifica la posizione della variabile in memoria. Un puntatore contiene questo numero.
 
+```{mermaid}
+graph LR
+    A[puntatore] --> B[variabile]
+```
+
 ## Puntatori: memoria
 
-La memoria è divisa in celle della dimensione di un byte (8 bit). Ogni byte ha un proprio indirizzo.
+La memoria è divisa in celle della dimensione di un byte e ogni byte ha un proprio indirizzo.
 
 Ogni variabile è composta da un numero specifico di byte contigui (`sizeof` serve proprio a conoscere lo spazio in memoria di una variabile). Il puntatore contiene l'indirizzo del primo byte della variabile.
 
@@ -34,14 +39,19 @@ Qualsiasi tipo può essere usato.
 
 Esistono due operatori che si possono usare con i puntatori:
 
-- `&` restituisce l'indirizzo di memoria di una variabile
-- `*` restituisce il valore puntato da un puntatore
+- `&` restituisce l'***indirizzo di*** memoria di una variabile
+- `*` restituisce il ***valore puntato da***  un puntatore
 
 ```{.c}
 int i, j, *p;
 // ...
 p = &i; // il valore di p è l'indirizzo di i
 j = *p; // il valore di j è il valore puntato da p
+```
+
+```{mermaid}
+graph LR
+    A[*p] --> B[i]
 ```
 
 ## Puntatori: attenzione!
@@ -130,6 +140,8 @@ int a[10], *p;
 p = a;
 for (int i = 0; i < 10; i++) {
     p[i] = i;
+    // oppure
+    *(p + i) = i;
 }
 ```
 

@@ -3,8 +3,21 @@ title: Puntatori, Struct e Operatori bitwise
 date: 04/09/2024
 ---
 
+
+::: {.content-visible when-format="revealjs"}
 {{< include _puntatori.qmd >}}
 
 {{< include _bitwise.qmd >}}
 
 {{< include _struct.qmd >}}
+
+:::
+
+::: {.content-visible unless-format="revealjs"}
+{{< include _pointers_text.qmd >}}
+
+{{< include _bit_text.qmd >}}
+
+{{< include _struct_text.qmd >}}
+
+:::
