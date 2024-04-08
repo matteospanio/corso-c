@@ -2,4 +2,49 @@
 title: Automatizzare la compilazione con make
 ---
 
-`make`
+::: {.callout-note}
+Questa guida è una traduzione parziale di [Unix Programming Tools](http://cslibrary.stanford.edu/107/UnixProgrammingTools.pdf), una guida scritta per il corso [CS107](http://cs107.stanford.edu) presso la Stanford University.
+:::
+
+Digitare i comandi gcc per un progetto diventa meno attraente man mano che il progetto diventa più grande. L'utility `make` automatizza il processo di compilazione e collegamento. Con `make`, il programmatore specifica quali sono i file nel progetto e come si incastrano tra loro, quindi make si occupa dei passaggi appropriati di compilazione e collegamento. Make può velocizzare la compilazione in quanto è abbastanza intelligente da sapere che se hai 10 file .c ma ne hai modificato solo uno, solo quel file deve essere compilato prima del passaggio di linking. Make ha alcune funzionalità complesse, ma usarlo per cose semplici è piuttosto facile.
+
+## Eseguire make
+
+Nella directory del tuo progetto esegui make direttamente dalla shell senza argomenti. Di default, make cerca nella directory corrente un file chiamato `Makefile` o `makefile` per eseguire le sue istruzioni di compilazione. Se si verifica un problema durante la creazione di uno dei target, i messaggi di errore vengono scritti nello standard error.
+
+## Makefiles
+
+Un makefile è costituito da una serie di definizioni di variabili e regole di dipendenza. Una variabile in un makefile è un nome definito per rappresentare una stringa di testo. Funziona in modo molto simile alla sostituzione delle macro nel preprocessore C. Le variabili vengono spesso utilizzate per rappresentare un elenco di directory in cui cercare, opzioni per il compilatore e nomi di programmi da eseguire. Le variabili non sono pre-dichiarate, le imposti semplicemente con '='. Ad esempio, la linea:
+
+```make
+CC = gcc
+```
+
+creerà una variabile chiamata `CC` impostando il suo contenuto a `gcc`. I nomi delle variabili sono *case sensitive*, e, solitamente, vengono scritti in maiuscolo.
+
+Seppure si sia liberi di nominare le variabili a proprio piacimento ci sono alcuni nomi standard, pertanto è fortemente suggerito usarli. I più importanti sono:
+
+| Nome Variabile | Significato |
+|----------------|------------|
+| `CC` | Il compilatore C da usare |
+| `CFLAGS` | Le opzioni da passare al compilatore C |
+| `LDFLAGS` | Le opzioni da passare al linker |
+
+Per utilizzare una variabile basta scrivere il simbolo `$` seguito dal nome della variabile tra parentesi, per esempio:
+
+```make
+CFLAGS = -g -Wall -pedantic -std=c99
+$(CC) $(CFLAGS) -o hello hello.c
+```
+
+La prima riga di questo esempio imposta il contenuto di `CFLAGS` a `-g -Wall -pedantic -std=c99`. La seconda riga compila `hello.c` con le opzioni definite in `CFLAGS`.
+
+Il secondo componente principale di un makefile sono le regole di dipendenza/costruzione. Una regola spiega come creare un target in base alle modifiche apportate a un elenco di determinati file. L'ordine delle regole non fa alcuna differenza, eccetto che la prima regola è considerata quella predefinita -- la regola che verrà invocata quando make viene chiamato senza argomenti.
+
+Una regola generalmente è composta da due righe: una riga di dipendenza seguita da una riga di comando.
+Ecco una regola di esempio:
+
+```make
+hello.o: hello.c hello.#
+    $(CC) $(CFLAGS) -c hello.c
+```

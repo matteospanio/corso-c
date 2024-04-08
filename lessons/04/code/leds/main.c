@@ -4,6 +4,7 @@
 
 void print_switches(SwitchesState switches)
 {
+    char leds[8] = "OOOOOOOO";
     printf("\r");
     for (int i = 0; i < 8; i++)
     {
@@ -12,7 +13,7 @@ void print_switches(SwitchesState switches)
     fflush(stdout);
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
     SwitchesState leds = 0b00000000;
     print_switches(leds);

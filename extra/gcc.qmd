@@ -2,54 +2,44 @@
 title: Il compilatore C
 ---
 
-Solitamente i sistemi operativi mettono a disposizione il comando `cc` (che starebbe per *C compiler*) per compilare i programmi in C, questo comando è in realtà un *link* al compilatore C installato sul sistema, solitamente `gcc` (GNU C Compiler) o `clang` (C Language Compiler).
+::: {.callout-note}
+Questa guida è una traduzione parziale di [Unix Programming Tools](http://cslibrary.stanford.edu/107/UnixProgrammingTools.pdf), una guida scritta per il corso [CS107](http://cs107.stanford.edu) presso la Stanford University.
 
-## Compilare un programma
+http://cslibrary.stanford.edu/
+:::
 
-Per compilare un programma in C si usa il comando `cc` seguito dal nome del file sorgente, ad esempio:
+Solitamente i sistemi operativi mettono a disposizione il comando `cc` (che starebbe per *C compiler*) per compilare i programmi in C, questo comando è in realtà un *alias* che si riferisce al compilatore C installato sul sistema, solitamente `gcc` (GNU C Compiler) o `clang` (C Language Compiler).
 
-```bash
-cc hello.c
-```
-
-Questo comando compila il file `hello.c` e produce un file eseguibile chiamato `a.out`, per eseguire il programma basta digitare:
+In questa sezione viene presentato il compilatore gcc, un prodotto del progetto [GNU open source](https://www.gnu.org). L'uso di gcc presenta diversi vantaggi: tende ad essere abbastanza aggiornato e affidabile, è disponibile su una varietà di piattaforme e, ovviamente, è gratuito e open source. Gcc può compilare C, C++ e Objective-C. Gcc in realtà è sia un compilatore che un linker. Ciò vuol dire che una singola chiamata a gcc eseguirà l'intera operazione di linking e di compilazione. Ad esempio, per piccoli progetti potresti utilizzare un comando come il seguente che compila e collega insieme tre file .c per creare un eseguibile chiamato "program":
 
 ```bash
-./a.out
+gcc main.c module1.c module2.c -o program
 ```
 
-Per specificare un nome diverso per il file eseguibile si può usare l'opzione `-o`:
+La riga precedente potrebbe essere riscritta in modo equivalente per separare i tre passaggi di compilazione dei file .c seguiti da un passaggio di collegamento per creare il programma:
 
 ```bash
-cc hello.c -o hello
+gcc -c main.c     # compila il file .c in file oggetto (.o)
+gcc -c module1.c  # compila il file .c in file oggetto (.o)
+gcc -c module2.c  # compila il file .c in file oggetto (.o)
+gcc main.o module1.o module2.o -o program ## Esegue il linking dei file oggetto
 ```
 
-Questo comando compila il file `hello.c` e produce un file eseguibile chiamato `hello`, per eseguire il programma basta digitare:
+La forma generale per invocare il comando `gcc` è:
 
-```bash
-./hello
 ```
+gcc option(s) file(s)
+```
+
+dove `options` è una lista di flag che dicono a gcc come effettuare la compilazione e `files` è una lista di file che verranno processati da gcc.
 
 ## Opzioni del compilatore
 
-Il compilatore C mette a disposizione diverse opzioni per personalizzare il processo di compilazione, dal momento che durante la compilazione vengono eseguiti molti controlli e operazioni, è possibile personalizzare il comportamento del compilatore in molti modi.
+Come la maggior parte dei programmi Unix, gcc supporta molte opzioni della riga di comando per controllarne il funzionamento. Sono tutti documentati nella sua pagina man. Possiamo tranquillamente ignorare la maggior parte di queste opzioni e concentrarci su quelle più comunemente usate: `-c`, `-o`, `-g` e `-Wall`.
 
-Una delle opzioni più comuni è `-Wall` che abilita tutti i warning disponibili, ad esempio:
-
-```bash
-cc hello.c -Wall
-```
-
-::: {.callout-note}
-I warning sono messaggi che il compilatore emette quando rileva che il codice sorgente potrebbe contenere errori o problemi, è sempre consigliabile compilare i programmi con l'opzione `-Wall` per evitare problemi.
-:::
-
-Un'altra opzione molto utile è `-g` che abilita la generazione di informazioni di debug nel file eseguibile, ad esempio:
-
-```bash
-cc hello.c -g
-```
-
-::: {.callout-tip}
-Consultare la pagina su `gdb` per informazioni su come usare le informazioni di debug.
-:::
+| Opzione | Descrizione         |
+|---------|---------------------|
+| `-c files` | compila i file sorgente in file oggetto senza passare attraverso la fase di collegamento. I Makefile (sotto) usano questa opzione per compilare i file uno alla volta.
+| `-o file` |  Specifica che l'output di gcc dovrebbe essere denominato file. Se questa opzione non è specificata, il nome predefinito utilizzato dipende dal contesto: (a) se si compila un file sorgente .c, il file oggetto di output verrà nominato con lo stesso nome ma con estensione .o. In alternativa, (b) se si effettua il collegamento per creare un eseguibile, il file di output verrà denominato `a.out`. Molto spesso, l'opzione -o viene utilizzata per specificare il nome del file di output quando si collega un eseguibile, mentre per la compilazione, le persone lasciano semplicemente che prenda il sopravvento la denominazione predefinita .c/.o. |
+| `-g` | Indica al compilatore di includere informazioni di debug aggiuntive nel proprio output. Ti consiglio di compilare sempre il tuo codice sorgente con questa opzione, in modo da poter [usare il debugger](gdb.qmd). |
+| `-Wall` | Fornisce avvisi su possibili errori nel codice sorgente. I problemi rilevati da `-Wall` non sono esattamente errori, sono costrutti che il compilatore ritiene possano essere errori. Ti consiglio vivamente di compilare il codice con -Wall. Trovare bug in fase di compilazione è davvero molto più semplice che in fase di esecuzione. L'opzione -Wall può sembrare fastidiosa, ma ne vale la pena. |
