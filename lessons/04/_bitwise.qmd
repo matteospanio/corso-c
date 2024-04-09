@@ -2,9 +2,10 @@
 
 ## Operatori bitwise
 
-Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili. Questi operatori sono molto utili quando si deve lavorare con i registri di un microcontrollore o con i dati grezzi provenienti da un sensore.
+Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili. 
 
 Gli operatori bitwise in C sono:
+
 - `&` AND
 - `|` OR
 - `^` XOR
@@ -16,28 +17,31 @@ Gli operatori bitwise in C sono:
 
 Questi operatori applicano le regole dell'algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.
 
-| A | B | A AND B | A OR B | A XOR B |
-|---|---|---------|--------|---------|
-| 0 | 0 |    0    |   0    |    0    |
-| 0 | 1 |    0    |   1    |    1    |
-| 1 | 0 |    0    |   1    |    1    |
-| 1 | 1 |    1    |   1    |    0    |
+| A | B | A & B | A | B | A ^ B | ~A |
+|---|---|---------|--------|---------|---|
+| 0 | 0 |    0    |   0    |    0    |   1    |
+| 0 | 1 |    0    |   1    |    1    |  0    |
+| 1 | 0 |    0    |   1    |    1    | 0    |
+| 1 | 1 |    1    |   1    |    0    | 1    |
 
-## Esempi
+## La rappresentazione dei numeri
 
-In elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l'interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo `char`:
+Per effettuare le operazioni bitwise conviene sempre cercare di rappresentare i numeri in binario.
+
+C permette di dichiarare numeri in binario utilizzando il prefisso `0b`:
 
 ```c
 unsigned char switches = 0b00001000;
-// oppure
+// è equivalente a
 unsigned char switches = 8;
 ```
 
-In questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.
+## OR
 
-Ipotizzando di voler accendere un altro interruttore, si può utilizzare l'operatore OR:
+L'operatore OR viene spesso usato per unire due insiemi di bit. Ad esempio, se si ha una variabile `switches` che rappresenta lo stato di accensione di 8 interruttori, si può accendere un interruttore utilizzando l'operatore OR:
 
 ```c
+// switches = 0b00001000
 switches = switches | 0b00000100;
 // oppure
 switches = switches | 4;
@@ -45,12 +49,149 @@ switches = switches | 4;
 
 Ora il valore di `switches` sarà `0b00001100`. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.
 
+## AND
+
 Per spegnere tutti gli interruttori si può utilizzare l'operatore AND:
 
 ```c
 switches = switches & 0b00000000;
 // oppure
 switches = switches & 0;
+// switches: 0b00000000
 ```
 
-Ora il valore di `switches` sarà `0b00000000`.
+## Esercizio
+
+Scrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.
+
+```c
+#include <stdio.h>
+void print_lsb(int n);
+
+int main(void)
+{
+    int a = 127, b = 128;
+
+    print_lsb(a);
+    print_lsb(b);
+}
+
+void print_lsb(int n)
+{
+    printf("The least significant bit of %d is: ", n);
+    printf("%d\n", n & 1);
+}
+```
+
+## Esercizio
+
+Scrivere una funzione che dato un numero intero $n$, restituisca true se $n$ è pari, false altrimenti. Usare l'operatore AND per verificare se un numero è pari.
+
+```c
+#include <stdbool.h>
+bool is_even(int n);
+
+int main(void) {
+    int a = 55, b = 48;
+
+    printf("%d is even: %d\n", a, is_even(a));
+    printf("%d is even: %d\n", b, is_even(b));
+}
+```
+
+## XOR
+
+L'operatore XOR è molto utile per invertire lo stato di un bit.
+
+::: {.callout-note}
+Eseguire l'operazione di XOR due volte su un bit restituisce il valore originale.
+
+```c
+char c = 'A';
+c = c ^ 'h';
+c = c ^ 'h';
+// c: 'A'
+```
+:::
+
+## Esempio
+
+`65: 0b01000001`
+
+`73: 0b01001001`
+
+`08: 0b00001000`
+
+65 ^ 73 = 8
+
+8 ^ 73 = 65
+
+'A' ^ 'I' = '\b'
+
+## Esempio
+
+```c
+#include <stdio.h>
+#define KEY 'h'
+
+int main(void)
+{
+    char c = 'A';
+    c = c ^ KEY;
+    printf("%c\n", c);
+
+    c = c ^ KEY;
+    printf("%c\n", c);
+}
+
+```
+
+## Esercizi
+
+Scrivere un programma che di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l'operatore XOR.
+
+{{< downloadthis ./code/xor_crypt.c dname="xor_crypt.c" label="Scarica il file" >}}
+
+## Shift
+
+Gli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.
+
+```c
+unsigned char c = 0b00000001;
+c = c << 1;
+// c: 0b00000010
+c = c << 3;
+// c: 0b00010000
+c = c >> 2;
+// c: 0b00000100
+```
+
+## Esempio Shift
+
+Scrivere un programma che moltiplichi un numero intero per 2 utilizzando l'operatore di shift.
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    int n = 5;
+    n = n << 1;
+    printf("%d\n", n);
+}
+```
+
+## Esercizi
+
+Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char.
+
+Ad esempio, se il valore di `c` è 5, il programma dovrà stampare `00000101`.
+
+## Esercizi
+
+Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:
+
+1. Accenda il led più a destra;
+2. Accenda il led più a sinistra;
+3. Inverta lo stato di tutti i led;
+4. Spenga tutti i led.

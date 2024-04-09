@@ -11,7 +11,7 @@ Le lezioni sono organizzate in maniera da illustrare di volta in volta un argome
 ## Calendario
 
 | Data | Argomento | Capitoli del libro di testo |
-|------|-----------|-----------------------------|
+|------|----------------------|------|
 | 12/03/2024 | Introduzione al corso e fondamenti di C | 1-3 |
 | 19/03/2024 | Strutture di controllo, tipi di base, funzioni e array | 4-9 |
 | 26/03/2024 | Ancora array, puntatori e stringhe | 9-13 |
