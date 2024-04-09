@@ -32,10 +32,14 @@ int main(void)
 
 void print_leds(unsigned char leds)
 {
-    for (int i = 0; i < 8; i++) {
-        if (leds & (128 >> i)) {
+    for (int i = 0; i < 8; i++)
+    {
+        if (leds & (128 >> i))
+        {
             printf("1 ");
-        } else {
+        }
+        else
+        {
             printf(". ");
         }
     }
@@ -66,8 +70,6 @@ unsigned char spegni_tutti_led(unsigned char leds)
 {
     return leds & 0b00000000;
 }
-
-
 
 void print_c()
 {
@@ -103,7 +105,8 @@ void print_scacchiera()
 {
     unsigned char leds = 0b10101010;
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 8; i++)
+    {
         print_leds(leds);
         leds = inverti_tutti_led(leds);
     }

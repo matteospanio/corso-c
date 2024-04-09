@@ -15,16 +15,19 @@ int main(void)
     print_message(message, N);
     decode_string(message, N);
     print_message(message, N);
-
 }
 
 void print_message(char message[], int n)
 {
-    for (int i = 0; i < n; i++) {
-        if (message[i] < 32 || message[i] > 126) {
+    for (int i = 0; i < n; i++)
+    {
+        if (message[i] < 32 || message[i] > 126)
+        {
             char safe_char = (message[i] % 96) + 32;
             printf("%c", safe_char);
-        } else {
+        }
+        else
+        {
             printf("%c", message[i]);
         }
     }

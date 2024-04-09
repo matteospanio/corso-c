@@ -2,7 +2,7 @@
 
 ## Operatori bitwise
 
-Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili. 
+Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili.
 
 Gli operatori bitwise in C sono:
 

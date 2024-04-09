@@ -1,6 +1,12 @@
 ---
-title: C avanzato
+title: Operatori bitwise e C avanzato
 date: 04/23/2024
 ---
 
-TODO
+::: {.content-visible when-format="revealjs"}
+{{< include _bitwise.qmd >}}
+:::
+
+::: {.content-visible unless-format="revealjs"}
+{{< include _bit_text.qmd >}}
+:::

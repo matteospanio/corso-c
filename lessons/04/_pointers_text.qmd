@@ -45,5 +45,5 @@ int main(void)
 3. Dopo che ad `a` è stato assegnato il valore 5, viene usato ancora il simbolo `*`, questa volta però ha un significato diverso: una volta che il puntatore è dichiarato, il simbolo `*` è usato per accedere al valore della variabile a cui il puntatore punta. Quindi `*ptr_to_a` è il valore di `a`. È un modo alternativo per impostare il valore di `a` a 6.
 
 ::: {.callout-tip}
-Un sistema un po' stravagante ma efficace per imparare il significato degli operatori `*` e `&` nel contesto dei puntatori è pensare a `*` come "valore puntato da" e `&` come "indirizzo di". Una volta imparato questo, il resto è molto più semplice.
+Un sistema un po' stravagante ma efficace per imparare il significato degli operatori `*` e `&` nel contesto dei puntatori è pensare a `*` come "*valore puntato da*" e `&` come "*indirizzo di*". Una volta imparato questo, il resto è molto più semplice.
 :::

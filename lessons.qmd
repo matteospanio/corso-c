@@ -11,10 +11,12 @@ Le lezioni sono organizzate in maniera da illustrare di volta in volta un argome
 ## Calendario
 
 | Data | Argomento | Capitoli del libro di testo |
-|------|----------------------|------|
+|------|------------------|----------|
 | 12/03/2024 | Introduzione al corso e fondamenti di C | 1-3 |
-| 19/03/2024 | Strutture di controllo, tipi di base, funzioni e array | 4-9 |
-| 26/03/2024 | Ancora array, puntatori e stringhe | 9-13 |
-| 09/04/2024 | Operatori bitwise | 20 |
+| 19/03/2024 | Strutture di controllo e tipi di base | 4-7 |
+| 26/03/2024 | Funzioni e array | 8-9 |
+| 09/04/2024 | Puntatori | 11-12 |
 | 10/04/2024 | Struct e puntatori | 15-17 |
-| 23/04/2024 | Preparazione per l'esame | `NULL` |
+| 23/04/2024 | Operatori bitwise e preparazione per l'esame | 20 |
+| TBD | Lezione extra | -- |
+| TBD | Simulazione d'esame | -- |

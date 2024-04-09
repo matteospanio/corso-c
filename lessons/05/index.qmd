@@ -3,4 +3,10 @@ title: Uso avanzato dei puntatori
 date: 04/10/2024
 ---
 
-TODO
+::: {.content-visible when-format="revealjs"}
+{{< include _struct.qmd >}}
+:::
+
+::: {.content-visible unless-format="revealjs"}
+{{< include _struct_text.qmd >}}
+:::
