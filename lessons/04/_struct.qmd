@@ -120,3 +120,33 @@ Point punto = {
     .y = 2,
 };
 ```
+
+## Esempio
+
+Si vuole creare un sistema informatico per la gestione degli esami di un gruppo di studenti, si vuole:
+
+1. implementare una struttura dati per memorizzare l'esito relativo a un esame;
+2. memorizzare la lista degli esami con il voto di uno studente per ogni esame;
+2. implementare un sistema multiutente in cui ogni utente possa consultare i propri voti.
+
+## Memorizzare esame e voto
+
+L'esito di un esame può essere rappresentato come una coppia di valori `<materia, voto>`, la struct serve proprio a questo:
+
+```c
+#define BUFFER_SIZE 128
+typedef struct esame
+{
+    char materia[BUFFER_SIZE];
+    unsigned int voto; // non esistono voti negativi
+    // dal momento che il voto va da 1 a 30 avremmo 
+    // potuto usare una variabile di tipo char
+} Esame;
+```
+
+## Memorizzare la lista degli esami
+
+```c
+#define NUM_ESAMI 10
+Esame esami[NUM_ESAMI];
+```
