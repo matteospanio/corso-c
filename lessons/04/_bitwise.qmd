@@ -1,0 +1,56 @@
+# Operazioni bitwise
+
+## Operatori bitwise
+
+Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili. Questi operatori sono molto utili quando si deve lavorare con i registri di un microcontrollore o con i dati grezzi provenienti da un sensore.
+
+Gli operatori bitwise in C sono:
+- `&` AND
+- `|` OR
+- `^` XOR
+- `~` NOT
+- `<<` Shift a sinistra
+- `>>` Shift a destra
+
+## Calcoli
+
+Questi operatori applicano le regole dell'algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.
+
+| A | B | A AND B | A OR B | A XOR B |
+|---|---|---------|--------|---------|
+| 0 | 0 |    0    |   0    |    0    |
+| 0 | 1 |    0    |   1    |    1    |
+| 1 | 0 |    0    |   1    |    1    |
+| 1 | 1 |    1    |   1    |    0    |
+
+## Esempi
+
+In elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l'interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo `char`:
+
+```c
+unsigned char switches = 0b00001000;
+// oppure
+unsigned char switches = 8;
+```
+
+In questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.
+
+Ipotizzando di voler accendere un altro interruttore, si può utilizzare l'operatore OR:
+
+```c
+switches = switches | 0b00000100;
+// oppure
+switches = switches | 4;
+```
+
+Ora il valore di `switches` sarà `0b00001100`. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.
+
+Per spegnere tutti gli interruttori si può utilizzare l'operatore AND:
+
+```c
+switches = switches & 0b00000000;
+// oppure
+switches = switches & 0;
+```
+
+Ora il valore di `switches` sarà `0b00000000`.

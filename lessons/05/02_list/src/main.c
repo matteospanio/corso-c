@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-char *error_message(error_t error)
+string error_message(Error error)
 {
     switch (error)
     {
@@ -20,7 +20,7 @@ char *error_message(error_t error)
     return "Invalid error code";
 }
 
-void print_list(const list_t *list)
+void print_list(const List *list)
 {
     for (size_t i = 0; i < list_size(list); i++)
     {
@@ -30,25 +30,25 @@ void print_list(const list_t *list)
             fprintf(stderr, "Error: %s\n", error_message(INDEX_ERROR));
             return;
         }
-        printf("%s ", (char *)result);
+        printf("%s ", (string)result);
     }
     printf("\n");
 }
 
 int main(void)
 {
-    error_t error;
+    Error error;
 
-    arraylist_t *arraylist = arraylist_create(5);
+    ArrayList *arraylist = arraylist_create(5);
     if (arraylist == NULL)
     {
         fprintf(stderr, "Error: %s\n", error_message(MALLOC_ERROR));
         exit(EXIT_FAILURE);
     }
 
-    list_t list = {.list.arraylist = arraylist, .type = ARRAYLIST};
+    List list = {.list.arraylist = arraylist, .type = ARRAYLIST};
 
-    char *buffer = malloc(sizeof(char) * 6);
+    string buffer = malloc(sizeof(char) * 6);
     if (buffer == NULL)
     {
         list_delete(&list, free);

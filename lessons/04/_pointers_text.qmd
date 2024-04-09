@@ -1,0 +1,49 @@
+# Puntatori
+
+Il termine *puntatore* produce sempre un po' di confusione tra i principianti del C, in realtà, una volta capito il concetto, si tratta di una feature molto potente e utile del linguaggio. Non sono effettivamente complicati, ma è facile fare confusione, spero che questa guida possa aiutare a chiarire le idee...
+
+Quando si dichiara una variabile si comunica al compilatore il suo tipo e il suo nome prima del suo utilizzo, questo è fondamentale perché la dichiarazione permette al compilatore di allocare un blocco di memoria per immagazzinare la variabile. Quindi:
+
+> Ad ogni variabile (e non solo) è associato un indirizzo di memoria. Questo indirizzo è un numero che identifica la posizione della variabile in memoria.
+
+## Cos'è un puntatore?
+
+> Un **puntatore** è una variabile che contiene l'informazione per accedere ad un'altra variabile, ossia il suo **indirizzo**.
+
+Quindi un puntatore è semplicemente un indirizzo di memoria contenente una variabile.
+
+Se si dichiara una variabile e un puntatore ad essa si può accedere alla variabile in due modi:
+
+1. Utilizzando la variabile stessa
+2. Utilizzando il puntatore
+
+Un esempio potrebbe essere:
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    int a;
+    int *ptr_to_a;   /* <1> */
+
+    ptr_to_a = &a;   /* <2> */
+
+    a = 5;
+    printf("The value of a is %d\n", a);
+
+    *ptr_to_a = 6;    /* <3> */
+    printf("The value of a is %d\n", a);
+    printf("The value of ptr_to_a is %d\n", ptr_to_a);
+    printf("It stores the value %d\n", *ptr_to_a);
+    printf("The address of a is %d\n", &a);
+}
+```
+
+1. Indica la dichiarazione di un puntatore a un intero, il carattere `*` è usato per indicare che `ptr_to_a` è un puntatore, il tipo di variabile a cui punta è indicato prima del `*`.
+2. In C il simbolo `&` prima di un nome di variabile è usato per ottenere l'indirizzo di memoria di quella variabile e, come detto prima, un puntatore è un indirizzo di memoria. Quindi `ptr_to_a` contiene l'indirizzo di `a`.
+3. Dopo che ad `a` è stato assegnato il valore 5, viene usato ancora il simbolo `*`, questa volta però ha un significato diverso: una volta che il puntatore è dichiarato, il simbolo `*` è usato per accedere al valore della variabile a cui il puntatore punta. Quindi `*ptr_to_a` è il valore di `a`. È un modo alternativo per impostare il valore di `a` a 6.
+
+::: {.callout-tip}
+Un sistema un po' stravagante ma efficace per imparare il significato degli operatori `*` e `&` nel contesto dei puntatori è pensare a `*` come "valore puntato da" e `&` come "indirizzo di". Una volta imparato questo, il resto è molto più semplice.
+:::

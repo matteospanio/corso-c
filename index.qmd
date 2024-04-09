@@ -27,3 +27,29 @@ La sezione lezioni raccoglie tutti i contenuti presentati a lezione, ogni lezion
 La sezione esercizi raccoglie molti esercizi per ripassare gli argomenti visti in classe e prepararsi all'esame, in generale vi sono esercizi di varia difficoltà.
 
 La sezione risorse contiene materiali vari: una lista di letture consigliate sul linguaggio C oltre al libro di testo del corso, un elenco di materiali didattici reperibili online, domande e risposte comuni sull'esame, una guida sull'installazione dell'ambiente di sviluppo per scrivere programmi C.
+
+<!-- # Programma del corso
+
+Di seguito il programma del corso, tutti gli argomenti elencati potranno essere inclusi negli esercizi d'esame.
+
+1. Basi di C
+    - Introduzione al linguaggio C
+    - Struttura di un programma
+    - compilatore gcc
+2. Sintassi del linguaggio
+    - Tipi di dato di base
+    - Operatori (precedenza e associatività)
+    - Strutture di controllo (if-else, switch, for, while)
+    - Funzioni
+    - Ricorsione
+3. Array, puntatori e stringhe
+    - Array
+    - Puntatori
+    - stringhe e funzioni di libreria
+    - operatori di indirizzamento ( & e * )
+    - allocazione dinamica di memoria
+4. Strutture dati
+    - struct
+    - union
+    - typedef
+    - liste concatenate -->

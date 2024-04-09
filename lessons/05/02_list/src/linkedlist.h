@@ -8,21 +8,21 @@ typedef struct node
 {
     T *data;
     struct node *next;
-} node_t;
+} Node;
 
 typedef struct linkedlist
 {
-    node_t *head;
-    node_t *tail;
+    Node *head;
+    Node *tail;
     size_t size;
-} linkedlist_t;
+} LinkedList;
 
 /**
  * @brief Create a new linked list
  *
- * @return linkedlist_t* The new list
+ * @return LinkedList* The new list or NULL if the list could not be created
  */
-linkedlist_t *linkedlist_create();
+LinkedList *linkedlist_create();
 /**
  * @brief Append a value to the list
  *
@@ -30,9 +30,9 @@ linkedlist_t *linkedlist_create();
  *
  * @param list The list to append to
  * @param value The value to append
- * @return error_t OK on success, error code on failure
+ * @return Error OK on success, error code on failure
  */
-error_t linkedlist_append(linkedlist_t *list, T *value);
+Error linkedlist_append(LinkedList *list, T *value);
 /**
  * @brief Get a value from the list.
  *
@@ -42,30 +42,30 @@ error_t linkedlist_append(linkedlist_t *list, T *value);
  * @param index The index of the value to get
  * @return T* The value at the index, or NULL if the index is out of bounds
  */
-T *linkedlist_get(const linkedlist_t *list, size_t index);
+T *linkedlist_get(const LinkedList *list, size_t index);
 /**
  * @brief Delete the list
  *
  * @param list The list to delete
  * @param free_data The function to free the data, or NULL if the data should not be freed
  */
-void linkedlist_delete(linkedlist_t *list, void (*free_data)(T *));
+void linkedlist_delete(LinkedList *list, void (*free_data)(T *));
 /**
  * @brief Prepend a value to the list
  *
  * @param list The list to prepend to
  * @param value The value to prepend
- * @return error_t OK on success, error code on failure
+ * @return Error OK on success, error code on failure
  */
-error_t linkedlist_prepend(linkedlist_t *list, T *value);
+Error linkedlist_prepend(LinkedList *list, T *value);
 /**
  * @brief Insert a value into the list
  *
  * @param list The list to insert into
  * @param value The value to insert
  * @param index The index to insert the value at
- * @return error_t OK on success, error code on failure
+ * @return Error OK on success, error code on failure
  */
-error_t linkedlist_insert(linkedlist_t *list, T *value, size_t index);
+Error linkedlist_insert(LinkedList *list, T *value, size_t index);
 
 #endif // LINKEDLIST_H

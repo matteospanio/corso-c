@@ -1,0 +1,175 @@
+---
+title: GDB - Usare il debugger GNU
+---
+
+
+GDB (GNU Debugger) rappresenta un’indispensabile risorsa per chiunque si addentri nel mondo della programmazione in C e C++ offrendo un insieme di strumenti per il debugging di codice estremamente versatile e potente. Questa pagina mira a fornire una panoramica introduttiva dell’utilizzo di GDB, accompagnata da esempi pratici per facilitarne la comprensione.
+
+## Installazione
+
+Per verificare se GDB è già installato sul proprio sistema è possibile eseguire il seguente comando:
+
+```
+gdb --version
+```
+
+Nel caso in cui uscisse un numero di versione, GDB è già installato. In caso contrario, è possibile procedere con l’installazione. L’installazione di GDB su sistemi operativi basati su Debian/Ubuntu può essere eseguita mediante l’utilizzo del gestore di pacchetti, con il seguente comando:
+
+```bash
+sudo apt-get install gdb
+```
+
+## Utilizzo di Base
+
+Consideriamo un semplice programma in linguaggio C denominato `esempio.c`, il cui codice è il seguente:
+
+```{.c}
+#include <stdio.h>
+#define N 5
+
+int main(void)
+{
+    // crea un array di N interi
+    int arr[N];
+
+    // inizializza l'array con valori incrementali
+    for (int i = 0; i < N; i++)
+    {
+        arr[i] = i + 1;
+    }
+
+    // stampa gli elementi dell'array
+    for(int i = 0; i < N; i++)
+    {
+        printf("%d\n", arr[i]);
+    }
+}
+```
+
+Normalmente il compilatore C ignora i nomi delle variabili e delle funzioni, pertanto queste informazioni, di solito, non sono disponibili durante l’esecuzione del programma. Per mantenere queste informazioni nel file compilato, è necessario includere le informazioni di debug durante la compilazione del programma. Il compilatore `gcc` offre l’opzione `-g` per includere queste informazioni, pertanto, quando si vuole utilizzare GDB per il debugging di un programma, è necessario compilare il programma con questa opzione:
+
+```
+gcc -g esempio.c -o esempio
+```
+
+Successivamente, è possibile avviare GDB, specificando il nome del programma compilato come argomento:
+
+```
+gdb ./esempio
+```
+
+A questo punto dovrebbero essere apparse un po' di righe di intestazione con le informazioni di gdb, l'ultima riga invece dovrebbe assomigliare a `(gdb)`. Vuol dire che siamo in una sessione di `gdb` pronta a ricevere comandi per il debugging del programma.
+
+## Comandi di base
+
+`gdb` accetta comandi testuali per interagire con il programma in esecuzione.
+
+Il comando `run` (o `r`) avvia l’esecuzione del programma monitorato da GDB. Provando ad eseguire il comando `run` si dovrebbe vedere l'output del programma, che in questo caso dovrebbe essere:
+```
+(gdb) run
+Starting program: /home/matteo/Scrivania/prova/esempio
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+1
+2
+3
+4
+5
+[Inferior 1 (process 192487) exited normally]
+```
+
+Come si può vedere dall'output, il programma è stato eseguito, ha stampato i valori che ci aspettavamo, e si è concluso normalmente. Però non abbiamo avuto modo di controllare il funzionamento del programma, e non abbiamo potuto vedere come il programma si comporta durante l'esecuzione. Per questo esiste il comando `break` (o `b`), che permette di impostare un breakpoint in un punto specifico del programma, in modo da poter controllare il funzionamento del programma in quel punto. Per impostare un breakpoint all'inizio della funzione `main` si può eseguire il comando `break main`:
+```
+(gdb) break main
+Breakpoint 1 at 0x555555555175: file esempio.c, line 5.
+```
+
+Ora che abbiamo impostato un breakpoint, possiamo eseguire il programma con il comando `run` e il programma si fermerà al breakpoint appena impostato.
+
+```
+(gdb) run
+Starting program: /home/matteo/Scrivania/prova/esempio
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main () at esempio.c:5
+5	{
+```
+
+Effettivamente viene stampata la riga 5 del file `esempio.c`, che corrisponde all'inizio della funzione `main`, purtroppo però si vede solo la parentesi graffa. Per vedere cosa si trova intorno al breakpoint si può utilizzare il comando `list` (o `l`). In questo caso si avrà il seguente output:
+
+```
+(gdb) list
+1	#include <stdio.h>
+2	#define N 5
+3
+4	int main(void)
+5	{
+6	    // crea un array di N interi
+7	    int arr[N];
+8
+9	    // inizializza l'array con valori incrementali
+10	    for (int i = 0; i < N; i++)
+```
+
+Come si può vedere, il comando `list` mostra il codice sorgente intorno al breakpoint.
+
+Per andare avanti di un'istruzione si può utilizzare il comando `next` (o `n`). Questo comando permette di eseguire l'istruzione successiva del programma, considerando le chiamate a funzione come singole istruzioni. Se si esegue il comando `next` si dovrebbe vedere l'output seguente:
+
+```
+(gdb) next
+10	    for (int i = 0; i < N; i++)
+```
+
+Questa volta si vede la riga 10 del file `esempio.c`, che corrisponde all'inizio del ciclo `for`. Stranamente l'istruzione a riga 7 in cui viene dichiarato l'array `arr` non ha fermato l'esecuzione di gdb su quella riga. , e quindi gdb non si ferma su quella riga. Ad ogni modo però si può controllare che esista l'array con il comando `print` (o `p`), che permette di stampare il valore di una variabile. Per stampare l'array `arr` si può eseguire il comando `print arr`:
+
+```
+(gdb) print arr
+$1 = {-8711, 32767, 100, 0, 4096}
+```
+
+L'array ha dimensione 5 come ci aspettavamo, ma contiene valori strani. Questo è dovuto al fatto che C non inizializza le variabili quando vengono dichiarate, e quindi l'array `arr` contiene valori casuali.
+
+Possiamo andare avanti con l'esecuzione eseguendo il comando `next` un po' di volte:
+
+```
+(gdb) next
+12	        arr[i] = i + 1;
+(gdb) next
+10	    for (int i = 0; i < N; i++)
+(gdb) next
+12	        arr[i] = i + 1;
+(gdb)
+10	    for (int i = 0; i < N; i++)
+(gdb)
+12	        arr[i] = i + 1;
+(gdb)
+10	    for (int i = 0; i < N; i++)
+(gdb)
+12	        arr[i] = i + 1;
+(gdb)
+10	    for (int i = 0; i < N; i++)
+12	        arr[i] = i + 1;
+(gdb)
+10	    for (int i = 0; i < N; i++)
+```
+
+Si vedono sempre le stesse righe 10 e 12, che corrispondono all'inizio e alla fine del ciclo `for`. Si noti che premere invio senza digitare un comando esegue l'ultimo comando digitato, quindi se si esegue tante volte di seguito il comando `next` si può scriverlo la prima volta e poi premere invio tante volte quante si vuole eseguire il comando. A questo punto, eseguendo il comando `print arr` si dovrebbe vedere l'array `arr` con i valori inizializzati:
+
+```
+(gdb) print arr
+$1 = {1, 2, 3, 4, 5}
+```
+
+
+### Lista dei comandi più comuni
+
+- `run` (o r): Avvia l’esecuzione del programma monitorato da GDB.
+- `break` <location> (o b <location>): Permette di impostare un breakpoint in un punto specifico del programma, identificabile tramite il nome di una funzione, un numero di riga (preceduto dal nome del file e due punti per maggiore specificità), o un indirizzo di memoria.
+- `next` (o n): Consente di eseguire l’istruzione successiva del programma, considerando le chiamate a funzione come singole istruzioni.
+- `step` (o s): Simile al comando next, ma consente di “entrare” nelle chiamate a funzione per esaminarne il dettaglio.
+- `print` <expression> (o p <expression>): Stampa il valore dell’espressione specificata, che può essere una variabile, un’espressione valida in C, o una chiamata a funzione.
+- `continue` (o c): Riprende l’esecuzione del programma fino al raggiungimento del successivo breakpoint.
+- `quit` (o q): Termina la sessione di GDB.
+
+GDB offre un’ampia gamma di funzionalità avanzate oltre a quelle introdotte in questa guida, rendendolo uno strumento estremamente potente per il debugging di programmi.

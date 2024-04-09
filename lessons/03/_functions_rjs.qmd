@@ -1,11 +1,5 @@
 # Funzioni
 
-## Funzioni
-
-Una funzione è una associazione tra due insiemi: il dominio e il codominio: $f: A \rightarrow B$
-
-In programmazione il concetto di funzione è simile: una funzione è un blocco di codice che accetta un certo numero di argomenti e, spesso, restituisce un valore. Oltre al valore, però, una funzione può anche avere *side effects*, cioè modificare lo stato del programma.
-
 ## Funzioni in C
 
 In C si può pensare a una qualsiasi funzione come una scatola nera con un certo numero di ingressi e **un solo** output.
@@ -35,14 +29,14 @@ double average(int a, int b)
 }
 ```
 
-## Funzioni senza valore di ritorno
+## Funzioni
 
-Il tipo di ritorno può essere `void`, in tal caso la funzione non restituisce alcun valore:
+Il valore di ritorno può non esserci, anche i parametri possono essere `void` oppure si possono omettere:
 
 ```{.c}
-void print_int(int a)
+void print_hello(void)
 {
-    printf("%d\n", a);
+    printf("Hello, world!\n");
     return;
 }
 ```
@@ -51,11 +45,46 @@ void print_int(int a)
 L'istruzione `return` può essere omessa in una funzione `void`.
 :::
 
-## Chiamata di funzione
+## Dichiarazione e definizione
 
-Le funzioni dichiarate precedentemente nel programma possono essere eseguite in blocchi di codice successivi.
+Le funzioni possono essere dichiarate e definite in due momenti diversi del programma.
 
-Ogni chiamata di funzione è una *espressione*, e viene valutata con il suo valore di ritorno.
+La dichiarazione di una funzione è una *promessa* che il programmatore fa al compilatore: "presto ti dirò cosa fa questa funzione".
+
+La sintassi della dichiarazione è la stessa della definizione, ma senza il corpo della funzione:
+
+```{.c}
+return_type function_name( parameters );
+```
+
+## Dichiarazione e definizione
+
+Esempio:
+
+```{.c}
+#include <stdio.h>
+
+int sum(int a, int b); // dichiarazione
+
+int main(void)
+{
+    int x = 3, y = 4;
+    int z = sum(x, y);
+    printf("La somma di %d e %d è %d\n", x, y, z);
+    return 0;
+}
+
+int sum(int a, int b) // definizione
+{
+    return a + b;
+}
+```
+
+## Argomenti di funzione
+
+Gli argomenti possono anche essere degli array, mentre il tipo di ritorno no.
+
+Se si passa un array come argomento, si può omettere la sua dimensione, ma in tal caso non sarà possibile conoscere la dimensione dell'array all'interno della funzione, per questo spesso si passa anche la dimensione dell'array come argomento.
 
 ## Esercizi {.smaller}
 

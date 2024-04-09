@@ -1,6 +1,20 @@
 ---
-title: Array, puntatori e stringhe
+title: Array e Funzioni
 date: 03/26/2024
+abstract: |
+    In questa lezione si introducono i meccanismi alla base della gestione della memoria.
+    Gli argomenti vengono presentati in ordine diverso rispetto al libro di testo.
 ---
 
-TODO
+::: {.content-visible when-format="revealjs"}
+{{< include _array_rjs.qmd >}}
+
+{{< include _functions_rjs.qmd >}}
+
+:::
+
+::: {.content-visible unless-format="revealjs"}
+{{< include _array.qmd >}}
+
+{{< include _functions.qmd >}}
+:::
