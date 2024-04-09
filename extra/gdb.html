@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hello C 2024 - Ambiente di sviluppo</title>
+<title>Hello C 2024 - GDB - Usare il debugger GNU</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../extra/gcc.html" rel="next">
-<link href="../extra/books.html" rel="prev">
+<link href="../extra/style_guide.html" rel="next">
+<link href="../extra/makefile.html" rel="prev">
 <link href="../assets/images/dec_pdp1120.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -171,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../resources.html">Risorse</a></li><li class="breadcrumb-item"><a href="../extra/docker.html">Ambiente di sviluppo</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../extra/gcc.html">Strumenti di sviluppo</a></li><li class="breadcrumb-item"><a href="../extra/gdb.html">Usare il debugger GDB</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -200,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../extra/docker.html" class="sidebar-item-text sidebar-link active">
+  <a href="../extra/docker.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ambiente di sviluppo</span></a>
   </div>
 </li>
@@ -229,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../extra/gdb.html" class="sidebar-item-text sidebar-link">
+  <a href="../extra/gdb.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Usare il debugger GDB</span></a>
   </div>
 </li>
@@ -274,18 +274,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">In questa pagina</h2>
    
   <ul>
-  <li><a href="#strumenti-installati-nellimmagine-docker" id="toc-strumenti-installati-nellimmagine-docker" class="nav-link active" data-scroll-target="#strumenti-installati-nellimmagine-docker">Strumenti installati nell’immagine docker</a></li>
-  <li><a href="#condividere-una-cartella-tra-il-sistema-host-e-limmagine-docker" id="toc-condividere-una-cartella-tra-il-sistema-host-e-limmagine-docker" class="nav-link" data-scroll-target="#condividere-una-cartella-tra-il-sistema-host-e-limmagine-docker">Condividere una cartella tra il sistema host e l’immagine docker</a></li>
-  <li><a href="#metodi-alternativi" id="toc-metodi-alternativi" class="nav-link" data-scroll-target="#metodi-alternativi">Metodi alternativi</a></li>
+  <li><a href="#installazione" id="toc-installazione" class="nav-link active" data-scroll-target="#installazione">Installazione</a></li>
+  <li><a href="#utilizzo-di-base" id="toc-utilizzo-di-base" class="nav-link" data-scroll-target="#utilizzo-di-base">Utilizzo di Base</a></li>
+  <li><a href="#comandi-di-base" id="toc-comandi-di-base" class="nav-link" data-scroll-target="#comandi-di-base">Comandi di base</a>
+  <ul class="collapse">
+  <li><a href="#lista-dei-comandi-più-comuni" id="toc-lista-dei-comandi-più-comuni" class="nav-link" data-scroll-target="#lista-dei-comandi-più-comuni">Lista dei comandi più comuni</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../resources.html">Risorse</a></li><li class="breadcrumb-item"><a href="../extra/docker.html">Ambiente di sviluppo</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../extra/gcc.html">Strumenti di sviluppo</a></li><li class="breadcrumb-item"><a href="../extra/gdb.html">Usare il debugger GDB</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Ambiente di sviluppo</h1>
+<h1 class="title">GDB - Usare il debugger GNU</h1>
 </div>
 
 
@@ -302,68 +305,126 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Per chi non ha una istallazione Linux (nativa o VM) è possibile riprodurre un ambiente identico a quello utilizzato nelle lezioni tramite una immagine docker. Ecco come fare:</p>
-<ol type="1">
-<li><p>Installare Docker dal sito ufficiale: <a href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</a></p></li>
-<li><p>Eseguire l’immagine (il download avviene automaticamente)</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> ghcr.io/matteospanio/cdev:latest bash</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>In questo modo si ottiene una shell dentro un’immagine ubuntu linux in cui sono installati gcc e altri strumenti di sviluppo</p></li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Consiglio
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Se ti sembra scomodo eseguire il comando del punto 2 puoi scaricare l’applicazione python <a href="https://matteospanio.github.io/cdev-cli/">cdev-cli</a> e avviare l’immagine con meno sforzo.</p>
-</div>
-</div>
-<section id="strumenti-installati-nellimmagine-docker" class="level2">
-<h2 class="anchored" data-anchor-id="strumenti-installati-nellimmagine-docker">Strumenti installati nell’immagine docker</h2>
-<p>Tra i principali programmi installati nell’immagine docker ci sono:</p>
-<ul>
-<li><code>gcc</code> e <code>g++</code> per compilare i programmi in C e C++</li>
-<li><code>make</code> per automatizzare la compilazione</li>
-<li><code>git</code> per gestire i sorgenti</li>
-<li><code>vim</code>, un editor di testo minimale</li>
-<li><code>valgrind</code> per analizzare i programmi</li>
-<li><code>gdb</code> per il debug</li>
-<li><code>python3</code> per eseguire script python</li>
-<li><code>man</code>, il manuale di riferimento per i comandi linux</li>
-</ul>
+<p>GDB (GNU Debugger) rappresenta un’indispensabile risorsa per chiunque si addentri nel mondo della programmazione in C e C++ offrendo un insieme di strumenti per il debugging di codice estremamente versatile e potente. Questa pagina mira a fornire una panoramica introduttiva dell’utilizzo di GDB, accompagnata da esempi pratici per facilitarne la comprensione.</p>
+<section id="installazione" class="level2">
+<h2 class="anchored" data-anchor-id="installazione">Installazione</h2>
+<p>Per verificare se GDB è già installato sul proprio sistema è possibile eseguire il seguente comando:</p>
+<pre><code>gdb --version</code></pre>
+<p>Nel caso in cui uscisse un numero di versione, GDB è già installato. In caso contrario, è possibile procedere con l’installazione. L’installazione di GDB su sistemi operativi basati su Debian/Ubuntu può essere eseguita mediante l’utilizzo del gestore di pacchetti, con il seguente comando:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install gdb</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="condividere-una-cartella-tra-il-sistema-host-e-limmagine-docker" class="level2">
-<h2 class="anchored" data-anchor-id="condividere-una-cartella-tra-il-sistema-host-e-limmagine-docker">Condividere una cartella tra il sistema host e l’immagine docker</h2>
-<p>Per condividere una cartella tra il sistema host e l’immagine docker è possibile utilizzare l’opzione <code>-v</code> di docker. Ad esempio:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> <span class="at">-v</span> /path/to/my/folder:/mnt ghcr.io/matteospanio/cdev:latest bash</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Questo comando permette di <em>montare</em> la cartella <code>/path/to/my/folder</code> all’interno dell’immagine docker nella cartella <code>/mnt</code>. In questo modo è possibile condividere i file tra il sistema host e l’immagine docker. Dall’interno dell’ambiente docker è possibile andare alla cartella <code>/mnt</code> con il comando <code>cd /mnt</code>, in questa directory saranno presenti i file della cartella <code>/path/to/my/folder</code> del sistema host. Ciò comporta che le modifiche ai file condivisi saranno visibili sia dal sistema host che dall’immagine docker e permanenti.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I file creati nell’ambiente docker e le modifiche fatte al sistema operativo dell’immagine docker, di default, non sono permanenti.</p>
-</div>
-</div>
-<p>L’applicazione <code>cdev-cli</code> semplifica il processo di avvio dell’immagine docker e la condivisione di una cartella tra il sistema host e l’immagine docker, in particolare permette di avviare l’immagine docker con un comando e di condividere la cartella corrente del sistema host con l’immagine docker. Eseguendo il comando <code>cdev-cli</code> da una determinata cartella nel sistema host si avvia l’immagine docker e si condivide la cartella corrente con l’immagine docker alla posizione <code>/mnt</code>.</p>
+<section id="utilizzo-di-base" class="level2">
+<h2 class="anchored" data-anchor-id="utilizzo-di-base">Utilizzo di Base</h2>
+<p>Consideriamo un semplice programma in linguaggio C denominato <code>esempio.c</code>, il cui codice è il seguente:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define N </span><span class="dv">5</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// crea un array di N interi</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> arr<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// inizializza l'array con valori incrementali</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N<span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        arr<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// stampa gli elementi dell'array</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N<span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> arr<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Normalmente il compilatore C ignora i nomi delle variabili e delle funzioni, pertanto queste informazioni, di solito, non sono disponibili durante l’esecuzione del programma. Per mantenere queste informazioni nel file compilato, è necessario includere le informazioni di debug durante la compilazione del programma. Il compilatore <code>gcc</code> offre l’opzione <code>-g</code> per includere queste informazioni, pertanto, quando si vuole utilizzare GDB per il debugging di un programma, è necessario compilare il programma con questa opzione:</p>
+<pre><code>gcc -g esempio.c -o esempio</code></pre>
+<p>Successivamente, è possibile avviare GDB, specificando il nome del programma compilato come argomento:</p>
+<pre><code>gdb ./esempio</code></pre>
+<p>A questo punto dovrebbero essere apparse un po’ di righe di intestazione con le informazioni di gdb, l’ultima riga invece dovrebbe assomigliare a <code>(gdb)</code>. Vuol dire che siamo in una sessione di <code>gdb</code> pronta a ricevere comandi per il debugging del programma.</p>
 </section>
-<section id="metodi-alternativi" class="level1">
-<h1>Metodi alternativi</h1>
+<section id="comandi-di-base" class="level2">
+<h2 class="anchored" data-anchor-id="comandi-di-base">Comandi di base</h2>
+<p><code>gdb</code> accetta comandi testuali per interagire con il programma in esecuzione.</p>
+<p>Il comando <code>run</code> (o <code>r</code>) avvia l’esecuzione del programma monitorato da GDB. Provando ad eseguire il comando <code>run</code> si dovrebbe vedere l’output del programma, che in questo caso dovrebbe essere:</p>
+<pre><code>(gdb) run
+Starting program: /home/matteo/Scrivania/prova/esempio
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+1
+2
+3
+4
+5
+[Inferior 1 (process 192487) exited normally]</code></pre>
+<p>Come si può vedere dall’output, il programma è stato eseguito, ha stampato i valori che ci aspettavamo, e si è concluso normalmente. Però non abbiamo avuto modo di controllare il funzionamento del programma, e non abbiamo potuto vedere come il programma si comporta durante l’esecuzione. Per questo esiste il comando <code>break</code> (o <code>b</code>), che permette di impostare un breakpoint in un punto specifico del programma, in modo da poter controllare il funzionamento del programma in quel punto. Per impostare un breakpoint all’inizio della funzione <code>main</code> si può eseguire il comando <code>break main</code>:</p>
+<pre><code>(gdb) break main
+Breakpoint 1 at 0x555555555175: file esempio.c, line 5.</code></pre>
+<p>Ora che abbiamo impostato un breakpoint, possiamo eseguire il programma con il comando <code>run</code> e il programma si fermerà al breakpoint appena impostato.</p>
+<pre><code>(gdb) run
+Starting program: /home/matteo/Scrivania/prova/esempio
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main () at esempio.c:5
+5   {</code></pre>
+<p>Effettivamente viene stampata la riga 5 del file <code>esempio.c</code>, che corrisponde all’inizio della funzione <code>main</code>, purtroppo però si vede solo la parentesi graffa. Per vedere cosa si trova intorno al breakpoint si può utilizzare il comando <code>list</code> (o <code>l</code>). In questo caso si avrà il seguente output:</p>
+<pre><code>(gdb) list
+1   #include &lt;stdio.h&gt;
+2   #define N 5
+3
+4   int main(void)
+5   {
+6       // crea un array di N interi
+7       int arr[N];
+8
+9       // inizializza l'array con valori incrementali
+10      for (int i = 0; i &lt; N; i++)</code></pre>
+<p>Come si può vedere, il comando <code>list</code> mostra il codice sorgente intorno al breakpoint.</p>
+<p>Per andare avanti di un’istruzione si può utilizzare il comando <code>next</code> (o <code>n</code>). Questo comando permette di eseguire l’istruzione successiva del programma, considerando le chiamate a funzione come singole istruzioni. Se si esegue il comando <code>next</code> si dovrebbe vedere l’output seguente:</p>
+<pre><code>(gdb) next
+10      for (int i = 0; i &lt; N; i++)</code></pre>
+<p>Questa volta si vede la riga 10 del file <code>esempio.c</code>, che corrisponde all’inizio del ciclo <code>for</code>. Stranamente l’istruzione a riga 7 in cui viene dichiarato l’array <code>arr</code> non ha fermato l’esecuzione di gdb su quella riga. , e quindi gdb non si ferma su quella riga. Ad ogni modo però si può controllare che esista l’array con il comando <code>print</code> (o <code>p</code>), che permette di stampare il valore di una variabile. Per stampare l’array <code>arr</code> si può eseguire il comando <code>print arr</code>:</p>
+<pre><code>(gdb) print arr
+$1 = {-8711, 32767, 100, 0, 4096}</code></pre>
+<p>L’array ha dimensione 5 come ci aspettavamo, ma contiene valori strani. Questo è dovuto al fatto che C non inizializza le variabili quando vengono dichiarate, e quindi l’array <code>arr</code> contiene valori casuali.</p>
+<p>Possiamo andare avanti con l’esecuzione eseguendo il comando <code>next</code> un po’ di volte:</p>
+<pre><code>(gdb) next
+12          arr[i] = i + 1;
+(gdb) next
+10      for (int i = 0; i &lt; N; i++)
+(gdb) next
+12          arr[i] = i + 1;
+(gdb)
+10      for (int i = 0; i &lt; N; i++)
+(gdb)
+12          arr[i] = i + 1;
+(gdb)
+10      for (int i = 0; i &lt; N; i++)
+(gdb)
+12          arr[i] = i + 1;
+(gdb)
+10      for (int i = 0; i &lt; N; i++)
+12          arr[i] = i + 1;
+(gdb)
+10      for (int i = 0; i &lt; N; i++)</code></pre>
+<p>Si vedono sempre le stesse righe 10 e 12, che corrispondono all’inizio e alla fine del ciclo <code>for</code>. Si noti che premere invio senza digitare un comando esegue l’ultimo comando digitato, quindi se si esegue tante volte di seguito il comando <code>next</code> si può scriverlo la prima volta e poi premere invio tante volte quante si vuole eseguire il comando. A questo punto, eseguendo il comando <code>print arr</code> si dovrebbe vedere l’array <code>arr</code> con i valori inizializzati:</p>
+<pre><code>(gdb) print arr
+$1 = {1, 2, 3, 4, 5}</code></pre>
+<section id="lista-dei-comandi-più-comuni" class="level3">
+<h3 class="anchored" data-anchor-id="lista-dei-comandi-più-comuni">Lista dei comandi più comuni</h3>
 <ul>
-<li>Per chi ha un sistema operativo MacOS o Linux basta installare gcc.</li>
-<li>In Windows è possibile utilizzare <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL 2</a>, un sistema simile a docker per integrare direttamente Ubuntu in Windows.</li>
+<li><code>run</code> (o r): Avvia l’esecuzione del programma monitorato da GDB.</li>
+<li><code>break</code> <location> (o b <location>): Permette di impostare un breakpoint in un punto specifico del programma, identificabile tramite il nome di una funzione, un numero di riga (preceduto dal nome del file e due punti per maggiore specificità), o un indirizzo di memoria.</location></location></li>
+<li><code>next</code> (o n): Consente di eseguire l’istruzione successiva del programma, considerando le chiamate a funzione come singole istruzioni.</li>
+<li><code>step</code> (o s): Simile al comando next, ma consente di “entrare” nelle chiamate a funzione per esaminarne il dettaglio.</li>
+<li><code>print</code> <expression> (o p <expression>): Stampa il valore dell’espressione specificata, che può essere una variabile, un’espressione valida in C, o una chiamata a funzione.</expression></expression></li>
+<li><code>continue</code> (o c): Riprende l’esecuzione del programma fino al raggiungimento del successivo breakpoint.</li>
+<li><code>quit</code> (o q): Termina la sessione di GDB.</li>
 </ul>
+<p>GDB offre un’ampia gamma di funzionalità avanzate oltre a quelle introdotte in questa guida, rendendolo uno strumento estremamente potente per il debugging di programmi.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -922,13 +983,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../extra/books.html" class="pagination-link" aria-label="Libri di testo">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Libri di testo</span>
+      <a href="../extra/makefile.html" class="pagination-link" aria-label="Makefile">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Makefile</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../extra/gcc.html" class="pagination-link" aria-label="Il compilatore GCC">
-        <span class="nav-page-text">Il compilatore GCC</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../extra/style_guide.html" class="pagination-link" aria-label="Style Guide">
+        <span class="nav-page-text">Style Guide</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

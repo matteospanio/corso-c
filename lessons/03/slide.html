@@ -12,10 +12,10 @@
 <script src="../../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
 <script src="../../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
 <link href="../../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.551">
+  <meta name="generator" content="quarto-1.4.553">
 
   <meta name="author" content="Matteo Spanio">
-  <title>Hello C 2024 - Array, Funzioni e puntatori</title>
+  <title>Hello C 2024 - Array e Funzioni</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -415,7 +415,7 @@
     <div class="slides">
 
 <section id="title-slide" data-transition="convex" class="quarto-title-block center">
-  <h1 class="title">Array, Funzioni e puntatori</h1>
+  <h1 class="title">Array e Funzioni</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -641,113 +641,6 @@
 <li><p>Modificare la soluzione dell’esercizio precedente per stampare l’array in ordine inverso. Implementare poi una soluzione non ricorsiva allo stesso problema.</p></li>
 <li><p>Scrivere una funzione ricorsiva <code>all</code> che, dato un array di interi, restituisca true se <strong>tutti</strong> gli elementi dell’array sono diversi da 0, false altrimenti.</p></li>
 </ol>
-</section>
-<section id="puntatori" class="slide level2">
-<h2>Puntatori</h2>
-<p>Un <strong>puntatore</strong> è una variabile che contiene l’informazione per accedere ad un’altra variabile. In pratica, è un indirizzo di memoria.</p>
-<p>Il sistema operativo assegna un indirizzo di memoria ad ogni variabile. Questo indirizzo è un numero che identifica la posizione della variabile in memoria. Un puntatore contiene questo numero.</p>
-</section>
-<section id="puntatori-memoria" class="slide level2">
-<h2>Puntatori: memoria</h2>
-<p>La memoria è divisa in celle della dimensione di un byte (8 bit). Ogni byte ha un proprio indirizzo.</p>
-<p>Ogni variabile è composta da un numero specifico di byte contigui (<code>sizeof</code> serve proprio a conoscere lo spazio in memoria di una variabile). Il puntatore contiene l’indirizzo del primo byte della variabile.</p>
-</section>
-<section id="puntatori-1" class="slide level2">
-<h2>Puntatori</h2>
-<p>È possibile compiere operazioni (spesso complesse) con questi puntatori, di fatto sono un nuovo tipo di variabile detta <em>variabile puntatore</em>.</p>
-<p>Per dichiarare un puntatore si usa il simbolo <code>*</code>:</p>
-<p><code>int *p;</code></p>
-<p>in questo caso <code>p</code> è un puntatore che punta ad una variabile di tipo <code>int</code>.</p>
-</section>
-<section id="puntatori-2" class="slide level2">
-<h2>Puntatori</h2>
-<p>Si possono dichiarare insieme ad altre variabili:</p>
-<p><code>int *p, x, *y, a[10];</code></p>
-<p>Qualsiasi tipo può essere usato.</p>
-</section>
-<section id="puntatori-operatori" class="slide level2">
-<h2>Puntatori: operatori</h2>
-<p>Esistono due operatori che si possono usare con i puntatori:</p>
-<ul>
-<li><code>&amp;</code> restituisce l’indirizzo di memoria di una variabile</li>
-<li><code>*</code> restituisce il valore puntato da un puntatore</li>
-</ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb17-1"><a></a><span class="dt">int</span> i<span class="op">,</span> j<span class="op">,</span> <span class="op">*</span>p<span class="op">;</span></span>
-<span id="cb17-2"><a></a><span class="co">// ...</span></span>
-<span id="cb17-3"><a></a>p <span class="op">=</span> <span class="op">&amp;</span>i<span class="op">;</span> <span class="co">// il valore di p è l'indirizzo di i</span></span>
-<span id="cb17-4"><a></a>j <span class="op">=</span> <span class="op">*</span>p<span class="op">;</span> <span class="co">// il valore di j è il valore puntato da p</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="puntatori-attenzione" class="slide level2">
-<h2>Puntatori: attenzione!</h2>
-<ul>
-<li>Applicare l’operatore <code>*</code> ad un puntatore non inizializzato è un errore:</li>
-</ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a></a><span class="dt">int</span> <span class="op">*</span>p<span class="op">;</span></span>
-<span id="cb18-2"><a></a>printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">*</span>p<span class="op">);</span> <span class="co">// errore!</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Assegnare un valore a un puntatore non inizializzato è un errore:</li>
-</ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a></a><span class="dt">int</span> <span class="op">*</span>p<span class="op">;</span> <span class="co">// p non è inizializzato</span></span>
-<span id="cb19-2"><a></a><span class="op">*</span>p <span class="op">=</span> <span class="dv">5</span><span class="op">;</span> <span class="co">// errore!</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="puntatori-esempio" class="slide level2">
-<h2>Puntatori: esempio</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a></a><span class="dt">int</span> i<span class="op">,</span> j<span class="op">,</span> <span class="op">*</span>p<span class="op">;</span></span>
-<span id="cb20-2"><a></a>i <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
-<span id="cb20-3"><a></a>p <span class="op">=</span> <span class="op">&amp;</span>i<span class="op">;</span></span>
-<span id="cb20-4"><a></a>j <span class="op">=</span> <span class="op">*</span>p<span class="op">;</span></span>
-<span id="cb20-5"><a></a>printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> j<span class="op">);</span> <span class="co">// stampa 5</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb21-1"><a></a><span class="dt">int</span> <span class="op">*</span>p<span class="op">,</span> <span class="op">*</span>q<span class="op">,</span> i<span class="op">;</span></span>
-<span id="cb21-2"><a></a>p <span class="op">=</span> <span class="op">&amp;</span>i<span class="op">;</span></span>
-<span id="cb21-3"><a></a><span class="op">*</span>p <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
-<span id="cb21-4"><a></a>q <span class="op">=</span> p<span class="op">;</span></span>
-<span id="cb21-5"><a></a><span class="op">(*</span>q<span class="op">)++;</span></span>
-<span id="cb21-6"><a></a>printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span> <span class="co">// stampa 7</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="puntatori-e-funzioni" class="slide level2">
-<h2>Puntatori e funzioni</h2>
-<p>Possono essere passati come argomenti di funzioni:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb22-1"><a></a><span class="dt">void</span> incrementa<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>p<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb22-2"><a></a>    <span class="op">(*</span>p<span class="op">)++;</span></span>
-<span id="cb22-3"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ci si basa unicamente sui side effects, è possibile quindi ritornare più di un valore.</p>
-</section>
-<section id="puntatori-e-funzioni-1" class="slide level2">
-<h2>Puntatori e funzioni</h2>
-<p>La chiamata di funzione avviene così:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="op">*</span>q <span class="op">=</span> <span class="op">&amp;</span>i<span class="op">;</span></span>
-<span id="cb23-2"><a></a>incrementa<span class="op">(</span>q<span class="op">);</span></span>
-<span id="cb23-3"><a></a>incrementa<span class="op">(&amp;</span>i<span class="op">);</span> <span class="co">// &lt;- vi risulta familiare?</span></span>
-<span id="cb23-4"><a></a>printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span> <span class="co">// stampa 2</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Abbiamo già visto questa sintassi con <code>scanf</code>.</p>
-</section>
-<section id="puntatori-esercizi-1" class="slide level2">
-<h2>Puntatori: esercizi (1)</h2>
-<p>Scrivere una funzione che scambi il valore di due variabili.</p>
-<p>Il prototipo della funzione è:</p>
-<p><code>void swap(int *a, int *b);</code></p>
-</section>
-<section id="puntatori-e-array" class="slide level2">
-<h2>Puntatori e array</h2>
-<p>Gli array sono trattati come puntatori:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb24-1"><a></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">10</span><span class="op">],</span> <span class="op">*</span>p<span class="op">;</span></span>
-<span id="cb24-2"><a></a>p <span class="op">=</span> a<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>p</code> punta al primo elemento dell’array.</p>
-</section>
-<section id="puntatori-e-array-1" class="slide level2">
-<h2>Puntatori e array</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb25-1"><a></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">10</span><span class="op">],</span> <span class="op">*</span>p<span class="op">;</span></span>
-<span id="cb25-2"><a></a>p <span class="op">=</span> a<span class="op">;</span></span>
-<span id="cb25-3"><a></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">10</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb25-4"><a></a>    p<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> i<span class="op">;</span></span>
-<span id="cb25-5"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>La sintassi <code>p[i]</code> è equivalente a <code>*(p + i)</code>.</p>
-</section>
-<section id="puntatori-esercizi-2" class="slide level2">
-<h2>Puntatori: esercizi (2)</h2>
-<p>Scrivere una funzione che trovi il minimo e il massimo in un array di interi.</p>
-<p>Il prototipo della funzione è:</p>
-<p><code>void minmax(int *a, int n, int *min, int *max);</code></p>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../../assets/images/DEI_logo.png" class="slide-logo"></p>

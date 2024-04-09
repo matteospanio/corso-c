@@ -12,10 +12,10 @@
 <script src="../../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
 <script src="../../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
 <link href="../../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.551">
+  <meta name="generator" content="quarto-1.4.553">
 
   <meta name="author" content="Matteo Spanio">
-  <title>Hello C 2024 - C avanzato</title>
+  <title>Hello C 2024 - Operatori bitwise e C avanzato</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -33,6 +33,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -350,7 +415,7 @@
     <div class="slides">
 
 <section id="title-slide" data-transition="convex" class="quarto-title-block center">
-  <h1 class="title">C avanzato</h1>
+  <h1 class="title">Operatori bitwise e C avanzato</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -380,9 +445,218 @@
 
   <p class="date">23 aprile 2024</p>
 </section>
-<section class="slide level2">
+<section>
+<section id="operazioni-bitwise" class="title-slide slide level1 center">
+<h1>Operazioni bitwise</h1>
 
-<p>TODO</p>
+</section>
+<section id="operatori-bitwise" class="slide level2">
+<h2>Operatori bitwise</h2>
+<p>Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili.</p>
+<p>Gli operatori bitwise in C sono:</p>
+<ul>
+<li><code>&amp;</code> AND</li>
+<li><code>|</code> OR</li>
+<li><code>^</code> XOR</li>
+<li><code>~</code> NOT</li>
+<li><code>&lt;&lt;</code> Shift a sinistra</li>
+<li><code>&gt;&gt;</code> Shift a destra</li>
+</ul>
+</section>
+<section id="calcoli" class="slide level2">
+<h2>Calcoli</h2>
+<p>Questi operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.</p>
+<table>
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>A &amp; B</th>
+<th>A</th>
+<th>B</th>
+<th>A ^ B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="la-rappresentazione-dei-numeri" class="slide level2">
+<h2>La rappresentazione dei numeri</h2>
+<p>Per effettuare le operazioni bitwise conviene sempre cercare di rappresentare i numeri in binario.</p>
+<p>C permette di dichiarare numeri in binario utilizzando il prefisso <code>0b</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="bn">0b00001000</span><span class="op">;</span></span>
+<span id="cb1-2"><a></a><span class="co">// è equivalente a</span></span>
+<span id="cb1-3"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="or" class="slide level2">
+<h2>OR</h2>
+<p>L’operatore OR viene spesso usato per unire due insiemi di bit. Ad esempio, se si ha una variabile <code>switches</code> che rappresenta lo stato di accensione di 8 interruttori, si può accendere un interruttore utilizzando l’operatore OR:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a></a><span class="co">// switches = 0b00001000</span></span>
+<span id="cb2-2"><a></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="bn">0b00000100</span><span class="op">;</span></span>
+<span id="cb2-3"><a></a><span class="co">// oppure</span></span>
+<span id="cb2-4"><a></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="dv">4</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ora il valore di <code>switches</code> sarà <code>0b00001100</code>. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.</p>
+</section>
+<section id="and" class="slide level2">
+<h2>AND</h2>
+<p>Per spegnere tutti gli interruttori si può utilizzare l’operatore AND:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="bn">0b00000000</span><span class="op">;</span></span>
+<span id="cb3-2"><a></a><span class="co">// oppure</span></span>
+<span id="cb3-3"><a></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-4"><a></a><span class="co">// switches: 0b00000000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="esercizio" class="slide level2">
+<h2>Esercizio</h2>
+<p>Scrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb4-2"><a></a><span class="dt">void</span> print_lsb<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb4-5"><a></a><span class="op">{</span></span>
+<span id="cb4-6"><a></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">127</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">128</span><span class="op">;</span></span>
+<span id="cb4-7"><a></a></span>
+<span id="cb4-8"><a></a>    print_lsb<span class="op">(</span>a<span class="op">);</span></span>
+<span id="cb4-9"><a></a>    print_lsb<span class="op">(</span>b<span class="op">);</span></span>
+<span id="cb4-10"><a></a><span class="op">}</span></span>
+<span id="cb4-11"><a></a></span>
+<span id="cb4-12"><a></a><span class="dt">void</span> print_lsb<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span></span>
+<span id="cb4-13"><a></a><span class="op">{</span></span>
+<span id="cb4-14"><a></a>    printf<span class="op">(</span><span class="st">"The least significant bit of </span><span class="sc">%d</span><span class="st"> is: "</span><span class="op">,</span> n<span class="op">);</span></span>
+<span id="cb4-15"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n <span class="op">&amp;</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb4-16"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="esercizio-1" class="slide level2">
+<h2>Esercizio</h2>
+<p>Scrivere una funzione che dato un numero intero <span class="math inline">\(n\)</span>, restituisca true se <span class="math inline">\(n\)</span> è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdbool.h&gt;</span></span>
+<span id="cb5-2"><a></a><span class="dt">bool</span> is_even<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-5"><a></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">55</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">48</span><span class="op">;</span></span>
+<span id="cb5-6"><a></a></span>
+<span id="cb5-7"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> is_even<span class="op">(</span>a<span class="op">));</span></span>
+<span id="cb5-8"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> b<span class="op">,</span> is_even<span class="op">(</span>b<span class="op">));</span></span>
+<span id="cb5-9"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="xor" class="slide level2">
+<h2>XOR</h2>
+<p>L’operatore XOR è molto utile per invertire lo stato di un bit.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>Eseguire l’operazione di XOR due volte su un bit restituisce il valore originale.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a></a><span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
+<span id="cb6-2"><a></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
+<span id="cb6-3"><a></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
+<span id="cb6-4"><a></a><span class="co">// c: 'A'</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="esempio" class="slide level2">
+<h2>Esempio</h2>
+<p><code>65: 0b01000001</code></p>
+<p><code>73: 0b01001001</code></p>
+<p><code>08: 0b00001000</code></p>
+<p>65 ^ 73 = 8</p>
+<p>8 ^ 73 = 65</p>
+<p>‘A’ ^ ‘I’ = ’</p>
+</section>
+<section id="esempio-1" class="slide level2">
+<h2>Esempio</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb7-2"><a></a><span class="pp">#define KEY </span><span class="ch">'h'</span></span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb7-5"><a></a><span class="op">{</span></span>
+<span id="cb7-6"><a></a>    <span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
+<span id="cb7-7"><a></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
+<span id="cb7-8"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb7-9"><a></a></span>
+<span id="cb7-10"><a></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
+<span id="cb7-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb7-12"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="esercizi" class="slide level2">
+<h2>Esercizi</h2>
+<p>Scrivere un programma che di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.</p>
+</section>
+<section id="shift" class="slide level2">
+<h2>Shift</h2>
+<p>Gli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> c <span class="op">=</span> <span class="bn">0b00000001</span><span class="op">;</span></span>
+<span id="cb8-2"><a></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb8-3"><a></a><span class="co">// c: 0b00000010</span></span>
+<span id="cb8-4"><a></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb8-5"><a></a><span class="co">// c: 0b00010000</span></span>
+<span id="cb8-6"><a></a>c <span class="op">=</span> c <span class="op">&gt;&gt;</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb8-7"><a></a><span class="co">// c: 0b00000100</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="esempio-shift" class="slide level2">
+<h2>Esempio Shift</h2>
+<p>Scrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb9-4"><a></a><span class="op">{</span></span>
+<span id="cb9-5"><a></a>    <span class="dt">int</span> n <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb9-6"><a></a>    n <span class="op">=</span> n <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb9-7"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n<span class="op">);</span></span>
+<span id="cb9-8"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="esercizi-1" class="slide level2">
+<h2>Esercizi</h2>
+<p>Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char.</p>
+<p>Ad esempio, se il valore di <code>c</code> è 5, il programma dovrà stampare <code>00000101</code>.</p>
+</section>
+<section id="esercizi-2" class="slide level2">
+<h2>Esercizi</h2>
+<p>Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:</p>
+<ol type="1">
+<li>Accenda il led più a destra;</li>
+<li>Accenda il led più a sinistra;</li>
+<li>Inverta lo stato di tutti i led;</li>
+<li>Spenga tutti i led.</li>
+</ol>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../../assets/images/DEI_logo.png" class="slide-logo"></p>
@@ -390,7 +664,7 @@
 <p>Dati e Algoritmi</p>
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

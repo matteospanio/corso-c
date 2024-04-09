@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Matteo Spanio">
 
-<title>Hello C 2024 - Struct e puntatori</title>
+<title>Hello C 2024 - Uso avanzato dei puntatori</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -138,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/05/index.html">Struct e puntatori</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/05/index.html">Uso avanzato dei puntatori</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -165,25 +199,25 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lessons/03/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Array, Funzioni e puntatori</span></a>
+ <span class="menu-text">Array e Funzioni</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lessons/04/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operatori bitwise</span></a>
+ <span class="menu-text">Puntatori</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lessons/05/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Struct e puntatori</span></a>
+ <span class="menu-text">Uso avanzato dei puntatori</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">C avanzato</span></a>
+ <span class="menu-text">Operatori bitwise e C avanzato</span></a>
   </div>
 </li>
     </ul>
@@ -192,14 +226,31 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">In questa pagina</h2>
+   
+  <ul>
+  <li><a href="#strutture-1" id="toc-strutture-1" class="nav-link active" data-scroll-target="#strutture-1">Strutture</a>
+  <ul class="collapse">
+  <li><a href="#strutture-in-c-1" id="toc-strutture-in-c-1" class="nav-link" data-scroll-target="#strutture-in-c-1">Strutture in C</a></li>
+  <li><a href="#struct-3" id="toc-struct-3" class="nav-link" data-scroll-target="#struct-3"><code>struct</code></a></li>
+  <li><a href="#inizializzazione-1" id="toc-inizializzazione-1" class="nav-link" data-scroll-target="#inizializzazione-1">Inizializzazione</a></li>
+  <li><a href="#accedere-agli-elementi-1" id="toc-accedere-agli-elementi-1" class="nav-link" data-scroll-target="#accedere-agli-elementi-1">Accedere agli elementi</a></li>
+  <li><a href="#copie-di-strutture-1" id="toc-copie-di-strutture-1" class="nav-link" data-scroll-target="#copie-di-strutture-1">Copie di strutture</a></li>
+  <li><a href="#dare-i-nomi-alle-strutture-1" id="toc-dare-i-nomi-alle-strutture-1" class="nav-link" data-scroll-target="#dare-i-nomi-alle-strutture-1">Dare i nomi alle strutture</a></li>
+  <li><a href="#strutture-anonime-1" id="toc-strutture-anonime-1" class="nav-link" data-scroll-target="#strutture-anonime-1">Strutture anonime</a></li>
+  <li><a href="#typedef-1" id="toc-typedef-1" class="nav-link" data-scroll-target="#typedef-1">typedef</a></li>
+  <li><a href="#strutture-con-typedef-1" id="toc-strutture-con-typedef-1" class="nav-link" data-scroll-target="#strutture-con-typedef-1">Strutture con typedef</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Struct e puntatori</h1>
+<h1 class="title">Uso avanzato dei puntatori</h1>
 </div>
 
 
@@ -247,9 +298,121 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>TODO</p>
+<section id="strutture-1" class="level1">
+<h1>Strutture</h1>
+<section id="strutture-in-c-1" class="level2">
+<h2 class="anchored" data-anchor-id="strutture-in-c-1">Strutture in C</h2>
+<p>Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:</p>
+<ul>
+<li>Strutture: insieme di dati</li>
+<li>Unioni: alternative tra tipi diversi</li>
+<li>Enumerazioni: insieme di costanti</li>
+</ul>
+</section>
+<section id="struct-3" class="level2">
+<h2 class="anchored" data-anchor-id="struct-3"><code>struct</code></h2>
+<p>Una struttura è un insieme di dati, si differenzia dagli array perché:</p>
+<ul>
+<li>gli elementi possono essere di tipo diverso</li>
+<li>gli elementi sono identificati da un nome</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> studente <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> nome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> cognome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> matricola<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="inizializzazione-1" class="level2">
+<h2 class="anchored" data-anchor-id="inizializzazione-1">Inizializzazione</h2>
+<p>Si possono inizializzare le strutture quando vengono dichiarate:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span><span class="st">"Mario"</span><span class="op">,</span> <span class="st">"Rossi"</span><span class="op">,</span> <span class="dv">12345</span><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0.</p>
+<p>Un modo alternativo di inizializzare:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>nome <span class="op">=</span> <span class="st">"Mario"</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>cognome <span class="op">=</span> <span class="st">"Rossi"</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>matricole <span class="op">=</span> <span class="dv">12345</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="accedere-agli-elementi-1" class="level2">
+<h2 class="anchored" data-anchor-id="accedere-agli-elementi-1">Accedere agli elementi</h2>
+<p>Per accedere au singoli elementi di una struttura (detti anche membri) si usa l’operatore <code>.</code> (punto) dopo il nome della variabile:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span><span class="st">"Mario"</span><span class="op">,</span> <span class="st">"Rossi"</span><span class="op">,</span> <span class="dv">12345</span><span class="op">};</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"Nome: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> s<span class="op">.</span>nome<span class="op">);</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"Cognome: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> s<span class="op">.</span>cognome<span class="op">);</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>s<span class="op">.</span>matricola <span class="op">=</span> <span class="dv">54321</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="copie-di-strutture-1" class="level2">
+<h2 class="anchored" data-anchor-id="copie-di-strutture-1">Copie di strutture</h2>
+<p>Si può copiare interamente una struttura usando una variabile dello stesso tipo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> studente a<span class="op">,</span> b <span class="op">=</span> <span class="op">{</span><span class="st">"Matteo"</span><span class="op">,</span> <span class="st">"Spanio"</span><span class="op">,</span> <span class="dv">56789</span><span class="op">};</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> b<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Solo l’operatore <code>=</code> è valido tra 2 struct, gli operatori <code>==</code> e <code>!=</code> NON si possono usare per vedere se due strutture sono uguali.</p>
+</div>
+</div>
+</section>
+<section id="dare-i-nomi-alle-strutture-1" class="level2">
+<h2 class="anchored" data-anchor-id="dare-i-nomi-alle-strutture-1">Dare i nomi alle strutture</h2>
+<p>Le stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.</p>
+<p>Le strutture col nome, detto <em>structure tag</em>, si dichiarano come abbiamo già visto:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> nome <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    type member_name<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il tipo di una variabile <code>struct</code> è <code>struct nome_struct</code>, omettere la parola struct è un errore.</p>
+</div>
+</div>
+</section>
+<section id="strutture-anonime-1" class="level2">
+<h2 class="anchored" data-anchor-id="strutture-anonime-1">Strutture anonime</h2>
+<p>Nel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> <span class="op">{</span> <span class="dt">int</span> x<span class="op">;</span> <span class="dt">int</span> y<span class="op">;</span> <span class="op">}</span> punto<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>punto<span class="op">.</span>x <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>punto<span class="op">.</span>y <span class="op">=</span> <span class="dv">18</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="typedef-1" class="level2">
+<h2 class="anchored" data-anchor-id="typedef-1">typedef</h2>
+<p><code>typedef</code> è un operatore che permette di definire alias per i tipi:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">int</span> Bool<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">float</span> Euro<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">char</span><span class="op">[]</span> String<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Queste dichiarazioni permettono scrivere codice più chiaro.</p>
+</section>
+<section id="strutture-con-typedef-1" class="level2">
+<h2 class="anchored" data-anchor-id="strutture-con-typedef-1">Strutture con typedef</h2>
+<p>Dal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave <code>struct</code> per riferirsi al tipo delle strutture grazie a typedef:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y<span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Point<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Point punto <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>y <span class="op">=</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Riutilizzare</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.it">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -807,13 +970,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../lessons/04/index.html" class="pagination-link" aria-label="Operatori bitwise">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Operatori bitwise</span>
+      <a href="../../lessons/04/index.html" class="pagination-link" aria-label="Puntatori">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Puntatori</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../lessons/06/index.html" class="pagination-link" aria-label="C avanzato">
-        <span class="nav-page-text">C avanzato</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../lessons/06/index.html" class="pagination-link" aria-label="Operatori bitwise e C avanzato">
+        <span class="nav-page-text">Operatori bitwise e C avanzato</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -841,7 +1004,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

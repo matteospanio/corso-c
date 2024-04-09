@@ -12,10 +12,10 @@
 <script src="../../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
 <script src="../../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
 <link href="../../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.551">
+  <meta name="generator" content="quarto-1.4.553">
 
   <meta name="author" content="Matteo Spanio">
-  <title>Hello C 2024 - Struct e puntatori</title>
+  <title>Hello C 2024 - Uso avanzato dei puntatori</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -33,6 +33,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -350,7 +415,7 @@
     <div class="slides">
 
 <section id="title-slide" data-transition="convex" class="quarto-title-block center">
-  <h1 class="title">Struct e puntatori</h1>
+  <h1 class="title">Uso avanzato dei puntatori</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -380,9 +445,382 @@
 
   <p class="date">10 aprile 2024</p>
 </section>
-<section class="slide level2">
+<section>
+<section id="strutture" class="title-slide slide level1 center">
+<h1>Strutture</h1>
 
-<p>TODO</p>
+</section>
+<section id="strutture-in-c" class="slide level2">
+<h2>Strutture in C</h2>
+<p>Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:</p>
+<ul>
+<li>Strutture: insieme di dati</li>
+<li>Unioni: alternative tra tipi diversi</li>
+<li>Enumerazioni: insieme di costanti</li>
+</ul>
+</section>
+<section id="struct" class="slide level2">
+<h2><code>struct</code></h2>
+<p>Una struttura è un insieme di dati, si differenzia dagli array perché:</p>
+<ul>
+<li>gli elementi possono essere di tipo diverso</li>
+<li>gli elementi sono identificati da un nome</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a></a><span class="kw">struct</span> studente <span class="op">{</span></span>
+<span id="cb1-2"><a></a>    <span class="dt">char</span> nome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
+<span id="cb1-3"><a></a>    <span class="dt">char</span> cognome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
+<span id="cb1-4"><a></a>    <span class="dt">int</span> matricola<span class="op">;</span></span>
+<span id="cb1-5"><a></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="inizializzazione" class="slide level2">
+<h2>Inizializzazione</h2>
+<p>Si possono inizializzare le strutture quando vengono dichiarate:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span><span class="st">"Mario"</span><span class="op">,</span> <span class="st">"Rossi"</span><span class="op">,</span> <span class="dv">12345</span><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0.</p>
+<p>Un modo alternativo di inizializzare:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-2"><a></a>    <span class="op">.</span>nome <span class="op">=</span> <span class="st">"Mario"</span><span class="op">,</span></span>
+<span id="cb3-3"><a></a>    <span class="op">.</span>cognome <span class="op">=</span> <span class="st">"Rossi"</span><span class="op">,</span></span>
+<span id="cb3-4"><a></a>    <span class="op">.</span>matricole <span class="op">=</span> <span class="dv">12345</span><span class="op">,</span></span>
+<span id="cb3-5"><a></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="accedere-agli-elementi" class="slide level2">
+<h2>Accedere agli elementi</h2>
+<p>Per accedere au singoli elementi di una struttura (detti anche membri) si usa l’operatore <code>.</code> (punto) dopo il nome della variabile:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span><span class="st">"Mario"</span><span class="op">,</span> <span class="st">"Rossi"</span><span class="op">,</span> <span class="dv">12345</span><span class="op">};</span></span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a>printf<span class="op">(</span><span class="st">"Nome: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> s<span class="op">.</span>nome<span class="op">);</span></span>
+<span id="cb4-4"><a></a>printf<span class="op">(</span><span class="st">"Cognome: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> s<span class="op">.</span>cognome<span class="op">);</span></span>
+<span id="cb4-5"><a></a>s<span class="op">.</span>matricola <span class="op">=</span> <span class="dv">54321</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="copie-di-strutture" class="slide level2">
+<h2>Copie di strutture</h2>
+<p>Si può copiare interamente una struttura usando una variabile dello stesso tipo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a></a><span class="kw">struct</span> studente a<span class="op">,</span> b <span class="op">=</span> <span class="op">{</span><span class="st">"Matteo"</span><span class="op">,</span> <span class="st">"Spanio"</span><span class="op">,</span> <span class="dv">56789</span><span class="op">};</span></span>
+<span id="cb5-2"><a></a>a <span class="op">=</span> b<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>Solo l’operatore <code>=</code> è valido tra 2 struct, gli operatori <code>==</code> e <code>!=</code> NON si possono usare per vedere se due strutture sono uguali.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="dare-i-nomi-alle-strutture" class="slide level2">
+<h2>Dare i nomi alle strutture</h2>
+<p>Le stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.</p>
+<p>Le strutture col nome, detto <em>structure tag</em>, si dichiarano come abbiamo già visto:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a></a><span class="kw">struct</span> nome <span class="op">{</span></span>
+<span id="cb6-2"><a></a>    type member_name<span class="op">;</span></span>
+<span id="cb6-3"><a></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Avviso</strong></p>
+</div>
+<div class="callout-content">
+<p>Il tipo di una variabile <code>struct</code> è <code>struct nome_struct</code>, omettere la parola struct è un errore.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="strutture-anonime" class="slide level2">
+<h2>Strutture anonime</h2>
+<p>Nel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a></a><span class="kw">struct</span> <span class="op">{</span> <span class="dt">int</span> x<span class="op">;</span> <span class="dt">int</span> y<span class="op">;</span> <span class="op">}</span> punto<span class="op">;</span></span>
+<span id="cb7-2"><a></a>punto<span class="op">.</span>x <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb7-3"><a></a>punto<span class="op">.</span>y <span class="op">=</span> <span class="dv">18</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="typedef" class="slide level2">
+<h2>typedef</h2>
+<p><code>typedef</code> è un operatore che permette di definire alias per i tipi:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a></a><span class="kw">typedef</span> <span class="dt">int</span> Bool<span class="op">;</span></span>
+<span id="cb8-2"><a></a><span class="kw">typedef</span> <span class="dt">float</span> Euro<span class="op">;</span></span>
+<span id="cb8-3"><a></a><span class="kw">typedef</span> <span class="dt">char</span><span class="op">*</span> String<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Queste dichiarazioni permettono scrivere codice più chiaro.</p>
+</section>
+<section id="strutture-con-typedef" class="slide level2">
+<h2>Strutture con typedef</h2>
+<p>Dal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave <code>struct</code> per riferirsi al tipo delle strutture grazie a typedef:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb9-2"><a></a>    <span class="dt">int</span> x<span class="op">;</span></span>
+<span id="cb9-3"><a></a>    <span class="dt">int</span> y<span class="op">;</span></span>
+<span id="cb9-4"><a></a><span class="op">}</span> Point<span class="op">;</span></span>
+<span id="cb9-5"><a></a>Point punto <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb9-6"><a></a>    <span class="op">.</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb9-7"><a></a>    <span class="op">.</span>y <span class="op">=</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb9-8"><a></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cast-a-strutture" class="slide level2">
+<h2>Cast a strutture</h2>
+<p>Una volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb10-2"><a></a>    <span class="dt">int</span> x<span class="op">;</span></span>
+<span id="cb10-3"><a></a>    <span class="dt">int</span> y<span class="op">;</span></span>
+<span id="cb10-4"><a></a><span class="op">}</span> Point<span class="op">;</span></span>
+<span id="cb10-5"><a></a></span>
+<span id="cb10-6"><a></a>Point s<span class="op">;</span></span>
+<span id="cb10-7"><a></a>s <span class="op">=</span> <span class="op">(</span>Point<span class="op">)</span> <span class="op">{</span> <span class="op">.</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">.</span>y <span class="op">=</span> <span class="dv">2</span> <span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="struct-1" class="slide level2">
+<h2><code>struct</code></h2>
+<p>A prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a></a><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></span>
+<span id="cb11-2"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> point <span class="op">{</span></span>
+<span id="cb11-3"><a></a>    <span class="dt">int</span> x<span class="op">;</span></span>
+<span id="cb11-4"><a></a>    <span class="dt">int</span> y<span class="op">;</span></span>
+<span id="cb11-5"><a></a><span class="op">}</span> Point<span class="op">;</span></span>
+<span id="cb11-6"><a></a></span>
+<span id="cb11-7"><a></a>Point somma<span class="op">(</span>Point a<span class="op">,</span> <span class="kw">struct</span> point b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-8"><a></a>    <span class="cf">return</span> <span class="op">(</span>Point<span class="op">)</span> <span class="op">{</span> <span class="op">.</span>x <span class="op">=</span> a<span class="op">.</span>x <span class="op">+</span> b<span class="op">.</span>x<span class="op">,</span> <span class="op">.</span>y <span class="op">=</span> a<span class="op">.</span>y <span class="op">+</span> b<span class="op">.</span>y <span class="op">};</span></span>
+<span id="cb11-9"><a></a><span class="op">}</span></span>
+<span id="cb11-10"><a></a></span>
+<span id="cb11-11"><a></a><span class="dt">float</span> distanza<span class="op">(</span>Point a<span class="op">,</span> Point b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-12"><a></a>    <span class="cf">return</span> sqrt<span class="op">(</span>pow<span class="op">(</span>a<span class="op">.</span>x <span class="op">-</span> b<span class="op">.</span>x<span class="op">,</span> <span class="dv">2</span><span class="op">)</span> <span class="op">+</span> pow<span class="op">(</span>a<span class="op">.</span>y <span class="op">-</span> b<span class="op">.</span>y<span class="op">,</span> <span class="dv">2</span><span class="op">));</span></span>
+<span id="cb11-13"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="struct-e-puntatori" class="slide level2">
+<h2><code>struct</code> e puntatori</h2>
+<p>Si possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a></a><span class="kw">struct</span> point <span class="op">*</span>p<span class="op">;</span></span>
+<span id="cb12-2"><a></a>Point <span class="op">*</span>p1<span class="op">;</span></span>
+<span id="cb12-3"><a></a></span>
+<span id="cb12-4"><a></a><span class="dt">void</span> foo<span class="op">(</span>Point<span class="op">*</span> p<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="struct-2" class="slide level2">
+<h2><code>struct</code></h2>
+<ul>
+<li>Si possono creare array di strutture:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a></a>Point punti<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
+<span id="cb13-2"><a></a>punti<span class="op">[</span><span class="dv">0</span><span class="op">].</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Inserire un array in una struttura</li>
+<li>Inserire una struttura in un’altra struttura</li>
+<li>Inserire unioni in una struttura</li>
+<li>Inserire strutture in unioni</li>
+</ul>
+</section>
+<section id="esempio" class="slide level2">
+<h2>Esempio</h2>
+<p>Si vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:</p>
+<ol type="1">
+<li>implementare una struttura dati per memorizzare i dati di un giocatore di calcio;</li>
+<li>memorizzare l’elenco dei giocatori della squadra;</li>
+<li>ordinare i giocatori in base numero di maglia.</li>
+</ol>
+</section>
+<section id="memorizzare-un-giocatore" class="slide level2">
+<h2>Memorizzare un giocatore</h2>
+<p>Ai fini della classifica è necessario memorizzare il nome della squadra e i punti ottenuti:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a></a><span class="pp">#define BUFFER_SIZE </span><span class="dv">128</span></span>
+<span id="cb14-2"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> giocatore</span>
+<span id="cb14-3"><a></a><span class="op">{</span></span>
+<span id="cb14-4"><a></a>    <span class="dt">char</span> nome<span class="op">[</span>BUFFER_SIZE<span class="op">];</span></span>
+<span id="cb14-5"><a></a>    <span class="dt">char</span> cognome<span class="op">[</span>BUFFER_SIZE<span class="op">];</span></span>
+<span id="cb14-6"><a></a>    <span class="dt">unsigned</span> <span class="dt">int</span> numero_maglia<span class="op">;</span> <span class="co">// non esistono numeri di maglia negativi</span></span>
+<span id="cb14-7"><a></a><span class="op">}</span> Giocatore<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="memorizzare-la-lista-dei-giocatori" class="slide level2">
+<h2>Memorizzare la lista dei giocatori</h2>
+<p>La struct <code>Giocatore</code> è di fatto un tipo di dato, possiamo quindi creare un array di esami dove memorizzare la formazione:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a></a><span class="pp">#define NUM </span><span class="dv">22</span></span>
+<span id="cb15-2"><a></a>Giocatore squadra<span class="op">[</span>NUM<span class="op">];</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ordinare-i-giocatori" class="slide level2">
+<h2>Ordinare i giocatori</h2>
+<p>Per ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:</p>
+<p>Il più intuitivo, ma non il più efficiente, è il Bubble Sort:</p>
+
+<img data-src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif" class="r-stretch"></section>
+<section id="unioni" class="slide level2">
+<h2>Unioni</h2>
+<ul>
+<li>Le unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso</li>
+<li>La differenza è che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a></a><span class="kw">union</span> <span class="op">{</span></span>
+<span id="cb16-2"><a></a>    <span class="dt">int</span> i<span class="op">;</span></span>
+<span id="cb16-3"><a></a>    <span class="dt">double</span> d<span class="op">;</span></span>
+<span id="cb16-4"><a></a><span class="op">}</span> u<span class="op">;</span></span>
+<span id="cb16-5"><a></a></span>
+<span id="cb16-6"><a></a><span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb16-7"><a></a>    <span class="dt">int</span> i<span class="op">;</span></span>
+<span id="cb16-8"><a></a>    <span class="dt">double</span> d<span class="op">;</span></span>
+<span id="cb16-9"><a></a><span class="op">}</span> s<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="unioni-1" class="slide level2">
+<h2>Unioni</h2>
+<p>Si può inizializzare solo un elemento di una union:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb17-1"><a></a><span class="kw">union</span> <span class="op">{</span></span>
+<span id="cb17-2"><a></a>    <span class="dt">int</span> i<span class="op">;</span></span>
+<span id="cb17-3"><a></a>    <span class="dt">double</span> d<span class="op">;</span></span>
+<span id="cb17-4"><a></a><span class="op">}</span> u <span class="op">=</span> <span class="op">{</span> <span class="op">.</span>i <span class="op">=</span> <span class="dv">3</span> <span class="op">};</span></span>
+<span id="cb17-5"><a></a></span>
+<span id="cb17-6"><a></a>u<span class="op">.</span>d <span class="op">=</span> <span class="fl">5.7</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Come per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef.</p>
+</section>
+<section id="enumerazioni" class="slide level2">
+<h2>Enumerazioni</h2>
+<p>In molti programmi si usano interi come “<em>codici</em>” per indicare varie cose. Un caso comune sono per esempio i codici di errore.</p>
+<p>Spesso si usano macro o costanti, ma è più chiaro usare enumerazioni:</p>
+<p><code>enum {CUORI, QUADRI, FIORI, PICCHE} s1, s2;</code></p>
+<p>Ora le variabili <code>s1</code> e <code>s2</code> possono assumere solo uno dei quattro valori definiti.</p>
+</section></section>
+<section>
+<section id="strutture-dati" class="title-slide slide level1 center">
+<h1>Strutture dati</h1>
+
+</section>
+<section id="strutture-dati-1" class="slide level2">
+<h2>Strutture dati</h2>
+<p>Le strutture sono molto utili per definire… strutture dati.</p>
+<p>Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…</p>
+</section>
+<section id="array-con-strutture" class="slide level2">
+<h2>Array con strutture</h2>
+<p>Gli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza <em>a mano</em>…</p>
+<p>Si può creare una struttura che contenga un array e la sua lunghezza:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a></a><span class="pp">#define MAX </span><span class="dv">1024</span></span>
+<span id="cb18-2"><a></a></span>
+<span id="cb18-3"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> intarray <span class="op">{</span></span>
+<span id="cb18-4"><a></a>    <span class="dt">int</span> array<span class="op">[</span>MAX<span class="op">];</span></span>
+<span id="cb18-5"><a></a>    <span class="dt">int</span> length<span class="op">;</span></span>
+<span id="cb18-6"><a></a><span class="op">}</span> IntArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="array-con-strutture-1" class="slide level2">
+<h2>Array con strutture</h2>
+<p>Adesso si può passare la struttura come argomento di una funzione:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a></a><span class="dt">void</span> stampa_array<span class="op">(</span>IntArray a<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-2"><a></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> a<span class="op">.</span>length<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb19-3"><a></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> "</span><span class="op">,</span> a<span class="op">.</span>array<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb19-4"><a></a>    <span class="op">}</span></span>
+<span id="cb19-5"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb19-6"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.</p>
+</section>
+<section id="array-con-strutture-2" class="slide level2">
+<h2>Array con strutture</h2>
+<p>L’implementazione che abbiamo visto ha due grossi problemi:</p>
+<ol type="1">
+<li>la dimensione dell’array è fissa</li>
+<li>la struttura <code>IntArray</code> funziona solo con array di interi, per fare array di float, char, ecc. bisogna creare ogni volta una nuova struttura</li>
+</ol>
+</section>
+<section id="memoria-dinamica" class="slide level2">
+<h2>Memoria dinamica</h2>
+<ul>
+<li><p>Le strutture dati in C hanno dimensione fissa. Infatti gli array vengono inizializzati con un valore costante.</p></li>
+<li><p>Esistono però dei comandi che permettono di allocare dinamicamente zone di memoria, permettendo di fare strutture che crescono o si rimpiccioliscono durante l’esecuzione del programma.</p></li>
+</ul>
+</section>
+<section id="memoria-dinamica-1" class="slide level2">
+<h2>Memoria dinamica</h2>
+<p>Le operazioni per gestire la memoria dinamica si trovano nella libreria <code>stdlib.h</code> e sono:</p>
+<ol type="1">
+<li><code>malloc</code> (memory allocation): alloca una zona di memoria di una certa dimensione</li>
+<li><code>calloc</code> (clear allocation): alloca una zona di memoria di una certa dimensione e la inizializza a 0</li>
+<li><code>realloc</code> (reallocate): cambia la dimensione di una zona di memoria già allocata</li>
+</ol>
+</section>
+<section id="puntatore-a-void" class="slide level2">
+<h2>Puntatore a void</h2>
+<p><code>malloc</code>, <code>calloc</code> e <code>realloc</code> restituiscono un puntatore a void, che è un puntatore generico.</p>
+<p>Questo puntatore non fa riferimento a un certo tipo di dato, ma solo a un indirizzo di memoria.</p>
+</section>
+<section id="malloc" class="slide level2">
+<h2><code>malloc</code></h2>
+<p><code>void* malloc(size_t size);</code></p>
+<p>Supponendo di voler creare un array di interi di dimensione variabile, c’è bisogno di creare un puntatore ad interi e poi assegnargli l’indirizzo della nuova zona di memoria:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a></a><span class="dt">int</span> <span class="op">*</span>a<span class="op">;</span></span>
+<span id="cb20-2"><a></a>a <span class="op">=</span> malloc<span class="op">(</span><span class="dv">10</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La funzione <code>malloc</code> accetta come argomento il numero di byte da allocare. L’esempio crea 10 cellette di memoria, ciascuna grande quanto un intero (4 byte).</p>
+</section>
+<section id="calloc" class="slide level2">
+<h2><code>calloc</code></h2>
+<p><code>void* calloc(size_t num, size_t size);</code></p>
+<ul>
+<li>Per inizializzare array torna comoda anche la funzione calloc, che ha due parametri: numero di membri e dimensione (in byte) dei membri</li>
+<li>Inoltre ha come effetto aggiuntivo di porre a zero tutti i byte interessati (quindi tutti i membri dell’array che creo)</li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb21-1"><a></a><span class="dt">double</span> <span class="op">*</span>a<span class="op">;</span></span>
+<span id="cb21-2"><a></a>a <span class="op">=</span> calloc<span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">double</span><span class="op">));</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>L’effetto di questo codice è lo stesso del precedente (con la malloc), ma con tutti i membri dell’array inizializzati a 0.</p>
+</section>
+<section id="realloc" class="slide level2">
+<h2><code>realloc</code></h2>
+<p><code>void* realloc(void* ptr, size_t size);</code></p>
+<ul>
+<li><p>Questa funzione cambia la dimensione di uno spazio allocato dinamicamente.</p></li>
+<li><p>L’argomento <code>ptr</code> deve essere un puntatore ottenuto da una funzione ..alloc, altrimenti porta a comportamento non definito.</p></li>
+<li><p>I dati già presenti nella zona di memoria vengono mantenuti.</p></li>
+</ul>
+</section>
+<section id="null" class="slide level2">
+<h2>NULL</h2>
+<ul>
+<li><p>Quando si usa la memoria dinamica, è importante controllare che l’allocazione sia andata a buon fine.</p></li>
+<li><p>Se <code>malloc</code>, <code>calloc</code> o <code>realloc</code> non riescono a trovare spazio in memoria, restituiscono <code>NULL</code>.</p></li>
+<li><p><code>NULL</code> è una costante che rappresenta un puntatore all’indirizzo <code>0x0</code>. <code>NULL</code> è definito in <code>stdlib.h</code>.</p></li>
+</ul>
+</section>
+<section id="malloc-calloc-realloc" class="slide level2">
+<h2><code>malloc</code>, <code>calloc</code>, <code>realloc</code></h2>
+<ul>
+<li>Queste funzioni scrivono in una zona di memoria nota come <strong>heap</strong>;</li>
+<li>Le variabili locali e i parametri delle funzioni sono invece memorizzati nello <strong>stack</strong>;</li>
+<li>Usando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile</li>
+<li>Occorre quindi fare uso oculato della memoria e pulire quella che usata che non serve più</li>
+</ul>
+</section>
+<section id="free" class="slide level2">
+<h2><code>free</code></h2>
+<p><code>void free(void* ptr);</code></p>
+<ul>
+<li>La funzione free permette di liberare un blocco di memoria (e quindi renderlo disponibile per un’altra allocazione)</li>
+<li><code>ptr</code> dopo l’esecuzione di <code>free</code> continua a puntare alla stessa zona di memoria, ma il contenuto di quella zona non è più garantito, si chiama <strong>dangling pointer</strong></li>
+<li>Occorre, subito dopo la free, assegnare a <code>ptr</code> il valore <code>NULL</code> (oppure una nuova memoria)</li>
+<li>accedere un blocco deallocato è un gravissimo errore</li>
+</ul>
+</section>
+<section id="array-dinamico" class="slide level2">
+<h2>Array dinamico</h2>
+<p>Un array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.</p>
+<p>Per implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb22-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb22-2"><a></a>    <span class="dt">int</span> <span class="op">*</span>array<span class="op">;</span></span>
+<span id="cb22-3"><a></a>    <span class="dt">int</span> capacity<span class="op">;</span></span>
+<span id="cb22-4"><a></a>    <span class="dt">int</span> length<span class="op">;</span></span>
+<span id="cb22-5"><a></a><span class="op">}</span> DynArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dynarray" class="slide level2">
+<h2><code>DynArray</code></h2>
+<p>Il nuovo tipo <code>DynArray</code> ha tre membri:</p>
+<ul>
+<li><code>array</code> è un puntatore ad interi, che punta all’array dinamico</li>
+<li><code>capacity</code> è la dimensione massima dell’array</li>
+<li><code>length</code> è il numero di elementi attualmente presenti nell’array</li>
+</ul>
+<p>Quando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.</p>
+</section>
+<section id="dynarray-generico" class="slide level2">
+<h2><code>DynArray</code> generico</h2>
+<p>Rimane il problema che <code>DynArray</code> funziona solo con array di interi.</p>
+<p>Abbiamo però visto che <code>void *</code> serve proprio quando si usano indirizzi di memoria senza un tipo preciso, questo ci permette di definire un array di <code>void *</code> per decidere a runtime il tipo dell’array:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb23-2"><a></a>    <span class="dt">void</span> <span class="op">**</span>array<span class="op">;</span></span>
+<span id="cb23-3"><a></a>    <span class="dt">int</span> capacity<span class="op">;</span></span>
+<span id="cb23-4"><a></a>    <span class="dt">int</span> length<span class="op">;</span></span>
+<span id="cb23-5"><a></a><span class="op">}</span> GenericArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../../assets/images/DEI_logo.png" class="slide-logo"></p>
@@ -390,7 +828,7 @@
 <p>Dati e Algoritmi</p>
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hello C 2024 - Ambiente di sviluppo</title>
+<title>Hello C 2024 - Automatizzare la compilazione con make</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../extra/gcc.html" rel="next">
-<link href="../extra/books.html" rel="prev">
+<link href="../extra/gdb.html" rel="next">
+<link href="../extra/gcc.html" rel="prev">
 <link href="../assets/images/dec_pdp1120.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -171,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../resources.html">Risorse</a></li><li class="breadcrumb-item"><a href="../extra/docker.html">Ambiente di sviluppo</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../extra/gcc.html">Strumenti di sviluppo</a></li><li class="breadcrumb-item"><a href="../extra/makefile.html">Makefile</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -200,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../extra/docker.html" class="sidebar-item-text sidebar-link active">
+  <a href="../extra/docker.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ambiente di sviluppo</span></a>
   </div>
 </li>
@@ -223,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../extra/makefile.html" class="sidebar-item-text sidebar-link">
+  <a href="../extra/makefile.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Makefile</span></a>
   </div>
 </li>
@@ -274,18 +240,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">In questa pagina</h2>
    
   <ul>
-  <li><a href="#strumenti-installati-nellimmagine-docker" id="toc-strumenti-installati-nellimmagine-docker" class="nav-link active" data-scroll-target="#strumenti-installati-nellimmagine-docker">Strumenti installati nell’immagine docker</a></li>
-  <li><a href="#condividere-una-cartella-tra-il-sistema-host-e-limmagine-docker" id="toc-condividere-una-cartella-tra-il-sistema-host-e-limmagine-docker" class="nav-link" data-scroll-target="#condividere-una-cartella-tra-il-sistema-host-e-limmagine-docker">Condividere una cartella tra il sistema host e l’immagine docker</a></li>
-  <li><a href="#metodi-alternativi" id="toc-metodi-alternativi" class="nav-link" data-scroll-target="#metodi-alternativi">Metodi alternativi</a></li>
+  <li><a href="#eseguire-make" id="toc-eseguire-make" class="nav-link active" data-scroll-target="#eseguire-make">Eseguire make</a></li>
+  <li><a href="#makefiles" id="toc-makefiles" class="nav-link" data-scroll-target="#makefiles">Makefiles</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../resources.html">Risorse</a></li><li class="breadcrumb-item"><a href="../extra/docker.html">Ambiente di sviluppo</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../extra/gcc.html">Strumenti di sviluppo</a></li><li class="breadcrumb-item"><a href="../extra/makefile.html">Makefile</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Ambiente di sviluppo</h1>
+<h1 class="title">Automatizzare la compilazione con make</h1>
 </div>
 
 
@@ -302,45 +267,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Per chi non ha una istallazione Linux (nativa o VM) è possibile riprodurre un ambiente identico a quello utilizzato nelle lezioni tramite una immagine docker. Ecco come fare:</p>
-<ol type="1">
-<li><p>Installare Docker dal sito ufficiale: <a href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</a></p></li>
-<li><p>Eseguire l’immagine (il download avviene automaticamente)</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> ghcr.io/matteospanio/cdev:latest bash</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>In questo modo si ottiene una shell dentro un’immagine ubuntu linux in cui sono installati gcc e altri strumenti di sviluppo</p></li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Consiglio
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Se ti sembra scomodo eseguire il comando del punto 2 puoi scaricare l’applicazione python <a href="https://matteospanio.github.io/cdev-cli/">cdev-cli</a> e avviare l’immagine con meno sforzo.</p>
-</div>
-</div>
-<section id="strumenti-installati-nellimmagine-docker" class="level2">
-<h2 class="anchored" data-anchor-id="strumenti-installati-nellimmagine-docker">Strumenti installati nell’immagine docker</h2>
-<p>Tra i principali programmi installati nell’immagine docker ci sono:</p>
-<ul>
-<li><code>gcc</code> e <code>g++</code> per compilare i programmi in C e C++</li>
-<li><code>make</code> per automatizzare la compilazione</li>
-<li><code>git</code> per gestire i sorgenti</li>
-<li><code>vim</code>, un editor di testo minimale</li>
-<li><code>valgrind</code> per analizzare i programmi</li>
-<li><code>gdb</code> per il debug</li>
-<li><code>python3</code> per eseguire script python</li>
-<li><code>man</code>, il manuale di riferimento per i comandi linux</li>
-</ul>
-</section>
-<section id="condividere-una-cartella-tra-il-sistema-host-e-limmagine-docker" class="level2">
-<h2 class="anchored" data-anchor-id="condividere-una-cartella-tra-il-sistema-host-e-limmagine-docker">Condividere una cartella tra il sistema host e l’immagine docker</h2>
-<p>Per condividere una cartella tra il sistema host e l’immagine docker è possibile utilizzare l’opzione <code>-v</code> di docker. Ad esempio:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> <span class="at">-v</span> /path/to/my/folder:/mnt ghcr.io/matteospanio/cdev:latest bash</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Questo comando permette di <em>montare</em> la cartella <code>/path/to/my/folder</code> all’interno dell’immagine docker nella cartella <code>/mnt</code>. In questo modo è possibile condividere i file tra il sistema host e l’immagine docker. Dall’interno dell’ambiente docker è possibile andare alla cartella <code>/mnt</code> con il comando <code>cd /mnt</code>, in questa directory saranno presenti i file della cartella <code>/path/to/my/folder</code> del sistema host. Ciò comporta che le modifiche ai file condivisi saranno visibili sia dal sistema host che dall’immagine docker e permanenti.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -351,17 +277,50 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>I file creati nell’ambiente docker e le modifiche fatte al sistema operativo dell’immagine docker, di default, non sono permanenti.</p>
+<p>Questa guida è una traduzione parziale di <a href="http://cslibrary.stanford.edu/107/UnixProgrammingTools.pdf">Unix Programming Tools</a>, una guida scritta per il corso <a href="http://cs107.stanford.edu">CS107</a> presso la Stanford University.</p>
 </div>
 </div>
-<p>L’applicazione <code>cdev-cli</code> semplifica il processo di avvio dell’immagine docker e la condivisione di una cartella tra il sistema host e l’immagine docker, in particolare permette di avviare l’immagine docker con un comando e di condividere la cartella corrente del sistema host con l’immagine docker. Eseguendo il comando <code>cdev-cli</code> da una determinata cartella nel sistema host si avvia l’immagine docker e si condivide la cartella corrente con l’immagine docker alla posizione <code>/mnt</code>.</p>
+<p>Digitare i comandi gcc per un progetto diventa meno attraente man mano che il progetto diventa più grande. L’utility <code>make</code> automatizza il processo di compilazione e collegamento. Con <code>make</code>, il programmatore specifica quali sono i file nel progetto e come si incastrano tra loro, quindi make si occupa dei passaggi appropriati di compilazione e collegamento. Make può velocizzare la compilazione in quanto è abbastanza intelligente da sapere che se hai 10 file .c ma ne hai modificato solo uno, solo quel file deve essere compilato prima del passaggio di linking. Make ha alcune funzionalità complesse, ma usarlo per cose semplici è piuttosto facile.</p>
+<section id="eseguire-make" class="level2">
+<h2 class="anchored" data-anchor-id="eseguire-make">Eseguire make</h2>
+<p>Nella directory del tuo progetto esegui make direttamente dalla shell senza argomenti. Di default, make cerca nella directory corrente un file chiamato <code>Makefile</code> o <code>makefile</code> per eseguire le sue istruzioni di compilazione. Se si verifica un problema durante la creazione di uno dei target, i messaggi di errore vengono scritti nello standard error.</p>
 </section>
-<section id="metodi-alternativi" class="level1">
-<h1>Metodi alternativi</h1>
-<ul>
-<li>Per chi ha un sistema operativo MacOS o Linux basta installare gcc.</li>
-<li>In Windows è possibile utilizzare <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL 2</a>, un sistema simile a docker per integrare direttamente Ubuntu in Windows.</li>
-</ul>
+<section id="makefiles" class="level2">
+<h2 class="anchored" data-anchor-id="makefiles">Makefiles</h2>
+<p>Un makefile è costituito da una serie di definizioni di variabili e regole di dipendenza. Una variabile in un makefile è un nome definito per rappresentare una stringa di testo. Funziona in modo molto simile alla sostituzione delle macro nel preprocessore C. Le variabili vengono spesso utilizzate per rappresentare un elenco di directory in cui cercare, opzioni per il compilatore e nomi di programmi da eseguire. Le variabili non sono pre-dichiarate, le imposti semplicemente con ‘=’. Ad esempio, la linea:</p>
+<pre class="make"><code>CC = gcc</code></pre>
+<p>creerà una variabile chiamata <code>CC</code> impostando il suo contenuto a <code>gcc</code>. I nomi delle variabili sono <em>case sensitive</em>, e, solitamente, vengono scritti in maiuscolo.</p>
+<p>Seppure si sia liberi di nominare le variabili a proprio piacimento ci sono alcuni nomi standard, pertanto è fortemente suggerito usarli. I più importanti sono:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Nome Variabile</th>
+<th>Significato</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CC</code></td>
+<td>Il compilatore C da usare</td>
+</tr>
+<tr class="even">
+<td><code>CFLAGS</code></td>
+<td>Le opzioni da passare al compilatore C</td>
+</tr>
+<tr class="odd">
+<td><code>LDFLAGS</code></td>
+<td>Le opzioni da passare al linker</td>
+</tr>
+</tbody>
+</table>
+<p>Per utilizzare una variabile basta scrivere il simbolo <code>$</code> seguito dal nome della variabile tra parentesi, per esempio:</p>
+<pre class="make"><code>CFLAGS = -g -Wall -pedantic -std=c99
+$(CC) $(CFLAGS) -o hello hello.c</code></pre>
+<p>La prima riga di questo esempio imposta il contenuto di <code>CFLAGS</code> a <code>-g -Wall -pedantic -std=c99</code>. La seconda riga compila <code>hello.c</code> con le opzioni definite in <code>CFLAGS</code>.</p>
+<p>Il secondo componente principale di un makefile sono le regole di dipendenza/costruzione. Una regola spiega come creare un target in base alle modifiche apportate a un elenco di determinati file. L’ordine delle regole non fa alcuna differenza, eccetto che la prima regola è considerata quella predefinita – la regola che verrà invocata quando make viene chiamato senza argomenti.</p>
+<p>Una regola generalmente è composta da due righe: una riga di dipendenza seguita da una riga di comando. Ecco una regola di esempio:</p>
+<pre class="make"><code>hello.o: hello.c hello.#
+    $(CC) $(CFLAGS) -c hello.c</code></pre>
 
 
 </section>
@@ -922,13 +881,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../extra/books.html" class="pagination-link" aria-label="Libri di testo">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Libri di testo</span>
+      <a href="../extra/gcc.html" class="pagination-link" aria-label="Il compilatore GCC">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Il compilatore GCC</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../extra/gcc.html" class="pagination-link" aria-label="Il compilatore GCC">
-        <span class="nav-page-text">Il compilatore GCC</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../extra/gdb.html" class="pagination-link" aria-label="Usare il debugger GDB">
+        <span class="nav-page-text">Usare il debugger GDB</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
