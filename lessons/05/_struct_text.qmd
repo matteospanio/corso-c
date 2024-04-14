@@ -1,6 +1,4 @@
-# Strutture
-
-## Strutture in C
+# Strutture, Unioni ed Enumerazioni
 
 Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:
 
@@ -12,9 +10,10 @@ Il C non permette di definire Classi e oggetti, si possono comunque definire dei
 
 Una struttura è un insieme di dati, si differenzia dagli array perché:
 
-- gli elementi possono essere di tipo diverso
-- gli elementi sono identificati da un nome
+- gli elementi possono essere di tipo diverso;
+- gli elementi sono identificati da un nome;
 
+Di seguito un esempio di dichiarazione di una struttura:
 ```c
 struct studente {
     char nome[20];
@@ -23,7 +22,9 @@ struct studente {
 };
 ```
 
-## Inizializzazione
+Come si può vedere dall'esempio, la dichiarazione di una struttura è introdotta dalla parola chiave `struct`, seguita dal nome della struttura e da una lista di dichiarazioni di variabili. Ricorda fortemente la dichiarazione di una classe in Java, in questo caso però non ci sono metodi, e i dati non si chiamano campi o attributi, ma membri. I membri hanno un nome e un tipo, possono essere di qualsiasi tipo, anche un'altra struttura. La grossa differenza con Java è che i membri sono sempre pubblici e non c'è modo di dichiararli privati.
+
+### Inizializzazione
 
 Si possono inizializzare le strutture quando vengono dichiarate:
 
@@ -31,9 +32,13 @@ Si possono inizializzare le strutture quando vengono dichiarate:
 struct studente s = {"Mario", "Rossi", 12345};
 ```
 
-Si possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0.
+Si possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0 (nel caso delle stringhe l'inizializzazione a zero equivale a dire stringa vuota `""`).
 
-Un modo alternativo di inizializzare:
+::: {.callout-warning}
+Il tipo di una variabile `struct` è `struct nome_struct`, omettere la parola struct è un errore.
+:::
+
+Un modo alternativo di inizializzare una struttura è quello di specificare il nome dei membri:
 
 ```c
 struct studente s = {
@@ -42,10 +47,11 @@ struct studente s = {
     .matricole = 12345,
 };
 ```
+In questa modalità l'ordine degli elementi non è importante, ma è necessario specificare il nome di tutti i membri. Questo metodo è molto utile quando si hanno strutture con molti membri e si vuole inizializzare solo alcuni di essi.
 
-## Accedere agli elementi
+### Accedere agli elementi
 
-Per accedere au singoli elementi di una struttura (detti anche membri) si usa l'operatore `.` (punto) dopo il nome della variabile:
+Per accedere ai singoli membri di una struttura si usa l'operatore `.` (punto) dopo il nome della variabile:
 
 ```c
 struct studente s = {"Mario", "Rossi", 12345};
@@ -55,7 +61,7 @@ printf("Cognome: %s\n", s.cognome);
 s.matricola = 54321;
 ```
 
-## Copie di strutture
+### Copie di strutture
 
 Si può copiare interamente una struttura usando una variabile dello stesso tipo:
 
@@ -68,7 +74,34 @@ a = b;
 Solo l'operatore `=` è valido tra 2 struct, gli operatori `==` e `!=` NON si possono usare per vedere se due strutture sono uguali.
 :::
 
-## Dare i nomi alle strutture
+In questo caso si può notare una delle principali differenze con gli array:
+```c
+int a[] = {1, 2, 3, 4, 5}; /* <1> */
+int *b; /* <2> */
+b = a; /* <3> */
+```
+1. `a` è un array di interi;
+2. `b` è un puntatore a intero;
+3. `b = a` non è una copia dell'array `a` ma assegna a `b` l'indirizzo di `a`, pertanto qualsiasi modifica dei dati di `a` si riflette anche in `b` (e viceversa). Cioè `a` e `b` puntano alla stessa area di memoria.
+
+Utilizzando le strutture invece, la copia è effettiva:
+```c
+struct array {
+    int dati[5];
+};
+struct array a = {{1, 2, 3, 4, 5}}; /* <1> */
+struct array b; /* <2> */
+b = a; /* <3> */
+```
+1. `a` inizializzo `a` con un array di interi;
+2. `b` dichiaro `b` come struttura;
+3. `b = a` copio `a` in `b`, vengono effettivamente copiati i dati dell'array `a.dati` in `b.dati`. Cioè `a` e `b` si trovano in aree di memoria diverse.
+
+::: {.callout-important}
+Solo l'operatore `=` è valido tra 2 struct, gli operatori `==` e `!=` NON si possono usare per vedere se due strutture sono uguali.
+:::
+
+### Dare i nomi alle strutture
 
 Le stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.
 
@@ -80,11 +113,7 @@ struct nome {
 };
 ```
 
-::: {.callout-warning}
-Il tipo di una variabile `struct` è `struct nome_struct`, omettere la parola struct è un errore.
-:::
-
-## Strutture anonime
+### Strutture anonime
 
 Nel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:
 
@@ -94,19 +123,28 @@ punto.x = 12;
 punto.y = 18;
 ```
 
-## typedef
+Così facendo la struttura non ha un nome e non può essere riutilizzata facilmente, ogni volta che si vuole dichiarare una variabile di quel tipo bisogna riscrivere la struttura.
+
+### Strutture con typedef
 
 `typedef` è un operatore che permette di definire alias per i tipi:
 
 ```c
 typedef int Bool;
 typedef float Euro;
-typedef char[] String;
+typedef char* String;
 ```
 
 Queste dichiarazioni permettono scrivere codice più chiaro.
 
-## Strutture con typedef
+Lo stesso effetto si può ottenere dichiarando delle macro:
+```c
+#define BOOL int
+#define EURO float
+#define STRING char*
+```
+
+In generale si preferisce usare `typedef` perché è più chiaro e il compilatore può fare dei controlli sui tipi.
 
 Dal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave `struct` per riferirsi al tipo delle strutture grazie a typedef:
 
@@ -120,3 +158,181 @@ Point punto = {
     .y = 2,
 };
 ```
+
+In questo modo si può dichiarare una variabile di tipo `Point` senza usare la parola chiave `struct`.
+
+### Cast a strutture
+
+Una volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell'inizializzazione, occorre fare un cast esplicito però:
+
+```{.c}
+typedef struct {
+    int x;
+    int y;
+} Point;
+
+Point s;
+s = (Point) { .x = 1, .y = 2 };
+```
+
+A prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:
+
+```c
+#include <math.h>
+typedef struct point {
+    int x;
+    int y;
+} Point;
+
+Point somma(Point a, struct point b) {
+    return (Point) { .x = a.x + b.x, .y = a.y + b.y };
+}
+
+float distanza(Point a, Point b) {
+    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+}
+```
+
+### `struct` e puntatori
+
+Si possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):
+
+```c
+struct point *p;
+Point *p1;
+
+void foo(Point* p);
+```
+
+## `struct`
+
+-  Si possono creare array di strutture:
+
+```c
+Point punti[10];
+punti[0].x = 1;
+```
+
+- Inserire un array in una struttura
+- Inserire una struttura in un'altra struttura
+- Inserire unioni in una struttura
+- Inserire strutture in unioni
+
+## Esempio
+
+Si vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:
+
+1. implementare una struttura dati per memorizzare i dati di un giocatore di calcio;
+2. memorizzare l'elenco dei giocatori della squadra;
+4. ordinare i giocatori in base numero di maglia.
+
+## Memorizzare un giocatore
+
+Ai fini della classifica è necessario memorizzare il nome della squadra e i punti ottenuti:
+
+```c
+#define BUFFER_SIZE 128
+typedef struct giocatore
+{
+    char nome[BUFFER_SIZE];
+    char cognome[BUFFER_SIZE];
+    unsigned int numero_maglia; // non esistono numeri di maglia negativi
+} Giocatore;
+```
+
+## Memorizzare la lista dei giocatori
+
+La struct `Giocatore` è di fatto un tipo di dato, possiamo quindi creare un array di esami dove memorizzare la formazione:
+
+```c
+#define NUM 22
+Giocatore squadra[NUM];
+```
+
+## Ordinare i giocatori
+
+Per ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:
+
+Il più intuitivo, ma non il più efficiente, è il Bubble Sort:
+
+::: {.content-visible when-format="html"}
+![](https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif)
+
+{{< downloadthis ./code/mondiali1982.c dname="esempio" label="Scarica l'esempio completo" >}}
+:::
+
+## Unioni
+
+- Le unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso
+- La differenza è che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta
+
+```c
+union {
+    int i;
+    double d;
+} u;
+
+struct {
+    int i;
+    double d;
+} s;
+```
+
+Si può inizializzare solo un elemento di una union:
+
+```c
+union {
+    int i;
+    double d;
+} u = { .i = 3 };
+
+u.d = 5.7
+```
+
+Come per le strutture, posso dare nomi alle unioni tramite tag
+oppure con typedef.
+
+## Enumerazioni
+
+In molti programmi si usano interi come "*codici*" per indicare varie cose. Un caso comune sono per esempio i codici di errore.
+
+Spesso si usano macro o costanti, ma è più chiaro usare enumerazioni:
+
+`enum {CUORI, QUADRI, FIORI, PICCHE} s1, s2;`
+
+Ora le variabili `s1` e `s2` possono assumere solo uno dei quattro valori definiti.
+
+# Strutture dati
+
+Le strutture sono molto utili per definire... strutture dati.
+
+Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code...
+
+## Array con strutture
+
+Gli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza *a mano*...
+
+Si può creare una struttura che contenga un array e la sua lunghezza:
+
+```c
+#define MAX 1024
+
+typedef struct intarray {
+    int array[MAX];
+    int length;
+} IntArray;
+```
+
+## Array con strutture
+
+Adesso si può passare la struttura come argomento di una funzione:
+
+```c
+void stampa_array(IntArray a) {
+    for (int i = 0; i < a.length; i++) {
+        printf("%d ", a.array[i]);
+    }
+    printf("\n");
+}
+```
+Si nota subito che non abbiamo più bisogno di passare la lunghezza dell'array come argomento.

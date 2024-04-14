@@ -1,9 +1,18 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define BUFFER_SIZE 64
-#define NUM_GIOCATORI 22
+#define BUFFER_SIZE 64   // dimensione del buffer per le stringhe
+#define NUM_GIOCATORI 22 // numero di giocatori in una squadra di calcio
 
+/**
+ * @brief La struttura Giocatore rappresenta un giocatore di calcio.
+ *
+ * @param nome Il nome del giocatore.
+ * @param cognome Il cognome del giocatore.
+ * @param numero_maglia Il numero di maglia del giocatore.
+ *
+ * @note La struttura Giocatore è definita con la keyword typedef per poter essere utilizzata come tipo di dato.
+ */
 typedef struct giocatore
 {
     char nome[BUFFER_SIZE];
@@ -12,7 +21,7 @@ typedef struct giocatore
 } Giocatore;
 
 void init_squadra(Giocatore *squadra);
-void print_squadra(Giocatore *giocatori, size_t n);
+void print_squadra(const Giocatore *giocatori, size_t n);
 void ordina_squadra(Giocatore *giocatori, size_t n);
 
 int main(void)
@@ -25,6 +34,15 @@ int main(void)
     print_squadra(squadra, NUM_GIOCATORI);
 }
 
+/**
+ * @brief Inizializza la squadra con i giocatori della finale dei mondiali 1982.
+ *
+ * In C spesso si utilizzano funzioni per inizializzare le strutture dati, in questo
+ * caso, la funzione init_squadra inizializza l'array di giocatori con i giocatori della
+ * finale dei mondiali 1982.
+ *
+ * @param squadra L'array di giocatori da inizializzare.
+ */
 void init_squadra(Giocatore *squadra)
 {
     // formazione della finale dei mondiali 1982
@@ -55,7 +73,19 @@ void init_squadra(Giocatore *squadra)
     squadra[21] = (Giocatore){"Giovanni", "Galli", 22};
 }
 
-void print_squadra(Giocatore *giocatori, size_t n)
+/**
+ * @brief Stampa la squadra.
+ *
+ * La funzione print_squadra stampa a monitor i giocatori della squadra. Nel formato:
+ * %02d) %s\t%s\n
+ * ossia il numero di maglia, il nome e il cognome del giocatore.
+ * Il numero di maglia è stampato con due cifre, mentre il carattere speciale '\t' è un
+ * carattere di tabulazione.
+ *
+ * @param giocatori L'array di giocatori da stampare.
+ * @param n Il numero di giocatori da stampare.
+ */
+void print_squadra(const Giocatore *giocatori, size_t n)
 {
     for (size_t i = 0; i < n; i++)
     {
@@ -64,6 +94,14 @@ void print_squadra(Giocatore *giocatori, size_t n)
     printf("\n");
 }
 
+/**
+ * @brief Scambia due giocatori.
+ *
+ * La funzione swap scambia due giocatori a e b.
+ *
+ * @param a Il primo giocatore.
+ * @param b Il secondo giocatore.
+ */
 void swap(Giocatore *a, Giocatore *b)
 {
     Giocatore temp = *a;
@@ -71,22 +109,40 @@ void swap(Giocatore *a, Giocatore *b)
     *b = temp;
 }
 
+/**
+ * @brief Ordina la squadra in base al numero di maglia.
+ *
+ * La funzione ordina_squadra ordina la squadra in base al numero di maglia dei
+ * giocatori in ordine crescente.
+ *
+ * L'ordinamento è effettuato con l'algoritmo Bubble Sort, la complessità computazionale
+ * è O(n^2) nel caso peggiore.
+ *
+ * @param giocatori L'array di giocatori da ordinare.
+ * @param n La dimensione dell'array di giocatori.
+ */
 void ordina_squadra(Giocatore *giocatori, size_t n)
 {
+    // flag per controllare se ci sono stati scambi durante l'n-esima iterazione
     bool swapped;
     for (size_t i = 0; i < n - 1; i++)
     {
+        // la flag è inizializzata a false all'inizio di ogni iterazione
         swapped = false;
         for (size_t j = 0; j < n - i - 1; j++)
         {
+            // se, presa una coppia di giocatori, il numero di maglia del primo
+            // giocatore è maggiore del secondo, allora scambia i giocatori
             if (giocatori[j].numero_maglia > giocatori[j + 1].numero_maglia)
             {
-                swap(&giocatori[j], &giocatori[j + 1]);
-                swapped = true;
+                swap(&giocatori[j], &giocatori[j + 1]); // scambia i giocatori
+                swapped = true;                         // se ci sono stati scambi, la flag è settata a true
             }
         }
+        // se non ci sono stati scambi durante l'n-esima iterazione, l'array è ordinato
         if (!swapped)
         {
+            // l'istruzione break interrompe il ciclo for più esterno
             break;
         }
     }

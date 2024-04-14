@@ -1,6 +1,7 @@
 ---
 title: Uso avanzato dei puntatori
 date: 04/10/2024
+abstract: In questa lezione si presenta il modo in C di definire strutture dati complesse e di manipolarle attraverso i puntatori.
 ---
 
 ::: {.content-visible when-format="revealjs"}
