@@ -446,6 +446,152 @@
   <p class="date">23 aprile 2024</p>
 </section>
 <section>
+<section id="memoria-dinamica" class="title-slide slide level1 center">
+<h1>Memoria dinamica</h1>
+
+</section>
+<section id="strutture-dati" class="slide level2">
+<h2>Strutture dati</h2>
+<p>Le strutture sono molto utili per definire… strutture dati.</p>
+<p>Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…</p>
+</section>
+<section id="array-con-strutture" class="slide level2">
+<h2>Array con strutture</h2>
+<p>Gli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza <em>a mano</em>…</p>
+<p>Si può creare una struttura che contenga un array e la sua lunghezza:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a></a><span class="pp">#define MAX </span><span class="dv">1024</span></span>
+<span id="cb1-2"><a></a></span>
+<span id="cb1-3"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> intarray <span class="op">{</span></span>
+<span id="cb1-4"><a></a>    <span class="dt">int</span> array<span class="op">[</span>MAX<span class="op">];</span></span>
+<span id="cb1-5"><a></a>    <span class="dt">int</span> length<span class="op">;</span></span>
+<span id="cb1-6"><a></a><span class="op">}</span> IntArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="array-con-strutture-1" class="slide level2">
+<h2>Array con strutture</h2>
+<p>Adesso si può passare la struttura come argomento di una funzione:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a></a><span class="dt">void</span> stampa_array<span class="op">(</span>IntArray a<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> a<span class="op">.</span>length<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb2-3"><a></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> "</span><span class="op">,</span> a<span class="op">.</span>array<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb2-4"><a></a>    <span class="op">}</span></span>
+<span id="cb2-5"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb2-6"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.</p>
+</section>
+<section id="array-con-strutture-2" class="slide level2">
+<h2>Array con strutture</h2>
+<p>L’implementazione che abbiamo visto ha due grossi problemi:</p>
+<ol type="1">
+<li>la dimensione dell’array è fissa</li>
+<li>la struttura <code>IntArray</code> funziona solo con array di interi, per fare array di float, char, ecc. bisogna creare ogni volta una nuova struttura</li>
+</ol>
+</section>
+<section id="memoria-dinamica-1" class="slide level2">
+<h2>Memoria dinamica</h2>
+<ul>
+<li><p>Le strutture dati in C hanno dimensione fissa. Infatti gli array vengono inizializzati con un valore costante.</p></li>
+<li><p>Esistono però dei comandi che permettono di allocare dinamicamente zone di memoria, permettendo di fare strutture che crescono o si rimpiccioliscono durante l’esecuzione del programma.</p></li>
+</ul>
+</section>
+<section id="memoria-dinamica-2" class="slide level2">
+<h2>Memoria dinamica</h2>
+<p>Le operazioni per gestire la memoria dinamica si trovano nella libreria <code>stdlib.h</code> e sono:</p>
+<ol type="1">
+<li><code>malloc</code> (memory allocation): alloca una zona di memoria di una certa dimensione</li>
+<li><code>calloc</code> (clear allocation): alloca una zona di memoria di una certa dimensione e la inizializza a 0</li>
+<li><code>realloc</code> (reallocate): cambia la dimensione di una zona di memoria già allocata</li>
+</ol>
+</section>
+<section id="puntatore-a-void" class="slide level2">
+<h2>Puntatore a void</h2>
+<p><code>malloc</code>, <code>calloc</code> e <code>realloc</code> restituiscono un puntatore a void, che è un puntatore generico.</p>
+<p>Questo puntatore non fa riferimento a un certo tipo di dato, ma solo a un indirizzo di memoria.</p>
+</section>
+<section id="malloc" class="slide level2">
+<h2><code>malloc</code></h2>
+<p><code>void* malloc(size_t size);</code></p>
+<p>Supponendo di voler creare un array di interi di dimensione variabile, c’è bisogno di creare un puntatore ad interi e poi assegnargli l’indirizzo della nuova zona di memoria:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a></a><span class="dt">int</span> <span class="op">*</span>a<span class="op">;</span></span>
+<span id="cb3-2"><a></a>a <span class="op">=</span> malloc<span class="op">(</span><span class="dv">10</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La funzione <code>malloc</code> accetta come argomento il numero di byte da allocare. L’esempio crea 10 cellette di memoria, ciascuna grande quanto un intero (4 byte).</p>
+</section>
+<section id="calloc" class="slide level2">
+<h2><code>calloc</code></h2>
+<p><code>void* calloc(size_t num, size_t size);</code></p>
+<ul>
+<li>Per inizializzare array torna comoda anche la funzione calloc, che ha due parametri: numero di membri e dimensione (in byte) dei membri</li>
+<li>Inoltre ha come effetto aggiuntivo di porre a zero tutti i byte interessati (quindi tutti i membri dell’array che creo)</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a></a><span class="dt">double</span> <span class="op">*</span>a<span class="op">;</span></span>
+<span id="cb4-2"><a></a>a <span class="op">=</span> calloc<span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">double</span><span class="op">));</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>L’effetto di questo codice è lo stesso del precedente (con la malloc), ma con tutti i membri dell’array inizializzati a 0.</p>
+</section>
+<section id="realloc" class="slide level2">
+<h2><code>realloc</code></h2>
+<p><code>void* realloc(void* ptr, size_t size);</code></p>
+<ul>
+<li><p>Questa funzione cambia la dimensione di uno spazio allocato dinamicamente.</p></li>
+<li><p>L’argomento <code>ptr</code> deve essere un puntatore ottenuto da una funzione ..alloc, altrimenti porta a comportamento non definito.</p></li>
+<li><p>I dati già presenti nella zona di memoria vengono mantenuti.</p></li>
+</ul>
+</section>
+<section id="null" class="slide level2">
+<h2>NULL</h2>
+<ul>
+<li><p>Quando si usa la memoria dinamica, è importante controllare che l’allocazione sia andata a buon fine.</p></li>
+<li><p>Se <code>malloc</code>, <code>calloc</code> o <code>realloc</code> non riescono a trovare spazio in memoria, restituiscono <code>NULL</code>.</p></li>
+<li><p><code>NULL</code> è una costante che rappresenta un puntatore all’indirizzo <code>0x0</code>. <code>NULL</code> è definito in <code>stdlib.h</code>.</p></li>
+</ul>
+</section>
+<section id="malloc-calloc-realloc" class="slide level2">
+<h2><code>malloc</code>, <code>calloc</code>, <code>realloc</code></h2>
+<ul>
+<li>Queste funzioni scrivono in una zona di memoria nota come <strong>heap</strong>;</li>
+<li>Le variabili locali e i parametri delle funzioni sono invece memorizzati nello <strong>stack</strong>;</li>
+<li>Usando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile</li>
+<li>Occorre quindi fare uso oculato della memoria e pulire quella che usata che non serve più</li>
+</ul>
+</section>
+<section id="free" class="slide level2">
+<h2><code>free</code></h2>
+<p><code>void free(void* ptr);</code></p>
+<ul>
+<li>La funzione free permette di liberare un blocco di memoria (e quindi renderlo disponibile per un’altra allocazione)</li>
+<li><code>ptr</code> dopo l’esecuzione di <code>free</code> continua a puntare alla stessa zona di memoria, ma il contenuto di quella zona non è più garantito, si chiama <strong>dangling pointer</strong></li>
+<li>Occorre, subito dopo la free, assegnare a <code>ptr</code> il valore <code>NULL</code> (oppure una nuova memoria)</li>
+<li>accedere un blocco deallocato è un gravissimo errore</li>
+</ul>
+</section>
+<section id="array-dinamico" class="slide level2">
+<h2>Array dinamico</h2>
+<p>Un array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.</p>
+<p>Per implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb5-2"><a></a>    <span class="dt">int</span> <span class="op">*</span>array<span class="op">;</span></span>
+<span id="cb5-3"><a></a>    <span class="dt">int</span> capacity<span class="op">;</span></span>
+<span id="cb5-4"><a></a>    <span class="dt">int</span> length<span class="op">;</span></span>
+<span id="cb5-5"><a></a><span class="op">}</span> DynArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dynarray" class="slide level2">
+<h2><code>DynArray</code></h2>
+<p>Il nuovo tipo <code>DynArray</code> ha tre membri:</p>
+<ul>
+<li><code>array</code> è un puntatore ad interi, che punta all’array dinamico</li>
+<li><code>capacity</code> è la dimensione massima dell’array</li>
+<li><code>length</code> è il numero di elementi attualmente presenti nell’array</li>
+</ul>
+<p>Quando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.</p>
+</section>
+<section id="dynarray-generico" class="slide level2">
+<h2><code>DynArray</code> generico</h2>
+<p>Rimane il problema che <code>DynArray</code> funziona solo con array di interi.</p>
+<p>Abbiamo però visto che <code>void *</code> serve proprio quando si usano indirizzi di memoria senza un tipo preciso, questo ci permette di definire un array di <code>void *</code> per decidere a runtime il tipo dell’array:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb6-2"><a></a>    <span class="dt">void</span> <span class="op">**</span>array<span class="op">;</span></span>
+<span id="cb6-3"><a></a>    <span class="dt">int</span> capacity<span class="op">;</span></span>
+<span id="cb6-4"><a></a>    <span class="dt">int</span> length<span class="op">;</span></span>
+<span id="cb6-5"><a></a><span class="op">}</span> GenericArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
 <section id="operazioni-bitwise" class="title-slide slide level1 center">
 <h1>Operazioni bitwise</h1>
 
@@ -517,59 +663,59 @@
 <h2>La rappresentazione dei numeri</h2>
 <p>Per effettuare le operazioni bitwise conviene sempre cercare di rappresentare i numeri in binario.</p>
 <p>C permette di dichiarare numeri in binario utilizzando il prefisso <code>0b</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="bn">0b00001000</span><span class="op">;</span></span>
-<span id="cb1-2"><a></a><span class="co">// è equivalente a</span></span>
-<span id="cb1-3"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="bn">0b00001000</span><span class="op">;</span></span>
+<span id="cb7-2"><a></a><span class="co">// è equivalente a</span></span>
+<span id="cb7-3"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="or" class="slide level2">
 <h2>OR</h2>
 <p>L’operatore OR viene spesso usato per unire due insiemi di bit. Ad esempio, se si ha una variabile <code>switches</code> che rappresenta lo stato di accensione di 8 interruttori, si può accendere un interruttore utilizzando l’operatore OR:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a></a><span class="co">// switches = 0b00001000</span></span>
-<span id="cb2-2"><a></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="bn">0b00000100</span><span class="op">;</span></span>
-<span id="cb2-3"><a></a><span class="co">// oppure</span></span>
-<span id="cb2-4"><a></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="dv">4</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a></a><span class="co">// switches = 0b00001000</span></span>
+<span id="cb8-2"><a></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="bn">0b00000100</span><span class="op">;</span></span>
+<span id="cb8-3"><a></a><span class="co">// oppure</span></span>
+<span id="cb8-4"><a></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="dv">4</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ora il valore di <code>switches</code> sarà <code>0b00001100</code>. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.</p>
 </section>
 <section id="and" class="slide level2">
 <h2>AND</h2>
 <p>Per spegnere tutti gli interruttori si può utilizzare l’operatore AND:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="bn">0b00000000</span><span class="op">;</span></span>
-<span id="cb3-2"><a></a><span class="co">// oppure</span></span>
-<span id="cb3-3"><a></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-4"><a></a><span class="co">// switches: 0b00000000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="bn">0b00000000</span><span class="op">;</span></span>
+<span id="cb9-2"><a></a><span class="co">// oppure</span></span>
+<span id="cb9-3"><a></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb9-4"><a></a><span class="co">// switches: 0b00000000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="esercizio" class="slide level2">
 <h2>Esercizio</h2>
 <p>Scrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb4-2"><a></a><span class="dt">void</span> print_lsb<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
-<span id="cb4-3"><a></a></span>
-<span id="cb4-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb4-5"><a></a><span class="op">{</span></span>
-<span id="cb4-6"><a></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">127</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">128</span><span class="op">;</span></span>
-<span id="cb4-7"><a></a></span>
-<span id="cb4-8"><a></a>    print_lsb<span class="op">(</span>a<span class="op">);</span></span>
-<span id="cb4-9"><a></a>    print_lsb<span class="op">(</span>b<span class="op">);</span></span>
-<span id="cb4-10"><a></a><span class="op">}</span></span>
-<span id="cb4-11"><a></a></span>
-<span id="cb4-12"><a></a><span class="dt">void</span> print_lsb<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span></span>
-<span id="cb4-13"><a></a><span class="op">{</span></span>
-<span id="cb4-14"><a></a>    printf<span class="op">(</span><span class="st">"The least significant bit of </span><span class="sc">%d</span><span class="st"> is: "</span><span class="op">,</span> n<span class="op">);</span></span>
-<span id="cb4-15"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n <span class="op">&amp;</span> <span class="dv">1</span><span class="op">);</span></span>
-<span id="cb4-16"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb10-2"><a></a><span class="dt">void</span> print_lsb<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
+<span id="cb10-3"><a></a></span>
+<span id="cb10-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb10-5"><a></a><span class="op">{</span></span>
+<span id="cb10-6"><a></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">127</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">128</span><span class="op">;</span></span>
+<span id="cb10-7"><a></a></span>
+<span id="cb10-8"><a></a>    print_lsb<span class="op">(</span>a<span class="op">);</span></span>
+<span id="cb10-9"><a></a>    print_lsb<span class="op">(</span>b<span class="op">);</span></span>
+<span id="cb10-10"><a></a><span class="op">}</span></span>
+<span id="cb10-11"><a></a></span>
+<span id="cb10-12"><a></a><span class="dt">void</span> print_lsb<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span></span>
+<span id="cb10-13"><a></a><span class="op">{</span></span>
+<span id="cb10-14"><a></a>    printf<span class="op">(</span><span class="st">"The least significant bit of </span><span class="sc">%d</span><span class="st"> is: "</span><span class="op">,</span> n<span class="op">);</span></span>
+<span id="cb10-15"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n <span class="op">&amp;</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb10-16"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="esercizio-1" class="slide level2">
 <h2>Esercizio</h2>
 <p>Scrivere una funzione che dato un numero intero <span class="math inline">\(n\)</span>, restituisca true se <span class="math inline">\(n\)</span> è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdbool.h&gt;</span></span>
-<span id="cb5-2"><a></a><span class="dt">bool</span> is_even<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
-<span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb5-5"><a></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">55</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">48</span><span class="op">;</span></span>
-<span id="cb5-6"><a></a></span>
-<span id="cb5-7"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> is_even<span class="op">(</span>a<span class="op">));</span></span>
-<span id="cb5-8"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> b<span class="op">,</span> is_even<span class="op">(</span>b<span class="op">));</span></span>
-<span id="cb5-9"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdbool.h&gt;</span></span>
+<span id="cb11-2"><a></a><span class="dt">bool</span> is_even<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-5"><a></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">55</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">48</span><span class="op">;</span></span>
+<span id="cb11-6"><a></a></span>
+<span id="cb11-7"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> is_even<span class="op">(</span>a<span class="op">));</span></span>
+<span id="cb11-8"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> b<span class="op">,</span> is_even<span class="op">(</span>b<span class="op">));</span></span>
+<span id="cb11-9"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="xor" class="slide level2">
 <h2>XOR</h2>
@@ -584,10 +730,10 @@
 </div>
 <div class="callout-content">
 <p>Eseguire l’operazione di XOR due volte su un bit restituisce il valore originale.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a></a><span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
-<span id="cb6-2"><a></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
-<span id="cb6-3"><a></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
-<span id="cb6-4"><a></a><span class="co">// c: 'A'</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a></a><span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
+<span id="cb12-2"><a></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
+<span id="cb12-3"><a></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
+<span id="cb12-4"><a></a><span class="co">// c: 'A'</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -603,18 +749,18 @@
 </section>
 <section id="esempio-1" class="slide level2">
 <h2>Esempio</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb7-2"><a></a><span class="pp">#define KEY </span><span class="ch">'h'</span></span>
-<span id="cb7-3"><a></a></span>
-<span id="cb7-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb7-5"><a></a><span class="op">{</span></span>
-<span id="cb7-6"><a></a>    <span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
-<span id="cb7-7"><a></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
-<span id="cb7-8"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
-<span id="cb7-9"><a></a></span>
-<span id="cb7-10"><a></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
-<span id="cb7-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
-<span id="cb7-12"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb13-2"><a></a><span class="pp">#define KEY </span><span class="ch">'h'</span></span>
+<span id="cb13-3"><a></a></span>
+<span id="cb13-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb13-5"><a></a><span class="op">{</span></span>
+<span id="cb13-6"><a></a>    <span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
+<span id="cb13-7"><a></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
+<span id="cb13-8"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb13-9"><a></a></span>
+<span id="cb13-10"><a></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
+<span id="cb13-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb13-12"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="esercizi" class="slide level2">
 <h2>Esercizi</h2>
@@ -623,25 +769,25 @@
 <section id="shift" class="slide level2">
 <h2>Shift</h2>
 <p>Gli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> c <span class="op">=</span> <span class="bn">0b00000001</span><span class="op">;</span></span>
-<span id="cb8-2"><a></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb8-3"><a></a><span class="co">// c: 0b00000010</span></span>
-<span id="cb8-4"><a></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb8-5"><a></a><span class="co">// c: 0b00010000</span></span>
-<span id="cb8-6"><a></a>c <span class="op">=</span> c <span class="op">&gt;&gt;</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb8-7"><a></a><span class="co">// c: 0b00000100</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> c <span class="op">=</span> <span class="bn">0b00000001</span><span class="op">;</span></span>
+<span id="cb14-2"><a></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb14-3"><a></a><span class="co">// c: 0b00000010</span></span>
+<span id="cb14-4"><a></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb14-5"><a></a><span class="co">// c: 0b00010000</span></span>
+<span id="cb14-6"><a></a>c <span class="op">=</span> c <span class="op">&gt;&gt;</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb14-7"><a></a><span class="co">// c: 0b00000100</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="esempio-shift" class="slide level2">
 <h2>Esempio Shift</h2>
 <p>Scrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb9-4"><a></a><span class="op">{</span></span>
-<span id="cb9-5"><a></a>    <span class="dt">int</span> n <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
-<span id="cb9-6"><a></a>    n <span class="op">=</span> n <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb9-7"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n<span class="op">);</span></span>
-<span id="cb9-8"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb15-2"><a></a></span>
+<span id="cb15-3"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb15-4"><a></a><span class="op">{</span></span>
+<span id="cb15-5"><a></a>    <span class="dt">int</span> n <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb15-6"><a></a>    n <span class="op">=</span> n <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb15-7"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n<span class="op">);</span></span>
+<span id="cb15-8"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="esercizi-1" class="slide level2">
 <h2>Esercizi</h2>

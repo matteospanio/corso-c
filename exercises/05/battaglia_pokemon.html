@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hello C 2024 - Esercizio: cambio valuta</title>
+<title>Hello C 2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../exercises/01/libretto.html" rel="next">
-<link href="../../exercises/01/somma_razionale.html" rel="prev">
 <link href="../../assets/images/dec_pdp1120.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -78,7 +42,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -119,39 +82,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed slimcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -201,7 +135,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/01/somma_interi.html">Basi di C</a></li><li class="breadcrumb-item"><a href="../../exercises/01/cambio_valuta.html">Cambio valuta</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -236,7 +170,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/01/cambio_valuta.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../exercises/01/cambio_valuta.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cambio valuta</span></a>
   </div>
 </li>
@@ -315,102 +249,11 @@ window.Quarto = {
         
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/01/somma_interi.html">Basi di C</a></li><li class="breadcrumb-item"><a href="../../exercises/01/cambio_valuta.html">Cambio valuta</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Esercizio: cambio valuta</h1>
-</div>
+<main class="content" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<blockquote class="blockquote">
-<p>L’Italia ha cambiato la sua valuta dalla lira italiana (ITL) all’euro (EUR) il 1º gennaio 2002. Questo è stato un evento storico noto come la “fase di transizione all’euro” o l’“introduzione dell’euro”. Durante questo periodo, le banconote e le monete denominate in euro sono state introdotte gradualmente in circolazione e la lira italiana è stata gradualmente ritirata. Il processo di transizione all’euro ha coinvolto un periodo di preparazione e pianificazione da parte delle istituzioni finanziarie e del governo italiano.</p>
-<p>Gli italiani, al momento del cambio, si sono trovati a dover far fronte a un nuovo sistema di valuta. Per aiutare le persone a comprendere meglio il valore delle nuove banconote e monete, i giornali e i media hanno pubblicato tabelle di conversione tra le due valute ma il metodo più comune che venne adottato fin da subito fu la conversione esatta da lire in euro al tasso di cambio stabilito dai governi. Il valore di un euro è stato fissato a 1936,27 lire italiane.</p>
-</blockquote>
-<p>Si vuole scrivere un programma che, dato un importo in lire, lo converta in euro. Il programma deve chiedere all’utente di inserire un importo in lire e visualizzare a video l’importo corrispondente in euro.</p>
-<hr>
-<p>Quando il programma viene eseguito deve chiedere all’utente di inserire la quantità di lire italiane da cambiare, effettuare il calcolo e visualizzare il risultato a video a video.</p>
-<p>Ad esempio:</p>
-<pre class="raw"><code>Inserire l'importo in lire: 10000
-10000 lire italiane corrispondono a 5.16 euro</code></pre>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Suggerimento
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Per convertire un importo da lire a euro, si può utilizzare la seguente formula: <span class="math display">\[
-\text{euro} = \frac{\text{lire}}{1936.27}
-\]</span></p>
-<p>In C è molto comune definire le costanti in due maniere:</p>
-<ul>
-<li><p>con la direttiva <code>#define</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TASSO_CAMBIO </span><span class="fl">1936.27</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>con la dichiarazione di una variabile <code>const</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">float</span> TASSO_CAMBIO <span class="op">=</span> <span class="fl">1936.27</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-</div>
-</div>
-<p>Esempio di main:</p>
-
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p><a href="#dnldts28683" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgbWFpbih2b2lkKQp7CiAgICAvLyBUT0RPOiByaWNldmVyZSBpbiBpbnB1dCB1biBpbXBvcnRvIGluIGxpcmUgZGEgY2FtYmlhcmUKCiAgICAvLyBUT0RPOiBzdGFtcGFyZSBhIG1vbml0b3IgbCdpbXBvcnRvIGluIGV1cm8gY29ycmlzcG9uZGVudGUKfQo=').then(res => res.blob()).then(blob => {
-      const downloadURL = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      document.body.appendChild(a);
-      a.href = downloadURL;
-      a.download = 'cambio_valuta.c'; a.click();
-      window.URL.revokeObjectURL(downloadURL);
-      document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts28683"><i class="bi bi-download"></i> Scarica il file </button></a></p>
-</div></div><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: ricevere in input un importo in lire da cambiare</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: stampare a monitor l'importo in euro corrispondente</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- ::: {.callout-tip collapse="true"}
-## Soluzione
-
-```{.c}
-#include <stdio.h>
-
-const float TASSO_CAMBIO = 1936.27f;
-
-int main(void)
-{
-    float euro, lit;
-
-    printf("Inserisci l'importo in lire da cambiare: ");
-    scanf("%f", &lit);
-
-    euro = lit / TASSO_CAMBIO;
-
-    printf("%.2f lire corrispondono a %.2f euro\n", lit, euro);
-}
-
-```
-
-::: -->
 
 
 
@@ -968,18 +811,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../exercises/01/somma_razionale.html" class="pagination-link" aria-label="Somma razionale">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Somma razionale</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../exercises/01/libretto.html" class="pagination-link" aria-label="Libretto universitario">
-        <span class="nav-page-text">Libretto universitario</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

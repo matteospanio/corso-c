@@ -79,6 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -230,10 +231,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">In questa pagina</h2>
    
   <ul>
-  <li><a href="#puntatori-7" id="toc-puntatori-7" class="nav-link active" data-scroll-target="#puntatori-7">Puntatori</a>
+  <li><a href="#cosè-un-puntatore" id="toc-cosè-un-puntatore" class="nav-link active" data-scroll-target="#cosè-un-puntatore">Cos’è un puntatore?</a></li>
+  <li><a href="#dichiarazione-di-un-puntatore" id="toc-dichiarazione-di-un-puntatore" class="nav-link" data-scroll-target="#dichiarazione-di-un-puntatore">Dichiarazione di un puntatore</a>
   <ul class="collapse">
-  <li><a href="#cosè-un-puntatore" id="toc-cosè-un-puntatore" class="nav-link" data-scroll-target="#cosè-un-puntatore">Cos’è un puntatore?</a></li>
+  <li><a href="#esempio-di-utilizzo" id="toc-esempio-di-utilizzo" class="nav-link" data-scroll-target="#esempio-di-utilizzo">Esempio di utilizzo</a></li>
   </ul></li>
+  <li><a href="#puntatori-come-parametri-di-funzioni" id="toc-puntatori-come-parametri-di-funzioni" class="nav-link" data-scroll-target="#puntatori-come-parametri-di-funzioni">Puntatori come parametri di funzioni</a>
+  <ul class="collapse">
+  <li><a href="#esempio-di-utilizzo-di-puntatori-con-funzioni" id="toc-esempio-di-utilizzo-di-puntatori-con-funzioni" class="nav-link" data-scroll-target="#esempio-di-utilizzo-di-puntatori-con-funzioni">Esempio di utilizzo di puntatori con funzioni</a></li>
+  </ul></li>
+  <li><a href="#puntatori-e-array-5" id="toc-puntatori-e-array-5" class="nav-link" data-scroll-target="#puntatori-e-array-5">Puntatori e array</a>
+  <ul class="collapse">
+  <li><a href="#esercizio" id="toc-esercizio" class="nav-link" data-scroll-target="#esercizio">Esercizio</a></li>
+  </ul></li>
+  <li><a href="#puntatori-di-puntatori-4" id="toc-puntatori-di-puntatori-4" class="nav-link" data-scroll-target="#puntatori-di-puntatori-4">Puntatori di puntatori</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
@@ -285,20 +296,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
   </div>
   
+<div>
+  <div class="abstract">
+    <div class="block-title">Argomenti trattati</div>
+    <p>In questo capitolo vengono introdotti i puntatori, un concetto fondamentale per la programmazione in C. Si descrive cosa siano, la loro sintassi e i principali utilizzi: l’indirizzamento di variabili, l’accesso a variabili tramite puntatore, cosa abbiamo in comune con gli array e le stringhe e come vengono passati ai parametri di funzione.</p>
+  </div>
+</div>
 
 
 </header>
 
 
-<section id="puntatori-7" class="level1">
-<h1>Puntatori</h1>
 <p>Il termine <em>puntatore</em> produce sempre un po’ di confusione tra i principianti del C, in realtà, una volta capito il concetto, si tratta di una feature molto potente e utile del linguaggio. Non sono effettivamente complicati, ma è facile fare confusione, spero che questa guida possa aiutare a chiarire le idee…</p>
 <p>Quando si dichiara una variabile si comunica al compilatore il suo tipo e il suo nome prima del suo utilizzo, questo è fondamentale perché la dichiarazione permette al compilatore di allocare un blocco di memoria per immagazzinare la variabile. Quindi:</p>
 <blockquote class="blockquote">
 <p>Ad ogni variabile (e non solo) è associato un indirizzo di memoria. Questo indirizzo è un numero che identifica la posizione della variabile in memoria.</p>
 </blockquote>
-<section id="cosè-un-puntatore" class="level2">
-<h2 class="anchored" data-anchor-id="cosè-un-puntatore">Cos’è un puntatore?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://cs50.harvard.edu/x/2024/notes/4/cs50Week4Slide070.png" class="img-fluid figure-img"></p>
+<figcaption>Rappresentazione in memoria di una variabile.</figcaption>
+</figure>
+</div>
+<section id="cosè-un-puntatore" class="level1">
+<h1>Cos’è un puntatore?</h1>
 <blockquote class="blockquote">
 <p>Un <strong>puntatore</strong> è una variabile che contiene l’informazione per accedere ad un’altra variabile, ossia il suo <strong>indirizzo</strong>.</p>
 </blockquote>
@@ -323,9 +344,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="annotated-cell-1-12"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-13" class="code-annotation-target"><a href="#annotated-cell-1-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>ptr_to_a <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
 <span id="annotated-cell-1-14"><a href="#annotated-cell-1-14" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"The value of a is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">);</span></span>
-<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"The value of ptr_to_a is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> ptr_to_a<span class="op">);</span></span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"The value of ptr_to_a is </span><span class="sc">%p\n</span><span class="st">"</span><span class="op">,</span> ptr_to_a<span class="op">);</span></span>
 <span id="annotated-cell-1-16"><a href="#annotated-cell-1-16" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"It stores the value </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">*</span>ptr_to_a<span class="op">);</span></span>
-<span id="annotated-cell-1-17"><a href="#annotated-cell-1-17" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"The address of a is </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>a<span class="op">);</span></span>
+<span id="annotated-cell-1-17"><a href="#annotated-cell-1-17" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"The address of a is </span><span class="sc">%p\n</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>a<span class="op">);</span></span>
 <span id="annotated-cell-1-18"><a href="#annotated-cell-1-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
@@ -354,9 +375,269 @@ Consiglio
 <p>Un sistema un po’ stravagante ma efficace per imparare il significato degli operatori <code>*</code> e <code>&amp;</code> nel contesto dei puntatori è pensare a <code>*</code> come “<em>valore puntato da</em>” e <code>&amp;</code> come “<em>indirizzo di</em>”. Una volta imparato questo, il resto è molto più semplice.</p>
 </div>
 </div>
-
-
+<p>Si prenda in considerazione il seguente listato:</p>
+<div class="sourceCode" id="lst-puntatore"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="lst-puntatore-1"><a href="#lst-puntatore-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="lst-puntatore-2"><a href="#lst-puntatore-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="lst-puntatore-3"><a href="#lst-puntatore-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="lst-puntatore-4"><a href="#lst-puntatore-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> n <span class="op">=</span> <span class="dv">50</span><span class="op">;</span></span>
+<span id="lst-puntatore-5"><a href="#lst-puntatore-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>p <span class="op">=</span> <span class="op">&amp;</span>n<span class="op">;</span></span>
+<span id="lst-puntatore-6"><a href="#lst-puntatore-6" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> p<span class="op">);</span> <span class="co">// stampa l'indirizzo di n</span></span>
+<span id="lst-puntatore-7"><a href="#lst-puntatore-7" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">*</span>p<span class="op">);</span> <span class="co">// stampa il valore di n</span></span>
+<span id="lst-puntatore-8"><a href="#lst-puntatore-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Come prima, viene dichiarata la variabile <code>n</code> e subito dopo si dichiara un puntatore <code>p</code> che punta a <code>n</code>. L’immagine <a href="#fig-mem1" class="quarto-xref">Figura&nbsp;1 (a)</a> aiuta a visualizzare la situazione in memoria, mentre l’immagine <a href="#fig-mem2" class="quarto-xref">Figura&nbsp;1 (b)</a> spiega graficamente il concetto di un puntatore che <em>punta a</em> una variabile, spesso si indica graficamente con una freccia che parte dal puntatore e punta alla variabile.</p>
+<div id="fig-memoria" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-memoria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-memoria" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-mem1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-mem1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cs50.harvard.edu/x/2024/notes/4/cs50Week4Slide078.png" class="img-fluid figure-img" data-ref-parent="fig-memoria">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-mem1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Rappresentazione della memoria per il listato.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-memoria" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-mem2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-mem2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cs50.harvard.edu/x/2024/notes/4/cs50Week4Slide079.png" class="img-fluid figure-img" data-ref-parent="fig-memoria">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-mem2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Rappresentazione di puntatore che <em>punta a</em> una variabile.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-memoria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Visualizzazione dello stato della memoria con i puntatori.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Attenzione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Applicare l’operatore <code>*</code> ad un puntatore non inizializzato è un errore:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>p<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">*</span>p<span class="op">);</span> <span class="co">// errore!</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Assegnare un valore a un puntatore non inizializzato è un errore:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>p<span class="op">;</span> <span class="co">// p non è inizializzato</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>p <span class="op">=</span> <span class="dv">5</span><span class="op">;</span> <span class="co">// errore!</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </section>
+<section id="dichiarazione-di-un-puntatore" class="level1">
+<h1>Dichiarazione di un puntatore</h1>
+<p>I puntatori si possono dichiarare insieme ad altre variabili e possono essere di qualsiasi tipo:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>p<span class="op">,</span> x<span class="op">,</span> <span class="op">*</span>y<span class="op">,</span> a<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> <span class="op">*</span>f<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>c<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In questo caso <code>p</code> e <code>y</code> sono puntatori a interi, <code>x</code> è un intero e <code>a</code> è un array di 10 interi. Si noti che il carattere <code>*</code>, seppure faccia parte del tipo della variabile, è posto vicino al nome della variabile, questo per evitare di creare confusione proprio in una dichiarazione multipla come nella riga di codice sopra. Lo stesso codice si sarebbe potuto scrivere:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">*</span> p<span class="op">,</span> x<span class="op">,</span> <span class="op">*</span>y<span class="op">,</span> a<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span><span class="op">*</span> f<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span><span class="op">*</span> c<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Il secondo esempio crea maggiore confusione alla maggior parte delle persone, quindi è meglio evitare di dichiarare variabili in questo modo.</p>
+<section id="esempio-di-utilizzo" class="level2">
+<h2 class="anchored" data-anchor-id="esempio-di-utilizzo">Esempio di utilizzo</h2>
+<p>Spesso un esempio chiarisce meglio il concetto, di seguito si introducono due esempi per chiarire il concetto di puntatore, e la sintassi</p>
+<div class="sourceCode" id="annotated-cell-4"><pre class="sourceCode c code-annotation-code code-with-copy code-annotated"><code class="sourceCode c"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i<span class="op">,</span> j<span class="op">,</span> <span class="op">*</span>p<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="op">&amp;</span>i<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>j <span class="op">=</span> <span class="op">*</span>p<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-4-5" class="code-annotation-target"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> j<span class="op">);</span> <span class="co">// stampa 5</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">Si dichiarano tre variabili: <code>i</code>, <code>j</code> e <code>p</code>, <code>p</code> è un puntatore a un intero.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="2" data-code-annotation="2">Si assegna il valore 5 a <code>i</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="3" data-code-annotation="3">Si assegna l’indirizzo di <code>i</code> a <code>p</code>, l’operatore <code>&amp;</code> è usato per ottenere l’indirizzo di <code>i</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="4" data-code-annotation="4">Si assegna il valore puntato da <code>p</code> a <code>j</code>, l’operatore <code>*</code> è usato per accedere al valore puntato da <code>p</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="5" data-code-annotation="5">Si stampa il valore di <code>j</code>, che è 5.</span>
+</dd>
+</dl>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// esempio 2</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>p<span class="op">,</span> <span class="op">*</span>q<span class="op">,</span> i<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="op">&amp;</span>i<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>p <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> p<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">(*</span>q<span class="op">)++;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span> <span class="co">// stampa 7</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Il secondo esempio è un po’ più complesso, ma il concetto è lo stesso. Si dichiarano due puntatori <code>p</code> e <code>q</code> e una variabile <code>i</code>. Si assegna l’indirizzo di <code>i</code> a <code>p</code>, si assegna il valore 6 a <code>i</code> tramite <code>*p</code>, si assegna <code>p</code> a <code>q</code> e si incrementa il valore puntato da <code>q</code> di 1. L’espressione <code>(*q)++</code> è equivalente a <code>*q = *q + 1</code>, servono le parentesi perché l’operatore <code>++</code> ha una precedenza maggiore rispetto all’operatore <code>*</code>.</p>
+</section>
+</section>
+<section id="puntatori-come-parametri-di-funzioni" class="level1">
+<h1>Puntatori come parametri di funzioni</h1>
+<p>In C non è possibile restituire più di un valore da una funzione.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> incrementa<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    a<span class="op">++;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    b<span class="op">++;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// alla fine della funzione i valori di a e b vengono persi</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I puntatori permettono di aggirare questa limitazione. Possono essere passati come argomenti di funzioni:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> incrementa<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>a<span class="op">,</span> <span class="dt">int</span> <span class="op">*</span>b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>a <span class="op">=</span> <span class="op">*</span>a <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>b <span class="op">=</span> <span class="op">*</span>b <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ci si basa unicamente sui side effects, è possibile quindi restituire più di un valore.</p>
+<p>La chiamata di funzione avviene così:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> j <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>incrementa<span class="op">(&amp;</span>i<span class="op">,</span> <span class="op">&amp;</span>j<span class="op">);</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">);</span> <span class="co">// stampa 2</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> j<span class="op">);</span> <span class="co">// stampa 11</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Abbiamo già visto questa sintassi con <code>scanf</code>.</p>
+<section id="esempio-di-utilizzo-di-puntatori-con-funzioni" class="level2">
+<h2 class="anchored" data-anchor-id="esempio-di-utilizzo-di-puntatori-con-funzioni">Esempio di utilizzo di puntatori con funzioni</h2>
+<p>Scrivere una funzione che scambi il valore di due variabili.</p>
+<p>Il prototipo della funzione è: <code>void swap(int *a, int *b);</code></p>
+<p>Verrebbe spontaneo risolvere il problema senza usare i puntatori:</p>
+<div class="sourceCode" id="annotated-cell-9"><pre class="sourceCode c code-annotation-code code-with-copy code-annotated"><code class="sourceCode c"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> swap<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> temp <span class="op">=</span> a<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-9-3" class="code-annotation-target"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> b<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> temp<span class="op">;</span></span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"a = </span><span class="sc">%d</span><span class="st">, b = </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
+<span id="annotated-cell-9-6"><a href="#annotated-cell-9-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="2" data-code-annotation="1">Si salva il valore di <code>a</code> in una variabile temporanea.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="3" data-code-annotation="2">Si assegna il valore di <code>b</code> a <code>a</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="3">Si assegna il valore salvato in precedenza a <code>b</code>.</span>
+</dd>
+</dl>
+<p>All’ultima riga il codice effettivamente ha scambiato i valori di a e b, ma si tratta di variabili locali alla funzione, quindi i valori di <code>a</code> e <code>b</code> all’esterno della funzione non sono stati modificati. Per rendere la modifica permanente si devono usare i puntatori:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> swap<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>a<span class="op">,</span> <span class="dt">int</span> <span class="op">*</span>b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> temp <span class="op">=</span> <span class="op">*</span>a<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>a <span class="op">=</span> <span class="op">*</span>b<span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>b <span class="op">=</span> temp<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"a = </span><span class="sc">%d</span><span class="st">, b = </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">*</span>a<span class="op">,</span> <span class="op">*</span>b<span class="op">);</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La soluzione è identica alla precedente, ma questa volta i valori di <code>a</code> e <code>b</code> vengono modificati direttamente, ciò vuol dire che i valori di <code>a</code> e <code>b</code> all’esterno della funzione saranno modificati.</p>
+</section>
+</section>
+<section id="puntatori-e-array-5" class="level1">
+<h1>Puntatori e array</h1>
+<p>In realtà, in C, un array è un puntatore al primo elemento dell’array.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>a</code> è un puntatore al primo elemento dell’array, quindi è possibile scrivere <code>*a</code> per accedere al primo elemento dell’array.</p>
+<p>L’operatore <code>[]</code> permette di scorrere la memoria a partire dal primo elemento dell’array.</p>
+<p>Gli array possono quindi essere trattati come puntatori:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">10</span><span class="op">],</span> <span class="op">*</span>p<span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> a<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>p</code> punta al primo elemento dell’array.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Attenzione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In generale, in C, si possono trattare gli array come puntatori, ma non si può trattare un puntatore come un array (o almeno non sempre). Gli array sono costanti, mentre i puntatori no.</p>
+</div>
+</div>
+<p>Gli elementi dell’array si trovano in posizioni di memoria contigue. Nella pratica, si usa <code>a[0]</code>, ma è solo uno zucchero sintattico per <code>*(a + 0)</code>, in cui <code>0</code> è l’offset rispetto al primo elemento dell’array. <code>*(a + 1)</code> è il secondo elemento dell’array, <code>*(a + 2)</code> è il terzo elemento e così via.</p>
+<p>Quindi l’operazione <code>p + 1</code> punta al secondo elemento dell’array.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">};</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>p <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// è l'indirizzo del secondo elemento dell'array</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">+</span> <span class="dv">2</span><span class="op">;</span> <span class="co">// è l'indirizzo del terzo elemento dell'array</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">// per accedere al valore si usa *p</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="op">*(</span>p <span class="op">+</span> <span class="dv">1</span><span class="op">);</span> <span class="co">// è il valore del secondo elemento dell'array</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>p<span class="op">[</span><span class="dv">1</span><span class="op">];</span> <span class="co">// è il valore del secondo elemento dell'array</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>C capisce da solo che <code>p</code> è un puntatore ad un array di interi, quindi <code>p + 1</code> punta al secondo elemento dell’array che si trova dopo un salto di 4 byte (la dimensione di un intero).</p>
+</div>
+</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">10</span><span class="op">],</span> <span class="op">*</span>p<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">10</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">*(</span>p <span class="op">+</span> i<span class="op">)</span> <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// oppure</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// p[i] = i;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La sintassi <code>p[i]</code> è uno zucchero sintattico per <code>*(p + i)</code>.</p>
+<section id="esercizio" class="level2">
+<h2 class="anchored" data-anchor-id="esercizio">Esercizio</h2>
+<p>Scrivere una funzione che trovi il minimo e il massimo in un array di interi.</p>
+<p>Il prototipo della funzione è: <code>void minmax(const int *a, int n, int *min, int *max);</code></p>
+<p><a href="#dnldts27828" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CiNkZWZpbmUgQVJSQVlfU0laRSAxMAoKdm9pZCBtaW5tYXgoY29uc3QgaW50ICphLCBpbnQgbiwgaW50ICptaW4sIGludCAqbWF4KTsKCmludCBtYWluKHZvaWQpCnsKICAgIGludCBhcnJheVtBUlJBWV9TSVpFXSA9IHsxLCAyLCAzLCA0LCA1LCA2LCA3LCA4LCA5LCAxMH07CiAgICBpbnQgbWluLCBtYXg7CgogICAgbWlubWF4KGFycmF5LCBBUlJBWV9TSVpFLCAmbWluLCAmbWF4KTsKCiAgICBwcmludGYoIm1pbjogJWRcbiIsIG1pbik7CiAgICBwcmludGYoIm1heDogJWRcbiIsIG1heCk7CgogICAgcmV0dXJuIDA7Cn0KCnZvaWQgbWlubWF4KGNvbnN0IGludCAqYSwgaW50IG4sIGludCAqbWluLCBpbnQgKm1heCkKewogICAgKm1pbiA9IGFbMF07CiAgICAqbWF4ID0gYVswXTsKCiAgICBmb3IgKGludCBpID0gMTsgaSA8IG47IGkrKykKICAgIHsKICAgICAgICBpZiAoYVtpXSA8ICptaW4pCiAgICAgICAgewogICAgICAgICAgICAqbWluID0gYVtpXTsKICAgICAgICB9CiAgICAgICAgaWYgKGFbaV0gPiAqbWF4KQogICAgICAgIHsKICAgICAgICAgICAgKm1heCA9IGFbaV07CiAgICAgICAgfQogICAgfQp9Cg==').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'soluzione_min_max.c'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-default downloadthis  " id="dnldts27828"><i class="bi bi-download"></i> Scarica la soluzione </button></a></p>
+</section>
+</section>
+<section id="puntatori-di-puntatori-4" class="level1">
+<h1>Puntatori di puntatori</h1>
+<p>Un puntatore può puntare ad un altro puntatore.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>p <span class="op">=</span> <span class="op">&amp;</span>i<span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">**</span>q <span class="op">=</span> <span class="op">&amp;</span>p<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Può sembrare strano, ma è una pratica molto comune.</p>
+<p>Le stringhe in C sono array di caratteri terminati da un carattere nullo.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> s<span class="op">[]</span> <span class="op">=</span> <span class="st">"Hi!"</span><span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">// char *s = "Hi!";</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>s</code> è un puntatore al primo carattere della stringa.</p>
+<p><img src="https://cs50.harvard.edu/x/2024/notes/4/cs50Week4Slide086.png" class="img-fluid"></p>
+<p>Il caso più comune di puntatore a puntatore è quello delle stringhe.</p>
+<p>Quando si deve memorizzare un array di stringhe si usa un array di puntatori a caratteri.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// argv è un array di puntatori a caratteri</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">// oppure</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// argv è un array di puntatori a caratteri</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Riutilizzare</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.it">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->

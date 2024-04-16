@@ -79,6 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -119,6 +120,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -230,17 +260,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">In questa pagina</h2>
    
   <ul>
-  <li><a href="#strutture-1" id="toc-strutture-1" class="nav-link active" data-scroll-target="#strutture-1">Strutture</a>
+  <li><a href="#strutture-unioni-ed-enumerazioni" id="toc-strutture-unioni-ed-enumerazioni" class="nav-link active" data-scroll-target="#strutture-unioni-ed-enumerazioni">Strutture, Unioni ed Enumerazioni</a>
   <ul class="collapse">
-  <li><a href="#strutture-in-c-1" id="toc-strutture-in-c-1" class="nav-link" data-scroll-target="#strutture-in-c-1">Strutture in C</a></li>
-  <li><a href="#struct-3" id="toc-struct-3" class="nav-link" data-scroll-target="#struct-3"><code>struct</code></a></li>
+  <li><a href="#struct-3" id="toc-struct-3" class="nav-link" data-scroll-target="#struct-3"><code>struct</code></a>
+  <ul class="collapse">
   <li><a href="#inizializzazione-1" id="toc-inizializzazione-1" class="nav-link" data-scroll-target="#inizializzazione-1">Inizializzazione</a></li>
   <li><a href="#accedere-agli-elementi-1" id="toc-accedere-agli-elementi-1" class="nav-link" data-scroll-target="#accedere-agli-elementi-1">Accedere agli elementi</a></li>
   <li><a href="#copie-di-strutture-1" id="toc-copie-di-strutture-1" class="nav-link" data-scroll-target="#copie-di-strutture-1">Copie di strutture</a></li>
   <li><a href="#dare-i-nomi-alle-strutture-1" id="toc-dare-i-nomi-alle-strutture-1" class="nav-link" data-scroll-target="#dare-i-nomi-alle-strutture-1">Dare i nomi alle strutture</a></li>
   <li><a href="#strutture-anonime-1" id="toc-strutture-anonime-1" class="nav-link" data-scroll-target="#strutture-anonime-1">Strutture anonime</a></li>
-  <li><a href="#typedef-1" id="toc-typedef-1" class="nav-link" data-scroll-target="#typedef-1">typedef</a></li>
   <li><a href="#strutture-con-typedef-1" id="toc-strutture-con-typedef-1" class="nav-link" data-scroll-target="#strutture-con-typedef-1">Strutture con typedef</a></li>
+  <li><a href="#cast-a-strutture-1" id="toc-cast-a-strutture-1" class="nav-link" data-scroll-target="#cast-a-strutture-1">Cast a strutture</a></li>
+  <li><a href="#struct-e-puntatori-1" id="toc-struct-e-puntatori-1" class="nav-link" data-scroll-target="#struct-e-puntatori-1"><code>struct</code> e puntatori</a></li>
+  </ul></li>
+  <li><a href="#array-di-struct" id="toc-array-di-struct" class="nav-link" data-scroll-target="#array-di-struct">Array di struct</a></li>
+  <li><a href="#esempio-mondiali-1982" id="toc-esempio-mondiali-1982" class="nav-link" data-scroll-target="#esempio-mondiali-1982">Esempio: Mondiali 1982</a>
+  <ul class="collapse">
+  <li><a href="#memorizzare-la-lista-dei-giocatori-1" id="toc-memorizzare-la-lista-dei-giocatori-1" class="nav-link" data-scroll-target="#memorizzare-la-lista-dei-giocatori-1">Memorizzare la lista dei giocatori</a></li>
+  <li><a href="#ordinare-i-giocatori-1" id="toc-ordinare-i-giocatori-1" class="nav-link" data-scroll-target="#ordinare-i-giocatori-1">Ordinare i giocatori</a></li>
+  </ul></li>
+  <li><a href="#unioni-2" id="toc-unioni-2" class="nav-link" data-scroll-target="#unioni-2">Unioni</a></li>
+  <li><a href="#enumerazioni-1" id="toc-enumerazioni-1" class="nav-link" data-scroll-target="#enumerazioni-1">Enumerazioni</a></li>
+  </ul></li>
+  <li><a href="#strutture-dati-2" id="toc-strutture-dati-2" class="nav-link" data-scroll-target="#strutture-dati-2">Strutture dati</a>
+  <ul class="collapse">
+  <li><a href="#array-con-strutture-2" id="toc-array-con-strutture-2" class="nav-link" data-scroll-target="#array-con-strutture-2">Array con strutture</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -293,61 +337,118 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
   </div>
   
+<div>
+  <div class="abstract">
+    <div class="block-title">Argomenti trattati</div>
+    In questa lezione si presenta il modo in C di definire strutture dati complesse e di manipolarle attraverso i puntatori. Nel dettaglio vengono presentate strutture, unioni e enumerazioni. Si introduce l’utilizzo di queste strutture negli array e altre strutture dati complesse. Si introduce inoltre in maniera non formale l’algoritmo di ordinamento bubble sort.
+  </div>
+</div>
 
 
 </header>
 
 
-<section id="strutture-1" class="level1">
-<h1>Strutture</h1>
-<section id="strutture-in-c-1" class="level2">
-<h2 class="anchored" data-anchor-id="strutture-in-c-1">Strutture in C</h2>
+<section id="strutture-unioni-ed-enumerazioni" class="level1">
+<h1>Strutture, Unioni ed Enumerazioni</h1>
 <p>Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:</p>
 <ul>
 <li>Strutture: insieme di dati</li>
 <li>Unioni: alternative tra tipi diversi</li>
 <li>Enumerazioni: insieme di costanti</li>
 </ul>
-</section>
 <section id="struct-3" class="level2">
 <h2 class="anchored" data-anchor-id="struct-3"><code>struct</code></h2>
 <p>Una struttura è un insieme di dati, si differenzia dagli array perché:</p>
 <ul>
-<li>gli elementi possono essere di tipo diverso</li>
-<li>gli elementi sono identificati da un nome</li>
+<li>gli elementi possono essere di tipo diverso;</li>
+<li>gli elementi sono identificati da un nome;</li>
 </ul>
+<p>Di seguito un esempio di dichiarazione di una struttura:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> studente <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> nome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> cognome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> matricola<span class="op">;</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="inizializzazione-1" class="level2">
-<h2 class="anchored" data-anchor-id="inizializzazione-1">Inizializzazione</h2>
+<p>Come si può vedere dall’esempio, la dichiarazione di una struttura è introdotta dalla parola chiave <code>struct</code>, seguita dal nome della struttura e da una lista di dichiarazioni di variabili. Ricorda fortemente la dichiarazione di una classe in Java, in questo caso però non ci sono metodi, e i dati non si chiamano campi o attributi, ma membri. I membri hanno un nome e un tipo, possono essere di qualsiasi tipo, anche un’altra struttura. La grossa differenza con Java è che i membri sono sempre pubblici e non c’è modo di dichiararli privati.</p>
+<section id="inizializzazione-1" class="level3">
+<h3 class="anchored" data-anchor-id="inizializzazione-1">Inizializzazione</h3>
 <p>Si possono inizializzare le strutture quando vengono dichiarate:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span><span class="st">"Mario"</span><span class="op">,</span> <span class="st">"Rossi"</span><span class="op">,</span> <span class="dv">12345</span><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Si possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0.</p>
-<p>Un modo alternativo di inizializzare:</p>
+<p>Si possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0 (nel caso delle stringhe l’inizializzazione a zero equivale a dire stringa vuota <code>""</code>).</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il tipo di una variabile <code>struct</code> è <code>struct nome_struct</code>, omettere la parola struct è un errore.</p>
+</div>
+</div>
+<p>Un modo alternativo di inizializzare una struttura è quello di specificare il nome dei membri:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>nome <span class="op">=</span> <span class="st">"Mario"</span><span class="op">,</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>cognome <span class="op">=</span> <span class="st">"Rossi"</span><span class="op">,</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>matricole <span class="op">=</span> <span class="dv">12345</span><span class="op">,</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In questa modalità l’ordine degli elementi non è importante, ma è necessario specificare il nome di tutti i membri. Questo metodo è molto utile quando si hanno strutture con molti membri e si vuole inizializzare solo alcuni di essi.</p>
 </section>
-<section id="accedere-agli-elementi-1" class="level2">
-<h2 class="anchored" data-anchor-id="accedere-agli-elementi-1">Accedere agli elementi</h2>
-<p>Per accedere au singoli elementi di una struttura (detti anche membri) si usa l’operatore <code>.</code> (punto) dopo il nome della variabile:</p>
+<section id="accedere-agli-elementi-1" class="level3">
+<h3 class="anchored" data-anchor-id="accedere-agli-elementi-1">Accedere agli elementi</h3>
+<p>Per accedere ai singoli membri di una struttura si usa l’operatore <code>.</code> (punto) dopo il nome della variabile:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span><span class="st">"Mario"</span><span class="op">,</span> <span class="st">"Rossi"</span><span class="op">,</span> <span class="dv">12345</span><span class="op">};</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"Nome: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> s<span class="op">.</span>nome<span class="op">);</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"Cognome: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> s<span class="op">.</span>cognome<span class="op">);</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>s<span class="op">.</span>matricola <span class="op">=</span> <span class="dv">54321</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="copie-di-strutture-1" class="level2">
-<h2 class="anchored" data-anchor-id="copie-di-strutture-1">Copie di strutture</h2>
+<section id="copie-di-strutture-1" class="level3">
+<h3 class="anchored" data-anchor-id="copie-di-strutture-1">Copie di strutture</h3>
 <p>Si può copiare interamente una struttura usando una variabile dello stesso tipo:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> studente a<span class="op">,</span> b <span class="op">=</span> <span class="op">{</span><span class="st">"Matteo"</span><span class="op">,</span> <span class="st">"Spanio"</span><span class="op">,</span> <span class="dv">56789</span><span class="op">};</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> b<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In questo caso si può notare una delle principali differenze con gli array:</p>
+<div class="sourceCode" id="annotated-cell-6"><pre class="sourceCode c code-annotation-code code-with-copy code-annotated"><code class="sourceCode c"><a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">};</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>b<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a<span class="op">;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="1" data-code-annotation="1"><code>a</code> è un array di interi;</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="2" data-code-annotation="2"><code>b</code> è un puntatore a intero;</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="3" data-code-annotation="3"><code>b = a</code> non è una copia dell’array <code>a</code> ma assegna a <code>b</code> l’indirizzo di <code>a</code>, pertanto qualsiasi modifica dei dati di <code>a</code> si riflette anche in <code>b</code> (e viceversa). Cioè <code>a</code> e <code>b</code> puntano alla stessa area di memoria.</span>
+</dd>
+</dl>
+<p>Utilizzando le strutture invece, la copia è effettiva:</p>
+<div class="sourceCode" id="annotated-cell-7"><pre class="sourceCode c code-annotation-code code-with-copy code-annotated"><code class="sourceCode c"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> array <span class="op">{</span></span>
+<span id="annotated-cell-7-2"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> dati<span class="op">[</span><span class="dv">5</span><span class="op">];</span></span>
+<span id="annotated-cell-7-3"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-4" class="code-annotation-target"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> array a <span class="op">=</span> <span class="op">{{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">}};</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-5" class="code-annotation-target"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> array b<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-6" class="code-annotation-target"><a href="#annotated-cell-7-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a<span class="op">;</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="4" data-code-annotation="1"><code>a</code> inizializzo <code>a</code> con un array di interi;</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="5" data-code-annotation="2"><code>b</code> dichiaro <code>b</code> come struttura;</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="6" data-code-annotation="3"><code>b = a</code> copio <code>a</code> in <code>b</code>, vengono effettivamente copiati i dati dell’array <code>a.dati</code> in <code>b.dati</code>. Cioè <code>a</code> e <code>b</code> si trovano in aree di memoria diverse.</span>
+</dd>
+</dl>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -362,59 +463,344 @@ Importante
 </div>
 </div>
 </section>
-<section id="dare-i-nomi-alle-strutture-1" class="level2">
-<h2 class="anchored" data-anchor-id="dare-i-nomi-alle-strutture-1">Dare i nomi alle strutture</h2>
+<section id="dare-i-nomi-alle-strutture-1" class="level3">
+<h3 class="anchored" data-anchor-id="dare-i-nomi-alle-strutture-1">Dare i nomi alle strutture</h3>
 <p>Le stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.</p>
 <p>Le strutture col nome, detto <em>structure tag</em>, si dichiarano come abbiamo già visto:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> nome <span class="op">{</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    type member_name<span class="op">;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Avviso
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Il tipo di una variabile <code>struct</code> è <code>struct nome_struct</code>, omettere la parola struct è un errore.</p>
-</div>
-</div>
 </section>
-<section id="strutture-anonime-1" class="level2">
-<h2 class="anchored" data-anchor-id="strutture-anonime-1">Strutture anonime</h2>
+<section id="strutture-anonime-1" class="level3">
+<h3 class="anchored" data-anchor-id="strutture-anonime-1">Strutture anonime</h3>
 <p>Nel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> <span class="op">{</span> <span class="dt">int</span> x<span class="op">;</span> <span class="dt">int</span> y<span class="op">;</span> <span class="op">}</span> punto<span class="op">;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>punto<span class="op">.</span>x <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>punto<span class="op">.</span>y <span class="op">=</span> <span class="dv">18</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Così facendo la struttura non ha un nome e non può essere riutilizzata facilmente, ogni volta che si vuole dichiarare una variabile di quel tipo bisogna riscrivere la struttura.</p>
 </section>
-<section id="typedef-1" class="level2">
-<h2 class="anchored" data-anchor-id="typedef-1">typedef</h2>
+<section id="strutture-con-typedef-1" class="level3">
+<h3 class="anchored" data-anchor-id="strutture-con-typedef-1">Strutture con typedef</h3>
 <p><code>typedef</code> è un operatore che permette di definire alias per i tipi:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">int</span> Bool<span class="op">;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">float</span> Euro<span class="op">;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">char</span><span class="op">[]</span> String<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">char</span><span class="op">*</span> String<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Queste dichiarazioni permettono scrivere codice più chiaro.</p>
-</section>
-<section id="strutture-con-typedef-1" class="level2">
-<h2 class="anchored" data-anchor-id="strutture-con-typedef-1">Strutture con typedef</h2>
+<p>Lo stesso effetto si può ottenere dichiarando delle macro:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BOOL </span><span class="dt">int</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define EURO </span><span class="dt">float</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STRING </span><span class="dt">char</span><span class="op">*</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In generale si preferisce usare <code>typedef</code> perché è più chiaro e il compilatore può fare dei controlli sui tipi.</p>
 <p>Dal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave <code>struct</code> per riferirsi al tipo delle strutture grazie a typedef:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x<span class="op">;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y<span class="op">;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Point<span class="op">;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Point punto <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>y <span class="op">=</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Point<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Point punto <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>y <span class="op">=</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In questo modo si può dichiarare una variabile di tipo <code>Point</code> senza usare la parola chiave <code>struct</code>.</p>
+</section>
+<section id="cast-a-strutture-1" class="level3">
+<h3 class="anchored" data-anchor-id="cast-a-strutture-1">Cast a strutture</h3>
+<p>Una volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x<span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y<span class="op">;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Point<span class="op">;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>Point s<span class="op">;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="op">(</span>Point<span class="op">)</span> <span class="op">{</span> <span class="op">.</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">.</span>y <span class="op">=</span> <span class="dv">2</span> <span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> point <span class="op">{</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y<span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Point<span class="op">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>Point somma<span class="op">(</span>Point a<span class="op">,</span> <span class="kw">struct</span> point b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">(</span>Point<span class="op">)</span> <span class="op">{</span> <span class="op">.</span>x <span class="op">=</span> a<span class="op">.</span>x <span class="op">+</span> b<span class="op">.</span>x<span class="op">,</span> <span class="op">.</span>y <span class="op">=</span> a<span class="op">.</span>y <span class="op">+</span> b<span class="op">.</span>y <span class="op">};</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> distanza<span class="op">(</span>Point a<span class="op">,</span> Point b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sqrt<span class="op">(</span>pow<span class="op">(</span>a<span class="op">.</span>x <span class="op">-</span> b<span class="op">.</span>x<span class="op">,</span> <span class="dv">2</span><span class="op">)</span> <span class="op">+</span> pow<span class="op">(</span>a<span class="op">.</span>y <span class="op">-</span> b<span class="op">.</span>y<span class="op">,</span> <span class="dv">2</span><span class="op">));</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="struct-e-puntatori-1" class="level3">
+<h3 class="anchored" data-anchor-id="struct-e-puntatori-1"><code>struct</code> e puntatori</h3>
+<p>Si possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> point <span class="op">*</span>p<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Point <span class="op">*</span>p1<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> foo<span class="op">(</span>Point<span class="op">*</span> p<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="array-di-struct" class="level2">
+<h2 class="anchored" data-anchor-id="array-di-struct">Array di struct</h2>
+<p>Si possono creare array di strutture:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Point punti<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>punti<span class="op">[</span><span class="dv">0</span><span class="op">].</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si può inserire un array in una struttura:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> libretto <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> voti<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> num_voti<span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si può inserire una struttura in un’altra struttura:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> data <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> giorno<span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> mese<span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> anno<span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> persona <span class="op">{</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> nome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> cognome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> data data_nascita<span class="op">;</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>si possono anche innestare struct anonime:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> nome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> cognome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> giorno<span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> mese<span class="op">;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> anno<span class="op">;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> data_nascita<span class="op">;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> persona<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si possono inserire unioni<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> in una struttura:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> nome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> cognome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span> <span class="op">{</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> matricola<span class="op">;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">char</span> codice_fiscale<span class="op">[</span><span class="dv">16</span><span class="op">];</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> id<span class="op">;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> persona<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si può inserire strutture in unioni:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">union</span> <span class="op">{</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> giorno<span class="op">;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> mese<span class="op">;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> anno<span class="op">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> data<span class="op">;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> intero<span class="op">;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> u<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="esempio-mondiali-1982" class="level2">
+<h2 class="anchored" data-anchor-id="esempio-mondiali-1982">Esempio: Mondiali 1982</h2>
+<p>Vediamo ora un esempio di programma basato sulle strutture.</p>
+<p>Si vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai <a href="https://it.wikipedia.org/wiki/Campionato_mondiale_di_calcio_1982">mondiali del 1982</a>:</p>
+<ol type="1">
+<li>implementare una struttura dati per memorizzare i dati di un giocatore di calcio;</li>
+<li>memorizzare l’elenco dei giocatori della squadra;</li>
+<li>ordinare i giocatori in base numero di maglia.</li>
+</ol>
+<p>Un giocatore è identificabile da nome, cognome e numero di maglia (chiaramente si potrebbero aggiungere molti altri dati, come la data di nascita, il ruolo, ecc.). Si può quindi definire una struttura <code>Giocatore</code> che contenga questi dati:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BUFFER_SIZE </span><span class="dv">128</span><span class="pp"> </span><span class="co">// dimensione massima di un buffer</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> giocatore</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> nome<span class="op">[</span>BUFFER_SIZE<span class="op">];</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> cognome<span class="op">[</span>BUFFER_SIZE<span class="op">];</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> numero_maglia<span class="op">;</span> <span class="co">// non esistono numeri di maglia negativi</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Giocatore<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Il codice sopra riportato definisce la struttura <code>struct giocatore</code> e vi associa il nuovo tipo <code>Giocatore</code>. La struttura contiene tre membri: <code>nome</code>, <code>cognome</code> e <code>numero_maglia</code>, in quanto stringhe, il nome e cognome sono di tipo <code>char[]</code>, mentre il numero di maglia è un intero senza segno. Si noti che gli array vengono dichiarati con una dimensione massima <code>BUFFER_SIZE</code>, ciò vuol dire che il nome e il cognome possono avere una lunghezza massima di <code>BUFFER_SIZE - 1</code> caratteri, purtroppo C non controlla che questa condizione sia rispettata. In altre parole, all’interno del programma posso inizializzare una struttura <code>Giocatore</code> con un nome o cognome più lungo di <code>BUFFER_SIZE - 1</code> caratteri, ma il comportamento del programma in questo caso è indefinito. Questo è uno dei più grandi problemi di C.</p>
+<section id="memorizzare-la-lista-dei-giocatori-1" class="level3">
+<h3 class="anchored" data-anchor-id="memorizzare-la-lista-dei-giocatori-1">Memorizzare la lista dei giocatori</h3>
+<p>La struct <code>Giocatore</code> è di fatto un tipo di dato, possiamo quindi creare un array di esami dove memorizzare la formazione:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NUM </span><span class="dv">22</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Giocatore squadra<span class="op">[</span>NUM<span class="op">];</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La squadra è composta da 22 giocatori (11 titolari, 5 in panchina e 6 riserve). Questa dichiarazione crea un array di 22 elementi di tipo <code>Giocatore</code> e lo assegna alla variabile <code>squadra</code>. Quando si dichiara un array di strutture, si può accedere ai membri di ciascuna struttura usando la notazione <code>.</code> (punto):</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>squadra<span class="op">[</span><span class="dv">0</span><span class="op">].</span>numero_maglia <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Questo perchè <code>squadra[0]</code> è una struttura di tipo <code>Giocatore</code> e <code>numero_maglia</code> è un membro di questa struttura, quando invece si ha un puntatore a una struttura, si usa l’operatore <code>-&gt;</code> (freccia):</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Giocatore <span class="op">*</span>p <span class="op">=</span> <span class="op">&amp;</span>squadra<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>p<span class="op">-&gt;</span>numero_maglia <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>L’operatore <code>-&gt;</code> è una comodità sintattica, infatti <code>p-&gt;numero_maglia</code> è equivalente a <code>(*p).numero_maglia</code>.</p>
+</section>
+<section id="ordinare-i-giocatori-1" class="level3">
+<h3 class="anchored" data-anchor-id="ordinare-i-giocatori-1">Ordinare i giocatori</h3>
+<p>Per ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:</p>
+<p>Il più intuitivo (ma non il più efficiente) è il <a href="https://it.wikipedia.org/wiki/Bubble_sort">Bubble Sort</a>, di seguito una descrizione dell’algoritmo in pseudocodice:</p>
+<pre><code>Repeat n-1 times
+    For i from 0 to n–2
+        If numbers[i] and numbers[i+1] out of order
+            Swap them
+    If no swaps
+        Quit</code></pre>
+<p>L’idea è quella di scorrere l’array di numeri e scambiare i numeri adiacenti se non sono in ordine. Questo processo viene ripetuto finché non si è completato un passaggio senza scambi. Questo algoritmo è molto inefficiente, ma è molto semplice da implementare. La complessità computazionale del Bubble Sort è <span class="math inline">\(O(n^2)\)</span>.</p>
+<p>L’implementazione dello pseudocodice è molto semplice, infatti si tratta di due cicli annidati e uno scambio di due elementi:</p>
+<ol type="1">
+<li>Si scorre l’array <code>squadra</code> <code>NUM - 1</code> volte;</li>
+<li>Si scorre l’array <code>squadra</code> da <code>0</code> a <code>NUM - 2</code>;</li>
+<li>Si controlla se <code>squadra[i]</code> e <code>squadra[i + 1]</code> sono fuori ordine, in tal caso <strong>si scambiano</strong>. La funzione swap l’abbiamo già vista nella <a href="../04/">lezione sui puntatori</a>.</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> bubble_sort<span class="op">(</span>Giocatore <span class="op">*</span>squadra<span class="op">,</span> <span class="dt">size_t</span> n<span class="op">)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> n <span class="op">-</span> <span class="dv">2</span><span class="op">;</span> j<span class="op">++)</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>squadra<span class="op">[</span>j<span class="op">].</span>numero_maglia <span class="op">&gt;</span> squadra<span class="op">[</span>j <span class="op">+</span> <span class="dv">1</span><span class="op">].</span>numero_maglia<span class="op">)</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                swap<span class="op">(&amp;</span>squadra<span class="op">[</span>j<span class="op">],</span> <span class="op">&amp;</span>squadra<span class="op">[</span>j <span class="op">+</span> <span class="dv">1</span><span class="op">],</span> <span class="kw">sizeof</span><span class="op">(</span>Giocatore<span class="op">));</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Per ottimizzare il codice, si può usare un flag per controllare se durante un passaggio non si è effettuato alcuno scambio, in tal caso si può uscire dal ciclo:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> bubble_sort<span class="op">(</span>Giocatore <span class="op">*</span>squadra<span class="op">,</span> <span class="dt">size_t</span> n<span class="op">)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> scambiato <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> n <span class="op">-</span> <span class="dv">2</span><span class="op">;</span> j<span class="op">++)</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>squadra<span class="op">[</span>j<span class="op">].</span>numero_maglia <span class="op">&gt;</span> squadra<span class="op">[</span>j <span class="op">+</span> <span class="dv">1</span><span class="op">].</span>numero_maglia<span class="op">)</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                swap<span class="op">(&amp;</span>squadra<span class="op">[</span>j<span class="op">],</span> <span class="op">&amp;</span>squadra<span class="op">[</span>j <span class="op">+</span> <span class="dv">1</span><span class="op">],</span> <span class="kw">sizeof</span><span class="op">(</span>Giocatore<span class="op">));</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>                scambiato <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(!</span>scambiato<span class="op">)</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Di seguito un’animazione che mostra come funziona il Bubble Sort:</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif" class="img-fluid"></p>
+<p>Se stai consultando questa guida in formato HTML, puoi scaricare una versione completa del codice sorgente cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a <a href="https://github.com/matteospanio/corso-c/blob/master/lessons/05/code/mondiali1982.c">questo link</a>.</p>
+<p><a href="#dnldts46651" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGJvb2wuaD4KI2luY2x1ZGUgPHN0ZGlvLmg+CiNpbmNsdWRlIDxzdGRsaWIuaD4KI2RlZmluZSBCVUZGRVJfU0laRSA2NCAgIC8vIGRpbWVuc2lvbmUgZGVsIGJ1ZmZlciBwZXIgbGUgc3RyaW5naGUKI2RlZmluZSBOVU1fR0lPQ0FUT1JJIDIyIC8vIG51bWVybyBkaSBnaW9jYXRvcmkgaW4gdW5hIHNxdWFkcmEgZGkgY2FsY2lvCgovKioKICogQGJyaWVmIExhIHN0cnV0dHVyYSBHaW9jYXRvcmUgcmFwcHJlc2VudGEgdW4gZ2lvY2F0b3JlIGRpIGNhbGNpby4KICoKICogQHBhcmFtIG5vbWUgSWwgbm9tZSBkZWwgZ2lvY2F0b3JlLgogKiBAcGFyYW0gY29nbm9tZSBJbCBjb2dub21lIGRlbCBnaW9jYXRvcmUuCiAqIEBwYXJhbSBudW1lcm9fbWFnbGlhIElsIG51bWVybyBkaSBtYWdsaWEgZGVsIGdpb2NhdG9yZS4KICoKICogQG5vdGUgTGEgc3RydXR0dXJhIEdpb2NhdG9yZSDDqCBkZWZpbml0YSBjb24gbGEga2V5d29yZCB0eXBlZGVmIHBlciBwb3RlciBlc3NlcmUgdXRpbGl6emF0YSBjb21lIHRpcG8gZGkgZGF0by4KICovCnR5cGVkZWYgc3RydWN0IGdpb2NhdG9yZQp7CiAgICBjaGFyIG5vbWVbQlVGRkVSX1NJWkVdOwogICAgY2hhciBjb2dub21lW0JVRkZFUl9TSVpFXTsKICAgIHVuc2lnbmVkIGludCBudW1lcm9fbWFnbGlhOwp9IEdpb2NhdG9yZTsKCnZvaWQgaW5pdF9zcXVhZHJhKEdpb2NhdG9yZSAqc3F1YWRyYSk7CnZvaWQgcHJpbnRfc3F1YWRyYShjb25zdCBHaW9jYXRvcmUgKmdpb2NhdG9yaSwgc2l6ZV90IG4pOwp2b2lkIG9yZGluYV9zcXVhZHJhKEdpb2NhdG9yZSAqZ2lvY2F0b3JpLCBzaXplX3Qgbik7CgppbnQgbWFpbih2b2lkKQp7CiAgICBHaW9jYXRvcmUgc3F1YWRyYVtOVU1fR0lPQ0FUT1JJXTsKICAgIGluaXRfc3F1YWRyYShzcXVhZHJhKTsKCiAgICBwcmludF9zcXVhZHJhKHNxdWFkcmEsIE5VTV9HSU9DQVRPUkkpOwogICAgb3JkaW5hX3NxdWFkcmEoc3F1YWRyYSwgTlVNX0dJT0NBVE9SSSk7CiAgICBwcmludF9zcXVhZHJhKHNxdWFkcmEsIE5VTV9HSU9DQVRPUkkpOwp9CgovKioKICogQGJyaWVmIEluaXppYWxpenphIGxhIHNxdWFkcmEgY29uIGkgZ2lvY2F0b3JpIGRlbGxhIGZpbmFsZSBkZWkgbW9uZGlhbGkgMTk4Mi4KICoKICogSW4gQyBzcGVzc28gc2kgdXRpbGl6emFubyBmdW56aW9uaSBwZXIgaW5pemlhbGl6emFyZSBsZSBzdHJ1dHR1cmUgZGF0aSwgaW4gcXVlc3RvCiAqIGNhc28sIGxhIGZ1bnppb25lIGluaXRfc3F1YWRyYSBpbml6aWFsaXp6YSBsJ2FycmF5IGRpIGdpb2NhdG9yaSBjb24gaSBnaW9jYXRvcmkgZGVsbGEKICogZmluYWxlIGRlaSBtb25kaWFsaSAxOTgyLgogKgogKiBAcGFyYW0gc3F1YWRyYSBMJ2FycmF5IGRpIGdpb2NhdG9yaSBkYSBpbml6aWFsaXp6YXJlLgogKi8Kdm9pZCBpbml0X3NxdWFkcmEoR2lvY2F0b3JlICpzcXVhZHJhKQp7CiAgICAvLyBmb3JtYXppb25lIGRlbGxhIGZpbmFsZSBkZWkgbW9uZGlhbGkgMTk4MgogICAgLy8gdGl0b2xhcmkKICAgIHNxdWFkcmFbMF0gPSAoR2lvY2F0b3JlKXsiRGlubyIsICJab2ZmIiwgMX07CiAgICBzcXVhZHJhWzFdID0gKEdpb2NhdG9yZSl7IkdpdXNlcHBlIiwgIkJlcmdvbWkiLCAzfTsKICAgIHNxdWFkcmFbMl0gPSAoR2lvY2F0b3JlKXsiQW50b25pbyIsICJDYWJyaW5pIiwgNH07CiAgICBzcXVhZHJhWzNdID0gKEdpb2NhdG9yZSl7IkZ1bHZpbyIsICJDb2xsb3ZhdGkiLCA1fTsKICAgIHNxdWFkcmFbNF0gPSAoR2lvY2F0b3JlKXsiQ2xhdWRpbyIsICJHZW50aWxlIiwgNn07CiAgICBzcXVhZHJhWzVdID0gKEdpb2NhdG9yZSl7IkdhZXRhbm8iLCAiU2NpcmVhIiwgN307CiAgICBzcXVhZHJhWzZdID0gKEdpb2NhdG9yZSl7IkdhYnJpZWxlIiwgIk9yaWFsaSIsIDEzfTsKICAgIHNxdWFkcmFbN10gPSAoR2lvY2F0b3JlKXsiTWFyY28iLCAiVGFyZGVsbGkiLCAxNH07CiAgICBzcXVhZHJhWzhdID0gKEdpb2NhdG9yZSl7IkJydW5vIiwgIkNvbnRpIiwgMTZ9OwogICAgc3F1YWRyYVs5XSA9IChHaW9jYXRvcmUpeyJGcmFuY2VzY28iLCAiR3JhemlhbmkiLCAxOX07CiAgICBzcXVhZHJhWzEwXSA9IChHaW9jYXRvcmUpeyJQYW9sbyIsICJSb3NzaSIsIDIwfTsKICAgIC8vIHBhbmNoaW5hCiAgICBzcXVhZHJhWzExXSA9IChHaW9jYXRvcmUpeyJJdmFubyIsICJCb3Jkb24iLCAxMn07CiAgICBzcXVhZHJhWzEyXSA9IChHaW9jYXRvcmUpeyJHaXVzZXBwZSIsICJEb3NzZW5hIiwgMTB9OwogICAgc3F1YWRyYVsxM10gPSAoR2lvY2F0b3JlKXsiR2lhbXBpZXJvIiwgIk1hcmluaSIsIDExfTsKICAgIHNxdWFkcmFbMTRdID0gKEdpb2NhdG9yZSl7IkZyYW5jbyIsICJDYXVzaW8iLCAxNX07CiAgICBzcXVhZHJhWzE1XSA9IChHaW9jYXRvcmUpeyJBbGVzc2FuZHJvIiwgIkFsdG9iZWxsaSIsIDE4fTsKICAgIC8vIHJpc2VydmUKICAgIHNxdWFkcmFbMTZdID0gKEdpb2NhdG9yZSl7IkZyYW5jbyIsICJCYXJlc2kiLCAyfTsKICAgIHNxdWFkcmFbMTddID0gKEdpb2NhdG9yZSl7IlBpZXRybyIsICJWaWVyY2hvd29kIiwgOH07CiAgICBzcXVhZHJhWzE4XSA9IChHaW9jYXRvcmUpeyJHaWFuY2FybG8iLCAiQW50b2dub25pIiwgOX07CiAgICBzcXVhZHJhWzE5XSA9IChHaW9jYXRvcmUpeyJEYW5pZWxlIiwgIk1hc3Nhcm8iLCAxN307CiAgICBzcXVhZHJhWzIwXSA9IChHaW9jYXRvcmUpeyJGcmFuY2UiLCAiU2VsdmFnZ2kiLCAyMX07CiAgICBzcXVhZHJhWzIxXSA9IChHaW9jYXRvcmUpeyJHaW92YW5uaSIsICJHYWxsaSIsIDIyfTsKfQoKLyoqCiAqIEBicmllZiBTdGFtcGEgbGEgc3F1YWRyYS4KICoKICogTGEgZnVuemlvbmUgcHJpbnRfc3F1YWRyYSBzdGFtcGEgYSBtb25pdG9yIGkgZ2lvY2F0b3JpIGRlbGxhIHNxdWFkcmEuIE5lbCBmb3JtYXRvOgogKiAlMDJkKSAlc1x0JXNcbgogKiBvc3NpYSBpbCBudW1lcm8gZGkgbWFnbGlhLCBpbCBub21lIGUgaWwgY29nbm9tZSBkZWwgZ2lvY2F0b3JlLgogKiBJbCBudW1lcm8gZGkgbWFnbGlhIMOoIHN0YW1wYXRvIGNvbiBkdWUgY2lmcmUsIG1lbnRyZSBpbCBjYXJhdHRlcmUgc3BlY2lhbGUgJ1x0JyDDqCB1bgogKiBjYXJhdHRlcmUgZGkgdGFidWxhemlvbmUuCiAqCiAqIEBwYXJhbSBnaW9jYXRvcmkgTCdhcnJheSBkaSBnaW9jYXRvcmkgZGEgc3RhbXBhcmUuCiAqIEBwYXJhbSBuIElsIG51bWVybyBkaSBnaW9jYXRvcmkgZGEgc3RhbXBhcmUuCiAqLwp2b2lkIHByaW50X3NxdWFkcmEoY29uc3QgR2lvY2F0b3JlICpnaW9jYXRvcmksIHNpemVfdCBuKQp7CiAgICBmb3IgKHNpemVfdCBpID0gMDsgaSA8IG47IGkrKykKICAgIHsKICAgICAgICBwcmludGYoIiUwMmQpICVzXHQlc1xuIiwgZ2lvY2F0b3JpW2ldLm51bWVyb19tYWdsaWEsIGdpb2NhdG9yaVtpXS5ub21lLCBnaW9jYXRvcmlbaV0uY29nbm9tZSk7CiAgICB9CiAgICBwcmludGYoIlxuIik7Cn0KCi8qKgogKiBAYnJpZWYgU2NhbWJpYSBkdWUgZ2lvY2F0b3JpLgogKgogKiBMYSBmdW56aW9uZSBzd2FwIHNjYW1iaWEgZHVlIGdpb2NhdG9yaSBhIGUgYi4KICoKICogQHBhcmFtIGEgSWwgcHJpbW8gZ2lvY2F0b3JlLgogKiBAcGFyYW0gYiBJbCBzZWNvbmRvIGdpb2NhdG9yZS4KICovCnZvaWQgc3dhcChHaW9jYXRvcmUgKmEsIEdpb2NhdG9yZSAqYikKewogICAgR2lvY2F0b3JlIHRlbXAgPSAqYTsKICAgICphID0gKmI7CiAgICAqYiA9IHRlbXA7Cn0KCi8qKgogKiBAYnJpZWYgT3JkaW5hIGxhIHNxdWFkcmEgaW4gYmFzZSBhbCBudW1lcm8gZGkgbWFnbGlhLgogKgogKiBMYSBmdW56aW9uZSBvcmRpbmFfc3F1YWRyYSBvcmRpbmEgbGEgc3F1YWRyYSBpbiBiYXNlIGFsIG51bWVybyBkaSBtYWdsaWEgZGVpCiAqIGdpb2NhdG9yaSBpbiBvcmRpbmUgY3Jlc2NlbnRlLgogKgogKiBMJ29yZGluYW1lbnRvIMOoIGVmZmV0dHVhdG8gY29uIGwnYWxnb3JpdG1vIEJ1YmJsZSBTb3J0LCBsYSBjb21wbGVzc2l0w6AgY29tcHV0YXppb25hbGUKICogw6ggTyhuXjIpIG5lbCBjYXNvIHBlZ2dpb3JlLgogKgogKiBAcGFyYW0gZ2lvY2F0b3JpIEwnYXJyYXkgZGkgZ2lvY2F0b3JpIGRhIG9yZGluYXJlLgogKiBAcGFyYW0gbiBMYSBkaW1lbnNpb25lIGRlbGwnYXJyYXkgZGkgZ2lvY2F0b3JpLgogKi8Kdm9pZCBvcmRpbmFfc3F1YWRyYShHaW9jYXRvcmUgKmdpb2NhdG9yaSwgc2l6ZV90IG4pCnsKICAgIC8vIGZsYWcgcGVyIGNvbnRyb2xsYXJlIHNlIGNpIHNvbm8gc3RhdGkgc2NhbWJpIGR1cmFudGUgbCduLWVzaW1hIGl0ZXJhemlvbmUKICAgIGJvb2wgc3dhcHBlZDsKICAgIGZvciAoc2l6ZV90IGkgPSAwOyBpIDwgbiAtIDE7IGkrKykKICAgIHsKICAgICAgICAvLyBsYSBmbGFnIMOoIGluaXppYWxpenphdGEgYSBmYWxzZSBhbGwnaW5pemlvIGRpIG9nbmkgaXRlcmF6aW9uZQogICAgICAgIHN3YXBwZWQgPSBmYWxzZTsKICAgICAgICBmb3IgKHNpemVfdCBqID0gMDsgaiA8IG4gLSBpIC0gMTsgaisrKQogICAgICAgIHsKICAgICAgICAgICAgLy8gc2UsIHByZXNhIHVuYSBjb3BwaWEgZGkgZ2lvY2F0b3JpLCBpbCBudW1lcm8gZGkgbWFnbGlhIGRlbCBwcmltbwogICAgICAgICAgICAvLyBnaW9jYXRvcmUgw6ggbWFnZ2lvcmUgZGVsIHNlY29uZG8sIGFsbG9yYSBzY2FtYmlhIGkgZ2lvY2F0b3JpCiAgICAgICAgICAgIGlmIChnaW9jYXRvcmlbal0ubnVtZXJvX21hZ2xpYSA+IGdpb2NhdG9yaVtqICsgMV0ubnVtZXJvX21hZ2xpYSkKICAgICAgICAgICAgewogICAgICAgICAgICAgICAgc3dhcCgmZ2lvY2F0b3JpW2pdLCAmZ2lvY2F0b3JpW2ogKyAxXSk7IC8vIHNjYW1iaWEgaSBnaW9jYXRvcmkKICAgICAgICAgICAgICAgIHN3YXBwZWQgPSB0cnVlOyAgICAgICAgICAgICAgICAgICAgICAgICAvLyBzZSBjaSBzb25vIHN0YXRpIHNjYW1iaSwgbGEgZmxhZyDDqCBzZXR0YXRhIGEgdHJ1ZQogICAgICAgICAgICB9CiAgICAgICAgfQogICAgICAgIC8vIHNlIG5vbiBjaSBzb25vIHN0YXRpIHNjYW1iaSBkdXJhbnRlIGwnbi1lc2ltYSBpdGVyYXppb25lLCBsJ2FycmF5IMOoIG9yZGluYXRvCiAgICAgICAgaWYgKCFzd2FwcGVkKQogICAgICAgIHsKICAgICAgICAgICAgLy8gbCdpc3RydXppb25lIGJyZWFrIGludGVycm9tcGUgaWwgY2ljbG8gZm9yIHBpw7kgZXN0ZXJubwogICAgICAgICAgICBicmVhazsKICAgICAgICB9CiAgICB9Cn0K').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'esempio.c'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-default downloadthis  " id="dnldts46651"><i class="bi bi-download"></i> Scarica l'esempio completo </button></a></p>
+</section>
+</section>
+<section id="unioni-2" class="level2">
+<h2 class="anchored" data-anchor-id="unioni-2">Unioni</h2>
+<p>Le unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso, la differenza sta nel fatto che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">union</span> <span class="op">{</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i<span class="op">;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> d<span class="op">;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> u<span class="op">;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i<span class="op">;</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> d<span class="op">;</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> s<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In questo caso <code>u</code> occupa in memoria lo spazio necessario per la variabile più grande, in questo caso <code>double</code> (8 byte), mentre <code>s</code> occupa lo spazio necessario per entrambi i membri (4 + 8 byte).</p>
+<p>Si può inizializzare solo un elemento di una union:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">union</span> <span class="op">{</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i<span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> d<span class="op">;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> u <span class="op">=</span> <span class="op">{</span> <span class="op">.</span>i <span class="op">=</span> <span class="dv">3</span> <span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si presti molta attenzione a non leggere mai un membro di una union che non è stato inizializzato, il comportamento del programma in questo caso è indefinito.</p>
+<p>Come per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef.</p>
+</section>
+<section id="enumerazioni-1" class="level2">
+<h2 class="anchored" data-anchor-id="enumerazioni-1">Enumerazioni</h2>
+<p>In molti programmi si usano interi come “<em>codici</em>” per indicare varie cose. Un caso comune sono per esempio i codici di errore.</p>
+<p>Spesso si usano macro o costanti, ma è più chiaro usare enumerazioni:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> <span class="op">{</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    CUORI<span class="op">,</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    QUADRI<span class="op">,</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    FIORI<span class="op">,</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    PICCHE</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> s1<span class="op">,</span> s2<span class="op">;</span>`</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ora le variabili <code>s1</code> e <code>s2</code> possono assumere solo uno dei quattro valori definiti.</p>
+<p>Un esempio molto comune è la definizione del tipo booleano:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">enum</span> <span class="op">{</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    FALSE<span class="op">,</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    TRUE</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Bool<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In questo modo si può usare <code>Bool</code> come tipo di variabile, e assegnare solo i valori <code>FALSE</code> e <code>TRUE</code>. Solitamente gli elementi di un’enumerazione sono scritti in maiuscolo, per distinguerli dalle variabili. In questo caso <code>FALSE</code> e <code>TRUE</code> sono costanti, FALSE ha valore 0 e TRUE ha valore 1.</p>
+<p>Di default C assegna dei valori interi crescenti agli elementi dell’enumerazione, ma si possono assegnare valori specifici:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> <span class="op">{</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    LUN <span class="op">=</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    MAR <span class="op">=</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    MER <span class="op">=</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    GIO <span class="op">=</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    VEN <span class="op">=</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    SAB <span class="op">=</span> <span class="dv">6</span><span class="op">,</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    DOM <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> giorno<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Se non si assegna un valore, C assegna il valore dell’elemento precedente più uno.</p>
+</section>
+</section>
+<section id="strutture-dati-2" class="level1">
+<h1>Strutture dati</h1>
+<p>Le strutture sono molto utili per definire strutture dati. Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…</p>
+<section id="array-con-strutture-2" class="level2">
+<h2 class="anchored" data-anchor-id="array-con-strutture-2">Array con strutture</h2>
+<p>Gli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza <em>a mano</em>, per questo è una pratica comune creare una struttura che contenga un array e la sua lunghezza:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define MAX </span><span class="dv">1024</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> intarray <span class="op">{</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> array<span class="op">[</span>MAX<span class="op">];</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> length<span class="op">;</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IntArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Questa struttura dati si comporta come segue: <code>array</code> è un array con una dimensione massima di <code>MAX</code> elementi, <code>length</code> è il numero di elementi effettivamente presenti nell’array, ciò vuol dire che <code>length</code> è sempre minore o uguale a <code>MAX</code>. Di seguito un esempio di utilizzo:</p>
+<div class="sourceCode" id="annotated-cell-35"><pre class="sourceCode c code-annotation-code code-with-copy code-annotated"><code class="sourceCode c"><a class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-35-1" class="code-annotation-target"><a href="#annotated-cell-35-1" aria-hidden="true" tabindex="-1"></a>IntArray a <span class="op">=</span> <span class="op">{.</span>length<span class="op">=</span><span class="dv">0</span><span class="op">};</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-35-2" class="code-annotation-target"><a href="#annotated-cell-35-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">.</span>array<span class="op">[</span>a<span class="op">.</span>length<span class="op">++]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-35-3" class="code-annotation-target"><a href="#annotated-cell-35-3" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">.</span>array<span class="op">[</span><span class="dv">0</span><span class="op">],</span> a<span class="op">.</span>length<span class="op">);</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-35" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-35" data-code-lines="1" data-code-annotation="1">Inizializzo la struttura <code>a</code> con <code>length=0</code>, non c’è bisogno di inizializzare l’array perchè si presuppone che prima di accedere all’array si verifichi sempre fino a che indice è valido l’array tramite <code>length</code>;</span>
+</dd>
+<dt data-target-cell="annotated-cell-35" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-35" data-code-lines="2" data-code-annotation="2">Inizializzo il primo elemento dell’array con il valore 1 e incremento <code>length</code>, si noti che l’espressione <code>a.length++</code> restituisce il valore di <code>a.length</code> prima dell’incremento;</span>
+</dd>
+<dt data-target-cell="annotated-cell-35" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-35" data-code-lines="3" data-code-annotation="3">Stampo il primo elemento dell’array e la lunghezza dell’array.</span>
+</dd>
+</dl>
+<p>Adesso si può passare la struttura come argomento di una funzione:</p>
+<div class="sourceCode" id="annotated-cell-36"><pre class="sourceCode c code-annotation-code code-with-copy code-annotated"><code class="sourceCode c"><a class="code-annotation-anchor" data-target-cell="annotated-cell-36" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-36-1" class="code-annotation-target"><a href="#annotated-cell-36-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> stampa_array<span class="op">(</span>IntArray a<span class="op">)</span> <span class="op">{</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-36" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-36-2" class="code-annotation-target"><a href="#annotated-cell-36-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> a<span class="op">.</span>length<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="annotated-cell-36-3"><a href="#annotated-cell-36-3" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> "</span><span class="op">,</span> a<span class="op">.</span>array<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="annotated-cell-36-4"><a href="#annotated-cell-36-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="annotated-cell-36-5"><a href="#annotated-cell-36-5" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="annotated-cell-36-6"><a href="#annotated-cell-36-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-36" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-36" data-code-lines="1" data-code-annotation="1">Si nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.</span>
+</dd>
+<dt data-target-cell="annotated-cell-36" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-36" data-code-lines="2" data-code-annotation="2">Si può usare <code>a.length</code> per scorrere l’array, pertanto se la dimensione è 0 il ciclo non viene eseguito, ecco perchè non c’è bisogno di inizializzare i valori dell’array se <code>length</code> è 0.</span>
+</dd>
+</dl>
+<p>Se stai consultando questa guida in formato HTML, puoi scaricare un esempio di codice sorgente in cui si utilizza questa struttura dati cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a <a href="https://github.com/matteospanio/corso-c/blob/master/lessons/05/code/array_struct.c">questo link</a>.</p>
+<p><a href="#dnldts34106" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CiNkZWZpbmUgTUFYX0xFTiAxMDAgLy8gbWFzc2ltYSBsdW5naGV6emEgZGVsbCdhcnJheQoKLyoqCiAqIEBicmllZiBMYSBzdHJ1dHR1cmEgQXJyYXkgcmFwcHJlc2VudGEgdW4gYXJyYXkgZGkgaW50ZXJpLgogKgogKiBJbCB2YW50YWdnaW8gZGkgdXRpbGl6emFyZSB1bmEgc3RydXR0dXJhIHBlciByYXBwcmVzZW50YXJlIHVuIGFycmF5IMOoIGNoZSBzaSBwdcOyCiAqIHBhc3NhcmUgbCdpbnRlcm8gYXJyYXkgY29tZSBwYXJhbWV0cm8gYWQgdW5hIGZ1bnppb25lIHNlbnphIGRvdmVyIHBhc3NhcmUgYW5jaGUgbGEKICogbHVuZ2hlenphIGRlbGwnYXJyYXkuCiAqCiAqIEBub3RlIFF1ZXN0YSBzdHJ1dHR1cmEgZGF0aSBwdcOyIGNvbnRlbmVyZSBlc2NsdXNpdmFtZW50ZSBudW1lcmkgaW50ZXJpLCBwZXIgY29udGVuZXJlCiAqIGFsdHJpIHRpcGkgZGkgZGF0aSDDqCBuZWNlc3NhcmlvIG1vZGlmaWNhcmUgaWwgY2FtcG8gZGF0YSwgbyBjcmVhcmUgdW5hIG51b3ZhCiAqIHN0cnV0dHVyYS4KICogQG5vdGUgUXVlc3RhIHN0cnV0dHVyYSBkYXRpIMOoIGxpbWl0YXRhIGFkIHVuIG1hc3NpbW8gZGkgTUFYX0xFTiBlbGVtZW50aS4KICoKICogQHBhcmFtIGRhdGEgTCdhcnJheSBkaSBpbnRlcmkuCiAqIEBwYXJhbSBsZW5ndGggTGEgbHVuZ2hlenphIGRlbGwnYXJyYXkuCiAqCiAqLwp0eXBlZGVmIHN0cnVjdCBhcnJheQp7CiAgICBpbnQgZGF0YVtNQVhfTEVOXTsKICAgIGludCBsZW5ndGg7Cn0gQXJyYXk7Cgp2b2lkIHByaW50X2FycmF5KEFycmF5IGEpOwppbnQgaW5zZXJ0KEFycmF5ICphLCBpbnQgaW5kZXgsIGludCB2YWx1ZSk7CmludCBhcHBlbmQoQXJyYXkgKmEsIGludCB2YWx1ZSk7CgppbnQgbWFpbih2b2lkKQp7CiAgICBpbnQgZXJyOyAvLyB2YXJpYWJpbGUgcGVyIGNvbnRyb2xsYXJlIHNlIGwnYWdnaXVudGEgZGkgdW4gZWxlbWVudG8gYWxsJ2FycmF5IMOoIGFuZGF0YSBhIGJ1b24gZmluZQoKICAgIC8vIGluaXppYWxpenphIHVuIGFycmF5IGNvbiA1IGVsZW1lbnRpCiAgICBBcnJheSBhID0gewogICAgICAgIC5kYXRhID0gezEsIDIsIDMsIDQsIDV9LCAvLyBpbml6aWFsaXp6YSBpIHByaW1pIDUgZWxlbWVudGkgZGVsbCdhcnJheQogICAgICAgIC5sZW5ndGggPSA1ICAgICAgICAgICAgICAvLyBpbXBvc3RhIGxhIGx1bmdoZXp6YSBkZWxsJ2FycmF5IGEgNQogICAgfTsKCiAgICAvLyBOLkIuIGhvIGluaXppYWxpenphdG8gaSBwcmltaSA1IGVsZW1lbnRpIGRlbGwnYXJyYXksIGluIHJlYWx0w6AgaWwgbWVtYnJvIGBkYXRhYAogICAgLy8gZGVsbCdhcnJheSBgYWAgY29udGllbmUgMTAwIGVsZW1lbnRpLCBwZXIgcXVlc3RvIGdsaSBhbHRyaSBlbGVtZW50aSBkZWxsJ2FycmF5CiAgICAvLyB2ZW5nb25vIGluaXppYWxpenphdGkgYXV0b21hdGljYW1lbnRlIGEgMC4KCiAgICBlcnIgPSBhcHBlbmQoJmEsIDYpOyAvLyBhZ2dpdW5naSB1biBlbGVtZW50byBpbiBjb2RhIGFsbCdhcnJheQogICAgaWYgKGVyciAhPSAwKQogICAgeyAvLyBzZSBsJ2FnZ2l1bnRhIGRlbGwnZWxlbWVudG8gw6ggZmFsbGl0YQogICAgICAgIHByaW50ZigiRXJyb3JlOiBsJ2FycmF5IMOoIHBpZW5vXG4iKTsKICAgIH0KCiAgICBlcnIgPSBhcHBlbmQoJmEsIDExOCk7CiAgICBpZiAoZXJyICE9IDApCiAgICB7CiAgICAgICAgcHJpbnRmKCJFcnJvcmU6IGwnYXJyYXkgw6ggcGllbm9cbiIpOwogICAgfQoKICAgIC8vIE4uQi4gb2duaSB2b2x0YSBjaGUgc2kgYWdnaXVuZ2UgdW4gZWxlbWVudG8gYWxsJ2FycmF5IHB1w7IgZXNzZXJlIGF2dmVudXRvIHVuCiAgICAvLyBlcnJvcmUsIHBlciBxdWVzdG8gw6ggbmVjZXNzYXJpbyBjb250cm9sbGFyZSBpbCB2YWxvcmUgZGkgYGVycmAgZG9wbyBvZ25pIGNoaWFtYXRhCiAgICAvLyBhbGxhIGZ1bnppb25lIGBhcHBlbmRgLgoKICAgIHByaW50X2FycmF5KGEpOwp9CgovKioKICogQGJyaWVmIEFnZ2l1bmdlIHVuIGVsZW1lbnRvIGluIGNvZGEgYWxsJ2FycmF5LgogKgogKiBRdWVzdGEgZnVuemlvbmUgYWdnaXVuZ2UgdW4gZWxlbWVudG8gaW4gY29kYSBhbGwnYXJyYXkuIERhdG8gY2hlIGwnYXJyYXkgaGEgdW5hCiAqIGNhcGllbnphIG1hc3NpbWEsIGxhIGZ1bnppb25lIHB1w7IgZmFsbGlyZSBzZSBsJ2FycmF5IMOoIHBpZW5vLiBQZXIgcXVlc3RvIG1vdGl2bwogKiBsYSBmdW56aW9uZSByZXN0aXR1aXNjZSB1biBpbnRlcm8gY2hlIHZhbGUgMCBzZSBsJ2VsZW1lbnRvIMOoIHN0YXRvIGFnZ2l1bnRvCiAqIGNvcnJldHRhbWVudGUsIDEgYWx0cmltZW50aS4KICoKICogQHBhcmFtIGEgTCdhcnJheSBhIGN1aSBhZ2dpdW5nZXJlIGwnZWxlbWVudG8uCiAqIEBwYXJhbSB2YWx1ZSBMJ2VsZW1lbnRvIGRhIGFnZ2l1bmdlcmUuCiAqIEByZXR1cm4gaW50IDAgc2UgbCdlbGVtZW50byDDqCBzdGF0byBhZ2dpdW50byBjb3JyZXR0YW1lbnRlLCAxIGFsdHJpbWVudGkuCiAqLwppbnQgYXBwZW5kKEFycmF5ICphLCBpbnQgdmFsdWUpCnsKICAgIC8vIHNlIGMnw6ggYW5jb3JhIHNwYXppbyBuZWxsJ2FycmF5CiAgICBpZiAoYS0+bGVuZ3RoIDwgTUFYX0xFTikKICAgIHsKICAgICAgICAvLyBhZ2dpdW5naSBsJ2VsZW1lbnRvIGluIGNvZGEgYWxsJ2FycmF5IGUgaW5jcmVtZW50YSBpbCBjb250YXRvcmUgZGVnbGkKICAgICAgICAvLyBlbGVtZW50aQogICAgICAgIGEtPmRhdGFbYS0+bGVuZ3RoXSA9IHZhbHVlOwogICAgICAgIGEtPmxlbmd0aCsrOwogICAgICAgIHJldHVybiAwOwogICAgfQogICAgLy8gc2UgbCdhcnJheSDDqCBwaWVubyByZXN0aXR1aXNjaSAxCiAgICByZXR1cm4gMTsKfQoKLyoqCiAqIEBicmllZiBBZ2dpdW5nZSB1biBlbGVtZW50byBpbiB1bmEgcG9zaXppb25lIHNwZWNpZmljYSBkZWxsJ2FycmF5LgogKgogKiBRdWVzdGEgZnVuemlvbmUgYWdnaXVuZ2UgdW4gZWxlbWVudG8gaW4gdW5hIHBvc2l6aW9uZSBzcGVjaWZpY2EgZGVsbCdhcnJheS4gRGF0byBjaGUKICogbCdhcnJheSBoYSB1bmEgY2FwaWVuemEgbWFzc2ltYSwgbGEgZnVuemlvbmUgcHXDsiBmYWxsaXJlIHNlIGwnYXJyYXkgw6ggcGllbm8gbyBzZQogKiBsJ2luZGljZSBzcGVjaWZpY2F0byDDqCBtYWdnaW9yZSBkZWxsYSBsdW5naGV6emEgZGVsbCdhcnJheS4gUGVyIHF1ZXN0byBtb3Rpdm8gbGEKICogZnVuemlvbmUgcmVzdGl0dWlzY2UgdW4gaW50ZXJvIGNoZSB2YWxlIDAgc2UgbCdlbGVtZW50byDDqCBzdGF0byBhZ2dpdW50byBjb3JyZXR0YW1lbnRlLAogKiAxIGFsdHJpbWVudGkuCiAqCiAqIEBub3RlIExhIGNvbXBsZXNzaXTDoCBjb21wdXRhemlvbmFsZSBkaSBxdWVzdGEgZnVuemlvbmUgw6ggTyhuKSBuZWwgY2FzbyBwZWdnaW9yZSwKICogZG92ZSBuIMOoIGxhIGx1bmdoZXp6YSBkZWxsJ2FycmF5LiBJbmZhdHRpLCBzZSBsJ2VsZW1lbnRvIHZpZW5lIGFnZ2l1bnRvIGluIHVuYQogKiBwb3NpemlvbmUgZGl2ZXJzYSBkYWxsYSBmaW5lIGRlbGwnYXJyYXksIHR1dHRpIGdsaSBlbGVtZW50aSBzdWNjZXNzaXZpIGRldm9ubwogKiBlc3NlcmUgc3Bvc3RhdGkgZGkgdW5hIHBvc2l6aW9uZS4KICoKICogQHBhcmFtIGEgTCdhcnJheSBhIGN1aSBhZ2dpdW5nZXJlIGwnZWxlbWVudG8uCiAqIEBwYXJhbSBpbmRleCBMJ2luZGljZSBpbiBjdWkgYWdnaXVuZ2VyZSBsJ2VsZW1lbnRvLgogKiBAcGFyYW0gdmFsdWUgTCdlbGVtZW50byBkYSBhZ2dpdW5nZXJlLgogKiBAcmV0dXJuIGludCAwIHNlIGwnZWxlbWVudG8gw6ggc3RhdG8gYWdnaXVudG8gY29ycmV0dGFtZW50ZSwgMSBhbHRyaW1lbnRpLgogKi8KaW50IGluc2VydChBcnJheSAqYSwgaW50IGluZGV4LCBpbnQgdmFsdWUpCnsKICAgIC8vIHNlIGwnaW5kaWNlIMOoIG1hZ2dpb3JlIGRlbGxhIGx1bmdoZXp6YSBkZWxsJ2FycmF5IG8gc2UgbCdhcnJheSDDqCBwaWVubwogICAgaWYgKGluZGV4ID4gYS0+bGVuZ3RoIHx8IGEtPmxlbmd0aCA9PSBNQVhfTEVOIHx8IGluZGV4IDwgMCkKICAgIHsKICAgICAgICByZXR1cm4gMTsKICAgIH0KCiAgICAvLyBzcG9zdGEgdHV0dGkgZ2xpIGVsZW1lbnRpIHN1Y2Nlc3NpdmkgZGkgdW5hIHBvc2l6aW9uZQogICAgZm9yIChpbnQgaSA9IGEtPmxlbmd0aDsgaSA+IGluZGV4OyBpLS0pCiAgICB7CiAgICAgICAgYS0+ZGF0YVtpXSA9IGEtPmRhdGFbaSAtIDFdOwogICAgfQoKICAgIC8vIGFnZ2l1bmdpIGwnZWxlbWVudG8gaW4gcG9zaXppb25lIGluZGV4IGUgaW5jcmVtZW50YSBpbCBjb250YXRvcmUgZGVnbGkgZWxlbWVudGkKICAgIGEtPmRhdGFbaW5kZXhdID0gdmFsdWU7CiAgICBhLT5sZW5ndGgrKzsKCiAgICByZXR1cm4gMDsKfQoKLyoqCiAqIEBicmllZiBTdGFtcGEgYSBtb25pdG9yIGwnYXJyYXkuCiAqCiAqIEBwYXJhbSBhIEwnYXJyYXkgZGEgc3RhbXBhcmUuCiAqIEBub3RlIEluIHF1ZXN0byBjYXNvIGxhIGZ1bnppb25lIGFjY2V0dGEgZGlyZXR0YW1lbnRlIHVuYSBzdHJ1Y3QgYXJyYXkgY29tZSBwYXJhbWV0cm8KICogZSBub24gdW4gcHVudGF0b3JlIGFkIGVzc2EsIHF1ZXN0byBwZXJjaMOpIGxhIGZ1bnppb25lIG5vbiBoYSBiaXNvZ25vIGRpIG1vZGlmaWNhcmUKICogbCdhcnJheS4gSSBwdW50YXRvcmkgaW52ZWNlIHNvbm8gdXRpbGkgcXVhbmRvIHNpIHZ1b2xlIG1vZGlmaWNhcmUgdW5hIHZhcmlhYmlsZQogKiBhbGwnaW50ZXJubyBkaSB1bmEgZnVuemlvbmUuCiAqLwp2b2lkIHByaW50X2FycmF5KEFycmF5IGEpCnsKICAgIGZvciAoaW50IGkgPSAwOyBpIDwgYS5sZW5ndGg7IGkrKykKICAgIHsKICAgICAgICBwcmludGYoIiVkICIsIGEuZGF0YVtpXSk7CiAgICB9CiAgICBwcmludGYoIlxuIik7Cn0K').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'esempio_array_struct.c'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-default downloadthis  " id="dnldts34106"><i class="bi bi-download"></i> Scarica l'esempio completo </button></a></p>
 
 
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Riutilizzare</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.it">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Note</h2>
+
+<ol>
+<li id="fn1"><p>Si veda la sezione seguente per informazioni dettagliate sulle unioni.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Riutilizzare</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.it">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

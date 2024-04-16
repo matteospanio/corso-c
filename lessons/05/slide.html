@@ -452,7 +452,7 @@
 </section>
 <section id="strutture-in-c" class="slide level2">
 <h2>Strutture in C</h2>
-<p>Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:</p>
+<p>Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi per aggregare dati:</p>
 <ul>
 <li>Strutture: insieme di dati</li>
 <li>Unioni: alternative tra tipi diversi</li>
@@ -486,7 +486,7 @@
 </section>
 <section id="accedere-agli-elementi" class="slide level2">
 <h2>Accedere agli elementi</h2>
-<p>Per accedere au singoli elementi di una struttura (detti anche membri) si usa l’operatore <code>.</code> (punto) dopo il nome della variabile:</p>
+<p>Per accedere ai singoli elementi di una struttura (detti anche membri) si usa l’operatore <code>.</code> (punto) dopo il nome della variabile:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span><span class="st">"Mario"</span><span class="op">,</span> <span class="st">"Rossi"</span><span class="op">,</span> <span class="dv">12345</span><span class="op">};</span></span>
 <span id="cb4-2"><a></a></span>
 <span id="cb4-3"><a></a>printf<span class="op">(</span><span class="st">"Nome: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> s<span class="op">.</span>nome<span class="op">);</span></span>
@@ -707,120 +707,6 @@
 <span id="cb19-5"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
 <span id="cb19-6"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Si nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.</p>
-</section>
-<section id="array-con-strutture-2" class="slide level2">
-<h2>Array con strutture</h2>
-<p>L’implementazione che abbiamo visto ha due grossi problemi:</p>
-<ol type="1">
-<li>la dimensione dell’array è fissa</li>
-<li>la struttura <code>IntArray</code> funziona solo con array di interi, per fare array di float, char, ecc. bisogna creare ogni volta una nuova struttura</li>
-</ol>
-</section>
-<section id="memoria-dinamica" class="slide level2">
-<h2>Memoria dinamica</h2>
-<ul>
-<li><p>Le strutture dati in C hanno dimensione fissa. Infatti gli array vengono inizializzati con un valore costante.</p></li>
-<li><p>Esistono però dei comandi che permettono di allocare dinamicamente zone di memoria, permettendo di fare strutture che crescono o si rimpiccioliscono durante l’esecuzione del programma.</p></li>
-</ul>
-</section>
-<section id="memoria-dinamica-1" class="slide level2">
-<h2>Memoria dinamica</h2>
-<p>Le operazioni per gestire la memoria dinamica si trovano nella libreria <code>stdlib.h</code> e sono:</p>
-<ol type="1">
-<li><code>malloc</code> (memory allocation): alloca una zona di memoria di una certa dimensione</li>
-<li><code>calloc</code> (clear allocation): alloca una zona di memoria di una certa dimensione e la inizializza a 0</li>
-<li><code>realloc</code> (reallocate): cambia la dimensione di una zona di memoria già allocata</li>
-</ol>
-</section>
-<section id="puntatore-a-void" class="slide level2">
-<h2>Puntatore a void</h2>
-<p><code>malloc</code>, <code>calloc</code> e <code>realloc</code> restituiscono un puntatore a void, che è un puntatore generico.</p>
-<p>Questo puntatore non fa riferimento a un certo tipo di dato, ma solo a un indirizzo di memoria.</p>
-</section>
-<section id="malloc" class="slide level2">
-<h2><code>malloc</code></h2>
-<p><code>void* malloc(size_t size);</code></p>
-<p>Supponendo di voler creare un array di interi di dimensione variabile, c’è bisogno di creare un puntatore ad interi e poi assegnargli l’indirizzo della nuova zona di memoria:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a></a><span class="dt">int</span> <span class="op">*</span>a<span class="op">;</span></span>
-<span id="cb20-2"><a></a>a <span class="op">=</span> malloc<span class="op">(</span><span class="dv">10</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>La funzione <code>malloc</code> accetta come argomento il numero di byte da allocare. L’esempio crea 10 cellette di memoria, ciascuna grande quanto un intero (4 byte).</p>
-</section>
-<section id="calloc" class="slide level2">
-<h2><code>calloc</code></h2>
-<p><code>void* calloc(size_t num, size_t size);</code></p>
-<ul>
-<li>Per inizializzare array torna comoda anche la funzione calloc, che ha due parametri: numero di membri e dimensione (in byte) dei membri</li>
-<li>Inoltre ha come effetto aggiuntivo di porre a zero tutti i byte interessati (quindi tutti i membri dell’array che creo)</li>
-</ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb21-1"><a></a><span class="dt">double</span> <span class="op">*</span>a<span class="op">;</span></span>
-<span id="cb21-2"><a></a>a <span class="op">=</span> calloc<span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">double</span><span class="op">));</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>L’effetto di questo codice è lo stesso del precedente (con la malloc), ma con tutti i membri dell’array inizializzati a 0.</p>
-</section>
-<section id="realloc" class="slide level2">
-<h2><code>realloc</code></h2>
-<p><code>void* realloc(void* ptr, size_t size);</code></p>
-<ul>
-<li><p>Questa funzione cambia la dimensione di uno spazio allocato dinamicamente.</p></li>
-<li><p>L’argomento <code>ptr</code> deve essere un puntatore ottenuto da una funzione ..alloc, altrimenti porta a comportamento non definito.</p></li>
-<li><p>I dati già presenti nella zona di memoria vengono mantenuti.</p></li>
-</ul>
-</section>
-<section id="null" class="slide level2">
-<h2>NULL</h2>
-<ul>
-<li><p>Quando si usa la memoria dinamica, è importante controllare che l’allocazione sia andata a buon fine.</p></li>
-<li><p>Se <code>malloc</code>, <code>calloc</code> o <code>realloc</code> non riescono a trovare spazio in memoria, restituiscono <code>NULL</code>.</p></li>
-<li><p><code>NULL</code> è una costante che rappresenta un puntatore all’indirizzo <code>0x0</code>. <code>NULL</code> è definito in <code>stdlib.h</code>.</p></li>
-</ul>
-</section>
-<section id="malloc-calloc-realloc" class="slide level2">
-<h2><code>malloc</code>, <code>calloc</code>, <code>realloc</code></h2>
-<ul>
-<li>Queste funzioni scrivono in una zona di memoria nota come <strong>heap</strong>;</li>
-<li>Le variabili locali e i parametri delle funzioni sono invece memorizzati nello <strong>stack</strong>;</li>
-<li>Usando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile</li>
-<li>Occorre quindi fare uso oculato della memoria e pulire quella che usata che non serve più</li>
-</ul>
-</section>
-<section id="free" class="slide level2">
-<h2><code>free</code></h2>
-<p><code>void free(void* ptr);</code></p>
-<ul>
-<li>La funzione free permette di liberare un blocco di memoria (e quindi renderlo disponibile per un’altra allocazione)</li>
-<li><code>ptr</code> dopo l’esecuzione di <code>free</code> continua a puntare alla stessa zona di memoria, ma il contenuto di quella zona non è più garantito, si chiama <strong>dangling pointer</strong></li>
-<li>Occorre, subito dopo la free, assegnare a <code>ptr</code> il valore <code>NULL</code> (oppure una nuova memoria)</li>
-<li>accedere un blocco deallocato è un gravissimo errore</li>
-</ul>
-</section>
-<section id="array-dinamico" class="slide level2">
-<h2>Array dinamico</h2>
-<p>Un array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.</p>
-<p>Per implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb22-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
-<span id="cb22-2"><a></a>    <span class="dt">int</span> <span class="op">*</span>array<span class="op">;</span></span>
-<span id="cb22-3"><a></a>    <span class="dt">int</span> capacity<span class="op">;</span></span>
-<span id="cb22-4"><a></a>    <span class="dt">int</span> length<span class="op">;</span></span>
-<span id="cb22-5"><a></a><span class="op">}</span> DynArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="dynarray" class="slide level2">
-<h2><code>DynArray</code></h2>
-<p>Il nuovo tipo <code>DynArray</code> ha tre membri:</p>
-<ul>
-<li><code>array</code> è un puntatore ad interi, che punta all’array dinamico</li>
-<li><code>capacity</code> è la dimensione massima dell’array</li>
-<li><code>length</code> è il numero di elementi attualmente presenti nell’array</li>
-</ul>
-<p>Quando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.</p>
-</section>
-<section id="dynarray-generico" class="slide level2">
-<h2><code>DynArray</code> generico</h2>
-<p>Rimane il problema che <code>DynArray</code> funziona solo con array di interi.</p>
-<p>Abbiamo però visto che <code>void *</code> serve proprio quando si usano indirizzi di memoria senza un tipo preciso, questo ci permette di definire un array di <code>void *</code> per decidere a runtime il tipo dell’array:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
-<span id="cb23-2"><a></a>    <span class="dt">void</span> <span class="op">**</span>array<span class="op">;</span></span>
-<span id="cb23-3"><a></a>    <span class="dt">int</span> capacity<span class="op">;</span></span>
-<span id="cb23-4"><a></a>    <span class="dt">int</span> length<span class="op">;</span></span>
-<span id="cb23-5"><a></a><span class="op">}</span> GenericArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../../assets/images/DEI_logo.png" class="slide-logo"></p>

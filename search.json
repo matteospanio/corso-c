@@ -430,18 +430,40 @@
     "href": "lessons/04/index.html",
     "title": "Puntatori",
     "section": "",
-    "text": "Il termine puntatore produce sempre un po’ di confusione tra i principianti del C, in realtà, una volta capito il concetto, si tratta di una feature molto potente e utile del linguaggio. Non sono effettivamente complicati, ma è facile fare confusione, spero che questa guida possa aiutare a chiarire le idee…\nQuando si dichiara una variabile si comunica al compilatore il suo tipo e il suo nome prima del suo utilizzo, questo è fondamentale perché la dichiarazione permette al compilatore di allocare un blocco di memoria per immagazzinare la variabile. Quindi:\n\nAd ogni variabile (e non solo) è associato un indirizzo di memoria. Questo indirizzo è un numero che identifica la posizione della variabile in memoria.\n\n\n\n\nUn puntatore è una variabile che contiene l’informazione per accedere ad un’altra variabile, ossia il suo indirizzo.\n\nQuindi un puntatore è semplicemente un indirizzo di memoria contenente una variabile.\nSe si dichiara una variabile e un puntatore ad essa si può accedere alla variabile in due modi:\n\nUtilizzando la variabile stessa\nUtilizzando il puntatore\n\nUn esempio potrebbe essere:\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int a;\n1    int *ptr_to_a;\n\n2    ptr_to_a = &a;\n\n    a = 5;\n    printf(\"The value of a is %d\\n\", a);\n\n3    *ptr_to_a = 6;\n    printf(\"The value of a is %d\\n\", a);\n    printf(\"The value of ptr_to_a is %d\\n\", ptr_to_a);\n    printf(\"It stores the value %d\\n\", *ptr_to_a);\n    printf(\"The address of a is %d\\n\", &a);\n}\n\n1\n\nIndica la dichiarazione di un puntatore a un intero, il carattere * è usato per indicare che ptr_to_a è un puntatore, il tipo di variabile a cui punta è indicato prima del *.\n\n2\n\nIn C il simbolo & prima di un nome di variabile è usato per ottenere l’indirizzo di memoria di quella variabile e, come detto prima, un puntatore è un indirizzo di memoria. Quindi ptr_to_a contiene l’indirizzo di a.\n\n3\n\nDopo che ad a è stato assegnato il valore 5, viene usato ancora il simbolo *, questa volta però ha un significato diverso: una volta che il puntatore è dichiarato, il simbolo * è usato per accedere al valore della variabile a cui il puntatore punta. Quindi *ptr_to_a è il valore di a. È un modo alternativo per impostare il valore di a a 6.\n\n\n\n\n\n\n\n\nConsiglio\n\n\n\nUn sistema un po’ stravagante ma efficace per imparare il significato degli operatori * e & nel contesto dei puntatori è pensare a * come “valore puntato da” e & come “indirizzo di”. Una volta imparato questo, il resto è molto più semplice.",
+    "text": "Il termine puntatore produce sempre un po’ di confusione tra i principianti del C, in realtà, una volta capito il concetto, si tratta di una feature molto potente e utile del linguaggio. Non sono effettivamente complicati, ma è facile fare confusione, spero che questa guida possa aiutare a chiarire le idee…\nQuando si dichiara una variabile si comunica al compilatore il suo tipo e il suo nome prima del suo utilizzo, questo è fondamentale perché la dichiarazione permette al compilatore di allocare un blocco di memoria per immagazzinare la variabile. Quindi:",
     "crumbs": [
       "Lezioni",
       "Puntatori"
     ]
   },
   {
-    "objectID": "lessons/04/index.html#cosè-un-puntatore",
-    "href": "lessons/04/index.html#cosè-un-puntatore",
+    "objectID": "lessons/04/index.html#esempio-di-utilizzo",
+    "href": "lessons/04/index.html#esempio-di-utilizzo",
     "title": "Puntatori",
-    "section": "",
-    "text": "Un puntatore è una variabile che contiene l’informazione per accedere ad un’altra variabile, ossia il suo indirizzo.\n\nQuindi un puntatore è semplicemente un indirizzo di memoria contenente una variabile.\nSe si dichiara una variabile e un puntatore ad essa si può accedere alla variabile in due modi:\n\nUtilizzando la variabile stessa\nUtilizzando il puntatore\n\nUn esempio potrebbe essere:\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int a;\n1    int *ptr_to_a;\n\n2    ptr_to_a = &a;\n\n    a = 5;\n    printf(\"The value of a is %d\\n\", a);\n\n3    *ptr_to_a = 6;\n    printf(\"The value of a is %d\\n\", a);\n    printf(\"The value of ptr_to_a is %d\\n\", ptr_to_a);\n    printf(\"It stores the value %d\\n\", *ptr_to_a);\n    printf(\"The address of a is %d\\n\", &a);\n}\n\n1\n\nIndica la dichiarazione di un puntatore a un intero, il carattere * è usato per indicare che ptr_to_a è un puntatore, il tipo di variabile a cui punta è indicato prima del *.\n\n2\n\nIn C il simbolo & prima di un nome di variabile è usato per ottenere l’indirizzo di memoria di quella variabile e, come detto prima, un puntatore è un indirizzo di memoria. Quindi ptr_to_a contiene l’indirizzo di a.\n\n3\n\nDopo che ad a è stato assegnato il valore 5, viene usato ancora il simbolo *, questa volta però ha un significato diverso: una volta che il puntatore è dichiarato, il simbolo * è usato per accedere al valore della variabile a cui il puntatore punta. Quindi *ptr_to_a è il valore di a. È un modo alternativo per impostare il valore di a a 6.\n\n\n\n\n\n\n\n\nConsiglio\n\n\n\nUn sistema un po’ stravagante ma efficace per imparare il significato degli operatori * e & nel contesto dei puntatori è pensare a * come “valore puntato da” e & come “indirizzo di”. Una volta imparato questo, il resto è molto più semplice.",
+    "section": "Esempio di utilizzo",
+    "text": "Esempio di utilizzo\nSpesso un esempio chiarisce meglio il concetto, di seguito si introducono due esempi per chiarire il concetto di puntatore, e la sintassi\n1int i, j, *p;\n2i = 5;\n3p = &i;\n4j = *p;\n5printf(\"%d\\n\", j); // stampa 5\n\n1\n\nSi dichiarano tre variabili: i, j e p, p è un puntatore a un intero.\n\n2\n\nSi assegna il valore 5 a i.\n\n3\n\nSi assegna l’indirizzo di i a p, l’operatore & è usato per ottenere l’indirizzo di i.\n\n4\n\nSi assegna il valore puntato da p a j, l’operatore * è usato per accedere al valore puntato da p.\n\n5\n\nSi stampa il valore di j, che è 5.\n\n\n// esempio 2\nint *p, *q, i;\np = &i;\n*p = 6;\nq = p;\n(*q)++;\nprintf(\"%d\\n\", i); // stampa 7\nIl secondo esempio è un po’ più complesso, ma il concetto è lo stesso. Si dichiarano due puntatori p e q e una variabile i. Si assegna l’indirizzo di i a p, si assegna il valore 6 a i tramite *p, si assegna p a q e si incrementa il valore puntato da q di 1. L’espressione (*q)++ è equivalente a *q = *q + 1, servono le parentesi perché l’operatore ++ ha una precedenza maggiore rispetto all’operatore *.",
+    "crumbs": [
+      "Lezioni",
+      "Puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/04/index.html#esempio-di-utilizzo-di-puntatori-con-funzioni",
+    "href": "lessons/04/index.html#esempio-di-utilizzo-di-puntatori-con-funzioni",
+    "title": "Puntatori",
+    "section": "Esempio di utilizzo di puntatori con funzioni",
+    "text": "Esempio di utilizzo di puntatori con funzioni\nScrivere una funzione che scambi il valore di due variabili.\nIl prototipo della funzione è: void swap(int *a, int *b);\nVerrebbe spontaneo risolvere il problema senza usare i puntatori:\nvoid swap(int a, int b) {\n1    int temp = a;\n2    a = b;\n3    b = temp;\n    printf(\"a = %d, b = %d\\n\", a, b);\n}\n\n1\n\nSi salva il valore di a in una variabile temporanea.\n\n2\n\nSi assegna il valore di b a a.\n\n3\n\nSi assegna il valore salvato in precedenza a b.\n\n\nAll’ultima riga il codice effettivamente ha scambiato i valori di a e b, ma si tratta di variabili locali alla funzione, quindi i valori di a e b all’esterno della funzione non sono stati modificati. Per rendere la modifica permanente si devono usare i puntatori:\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n    printf(\"a = %d, b = %d\\n\", *a, *b);\n}\nLa soluzione è identica alla precedente, ma questa volta i valori di a e b vengono modificati direttamente, ciò vuol dire che i valori di a e b all’esterno della funzione saranno modificati.",
+    "crumbs": [
+      "Lezioni",
+      "Puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/04/index.html#esercizio",
+    "href": "lessons/04/index.html#esercizio",
+    "title": "Puntatori",
+    "section": "Esercizio",
+    "text": "Esercizio\nScrivere una funzione che trovi il minimo e il massimo in un array di interi.\nIl prototipo della funzione è: void minmax(const int *a, int n, int *min, int *max);\n Scarica la soluzione",
     "crumbs": [
       "Lezioni",
       "Puntatori"
@@ -1331,6 +1353,118 @@
     ]
   },
   {
+    "objectID": "lessons/06/slide.html#strutture-dati",
+    "href": "lessons/06/slide.html#strutture-dati",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "Strutture dati",
+    "text": "Strutture dati\nLe strutture sono molto utili per definire… strutture dati.\nPer esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…"
+  },
+  {
+    "objectID": "lessons/06/slide.html#array-con-strutture",
+    "href": "lessons/06/slide.html#array-con-strutture",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "Array con strutture",
+    "text": "Array con strutture\nGli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza a mano…\nSi può creare una struttura che contenga un array e la sua lunghezza:\n#define MAX 1024\n\ntypedef struct intarray {\n    int array[MAX];\n    int length;\n} IntArray;"
+  },
+  {
+    "objectID": "lessons/06/slide.html#array-con-strutture-1",
+    "href": "lessons/06/slide.html#array-con-strutture-1",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "Array con strutture",
+    "text": "Array con strutture\nAdesso si può passare la struttura come argomento di una funzione:\nvoid stampa_array(IntArray a) {\n    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento."
+  },
+  {
+    "objectID": "lessons/06/slide.html#array-con-strutture-2",
+    "href": "lessons/06/slide.html#array-con-strutture-2",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "Array con strutture",
+    "text": "Array con strutture\nL’implementazione che abbiamo visto ha due grossi problemi:\n\nla dimensione dell’array è fissa\nla struttura IntArray funziona solo con array di interi, per fare array di float, char, ecc. bisogna creare ogni volta una nuova struttura"
+  },
+  {
+    "objectID": "lessons/06/slide.html#memoria-dinamica-1",
+    "href": "lessons/06/slide.html#memoria-dinamica-1",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "Memoria dinamica",
+    "text": "Memoria dinamica\n\nLe strutture dati in C hanno dimensione fissa. Infatti gli array vengono inizializzati con un valore costante.\nEsistono però dei comandi che permettono di allocare dinamicamente zone di memoria, permettendo di fare strutture che crescono o si rimpiccioliscono durante l’esecuzione del programma."
+  },
+  {
+    "objectID": "lessons/06/slide.html#memoria-dinamica-2",
+    "href": "lessons/06/slide.html#memoria-dinamica-2",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "Memoria dinamica",
+    "text": "Memoria dinamica\nLe operazioni per gestire la memoria dinamica si trovano nella libreria stdlib.h e sono:\n\nmalloc (memory allocation): alloca una zona di memoria di una certa dimensione\ncalloc (clear allocation): alloca una zona di memoria di una certa dimensione e la inizializza a 0\nrealloc (reallocate): cambia la dimensione di una zona di memoria già allocata"
+  },
+  {
+    "objectID": "lessons/06/slide.html#puntatore-a-void",
+    "href": "lessons/06/slide.html#puntatore-a-void",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "Puntatore a void",
+    "text": "Puntatore a void\nmalloc, calloc e realloc restituiscono un puntatore a void, che è un puntatore generico.\nQuesto puntatore non fa riferimento a un certo tipo di dato, ma solo a un indirizzo di memoria."
+  },
+  {
+    "objectID": "lessons/06/slide.html#malloc",
+    "href": "lessons/06/slide.html#malloc",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "malloc",
+    "text": "malloc\nvoid* malloc(size_t size);\nSupponendo di voler creare un array di interi di dimensione variabile, c’è bisogno di creare un puntatore ad interi e poi assegnargli l’indirizzo della nuova zona di memoria:\nint *a;\na = malloc(10 * sizeof(int));\nLa funzione malloc accetta come argomento il numero di byte da allocare. L’esempio crea 10 cellette di memoria, ciascuna grande quanto un intero (4 byte)."
+  },
+  {
+    "objectID": "lessons/06/slide.html#calloc",
+    "href": "lessons/06/slide.html#calloc",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "calloc",
+    "text": "calloc\nvoid* calloc(size_t num, size_t size);\n\nPer inizializzare array torna comoda anche la funzione calloc, che ha due parametri: numero di membri e dimensione (in byte) dei membri\nInoltre ha come effetto aggiuntivo di porre a zero tutti i byte interessati (quindi tutti i membri dell’array che creo)\n\ndouble *a;\na = calloc(10, sizeof(double));\nL’effetto di questo codice è lo stesso del precedente (con la malloc), ma con tutti i membri dell’array inizializzati a 0."
+  },
+  {
+    "objectID": "lessons/06/slide.html#realloc",
+    "href": "lessons/06/slide.html#realloc",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "realloc",
+    "text": "realloc\nvoid* realloc(void* ptr, size_t size);\n\nQuesta funzione cambia la dimensione di uno spazio allocato dinamicamente.\nL’argomento ptr deve essere un puntatore ottenuto da una funzione ..alloc, altrimenti porta a comportamento non definito.\nI dati già presenti nella zona di memoria vengono mantenuti."
+  },
+  {
+    "objectID": "lessons/06/slide.html#null",
+    "href": "lessons/06/slide.html#null",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "NULL",
+    "text": "NULL\n\nQuando si usa la memoria dinamica, è importante controllare che l’allocazione sia andata a buon fine.\nSe malloc, calloc o realloc non riescono a trovare spazio in memoria, restituiscono NULL.\nNULL è una costante che rappresenta un puntatore all’indirizzo 0x0. NULL è definito in stdlib.h."
+  },
+  {
+    "objectID": "lessons/06/slide.html#malloc-calloc-realloc",
+    "href": "lessons/06/slide.html#malloc-calloc-realloc",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "malloc, calloc, realloc",
+    "text": "malloc, calloc, realloc\n\nQueste funzioni scrivono in una zona di memoria nota come heap;\nLe variabili locali e i parametri delle funzioni sono invece memorizzati nello stack;\nUsando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile\nOccorre quindi fare uso oculato della memoria e pulire quella che usata che non serve più"
+  },
+  {
+    "objectID": "lessons/06/slide.html#free",
+    "href": "lessons/06/slide.html#free",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "free",
+    "text": "free\nvoid free(void* ptr);\n\nLa funzione free permette di liberare un blocco di memoria (e quindi renderlo disponibile per un’altra allocazione)\nptr dopo l’esecuzione di free continua a puntare alla stessa zona di memoria, ma il contenuto di quella zona non è più garantito, si chiama dangling pointer\nOccorre, subito dopo la free, assegnare a ptr il valore NULL (oppure una nuova memoria)\naccedere un blocco deallocato è un gravissimo errore"
+  },
+  {
+    "objectID": "lessons/06/slide.html#array-dinamico",
+    "href": "lessons/06/slide.html#array-dinamico",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "Array dinamico",
+    "text": "Array dinamico\nUn array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.\nPer implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:\ntypedef struct {\n    int *array;\n    int capacity;\n    int length;\n} DynArray;"
+  },
+  {
+    "objectID": "lessons/06/slide.html#dynarray",
+    "href": "lessons/06/slide.html#dynarray",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "DynArray",
+    "text": "DynArray\nIl nuovo tipo DynArray ha tre membri:\n\narray è un puntatore ad interi, che punta all’array dinamico\ncapacity è la dimensione massima dell’array\nlength è il numero di elementi attualmente presenti nell’array\n\nQuando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione."
+  },
+  {
+    "objectID": "lessons/06/slide.html#dynarray-generico",
+    "href": "lessons/06/slide.html#dynarray-generico",
+    "title": "Operatori bitwise e C avanzato",
+    "section": "DynArray generico",
+    "text": "DynArray generico\nRimane il problema che DynArray funziona solo con array di interi.\nAbbiamo però visto che void * serve proprio quando si usano indirizzi di memoria senza un tipo preciso, questo ci permette di definire un array di void * per decidere a runtime il tipo dell’array:\ntypedef struct {\n    void **array;\n    int capacity;\n    int length;\n} GenericArray;"
+  },
+  {
     "objectID": "lessons/06/slide.html#operatori-bitwise",
     "href": "lessons/06/slide.html#operatori-bitwise",
     "title": "Operatori bitwise e C avanzato",
@@ -1473,7 +1607,7 @@
     "href": "lessons/05/slide.html#strutture-in-c",
     "title": "Uso avanzato dei puntatori",
     "section": "Strutture in C",
-    "text": "Strutture in C\nIl C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:\n\nStrutture: insieme di dati\nUnioni: alternative tra tipi diversi\nEnumerazioni: insieme di costanti"
+    "text": "Strutture in C\nIl C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi per aggregare dati:\n\nStrutture: insieme di dati\nUnioni: alternative tra tipi diversi\nEnumerazioni: insieme di costanti"
   },
   {
     "objectID": "lessons/05/slide.html#struct",
@@ -1494,7 +1628,7 @@
     "href": "lessons/05/slide.html#accedere-agli-elementi",
     "title": "Uso avanzato dei puntatori",
     "section": "Accedere agli elementi",
-    "text": "Accedere agli elementi\nPer accedere au singoli elementi di una struttura (detti anche membri) si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;"
+    "text": "Accedere agli elementi\nPer accedere ai singoli elementi di una struttura (detti anche membri) si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;"
   },
   {
     "objectID": "lessons/05/slide.html#copie-di-strutture",
@@ -1627,116 +1761,14 @@
     "href": "lessons/05/slide.html#array-con-strutture-1",
     "title": "Uso avanzato dei puntatori",
     "section": "Array con strutture",
-    "text": "Array con strutture\nAdesso si può passare la struttura come argomento di una funzione:\nvoid stampa_array(IntArray a) {\n    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento."
-  },
-  {
-    "objectID": "lessons/05/slide.html#array-con-strutture-2",
-    "href": "lessons/05/slide.html#array-con-strutture-2",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Array con strutture",
-    "text": "Array con strutture\nL’implementazione che abbiamo visto ha due grossi problemi:\n\nla dimensione dell’array è fissa\nla struttura IntArray funziona solo con array di interi, per fare array di float, char, ecc. bisogna creare ogni volta una nuova struttura"
-  },
-  {
-    "objectID": "lessons/05/slide.html#memoria-dinamica",
-    "href": "lessons/05/slide.html#memoria-dinamica",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Memoria dinamica",
-    "text": "Memoria dinamica\n\nLe strutture dati in C hanno dimensione fissa. Infatti gli array vengono inizializzati con un valore costante.\nEsistono però dei comandi che permettono di allocare dinamicamente zone di memoria, permettendo di fare strutture che crescono o si rimpiccioliscono durante l’esecuzione del programma."
-  },
-  {
-    "objectID": "lessons/05/slide.html#memoria-dinamica-1",
-    "href": "lessons/05/slide.html#memoria-dinamica-1",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Memoria dinamica",
-    "text": "Memoria dinamica\nLe operazioni per gestire la memoria dinamica si trovano nella libreria stdlib.h e sono:\n\nmalloc (memory allocation): alloca una zona di memoria di una certa dimensione\ncalloc (clear allocation): alloca una zona di memoria di una certa dimensione e la inizializza a 0\nrealloc (reallocate): cambia la dimensione di una zona di memoria già allocata"
-  },
-  {
-    "objectID": "lessons/05/slide.html#puntatore-a-void",
-    "href": "lessons/05/slide.html#puntatore-a-void",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Puntatore a void",
-    "text": "Puntatore a void\nmalloc, calloc e realloc restituiscono un puntatore a void, che è un puntatore generico.\nQuesto puntatore non fa riferimento a un certo tipo di dato, ma solo a un indirizzo di memoria."
-  },
-  {
-    "objectID": "lessons/05/slide.html#malloc",
-    "href": "lessons/05/slide.html#malloc",
-    "title": "Uso avanzato dei puntatori",
-    "section": "malloc",
-    "text": "malloc\nvoid* malloc(size_t size);\nSupponendo di voler creare un array di interi di dimensione variabile, c’è bisogno di creare un puntatore ad interi e poi assegnargli l’indirizzo della nuova zona di memoria:\nint *a;\na = malloc(10 * sizeof(int));\nLa funzione malloc accetta come argomento il numero di byte da allocare. L’esempio crea 10 cellette di memoria, ciascuna grande quanto un intero (4 byte)."
-  },
-  {
-    "objectID": "lessons/05/slide.html#calloc",
-    "href": "lessons/05/slide.html#calloc",
-    "title": "Uso avanzato dei puntatori",
-    "section": "calloc",
-    "text": "calloc\nvoid* calloc(size_t num, size_t size);\n\nPer inizializzare array torna comoda anche la funzione calloc, che ha due parametri: numero di membri e dimensione (in byte) dei membri\nInoltre ha come effetto aggiuntivo di porre a zero tutti i byte interessati (quindi tutti i membri dell’array che creo)\n\ndouble *a;\na = calloc(10, sizeof(double));\nL’effetto di questo codice è lo stesso del precedente (con la malloc), ma con tutti i membri dell’array inizializzati a 0."
-  },
-  {
-    "objectID": "lessons/05/slide.html#realloc",
-    "href": "lessons/05/slide.html#realloc",
-    "title": "Uso avanzato dei puntatori",
-    "section": "realloc",
-    "text": "realloc\nvoid* realloc(void* ptr, size_t size);\n\nQuesta funzione cambia la dimensione di uno spazio allocato dinamicamente.\nL’argomento ptr deve essere un puntatore ottenuto da una funzione ..alloc, altrimenti porta a comportamento non definito.\nI dati già presenti nella zona di memoria vengono mantenuti."
-  },
-  {
-    "objectID": "lessons/05/slide.html#null",
-    "href": "lessons/05/slide.html#null",
-    "title": "Uso avanzato dei puntatori",
-    "section": "NULL",
-    "text": "NULL\n\nQuando si usa la memoria dinamica, è importante controllare che l’allocazione sia andata a buon fine.\nSe malloc, calloc o realloc non riescono a trovare spazio in memoria, restituiscono NULL.\nNULL è una costante che rappresenta un puntatore all’indirizzo 0x0. NULL è definito in stdlib.h."
-  },
-  {
-    "objectID": "lessons/05/slide.html#malloc-calloc-realloc",
-    "href": "lessons/05/slide.html#malloc-calloc-realloc",
-    "title": "Uso avanzato dei puntatori",
-    "section": "malloc, calloc, realloc",
-    "text": "malloc, calloc, realloc\n\nQueste funzioni scrivono in una zona di memoria nota come heap;\nLe variabili locali e i parametri delle funzioni sono invece memorizzati nello stack;\nUsando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile\nOccorre quindi fare uso oculato della memoria e pulire quella che usata che non serve più"
-  },
-  {
-    "objectID": "lessons/05/slide.html#free",
-    "href": "lessons/05/slide.html#free",
-    "title": "Uso avanzato dei puntatori",
-    "section": "free",
-    "text": "free\nvoid free(void* ptr);\n\nLa funzione free permette di liberare un blocco di memoria (e quindi renderlo disponibile per un’altra allocazione)\nptr dopo l’esecuzione di free continua a puntare alla stessa zona di memoria, ma il contenuto di quella zona non è più garantito, si chiama dangling pointer\nOccorre, subito dopo la free, assegnare a ptr il valore NULL (oppure una nuova memoria)\naccedere un blocco deallocato è un gravissimo errore"
-  },
-  {
-    "objectID": "lessons/05/slide.html#array-dinamico",
-    "href": "lessons/05/slide.html#array-dinamico",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Array dinamico",
-    "text": "Array dinamico\nUn array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.\nPer implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:\ntypedef struct {\n    int *array;\n    int capacity;\n    int length;\n} DynArray;"
-  },
-  {
-    "objectID": "lessons/05/slide.html#dynarray",
-    "href": "lessons/05/slide.html#dynarray",
-    "title": "Uso avanzato dei puntatori",
-    "section": "DynArray",
-    "text": "DynArray\nIl nuovo tipo DynArray ha tre membri:\n\narray è un puntatore ad interi, che punta all’array dinamico\ncapacity è la dimensione massima dell’array\nlength è il numero di elementi attualmente presenti nell’array\n\nQuando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione."
-  },
-  {
-    "objectID": "lessons/05/slide.html#dynarray-generico",
-    "href": "lessons/05/slide.html#dynarray-generico",
-    "title": "Uso avanzato dei puntatori",
-    "section": "DynArray generico",
-    "text": "DynArray generico\nRimane il problema che DynArray funziona solo con array di interi.\nAbbiamo però visto che void * serve proprio quando si usano indirizzi di memoria senza un tipo preciso, questo ci permette di definire un array di void * per decidere a runtime il tipo dell’array:\ntypedef struct {\n    void **array;\n    int capacity;\n    int length;\n} GenericArray;\n\n\n\n\nDati e Algoritmi"
+    "text": "Array con strutture\nAdesso si può passare la struttura come argomento di una funzione:\nvoid stampa_array(IntArray a) {\n    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.\n\n\n\n\nDati e Algoritmi"
   },
   {
     "objectID": "lessons/05/index.html",
     "href": "lessons/05/index.html",
     "title": "Uso avanzato dei puntatori",
     "section": "",
-    "text": "Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:\n\nStrutture: insieme di dati\nUnioni: alternative tra tipi diversi\nEnumerazioni: insieme di costanti\n\n\n\n\nUna struttura è un insieme di dati, si differenzia dagli array perché:\n\ngli elementi possono essere di tipo diverso\ngli elementi sono identificati da un nome\n\nstruct studente {\n    char nome[20];\n    char cognome[20];\n    int matricola;\n};\n\n\n\nSi possono inizializzare le strutture quando vengono dichiarate:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\nSi possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0.\nUn modo alternativo di inizializzare:\nstruct studente s = {\n    .nome = \"Mario\",\n    .cognome = \"Rossi\",\n    .matricole = 12345,\n};\n\n\n\nPer accedere au singoli elementi di una struttura (detti anche membri) si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;\n\n\n\nSi può copiare interamente una struttura usando una variabile dello stesso tipo:\nstruct studente a, b = {\"Matteo\", \"Spanio\", 56789};\na = b;\n\n\n\n\n\n\nImportante\n\n\n\nSolo l’operatore = è valido tra 2 struct, gli operatori == e != NON si possono usare per vedere se due strutture sono uguali.\n\n\n\n\n\nLe stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.\nLe strutture col nome, detto structure tag, si dichiarano come abbiamo già visto:\nstruct nome {\n    type member_name;\n};\n\n\n\n\n\n\nAvviso\n\n\n\nIl tipo di una variabile struct è struct nome_struct, omettere la parola struct è un errore.\n\n\n\n\n\nNel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:\nstruct { int x; int y; } punto;\npunto.x = 12;\npunto.y = 18;\n\n\n\ntypedef è un operatore che permette di definire alias per i tipi:\ntypedef int Bool;\ntypedef float Euro;\ntypedef char[] String;\nQueste dichiarazioni permettono scrivere codice più chiaro.\n\n\n\nDal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave struct per riferirsi al tipo delle strutture grazie a typedef:\ntypedef struct {\n    int x;\n    int y;\n} Point;\nPoint punto = {\n    .x = 1,\n    .y = 2,\n};",
-    "crumbs": [
-      "Lezioni",
-      "Uso avanzato dei puntatori"
-    ]
-  },
-  {
-    "objectID": "lessons/05/index.html#strutture-in-c-1",
-    "href": "lessons/05/index.html#strutture-in-c-1",
-    "title": "Uso avanzato dei puntatori",
-    "section": "",
-    "text": "Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:\n\nStrutture: insieme di dati\nUnioni: alternative tra tipi diversi\nEnumerazioni: insieme di costanti",
+    "text": "Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:\n\nStrutture: insieme di dati\nUnioni: alternative tra tipi diversi\nEnumerazioni: insieme di costanti\n\n\n\nUna struttura è un insieme di dati, si differenzia dagli array perché:\n\ngli elementi possono essere di tipo diverso;\ngli elementi sono identificati da un nome;\n\nDi seguito un esempio di dichiarazione di una struttura:\nstruct studente {\n    char nome[20];\n    char cognome[20];\n    int matricola;\n};\nCome si può vedere dall’esempio, la dichiarazione di una struttura è introdotta dalla parola chiave struct, seguita dal nome della struttura e da una lista di dichiarazioni di variabili. Ricorda fortemente la dichiarazione di una classe in Java, in questo caso però non ci sono metodi, e i dati non si chiamano campi o attributi, ma membri. I membri hanno un nome e un tipo, possono essere di qualsiasi tipo, anche un’altra struttura. La grossa differenza con Java è che i membri sono sempre pubblici e non c’è modo di dichiararli privati.\n\n\nSi possono inizializzare le strutture quando vengono dichiarate:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\nSi possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0 (nel caso delle stringhe l’inizializzazione a zero equivale a dire stringa vuota \"\").\n\n\n\n\n\n\nAvviso\n\n\n\nIl tipo di una variabile struct è struct nome_struct, omettere la parola struct è un errore.\n\n\nUn modo alternativo di inizializzare una struttura è quello di specificare il nome dei membri:\nstruct studente s = {\n    .nome = \"Mario\",\n    .cognome = \"Rossi\",\n    .matricole = 12345,\n};\nIn questa modalità l’ordine degli elementi non è importante, ma è necessario specificare il nome di tutti i membri. Questo metodo è molto utile quando si hanno strutture con molti membri e si vuole inizializzare solo alcuni di essi.\n\n\n\nPer accedere ai singoli membri di una struttura si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;\n\n\n\nSi può copiare interamente una struttura usando una variabile dello stesso tipo:\nstruct studente a, b = {\"Matteo\", \"Spanio\", 56789};\na = b;\nIn questo caso si può notare una delle principali differenze con gli array:\n1int a[] = {1, 2, 3, 4, 5};\n2int *b;\n3b = a;\n\n1\n\na è un array di interi;\n\n2\n\nb è un puntatore a intero;\n\n3\n\nb = a non è una copia dell’array a ma assegna a b l’indirizzo di a, pertanto qualsiasi modifica dei dati di a si riflette anche in b (e viceversa). Cioè a e b puntano alla stessa area di memoria.\n\n\nUtilizzando le strutture invece, la copia è effettiva:\nstruct array {\n    int dati[5];\n};\n1struct array a = {{1, 2, 3, 4, 5}};\n2struct array b;\n3b = a;\n\n1\n\na inizializzo a con un array di interi;\n\n2\n\nb dichiaro b come struttura;\n\n3\n\nb = a copio a in b, vengono effettivamente copiati i dati dell’array a.dati in b.dati. Cioè a e b si trovano in aree di memoria diverse.\n\n\n\n\n\n\n\n\nImportante\n\n\n\nSolo l’operatore = è valido tra 2 struct, gli operatori == e != NON si possono usare per vedere se due strutture sono uguali.\n\n\n\n\n\nLe stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.\nLe strutture col nome, detto structure tag, si dichiarano come abbiamo già visto:\nstruct nome {\n    type member_name;\n};\n\n\n\nNel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:\nstruct { int x; int y; } punto;\npunto.x = 12;\npunto.y = 18;\nCosì facendo la struttura non ha un nome e non può essere riutilizzata facilmente, ogni volta che si vuole dichiarare una variabile di quel tipo bisogna riscrivere la struttura.\n\n\n\ntypedef è un operatore che permette di definire alias per i tipi:\ntypedef int Bool;\ntypedef float Euro;\ntypedef char* String;\nQueste dichiarazioni permettono scrivere codice più chiaro.\nLo stesso effetto si può ottenere dichiarando delle macro:\n#define BOOL int\n#define EURO float\n#define STRING char*\nIn generale si preferisce usare typedef perché è più chiaro e il compilatore può fare dei controlli sui tipi.\nDal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave struct per riferirsi al tipo delle strutture grazie a typedef:\ntypedef struct {\n    int x;\n    int y;\n} Point;\nPoint punto = {\n    .x = 1,\n    .y = 2,\n};\nIn questo modo si può dichiarare una variabile di tipo Point senza usare la parola chiave struct.\n\n\n\nUna volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:\ntypedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint s;\ns = (Point) { .x = 1, .y = 2 };\nA prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:\n#include &lt;math.h&gt;\ntypedef struct point {\n    int x;\n    int y;\n} Point;\n\nPoint somma(Point a, struct point b) {\n    return (Point) { .x = a.x + b.x, .y = a.y + b.y };\n}\n\nfloat distanza(Point a, Point b) {\n    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));\n}\n\n\n\nSi possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):\nstruct point *p;\nPoint *p1;\n\nvoid foo(Point* p);\n\n\n\n\nSi possono creare array di strutture:\nPoint punti[10];\npunti[0].x = 1;\nSi può inserire un array in una struttura:\nstruct libretto {\n    int voti[10];\n    int num_voti;\n};\nSi può inserire una struttura in un’altra struttura:\nstruct data {\n    int giorno;\n    int mese;\n    int anno;\n};\n\nstruct persona {\n    char nome[20];\n    char cognome[20];\n    struct data data_nascita;\n};\nsi possono anche innestare struct anonime:\nstruct {\n    char nome[20];\n    char cognome[20];\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data_nascita;\n} persona;\nSi possono inserire unioni1 in una struttura:\nstruct {\n    char nome[20];\n    char cognome[20];\n    union {\n        int matricola;\n        char codice_fiscale[16];\n    } id;\n} persona;\nSi può inserire strutture in unioni:\nunion {\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data;\n    int intero;\n} u;\n\n\n\nVediamo ora un esempio di programma basato sulle strutture.\nSi vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:\n\nimplementare una struttura dati per memorizzare i dati di un giocatore di calcio;\nmemorizzare l’elenco dei giocatori della squadra;\nordinare i giocatori in base numero di maglia.\n\nUn giocatore è identificabile da nome, cognome e numero di maglia (chiaramente si potrebbero aggiungere molti altri dati, come la data di nascita, il ruolo, ecc.). Si può quindi definire una struttura Giocatore che contenga questi dati:\n#define BUFFER_SIZE 128 // dimensione massima di un buffer\ntypedef struct giocatore\n{\n    char nome[BUFFER_SIZE];\n    char cognome[BUFFER_SIZE];\n    unsigned int numero_maglia; // non esistono numeri di maglia negativi\n} Giocatore;\nIl codice sopra riportato definisce la struttura struct giocatore e vi associa il nuovo tipo Giocatore. La struttura contiene tre membri: nome, cognome e numero_maglia, in quanto stringhe, il nome e cognome sono di tipo char[], mentre il numero di maglia è un intero senza segno. Si noti che gli array vengono dichiarati con una dimensione massima BUFFER_SIZE, ciò vuol dire che il nome e il cognome possono avere una lunghezza massima di BUFFER_SIZE - 1 caratteri, purtroppo C non controlla che questa condizione sia rispettata. In altre parole, all’interno del programma posso inizializzare una struttura Giocatore con un nome o cognome più lungo di BUFFER_SIZE - 1 caratteri, ma il comportamento del programma in questo caso è indefinito. Questo è uno dei più grandi problemi di C.\n\n\nLa struct Giocatore è di fatto un tipo di dato, possiamo quindi creare un array di esami dove memorizzare la formazione:\n#define NUM 22\nGiocatore squadra[NUM];\nLa squadra è composta da 22 giocatori (11 titolari, 5 in panchina e 6 riserve). Questa dichiarazione crea un array di 22 elementi di tipo Giocatore e lo assegna alla variabile squadra. Quando si dichiara un array di strutture, si può accedere ai membri di ciascuna struttura usando la notazione . (punto):\nsquadra[0].numero_maglia = 1;\nQuesto perchè squadra[0] è una struttura di tipo Giocatore e numero_maglia è un membro di questa struttura, quando invece si ha un puntatore a una struttura, si usa l’operatore -&gt; (freccia):\nGiocatore *p = &squadra[0];\np-&gt;numero_maglia = 1;\nL’operatore -&gt; è una comodità sintattica, infatti p-&gt;numero_maglia è equivalente a (*p).numero_maglia.\n\n\n\nPer ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:\nIl più intuitivo (ma non il più efficiente) è il Bubble Sort, di seguito una descrizione dell’algoritmo in pseudocodice:\nRepeat n-1 times\n    For i from 0 to n–2\n        If numbers[i] and numbers[i+1] out of order\n            Swap them\n    If no swaps\n        Quit\nL’idea è quella di scorrere l’array di numeri e scambiare i numeri adiacenti se non sono in ordine. Questo processo viene ripetuto finché non si è completato un passaggio senza scambi. Questo algoritmo è molto inefficiente, ma è molto semplice da implementare. La complessità computazionale del Bubble Sort è \\(O(n^2)\\).\nL’implementazione dello pseudocodice è molto semplice, infatti si tratta di due cicli annidati e uno scambio di due elementi:\n\nSi scorre l’array squadra NUM - 1 volte;\nSi scorre l’array squadra da 0 a NUM - 2;\nSi controlla se squadra[i] e squadra[i + 1] sono fuori ordine, in tal caso si scambiano. La funzione swap l’abbiamo già vista nella lezione sui puntatori.\n\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n            }\n        }\n    }\n}\nPer ottimizzare il codice, si può usare un flag per controllare se durante un passaggio non si è effettuato alcuno scambio, in tal caso si può uscire dal ciclo:\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        int scambiato = 0;\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n                scambiato = 1;\n            }\n        }\n        if (!scambiato)\n        {\n            break;\n        }\n    }\n}\nDi seguito un’animazione che mostra come funziona il Bubble Sort:\n\nSe stai consultando questa guida in formato HTML, puoi scaricare una versione completa del codice sorgente cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo \n\n\n\n\nLe unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso, la differenza sta nel fatto che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta:\nunion {\n    int i;\n    double d;\n} u;\n\nstruct {\n    int i;\n    double d;\n} s;\nIn questo caso u occupa in memoria lo spazio necessario per la variabile più grande, in questo caso double (8 byte), mentre s occupa lo spazio necessario per entrambi i membri (4 + 8 byte).\nSi può inizializzare solo un elemento di una union:\nunion {\n    int i;\n    double d;\n} u = { .i = 3 };\nSi presti molta attenzione a non leggere mai un membro di una union che non è stato inizializzato, il comportamento del programma in questo caso è indefinito.\nCome per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef.\n\n\n\nIn molti programmi si usano interi come “codici” per indicare varie cose. Un caso comune sono per esempio i codici di errore.\nSpesso si usano macro o costanti, ma è più chiaro usare enumerazioni:\nenum {\n    CUORI,\n    QUADRI,\n    FIORI,\n    PICCHE\n} s1, s2;`\nOra le variabili s1 e s2 possono assumere solo uno dei quattro valori definiti.\nUn esempio molto comune è la definizione del tipo booleano:\ntypedef enum {\n    FALSE,\n    TRUE\n} Bool;\nIn questo modo si può usare Bool come tipo di variabile, e assegnare solo i valori FALSE e TRUE. Solitamente gli elementi di un’enumerazione sono scritti in maiuscolo, per distinguerli dalle variabili. In questo caso FALSE e TRUE sono costanti, FALSE ha valore 0 e TRUE ha valore 1.\nDi default C assegna dei valori interi crescenti agli elementi dell’enumerazione, ma si possono assegnare valori specifici:\nenum {\n    LUN = 1,\n    MAR = 2,\n    MER = 3,\n    GIO = 4,\n    VEN = 5,\n    SAB = 6,\n    DOM = 7\n} giorno;\nSe non si assegna un valore, C assegna il valore dell’elemento precedente più uno.",
     "crumbs": [
       "Lezioni",
       "Uso avanzato dei puntatori"
@@ -1747,84 +1779,73 @@
     "href": "lessons/05/index.html#struct-3",
     "title": "Uso avanzato dei puntatori",
     "section": "",
-    "text": "Una struttura è un insieme di dati, si differenzia dagli array perché:\n\ngli elementi possono essere di tipo diverso\ngli elementi sono identificati da un nome\n\nstruct studente {\n    char nome[20];\n    char cognome[20];\n    int matricola;\n};",
+    "text": "Una struttura è un insieme di dati, si differenzia dagli array perché:\n\ngli elementi possono essere di tipo diverso;\ngli elementi sono identificati da un nome;\n\nDi seguito un esempio di dichiarazione di una struttura:\nstruct studente {\n    char nome[20];\n    char cognome[20];\n    int matricola;\n};\nCome si può vedere dall’esempio, la dichiarazione di una struttura è introdotta dalla parola chiave struct, seguita dal nome della struttura e da una lista di dichiarazioni di variabili. Ricorda fortemente la dichiarazione di una classe in Java, in questo caso però non ci sono metodi, e i dati non si chiamano campi o attributi, ma membri. I membri hanno un nome e un tipo, possono essere di qualsiasi tipo, anche un’altra struttura. La grossa differenza con Java è che i membri sono sempre pubblici e non c’è modo di dichiararli privati.\n\n\nSi possono inizializzare le strutture quando vengono dichiarate:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\nSi possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0 (nel caso delle stringhe l’inizializzazione a zero equivale a dire stringa vuota \"\").\n\n\n\n\n\n\nAvviso\n\n\n\nIl tipo di una variabile struct è struct nome_struct, omettere la parola struct è un errore.\n\n\nUn modo alternativo di inizializzare una struttura è quello di specificare il nome dei membri:\nstruct studente s = {\n    .nome = \"Mario\",\n    .cognome = \"Rossi\",\n    .matricole = 12345,\n};\nIn questa modalità l’ordine degli elementi non è importante, ma è necessario specificare il nome di tutti i membri. Questo metodo è molto utile quando si hanno strutture con molti membri e si vuole inizializzare solo alcuni di essi.\n\n\n\nPer accedere ai singoli membri di una struttura si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;\n\n\n\nSi può copiare interamente una struttura usando una variabile dello stesso tipo:\nstruct studente a, b = {\"Matteo\", \"Spanio\", 56789};\na = b;\nIn questo caso si può notare una delle principali differenze con gli array:\n1int a[] = {1, 2, 3, 4, 5};\n2int *b;\n3b = a;\n\n1\n\na è un array di interi;\n\n2\n\nb è un puntatore a intero;\n\n3\n\nb = a non è una copia dell’array a ma assegna a b l’indirizzo di a, pertanto qualsiasi modifica dei dati di a si riflette anche in b (e viceversa). Cioè a e b puntano alla stessa area di memoria.\n\n\nUtilizzando le strutture invece, la copia è effettiva:\nstruct array {\n    int dati[5];\n};\n1struct array a = {{1, 2, 3, 4, 5}};\n2struct array b;\n3b = a;\n\n1\n\na inizializzo a con un array di interi;\n\n2\n\nb dichiaro b come struttura;\n\n3\n\nb = a copio a in b, vengono effettivamente copiati i dati dell’array a.dati in b.dati. Cioè a e b si trovano in aree di memoria diverse.\n\n\n\n\n\n\n\n\nImportante\n\n\n\nSolo l’operatore = è valido tra 2 struct, gli operatori == e != NON si possono usare per vedere se due strutture sono uguali.\n\n\n\n\n\nLe stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.\nLe strutture col nome, detto structure tag, si dichiarano come abbiamo già visto:\nstruct nome {\n    type member_name;\n};\n\n\n\nNel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:\nstruct { int x; int y; } punto;\npunto.x = 12;\npunto.y = 18;\nCosì facendo la struttura non ha un nome e non può essere riutilizzata facilmente, ogni volta che si vuole dichiarare una variabile di quel tipo bisogna riscrivere la struttura.\n\n\n\ntypedef è un operatore che permette di definire alias per i tipi:\ntypedef int Bool;\ntypedef float Euro;\ntypedef char* String;\nQueste dichiarazioni permettono scrivere codice più chiaro.\nLo stesso effetto si può ottenere dichiarando delle macro:\n#define BOOL int\n#define EURO float\n#define STRING char*\nIn generale si preferisce usare typedef perché è più chiaro e il compilatore può fare dei controlli sui tipi.\nDal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave struct per riferirsi al tipo delle strutture grazie a typedef:\ntypedef struct {\n    int x;\n    int y;\n} Point;\nPoint punto = {\n    .x = 1,\n    .y = 2,\n};\nIn questo modo si può dichiarare una variabile di tipo Point senza usare la parola chiave struct.\n\n\n\nUna volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:\ntypedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint s;\ns = (Point) { .x = 1, .y = 2 };\nA prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:\n#include &lt;math.h&gt;\ntypedef struct point {\n    int x;\n    int y;\n} Point;\n\nPoint somma(Point a, struct point b) {\n    return (Point) { .x = a.x + b.x, .y = a.y + b.y };\n}\n\nfloat distanza(Point a, Point b) {\n    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));\n}\n\n\n\nSi possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):\nstruct point *p;\nPoint *p1;\n\nvoid foo(Point* p);",
     "crumbs": [
       "Lezioni",
       "Uso avanzato dei puntatori"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#inizializzazione-1",
-    "href": "lessons/05/index.html#inizializzazione-1",
+    "objectID": "lessons/05/index.html#array-di-struct",
+    "href": "lessons/05/index.html#array-di-struct",
     "title": "Uso avanzato dei puntatori",
     "section": "",
-    "text": "Si possono inizializzare le strutture quando vengono dichiarate:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\nSi possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0.\nUn modo alternativo di inizializzare:\nstruct studente s = {\n    .nome = \"Mario\",\n    .cognome = \"Rossi\",\n    .matricole = 12345,\n};",
+    "text": "Si possono creare array di strutture:\nPoint punti[10];\npunti[0].x = 1;\nSi può inserire un array in una struttura:\nstruct libretto {\n    int voti[10];\n    int num_voti;\n};\nSi può inserire una struttura in un’altra struttura:\nstruct data {\n    int giorno;\n    int mese;\n    int anno;\n};\n\nstruct persona {\n    char nome[20];\n    char cognome[20];\n    struct data data_nascita;\n};\nsi possono anche innestare struct anonime:\nstruct {\n    char nome[20];\n    char cognome[20];\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data_nascita;\n} persona;\nSi possono inserire unioni1 in una struttura:\nstruct {\n    char nome[20];\n    char cognome[20];\n    union {\n        int matricola;\n        char codice_fiscale[16];\n    } id;\n} persona;\nSi può inserire strutture in unioni:\nunion {\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data;\n    int intero;\n} u;",
     "crumbs": [
       "Lezioni",
       "Uso avanzato dei puntatori"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#accedere-agli-elementi-1",
-    "href": "lessons/05/index.html#accedere-agli-elementi-1",
+    "objectID": "lessons/05/index.html#esempio-mondiali-1982",
+    "href": "lessons/05/index.html#esempio-mondiali-1982",
     "title": "Uso avanzato dei puntatori",
     "section": "",
-    "text": "Per accedere au singoli elementi di una struttura (detti anche membri) si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;",
+    "text": "Vediamo ora un esempio di programma basato sulle strutture.\nSi vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:\n\nimplementare una struttura dati per memorizzare i dati di un giocatore di calcio;\nmemorizzare l’elenco dei giocatori della squadra;\nordinare i giocatori in base numero di maglia.\n\nUn giocatore è identificabile da nome, cognome e numero di maglia (chiaramente si potrebbero aggiungere molti altri dati, come la data di nascita, il ruolo, ecc.). Si può quindi definire una struttura Giocatore che contenga questi dati:\n#define BUFFER_SIZE 128 // dimensione massima di un buffer\ntypedef struct giocatore\n{\n    char nome[BUFFER_SIZE];\n    char cognome[BUFFER_SIZE];\n    unsigned int numero_maglia; // non esistono numeri di maglia negativi\n} Giocatore;\nIl codice sopra riportato definisce la struttura struct giocatore e vi associa il nuovo tipo Giocatore. La struttura contiene tre membri: nome, cognome e numero_maglia, in quanto stringhe, il nome e cognome sono di tipo char[], mentre il numero di maglia è un intero senza segno. Si noti che gli array vengono dichiarati con una dimensione massima BUFFER_SIZE, ciò vuol dire che il nome e il cognome possono avere una lunghezza massima di BUFFER_SIZE - 1 caratteri, purtroppo C non controlla che questa condizione sia rispettata. In altre parole, all’interno del programma posso inizializzare una struttura Giocatore con un nome o cognome più lungo di BUFFER_SIZE - 1 caratteri, ma il comportamento del programma in questo caso è indefinito. Questo è uno dei più grandi problemi di C.\n\n\nLa struct Giocatore è di fatto un tipo di dato, possiamo quindi creare un array di esami dove memorizzare la formazione:\n#define NUM 22\nGiocatore squadra[NUM];\nLa squadra è composta da 22 giocatori (11 titolari, 5 in panchina e 6 riserve). Questa dichiarazione crea un array di 22 elementi di tipo Giocatore e lo assegna alla variabile squadra. Quando si dichiara un array di strutture, si può accedere ai membri di ciascuna struttura usando la notazione . (punto):\nsquadra[0].numero_maglia = 1;\nQuesto perchè squadra[0] è una struttura di tipo Giocatore e numero_maglia è un membro di questa struttura, quando invece si ha un puntatore a una struttura, si usa l’operatore -&gt; (freccia):\nGiocatore *p = &squadra[0];\np-&gt;numero_maglia = 1;\nL’operatore -&gt; è una comodità sintattica, infatti p-&gt;numero_maglia è equivalente a (*p).numero_maglia.\n\n\n\nPer ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:\nIl più intuitivo (ma non il più efficiente) è il Bubble Sort, di seguito una descrizione dell’algoritmo in pseudocodice:\nRepeat n-1 times\n    For i from 0 to n–2\n        If numbers[i] and numbers[i+1] out of order\n            Swap them\n    If no swaps\n        Quit\nL’idea è quella di scorrere l’array di numeri e scambiare i numeri adiacenti se non sono in ordine. Questo processo viene ripetuto finché non si è completato un passaggio senza scambi. Questo algoritmo è molto inefficiente, ma è molto semplice da implementare. La complessità computazionale del Bubble Sort è \\(O(n^2)\\).\nL’implementazione dello pseudocodice è molto semplice, infatti si tratta di due cicli annidati e uno scambio di due elementi:\n\nSi scorre l’array squadra NUM - 1 volte;\nSi scorre l’array squadra da 0 a NUM - 2;\nSi controlla se squadra[i] e squadra[i + 1] sono fuori ordine, in tal caso si scambiano. La funzione swap l’abbiamo già vista nella lezione sui puntatori.\n\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n            }\n        }\n    }\n}\nPer ottimizzare il codice, si può usare un flag per controllare se durante un passaggio non si è effettuato alcuno scambio, in tal caso si può uscire dal ciclo:\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        int scambiato = 0;\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n                scambiato = 1;\n            }\n        }\n        if (!scambiato)\n        {\n            break;\n        }\n    }\n}\nDi seguito un’animazione che mostra come funziona il Bubble Sort:\n\nSe stai consultando questa guida in formato HTML, puoi scaricare una versione completa del codice sorgente cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo",
     "crumbs": [
       "Lezioni",
       "Uso avanzato dei puntatori"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#copie-di-strutture-1",
-    "href": "lessons/05/index.html#copie-di-strutture-1",
+    "objectID": "lessons/05/index.html#unioni-2",
+    "href": "lessons/05/index.html#unioni-2",
     "title": "Uso avanzato dei puntatori",
     "section": "",
-    "text": "Si può copiare interamente una struttura usando una variabile dello stesso tipo:\nstruct studente a, b = {\"Matteo\", \"Spanio\", 56789};\na = b;\n\n\n\n\n\n\nImportante\n\n\n\nSolo l’operatore = è valido tra 2 struct, gli operatori == e != NON si possono usare per vedere se due strutture sono uguali.",
+    "text": "Le unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso, la differenza sta nel fatto che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta:\nunion {\n    int i;\n    double d;\n} u;\n\nstruct {\n    int i;\n    double d;\n} s;\nIn questo caso u occupa in memoria lo spazio necessario per la variabile più grande, in questo caso double (8 byte), mentre s occupa lo spazio necessario per entrambi i membri (4 + 8 byte).\nSi può inizializzare solo un elemento di una union:\nunion {\n    int i;\n    double d;\n} u = { .i = 3 };\nSi presti molta attenzione a non leggere mai un membro di una union che non è stato inizializzato, il comportamento del programma in questo caso è indefinito.\nCome per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef.",
     "crumbs": [
       "Lezioni",
       "Uso avanzato dei puntatori"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#dare-i-nomi-alle-strutture-1",
-    "href": "lessons/05/index.html#dare-i-nomi-alle-strutture-1",
+    "objectID": "lessons/05/index.html#enumerazioni-1",
+    "href": "lessons/05/index.html#enumerazioni-1",
     "title": "Uso avanzato dei puntatori",
     "section": "",
-    "text": "Le stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.\nLe strutture col nome, detto structure tag, si dichiarano come abbiamo già visto:\nstruct nome {\n    type member_name;\n};\n\n\n\n\n\n\nAvviso\n\n\n\nIl tipo di una variabile struct è struct nome_struct, omettere la parola struct è un errore.",
+    "text": "In molti programmi si usano interi come “codici” per indicare varie cose. Un caso comune sono per esempio i codici di errore.\nSpesso si usano macro o costanti, ma è più chiaro usare enumerazioni:\nenum {\n    CUORI,\n    QUADRI,\n    FIORI,\n    PICCHE\n} s1, s2;`\nOra le variabili s1 e s2 possono assumere solo uno dei quattro valori definiti.\nUn esempio molto comune è la definizione del tipo booleano:\ntypedef enum {\n    FALSE,\n    TRUE\n} Bool;\nIn questo modo si può usare Bool come tipo di variabile, e assegnare solo i valori FALSE e TRUE. Solitamente gli elementi di un’enumerazione sono scritti in maiuscolo, per distinguerli dalle variabili. In questo caso FALSE e TRUE sono costanti, FALSE ha valore 0 e TRUE ha valore 1.\nDi default C assegna dei valori interi crescenti agli elementi dell’enumerazione, ma si possono assegnare valori specifici:\nenum {\n    LUN = 1,\n    MAR = 2,\n    MER = 3,\n    GIO = 4,\n    VEN = 5,\n    SAB = 6,\n    DOM = 7\n} giorno;\nSe non si assegna un valore, C assegna il valore dell’elemento precedente più uno.",
     "crumbs": [
       "Lezioni",
       "Uso avanzato dei puntatori"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#strutture-anonime-1",
-    "href": "lessons/05/index.html#strutture-anonime-1",
+    "objectID": "lessons/05/index.html#array-con-strutture-2",
+    "href": "lessons/05/index.html#array-con-strutture-2",
     "title": "Uso avanzato dei puntatori",
-    "section": "",
-    "text": "Nel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:\nstruct { int x; int y; } punto;\npunto.x = 12;\npunto.y = 18;",
+    "section": "Array con strutture",
+    "text": "Array con strutture\nGli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza a mano, per questo è una pratica comune creare una struttura che contenga un array e la sua lunghezza:\n#define MAX 1024\n\ntypedef struct intarray {\n    int array[MAX];\n    int length;\n} IntArray;\nQuesta struttura dati si comporta come segue: array è un array con una dimensione massima di MAX elementi, length è il numero di elementi effettivamente presenti nell’array, ciò vuol dire che length è sempre minore o uguale a MAX. Di seguito un esempio di utilizzo:\n1IntArray a = {.length=0};\n2a.array[a.length++] = 1;\n3printf(\"%d, %d\\n\", a.array[0], a.length);\n\n1\n\nInizializzo la struttura a con length=0, non c’è bisogno di inizializzare l’array perchè si presuppone che prima di accedere all’array si verifichi sempre fino a che indice è valido l’array tramite length;\n\n2\n\nInizializzo il primo elemento dell’array con il valore 1 e incremento length, si noti che l’espressione a.length++ restituisce il valore di a.length prima dell’incremento;\n\n3\n\nStampo il primo elemento dell’array e la lunghezza dell’array.\n\n\nAdesso si può passare la struttura come argomento di una funzione:\n1void stampa_array(IntArray a) {\n2    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\n\n1\n\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.\n\n2\n\nSi può usare a.length per scorrere l’array, pertanto se la dimensione è 0 il ciclo non viene eseguito, ecco perchè non c’è bisogno di inizializzare i valori dell’array se length è 0.\n\n\nSe stai consultando questa guida in formato HTML, puoi scaricare un esempio di codice sorgente in cui si utilizza questa struttura dati cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo",
     "crumbs": [
       "Lezioni",
       "Uso avanzato dei puntatori"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#typedef-1",
-    "href": "lessons/05/index.html#typedef-1",
+    "objectID": "lessons/05/index.html#footnotes",
+    "href": "lessons/05/index.html#footnotes",
     "title": "Uso avanzato dei puntatori",
-    "section": "",
-    "text": "typedef è un operatore che permette di definire alias per i tipi:\ntypedef int Bool;\ntypedef float Euro;\ntypedef char[] String;\nQueste dichiarazioni permettono scrivere codice più chiaro.",
-    "crumbs": [
-      "Lezioni",
-      "Uso avanzato dei puntatori"
-    ]
-  },
-  {
-    "objectID": "lessons/05/index.html#strutture-con-typedef-1",
-    "href": "lessons/05/index.html#strutture-con-typedef-1",
-    "title": "Uso avanzato dei puntatori",
-    "section": "",
-    "text": "Dal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave struct per riferirsi al tipo delle strutture grazie a typedef:\ntypedef struct {\n    int x;\n    int y;\n} Point;\nPoint punto = {\n    .x = 1,\n    .y = 2,\n};",
+    "section": "Note",
+    "text": "Note\n\n\nSi veda la sezione seguente per informazioni dettagliate sulle unioni.↩︎",
     "crumbs": [
       "Lezioni",
       "Uso avanzato dei puntatori"
