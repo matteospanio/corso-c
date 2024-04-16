@@ -1,6 +1,7 @@
 ---
 title: Strutture di controllo e tipi di base
 date: 03/19/2024
+abstract-title: Argomenti trattati
 abstract: |
     In questa lezione si termina l'introduzione alla sintassi del C, con un focus sulle strutture di controllo, le espressioni e i tipi di base.
     Gli argomenti vengono presentati in ordine diverso rispetto al libro di testo.

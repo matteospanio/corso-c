@@ -1,6 +1,9 @@
 ---
 title: Puntatori
 date: 04/09/2024
+abstract-title: Argomenti trattati
+abstract: |
+    In questo capitolo vengono introdotti i puntatori, un concetto fondamentale per la programmazione in C. Si descrive cosa siano, la loro sintassi e i principali utilizzi: l'indirizzamento di variabili, l'accesso a variabili tramite puntatore, cosa abbiamo in comune con gli array e le stringhe e come vengono passati ai parametri di funzione.
 ---
 
 

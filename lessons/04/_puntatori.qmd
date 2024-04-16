@@ -258,6 +258,10 @@ Il prototipo della funzione è:
 
 `void minmax(const int *a, int n, int *min, int *max);`
 
+::: {.content-visible when-format="html"}
+{{< downloadthis ./code/min_max.c dname="soluzione_min_max" label="Scarica la soluzione" >}}
+:::
+
 ## Puntatori di puntatori?
 
 Un puntatore può puntare ad un altro puntatore.

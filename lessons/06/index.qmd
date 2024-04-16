@@ -1,6 +1,7 @@
 ---
 title: Operatori bitwise e C avanzato
 date: 04/23/2024
+abstract-title: Argomenti trattati
 ---
 
 ::: {.content-visible when-format="revealjs"}

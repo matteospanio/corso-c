@@ -70,10 +70,6 @@ struct studente a, b = {"Matteo", "Spanio", 56789};
 a = b;
 ```
 
-::: {.callout-important}
-Solo l'operatore `=` è valido tra 2 struct, gli operatori `==` e `!=` NON si possono usare per vedere se due strutture sono uguali.
-:::
-
 In questo caso si può notare una delle principali differenze con gli array:
 ```c
 int a[] = {1, 2, 3, 4, 5}; /* <1> */
@@ -204,34 +200,94 @@ Point *p1;
 void foo(Point* p);
 ```
 
-## `struct`
+## Array di struct
 
--  Si possono creare array di strutture:
+Si possono creare array di strutture:
 
 ```c
 Point punti[10];
 punti[0].x = 1;
 ```
 
-- Inserire un array in una struttura
-- Inserire una struttura in un'altra struttura
-- Inserire unioni in una struttura
-- Inserire strutture in unioni
+Si può inserire un array in una struttura:
 
-## Esempio
+```c
+struct libretto {
+    int voti[10];
+    int num_voti;
+};
+```
 
-Si vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:
+Si può inserire una struttura in un'altra struttura:
+
+```c
+struct data {
+    int giorno;
+    int mese;
+    int anno;
+};
+
+struct persona {
+    char nome[20];
+    char cognome[20];
+    struct data data_nascita;
+};
+```
+
+si possono anche innestare struct anonime:
+
+```c
+struct {
+    char nome[20];
+    char cognome[20];
+    struct {
+        int giorno;
+        int mese;
+        int anno;
+    } data_nascita;
+} persona;
+```
+
+Si possono inserire unioni[^1] in una struttura:
+```c
+struct {
+    char nome[20];
+    char cognome[20];
+    union {
+        int matricola;
+        char codice_fiscale[16];
+    } id;
+} persona;
+```
+
+[^1]: Si veda la sezione seguente per informazioni dettagliate sulle unioni.
+
+Si può inserire strutture in unioni:
+```c
+union {
+    struct {
+        int giorno;
+        int mese;
+        int anno;
+    } data;
+    int intero;
+} u;
+```
+
+## Esempio: Mondiali 1982
+
+Vediamo ora un esempio di programma basato sulle strutture.
+
+Si vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai [mondiali del 1982](https://it.wikipedia.org/wiki/Campionato_mondiale_di_calcio_1982):
 
 1. implementare una struttura dati per memorizzare i dati di un giocatore di calcio;
 2. memorizzare l'elenco dei giocatori della squadra;
-4. ordinare i giocatori in base numero di maglia.
+3. ordinare i giocatori in base numero di maglia.
 
-## Memorizzare un giocatore
-
-Ai fini della classifica è necessario memorizzare il nome della squadra e i punti ottenuti:
+Un giocatore è identificabile da nome, cognome e numero di maglia (chiaramente si potrebbero aggiungere molti altri dati, come la data di nascita, il ruolo, ecc.). Si può quindi definire una struttura `Giocatore` che contenga questi dati:
 
 ```c
-#define BUFFER_SIZE 128
+#define BUFFER_SIZE 128 // dimensione massima di un buffer
 typedef struct giocatore
 {
     char nome[BUFFER_SIZE];
@@ -240,7 +296,9 @@ typedef struct giocatore
 } Giocatore;
 ```
 
-## Memorizzare la lista dei giocatori
+Il codice sopra riportato definisce la struttura `struct giocatore` e vi associa il nuovo tipo `Giocatore`. La struttura contiene tre membri: `nome`, `cognome` e `numero_maglia`, in quanto stringhe, il nome e cognome sono di tipo `char[]`, mentre il numero di maglia è un intero senza segno. Si noti che gli array vengono dichiarati con una dimensione massima `BUFFER_SIZE`, ciò vuol dire che il nome e il cognome possono avere una lunghezza massima di `BUFFER_SIZE - 1` caratteri, purtroppo C non controlla che questa condizione sia rispettata. In altre parole, all'interno del programma posso inizializzare una struttura `Giocatore` con un nome o cognome più lungo di `BUFFER_SIZE - 1` caratteri, ma il comportamento del programma in questo caso è indefinito. Questo è uno dei più grandi problemi di C.
+
+### Memorizzare la lista dei giocatori
 
 La struct `Giocatore` è di fatto un tipo di dato, possiamo quindi creare un array di esami dove memorizzare la formazione:
 
@@ -249,22 +307,99 @@ La struct `Giocatore` è di fatto un tipo di dato, possiamo quindi creare un arr
 Giocatore squadra[NUM];
 ```
 
-## Ordinare i giocatori
+La squadra è composta da 22 giocatori (11 titolari, 5 in panchina e 6 riserve). Questa dichiarazione crea un array di 22 elementi di tipo `Giocatore` e lo assegna alla variabile `squadra`. Quando si dichiara un array di strutture, si può accedere ai membri di ciascuna struttura usando la notazione `.` (punto):
+
+```c
+squadra[0].numero_maglia = 1;
+```
+
+Questo perchè `squadra[0]` è una struttura di tipo `Giocatore` e `numero_maglia` è un membro di questa struttura, quando invece si ha un puntatore a una struttura, si usa l'operatore `->` (freccia):
+
+```c
+Giocatore *p = &squadra[0];
+p->numero_maglia = 1;
+```
+
+L'operatore `->` è una comodità sintattica, infatti `p->numero_maglia` è equivalente a `(*p).numero_maglia`.
+
+### Ordinare i giocatori
 
 Per ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:
 
-Il più intuitivo, ma non il più efficiente, è il Bubble Sort:
+Il più intuitivo (ma non il più efficiente) è il [Bubble Sort](https://it.wikipedia.org/wiki/Bubble_sort), di seguito una descrizione dell'algoritmo in pseudocodice:
+
+```
+Repeat n-1 times
+    For i from 0 to n–2
+        If numbers[i] and numbers[i+1] out of order
+            Swap them
+    If no swaps
+        Quit
+```
+
+L'idea è quella di scorrere l'array di numeri e scambiare i numeri adiacenti se non sono in ordine. Questo processo viene ripetuto finché non si è completato un passaggio senza scambi. Questo algoritmo è molto inefficiente, ma è molto semplice da implementare. La complessità computazionale del Bubble Sort è $O(n^2)$.
+
+L'implementazione dello pseudocodice è molto semplice, infatti si tratta di due cicli annidati e uno scambio di due elementi:
+
+1. Si scorre l'array `squadra` `NUM - 1` volte;
+2. Si scorre l'array `squadra` da `0` a `NUM - 2`;
+3. Si controlla se `squadra[i]` e `squadra[i + 1]` sono fuori ordine, in tal caso **si scambiano**. La funzione swap l'abbiamo già vista nella [lezione sui puntatori](../04/).
+
+```c
+void bubble_sort(Giocatore *squadra, size_t n)
+{
+    for (size_t i = 0; i < n - 1; i++)
+    {
+        for (size_t j = 0; j < n - 2; j++)
+        {
+            if (squadra[j].numero_maglia > squadra[j + 1].numero_maglia)
+            {
+                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));
+            }
+        }
+    }
+}
+```
+
+Per ottimizzare il codice, si può usare un flag per controllare se durante un passaggio non si è effettuato alcuno scambio, in tal caso si può uscire dal ciclo:
+
+```c
+void bubble_sort(Giocatore *squadra, size_t n)
+{
+    for (size_t i = 0; i < n - 1; i++)
+    {
+        int scambiato = 0;
+        for (size_t j = 0; j < n - 2; j++)
+        {
+            if (squadra[j].numero_maglia > squadra[j + 1].numero_maglia)
+            {
+                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));
+                scambiato = 1;
+            }
+        }
+        if (!scambiato)
+        {
+            break;
+        }
+    }
+}
+```
 
 ::: {.content-visible when-format="html"}
-![](https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif)
+Di seguito un'animazione che mostra come funziona il Bubble Sort:
 
+![](https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif)
+:::
+
+Se stai consultando questa guida in formato HTML, puoi scaricare una versione completa del codice sorgente cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a [questo link](https://github.com/matteospanio/corso-c/blob/master/lessons/05/code/mondiali1982.c).
+
+::: {.content-visible when-format="html"}
 {{< downloadthis ./code/mondiali1982.c dname="esempio" label="Scarica l'esempio completo" >}}
 :::
 
 ## Unioni
 
-- Le unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso
-- La differenza è che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta
+Le unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso, la differenza sta nel fatto che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta:
 
 ```c
 union {
@@ -278,6 +413,8 @@ struct {
 } s;
 ```
 
+In questo caso `u` occupa in memoria lo spazio necessario per la variabile più grande, in questo caso `double` (8 byte), mentre `s` occupa lo spazio necessario per entrambi i membri (4 + 8 byte).
+
 Si può inizializzare solo un elemento di una union:
 
 ```c
@@ -285,12 +422,11 @@ union {
     int i;
     double d;
 } u = { .i = 3 };
-
-u.d = 5.7
 ```
 
-Come per le strutture, posso dare nomi alle unioni tramite tag
-oppure con typedef.
+Si presti molta attenzione a non leggere mai un membro di una union che non è stato inizializzato, il comportamento del programma in questo caso è indefinito.
+
+Come per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef.
 
 ## Enumerazioni
 
@@ -298,21 +434,50 @@ In molti programmi si usano interi come "*codici*" per indicare varie cose. Un c
 
 Spesso si usano macro o costanti, ma è più chiaro usare enumerazioni:
 
-`enum {CUORI, QUADRI, FIORI, PICCHE} s1, s2;`
+```c
+enum {
+    CUORI,
+    QUADRI,
+    FIORI,
+    PICCHE
+} s1, s2;`
+```
 
 Ora le variabili `s1` e `s2` possono assumere solo uno dei quattro valori definiti.
 
+Un esempio molto comune è la definizione del tipo booleano:
+```c
+typedef enum {
+    FALSE,
+    TRUE
+} Bool;
+```
+
+In questo modo si può usare `Bool` come tipo di variabile, e assegnare solo i valori `FALSE` e `TRUE`. Solitamente gli elementi di un'enumerazione sono scritti in maiuscolo, per distinguerli dalle variabili. In questo caso `FALSE` e `TRUE` sono costanti, FALSE ha valore 0 e TRUE ha valore 1.
+
+Di default C assegna dei valori interi crescenti agli elementi dell'enumerazione, ma si possono assegnare valori specifici:
+
+```c
+enum {
+    LUN = 1,
+    MAR = 2,
+    MER = 3,
+    GIO = 4,
+    VEN = 5,
+    SAB = 6,
+    DOM = 7
+} giorno;
+```
+
+Se non si assegna un valore, C assegna il valore dell'elemento precedente più uno.
+
 # Strutture dati
 
-Le strutture sono molto utili per definire... strutture dati.
-
-Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code...
+Le strutture sono molto utili per definire strutture dati. Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code...
 
 ## Array con strutture
 
-Gli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza *a mano*...
-
-Si può creare una struttura che contenga un array e la sua lunghezza:
+Gli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza *a mano*, per questo è una pratica comune creare una struttura che contenga un array e la sua lunghezza:
 
 ```c
 #define MAX 1024
@@ -323,16 +488,32 @@ typedef struct intarray {
 } IntArray;
 ```
 
-## Array con strutture
+Questa struttura dati si comporta come segue: `array` è un array con una dimensione massima di `MAX` elementi, `length` è il numero di elementi effettivamente presenti nell'array, ciò vuol dire che `length` è sempre minore o uguale a `MAX`. Di seguito un esempio di utilizzo:
+
+```c
+IntArray a = {.length=0}; /*<1>*/
+a.array[a.length++] = 1; /*<2>*/
+printf("%d, %d\n", a.array[0], a.length); /*<3>*/
+```
+1. Inizializzo la struttura `a` con `length=0`, non c'è bisogno di inizializzare l'array perchè si presuppone che prima di accedere all'array si verifichi sempre fino a che indice è valido l'array tramite `length`;
+2. Inizializzo il primo elemento dell'array con il valore 1 e incremento `length`, si noti che l'espressione `a.length++` restituisce il valore di `a.length` prima dell'incremento;
+3. Stampo il primo elemento dell'array e la lunghezza dell'array.
 
 Adesso si può passare la struttura come argomento di una funzione:
 
 ```c
-void stampa_array(IntArray a) {
-    for (int i = 0; i < a.length; i++) {
+void stampa_array(IntArray a) { /*<1>*/
+    for (int i = 0; i < a.length; i++) { /*<2>*/ 
         printf("%d ", a.array[i]);
     }
     printf("\n");
 }
 ```
-Si nota subito che non abbiamo più bisogno di passare la lunghezza dell'array come argomento.
+1. Si nota subito che non abbiamo più bisogno di passare la lunghezza dell'array come argomento.
+2. Si può usare `a.length` per scorrere l'array, pertanto se la dimensione è 0 il ciclo non viene eseguito, ecco perchè non c'è bisogno di inizializzare i valori dell'array se `length` è 0.
+
+Se stai consultando questa guida in formato HTML, puoi scaricare un esempio di codice sorgente in cui si utilizza questa struttura dati cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a [questo link](https://github.com/matteospanio/corso-c/blob/master/lessons/05/code/array_struct.c).
+
+::: {.content-visible when-format="html"}
+{{< downloadthis ./code/array_struct.c dname="esempio_array_struct" label="Scarica l'esempio completo" >}}
+:::
