@@ -371,7 +371,7 @@ Suggerimento
 <p>Esempio di main:</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p><a href="#dnldts28683" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgbWFpbih2b2lkKQp7CiAgICAvLyBUT0RPOiByaWNldmVyZSBpbiBpbnB1dCB1biBpbXBvcnRvIGluIGxpcmUgZGEgY2FtYmlhcmUKCiAgICAvLyBUT0RPOiBzdGFtcGFyZSBhIG1vbml0b3IgbCdpbXBvcnRvIGluIGV1cm8gY29ycmlzcG9uZGVudGUKfQo=').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts60170" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgbWFpbih2b2lkKQp7CiAgICAvLyBUT0RPOiByaWNldmVyZSBpbiBpbnB1dCB1biBpbXBvcnRvIGluIGxpcmUgZGEgY2FtYmlhcmUKCiAgICAvLyBUT0RPOiBzdGFtcGFyZSBhIG1vbml0b3IgbCdpbXBvcnRvIGluIGV1cm8gY29ycmlzcG9uZGVudGUKfQo=').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -379,7 +379,7 @@ Suggerimento
       a.download = 'cambio_valuta.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts28683"><i class="bi bi-download"></i> Scarica il file </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts60170"><i class="bi bi-download"></i> Scarica il file </button></a></p>
 </div></div><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
@@ -388,29 +388,36 @@ Suggerimento
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: stampare a monitor l'importo in euro corrispondente</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- ::: {.callout-tip collapse="true"}
-## Soluzione
-
-```{.c}
-#include <stdio.h>
-
-const float TASSO_CAMBIO = 1936.27f;
-
-int main(void)
-{
-    float euro, lit;
-
-    printf("Inserisci l'importo in lire da cambiare: ");
-    scanf("%f", &lit);
-
-    euro = lit / TASSO_CAMBIO;
-
-    printf("%.2f lire corrispondono a %.2f euro\n", lit, euro);
-}
-
-```
-
-::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Soluzione
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">float</span> TASSO_CAMBIO <span class="op">=</span> <span class="fl">1936.27</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> euro<span class="op">,</span> lit<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Inserisci l'importo in lire da cambiare: "</span><span class="op">);</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%f</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>lit<span class="op">);</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    euro <span class="op">=</span> lit <span class="op">/</span> TASSO_CAMBIO<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%.2f</span><span class="st"> lire corrispondono a </span><span class="sc">%.2f</span><span class="st"> euro</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> lit<span class="op">,</span> euro<span class="op">);</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 
 
 

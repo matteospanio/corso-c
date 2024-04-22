@@ -8,7 +8,7 @@
 
 <meta name="author" content="Matteo Spanio">
 
-<title>Hello C 2024 - Operatori bitwise e C avanzato</title>
+<title>Hello C 2024 - Memoria dinamica e operatori bitwise</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,6 +118,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -171,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/06/index.html">Operatori bitwise e C avanzato</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/06/index.html">Memoria dinamica e operatori bitwise</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -216,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Operatori bitwise e C avanzato</span></a>
+ <span class="menu-text">Memoria dinamica e operatori bitwise</span></a>
   </div>
 </li>
     </ul>
@@ -229,7 +258,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">In questa pagina</h2>
    
   <ul>
-  <li><a href="#operazioni-bitwise-1" id="toc-operazioni-bitwise-1" class="nav-link active" data-scroll-target="#operazioni-bitwise-1">Operazioni bitwise</a>
+  <li><a href="#strutture-dati-1" id="toc-strutture-dati-1" class="nav-link active" data-scroll-target="#strutture-dati-1">Strutture dati</a>
+  <ul class="collapse">
+  <li><a href="#esercizio-2" id="toc-esercizio-2" class="nav-link" data-scroll-target="#esercizio-2">Esercizio</a></li>
+  </ul></li>
+  <li><a href="#memoria-dinamica-3" id="toc-memoria-dinamica-3" class="nav-link" data-scroll-target="#memoria-dinamica-3">Memoria dinamica</a>
+  <ul class="collapse">
+  <li><a href="#malloc-1" id="toc-malloc-1" class="nav-link" data-scroll-target="#malloc-1"><code>malloc</code></a></li>
+  <li><a href="#calloc-1" id="toc-calloc-1" class="nav-link" data-scroll-target="#calloc-1"><code>calloc</code></a></li>
+  <li><a href="#realloc-1" id="toc-realloc-1" class="nav-link" data-scroll-target="#realloc-1"><code>realloc</code></a></li>
+  <li><a href="#null-1" id="toc-null-1" class="nav-link" data-scroll-target="#null-1">NULL</a></li>
+  <li><a href="#malloc-calloc-realloc-1" id="toc-malloc-calloc-realloc-1" class="nav-link" data-scroll-target="#malloc-calloc-realloc-1"><code>malloc</code>, <code>calloc</code>, <code>realloc</code></a></li>
+  <li><a href="#free-1" id="toc-free-1" class="nav-link" data-scroll-target="#free-1"><code>free</code></a></li>
+  <li><a href="#array-dinamico-1" id="toc-array-dinamico-1" class="nav-link" data-scroll-target="#array-dinamico-1">Array dinamico</a></li>
+  <li><a href="#dynarray-1" id="toc-dynarray-1" class="nav-link" data-scroll-target="#dynarray-1"><code>DynArray</code></a></li>
+  <li><a href="#dynarray-generico-1" id="toc-dynarray-generico-1" class="nav-link" data-scroll-target="#dynarray-generico-1"><code>DynArray</code> generico</a></li>
+  </ul></li>
+  <li><a href="#operazioni-bitwise-1" id="toc-operazioni-bitwise-1" class="nav-link" data-scroll-target="#operazioni-bitwise-1">Operazioni bitwise</a>
   <ul class="collapse">
   <li><a href="#calcoli-1" id="toc-calcoli-1" class="nav-link" data-scroll-target="#calcoli-1">Calcoli</a></li>
   <li><a href="#esempi" id="toc-esempi" class="nav-link" data-scroll-target="#esempi">Esempi</a></li>
@@ -242,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Operatori bitwise e C avanzato</h1>
+<h1 class="title">Memoria dinamica e operatori bitwise</h1>
 </div>
 
 
@@ -290,6 +335,203 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="strutture-dati-1" class="level1">
+<h1>Strutture dati</h1>
+<p>Le strutture sono molto utili per definire… strutture dati. Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…</p>
+<p>Gli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza <em>a mano</em>, ad esempio passandola come argomento di una funzione.</p>
+<p>Si può creare una struttura che contenga un array e la sua lunghezza:</p>
+<div id="lst-array1" class="c listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-array1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Lista&nbsp;1: Implementazione di un array di interi con lunghezza variabile.
+</figcaption>
+<div aria-describedby="lst-array1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-array1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="lst-array1-1"><a href="#lst-array1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define MAX </span><span class="dv">1024</span><span class="pp"> </span><span class="co">/* &lt;1&gt; */</span></span>
+<span id="lst-array1-2"><a href="#lst-array1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-array1-3"><a href="#lst-array1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> intarray <span class="op">{</span></span>
+<span id="lst-array1-4"><a href="#lst-array1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> array<span class="op">[</span>MAX<span class="op">];</span> <span class="co">/* &lt;2&gt; */</span></span>
+<span id="lst-array1-5"><a href="#lst-array1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> length<span class="op">;</span> <span class="co">/* &lt;3&gt; */</span></span>
+<span id="lst-array1-6"><a href="#lst-array1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IntArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<ol type="1">
+<li>Definiamo una costante <code>MAX</code> che rappresenta il numero massimo di elementi che possono essere memorizzati nell’array;</li>
+<li>La struttura dati contiene l’array di interi (che, in questo caso, è di dimensione <span class="math inline">\(1024 \times 4 = 4096\)</span> byte)</li>
+<li>La struttura contiene anche un intero che rappresenta la lunghezza attuale dell’array: cioè il numero di elementi effettivamente contenuti dall’array.</li>
+</ol>
+<p>Si noti che il membro <code>lenght</code> è aggiornato solo quando si aggiungono o rimuovono elementi dall’array.</p>
+<p>Adesso si può passare la struttura come argomento di una funzione, senza dover tenere traccia in maniera esplicita della lunghezza dell’array:</p>
+<div id="lst-stampa-array" class="c listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-stampa-array-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Lista&nbsp;2: Implementazione della funzione per stampare un IntArray.
+</figcaption>
+<div aria-describedby="lst-stampa-array-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-stampa-array"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="lst-stampa-array-1"><a href="#lst-stampa-array-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> stampa_array<span class="op">(</span>IntArray a<span class="op">)</span> <span class="op">{</span></span>
+<span id="lst-stampa-array-2"><a href="#lst-stampa-array-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> a<span class="op">.</span>length<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="lst-stampa-array-3"><a href="#lst-stampa-array-3" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> "</span><span class="op">,</span> a<span class="op">.</span>array<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="lst-stampa-array-4"><a href="#lst-stampa-array-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="lst-stampa-array-5"><a href="#lst-stampa-array-5" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="lst-stampa-array-6"><a href="#lst-stampa-array-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<p>La routine per aggiungere un elemento all’array è la seguente:</p>
+<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode c code-annotation-code code-with-copy code-annotated"><code class="sourceCode c"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> append<span class="op">(</span>IntArray <span class="op">*</span>a<span class="op">,</span> <span class="dt">int</span> value<span class="op">)</span> <span class="op">{</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>a<span class="op">-&gt;</span>length <span class="op">&lt;</span> MAX<span class="op">)</span> <span class="op">{</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>        a<span class="op">-&gt;</span>array<span class="op">[</span>a<span class="op">-&gt;</span>length<span class="op">]</span> <span class="op">=</span> value<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>        a<span class="op">-&gt;</span>length<span class="op">++;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-1-5" class="code-annotation-target"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-1-7" class="code-annotation-target"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">La funzione <code>append</code> prende come argomento un puntatore a <code>IntArray</code> e un intero da aggiungere all’array, l’array è passato <em>by reference</em> perché i suoi campi vengono modificati;</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="2">Prima di effettuare l’inserimento viene controllato che l’array non sia già pieno, per accedere ai membri di un puntatore a una struttura si usa l’operatore <code>-&gt;</code>, che è una forma abbreviata di <code>(*p).membro</code>;</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="3">Si aggiunge il valore all’array;</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="4">Si incrementa la lunghezza dell’array;</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="5" data-code-annotation="5">La funzione restituisce 0 se l’inserimento è andato a buon fine;</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="7" data-code-annotation="6">Restituisce 1 se l’array è pieno.</span>
+</dd>
+</dl>
+<section id="esercizio-2" class="level2">
+<h2 class="anchored" data-anchor-id="esercizio-2">Esercizio</h2>
+<p>Per esercizio si implementino le funzioni: 1. <code>int get(IntArray a, int index)</code> che restituisce l’elemento in posizione <code>index</code> dell’array <code>a</code>; 2. <code>int insert(IntArray *a, int index, int value)</code> che inserisce l’elemento <code>value</code> in posizione <code>index</code> dell’array <code>a</code>; 3. <code>int remove(IntArray *a, int index)</code> che rimuove l’elemento in posizione <code>index</code> dell’array <code>a</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Consiglio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si noti che le funzioni <code>insert</code> e <code>remove</code> possono fallire se l’array è pieno o vuoto, rispettivamente, inoltre è necessario spostare tutti gli elementi dell’array.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="memoria-dinamica-3" class="level1">
+<h1>Memoria dinamica</h1>
+<p>L’implementazione vista in <a href="#lst-array1" class="quarto-xref">Lista&nbsp;1</a> ha due grossi problemi:</p>
+<ol type="1">
+<li>la dimensione dell’array è fissa;</li>
+<li>la struttura <code>IntArray</code> funziona solo con interi, per gestire float, char, ecc. bisogna creare ogni volta una nuova struttura;</li>
+</ol>
+<p>Soffermandosi sul punto 1 ci si può accorgere che le strutture dati viste fino ad ora in C hanno dimensione fissa. Infatti gli array vengono inizializzati con un valore costante. Non sempre però è possibile sapere quanta memoria sarà necessaria al programma per contenere i dati, per questo, esistono dei comandi che permettono di allocare dinamicamente zone di memoria, permettendo di fare strutture che crescono o si rimpiccioliscono durante l’esecuzione del programma.</p>
+<p>Ad esempio si pensi a un programma che, a runtime, prenda in input dei dati dall’utente e li immagazzini in un array. Si può pensare di creare un array di dimensione molto grande, sperando che sia sufficiente per contenere i dati che inserirà l’utente. Evidentemente questa soluzione introduce facilmente errori, infatti, nel caso in cui l’utente inserisca pochi dati, ci sarà un grande spreco di memoria, al contrario, se l’utente inserisce più dei dati che possono essere immagazzinati, bisogna interrompere l’esecuzione del programma mostrando un messaggio di errore.</p>
+<p>Per evitare tutto ciò la libreria <code>stdlib.h</code> mette a disposizione 3 funzioni per gestire <em>dinamicamente</em> la memoria:</p>
+<ol type="1">
+<li><code>malloc</code> (memory allocation): alloca una zona di memoria di una certa dimensione</li>
+<li><code>calloc</code> (clear allocation): alloca una zona di memoria di una certa dimensione e la inizializza a 0</li>
+<li><code>realloc</code> (reallocate): cambia la dimensione di una zona di memoria già allocata</li>
+</ol>
+<p><code>malloc</code>, <code>calloc</code> e <code>realloc</code> restituiscono un puntatore a void, che è un puntatore generico. Questo puntatore non fa riferimento a un certo tipo di dato, ma solo a un indirizzo di memoria.</p>
+<section id="malloc-1" class="level2">
+<h2 class="anchored" data-anchor-id="malloc-1"><code>malloc</code></h2>
+<p><code>void* malloc(size_t size);</code></p>
+<p>Supponendo di voler creare un array di interi di dimensione variabile, c’è bisogno di creare un puntatore ad interi e poi assegnargli l’indirizzo della nuova zona di memoria:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>a<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> malloc<span class="op">(</span><span class="dv">10</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La funzione <code>malloc</code> accetta come argomento il numero di byte da allocare. L’esempio crea 10 cellette di memoria, ciascuna grande quanto un intero (4 byte).</p>
+</section>
+<section id="calloc-1" class="level2">
+<h2 class="anchored" data-anchor-id="calloc-1"><code>calloc</code></h2>
+<p><code>void* calloc(size_t num, size_t size);</code></p>
+<ul>
+<li>Per inizializzare array torna comoda anche la funzione calloc, che ha due parametri: numero di membri e dimensione (in byte) dei membri</li>
+<li>Inoltre ha come effetto aggiuntivo di porre a zero tutti i byte interessati (quindi tutti i membri dell’array che creo)</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> <span class="op">*</span>a<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> calloc<span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">double</span><span class="op">));</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>L’effetto di questo codice è lo stesso del precedente (con la malloc), ma con tutti i membri dell’array inizializzati a 0.</p>
+</section>
+<section id="realloc-1" class="level2">
+<h2 class="anchored" data-anchor-id="realloc-1"><code>realloc</code></h2>
+<p><code>void* realloc(void* ptr, size_t size);</code></p>
+<ul>
+<li><p>Questa funzione cambia la dimensione di uno spazio allocato dinamicamente.</p></li>
+<li><p>L’argomento <code>ptr</code> deve essere un puntatore ottenuto da una funzione ..alloc, altrimenti porta a comportamento non definito.</p></li>
+<li><p>I dati già presenti nella zona di memoria vengono mantenuti.</p></li>
+</ul>
+</section>
+<section id="null-1" class="level2">
+<h2 class="anchored" data-anchor-id="null-1">NULL</h2>
+<ul>
+<li><p>Quando si usa la memoria dinamica, è importante controllare che l’allocazione sia andata a buon fine.</p></li>
+<li><p>Se <code>malloc</code>, <code>calloc</code> o <code>realloc</code> non riescono a trovare spazio in memoria, restituiscono <code>NULL</code>.</p></li>
+<li><p><code>NULL</code> è una costante che rappresenta un puntatore all’indirizzo <code>0x0</code>. <code>NULL</code> è definito in <code>stdlib.h</code>.</p></li>
+</ul>
+</section>
+<section id="malloc-calloc-realloc-1" class="level2">
+<h2 class="anchored" data-anchor-id="malloc-calloc-realloc-1"><code>malloc</code>, <code>calloc</code>, <code>realloc</code></h2>
+<ul>
+<li>Queste funzioni scrivono in una zona di memoria nota come <strong>heap</strong>;</li>
+<li>Le variabili locali e i parametri delle funzioni sono invece memorizzati nello <strong>stack</strong>;</li>
+<li>Usando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile</li>
+<li>Occorre quindi fare uso oculato della memoria e pulire quella che usata che non serve più</li>
+</ul>
+</section>
+<section id="free-1" class="level2">
+<h2 class="anchored" data-anchor-id="free-1"><code>free</code></h2>
+<p><code>void free(void* ptr);</code></p>
+<ul>
+<li>La funzione free permette di liberare un blocco di memoria (e quindi renderlo disponibile per un’altra allocazione)</li>
+<li><code>ptr</code> dopo l’esecuzione di <code>free</code> continua a puntare alla stessa zona di memoria, ma il contenuto di quella zona non è più garantito, si chiama <strong>dangling pointer</strong></li>
+<li>Occorre, subito dopo la free, assegnare a <code>ptr</code> il valore <code>NULL</code> (oppure una nuova memoria)</li>
+<li>accedere un blocco deallocato è un gravissimo errore</li>
+</ul>
+</section>
+<section id="array-dinamico-1" class="level2">
+<h2 class="anchored" data-anchor-id="array-dinamico-1">Array dinamico</h2>
+<p>Un array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.</p>
+<p>Per implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>array<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> capacity<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> length<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> DynArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dynarray-1" class="level2">
+<h2 class="anchored" data-anchor-id="dynarray-1"><code>DynArray</code></h2>
+<p>Il nuovo tipo <code>DynArray</code> ha tre membri:</p>
+<ul>
+<li><code>array</code> è un puntatore ad interi, che punta all’array dinamico</li>
+<li><code>capacity</code> è la dimensione massima dell’array</li>
+<li><code>length</code> è il numero di elementi attualmente presenti nell’array</li>
+</ul>
+<p>Quando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.</p>
+</section>
+<section id="dynarray-generico-1" class="level2">
+<h2 class="anchored" data-anchor-id="dynarray-generico-1"><code>DynArray</code> generico</h2>
+<p>Rimane il problema che <code>DynArray</code> funziona solo con array di interi.</p>
+<p>Abbiamo però visto che <code>void *</code> serve proprio quando si usano indirizzi di memoria senza un tipo preciso, questo ci permette di definire un array di <code>void *</code> per decidere a runtime il tipo dell’array:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="op">**</span>array<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> capacity<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> length<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> GenericArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
 <section id="operazioni-bitwise-1" class="level1">
 <h1>Operazioni bitwise</h1>
 <p>Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili. Questi operatori sono molto utili quando si deve lavorare con i registri di un microcontrollore o con i dati grezzi provenienti da un sensore.</p>
@@ -342,21 +584,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="esempi" class="level2">
 <h2 class="anchored" data-anchor-id="esempi">Esempi</h2>
 <p>In elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l’interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo <code>char</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="bn">0b00001000</span><span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// oppure</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="bn">0b00001000</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">// oppure</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.</p>
 <p>Ipotizzando di voler accendere un altro interruttore, si può utilizzare l’operatore OR:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// switches = 0b00001000</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="bn">0b00000100</span><span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">// oppure</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="dv">4</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// switches = 0b00001000</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="bn">0b00000100</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">// oppure</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="dv">4</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ora il valore di <code>switches</code> sarà <code>0b00001100</code>. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.</p>
 <p>Per spegnere tutti gli interruttori si può utilizzare l’operatore AND:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="bn">0b00000000</span><span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">// oppure</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">// switches: 0b00000000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="bn">0b00000000</span><span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">// oppure</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">// switches: 0b00000000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

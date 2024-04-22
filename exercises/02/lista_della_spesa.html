@@ -340,7 +340,7 @@ Suggerimento
 <p>Esempio di main:</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p><a href="#dnldts2102" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgbWFpbih2b2lkKQp7CiAgICAvLyBwcmV6em8gYWwga2cgZGVpIHByb2RvdHRpIGRpc3BvbmliaWxpCiAgICBmbG9hdCBwcmV6em9fcG9tb2Rvcm8gPSAyLjVmOwogICAgZmxvYXQgcHJlenpvX3Bhc3RhID0gMS41ZjsKICAgIGZsb2F0IHByZXp6b19iaXNjb3R0aSA9IDMuMGY7CiAgICBmbG9hdCBwcmV6em9fYmFuYW5lID0gMS4wZjsKICAgIGZsb2F0IHByZXp6b19wYW5lID0gMi4wZjsKCiAgICAvLyBUT0RPOgogICAgLy8gICAgIDEpIGNoaWVkZXJlIGluIGlucHV0IHF1YWxlIHByb2RvdHRvIHNpIHZ1b2xlIGNvbXByYXJlIGUgbGEgcXVhbnRpdMOgIGluIGNoaWxvZ3JhbW1pCiAgICAvLyAgICAgMikgcXVhbmRvIHNpIHNlbGV6aW9uYSBpbCBwcm9kb3R0byAtMSBzdGFtcGEgaWwgY29zdG8gdG90YWxlIGUgdGVybWluYQogICAgLy8gICAgIDMpIGFsdHJpbWVudGkgYWdnaXVuZ2kgaWwgY29zdG8gZGVsbGEgbWVyY2UgYWNxdWlzdGF0YSBhbCB0b3RhbGUKfQo=').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts45445" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgbWFpbih2b2lkKQp7CiAgICAvLyBwcmV6em8gYWwga2cgZGVpIHByb2RvdHRpIGRpc3BvbmliaWxpCiAgICBmbG9hdCBwcmV6em9fcG9tb2Rvcm8gPSAyLjVmOwogICAgZmxvYXQgcHJlenpvX3Bhc3RhID0gMS41ZjsKICAgIGZsb2F0IHByZXp6b19iaXNjb3R0aSA9IDMuMGY7CiAgICBmbG9hdCBwcmV6em9fYmFuYW5lID0gMS4wZjsKICAgIGZsb2F0IHByZXp6b19wYW5lID0gMi4wZjsKCiAgICAvLyBUT0RPOgogICAgLy8gICAgIDEpIGNoaWVkZXJlIGluIGlucHV0IHF1YWxlIHByb2RvdHRvIHNpIHZ1b2xlIGNvbXByYXJlIGUgbGEgcXVhbnRpdMOgIGluIGNoaWxvZ3JhbW1pCiAgICAvLyAgICAgMikgcXVhbmRvIHNpIHNlbGV6aW9uYSBpbCBwcm9kb3R0byAtMSBzdGFtcGEgaWwgY29zdG8gdG90YWxlIGUgdGVybWluYQogICAgLy8gICAgIDMpIGFsdHJpbWVudGkgYWdnaXVuZ2kgaWwgY29zdG8gZGVsbGEgbWVyY2UgYWNxdWlzdGF0YSBhbCB0b3RhbGUKfQo=').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -348,7 +348,7 @@ Suggerimento
       a.download = 'spesa.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts2102"><i class="bi bi-download"></i> Scarica il file </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts45445"><i class="bi bi-download"></i> Scarica il file </button></a></p>
 </div></div><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
@@ -365,6 +365,88 @@ Suggerimento
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">//     2) quando si seleziona il prodotto -1 stampa il costo totale e termina</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">//     3) altrimenti aggiungi il costo della merce acquistata al totale</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Soluzione
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// prezzo al kg dei prodotti disponibili</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> prezzo_pomodoro <span class="op">=</span> <span class="fl">2.5</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> prezzo_pasta <span class="op">=</span> <span class="fl">1.5</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> prezzo_biscotti <span class="op">=</span> <span class="fl">3.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> prezzo_banane <span class="op">=</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> prezzo_pane <span class="op">=</span> <span class="fl">2.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> prodotto <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>     <span class="co">// creo la variabile per selezionare il prodotto</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> totale <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>     <span class="co">// creo la variabile che contiene il costo totale</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> peso<span class="op">,</span> parziale<span class="op">;</span> <span class="co">// creo la variabile per la quantità e una variabile temp</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Osservazioni:</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">    1. Prodotto va inizializzato perché si fa subito un controllo, nel caso si fosse</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">    usato un do while non sarebbe stato necessario.</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">    2. peso e parziale non serve che vengano inizializzati perché gli viene assegnato</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">    un valore prima di qualsiasi lettura.</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">    */</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(-</span><span class="dv">1</span> <span class="op">!=</span> prodotto<span class="op">)</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"Inserisci il prodotto (-1 per terminare):</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"1) Pomodoro</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"2) Pasta</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"3) Biscotti</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"4) Banane</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"5) Pane</span><span class="sc">\n\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"Selezionare id prodotto: "</span><span class="op">);</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>prodotto<span class="op">);</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"Specificare quantità (in kg): "</span><span class="op">);</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        scanf<span class="op">(</span><span class="st">"</span><span class="sc">%f</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>peso<span class="op">);</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">// se il peso è 0 o negativo seleziono il prodotto nullo</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span><span class="dv">0</span> <span class="op">&gt;=</span> peso<span class="op">)</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>            prodotto <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">switch</span> <span class="op">(</span>prodotto<span class="op">)</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">1</span><span class="op">:</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>            parziale <span class="op">=</span> prezzo_pomodoro<span class="op">;</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">2</span><span class="op">:</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>            parziale <span class="op">=</span> prezzo_pasta<span class="op">;</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">3</span><span class="op">:</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>            parziale <span class="op">=</span> prezzo_biscotti<span class="op">;</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">4</span><span class="op">:</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>            parziale <span class="op">=</span> prezzo_banane<span class="op">;</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">5</span><span class="op">:</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>            parziale <span class="op">=</span> prezzo_pane<span class="op">;</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>            <span class="co">// il prodotto nullo ha id 0, così, se è stato impostato un peso valido,</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>            <span class="co">// il costo aggiunto nell'operazione successiva è comunque 0.</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>            parziale <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>        totale <span class="op">+=</span> <span class="op">(</span>parziale <span class="op">*</span> peso<span class="op">);</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Totale: </span><span class="sc">%.2f\n</span><span class="st">"</span><span class="op">,</span> totale<span class="op">);</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 
 
 

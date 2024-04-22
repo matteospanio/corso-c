@@ -376,7 +376,7 @@ Suggerimento
 <p>Esempio di main:</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p><a href="#dnldts61818" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgbWFpbih2b2lkKQp7CiAgICBpbnQgdm90b19hbmFsaXNpMSwgdm90b19hbGdlYnJhX2xpbmVhcmUsIHZvdG9famF2YTsKICAgIGludCBjcmVkaXRpX2FuYWxpc2kxLCBjcmVkaXRpX2FsZ2VicmFfbGluZWFyZSwgY3JlZGl0aV9qYXZhOwogICAgaW50IG1lZGlhX3BvbmRlcmF0YTsKCiAgICAvLyBUT0RPOiBDaGllZGVyZSBhbGwndXRlbnRlIGkgdm90aSBlIGkgY3JlZGl0aSBkZWkgdHJlIGVzYW1pCgogICAgLy8gVE9ETzogQ2FsY29sYXJlIGxhIG1lZGlhIHBvbmRlcmF0YQoKICAgIHByaW50ZigiTGEgbWVkaWEgcG9uZGVyYXRhIMOoOiAlZFxuIiwgbWVkaWFfcG9uZGVyYXRhKTsKfQo=').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts59515" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgbWFpbih2b2lkKQp7CiAgICBpbnQgdm90b19hbmFsaXNpMSwgdm90b19hbGdlYnJhX2xpbmVhcmUsIHZvdG9famF2YTsKICAgIGludCBjcmVkaXRpX2FuYWxpc2kxLCBjcmVkaXRpX2FsZ2VicmFfbGluZWFyZSwgY3JlZGl0aV9qYXZhOwogICAgaW50IG1lZGlhX3BvbmRlcmF0YTsKCiAgICAvLyBUT0RPOiBDaGllZGVyZSBhbGwndXRlbnRlIGkgdm90aSBlIGkgY3JlZGl0aSBkZWkgdHJlIGVzYW1pCgogICAgLy8gVE9ETzogQ2FsY29sYXJlIGxhIG1lZGlhIHBvbmRlcmF0YQoKICAgIHByaW50ZigiTGEgbWVkaWEgcG9uZGVyYXRhIMOoOiAlZFxuIiwgbWVkaWFfcG9uZGVyYXRhKTsKfQo=').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -384,7 +384,7 @@ Suggerimento
       a.download = 'libretto.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts61818"><i class="bi bi-download"></i> Scarica il file </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts59515"><i class="bi bi-download"></i> Scarica il file </button></a></p>
 </div></div><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
@@ -399,28 +399,46 @@ Suggerimento
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"La media ponderata è: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> media_ponderata<span class="op">);</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- ::: {.callout-tip collapse="true"}
-## Soluzione
-
-```{.c}
-#include <stdio.h>
-
-int main(void)
-{
-    int voto_analisi1, voto_algebra_lineare, voto_java;
-    int crediti_analisi1, crediti_algebra_lineare, crediti_java;
-    int media_ponderata;
-
-    // TODO: Chiedere all'utente i voti e i crediti dei tre esami
-
-    // TODO: Calcolare la media ponderata
-
-    printf("La media ponderata è: %d\n", media_ponderata);
-}
-
-```
-
-::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Soluzione
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> voto_analisi1<span class="op">,</span> voto_algebra_lineare<span class="op">,</span> voto_java<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> crediti_analisi1<span class="op">,</span> crediti_algebra_lineare<span class="op">,</span> crediti_java<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> media_ponderata<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Inserisci il volto di analisi 1 e i crediti: "</span><span class="op">);</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>voto_analisi1<span class="op">,</span> <span class="op">&amp;</span>crediti_analisi1<span class="op">);</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Inserisci il volto di algebra lineare e i crediti: "</span><span class="op">);</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>voto_algebra_lineare<span class="op">,</span> <span class="op">&amp;</span>crediti_algebra_lineare<span class="op">);</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Inserisci il volto di introduzione alla programmazione e i crediti: "</span><span class="op">);</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>voto_java<span class="op">,</span> <span class="op">&amp;</span>crediti_java<span class="op">);</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> numeratore<span class="op">,</span> denominatore<span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    numeratore <span class="op">=</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        voto_analisi1 <span class="op">*</span> crediti_analisi1 <span class="op">+</span> voto_algebra_lineare <span class="op">*</span> crediti_algebra_lineare <span class="op">+</span> voto_java <span class="op">*</span> crediti_java<span class="op">;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    denominatore <span class="op">=</span> crediti_analisi1 <span class="op">+</span> crediti_algebra_lineare <span class="op">+</span> crediti_java<span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    media_ponderata <span class="op">=</span> numeratore <span class="op">/</span> denominatore<span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"La media ponderata è: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> media_ponderata<span class="op">);</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 
 
 
