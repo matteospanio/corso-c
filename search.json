@@ -1340,7 +1340,7 @@
     "href": "lessons.html#calendario",
     "title": "Lezioni",
     "section": "Calendario",
-    "text": "Calendario\n\n\n\nData\nArgomento\nCapitoli del libro di testo\n\n\n\n\n12/03/2024\nIntroduzione al corso e fondamenti di C\n1-3\n\n\n19/03/2024\nStrutture di controllo e tipi di base\n4-7\n\n\n26/03/2024\nFunzioni e array\n8-9\n\n\n09/04/2024\nPuntatori\n11-12\n\n\n10/04/2024\nStruct e puntatori\n15-17\n\n\n23/04/2024\nOperatori bitwise e preparazione per l’esame\n20\n\n\nTBD\nLezione extra\n–\n\n\nTBD\nSimulazione d’esame\n–"
+    "text": "Calendario\n\n\n\nData\nArgomento\nCapitoli del libro di testo\n\n\n\n\n12/03/2024\nIntroduzione al corso e fondamenti di C\n1-3\n\n\n19/03/2024\nStrutture di controllo e tipi di base\n4-7\n\n\n26/03/2024\nFunzioni e array\n8-9\n\n\n09/04/2024\nPuntatori\n11-12\n\n\n10/04/2024\nStruct e puntatori\n15-17\n\n\n23/04/2024\nMemoria dinamica e operatori bitwise\n20\n\n\n28/05/2024\nPreparazione per l’esame\n–\n\n\nTBD\nSimulazione d’esame\n–"
   },
   {
     "objectID": "resources.html",
@@ -1530,7 +1530,7 @@
     "href": "lessons/05/slide.html#ordinare-i-giocatori",
     "title": "Uso avanzato dei puntatori",
     "section": "Ordinare i giocatori",
-    "text": "Ordinare i giocatori\nPer ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:\nIl più intuitivo, ma non il più efficiente, è il Bubble Sort:"
+    "text": "Ordinare i giocatori\nPer ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:\nIl più intuitivo, ma non il più efficiente, è il Bubble Sort:\n\nScarica l’esempio completo"
   },
   {
     "objectID": "lessons/05/slide.html#unioni",
@@ -1572,7 +1572,7 @@
     "href": "lessons/05/slide.html#array-con-strutture-1",
     "title": "Uso avanzato dei puntatori",
     "section": "Array con strutture",
-    "text": "Array con strutture\nAdesso si può passare la struttura come argomento di una funzione:\nvoid stampa_array(IntArray a) {\n    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.\n\n\n\n\nDati e Algoritmi"
+    "text": "Array con strutture\nAdesso si può passare la struttura come argomento di una funzione:\nvoid stampa_array(IntArray a) {\n    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.\nScarica l’esempio completo\n\n\n\n\nDati e Algoritmi"
   },
   {
     "objectID": "lessons/05/index.html",
@@ -1993,8 +1993,8 @@
     ]
   },
   {
-    "objectID": "lessons/06/slide.html#strutture-dati",
-    "href": "lessons/06/slide.html#strutture-dati",
+    "objectID": "lessons/06/slide.html#strutture-dati-1",
+    "href": "lessons/06/slide.html#strutture-dati-1",
     "title": "Memoria dinamica e operatori bitwise",
     "section": "Strutture dati",
     "text": "Strutture dati\nLe strutture sono molto utili per definire… strutture dati.\nPer esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…"
@@ -2016,6 +2016,13 @@
   {
     "objectID": "lessons/06/slide.html#array-con-strutture-2",
     "href": "lessons/06/slide.html#array-con-strutture-2",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Array con strutture",
+    "text": "Array con strutture\nint append(IntArray *a, int value) {\n    if (a-&gt;length &lt; MAX) {\n        a-&gt;array[a-&gt;length] = value;\n        a-&gt;length++;\n        return 0;\n    }\n    return 1;\n}"
+  },
+  {
+    "objectID": "lessons/06/slide.html#array-con-strutture-3",
+    "href": "lessons/06/slide.html#array-con-strutture-3",
     "title": "Memoria dinamica e operatori bitwise",
     "section": "Array con strutture",
     "text": "Array con strutture\nL’implementazione che abbiamo visto ha due grossi problemi:\n\nla dimensione dell’array è fissa\nla struttura IntArray funziona solo con array di interi, per fare array di float, char, ecc. bisogna creare ogni volta una nuova struttura"
@@ -2074,7 +2081,7 @@
     "href": "lessons/06/slide.html#malloc-calloc-realloc",
     "title": "Memoria dinamica e operatori bitwise",
     "section": "malloc, calloc, realloc",
-    "text": "malloc, calloc, realloc\n\nQueste funzioni scrivono in una zona di memoria nota come heap;\nLe variabili locali e i parametri delle funzioni sono invece memorizzati nello stack;\nUsando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile\nOccorre quindi fare uso oculato della memoria e pulire quella che usata che non serve più"
+    "text": "malloc, calloc, realloc\n\nQueste funzioni scrivono in una zona di memoria nota come heap;\nLe variabili locali e i parametri delle funzioni sono invece memorizzati nello stack;\nUsando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile\nOccorre quindi fare uso oculato della memoria e pulire quella usata che non serve più"
   },
   {
     "objectID": "lessons/06/slide.html#free",
@@ -2088,21 +2095,35 @@
     "href": "lessons/06/slide.html#array-dinamico",
     "title": "Memoria dinamica e operatori bitwise",
     "section": "Array dinamico",
-    "text": "Array dinamico\nUn array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.\nPer implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:\ntypedef struct {\n    int *array;\n    int capacity;\n    int length;\n} DynArray;"
+    "text": "Array dinamico\nUn array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.\nPer implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:\ntypedef struct {\n    int *array;\n    int capacity;\n    int length;\n} ArrayList;"
   },
   {
-    "objectID": "lessons/06/slide.html#dynarray",
-    "href": "lessons/06/slide.html#dynarray",
+    "objectID": "lessons/06/slide.html#arraylist",
+    "href": "lessons/06/slide.html#arraylist",
     "title": "Memoria dinamica e operatori bitwise",
-    "section": "DynArray",
-    "text": "DynArray\nIl nuovo tipo DynArray ha tre membri:\n\narray è un puntatore ad interi, che punta all’array dinamico\ncapacity è la dimensione massima dell’array\nlength è il numero di elementi attualmente presenti nell’array\n\nQuando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione."
+    "section": "ArrayList",
+    "text": "ArrayList\nIl nuovo tipo ArrayList ha tre membri:\n\narray è un puntatore ad interi, che punta all’array dinamico\ncapacity è la dimensione massima dell’array\nlength è il numero di elementi attualmente presenti nell’array\n\nQuando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.\nScarica l’implementazione dell’arraylist"
   },
   {
-    "objectID": "lessons/06/slide.html#dynarray-generico",
-    "href": "lessons/06/slide.html#dynarray-generico",
+    "objectID": "lessons/06/slide.html#linked-list",
+    "href": "lessons/06/slide.html#linked-list",
     "title": "Memoria dinamica e operatori bitwise",
-    "section": "DynArray generico",
-    "text": "DynArray generico\nRimane il problema che DynArray funziona solo con array di interi.\nAbbiamo però visto che void * serve proprio quando si usano indirizzi di memoria senza un tipo preciso, questo ci permette di definire un array di void * per decidere a runtime il tipo dell’array:\ntypedef struct {\n    void **array;\n    int capacity;\n    int length;\n} GenericArray;"
+    "section": "Linked list",
+    "text": "Linked list\n\nUna lista concatenata è una struttura dati composta da nodi, ciascuno dei quali contiene un valore e un puntatore al nodo successivo.\nLa differenza con un array è che i nodi non sono memorizzati in posizioni contigue di memoria.\nLa lista concatenata è una struttura ricorsiva: un nodo contiene un valore e un puntatore al nodo successivo."
+  },
+  {
+    "objectID": "lessons/06/slide.html#linked-list-1",
+    "href": "lessons/06/slide.html#linked-list-1",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Linked list",
+    "text": "Linked list\nL’implementazione classica della lista concatenata in C è:\ntypedef struct node {\n    int value;\n    struct node *next;\n} Node;\nScarica l’implementazione della linked list"
+  },
+  {
+    "objectID": "lessons/06/slide.html#esercizio-lista-concatenata",
+    "href": "lessons/06/slide.html#esercizio-lista-concatenata",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Esercizio: lista concatenata",
+    "text": "Esercizio: lista concatenata\nDato il file con il main e i prototipi delle funzioni, implementare:\n\nrecursive_list_print\nrecursive_list_delete"
   },
   {
     "objectID": "lessons/06/slide.html#operatori-bitwise",
@@ -2179,7 +2200,7 @@
     "href": "lessons/06/slide.html#esercizi",
     "title": "Memoria dinamica e operatori bitwise",
     "section": "Esercizi",
-    "text": "Esercizi\nScrivere un programma che di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR."
+    "text": "Esercizi\nScrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\nScarica il main dell’esercizio"
   },
   {
     "objectID": "lessons/06/slide.html#shift",
@@ -2207,7 +2228,7 @@
     "href": "lessons/06/slide.html#esercizi-2",
     "title": "Memoria dinamica e operatori bitwise",
     "section": "Esercizi",
-    "text": "Esercizi\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\n\n\n\n\nDati e Algoritmi"
+    "text": "Esercizi\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\nScarica il main dell’esercizio\n\n\n\n\nDati e Algoritmi"
   },
   {
     "objectID": "lessons/06/index.html",
@@ -2280,7 +2301,7 @@
     "href": "lessons/06/index.html#malloc-calloc-realloc-1",
     "title": "Memoria dinamica e operatori bitwise",
     "section": "malloc, calloc, realloc",
-    "text": "malloc, calloc, realloc\n\nQueste funzioni scrivono in una zona di memoria nota come heap;\nLe variabili locali e i parametri delle funzioni sono invece memorizzati nello stack;\nUsando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile\nOccorre quindi fare uso oculato della memoria e pulire quella che usata che non serve più",
+    "text": "malloc, calloc, realloc\n\nQueste funzioni scrivono in una zona di memoria nota come heap;\nLe variabili locali e i parametri delle funzioni sono invece memorizzati nello stack;\nUsando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile\nOccorre quindi fare uso oculato della memoria e pulire quella usata che non serve più",
     "crumbs": [
       "Lezioni",
       "Memoria dinamica e operatori bitwise"
@@ -2302,29 +2323,40 @@
     "href": "lessons/06/index.html#array-dinamico-1",
     "title": "Memoria dinamica e operatori bitwise",
     "section": "Array dinamico",
-    "text": "Array dinamico\nUn array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.\nPer implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:\ntypedef struct {\n    int *array;\n    int capacity;\n    int length;\n} DynArray;",
+    "text": "Array dinamico\nUn array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.\nPer implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:\ntypedef struct {\n    int *array;\n    int capacity;\n    int length;\n} ArrayList;",
     "crumbs": [
       "Lezioni",
       "Memoria dinamica e operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/06/index.html#dynarray-1",
-    "href": "lessons/06/index.html#dynarray-1",
+    "objectID": "lessons/06/index.html#arraylist-1",
+    "href": "lessons/06/index.html#arraylist-1",
     "title": "Memoria dinamica e operatori bitwise",
-    "section": "DynArray",
-    "text": "DynArray\nIl nuovo tipo DynArray ha tre membri:\n\narray è un puntatore ad interi, che punta all’array dinamico\ncapacity è la dimensione massima dell’array\nlength è il numero di elementi attualmente presenti nell’array\n\nQuando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.",
+    "section": "ArrayList",
+    "text": "ArrayList\nIl nuovo tipo ArrayList ha tre membri:\n\narray è un puntatore ad interi, che punta all’array dinamico\ncapacity è la dimensione massima dell’array\nlength è il numero di elementi attualmente presenti nell’array\n\nQuando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.\n Scarica l'implementazione dell'arraylist",
     "crumbs": [
       "Lezioni",
       "Memoria dinamica e operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/06/index.html#dynarray-generico-1",
-    "href": "lessons/06/index.html#dynarray-generico-1",
+    "objectID": "lessons/06/index.html#linked-list-2",
+    "href": "lessons/06/index.html#linked-list-2",
     "title": "Memoria dinamica e operatori bitwise",
-    "section": "DynArray generico",
-    "text": "DynArray generico\nRimane il problema che DynArray funziona solo con array di interi.\nAbbiamo però visto che void * serve proprio quando si usano indirizzi di memoria senza un tipo preciso, questo ci permette di definire un array di void * per decidere a runtime il tipo dell’array:\ntypedef struct {\n    void **array;\n    int capacity;\n    int length;\n} GenericArray;",
+    "section": "Linked list",
+    "text": "Linked list\n\nUna lista concatenata è una struttura dati composta da nodi, ciascuno dei quali contiene un valore e un puntatore al nodo successivo.\nLa differenza con un array è che i nodi non sono memorizzati in posizioni contigue di memoria.\nLa lista concatenata è una struttura ricorsiva: un nodo contiene un valore e un puntatore al nodo successivo.",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica e operatori bitwise"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html#linked-list-3",
+    "href": "lessons/06/index.html#linked-list-3",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Linked list",
+    "text": "Linked list\nL’implementazione classica della lista concatenata in C è:\ntypedef struct node {\n    int value;\n    struct node *next;\n} Node;\n Scarica l'implementazione dell'arraylist \nUn esempio completo in cui vengono implementate le classi ArrayList e LinkedList, oltre all’interfaccia List, è disponibile qui.",
     "crumbs": [
       "Lezioni",
       "Memoria dinamica e operatori bitwise"
@@ -2347,6 +2379,105 @@
     "title": "Memoria dinamica e operatori bitwise",
     "section": "Esempi",
     "text": "Esempi\nIn elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l’interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo char:\nunsigned char switches = 0b00001000;\n// oppure\nunsigned char switches = 8;\nIn questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.\nIpotizzando di voler accendere un altro interruttore, si può utilizzare l’operatore OR:\n// switches = 0b00001000\nswitches = switches | 0b00000100;\n// oppure\nswitches = switches | 4;\nOra il valore di switches sarà 0b00001100. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.\nPer spegnere tutti gli interruttori si può utilizzare l’operatore AND:\nswitches = switches & 0b00000000;\n// oppure\nswitches = switches & 0;\n// switches: 0b00000000",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica e operatori bitwise"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html#esercizio-3",
+    "href": "lessons/06/index.html#esercizio-3",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Esercizio",
+    "text": "Esercizio\nScrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.\n#include &lt;stdio.h&gt;\nvoid print_lsb(int n);\n\nint main(void)\n{\n    int a = 127, b = 128;\n\n    print_lsb(a);\n    print_lsb(b);\n}\n\nvoid print_lsb(int n)\n{\n    printf(\"The least significant bit of %d is: \", n);\n    printf(\"%d\\n\", n & 1);\n}",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica e operatori bitwise"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html#esercizio-4",
+    "href": "lessons/06/index.html#esercizio-4",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Esercizio",
+    "text": "Esercizio\nScrivere una funzione che dato un numero intero \\(n\\), restituisca true se \\(n\\) è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.\n#include &lt;stdbool.h&gt;\nbool is_even(int n);\n\nint main(void) {\n    int a = 55, b = 48;\n\n    printf(\"%d is even: %d\\n\", a, is_even(a));\n    printf(\"%d is even: %d\\n\", b, is_even(b));\n}\nL’operatore XOR è molto utile per invertire lo stato di un bit.\n\n\n\n\n\n\nNota\n\n\n\nEseguire l’operazione di XOR due volte su un bit restituisce il valore originale.\nchar c = 'A';\nc = c ^ 'h';\nc = c ^ 'h';\n// c: 'A'",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica e operatori bitwise"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html#esempio-2",
+    "href": "lessons/06/index.html#esempio-2",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Esempio",
+    "text": "Esempio\n65: 0b01000001\n73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n‘A’ ^ ‘I’ = ’",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica e operatori bitwise"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html#esempio-3",
+    "href": "lessons/06/index.html#esempio-3",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Esempio",
+    "text": "Esempio\n#include &lt;stdio.h&gt;\n#define KEY 'h'\n\nint main(void)\n{\n    char c = 'A';\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n}",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica e operatori bitwise"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html#esercizi-3",
+    "href": "lessons/06/index.html#esercizi-3",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Esercizi",
+    "text": "Esercizi\nScrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\n Scarica il main dell'esercizio",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica e operatori bitwise"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html#shift-1",
+    "href": "lessons/06/index.html#shift-1",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Shift",
+    "text": "Shift\nGli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.\nunsigned char c = 0b00000001;\nc = c &lt;&lt; 1;\n// c: 0b00000010\nc = c &lt;&lt; 3;\n// c: 0b00010000\nc = c &gt;&gt; 2;\n// c: 0b00000100",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica e operatori bitwise"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html#esempio-shift-1",
+    "href": "lessons/06/index.html#esempio-shift-1",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Esempio Shift",
+    "text": "Esempio Shift\nScrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int n = 5;\n    n = n &lt;&lt; 1;\n    printf(\"%d\\n\", n);\n}",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica e operatori bitwise"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html#esercizi-4",
+    "href": "lessons/06/index.html#esercizi-4",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Esercizi",
+    "text": "Esercizi\nScrivere un programma che stampi a monitor la codifica in binario di un unsigned char.\nAd esempio, se il valore di c è 5, il programma dovrà stampare 00000101.",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica e operatori bitwise"
+    ]
+  },
+  {
+    "objectID": "lessons/06/index.html#esercizi-5",
+    "href": "lessons/06/index.html#esercizi-5",
+    "title": "Memoria dinamica e operatori bitwise",
+    "section": "Esercizi",
+    "text": "Esercizi\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\n Scarica il main dell'esercizio",
     "crumbs": [
       "Lezioni",
       "Memoria dinamica e operatori bitwise"
