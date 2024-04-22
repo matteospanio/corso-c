@@ -1,5 +1,5 @@
 ---
-title: Operatori bitwise e C avanzato
+title: Memoria dinamica e operatori bitwise
 date: 04/23/2024
 abstract-title: Argomenti trattati
 ---
