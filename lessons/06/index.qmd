@@ -2,6 +2,7 @@
 title: Memoria dinamica e operatori bitwise
 date: 04/23/2024
 abstract-title: Argomenti trattati
+abstract: In questa lezione si discutono i dettagli della gestione della memoria dinamica in C, introducendo la struttura dati di base per implementare una lista concatenata. Si discutono inoltre gli operatori bitwise e le operazioni che possono essere effettuate con essi.
 ---
 
 ::: {.content-visible when-format="revealjs"}

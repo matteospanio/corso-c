@@ -17,6 +17,6 @@ Le lezioni sono organizzate in maniera da illustrare di volta in volta un argome
 | 26/03/2024 | Funzioni e array | 8-9 |
 | 09/04/2024 | Puntatori | 11-12 |
 | 10/04/2024 | Struct e puntatori | 15-17 |
-| 23/04/2024 | Operatori bitwise e preparazione per l'esame | 20 |
-| TBD | Lezione extra | -- |
+| 23/04/2024 | Memoria dinamica e operatori bitwise | 20 |
+| 28/05/2024 | Preparazione per l'esame | -- |
 | TBD | Simulazione d'esame | -- |

@@ -5,10 +5,7 @@
 
 typedef char *String;
 
-// Scrivere l'implementazione delle funzioni string_encodec e new_string
-// Hint1: new_string deve allocare la memoria per la stringa text
-// Hint2: string_encodec deve cifrare la stringa message con la chiave key tramite XOR
-//
+// Write the implementation of xor_encodec and new_string
 // Optional: make the KEY a command line argument to be parsed
 // The usage of the program should be:
 // ./xor_encodec key message
@@ -35,14 +32,23 @@ int main(void)
     string_delete(s);
 }
 
-void string_encodec(String message, char key)
+void xor_encodec(String message, char key)
 {
-    // TODO
+    for (int i = 0; i < strlen(message); i++)
+    {
+        message[i] = message[i] ^ key;
+    }
 }
 
 String new_string(String text)
 {
-    // TODO
+    String res = calloc(strlen(text), sizeof(char));
+    if (res == NULL)
+    {
+        return NULL;
+    }
+    strcpy(res, text);
+    return res;
 }
 
 void string_delete(String str)

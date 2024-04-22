@@ -148,9 +148,9 @@ int main(void)
 
 ## Esercizi
 
-Scrivere un programma che di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l'operatore XOR.
+Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l'operatore XOR.
 
-{{< downloadthis ./code/xor_crypt.c dname="xor_crypt.c" label="Scarica il file" >}}
+[Scarica il main dell'esercizio](./code/xor_crypt.c)
 
 ## Shift
 
@@ -195,3 +195,5 @@ Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, 
 2. Accenda il led più a sinistra;
 3. Inverta lo stato di tutti i led;
 4. Spenga tutti i led.
+
+[Scarica il main dell'esercizio](./code/simple_led.c)

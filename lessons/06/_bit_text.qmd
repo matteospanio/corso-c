@@ -52,3 +52,140 @@ switches = switches & 0b00000000;
 switches = switches & 0;
 // switches: 0b00000000
 ```
+
+## Esercizio
+
+Scrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.
+
+```c
+#include <stdio.h>
+void print_lsb(int n);
+
+int main(void)
+{
+    int a = 127, b = 128;
+
+    print_lsb(a);
+    print_lsb(b);
+}
+
+void print_lsb(int n)
+{
+    printf("The least significant bit of %d is: ", n);
+    printf("%d\n", n & 1);
+}
+```
+
+## Esercizio
+
+Scrivere una funzione che dato un numero intero $n$, restituisca true se $n$ è pari, false altrimenti. Usare l'operatore AND per verificare se un numero è pari.
+
+```c
+#include <stdbool.h>
+bool is_even(int n);
+
+int main(void) {
+    int a = 55, b = 48;
+
+    printf("%d is even: %d\n", a, is_even(a));
+    printf("%d is even: %d\n", b, is_even(b));
+}
+```
+
+L'operatore XOR è molto utile per invertire lo stato di un bit.
+
+::: {.callout-note}
+Eseguire l'operazione di XOR due volte su un bit restituisce il valore originale.
+
+```c
+char c = 'A';
+c = c ^ 'h';
+c = c ^ 'h';
+// c: 'A'
+```
+:::
+
+## Esempio
+
+`65: 0b01000001`
+
+`73: 0b01001001`
+
+`08: 0b00001000`
+
+65 ^ 73 = 8
+
+8 ^ 73 = 65
+
+'A' ^ 'I' = '\b'
+
+## Esempio
+
+```c
+#include <stdio.h>
+#define KEY 'h'
+
+int main(void)
+{
+    char c = 'A';
+    c = c ^ KEY;
+    printf("%c\n", c);
+
+    c = c ^ KEY;
+    printf("%c\n", c);
+}
+
+```
+
+## Esercizi
+
+Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l'operatore XOR.
+
+{{< downloadthis ./code/xor_crypt.c dname="xor_crypt.c" label="Scarica il main dell'esercizio" >}}
+
+
+## Shift
+
+Gli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.
+
+```c
+unsigned char c = 0b00000001;
+c = c << 1;
+// c: 0b00000010
+c = c << 3;
+// c: 0b00010000
+c = c >> 2;
+// c: 0b00000100
+```
+
+## Esempio Shift
+
+Scrivere un programma che moltiplichi un numero intero per 2 utilizzando l'operatore di shift.
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    int n = 5;
+    n = n << 1;
+    printf("%d\n", n);
+}
+```
+
+## Esercizi
+
+Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char.
+
+Ad esempio, se il valore di `c` è 5, il programma dovrà stampare `00000101`.
+
+## Esercizi
+
+Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:
+
+1. Accenda il led più a destra;
+2. Accenda il led più a sinistra;
+3. Inverta lo stato di tutti i led;
+4. Spenga tutti i led.
+
+{{< downloadthis ./code/simple_led.c dname="simple_led.c" label="Scarica il main dell'esercizio" >}}

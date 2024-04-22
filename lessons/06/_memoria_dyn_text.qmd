@@ -129,7 +129,7 @@ dinamicamente.
 - Queste funzioni scrivono in una zona di memoria nota come **heap**;
 - Le variabili locali e i parametri delle funzioni sono invece memorizzati nello **stack**;
 - Usando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile
-- Occorre quindi fare uso oculato della memoria e pulire quella che usata che non serve più
+- Occorre quindi fare uso oculato della memoria e pulire quella usata che non serve più
 
 ## `free`
 
@@ -151,12 +151,12 @@ typedef struct {
     int *array;
     int capacity;
     int length;
-} DynArray;
+} ArrayList;
 ```
 
-## `DynArray`
+## `ArrayList`
 
-Il nuovo tipo `DynArray` ha tre membri:
+Il nuovo tipo `ArrayList` ha tre membri:
 
 - `array` è un puntatore ad interi, che punta all'array dinamico
 - `capacity` è la dimensione massima dell'array
@@ -164,16 +164,25 @@ Il nuovo tipo `DynArray` ha tre membri:
 
 Quando length raggiunge capacity, bisogna riallocare la memoria per l'array, aumentando la sua dimensione.
 
-## `DynArray` generico
+{{< downloadthis ./code/list/arraylist.zip dname="xor_crypt.c" label="Scarica l'implementazione dell'arraylist" >}}
 
-Rimane il problema che `DynArray` funziona solo con array di interi.
+## Linked list
 
-Abbiamo però visto che `void *` serve proprio quando si usano indirizzi di memoria senza un tipo preciso, questo ci permette di definire un array di `void *` per decidere a runtime il tipo dell'array:
+- Una lista concatenata è una struttura dati composta da nodi, ciascuno dei quali contiene un valore e un puntatore al nodo successivo.
+- La differenza con un array è che i nodi non sono memorizzati in posizioni contigue di memoria.
+- La lista concatenata è una struttura ricorsiva: un nodo contiene un valore e un puntatore al nodo successivo.
 
-```{.c}
-typedef struct {
-    void **array;
-    int capacity;
-    int length;
-} GenericArray;
+## Linked list
+
+L'implementazione classica della lista concatenata in C è:
+
+```c
+typedef struct node {
+    int value;
+    struct node *next;
+} Node;
 ```
+
+{{< downloadthis ./code/list/linkedlist.zip dname="xor_crypt.c" label="Scarica l'implementazione dell'arraylist" >}}
+
+Un esempio completo in cui vengono implementate le classi ArrayList e LinkedList, oltre all'interfaccia List, è disponibile [qui](./code/list/list.zip).

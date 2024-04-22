@@ -219,7 +219,8 @@ Il più intuitivo, ma non il più efficiente, è il Bubble Sort:
 
 ![](https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif)
 
-{{< downloadthis ./code/mondiali1982.c dname="esempio" label="Scarica l'esempio completo" >}}
+[Scarica l'esempio completo](./code/mondiali1982.c)
+
 
 ## Unioni
 
@@ -300,3 +301,5 @@ void stampa_array(IntArray a) {
 }
 ```
 Si nota subito che non abbiamo più bisogno di passare la lunghezza dell'array come argomento.
+
+[Scarica l'esempio completo](./code/array_struct.c)
