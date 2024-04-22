@@ -43,3 +43,10 @@ Esempio di main:
 ```{.c}
 {{< include ./code/spesa.c >}}
 ```
+
+::: {.callout-tip collapse="true"}
+## Soluzione
+```{.c}
+{{< include ./code/spesa_soluzione.c >}}
+```
+:::

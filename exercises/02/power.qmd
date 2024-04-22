@@ -33,11 +33,17 @@ Per semplicità si può assumere che $x, y \in \mathbb{N}$ (siano sempre maggior
 In C non esiste un operatore per l'elevamento a potenza. Tuttavia, possiamo calcolare $x^y$ come $x \cdot x \cdot \ldots \cdot x$ (con $y$ fattori) utilizzando un ciclo `for`.
 :::
 
-<!-- ::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="true"}
 ## Soluzione
 
+se $x, y \in \mathbb{N}$
 ```{.c}
-{{< include ./code/cambio_valuta_soluzione.c >}}
+{{< include ./code/power_soluzione.c >}}
 ```
 
-::: -->
+se $x, y \in \mathbb{Z}$
+```{.c}
+{{< include ./code/power_z_sol.c >}}
+```
+
+:::

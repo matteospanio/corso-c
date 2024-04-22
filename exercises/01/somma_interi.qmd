@@ -19,11 +19,11 @@ Una volta compilato il programma eseguilo con `gdb` e controlla il valore delle 
 Per eseguire un programma con `gdb` è sufficiente digitare il comando `gdb nome_programma` da terminale. Una volta avviato il debugger è possibile aggiungere breakpoints con il comando `break nome_funzione` o `break numero_riga`. A questo punto è possibile eseguire il programma con il comando `run` e controllare il valore delle variabili con il comando `print nome_variabile`. Per andare avanti di un passo è possibile usare il comando `next` o `step`. Per uscire dal debugger è sufficiente digitare `quit`.
 :::
 
-<!-- ::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="true"}
 ## Soluzione
 
 ```{.c}
-{{< include ./code/cambio_valuta_soluzione.c >}}
+{{< include ./code/sum.c >}}
 ```
 
-::: -->
+:::

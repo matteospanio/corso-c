@@ -20,11 +20,11 @@ La somma dei due numeri è 5/4
 In questo caso possiamo richiedere all'utente che il formato includa lo slash, e quindi includerlo nel pattern di scanf.
 :::
 
-<!-- ::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="true"}
 ## Soluzione
 
 ```{.c}
-{{< include ./code/cambio_valuta_soluzione.c >}}
+{{< include ./code/sum_fractions.c >}}
 ```
 
-::: -->
+:::

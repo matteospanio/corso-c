@@ -48,11 +48,11 @@ Esempio di main:
 {{< include ./code/cambio_valuta.c >}}
 ```
 
-<!-- ::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="true"}
 ## Soluzione
 
 ```{.c}
 {{< include ./code/cambio_valuta_soluzione.c >}}
 ```
 
-::: -->
+:::
