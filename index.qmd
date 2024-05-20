@@ -6,10 +6,10 @@ toc: false
 ![Hello C](https://img.shields.io/badge/Course-Introduction%20to%20C-blue)
 ![CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-green)
 
-::: {.callout-warning}
+<!-- ::: {.callout-warning}
 ## Materiali in continuo aggiornamento
 Il contenuto del sito non è ancora definitivo, potrebbe cambiare di frequente. Per piacere siate pazienti.
-:::
+::: -->
 
 Dispense per l'introdottozione al linguaggio di programmazione C.
 Questa è la pagina web della parte di programmazione in C del corso di dati e algoritmi per la laurea triennale in ingegneria elettronica presso l'Università di Padova.
@@ -28,7 +28,7 @@ La sezione esercizi raccoglie molti esercizi per ripassare gli argomenti visti i
 
 La sezione risorse contiene materiali vari: una lista di letture consigliate sul linguaggio C oltre al libro di testo del corso, un elenco di materiali didattici reperibili online, domande e risposte comuni sull'esame, una guida sull'installazione dell'ambiente di sviluppo per scrivere programmi C.
 
-<!-- # Programma del corso
+# Programma del corso
 
 Di seguito il programma del corso, tutti gli argomenti elencati potranno essere inclusi negli esercizi d'esame.
 
@@ -52,4 +52,4 @@ Di seguito il programma del corso, tutti gli argomenti elencati potranno essere 
     - struct
     - union
     - typedef
-    - liste concatenate -->
+    - liste concatenate

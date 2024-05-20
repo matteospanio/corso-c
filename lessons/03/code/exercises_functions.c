@@ -79,10 +79,10 @@ int main(void)
     printf("1.5 + 1.5 + 1.618033 = %f\n", sum);
 
     char str[] = {'C', ' ', 'i', 's', ' ', 'w', 'o', 'n', 'd', 'e', 'r', 'f', 'u', 'l'};
-    print_string(str, sizeof(str)/sizeof(char));
+    print_string(str, sizeof(str) / sizeof(char));
     printf("\n");
 
-    print_string_reverse(str, sizeof(str)/sizeof(char));
+    print_string_reverse(str, sizeof(str) / sizeof(char));
     printf("\n");
 
     int true_arr[] = {1, 2, 3};

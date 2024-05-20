@@ -1,0 +1,66 @@
+---
+title: Lista di stringhe
+---
+
+Nei sistemi operativi Unix-like, il comando `wc` consente di contare il numero di righe, parole, caratteri e byte di ciascun file o input standard e stampare il risultato.
+
+Ad esempio il comando:
+```bash
+echo "ciao mondo\n" | wc
+```
+stamperà:
+```
+1 2 11
+```
+
+Il primo numero rappresenta il numero di righe, il secondo il numero di parole e il terzo il numero di caratteri.
+
+::: {.callout-tip}
+Per avere una panoramica completa delle opzioni del comando `wc` si può consultare la pagina del manuale digitando `man wc` nel terminale.
+:::
+
+---
+
+Si vuole implementare in C una funzione `wc` che, data una stringa, restituisca il numero di righe, parole e caratteri totali.
+
+Il prototipo della funzione è il seguente:
+```c
+void wc(const char *string, int n, Stats *counter);
+```
+
+dove:
+- `string` è una stringa;
+- `n` è la lunghezza della stringa;
+- `counter` è un puntatore ad una struttura `Stats` definita come segue:
+```c
+typedef struct {
+    int lines;
+    int words;
+    int chars;
+} Stats;
+```
+
+La funzione deve calcolare il numero di righe, parole e caratteri della stringa `string` e memorizzarli nella struttura `Stats` puntata da `counter`.
+
+Si assuma che:
+- una riga è una sequenza di caratteri terminata da un carattere di nuova riga (`\n`);
+- una parola è una sequenza di caratteri separata da spazi o da caratteri di nuova riga;
+    `"a b"` sono due parole, `"a\nb"` sono due parole parola, `"a,b"` è una parola;
+
+
+### Esempi d'invocazione
+
+```c
+int main(void) {
+    const char *string = "ciao mondo\nhello world";
+    int lines, words, chars;
+    Stats stats = {0, 0, 0};
+    wc(strings, 22, &lines, &words, &chars);
+    printf("lines: %d, words: %d, chars: %d\n", *stats);
+}
+```
+
+Il codice deve stampare:
+```
+lines: 2, words: 4, chars: 22
+```

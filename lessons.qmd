@@ -18,5 +18,6 @@ Le lezioni sono organizzate in maniera da illustrare di volta in volta un argome
 | 09/04/2024 | Puntatori | 11-12 |
 | 10/04/2024 | Struct e puntatori | 15-17 |
 | 23/04/2024 | Memoria dinamica e operatori bitwise | 20 |
-| 28/05/2024 | Preparazione per l'esame | -- |
-| TBD | Simulazione d'esame | -- |
+| 21/05/2024 | Preparazione per l'esame | -- |
+| 25/06/2024 | Primo appello | -- |
+| 09/07/2024 | Secondo appello | -- |
