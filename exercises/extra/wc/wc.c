@@ -59,10 +59,10 @@ void test(const char *str, Stats *counter, Stats expected)
         print_raw_string(str);
         printf("\"\n");
 
-        printf("Expected: ");
+        printf("\tExpected: ");
         print_stats(expected);
 
-        printf("Got: ");
+        printf("\tGot:      ");
         print_stats(*counter);
     }
     printf("%s", RESET);

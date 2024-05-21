@@ -4,6 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * TODO: implement encodec and encodec_list functions
+ */
+
 void add(Nodo **lista, char *str)
 {
     if (lista == NULL)
@@ -23,43 +27,6 @@ void add(Nodo **lista, char *str)
     }
 }
 
-void copyReversed(Nodo *src, Nodo **copy)
-{
-    if (copy == NULL)
-    {
-        printf("Passare la lista di destinazione di copia per puntatore");
-    }
-    if (src == NULL)
-    {
-        return;
-    }
-    copyReversed(src->next, copy);
-    add(copy, src->value);
-}
-
-int compare_lists(Nodo *list_a, Nodo *list_b)
-{
-    if (list_a == NULL)
-    {
-        if (list_b == NULL)
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-    if (list_a->value != list_b->value)
-    {
-        return 0;
-    }
-    else
-    {
-        return compare_lists(list_a->next, list_b->next);
-    }
-}
-
 void print_list(Nodo *list)
 {
     if (list == NULL)
@@ -70,19 +37,6 @@ void print_list(Nodo *list)
     print_list(list->next);
 }
 
-int is_palindrome(Nodo *lista)
-{
-    if (lista == NULL)
-    {
-        return 0;
-    }
-    Nodo *inv = NULL;
-    copyReversed(lista, &inv);
-    int result = compare_lists(lista, inv);
-    delete_list(inv);
-    return result;
-}
-
 void delete_list(Nodo *list)
 {
     if (list == NULL)
@@ -91,4 +45,34 @@ void delete_list(Nodo *list)
     }
     delete_list(list->next);
     free(list);
+}
+
+void encodec(char *msg, char *key, char *dst)
+{
+    for (size_t i = 0; i < strlen(msg); i++)
+    {
+        dst[i] = msg[i] ^ key[i % strlen(key)];
+        if (!is_printable(dst[i]))
+        {
+            dst[i] = msg[i];
+        }
+    }
+    dst[strlen(msg)] = '\0';
+}
+
+void encodec_list(Nodo *list, char *key)
+{
+    if (list == NULL)
+        return;
+
+    char tmp[sizeof(list->value)] = {0};
+    encodec(list->value, key, tmp);
+    strcpy(list->value, tmp);
+
+    encodec_list(list->next, key);
+}
+
+int is_printable(char c)
+{
+    return c >= 32 && c <= 126;
 }

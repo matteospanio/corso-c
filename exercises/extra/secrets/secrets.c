@@ -1,25 +1,7 @@
 #include "solution.h"
 #include <stdio.h>
 #include <string.h>
-#define KEY_SIZE 8
-#define SECRET "La vita è un biscotto, ma se piove si scioglie!"
-
-const char *RESET = "\033[0m";
-const char *RED = "\033[31m";
-const char *GREEN = "\033[32m";
-
-void encodec(char *msg, char *key, char *dst)
-{
-    for (size_t i = 0; i < strlen(msg); i++)
-    {
-        dst[i] = msg[i] ^ key[i % KEY_SIZE];
-        if (dst[i] < 32 || dst[i] > 126)
-        {
-            dst[i] = msg[i];
-        }
-    }
-    dst[strlen(msg)] = '\0';
-}
+#define SECRET "?R vZta è u] bZsc\\tDo, mR sV pZovV sZ sPioTlYe!"
 
 /**
  * Due spie si scambiano messaggi crittografati per comunicare tra loro.
@@ -41,9 +23,9 @@ Nodo *setup()
     char *token = strtok(str, " ");
     while (token != NULL)
     {
-        char dst[sizeof(token)];
-        encodec(token, "s3gr3t0", dst);
-        add(&enc_msg, dst);
+        // char dst[sizeof(token)];
+        // encodec(token, "s3gr3t0", dst);
+        add(&enc_msg, token);
 
         token = strtok(NULL, " ");
     }
@@ -51,27 +33,18 @@ Nodo *setup()
     return enc_msg;
 }
 
-void encodec_list(Nodo *list, char *key)
-{
-    if (list == NULL)
-        return;
-
-    char tmp[sizeof(list->value)] = {0};
-    encodec(list->value, key, tmp);
-    strcpy(list->value, tmp);
-
-    encodec_list(list->next, key);
-}
-
 int main(void)
 {
-#ifdef ENCODE
     Nodo *enc_msg = setup();
-#else
-    Nodo *enc_msg = NULL;
-#endif
-    encodec_list(enc_msg, "s3gr3t0");
-    print_list(enc_msg);
 
+    printf("Encoded message:\n");
+    print_list(enc_msg);
+    printf("\n");
+
+    encodec_list(enc_msg, "s3gr3t0");
+
+    printf("Decoded message:\n");
+    print_list(enc_msg);
+    printf("\n");
     delete_list(enc_msg);
 }
