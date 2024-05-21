@@ -1,5 +1,5 @@
 ---
-title: Lista di stringhe
+title: word counter
 ---
 
 Nei sistemi operativi Unix-like, il comando `wc` consente di contare il numero di righe, parole, caratteri e byte di ciascun file o input standard e stampare il risultato.
@@ -56,7 +56,7 @@ int main(void) {
     int lines, words, chars;
     Stats stats = {0, 0, 0};
     wc(strings, 22, &lines, &words, &chars);
-    printf("lines: %d, words: %d, chars: %d\n", *stats);
+    print_stats(stats);
 }
 ```
 
@@ -64,3 +64,5 @@ Il codice deve stampare:
 ```
 lines: 2, words: 4, chars: 22
 ```
+
+{{< downloadthis ./wc_exercise.zip dname="wc_exercise.zip" label="Scarica il file" >}}
