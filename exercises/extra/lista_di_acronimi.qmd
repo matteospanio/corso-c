@@ -1,3 +1,0 @@
----
-title: "Esercizio: lista di acronimi"
----

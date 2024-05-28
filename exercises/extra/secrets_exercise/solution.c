@@ -1,25 +1,45 @@
 #include "solution.h"
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-/**
- * TODO: implement encodec and encodec_list functions
- */
-
-
-void encodec(char *msg, char *key, char *dst)
+char charEncodec(const char c, const char key)
 {
-    // TODO
+    char result = c ^ key;
+    if (!isPrintable(result))
+        result = c;
+    return result;
 }
 
-void encodec_list(Nodo *list, char *key)
+void listEncodec(Node *list, const char *key, const int seed)
 {
-    // TODO
+    if (list == NULL)
+        return;
+    list->value = charEncodec(list->value, key[seed % len(key)]);
+    listEncodec(list->next, key, seed + 1);
 }
 
-int is_printable(char c)
+void printMessage(const Node *list)
+{
+    if (list == NULL)
+    {
+        printf("\n");
+        return;
+    }
+    printf("%c", list->value);
+    printMessage(list->next);
+}
+
+int isPrintable(const char c)
 {
     return c >= 32 && c <= 126;
+}
+
+unsigned int len(const char *str)
+{
+    unsigned int i = 0;
+    while (str[i] != '\0')
+    {
+        i++;
+    }
+    return i;
 }

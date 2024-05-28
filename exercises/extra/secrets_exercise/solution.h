@@ -1,33 +1,27 @@
-typedef struct nodo
+typedef struct node
 {
-    char value[1024];
-    struct nodo *next;
-} Nodo;
+    char value;
+    struct node *next;
+} Node;
+
+void printMessage(const Node *list);
+char charEncodec(const char c, const char key);
+void listEncodec(Node *list, const char *key, const int seed);
 
 /**
- * @brief add aggiunge un nodo alla lista.
+ * Calcola la lunghezza di una stringa.
  *
- * @param lista
- * @param c
+ * @param str la stringa di cui calcolare la lunghezza
+ * @return unsigned int la lunghezza della stringa
  */
-void add(Nodo **lista, char *str);
-
-int is_printable(char c);
-
-void encodec(char *msg, char *key, char *dst);
-
-void encodec_list(Nodo *list, char *key);
+unsigned int len(const char *str);
 
 /**
- * @brief print_list stampa la lista.
+ * Verifica se un carattere è stampabile.
  *
- * @param list lista da stampare.
- */
-void print_list(Nodo *list);
-
-/**
- * @brief delete_list dealloca la memoria occupata dalla lista.
+ * Un carattere è stampabile se il suo codice ASCII è compreso tra 32 e 126.
  *
- * @param list lista da deallocare.
+ * @param c il carattere da controllare
+ * @return int 1 se il carattere è stampabile, 0 altrimenti
  */
-void delete_list(Nodo *list);
+int isPrintable(const char c);

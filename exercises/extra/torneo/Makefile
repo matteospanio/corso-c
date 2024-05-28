@@ -1,22 +1,23 @@
 CC = gcc
 CFLAGS = -Wall -g -std=c99 -pedantic -Werror -Wextra
-PROG = wc
-
+PROG = torneo
 SOL = solution.c
-MAIN_SRC = wc.c
+MAIN_SRC = torneo.c
 
-OBJS = solution.o wc.o
+OBJS = solution.o torneo.o
 
 all: $(PROG)
 
 solution.o: $(SOL) solution.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-wc.o: $(MAIN_SRC) solution.h
+secrets.o: $(MAIN_SRC) solution.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(PROG): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
+	@./$(PROG)
+	@rm torneo.o
 
 .PHONY: clean
 clean:
