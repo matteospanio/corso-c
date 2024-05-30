@@ -27,24 +27,25 @@ static const char *GREEN = "\033[32m";
 Node *create_node(int team_id, int score, int opponent_score);
 Node *array2tree(Game *array, int size, int index);
 void destroy_tree(Node *root);
-void print_tree(Node *root);
-static bool all_tests_passed(result_t *res, const int size);
-static result_t test(const char *input, const char *expected, const char *key, const int seed);
+
+static result_t test(const Game *input, const int winner, const int *scores);
+static inline bool all_tests_passed(result_t *res, const int size);
+static inline result_t test_winner(const int input, const int expected);
+static inline result_t test_scores(const int *input, const int *expected);
 
 int main(void)
 {
-    result_t res[4];
+    result_t res[1];
     Game games[NUM_MATCHES] = {
         {11, 26, 24}, {6, 25, 22}, {11, 25, 21}, {3, 40, 38}, {6, 25, 20}, {0, 25, 21},  {11, 25, 22}, {3, 26, 24},
         {10, 27, 25}, {4, 29, 27}, {6, 25, 23},  {7, 25, 19}, {0, 25, 18}, {11, 25, 20}, {15, 27, 25}, {2, 0, 0},
         {3, 0, 0},    {10, 0, 0},  {1, 0, 0},    {13, 0, 0},  {4, 0, 0},   {6, 0, 0},    {5, 0, 0},    {12, 0, 0},
         {7, 0, 0},    {0, 0, 0},   {14, 0, 0},   {11, 0, 0},  {9, 0, 0},   {8, 0, 0},    {15, 0, 0}};
 
-    res[0] = test(TEST1, EXPECTED_TEST1, key, 0);
-    res[1] = test(TEST2, EXPECTED_TEST2, key, 1);
-    res[2] = test(TEST4, EXPECTED_TEST1, key, 3);
+    res[0] = test();
 
-    if (all_tests_passed(res, 4))
+
+    if (all_tests_passed(res, 1))
     {
         printf("%sAll tests passed! 🎉%s\n", GREEN, RESET);
     }
@@ -96,7 +97,7 @@ Node *array2tree(Game *array, int size, int index)
     return new_node;
 }
 
-static bool all_tests_passed(result_t *res, const int size)
+static inline bool all_tests_passed(result_t *res, const int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -108,34 +109,69 @@ static bool all_tests_passed(result_t *res, const int size)
     return true;
 }
 
-static result_t test_winner();
-static result_t test_scores();
+static inline result_t test_winner(const int input, const int expected) {
+    return input == expected ? OK : FAIL;
+}
 
-static result_t test(const Game *input, const int expected)
-{
-    Node *msg = string2list(input);
-    listEncodec(msg, key, seed);
-
-    char *out = list2string(msg);
-    int res = strcmp(out, expected);
-
-    if (res == 0)
-    {
-        printf("%s✔️ OK\n", GREEN);
-        printf("\tsecret: \"%s\"\n", input);
-        printf("\toutput: \"%s\"\n", expected);
+static inline result_t test_scores(const int *input, const int *expected) {
+    for (int i = 0; i < NUM_TEAMS; i++) {
+        if (input[i] != expected[i]) {
+            return FAIL;
+        }
     }
-    else
+    return OK;
+}
+
+static result_t test(const Game *input, const int winner, const int *scores)
+{
+    Node *root = array2tree(input, NUM_MATCHES, 0);
+    int res_winner = get_winner(root);
+    int res_scores[NUM_TEAMS] = {0};
+    get_scores(root, res_scores, 2);
+
+    result_t res1 = test_winner(res_winner, winner);
+    result_t res2 = test_scores(res_scores, scores);
+
+    if (res1 == FAIL)
     {
         printf("%s❌ FAIL\n", RED);
-        printf("Test input: \"%s\"\n", input);
-        printf("\tExpected: \"%s\"\n", expected);
-        printf("\tGot:      \"%s\"\n", out);
+        printf("Test input: ");
+        for (int i = 0; i < NUM_MATCHES; i++)
+        {
+            printf("{%d, %d, %d}, ", input[i].team_id, input[i].score, input[i].opponent_score);
+        }
+        printf("\n");
+        printf("\tExpected winner: %d\n", winner);
+        printf("\tGot winner:      %d\n", res_winner);
+    } else {
+        printf("%s✔️ OK\n", GREEN);
+        printf("\tWinner: %d\n", winner);
     }
     printf("%s", RESET);
 
-    delete_list(msg);
-    free(out);
+    if (res2 == FAIL)
+    {
+        printf("%s❌ FAIL\n", RED);
+        printf("Test input: ");
+        for (int i = 0; i < NUM_MATCHES; i++)
+        {
+            printf("{%d, %d, %d}, ", input[i].team_id, input[i].score, input[i].opponent_score);
+        }
+        printf("\n");
+        printf("\tScores:\n");
+        printf("\tExpected\tActual");
+    } else {
+        printf("%s✔️ OK\n", GREEN);
+        printf("\tScores: ");
+        for (int i = 0; i < NUM_TEAMS; i++)
+        {
+            printf("%d, ", scores[i]);
+        }
+        printf("\n");
+    }
+    printf("%s", RESET);
+
+    destroy_tree(root);
 
     return res == 0 ? OK : FAIL;
 }
