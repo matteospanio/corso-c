@@ -98,6 +98,8 @@ website:
               text: word count
             - href: exercises/extra/secrets.qmd
               text: XOR cipher
+            - href: exercises/extra/torneo.qmd
+              text: Torneo di pallavolo
 
     - id: resources
       title: Risorse

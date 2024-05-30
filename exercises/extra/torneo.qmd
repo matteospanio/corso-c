@@ -1,0 +1,169 @@
+---
+title: Classifica del torneo
+filters:
+  - pseudocode
+  - downloadthis
+format:
+  html:
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          loader: {
+            load: ['[tex]/boldsymbol']
+          },
+          tex: {
+            tags: "all",
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+            packages: {
+              '[+]': ['boldsymbol']
+            }
+          }
+        };
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  pdf:
+    papersize: a4
+    geometry:
+      - top=1cm
+      - bottom=2cm
+      - left=2cm
+      - right=2cm
+    include-in-header:
+      text: |
+        \usepackage{xeCJK}
+    include-before-body:
+      text: |
+        \renewcommand{\Return}{\State \textbf{return}~}
+        \newcommand{\Print}{\State \textbf{print}~}
+        \newcommand{\Break}{\State \textbf{break}}
+        \newcommand{\Continue}{\State \textbf{continue}}
+        \newcommand{\True}{\textbf{true}}
+        \newcommand{\False}{\textbf{false}}
+        \renewcommand{\And}{\textbf{and}~}
+        \newcommand{\Or}{\textbf{or}~}
+        \renewcommand{\Not}{\textbf{not}~}
+        \newcommand{\To}{\textbf{to}~}
+        \newcommand{\DownTo}{\textbf{downto}~}
+    pdf-engine: xelatex
+---
+
+I risultati di un torneo di pallavolo a eliminazione diretta vengono rappresentati nel sistema informatico della federazione sportiva come un albero binario di partite.
+Ogni nodo dell'albero rappresenta una partita e contiene le seguenti informazioni:
+
+- `teamId`: l'identificativo della squadra che ha vinto la partita (di tipo intero)
+- `setWon`: il numero di set vinti durante la partita dalla squadra vincitrice (di tipo intero)
+- `setLost`: il numero di set persi durante la partita dalla squadra vincitrice (di tipo intero)
+
+La classifica del torneo viene calcolata assegnando un punteggio a ciascuna squadra in base ai risultati ottenuti. Di seguito viene riportato lo pseudocodice che descrive come vengono calcolati i punteggi delle squadre:
+
+```pseudocode
+#| label: alg-score
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-no-end: true
+#| pdf-placement: "htb!"
+#| pdf-line-number: false
+
+\begin{algorithm}
+\caption{getScores($root, scores, m$)}
+\begin{algorithmic}
+
+\State \textbf{Input:} $root$ la radice di un albero binario, $scores$ un array di numeri a virgola mobile di lunghezza $n$ tale che $s_i = 0$ e $i = 0,\dots n$ dove $s_i$ è l'elemento $i$-esimo dell'array $scores$, $m$ un numero intero.
+\State \textbf{Output:} Nessuno. \textbf{Side effect}: $scores$ contiene il punteggio di ogni squadra.
+
+\If{$root = \text{nil}$}
+    \Return
+\EndIf
+\State $scores[root.\text{teamId}] \leftarrow scores[root.\text{teamId}] + (root.\text{setWon} - root.\text{setLost}) \times m$
+\State getScores($root.left$, $scores$, $m \over 2$)
+\State getScores($root.right$, $scores$, $m \over 2$)
+
+\end{algorithmic}
+\end{algorithm}
+```
+
+**Precondizioni**: si assuma che tutti gli elementi di *scores* siano inizializzati a 0 ed $m \in \mathbb{N} \setminus \{0\}$.
+
+Si consideri come esempio un torneo con 4 squadre, identificate dai numeri da 0 a 3. I punteggi delle squadre sono i seguenti:
+
+::: {.grid}
+
+::: {.g-col-6}
+```{mermaid}
+flowchart TB
+a[0, 3 - 2]
+b[2, 3 - 1]
+c[0, 3 - 0]
+d[1]
+e[0]
+f[2]
+g[3]
+
+a --> b
+a --> c
+c --> d
+c --> e
+b --> f
+b --> g
+```
+:::
+
+::: {.g-col-6}
+```
+0, 3 - 2
+├── 0, 3 - 0
+│   ├── 0
+│   └── 1
+└── 2, 3 - 1
+    ├── 2
+    └── 3
+```
+:::
+
+::: <!-- end columns -->
+
+
+
+Implementare la funzione `get_scores` che riceve in input un albero binario di partite
+e un array di double `scores` di dimensione `NUM_TEAMS` (16) e ne calcola i punteggi.
+L'albero binario rappresenta un torneo a eliminazione diretta, in cui ogni nodo rappresenta
+una partita e contiene le seguenti informazioni:
+- `team_id`: l'identificativo della squadra
+- `score`: il punteggio della squadra
+- `opponent_score`: il punteggio dell'avversario
+
+La funzione deve calcolare i punteggi delle squadre partendo dalla radice dell'albero
+e assegnare il punteggio della squadra vincente al suo identificativo nell'array `scores`.
+
+Esempio:
+
+1. Se l'albero binario è il seguente:
+
+        11, 26 - 24
+       /           \
+    6, 25 - 22   11, 25 - 21
+    /       \     /       \
+ 3, 40 - 38  6, 25 - 20  0, 25 - 21
+
+e l'array `scores` è inizializzato a 0, la funzione deve assegnare i seguenti punteggi:
+
+scores[0] = 0
+scores[1] = 0
+scores[2] = 0
+scores[3] = 6
+scores[4] = 2.8
+scores[5] = 0
+scores[6] = 16.2
+scores[7] = 8.4
+scores[8] = 0
+scores[9] = 0
+scores[10] = 2.8
+scores[11] = 23
+scores[12] = 0
+scores[13] = 0
+scores[14] = 0
+scores[15] = 2.8

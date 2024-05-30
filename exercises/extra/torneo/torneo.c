@@ -5,13 +5,13 @@
 #include <stdlib.h>
 
 /**
- * Implementare la funzione `get_scores` che riceve in input un albero binario di partite
+ * Implementare la funzione `getScores` che riceve in input un albero binario di partite
  * e un array di double `scores` di dimensione `NUM_TEAMS` (16) e ne calcola i punteggi.
  * L'albero binario rappresenta un torneo a eliminazione diretta, in cui ogni nodo rappresenta
  * una partita e contiene le seguenti informazioni:
- * - `team_id`: l'identificativo della squadra
- * - `score`: il punteggio della squadra
- * - `opponent_score`: il punteggio dell'avversario
+ * - `teamId`: l'identificativo della squadra
+ * - `setWon`: il punteggio della squadra
+ * - `setLost`: il punteggio dell'avversario
  *
  * La funzione deve calcolare i punteggi delle squadre partendo dalla radice dell'albero
  * e assegnare il punteggio della squadra vincente al suo identificativo nell'array `scores`.
@@ -48,25 +48,24 @@
 
 typedef struct node
 {
-    int team_id;
-    int score;
-    int opponent_score;
+    int teamId;
+    int setWon;
+    int setLost;
     struct node *left;
     struct node *right;
 } Node;
 
-void get_scores(Node *root, double *scores, double multiplier)
+void getScores(Node *root, double *scores, double m)
 {
     if (root == NULL)
         return;
 
-    scores[root->team_id] += (root->score - root->opponent_score) * multiplier;
-
-    get_scores(root->left, scores, multiplier - 0.2);
-    get_scores(root->right, scores, multiplier - 0.2);
+    getScores(root->left, scores, m / 2);
+    scores[root->teamId] += (root->setWon - root->setLost) * m;
+    getScores(root->right, scores, m / 2);
 }
 
-int get_winner(double *scores)
+int getWinner(double *scores)
 {
     int winner = 0;
     for (int i = 1; i < 16; i++)
@@ -91,9 +90,9 @@ typedef enum result
 
 typedef struct game
 {
-    int team_id;
-    int score;
-    int opponent_score;
+    int teamId;
+    int setWon;
+    int setLost;
 } game_t;
 
 #define TOLERANCE 1e-6
@@ -106,28 +105,28 @@ static const char *RED = "\033[31m";
 static const char *GREEN = "\033[32m";
 static const char *GRAY = "\033[90m";
 
-Node *create_node(int team_id, int score, int opponent_score);
+Node *create_node(int teamId, int setWon, int setLost);
 Node *array2tree(const game_t *array, int size, int index);
 void destroy_tree(Node *root);
 static void print_tree(Node *root);
 
-static result_t test(const game_t *input, const int num_teams, const int winner, const double *scores);
+static result_t test(const game_t *input, const int num_teams, const int winner, const double *scores, const int mult);
 static inline bool all_tests_passed(const result_t *res, const int size);
 
 int main(void)
 {
     result_t res[2];
-    double scores[] = {7.6, 0, 0, 4.4, 1.4, 0, 6.6, 4.2, 0, 0, 1.4, 13.6, 0, 0, 0, 2.8};
+    double scores[] = {4.5, 0.75, 0, 2.25, 0.75, 0.5, 5.75, 2.25, 0.5, 0.75, 1, 13.75, 0.25, 0.5, 0.25, 1.75};
     game_t games[] = {{11, 3, 2}, {6, 3, 1},  {11, 3, 0}, {3, 3, 2},  {6, 3, 2}, {0, 3, 0},  {11, 3, 0}, {3, 3, 1},
                       {10, 3, 2}, {4, 3, 2},  {6, 3, 2},  {7, 3, 0},  {0, 3, 1}, {11, 3, 2}, {15, 3, 1}, {2, 0, 0},
-                      {3, 0, 0},  {10, 0, 0}, {1, 0, 0},  {13, 0, 0}, {4, 0, 0}, {6, 0, 0},  {5, 0, 0},  {12, 0, 0},
-                      {7, 0, 0},  {0, 0, 0},  {14, 0, 0}, {11, 0, 0}, {9, 0, 0}, {8, 0, 0},  {15, 0, 0}};
+                      {3, 3, 2},  {10, 3, 1}, {1, 3, 0},  {13, 3, 1}, {4, 3, 2}, {6, 3, 2},  {5, 3, 1},  {12, 3, 2},
+                      {7, 3, 0},  {0, 3, 1},  {14, 3, 2}, {11, 3, 2}, {9, 3, 0}, {8, 3, 1},  {15, 3, 0}};
 
-    double scores2[] = {7.4, 0, 3.6, 0};
+    double scores2[] = {7.5, 0, 3, 0};
     game_t games2[] = {{0, 3, 2}, {2, 3, 1}, {0, 3, 0}, {3, 0, 0}, {2, 0, 0}, {1, 0, 0}, {0, 0, 0}};
 
-    res[0] = test(games2, 4, 0, scores2);
-    res[1] = test(games, 16, 11, scores);
+    res[0] = test(games2, 4, 0, scores2, 3);
+    res[1] = test(games, 16, 11, scores, 4);
 
     if (all_tests_passed(res, 2))
     {
@@ -140,14 +139,14 @@ int main(void)
     return 0;
 }
 
-Node *create_node(int team_id, int score, int opponent_score)
+Node *create_node(int teamId, int setWon, int setLost)
 {
     Node *new_node = (Node *)malloc(sizeof(Node));
     assert(new_node != NULL);
 
-    new_node->team_id = team_id;
-    new_node->score = score;
-    new_node->opponent_score = opponent_score;
+    new_node->teamId = teamId;
+    new_node->setWon = setWon;
+    new_node->setLost = setLost;
     new_node->left = NULL;
     new_node->right = NULL;
     return new_node;
@@ -167,7 +166,7 @@ Node *array2tree(const game_t *array, int size, int index)
     if (index >= size)
         return NULL;
 
-    Node *new_node = create_node(array[index].team_id, array[index].score, array[index].opponent_score);
+    Node *new_node = create_node(array[index].teamId, array[index].setWon, array[index].setLost);
     new_node->left = array2tree(array, size, 2 * index + 1);
     new_node->right = array2tree(array, size, 2 * index + 2);
     return new_node;
@@ -214,14 +213,14 @@ static inline int count_nodes(const int leafs)
     return leafs * 2 - 1;
 }
 
-static result_t test(const game_t *input, const int num_teams, const int winner, const double *scores)
+static result_t test(const game_t *input, const int num_teams, const int winner, const double *scores, const int mult)
 {
     Node *root = array2tree(input, count_nodes(num_teams), 0);
     double res_scores[num_teams];
     for (int i = 0; i < num_teams; i++)
         res_scores[i] = 0;
-    get_scores(root, res_scores, 2);
-    int res_winner = get_winner(res_scores);
+    getScores(root, res_scores, mult);
+    int res_winner = getWinner(res_scores);
 
     print_tree(root);
 
@@ -292,10 +291,10 @@ static void print_subtree(Node *root, const char *prefix)
         sprintf(newPrefix, "%s%s%s%s", prefix, LIGHT_BLUE, (printStrand ? "│   " : "    "), RESET);
         printf("%s", RESET);
         if (next->left == NULL)
-            printf("%s%d%s\n", BOLD, next->team_id, RESET);
+            printf("%s%d%s\n", BOLD, next->teamId, RESET);
         else
-            printf("%s%d%s, %s%s%d - %d%s\n", BOLD, next->team_id, RESET, ITALIC, GRAY, next->score,
-                   next->opponent_score, RESET);
+            printf("%s%d%s, %s%s%d - %d%s\n", BOLD, next->teamId, RESET, ITALIC, GRAY, next->setWon, next->setLost,
+                   RESET);
         print_subtree(next, newPrefix);
     }
 
@@ -309,10 +308,10 @@ static void print_subtree(Node *root, const char *prefix)
         printf("%s", RESET);
 
         if (next->left == NULL)
-            printf("%s%d%s\n", BOLD, next->team_id, RESET);
+            printf("%s%d%s\n", BOLD, next->teamId, RESET);
         else
-            printf("%s%d%s, %s%s%d - %d%s\n", BOLD, next->team_id, RESET, ITALIC, GRAY, next->score,
-                   next->opponent_score, RESET);
+            printf("%s%d%s, %s%s%d - %d%s\n", BOLD, next->teamId, RESET, ITALIC, GRAY, next->setWon, next->setLost,
+                   RESET);
         sprintf(newPrefix, "%s%s", prefix, "    ");
         print_subtree(next, newPrefix);
     }
@@ -325,7 +324,6 @@ static void print_tree(Node *root)
         return;
     }
 
-    printf("%s%d%s, %s%s%d - %d%s\n", BOLD, root->team_id, RESET, ITALIC, GRAY, root->score, root->opponent_score,
-           RESET);
+    printf("%s%d%s, %s%s%d - %d%s\n", BOLD, root->teamId, RESET, ITALIC, GRAY, root->setWon, root->setLost, RESET);
     print_subtree(root, "");
 }
