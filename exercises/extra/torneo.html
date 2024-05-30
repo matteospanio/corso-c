@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hello C 2024 - Esercizio: FizzBuzz</title>
+<title>Hello C 2024 - Classifica del torneo</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../exercises/02/sum_matrix.html" rel="next">
-<link href="../../exercises/02/lista_della_spesa.html" rel="prev">
+<link href="../../exercises/extra/secrets.html" rel="prev">
 <link href="../../assets/images/dec_pdp1120.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -44,6 +43,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
+<link href="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -83,7 +84,57 @@ ul.task-list li input[type="checkbox"] {
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script>
+MathJax = {
+  loader: {
+    load: ['[tex]/boldsymbol']
+  },
+  tex: {
+    tags: "all",
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    packages: {
+      '[+]': ['boldsymbol']
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -137,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/02/power.html">Espressioni e strutture di controllo</a></li><li class="breadcrumb-item"><a href="../../exercises/02/fizzbuzz.html">FizzBuzz</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/extra/lista_di_stringhe.html">Preparazione esame</a></li><li class="breadcrumb-item"><a href="../../exercises/extra/torneo.html">Torneo di pallavolo</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -207,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/02/fizzbuzz.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../exercises/02/fizzbuzz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FizzBuzz</span></a>
   </div>
 </li>
@@ -265,7 +316,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/extra/torneo.html" class="sidebar-item-text sidebar-link">
+  <a href="../../exercises/extra/torneo.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Torneo di pallavolo</span></a>
   </div>
 </li>
@@ -278,13 +329,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="torneo.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/02/power.html">Espressioni e strutture di controllo</a></li><li class="breadcrumb-item"><a href="../../exercises/02/fizzbuzz.html">FizzBuzz</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/extra/lista_di_stringhe.html">Preparazione esame</a></li><li class="breadcrumb-item"><a href="../../exercises/extra/torneo.html">Torneo di pallavolo</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Esercizio: FizzBuzz</h1>
+<h1 class="title">Classifica del torneo</h1>
 </div>
 
 
@@ -301,39 +352,71 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Si vuole scrivere un programma che stampi i numeri da 1 a 100, ma per i multipli di 3 stampi “Fizz” e per i multipli di 5 stampi “Buzz”. Per i numeri che sono sia multipli di 3 che di 5 stampi “FizzBuzz”.</p>
-<hr>
-<p>Un’esecuzione del programma potrebbe essere la seguente:</p>
-<pre class="plaintext"><code>$ ./fizzbuzz
-1
-2
-Fizz
-4
-Buzz
-Fizz
-7
-8
-Fizz
-Buzz
-11
-Fizz
-13
-14
-FizzBuzz
-...</code></pre>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Suggerimento
+<p>I risultati di un torneo di pallavolo a eliminazione diretta vengono rappresentati nel sistema informatico della federazione sportiva come un albero binario di partite. Ogni nodo dell’albero rappresenta una partita e contiene le seguenti informazioni:</p>
+<ul>
+<li><code>teamId</code>: l’identificativo della squadra che ha vinto la partita (di tipo intero)</li>
+<li><code>setWon</code>: il numero di set vinti durante la partita dalla squadra vincitrice (di tipo intero)</li>
+<li><code>setLost</code>: il numero di set persi durante la partita dalla squadra vincitrice (di tipo intero)</li>
+</ul>
+<p>La classifica del torneo viene calcolata assegnando un punteggio a ciascuna squadra in base ai risultati ottenuti. Di seguito viene riportato lo pseudocodice che descrive come vengono calcolati i punteggi delle squadre:</p>
+<div id="alg-score" class="pseudocode-container" data-alg-title="Algorithm" data-no-end="true" data-comment-delimiter="//" data-pseudocode-index="1" data-indent-size="1.2em">
+<div class="pseudocode">
+\begin{algorithm} \caption{getScores($root, scores, m$)} \begin{algorithmic} \State \textbf{Input:} $root$ la radice di un albero binario, $scores$ un array di numeri a virgola mobile di lunghezza $n$ tale che $s_i = 0$ e $i = 0,\dots n$ dove $s_i$ è l'elemento $i$-esimo dell'array $scores$, $m$ un numero intero. \State \textbf{Output:} Nessuno. \textbf{Side effect}: $scores$ contiene il punteggio di ogni squadra. \If{$root = \text{nil}$} \Return \EndIf \State $scores[root.\text{teamId}] \leftarrow scores[root.\text{teamId}] + (root.\text{setWon} - root.\text{setLost}) \times m$ \State getScores($root.left$, $scores$, $m \over 2$) \State getScores($root.right$, $scores$, $m \over 2$) \end{algorithmic} \end{algorithm}
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>L’operatore modulo <code>%</code> restituisce il resto della divisione tra due numeri. Ad esempio, <code>5 % 3</code> restituisce <code>2</code>, perché <code>5</code> diviso <code>3</code> dà <code>1</code> con un resto di <code>2</code>.</p>
+<p><strong>Precondizioni</strong>: si assuma che tutti gli elementi di <em>scores</em> siano inizializzati a 0 ed <span class="math inline">\(m \in \mathbb{N} \setminus \{0\}\)</span>.</p>
+<p>Si consideri come esempio un torneo con 4 squadre, identificate dai numeri da 0 a 3. I punteggi delle squadre sono i seguenti:</p>
+<p>::: {.grid}</p>
+<div class="g-col-6">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+a[0, 3 - 2]
+b[2, 3 - 1]
+c[0, 3 - 0]
+d[1]
+e[0]
+f[2]
+g[3]
+
+a --&gt; b
+a --&gt; c
+c --&gt; d
+c --&gt; e
+b --&gt; f
+b --&gt; g
+</pre>
+</div>
+<p></p></figure><p></p>
 </div>
 </div>
+</div>
+</div>
+<div class="g-col-6">
+<pre><code>0, 3 - 2
+├── 0, 3 - 0
+│   ├── 0
+│   └── 1
+└── 2, 3 - 1
+    ├── 2
+    └── 3</code></pre>
+</div>
+<p>::: <!-- end columns --></p>
+<p>Implementare la funzione <code>get_scores</code> che riceve in input un albero binario di partite e un array di double <code>scores</code> di dimensione <code>NUM_TEAMS</code> (16) e ne calcola i punteggi. L’albero binario rappresenta un torneo a eliminazione diretta, in cui ogni nodo rappresenta una partita e contiene le seguenti informazioni: - <code>team_id</code>: l’identificativo della squadra - <code>score</code>: il punteggio della squadra - <code>opponent_score</code>: il punteggio dell’avversario</p>
+<p>La funzione deve calcolare i punteggi delle squadre partendo dalla radice dell’albero e assegnare il punteggio della squadra vincente al suo identificativo nell’array <code>scores</code>.</p>
+<p>Esempio:</p>
+<ol type="1">
+<li><p>Se l’albero binario è il seguente:</p>
+<pre><code> 11, 26 - 24
+/           \</code></pre>
+<p>6, 25 - 22 11, 25 - 21 / &nbsp; /<br>
+3, 40 - 38 6, 25 - 20 0, 25 - 21</p></li>
+</ol>
+<p>e l’array <code>scores</code> è inizializzato a 0, la funzione deve assegnare i seguenti punteggi:</p>
+<p>scores[0] = 0 scores[1] = 0 scores[2] = 0 scores[3] = 6 scores[4] = 2.8 scores[5] = 0 scores[6] = 16.2 scores[7] = 8.4 scores[8] = 0 scores[9] = 0 scores[10] = 2.8 scores[11] = 23 scores[12] = 0 scores[13] = 0 scores[14] = 0 scores[15] = 2.8</p>
 
 
 
@@ -893,14 +976,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../exercises/02/lista_della_spesa.html" class="pagination-link" aria-label="Lista della spesa">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lista della spesa</span>
+      <a href="../../exercises/extra/secrets.html" class="pagination-link" aria-label="XOR cipher">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">XOR cipher</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../exercises/02/sum_matrix.html" class="pagination-link" aria-label="Somma di righe e colonne">
-        <span class="nav-page-text">Somma di righe e colonne</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -940,6 +1020,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+    <script type="text/javascript">
+    (function(d) {
+      d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+        let pseudocodeOptions = {
+          indentSize: el.dataset.indentSize || "1.2em",
+          commentDelimiter: el.dataset.commentDelimiter || "//",
+          lineNumber: el.dataset.lineNumber === "true" ? true : false,
+          lineNumberPunc: el.dataset.lineNumberPunc || ":",
+          noEnd: el.dataset.noEnd === "true" ? true : false,
+          titlePrefix: el.dataset.algTitle || "Algorithm"
+        };
+        pseudocode.renderElement(el.querySelector(".pseudocode"), pseudocodeOptions);
+      });
+    })(document);
+    (function(d) {
+      d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+        titleSpan = el.querySelector(".ps-root > .ps-algorithm > .ps-line > .ps-keyword")
+        titlePrefix = el.dataset.algTitle;
+        titleIndex = el.dataset.chapterLevel ? el.dataset.chapterLevel + "." + el.dataset.pseudocodeIndex : el.dataset.pseudocodeIndex;
+        titleSpan.innerHTML = titlePrefix + " " + titleIndex + " ";
+      });
+    })(document);
+    </script>
+  
 
 
 
