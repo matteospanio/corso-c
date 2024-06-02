@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hello C 2024 - Gara di Hot Dog</title>
+<title>Hello C 2024 - Palindromi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,6 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../exercises/extra/lista_di_stringhe.html" rel="next">
+<link href="../../exercises/02/deal.html" rel="prev">
 <link href="../../assets/images/dec_pdp1120.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -42,6 +78,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
+<link href="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,6 +120,24 @@ ul.task-list li input[type="checkbox"] {
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
+<script>
+MathJax = {
+  loader: {
+    load: ['[tex]/boldsymbol']
+  },
+  tex: {
+    tags: "all",
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    packages: {
+      '[+]': ['boldsymbol']
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 
 </head>
@@ -135,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Gara di Hot Dog</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/extra/palindromi.html">Preparazione esame</a></li><li class="breadcrumb-item"><a href="../../exercises/extra/palindromi.html">Palindromi</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -251,6 +308,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../exercises/extra/palindromi.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Palindromi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../exercises/extra/lista_di_stringhe.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">word count</span></a>
   </div>
@@ -276,13 +339,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="palindromi.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/extra/palindromi.html">Preparazione esame</a></li><li class="breadcrumb-item"><a href="../../exercises/extra/palindromi.html">Palindromi</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Gara di Hot Dog</h1>
+<h1 class="title">Palindromi</h1>
 </div>
 
 
@@ -299,7 +362,124 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In una sagra di paese si tiene una gara di Hot Dog, si vuole</p>
+<p>Implementiamo un algoritmo per determinare se la parola contenuta in una lista concatenata è palindroma (parole che restano uguali se lette al contrario. Ad esempio <code>"anna"</code>, <code>"bob"</code> sono palindromi, <code>"ciao"</code> e <code>"bod"</code> non lo sono). Esistono vari modi per farlo, noi implementiamo un semplice algoritmo che crea una copia in ordine invertito della lista da controllare e verifica se la lista di origine e quella invertita son identiche.</p>
+<p>Si chiede di implementare le seguenti funzioni:</p>
+<ul>
+<li><code>void add(Nodo**lis, char c);</code></li>
+<li><code>int compareLists(Nodo*lis, Nodo* comp);</code></li>
+<li><code>void copyReversed(Nodo* lis, Nodo** copy);</code></li>
+<li><code>int checkPalindrome(Nodo*lis);</code></li>
+</ul>
+<p>Delle ultime due viene fornito lo pseudocodice:</p>
+<div id="alg-listEncodec" class="pseudocode-container" data-pseudocode-index="1" data-comment-delimiter="//" data-no-end="true" data-alg-title="Algorithm" data-indent-size="1.2em">
+<div class="pseudocode">
+\begin{algorithm} \caption{copyReversed} \begin{algorithmic} \State \textbf{Input:} lis (una lista), copy (una lista vuota) \State \textbf{Output:} Nessuno. \textbf{Side effect}: copy contiene una lista di lunghezza uguale a lis, in cui i nodi contengono gli stessi caratteri di quelli di lis ma in ordine inverso. \If{$list = \text{nil}$} \Return \EndIf \State $copyReversed$(lista a partire dal nodo successivo di lis, $copy$) \State $add$($copy$, carattere contenuto nel primo nodo di lis) \end{algorithmic} \end{algorithm}
+</div>
+</div>
+<div id="alg-encodec" class="pseudocode-container" data-pseudocode-index="2" data-comment-delimiter="//" data-no-end="false" data-alg-title="Algorithm" data-indent-size="1.2em">
+<div class="pseudocode">
+\begin{algorithm} \caption{checkPalindrome} \begin{algorithmic} \State \textbf{Input:} lis (una lista) \State \textbf{Output:} TRUE se la lista passata contiene una sequenza di caratteri palindroma, FALSE altrimenti \State $inv \leftarrow$ nuova lista vuota \State $copyReversed(lis, inv)$ \Return $compareLists(lis, inv)$ \end{algorithmic} \end{algorithm}
+</div>
+</div>
+<p><code>add</code> serve ad ad aggiungere un nodo in coda alla lista <code>lis</code> contenente il carattere <code>c</code> come valore.</p>
+<p><code>compareLists</code> deve restituire True se <code>lis</code> e <code>comp</code> sono due liste identiche (hanno lo stesso numero di nodi e il contenuto dei nodi è identico). Esistono più modi di eseguire questo controllo ma si consiglia di usare la ricorsione.</p>
+<p>Se necessario, si possono aggiungere funzioni di supporto, ma è necessario che le funzioni richieste siano implementate esattamente con i prototipi forniti.</p>
+<blockquote class="blockquote">
+<p>Lo pseudocodice non è codice completo in C: non considera i tipi dei vari oggetti, l’uso di puntatori/riferimenti, e dunque dell’operatore “-&gt;” anziché l’operatore “.”: `e lasciato allo studente il compito di determinare questi dettagli come adeguato.</p>
+</blockquote>
+<p><a href="#dnldts20504" onclick="fetch('data:application/zip;base64,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').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'palindromi.zip'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-default downloadthis  " id="dnldts20504"><i class="bi bi-download"></i> Scarica i file per svolgere l'esercizio </button></a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Soluzione (fare click per visualizzare)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>La soluzione proposta è la seguente:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> add<span class="op">(</span>Nodo <span class="op">**</span>lista<span class="op">,</span> <span class="dt">char</span> c<span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>lista <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"Passare per riferimento ad ADD</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(*</span>lista <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span>lista <span class="op">=</span> malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span>Nodo<span class="op">));</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        assert<span class="op">(*</span>lista <span class="op">!=</span> NULL<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">(*</span>lista<span class="op">)-&gt;</span>value <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">(*</span>lista<span class="op">)-&gt;</span>next <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        add<span class="op">(&amp;(*</span>lista<span class="op">)-&gt;</span>next<span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> copyReversed<span class="op">(</span>Nodo <span class="op">*</span>src<span class="op">,</span> Nodo <span class="op">**</span>copy<span class="op">)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>copy <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"Passare la lista di destinazione di copia per puntatore"</span><span class="op">);</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>src <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    copyReversed<span class="op">(</span>src<span class="op">-&gt;</span>next<span class="op">,</span> copy<span class="op">);</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    add<span class="op">(</span>copy<span class="op">,</span> src<span class="op">-&gt;</span>value<span class="op">);</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> compareLists<span class="op">(</span>Nodo <span class="op">*</span>list_a<span class="op">,</span> Nodo <span class="op">*</span>list_b<span class="op">)</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>list_a <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>list_b <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>list_a<span class="op">-&gt;</span>value <span class="op">!=</span> list_b<span class="op">-&gt;</span>value<span class="op">)</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> compareLists<span class="op">(</span>list_a<span class="op">-&gt;</span>next<span class="op">,</span> list_b<span class="op">-&gt;</span>next<span class="op">);</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> checkPalindrome<span class="op">(</span>Nodo <span class="op">*</span>lista<span class="op">)</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>lista <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    Nodo <span class="op">*</span>inv <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    copyReversed<span class="op">(</span>lista<span class="op">,</span> <span class="op">&amp;</span>inv<span class="op">);</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> result <span class="op">=</span> compareLists<span class="op">(</span>lista<span class="op">,</span> inv<span class="op">);</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    deleteList<span class="op">(</span>inv<span class="op">);</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 
 
 
@@ -857,6 +1037,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../exercises/02/deal.html" class="pagination-link" aria-label="Una mano a poker">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Una mano a poker</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../exercises/extra/lista_di_stringhe.html" class="pagination-link" aria-label="word count">
+        <span class="nav-page-text">word count</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -894,6 +1086,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+    <script type="text/javascript">
+    (function(d) {
+      d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+        let pseudocodeOptions = {
+          indentSize: el.dataset.indentSize || "1.2em",
+          commentDelimiter: el.dataset.commentDelimiter || "//",
+          lineNumber: el.dataset.lineNumber === "true" ? true : false,
+          lineNumberPunc: el.dataset.lineNumberPunc || ":",
+          noEnd: el.dataset.noEnd === "true" ? true : false,
+          titlePrefix: el.dataset.algTitle || "Algorithm"
+        };
+        pseudocode.renderElement(el.querySelector(".pseudocode"), pseudocodeOptions);
+      });
+    })(document);
+    (function(d) {
+      d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+        titleSpan = el.querySelector(".ps-root > .ps-algorithm > .ps-line > .ps-keyword")
+        titlePrefix = el.dataset.algTitle;
+        titleIndex = el.dataset.chapterLevel ? el.dataset.chapterLevel + "." + el.dataset.pseudocodeIndex : el.dataset.pseudocodeIndex;
+        titleSpan.innerHTML = titlePrefix + " " + titleIndex + " ";
+      });
+    })(document);
+    </script>
+  
 
 
 
