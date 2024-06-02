@@ -1,5 +1,69 @@
-#include "solution.h"
+#include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+typedef struct nodo
+{
+    char value;
+    struct nodo *next;
+} Nodo;
+
+void printList(Nodo *list)
+{
+    if (list == NULL)
+    {
+        return;
+    }
+    printf("%c", list->value);
+    printList(list->next);
+}
+
+void deleteList(Nodo *list)
+{
+    if (list == NULL)
+    {
+        return;
+    }
+    deleteList(list->next);
+    free(list);
+}
+
+void add(Nodo **lista, char c)
+{
+    if (lista == NULL)
+    {
+        printf("Passare per riferimento ad ADD\n");
+    }
+    // TODO
+}
+
+void copyReversed(Nodo *lis, Nodo **copy)
+{
+    if (copy == NULL)
+    {
+        printf("Passare la lista di destinazione di copia per puntatore");
+    }
+    // TODO
+}
+
+int compareLists(Nodo *lis, Nodo *comp)
+{
+    // TODO
+}
+
+int checkPalindrome(Nodo *lista)
+{
+    // TODO
+}
+
+/**
+ * NON MODIFICARE IL CODICE CHE SEGUE!!!
+ *
+ * Il codice che segue è stato scritto per testare le funzioni implementate per l'esercizio.
+ * L'esercitazione consiste solamente nell'implementare le funzioni richieste nel testo.
+ * Per l'implementazione di una corretta soluzione non è richiesto agli studenti di
+ * comprendere il funzionamento del codice seguente.
+ */
 
 const char *RESET = "\033[0m";
 const char *RED = "\033[31m";
@@ -44,7 +108,7 @@ void test(const char *parola, int expected)
 {
     Nodo *lista = list_from_string(parola);
 
-    int res = is_palindrome(lista);
+    int res = checkPalindrome(lista);
 
     if (res == expected)
     {
@@ -59,7 +123,7 @@ void test(const char *parola, int expected)
         printf("Test input: \"%s\"\n", parola);
     }
 
-    delete_list(lista);
+    deleteList(lista);
 }
 
 int main(void)
@@ -78,12 +142,12 @@ int main(void)
         add(&lista, parola[i]);
     }
 
-    if (is_palindrome(lista))
+    if (checkPalindrome(lista))
         printf("La parola è palindroma\n");
     else
         printf("La parola non è palindroma\n");
 
-    delete_list(lista);
+    deleteList(lista);
 #else
     test("anna", 1);
     test("ciao", 0);

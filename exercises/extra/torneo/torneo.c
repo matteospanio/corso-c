@@ -4,48 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/**
- * Implementare la funzione `getScores` che riceve in input un albero binario di partite
- * e un array di double `scores` di dimensione `NUM_TEAMS` (16) e ne calcola i punteggi.
- * L'albero binario rappresenta un torneo a eliminazione diretta, in cui ogni nodo rappresenta
- * una partita e contiene le seguenti informazioni:
- * - `teamId`: l'identificativo della squadra
- * - `setWon`: il punteggio della squadra
- * - `setLost`: il punteggio dell'avversario
- *
- * La funzione deve calcolare i punteggi delle squadre partendo dalla radice dell'albero
- * e assegnare il punteggio della squadra vincente al suo identificativo nell'array `scores`.
- *
- * Esempio:
- *
- * 1. Se l'albero binario è il seguente:
- *
- *         11, 26 - 24
- *        /           \
- *     6, 25 - 22   11, 25 - 21
- *     /       \     /       \
- *  3, 40 - 38  6, 25 - 20  0, 25 - 21
- *
- * e l'array `scores` è inizializzato a 0, la funzione deve assegnare i seguenti punteggi:
- *
- * scores[0] = 0
- * scores[1] = 0
- * scores[2] = 0
- * scores[3] = 6
- * scores[4] = 2.8
- * scores[5] = 0
- * scores[6] = 16.2
- * scores[7] = 8.4
- * scores[8] = 0
- * scores[9] = 0
- * scores[10] = 2.8
- * scores[11] = 23
- * scores[12] = 0
- * scores[13] = 0
- * scores[14] = 0
- * scores[15] = 2.8
- */
-
 typedef struct node
 {
     int teamId;
@@ -57,28 +15,20 @@ typedef struct node
 
 void getScores(Node *root, double *scores, double m)
 {
-    if (root == NULL)
-        return;
-
-    getScores(root->left, scores, m / 2);
-    scores[root->teamId] += (root->setWon - root->setLost) * m;
-    getScores(root->right, scores, m / 2);
+    // TODO
 }
 
-int getWinner(double *scores)
+int getWinner(double *scores, int n)
 {
-    int winner = 0;
-    for (int i = 1; i < 16; i++)
-        if (scores[i] > scores[winner])
-            winner = i;
-    return winner;
+    // TODO
 }
 
 /**
- * NON MODIFICARE IL CODICE CHE SEGUE
+ * NON MODIFICARE IL CODICE CHE SEGUE!!!
+ *
  * Il codice che segue è stato scritto per testare le funzioni implementate per l'esercizio.
- * L'esercitazione consiste solamente nell'implementare le funzioni richieste nel testo,
- * per l'implementazione di una corretta soluzione non è richiesto agli studenti di
+ * L'esercitazione consiste solamente nell'implementare le funzioni richieste nel testo.
+ * Per l'implementazione di una corretta soluzione non è richiesto agli studenti di
  * comprendere il funzionamento del codice seguente.
  */
 
@@ -208,19 +158,14 @@ static inline void print_float_array(const double *arr, const int len)
     printf("\n");
 }
 
-static inline int count_nodes(const int leafs)
-{
-    return leafs * 2 - 1;
-}
-
 static result_t test(const game_t *input, const int num_teams, const int winner, const double *scores, const int mult)
 {
-    Node *root = array2tree(input, count_nodes(num_teams), 0);
+    Node *root = array2tree(input, num_teams * 2 - 1, 0);
     double res_scores[num_teams];
     for (int i = 0; i < num_teams; i++)
         res_scores[i] = 0;
     getScores(root, res_scores, mult);
-    int res_winner = getWinner(res_scores);
+    int res_winner = getWinner(res_scores, num_teams);
 
     print_tree(root);
 

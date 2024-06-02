@@ -6,11 +6,6 @@ toc: false
 ![Hello C](https://img.shields.io/badge/Course-Introduction%20to%20C-blue)
 ![CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-green)
 
-<!-- ::: {.callout-warning}
-## Materiali in continuo aggiornamento
-Il contenuto del sito non è ancora definitivo, potrebbe cambiare di frequente. Per piacere siate pazienti.
-::: -->
-
 Dispense per l'introdottozione al linguaggio di programmazione C.
 Questa è la pagina web della parte di programmazione in C del corso di dati e algoritmi per la laurea triennale in ingegneria elettronica presso l'Università di Padova.
 
@@ -53,3 +48,8 @@ Di seguito il programma del corso, tutti gli argomenti elencati potranno essere 
     - union
     - typedef
     - liste concatenate
+    - alberi binari
+5. Algoritmi
+    - visite di alberi (preorder, inorder, postorder)
+    - ricerca binaria
+    - visita di liste

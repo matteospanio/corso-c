@@ -1,29 +1,14 @@
 CC = gcc
-CFLAGS = -Wall -g -std=c99 -pedantic -Werror -Wextra
+CFLAGS = -Wall -std=c99 -pedantic -Wextra
 PROG = secrets
-
-# ifeq ($(DEBUG),1)
-# 	CFLAGS += -DENCODE -g
-# endif
-
-SOL = solution.c
-MAIN_SRC = secrets.c
-
-OBJS = solution.o secrets.o
+SRC = secrets.c
 
 all: $(PROG)
 
-solution.o: $(SOL) solution.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
-secrets.o: $(MAIN_SRC) solution.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(PROG): $(OBJS)
+$(PROG): $(SRC)
 	$(CC) $(CFLAGS) $^ -o $@
 	@./$(PROG)
-	@rm secrets.o
 
 .PHONY: clean
 clean:
-	rm -f $(OBJS) $(PROG)
+	rm -f $(PROG)

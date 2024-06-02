@@ -1,9 +1,47 @@
-#include "solution.h"
 #include <stdio.h>
+
+typedef struct
+{
+    int lines;
+    int words;
+    int chars;
+} Stats;
+
+// 1. Implementa la funzione wc che conta il numero di righe, parole e caratteri nella stringa data e
+//    memorizza il risultato nella struttura counter.
+// 2. Implementa la funzione print_stats che stampa in modo carino il numero di righe, parole e caratteri nella
+//    struttura counter data.
+
+// Verifica se un carattere è uno spazio o un carattere di newline.
+int is_empty(char c)
+{
+    return c == ' ' || c == '\n';
+}
+
+void wc(const char *str, Stats *counter)
+{
+    // TODO
+}
+
+/**
+ * NON MODIFICARE IL CODICE CHE SEGUE!!!
+ *
+ * Il codice che segue è stato scritto per testare le funzioni implementate per l'esercizio.
+ * L'esercitazione consiste solamente nell'implementare le funzioni richieste nel testo.
+ * Per l'implementazione di una corretta soluzione non è richiesto agli studenti di
+ * comprendere il funzionamento del codice seguente.
+ */
 
 const char *RESET = "\033[0m";
 const char *RED = "\033[31m";
 const char *GREEN = "\033[32m";
+
+void print_stats(Stats counter)
+{
+    printf("Lines: %d ", counter.lines);
+    printf("Words: %d ", counter.words);
+    printf("Chars: %d\n", counter.chars);
+}
 
 void reset_counter(Stats *counter)
 {

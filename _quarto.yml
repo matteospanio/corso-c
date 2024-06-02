@@ -94,6 +94,8 @@ website:
               text: Una mano a poker
         - section: Preparazione esame
           contents:
+            - href: exercises/extra/palindromi.qmd
+              text: Palindromi
             - href: exercises/extra/lista_di_stringhe.qmd
               text: word count
             - href: exercises/extra/secrets.qmd

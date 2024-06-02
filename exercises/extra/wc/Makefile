@@ -1,23 +1,14 @@
 CC = gcc
-CFLAGS = -Wall -g -std=c99 -pedantic -Werror -Wextra
+CFLAGS = -Wall -std=c99 -pedantic -Wextra
 PROG = wc
-
-SOL = solution.c
-MAIN_SRC = wc.c
-
-OBJS = solution.o wc.o
+SRC = wc.c
 
 all: $(PROG)
 
-solution.o: $(SOL) solution.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
-wc.o: $(MAIN_SRC) solution.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(PROG): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+$(PROG): $(SRC)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
+	@./$(PROG)
 
 .PHONY: clean
 clean:
-	rm -f $(OBJS) $(PROG)
+	rm -f $(PROG)

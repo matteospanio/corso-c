@@ -1,29 +1,18 @@
 CC = gcc
-CFLAGS = -Wall -std=c99 -pedantic -Werror -Wextra
+CFLAGS = -Wall -std=c99 -pedantic -Wextra
 PROG = palindromi
+SRC = palindromi.c
 
 ifeq ($(DEBUG),1)
 	CFLAGS += -DDEBUG -g
 endif
 
-SOL = solution.c
-MAIN_SRC = palindromi.c
-
-OBJS = solution.o palindromi.o
-
 all: $(PROG)
 
-solution.o: $(SOL) solution.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
-palindromi.o: $(MAIN_SRC) solution.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(PROG): $(OBJS)
+$(PROG): $(SRC)
 	$(CC) $(CFLAGS) $^ -o $@
-	./$(PROG)
-	@rm palindromi.o
+	@./$(PROG)
 
 .PHONY: clean
 clean:
-	rm -f $(OBJS) $(PROG)
+	rm -f $(PROG)

@@ -35,6 +35,7 @@ format:
     include-in-header:
       text: |
         \usepackage{xeCJK}
+        \usepackage{amsmath}
     include-before-body:
       text: |
         \renewcommand{\Return}{\State \textbf{return}~}
@@ -88,11 +89,10 @@ La classifica del torneo viene calcolata assegnando un punteggio a ciascuna squa
 
 **Precondizioni**: si assuma che tutti gli elementi di *scores* siano inizializzati a 0 ed $m \in \mathbb{N} \setminus \{0\}$.
 
-Si consideri come esempio un torneo con 4 squadre, identificate dai numeri da 0 a 3. I punteggi delle squadre sono i seguenti:
+Una volta ottenuto l'array con i punteggi delle squadre si può facilmente trovare la squadra vincitrice con un algoritmo che abbia complessità $O(n)$, dove $n$ è la lunghezza dell'array *scores*.
 
-::: {.grid}
+Si consideri come esempio un torneo con 4 squadre, identificate dai numeri da 0 a 3. Le foglie dell'albero rappresentano solamente i nomi delle squadre (i valori `setWon` e `setLost` sono inizializzati a 0). I nodi genitori contengono nel campo `teamId` l'identificativo della squadra vincente e nei campi `setWon` e `setLost` il numero di set vinti e persi rispettivamente. L'albero binario di partite è il seguente:
 
-::: {.g-col-6}
 ```{mermaid}
 flowchart TB
 a[0, 3 - 2]
@@ -110,9 +110,9 @@ c --> e
 b --> f
 b --> g
 ```
-:::
 
-::: {.g-col-6}
+Una rappresentazione testuale dell'albero, più adatta ad essere stampata nel terminale, è la seguente:
+
 ```
 0, 3 - 2
 ├── 0, 3 - 0
@@ -122,48 +122,31 @@ b --> g
     ├── 2
     └── 3
 ```
+
+Si chiede di implementare in linguaggio C le funzioni:
+
+- `void getScores(Node *root, double *scores, double m)`
+- `int getWinner(double *scores, int n)`
+
+la funzione `getScores` deve calcolare i punteggi delle squadre partendo dalla radice dell'albero binario di partite, mentre la funzione `getWinner` deve restituire l'id della squadra vincente.
+
+Se necessario, si possono aggiungere funzioni di supporto, ma è necessario che le funzioni richieste siano implementate esattamente con i prototipi forniti.
+
+> Lo pseudocodice non è codice completo in C: non considera i tipi dei vari oggetti, l’uso di puntatori/riferimenti, e dunque dell’operatore "->" anziché l’operatore ".": `e lasciato allo studente il compito di determinare questi dettagli come adeguato.
+
+::: {.callout-note}
+L'implementazione dell'albero in C è una semplice variante di quella utilizzata durante le lezioni del corso e viene fornita già implementata nei file dell'esercizio come segue:
+
+```c
+typedef struct node
+{
+    int teamId;
+    int setWon;
+    int setLost;
+    struct node *left;
+    struct node *right;
+} Node;
+```
 :::
 
-::: <!-- end columns -->
-
-
-
-Implementare la funzione `get_scores` che riceve in input un albero binario di partite
-e un array di double `scores` di dimensione `NUM_TEAMS` (16) e ne calcola i punteggi.
-L'albero binario rappresenta un torneo a eliminazione diretta, in cui ogni nodo rappresenta
-una partita e contiene le seguenti informazioni:
-- `team_id`: l'identificativo della squadra
-- `score`: il punteggio della squadra
-- `opponent_score`: il punteggio dell'avversario
-
-La funzione deve calcolare i punteggi delle squadre partendo dalla radice dell'albero
-e assegnare il punteggio della squadra vincente al suo identificativo nell'array `scores`.
-
-Esempio:
-
-1. Se l'albero binario è il seguente:
-
-        11, 26 - 24
-       /           \
-    6, 25 - 22   11, 25 - 21
-    /       \     /       \
- 3, 40 - 38  6, 25 - 20  0, 25 - 21
-
-e l'array `scores` è inizializzato a 0, la funzione deve assegnare i seguenti punteggi:
-
-scores[0] = 0
-scores[1] = 0
-scores[2] = 0
-scores[3] = 6
-scores[4] = 2.8
-scores[5] = 0
-scores[6] = 16.2
-scores[7] = 8.4
-scores[8] = 0
-scores[9] = 0
-scores[10] = 2.8
-scores[11] = 23
-scores[12] = 0
-scores[13] = 0
-scores[14] = 0
-scores[15] = 2.8
+{{< downloadthis ./torneo.zip dname="torneo" label="Scarica i file per svolgere l'esercizio" >}}
