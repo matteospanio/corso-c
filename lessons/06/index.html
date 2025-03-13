@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Matteo Spanio">
+<meta name="author" content="Giulio Pitteri">
 
-<title>Hello C 2024 - Memoria dinamica e operatori bitwise</title>
+<title>Memoria dinamica e operatori bitwise – Hello C 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -65,19 +66,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../lessons/05/index.html" rel="prev">
 <link href="../../assets/images/dec_pdp1120.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-36d195c590ea66258dc4a75ed3adf062.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-bf8dae65810def7c8f97efb4134dc6f3.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -162,11 +162,11 @@ window.Quarto = {
     <img src="../../assets/images/dec_pdp1120.png" alt="Hello C" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Hello C 2024</span>
+    <span class="navbar-title">Hello C 2025</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Ricerca"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Attiva/disattiva la navigazione" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Attiva/disattiva la navigazione" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -185,7 +185,7 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools tools-wide">
+            <div class="quarto-navbar-tools tools-wide">
     <a href="https://github.com/matteospanio/corso-c" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Attiva/disattiva la modalità oscura"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Attiva/disattiva la modalità lettore">
@@ -198,11 +198,11 @@ window.Quarto = {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/06/index.html">Memoria dinamica e operatori bitwise</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Memoria dinamica e operatori bitwise</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -223,30 +223,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../lessons/02/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Strutture di controllo e tipi di base</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lessons/03/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Array e Funzioni</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lessons/04/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Puntatori</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lessons/05/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Uso avanzato dei puntatori</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Memoria dinamica e operatori bitwise</span></a>
   </div>
 </li>
     </ul>
@@ -302,35 +278,17 @@ window.Quarto = {
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Autore/Autrice</div>
-  <div class="quarto-title-meta-heading">Affiliazioni</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://matteospanio.github.io/">Matteo Spanio</a> <a href="mailto:spanio@dei.unipd.it" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-2436-7208" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            <a href="http://csc.dei.unipd.it/">
-            Centro di Sonologia Computazionale
-            </a>
-          </p>
-        <p class="affiliation">
-            <a href="http://www.dei.unipd.it/">
-            Dipartimento di Ingegneria dell’Informazione
-            </a>
-          </p>
-        <p class="affiliation">
-            <a href="http://www.unipd.it/">
-            Università degli Studi di Padova
-            </a>
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    <div>
+    <div class="quarto-title-meta-heading">Autori</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://matteospanio.github.io/">Matteo Spanio</a> <a href="mailto:spanio@dei.unipd.it" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-2436-7208" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+             <p>Giulio Pitteri <a href="mailto:giulio.pitteri@phd.unipd.it" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-7595-017X" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+  </div>
+    
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
@@ -357,7 +315,7 @@ window.Quarto = {
 <p>Le strutture sono molto utili per definire… strutture dati. Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…</p>
 <p>Gli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza <em>a mano</em>, ad esempio passandola come argomento di una funzione.</p>
 <p>Si può creare una struttura che contenga un array e la sua lunghezza:</p>
-<div id="lst-array1" class="c listing quarto-float">
+<div id="lst-array1" class="c listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-array1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Lista&nbsp;1: Implementazione di un array di interi con lunghezza variabile.
@@ -379,7 +337,7 @@ Lista&nbsp;1: Implementazione di un array di interi con lunghezza variabile.
 </ol>
 <p>Si noti che il membro <code>lenght</code> è aggiornato solo quando si aggiungono o rimuovono elementi dall’array.</p>
 <p>Adesso si può passare la struttura come argomento di una funzione, senza dover tenere traccia in maniera esplicita della lunghezza dell’array:</p>
-<div id="lst-stampa-array" class="c listing quarto-float">
+<div id="lst-stampa-array" class="c listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-stampa-array-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Lista&nbsp;2: Implementazione della funzione per stampare un IntArray.
@@ -537,7 +495,7 @@ Consiglio
 <li><code>length</code> è il numero di elementi attualmente presenti nell’array</li>
 </ul>
 <p>Quando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.</p>
-<p><a href="#dnldts32321" onclick="fetch('data:application/zip;base64,UEsDBBQACAAIAKMCiVgAAAAAAAAAAO0FAAALACAAYXJyYXlsaXN0LmNVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAAJ1UwW7bMAy96yu49mI7WTvsmiZYMeRUYwGM7DQUgSLLiwDXMmS5WDbk3ydRkqPY2VDUh8Sm3qPeEyneiobVfcnhhipFj7Xo9N3hhtwOYX1seXcReuh0WYv93WFFyKMl5YYE2cDfMcWp5kknfvOdBkZbyoQ+puQPAfNEFIuGJbzQupYM8bJKhvU0XSBBVJA45BK+fc/zFKMumX0U171qcMkRTvhrKR9XNqnZ4tMiigVFJh5e4+WSanpWNaJk4GVuIRsLDNTrMivFOcI86z/SfdiCF+REyH2WEbPzl70SvIKCoyl94IN8kBV+4zHtj0ChokxLZVhIbKmiL251G2Bamn1spgjhWIjxrwMqzo8ML3KtlIFtnkA20PWM8a6bA8cgk6ZbTLiiou6V3eeedJpqwUA0tWi4J587x22VjFpkDlUtqfaSQh+NC7P061dKafoxqqUNzif0d9fVn0Oxfszzzdfduig2xZVibp6wlGPHtG15U04dGxmvtO55cOt45nyMHZvqUp/r8uXI1FSpZU9O2234OQ2iXe5Gg4BldItms/HJ/hDPBoEyF7FVkxe9buOh8JPrhMnGOJx49YNCNCX/FfxabxiAVSzijXc/ukBBqs31jLJepSijUyh5zfWVnkNYktlru7MpUtcakb5hCT7848qbkoUxKHAKmb+HyI75ns3SAX9mhoGB6ZOLI4/GxymyPIwXB/SoeOicyF9QSwcIGgmqBBoCAADtBQAAUEsDBBQACAAIAKMCiVgAAAAAAAAAAOIGAAALACAAYXJyYXlsaXN0LmhVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAALVVwY7TMBC9+ytG20saVVtxLkJbsQhWVCxawoFT5ToTYim1I9tZtiD+nbEdErdRd1lp6aXt5M17M09vlJmsVIkVrO/u1t82N1+K7Qc2o4JUeFRjM6lE05UIF+7Qor2sL8bSa+vKRu4u6zeM+aee0DrTCQfcGH5opHXsFwP6FJDnJXd8Ff5Z+RO3LnwdFQRvuZDusGK/Ye0ZNsSwYmyZ5wxyuNoZSRJvDXKHwEHhj0QIIqblhu8HJihqBKmkk7wZi7oCR/W+Da4Mus6oUTIPbZ7eQ0Ab+PR1swE5toHQXVOC0g52CCJMVBLXkg0kkA+zbSMgO1lzvjrZbN22qEra7J43HYLT6ZgBR4JIw0kLVaeEk1pBzS3cZq/m4OSeRtH7tsEHYj82JAxd/J2emHnUcjoBRVmPGgaIsNSld8aQIbcfgbRtJwRauwAMRaEpFVSuuGw6g8GPCB+tiIRZYpMvL3xCgujElPfoBkcqo/f/0ZPvJOWG7b1YgpZ0MA99nvyvPkSDU9Sc2lTkiZE88obGxWmeIh2NrzvnWXe6U6UN5hVpiEggE1rRqBPz+mAFpomB19ggOXRq2xkPyoBOEJVB3PrbDbDBYoL6J4HWP52sFVpsnd6Jb4hXcq9lmYQiik5DEWBZPowwz8iR+WTDzwafOpwz27Z951Nn0ONe8A56xmccwo2yaMZbkOrf15Sx1bc8vmcEPpL6kcwl6X5BXyL7eVsmYWczspEyt1wevbn+AFBLBwhVyAmnLgIAAOIGAABQSwECFAMUAAgACACjAolYGgmqBBoCAADtBQAACwAgAAAAAAAAAAAAtIEAAAAAYXJyYXlsaXN0LmNVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAAFBLAQIUAxQACAAIAKMCiVhVyAmnLgIAAOIGAAALACAAAAAAAAAAAAC0gXMCAABhcnJheWxpc3QuaFVUDQAH0m0UZtJtFGbSbRRmdXgLAAEE6AMAAAToAwAAUEsFBgAAAAACAAIAsgAAAPoEAAAAAA==').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts44464" onclick="fetch('data:application/zip;base64,UEsDBBQACAAIAKMCiVgAAAAAAAAAAO0FAAALACAAYXJyYXlsaXN0LmNVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAAJ1UwW7bMAy96yu49mI7WTvsmiZYMeRUYwGM7DQUgSLLiwDXMmS5WDbk3ydRkqPY2VDUh8Sm3qPeEyneiobVfcnhhipFj7Xo9N3hhtwOYX1seXcReuh0WYv93WFFyKMl5YYE2cDfMcWp5kknfvOdBkZbyoQ+puQPAfNEFIuGJbzQupYM8bJKhvU0XSBBVJA45BK+fc/zFKMumX0U171qcMkRTvhrKR9XNqnZ4tMiigVFJh5e4+WSanpWNaJk4GVuIRsLDNTrMivFOcI86z/SfdiCF+REyH2WEbPzl70SvIKCoyl94IN8kBV+4zHtj0ChokxLZVhIbKmiL251G2Bamn1spgjhWIjxrwMqzo8ML3KtlIFtnkA20PWM8a6bA8cgk6ZbTLiiou6V3eeedJpqwUA0tWi4J587x22VjFpkDlUtqfaSQh+NC7P061dKafoxqqUNzif0d9fVn0Oxfszzzdfduig2xZVibp6wlGPHtG15U04dGxmvtO55cOt45nyMHZvqUp/r8uXI1FSpZU9O2234OQ2iXe5Gg4BldItms/HJ/hDPBoEyF7FVkxe9buOh8JPrhMnGOJx49YNCNCX/FfxabxiAVSzijXc/ukBBqs31jLJepSijUyh5zfWVnkNYktlru7MpUtcakb5hCT7848qbkoUxKHAKmb+HyI75ns3SAX9mhoGB6ZOLI4/GxymyPIwXB/SoeOicyF9QSwcIGgmqBBoCAADtBQAAUEsDBBQACAAIAKMCiVgAAAAAAAAAAOIGAAALACAAYXJyYXlsaXN0LmhVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAALVVwY7TMBC9+ytG20saVVtxLkJbsQhWVCxawoFT5ToTYim1I9tZtiD+nbEdErdRd1lp6aXt5M17M09vlJmsVIkVrO/u1t82N1+K7Qc2o4JUeFRjM6lE05UIF+7Qor2sL8bSa+vKRu4u6zeM+aee0DrTCQfcGH5opHXsFwP6FJDnJXd8Ff5Z+RO3LnwdFQRvuZDusGK/Ye0ZNsSwYmyZ5wxyuNoZSRJvDXKHwEHhj0QIIqblhu8HJihqBKmkk7wZi7oCR/W+Da4Mus6oUTIPbZ7eQ0Ab+PR1swE5toHQXVOC0g52CCJMVBLXkg0kkA+zbSMgO1lzvjrZbN22qEra7J43HYLT6ZgBR4JIw0kLVaeEk1pBzS3cZq/m4OSeRtH7tsEHYj82JAxd/J2emHnUcjoBRVmPGgaIsNSld8aQIbcfgbRtJwRauwAMRaEpFVSuuGw6g8GPCB+tiIRZYpMvL3xCgujElPfoBkcqo/f/0ZPvJOWG7b1YgpZ0MA99nvyvPkSDU9Sc2lTkiZE88obGxWmeIh2NrzvnWXe6U6UN5hVpiEggE1rRqBPz+mAFpomB19ggOXRq2xkPyoBOEJVB3PrbDbDBYoL6J4HWP52sFVpsnd6Jb4hXcq9lmYQiik5DEWBZPowwz8iR+WTDzwafOpwz27Z951Nn0ONe8A56xmccwo2yaMZbkOrf15Sx1bc8vmcEPpL6kcwl6X5BXyL7eVsmYWczspEyt1wevbn+AFBLBwhVyAmnLgIAAOIGAABQSwECFAMUAAgACACjAolYGgmqBBoCAADtBQAACwAgAAAAAAAAAAAAtIEAAAAAYXJyYXlsaXN0LmNVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAAFBLAQIUAxQACAAIAKMCiVhVyAmnLgIAAOIGAAALACAAAAAAAAAAAAC0gXMCAABhcnJheWxpc3QuaFVUDQAH0m0UZtJtFGbSbRRmdXgLAAEE6AMAAAToAwAAUEsFBgAAAAACAAIAsgAAAPoEAAAAAA==').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -545,7 +503,7 @@ Consiglio
       a.download = 'xor_crypt.c.zip'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts32321"><i class="bi bi-download"></i> Scarica l'implementazione dell'arraylist </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts44464"><i class="bi bi-download"></i> Scarica l'implementazione dell'arraylist </button></a></p>
 </section>
 <section id="linked-list-2" class="level2">
 <h2 class="anchored" data-anchor-id="linked-list-2">Linked list</h2>
@@ -562,7 +520,7 @@ Consiglio
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> value<span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>next<span class="op">;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Node<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><a href="#dnldts9409" onclick="fetch('data:application/zip;base64,UEsDBBQACAAIAKMCiVgAAAAAAAAAAPEEAAAMACAAbGlua2VkbGlzdC5jVVQNAAfSbRRm0m0UZtJtFGZ1eAsAAQToAwAABOgDAACllE1PgzAYx+/9FHVeCjjjHVlizE7ilizzTBr64BprWRibi8u+u20ptDBmTOyhwPPK/9cHbrnMxZ4BngguP4AJvqvvNxOEUvOYqkccOleWV0BrIAE6IaxWP0rtCf6kQpQ52fFvKAviAoIgNim8wKQJTfDiLU0DY9WrgnpfSWOMkbHquOlsA5ThxNqduaZcjJh1Y2V+aGy2pnbF6IzQvKrKCnuC6HYLkpGhkDu8xuGBij20UhelohRKvQ9Fapcvrwm6Iu/1KU2Xz9l8tVqurEwdP50xWlNV2jSNPbuEY93T2RJsyfiNTl27HjtdqUk+mx3EDkbjNdSu5TCrx905Hfcosoqs1uWLgb7ujdA71CQvpSJ9CV0XyWrMJYPjKHinyrEw0XiWeC/y21AVagBI28hMiro8Nj3VbRQNSV4/0vEG7dFZSA1On6NNccduKB1KzvzJZCBAfWqXkEwgCYsKINPZAVGAgz/h+tpwAVbNzfjc2Hw3Af77tzi63v0q7ercxGkMXAXtNh7P1gIboPrfHwB13bQn0Jh/AFBLBwj2+/5AlwEAAPEEAABQSwMEFAAIAAgAowKJWAAAAAAAAAAA9AYAAAwAIABsaW5rZWRsaXN0LmhVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAAK1VwY7aMBC95ytGyyVECNQzVdWqu2rRRmylpmdk4kljNdiR7WzZVv33ju0QDOlCV9pciMdv3pt5mRETUUmOFeSr9f3dbb76Wmw+JxOKCImnwWQiZNl0HOHGPrVo5vXNMfTWWN6I7bx+lyTu1lEaq7vSglQck98J0FNAxpllS3+IriGTuLfL5A+s6bQcUTRC/kDiN7YnWvukGhlfRmfLRNNzi1+4sf7HseY+P6d84l5kWQIZvN9qQQofNTKLwEDiz14HvBAElEbbaRkxZFDU2KONBaVh/S3PQVRgKe5jpeoaTo1Z2CKUXoAT2SI5skB27GkTIOl0eVbbh7ZFyam2R9Z0CFYNEofqSAOpHmGg6mRphZJQMwMP6ZspWLEjdbVrG9wL+3RIaZlmu1BncSiYmFnQsioCBVmHGgoIsNiZO63Jg4d7IG3TlSUaMwP0wdJ9FQpX9F06jd6CAI+aD4zpqTXGztyweNmRLZ/QDp5UWu0GV+ZXbZEvteU7adnBAKcWoQVtzt7Dw5uqImxIjp0qsshLFnh94ux8igIdla8661i3qpPceP+Kk8khhbRUkmod+9fvgOcaeXiLDZJH5/P0jAvcoyNEpRE3bpU9bDCZoO7G07rbUWM+xdTxfriEsB2PSvB4MoLqPybDA9NsKGKakivTUY9fNF7bn2f6bfvMa9vQ415zHXrKl+zDShrUx5UQ8v8bFSHVpVzuNAAvzP6RzEYz/prOBPoLxoxGPpmQkzR5i8XpP9lfUEsHCNzx5sg2AgAA9AYAAFBLAQIUAxQACAAIAKMCiVj2+/5AlwEAAPEEAAAMACAAAAAAAAAAAAC0gQAAAABsaW5rZWRsaXN0LmNVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAAFBLAQIUAxQACAAIAKMCiVjc8ebINgIAAPQGAAAMACAAAAAAAAAAAAC0gfEBAABsaW5rZWRsaXN0LmhVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAAFBLBQYAAAAAAgACALQAAACBBAAAAAA=').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts8596" onclick="fetch('data:application/zip;base64,UEsDBBQACAAIAKMCiVgAAAAAAAAAAPEEAAAMACAAbGlua2VkbGlzdC5jVVQNAAfSbRRm0m0UZtJtFGZ1eAsAAQToAwAABOgDAACllE1PgzAYx+/9FHVeCjjjHVlizE7ilizzTBr64BprWRibi8u+u20ptDBmTOyhwPPK/9cHbrnMxZ4BngguP4AJvqvvNxOEUvOYqkccOleWV0BrIAE6IaxWP0rtCf6kQpQ52fFvKAviAoIgNim8wKQJTfDiLU0DY9WrgnpfSWOMkbHquOlsA5ThxNqduaZcjJh1Y2V+aGy2pnbF6IzQvKrKCnuC6HYLkpGhkDu8xuGBij20UhelohRKvQ9Fapcvrwm6Iu/1KU2Xz9l8tVqurEwdP50xWlNV2jSNPbuEY93T2RJsyfiNTl27HjtdqUk+mx3EDkbjNdSu5TCrx905Hfcosoqs1uWLgb7ujdA71CQvpSJ9CV0XyWrMJYPjKHinyrEw0XiWeC/y21AVagBI28hMiro8Nj3VbRQNSV4/0vEG7dFZSA1On6NNccduKB1KzvzJZCBAfWqXkEwgCYsKINPZAVGAgz/h+tpwAVbNzfjc2Hw3Af77tzi63v0q7ercxGkMXAXtNh7P1gIboPrfHwB13bQn0Jh/AFBLBwj2+/5AlwEAAPEEAABQSwMEFAAIAAgAowKJWAAAAAAAAAAA9AYAAAwAIABsaW5rZWRsaXN0LmhVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAAK1VwY7aMBC95ytGyyVECNQzVdWqu2rRRmylpmdk4kljNdiR7WzZVv33ju0QDOlCV9pciMdv3pt5mRETUUmOFeSr9f3dbb76Wmw+JxOKCImnwWQiZNl0HOHGPrVo5vXNMfTWWN6I7bx+lyTu1lEaq7vSglQck98J0FNAxpllS3+IriGTuLfL5A+s6bQcUTRC/kDiN7YnWvukGhlfRmfLRNNzi1+4sf7HseY+P6d84l5kWQIZvN9qQQofNTKLwEDiz14HvBAElEbbaRkxZFDU2KONBaVh/S3PQVRgKe5jpeoaTo1Z2CKUXoAT2SI5skB27GkTIOl0eVbbh7ZFyam2R9Z0CFYNEofqSAOpHmGg6mRphZJQMwMP6ZspWLEjdbVrG9wL+3RIaZlmu1BncSiYmFnQsioCBVmHGgoIsNiZO63Jg4d7IG3TlSUaMwP0wdJ9FQpX9F06jd6CAI+aD4zpqTXGztyweNmRLZ/QDp5UWu0GV+ZXbZEvteU7adnBAKcWoQVtzt7Dw5uqImxIjp0qsshLFnh94ux8igIdla8661i3qpPceP+Kk8khhbRUkmod+9fvgOcaeXiLDZJH5/P0jAvcoyNEpRE3bpU9bDCZoO7G07rbUWM+xdTxfriEsB2PSvB4MoLqPybDA9NsKGKakivTUY9fNF7bn2f6bfvMa9vQ415zHXrKl+zDShrUx5UQ8v8bFSHVpVzuNAAvzP6RzEYz/prOBPoLxoxGPpmQkzR5i8XpP9lfUEsHCNzx5sg2AgAA9AYAAFBLAQIUAxQACAAIAKMCiVj2+/5AlwEAAPEEAAAMACAAAAAAAAAAAAC0gQAAAABsaW5rZWRsaXN0LmNVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAAFBLAQIUAxQACAAIAKMCiVjc8ebINgIAAPQGAAAMACAAAAAAAAAAAAC0gfEBAABsaW5rZWRsaXN0LmhVVA0AB9JtFGbSbRRm0m0UZnV4CwABBOgDAAAE6AMAAFBLBQYAAAAAAgACALQAAACBBAAAAAA=').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -570,7 +528,7 @@ Consiglio
       a.download = 'xor_crypt.c.zip'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts9409"><i class="bi bi-download"></i> Scarica l'implementazione dell'arraylist </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts8596"><i class="bi bi-download"></i> Scarica l'implementazione dell'arraylist </button></a></p>
 <p>Un esempio completo in cui vengono implementate le classi ArrayList e LinkedList, oltre all’interfaccia List, è disponibile <a href="./code/list/list.zip">qui</a>.</p>
 </section>
 </section>
@@ -581,7 +539,7 @@ Consiglio
 <section id="calcoli-1" class="level2">
 <h2 class="anchored" data-anchor-id="calcoli-1">Calcoli</h2>
 <p>Questi operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>A</th>
@@ -720,7 +678,7 @@ Nota
 <section id="esercizi-3" class="level2">
 <h2 class="anchored" data-anchor-id="esercizi-3">Esercizi</h2>
 <p>Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.</p>
-<p><a href="#dnldts62415" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CiNpbmNsdWRlIDxzdGRsaWIuaD4KI2luY2x1ZGUgPHN0cmluZy5oPgojZGVmaW5lIEtFWSAnJCcKCnR5cGVkZWYgY2hhciAqU3RyaW5nOwoKLy8gU2NyaXZlcmUgbCdpbXBsZW1lbnRhemlvbmUgZGVsbGUgZnVuemlvbmkgc3RyaW5nX2VuY29kZWMgZSBuZXdfc3RyaW5nCi8vIEhpbnQxOiBuZXdfc3RyaW5nIGRldmUgYWxsb2NhcmUgbGEgbWVtb3JpYSBwZXIgbGEgc3RyaW5nYSB0ZXh0Ci8vIEhpbnQyOiBzdHJpbmdfZW5jb2RlYyBkZXZlIGNpZnJhcmUgbGEgc3RyaW5nYSBtZXNzYWdlIGNvbiBsYSBjaGlhdmUga2V5IHRyYW1pdGUgWE9SCi8vCi8vIE9wdGlvbmFsOiBtYWtlIHRoZSBLRVkgYSBjb21tYW5kIGxpbmUgYXJndW1lbnQgdG8gYmUgcGFyc2VkCi8vIFRoZSB1c2FnZSBvZiB0aGUgcHJvZ3JhbSBzaG91bGQgYmU6Ci8vIC4veG9yX2VuY29kZWMga2V5IG1lc3NhZ2UKU3RyaW5nIG5ld19zdHJpbmcoU3RyaW5nIHRleHQpOwp2b2lkIHN0cmluZ19lbmNvZGVjKFN0cmluZyBtZXNzYWdlLCBjaGFyIGtleSk7CnZvaWQgc3RyaW5nX2RlbGV0ZShTdHJpbmcgc3RyKTsKCmludCBtYWluKHZvaWQpCnsKICAgIFN0cmluZyBzID0gbmV3X3N0cmluZygiSGVsbG8gd29ybGQhIik7CiAgICBpZiAocyA9PSBOVUxMKQogICAgewogICAgICAgIGV4aXQoRVhJVF9GQUlMVVJFKTsKICAgIH0KCiAgICBwcmludGYoIiVzXG4iLCBzKTsKCiAgICBzdHJpbmdfZW5jb2RlYyhzLCBLRVkpOwogICAgcHJpbnRmKCIlc1xuIiwgcyk7CgogICAgc3RyaW5nX2VuY29kZWMocywgS0VZKTsKICAgIHByaW50ZigiJXNcbiIsIHMpOwoKICAgIHN0cmluZ19kZWxldGUocyk7Cn0KCnZvaWQgc3RyaW5nX2VuY29kZWMoU3RyaW5nIG1lc3NhZ2UsIGNoYXIga2V5KQp7CiAgICAvLyBUT0RPCn0KClN0cmluZyBuZXdfc3RyaW5nKFN0cmluZyB0ZXh0KQp7CiAgICAvLyBUT0RPCn0KCnZvaWQgc3RyaW5nX2RlbGV0ZShTdHJpbmcgc3RyKQp7CiAgICBmcmVlKHN0cik7Cn0K').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts17634" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CiNpbmNsdWRlIDxzdGRsaWIuaD4KI2luY2x1ZGUgPHN0cmluZy5oPgojZGVmaW5lIEtFWSAnJCcKCnR5cGVkZWYgY2hhciAqU3RyaW5nOwoKLy8gU2NyaXZlcmUgbCdpbXBsZW1lbnRhemlvbmUgZGVsbGUgZnVuemlvbmkgc3RyaW5nX2VuY29kZWMgZSBuZXdfc3RyaW5nCi8vIEhpbnQxOiBuZXdfc3RyaW5nIGRldmUgYWxsb2NhcmUgbGEgbWVtb3JpYSBwZXIgbGEgc3RyaW5nYSB0ZXh0Ci8vIEhpbnQyOiBzdHJpbmdfZW5jb2RlYyBkZXZlIGNpZnJhcmUgbGEgc3RyaW5nYSBtZXNzYWdlIGNvbiBsYSBjaGlhdmUga2V5IHRyYW1pdGUgWE9SCi8vCi8vIE9wdGlvbmFsOiBtYWtlIHRoZSBLRVkgYSBjb21tYW5kIGxpbmUgYXJndW1lbnQgdG8gYmUgcGFyc2VkCi8vIFRoZSB1c2FnZSBvZiB0aGUgcHJvZ3JhbSBzaG91bGQgYmU6Ci8vIC4veG9yX2VuY29kZWMga2V5IG1lc3NhZ2UKU3RyaW5nIG5ld19zdHJpbmcoU3RyaW5nIHRleHQpOwp2b2lkIHN0cmluZ19lbmNvZGVjKFN0cmluZyBtZXNzYWdlLCBjaGFyIGtleSk7CnZvaWQgc3RyaW5nX2RlbGV0ZShTdHJpbmcgc3RyKTsKCmludCBtYWluKHZvaWQpCnsKICAgIFN0cmluZyBzID0gbmV3X3N0cmluZygiSGVsbG8gd29ybGQhIik7CiAgICBpZiAocyA9PSBOVUxMKQogICAgewogICAgICAgIGV4aXQoRVhJVF9GQUlMVVJFKTsKICAgIH0KCiAgICBwcmludGYoIiVzXG4iLCBzKTsKCiAgICBzdHJpbmdfZW5jb2RlYyhzLCBLRVkpOwogICAgcHJpbnRmKCIlc1xuIiwgcyk7CgogICAgc3RyaW5nX2VuY29kZWMocywgS0VZKTsKICAgIHByaW50ZigiJXNcbiIsIHMpOwoKICAgIHN0cmluZ19kZWxldGUocyk7Cn0KCnZvaWQgc3RyaW5nX2VuY29kZWMoU3RyaW5nIG1lc3NhZ2UsIGNoYXIga2V5KQp7CiAgICAvLyBUT0RPCn0KClN0cmluZyBuZXdfc3RyaW5nKFN0cmluZyB0ZXh0KQp7CiAgICAvLyBUT0RPCn0KCnZvaWQgc3RyaW5nX2RlbGV0ZShTdHJpbmcgc3RyKQp7CiAgICBmcmVlKHN0cik7Cn0K').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -728,7 +686,7 @@ Nota
       a.download = 'xor_crypt.c.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts62415"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts17634"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p>
 </section>
 <section id="shift-1" class="level2">
 <h2 class="anchored" data-anchor-id="shift-1">Shift</h2>
@@ -767,7 +725,7 @@ Nota
 <li>Inverta lo stato di tutti i led;</li>
 <li>Spenga tutti i led.</li>
 </ol>
-<p><a href="#dnldts8730" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgovLyBJbXBsZW1lbnQgdGhlIGZ1bmN0aW9uczoKLy8gLSBwcmludF9sZWRzOiBwcmludCB0aGUgbGVkcyBhcyBhIHNlcXVlbmNlIG9mIDEgYW5kIC4KLy8gLSBhY2NlbmRpX2xlZDogdHVybiBvbiB0aGUgbGVkIGF0IHRoZSBnaXZlbiBwb3NpdGlvbgovLyAtIHNwZWduaV9sZWQ6IHR1cm4gb2ZmIHRoZSBsZWQgYXQgdGhlIGdpdmVuIHBvc2l0aW9uCi8vIC0gaW52ZXJ0aV90dXR0aV9sZWQ6IGludmVydCBhbGwgdGhlIGxlZHMKLy8gLSBhY2NlbmRpX3R1dHRpX2xlZDogdHVybiBvbiBhbGwgdGhlIGxlZHMKLy8gLSBzcGVnbmlfdHV0dGlfbGVkOiB0dXJuIG9mZiBhbGwgdGhlIGxlZHMKCnZvaWQgcHJpbnRfbGVkcyh1bnNpZ25lZCBjaGFyIGxlZHMpOwp1bnNpZ25lZCBjaGFyIGFjY2VuZGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcywgaW50IHBvc2l6aW9uZSk7CnVuc2lnbmVkIGNoYXIgc3BlZ25pX2xlZCh1bnNpZ25lZCBjaGFyIGxlZHMsIGludCBwb3NpemlvbmUpOwp1bnNpZ25lZCBjaGFyIGludmVydGlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CnVuc2lnbmVkIGNoYXIgYWNjZW5kaV90dXR0aV9sZWQodW5zaWduZWQgY2hhciBsZWRzKTsKdW5zaWduZWQgY2hhciBzcGVnbmlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CgppbnQgbWFpbih2b2lkKQp7CiAgICB1bnNpZ25lZCBjaGFyIGxlZHMgPSAwOwoKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IGFjY2VuZGlfbGVkKGxlZHMsIDApOwogICAgcHJpbnRfbGVkcyhsZWRzKTsKCiAgICBsZWRzID0gYWNjZW5kaV9sZWQobGVkcywgNyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwoKICAgIGxlZHMgPSBpbnZlcnRpX3R1dHRpX2xlZChsZWRzKTsKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IHNwZWduaV90dXR0aV9sZWQobGVkcyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwp9Cg==').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts43479" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgovLyBJbXBsZW1lbnQgdGhlIGZ1bmN0aW9uczoKLy8gLSBwcmludF9sZWRzOiBwcmludCB0aGUgbGVkcyBhcyBhIHNlcXVlbmNlIG9mIDEgYW5kIC4KLy8gLSBhY2NlbmRpX2xlZDogdHVybiBvbiB0aGUgbGVkIGF0IHRoZSBnaXZlbiBwb3NpdGlvbgovLyAtIHNwZWduaV9sZWQ6IHR1cm4gb2ZmIHRoZSBsZWQgYXQgdGhlIGdpdmVuIHBvc2l0aW9uCi8vIC0gaW52ZXJ0aV90dXR0aV9sZWQ6IGludmVydCBhbGwgdGhlIGxlZHMKLy8gLSBhY2NlbmRpX3R1dHRpX2xlZDogdHVybiBvbiBhbGwgdGhlIGxlZHMKLy8gLSBzcGVnbmlfdHV0dGlfbGVkOiB0dXJuIG9mZiBhbGwgdGhlIGxlZHMKCnZvaWQgcHJpbnRfbGVkcyh1bnNpZ25lZCBjaGFyIGxlZHMpOwp1bnNpZ25lZCBjaGFyIGFjY2VuZGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcywgaW50IHBvc2l6aW9uZSk7CnVuc2lnbmVkIGNoYXIgc3BlZ25pX2xlZCh1bnNpZ25lZCBjaGFyIGxlZHMsIGludCBwb3NpemlvbmUpOwp1bnNpZ25lZCBjaGFyIGludmVydGlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CnVuc2lnbmVkIGNoYXIgYWNjZW5kaV90dXR0aV9sZWQodW5zaWduZWQgY2hhciBsZWRzKTsKdW5zaWduZWQgY2hhciBzcGVnbmlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CgppbnQgbWFpbih2b2lkKQp7CiAgICB1bnNpZ25lZCBjaGFyIGxlZHMgPSAwOwoKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IGFjY2VuZGlfbGVkKGxlZHMsIDApOwogICAgcHJpbnRfbGVkcyhsZWRzKTsKCiAgICBsZWRzID0gYWNjZW5kaV9sZWQobGVkcywgNyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwoKICAgIGxlZHMgPSBpbnZlcnRpX3R1dHRpX2xlZChsZWRzKTsKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IHNwZWduaV90dXR0aV9sZWQobGVkcyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwp9Cg==').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -775,7 +733,7 @@ Nota
       a.download = 'simple_led.c.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts8730"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts43479"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p>
 
 
 </section>
@@ -961,18 +919,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1004,7 +951,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/matteospanio\.github\.io\/corso-c\/");
@@ -1012,7 +979,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1109,7 +1076,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1335,20 +1301,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../lessons/05/index.html" class="pagination-link" aria-label="Uso avanzato dei puntatori">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Uso avanzato dei puntatori</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© 2024, Matteo Spanio</p>
+<p>© 2025, Matteo Spanio</p>
 </div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">

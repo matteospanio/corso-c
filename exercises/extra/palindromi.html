@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hello C 2024 - Palindromi</title>
+<title>Palindromi – Hello C 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -72,12 +72,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-36d195c590ea66258dc4a75ed3adf062.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-bf8dae65810def7c8f97efb4134dc6f3.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script src="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
@@ -153,11 +153,11 @@ MathJax = {
     <img src="../../assets/images/dec_pdp1120.png" alt="Hello C" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Hello C 2024</span>
+    <span class="navbar-title">Hello C 2025</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Ricerca"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Attiva/disattiva la navigazione" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Attiva/disattiva la navigazione" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -176,7 +176,7 @@ MathJax = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools tools-wide">
+            <div class="quarto-navbar-tools tools-wide">
     <a href="https://github.com/matteospanio/corso-c" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Attiva/disattiva la modalità oscura"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Attiva/disattiva la modalità lettore">
@@ -189,11 +189,11 @@ MathJax = {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/extra/palindromi.html">Preparazione esame</a></li><li class="breadcrumb-item"><a href="../../exercises/extra/palindromi.html">Palindromi</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -206,9 +206,9 @@ MathJax = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Basi di C</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -241,9 +241,9 @@ MathJax = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Espressioni e strutture di controllo</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -270,9 +270,9 @@ MathJax = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Array e funzioni</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -299,9 +299,9 @@ MathJax = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Preparazione esame</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -371,12 +371,12 @@ MathJax = {
 <li><code>int checkPalindrome(Nodo*lis);</code></li>
 </ul>
 <p>Delle ultime due viene fornito lo pseudocodice:</p>
-<div id="alg-listEncodec" class="pseudocode-container" data-pseudocode-index="1" data-comment-delimiter="//" data-no-end="true" data-alg-title="Algorithm" data-indent-size="1.2em">
+<div id="alg-listEncodec" class="pseudocode-container" data-indent-size="1.2em" data-alg-title="Algorithm" data-comment-delimiter="//" data-no-end="true" data-pseudocode-index="1">
 <div class="pseudocode">
 \begin{algorithm} \caption{copyReversed} \begin{algorithmic} \State \textbf{Input:} lis (una lista), copy (una lista vuota) \State \textbf{Output:} Nessuno. \textbf{Side effect}: copy contiene una lista di lunghezza uguale a lis, in cui i nodi contengono gli stessi caratteri di quelli di lis ma in ordine inverso. \If{$list = \text{nil}$} \Return \EndIf \State $copyReversed$(lista a partire dal nodo successivo di lis, $copy$) \State $add$($copy$, carattere contenuto nel primo nodo di lis) \end{algorithmic} \end{algorithm}
 </div>
 </div>
-<div id="alg-encodec" class="pseudocode-container" data-pseudocode-index="2" data-comment-delimiter="//" data-no-end="false" data-alg-title="Algorithm" data-indent-size="1.2em">
+<div id="alg-encodec" class="pseudocode-container" data-indent-size="1.2em" data-alg-title="Algorithm" data-comment-delimiter="//" data-no-end="false" data-pseudocode-index="2">
 <div class="pseudocode">
 \begin{algorithm} \caption{checkPalindrome} \begin{algorithmic} \State \textbf{Input:} lis (una lista) \State \textbf{Output:} TRUE se la lista passata contiene una sequenza di caratteri palindroma, FALSE altrimenti \State $inv \leftarrow$ nuova lista vuota \State $copyReversed(lis, inv)$ \Return $compareLists(lis, inv)$ \end{algorithmic} \end{algorithm}
 </div>
@@ -387,7 +387,7 @@ MathJax = {
 <blockquote class="blockquote">
 <p>Lo pseudocodice non è codice completo in C: non considera i tipi dei vari oggetti, l’uso di puntatori/riferimenti, e dunque dell’operatore “-&gt;” anziché l’operatore “.”: `e lasciato allo studente il compito di determinare questi dettagli come adeguato.</p>
 </blockquote>
-<p><a href="#dnldts20504" onclick="fetch('data:application/zip;base64,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').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts43450" onclick="fetch('data:application/zip;base64,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').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -395,7 +395,7 @@ MathJax = {
       a.download = 'palindromi.zip'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts20504"><i class="bi bi-download"></i> Scarica i file per svolgere l'esercizio </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts43450"><i class="bi bi-download"></i> Scarica i file per svolgere l'esercizio </button></a></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -663,18 +663,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -706,7 +695,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/matteospanio\.github\.io\/corso-c\/");
@@ -714,7 +723,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -811,7 +820,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1053,7 +1061,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© 2024, Matteo Spanio</p>
+<p>© 2025, Matteo Spanio</p>
 </div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
