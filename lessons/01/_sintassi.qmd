@@ -1,5 +1,11 @@
 ::: {.content-visible when-format="revealjs"}
 
+```{.java}
+{{< include ./code/hello.java >}}
+```
+
+## Hello world {auto-animate="true"}
+
 ```{.c code-line-numbers="|1"}
 {{< include ./code/hello_dati_algoritmi.c >}}
 ```
@@ -8,7 +14,7 @@
 
 1. Direttiva
 
-## Sintassi di C {auto-animate="true"}
+## Hello world {auto-animate="true"}
 
 ```{.c code-line-numbers="2"}
 {{< include ./code/hello_dati_algoritmi.c >}}
@@ -17,7 +23,7 @@
 1. Direttiva
 2. Commento
 
-## Sintassi di C {auto-animate="true"}
+## Hello world {auto-animate="true"}
 
 ```{.c code-line-numbers="3,4,7"}
 {{< include ./code/hello_dati_algoritmi.c >}}
@@ -27,7 +33,7 @@
 2. Commento
 3. Funzione
 
-## Sintassi di C {auto-animate="true"}
+## Hello world {auto-animate="true"}
 
 ```{.c code-line-numbers="5"}
 {{< include ./code/hello_dati_algoritmi.c >}}
@@ -38,7 +44,7 @@
 3. Funzione
 4. Dichiarazione e assegnazione di variabile
 
-## Sintassi di C {auto-animate="true"}
+## Hello world {auto-animate="true"}
 
 ```{.c code-line-numbers="6"}
 {{< include ./code/hello_dati_algoritmi.c >}}
@@ -58,7 +64,7 @@
 /* Il mio primo programma in C! */            /* <2> */
 int main(void)                                /* <3> */
 {                                             /* <3> */
-  int anno = 2024;                            /* <4> */
+  int anno = 2025;                            /* <4> */
   printf("Hello Dati e Algoritmi %d", anno);  /* <5> */
 }                                             /* <3> */
 ```
@@ -67,7 +73,7 @@ int main(void)                                /* <3> */
 1. Direttiva: le direttive del preprocessore iniziano con `#` e vengono eseguite prima del resto del codice, in questo caso includiamo la libreria standard di input/output. Ci sono due principali usi delle direttive: includere librerie e definire macro. L'istruzione `#include` comunica al preprocessore che il programma ha bisogno delle funzioni definite in `stdio.h`, la libreria standard di input/output (infatti viene usato `printf`). L'istruzione `#define` la incontreremo più avanti, ad ogni modo è un sistema che viene spesso usato per definire costanti.
 2. Commento: i commenti in C89 iniziano con `/*` e terminano con `*/`. I commenti possono essere su più righe. Dal C99 si possono usare anche i commenti monoriga (`//`).
 3. Funzione: la funzione `main` è il punto di partenza di ogni programma C. Il tipo di ritorno è `int`, e accetta un singolo argomento di tipo `void`. Il corpo della funzione è racchiuso tra parentesi graffe `{}`. `main` è una funzione speciale che indica il punto di partenza di ogni programma C. Il tipo di ritorno `int` indica che la funzione restituirà un valore intero (a volte il valore di ritorno del main può essere di tipo `void`, ma è una pratica non consigliata). L'argomento `void` indica che la funzione non accetta alcun argomento, si sarebbe potuto omettere, ma è buona pratica includerlo per chiarezza e attivare il controllo del compilatore.
-4. Dichiarazione e assegnazione di variabile: `int anno = 2024;` dichiara una variabile di tipo `int` chiamata `anno` e le assegna il valore `2024`. Storicamente la dichiarazione di variabili in C doveva avvenire all'inizio di un blocco di codice, dal C99 non è più una regola da seguire rigidamente.
+4. Dichiarazione e assegnazione di variabile: `int anno = 2025;` dichiara una variabile di tipo `int` chiamata `anno` e le assegna il valore `2025`. Storicamente la dichiarazione di variabili in C doveva avvenire all'inizio di un blocco di codice, dal C99 non è più una regola da seguire rigidamente.
 5. Chiamata di funzione: in questo caso stiamo usando la funzione `printf` definita in `stdio.h` a cui vengono passati 2 argomenti.
 :::
 

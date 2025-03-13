@@ -1,6 +1,6 @@
 ---
 title: Strutture di controllo e tipi di base
-date: 03/19/2024
+date: 03/13/2025
 abstract-title: Argomenti trattati
 abstract: |
     In questa lezione si termina l'introduzione alla sintassi del C, con un focus sulle strutture di controllo, le espressioni e i tipi di base.
@@ -23,9 +23,6 @@ Le espressioni sono un insieme di:
 # Operatori
 ## Operatori
 {{< include _operatori.qmd >}}
-
-## Espressioni istruzione
-{{< include _espressioni_istruzione.qmd >}}
 
 # Espressioni logiche
 ## Espressioni logiche

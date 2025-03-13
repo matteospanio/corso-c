@@ -1,6 +1,5 @@
 Esistono molteplici operatori, ognuno ha varie caratteristiche:
 
-- **arietà**: numero di argomenti (unario, binario, ternario)
 - **precedenza**: ordine in cui vengono analizzati gli operatori
 - **associatività**: se ci sono più operatori uguali (o di uguale precedenza)
 - **side-effects**, se presenti (cioè le variabili coinvolte vengono cambiate o no)

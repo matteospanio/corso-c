@@ -15,24 +15,12 @@ Per lavorare con il C, avrete bisogno di un compilatore C. Il compilatore più d
 potete installare MinGW e modificare le variabili di PATH. Le istruzioni saranno caricate su Moodle.
 :::
 
-::: {.content-visible when-format="revealjs"}
-## Installazione
-:::
-
 ::: {.content-visible unless-format="pdf"}
 ```{mermaid}
 %%| label: installation-flow
 %%| fig-cap: "Processo di installazione del compilatore"
 %%| file: figures/install.mmd
 ```
-:::
-
-::: {.content-visible when-format="revealjs"}
-## Installazione {transition=none}
-
-Vi servirà anche un editor di testo adatto al codice.
-
-Ad esempio notepad++, sublime, gedit, kate, emacs, nano, vim...
 :::
 
 ::: {.content-visible unless-format="revealjs"}

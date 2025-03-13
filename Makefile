@@ -12,7 +12,7 @@ format:
 
 _site: *.qmd $(LES01FILES) $(LES02FILES) $(LES03FILES) $(LES04FILES) $(LES05FILES) $(LES06FILES)
 	@echo "Building site..."
-	quarto render
+	QUARTO_CHROME_HEADLESS_MODE=new quarto render
 
 .PHONY: serve
 serve: _site

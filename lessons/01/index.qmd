@@ -1,6 +1,6 @@
 ---
 title: Basi di C
-date: 03/12/2024
+date: 03/13/2025
 abstract-title: Argomenti trattati
 abstract: In questa lezione si introduce il linguaggio di programmazione C illustrando la sua storia e quali elementi del suo design lo rendano un linguaggio usato ancora dopo 50 anni dalla sua creazione. A seguire una descrizione della sintassi di C, introducendo anche elementi di I/O con esempi ed esercizi.
 ---
@@ -10,13 +10,15 @@ abstract: In questa lezione si introduce il linguaggio di programmazione C illus
 ## Caratteristiche {transition=none}
 {{< include _caratteristiche.qmd >}}
 
+::: {.content-visible unless-format="revealjs"}
 ## Installazione
 {{< include _installazione.qmd >}}
+:::
 
 ## La compilazione {transition=none}
 {{< include _compilazione.qmd >}}
 
-## Sintassi di C {auto-animate="true"}
+## Hello world {auto-animate="true"}
 {{< include _sintassi.qmd >}}
 
 ## Input/Output

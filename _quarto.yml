@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "Hello C 2024"
+  title: "Hello C 2025"
   favicon: assets/images/dec_pdp1120.png
   page-navigation: true
   bread-crumbs: true
@@ -39,7 +39,7 @@ website:
         text: GitHub
 
   page-footer:
-    left: "© 2024, Matteo Spanio"
+    left: "© 2025, Matteo Spanio"
     center:
       - text: "FAQ"
         href:  faq.qmd
@@ -58,10 +58,10 @@ website:
       contents:
         - lessons/01/index.qmd
         - lessons/02/index.qmd
-        - lessons/03/index.qmd
-        - lessons/04/index.qmd
-        - lessons/05/index.qmd
-        - lessons/06/index.qmd
+        # - lessons/03/index.qmd
+        # - lessons/04/index.qmd
+        # - lessons/05/index.qmd
+        # - lessons/06/index.qmd
 
     - id: exercises
       title: Esercizi

@@ -36,11 +36,8 @@ I char vanno sempre scritti tra apici singoli, scrivendo un solo carattere. Il C
 
 ## Conversioni tra tipi
 
-In generale, per effettuare operazioni aritmetiche tra due numeri, questi devono essere dello stesso tipo.
-
-In C è possibile mescolare tipi diversi nella stessa espressione, e il compilatore effettuerà automaticamente le conversioni necessarie per eseguire l'operazione richiesta.
-
-## Conversioni implicite
+- In generale, per effettuare operazioni aritmetiche tra due numeri, questi devono essere dello stesso tipo.
+- In C è possibile mescolare tipi diversi nella stessa espressione, il compilatore effettuerà automaticamente le conversioni necessarie:
 
 ```{.c}
 int a = 5;

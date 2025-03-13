@@ -51,16 +51,6 @@ Seppure non sia una caratteristica introdotta con C, la null reference è un pro
 | Portabilità | Non ci sono controlli a run time |
 | Permissività | Permissività |
 
-## Pregi e Difetti {auto-animate=true .smaller}
-
-- La permissività è sia un pro che un contro: sta al programmatore giocarla a suo vantaggio
-- Evitare di farsi male da soli!
-- Seguire le convenzioni di scrittura
-- Attivare i warning sul compilatore (+ altri tool)
-- Commentare!
-
-![](figures/gun_meme.png){fig-align="center"}
-
 :::
 
 ::: {.content-visible unless-format="revealjs"}
