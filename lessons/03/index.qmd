@@ -1,6 +1,6 @@
 ---
 title: Array e Funzioni
-date: 03/26/2024
+date: 03/20/2025
 abstract-title: Argomenti trattati
 abstract: |
     In questa lezione si introducono i meccanismi alla base della gestione della memoria.
