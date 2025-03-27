@@ -1628,32 +1628,55 @@
     "text": "Puntatori di puntatori?\nIl caso più comune di puntatore a puntatore è quello delle stringhe.\nQuando si deve memorizzare un array di stringhe si usa un array di puntatori a caratteri.\nint main(int argc, char **argv) {\n    // argv è un array di puntatori a caratteri\n}\n// oppure\nint main(int argc, char *argv[]) {\n    // argv è un array di puntatori a caratteri\n}"
   },
   {
+    "objectID": "lessons/04/slide.html#risorse-aggiuntive",
+    "href": "lessons/04/slide.html#risorse-aggiuntive",
+    "title": "Puntatori",
+    "section": "Risorse aggiuntive",
+    "text": "Risorse aggiuntive\n\nhttps://cs50.harvard.edu/x/2025/weeks/4/\nhttps://cs50.harvard.edu/x/2025/shorts/pointers/\nhttps://www.youtube.com/watch?v=3uLKjb973HU"
+  },
+  {
     "objectID": "lessons/04/index.html",
     "href": "lessons/04/index.html",
     "title": "Puntatori",
     "section": "",
-    "text": "Il termine puntatore produce sempre un po’ di confusione tra i principianti del C, in realtà, una volta capito il concetto, si tratta di una feature molto potente e utile del linguaggio. Non sono effettivamente complicati, ma è facile fare confusione, spero che questa guida possa aiutare a chiarire le idee…\nQuando si dichiara una variabile si comunica al compilatore il suo tipo e il suo nome prima del suo utilizzo, questo è fondamentale perché la dichiarazione permette al compilatore di allocare un blocco di memoria per immagazzinare la variabile. Quindi:"
+    "text": "Il termine puntatore produce sempre un po’ di confusione tra i principianti del C, in realtà, una volta capito il concetto, si tratta di una feature molto potente e utile del linguaggio. Non sono effettivamente complicati, ma è facile fare confusione, spero che questa guida possa aiutare a chiarire le idee…\nQuando si dichiara una variabile si comunica al compilatore il suo tipo e il suo nome prima del suo utilizzo, questo è fondamentale perché la dichiarazione permette al compilatore di allocare un blocco di memoria per immagazzinare la variabile. Quindi:",
+    "crumbs": [
+      "Lezioni",
+      "Puntatori"
+    ]
   },
   {
     "objectID": "lessons/04/index.html#esempio-di-utilizzo",
     "href": "lessons/04/index.html#esempio-di-utilizzo",
     "title": "Puntatori",
     "section": "Esempio di utilizzo",
-    "text": "Esempio di utilizzo\nSpesso un esempio chiarisce meglio il concetto, di seguito si introducono due esempi per chiarire il concetto di puntatore, e la sintassi\n1int i, j, *p;\n2i = 5;\n3p = &i;\n4j = *p;\n5printf(\"%d\\n\", j); // stampa 5\n\n1\n\nSi dichiarano tre variabili: i, j e p, p è un puntatore a un intero.\n\n2\n\nSi assegna il valore 5 a i.\n\n3\n\nSi assegna l’indirizzo di i a p, l’operatore & è usato per ottenere l’indirizzo di i.\n\n4\n\nSi assegna il valore puntato da p a j, l’operatore * è usato per accedere al valore puntato da p.\n\n5\n\nSi stampa il valore di j, che è 5.\n\n\n// esempio 2\nint *p, *q, i;\np = &i;\n*p = 6;\nq = p;\n(*q)++;\nprintf(\"%d\\n\", i); // stampa 7\nIl secondo esempio è un po’ più complesso, ma il concetto è lo stesso. Si dichiarano due puntatori p e q e una variabile i. Si assegna l’indirizzo di i a p, si assegna il valore 6 a i tramite *p, si assegna p a q e si incrementa il valore puntato da q di 1. L’espressione (*q)++ è equivalente a *q = *q + 1, servono le parentesi perché l’operatore ++ ha una precedenza maggiore rispetto all’operatore *."
+    "text": "Esempio di utilizzo\nSpesso un esempio chiarisce meglio il concetto, di seguito si introducono due esempi per chiarire il concetto di puntatore, e la sintassi\n1int i, j, *p;\n2i = 5;\n3p = &i;\n4j = *p;\n5printf(\"%d\\n\", j); // stampa 5\n\n1\n\nSi dichiarano tre variabili: i, j e p, p è un puntatore a un intero.\n\n2\n\nSi assegna il valore 5 a i.\n\n3\n\nSi assegna l’indirizzo di i a p, l’operatore & è usato per ottenere l’indirizzo di i.\n\n4\n\nSi assegna il valore puntato da p a j, l’operatore * è usato per accedere al valore puntato da p.\n\n5\n\nSi stampa il valore di j, che è 5.\n\n\n// esempio 2\nint *p, *q, i;\np = &i;\n*p = 6;\nq = p;\n(*q)++;\nprintf(\"%d\\n\", i); // stampa 7\nIl secondo esempio è un po’ più complesso, ma il concetto è lo stesso. Si dichiarano due puntatori p e q e una variabile i. Si assegna l’indirizzo di i a p, si assegna il valore 6 a i tramite *p, si assegna p a q e si incrementa il valore puntato da q di 1. L’espressione (*q)++ è equivalente a *q = *q + 1, servono le parentesi perché l’operatore ++ ha una precedenza maggiore rispetto all’operatore *.",
+    "crumbs": [
+      "Lezioni",
+      "Puntatori"
+    ]
   },
   {
     "objectID": "lessons/04/index.html#esempio-di-utilizzo-di-puntatori-con-funzioni",
     "href": "lessons/04/index.html#esempio-di-utilizzo-di-puntatori-con-funzioni",
     "title": "Puntatori",
     "section": "Esempio di utilizzo di puntatori con funzioni",
-    "text": "Esempio di utilizzo di puntatori con funzioni\nScrivere una funzione che scambi il valore di due variabili.\nIl prototipo della funzione è: void swap(int *a, int *b);\nVerrebbe spontaneo risolvere il problema senza usare i puntatori:\nvoid swap(int a, int b) {\n1    int temp = a;\n2    a = b;\n3    b = temp;\n    printf(\"a = %d, b = %d\\n\", a, b);\n}\n\n1\n\nSi salva il valore di a in una variabile temporanea.\n\n2\n\nSi assegna il valore di b a a.\n\n3\n\nSi assegna il valore salvato in precedenza a b.\n\n\nAll’ultima riga il codice effettivamente ha scambiato i valori di a e b, ma si tratta di variabili locali alla funzione, quindi i valori di a e b all’esterno della funzione non sono stati modificati. Per rendere la modifica permanente si devono usare i puntatori:\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n    printf(\"a = %d, b = %d\\n\", *a, *b);\n}\nLa soluzione è identica alla precedente, ma questa volta i valori di a e b vengono modificati direttamente, ciò vuol dire che i valori di a e b all’esterno della funzione saranno modificati."
+    "text": "Esempio di utilizzo di puntatori con funzioni\nScrivere una funzione che scambi il valore di due variabili.\nIl prototipo della funzione è: void swap(int *a, int *b);\nVerrebbe spontaneo risolvere il problema senza usare i puntatori:\nvoid swap(int a, int b) {\n1    int temp = a;\n2    a = b;\n3    b = temp;\n    printf(\"a = %d, b = %d\\n\", a, b);\n}\n\n1\n\nSi salva il valore di a in una variabile temporanea.\n\n2\n\nSi assegna il valore di b a a.\n\n3\n\nSi assegna il valore salvato in precedenza a b.\n\n\nAll’ultima riga il codice effettivamente ha scambiato i valori di a e b, ma si tratta di variabili locali alla funzione, quindi i valori di a e b all’esterno della funzione non sono stati modificati. Per rendere la modifica permanente si devono usare i puntatori:\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n    printf(\"a = %d, b = %d\\n\", *a, *b);\n}\nLa soluzione è identica alla precedente, ma questa volta i valori di a e b vengono modificati direttamente, ciò vuol dire che i valori di a e b all’esterno della funzione saranno modificati.",
+    "crumbs": [
+      "Lezioni",
+      "Puntatori"
+    ]
   },
   {
     "objectID": "lessons/04/index.html#esercizio",
     "href": "lessons/04/index.html#esercizio",
     "title": "Puntatori",
     "section": "Esercizio",
-    "text": "Esercizio\nScrivere una funzione che trovi il minimo e il massimo in un array di interi.\nIl prototipo della funzione è: void minmax(const int *a, int n, int *min, int *max);\n Scarica la soluzione"
+    "text": "Esercizio\nScrivere una funzione che trovi il minimo e il massimo in un array di interi.\nIl prototipo della funzione è: void minmax(const int *a, int n, int *min, int *max);\n Scarica la soluzione",
+    "crumbs": [
+      "Lezioni",
+      "Puntatori"
+    ]
   },
   {
     "objectID": "lessons/03/slide.html#array-1",
