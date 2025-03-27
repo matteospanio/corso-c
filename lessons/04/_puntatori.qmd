@@ -304,3 +304,9 @@ int main(int argc, char *argv[]) {
     // argv è un array di puntatori a caratteri
 }
 ```
+
+## Risorse aggiuntive
+
+- https://cs50.harvard.edu/x/2025/weeks/4/
+- https://cs50.harvard.edu/x/2025/shorts/pointers/
+- https://www.youtube.com/watch?v=3uLKjb973HU
