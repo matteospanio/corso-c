@@ -44,7 +44,7 @@ Un modo alternativo di inizializzare una struttura è quello di specificare il n
 struct studente s = {
     .nome = "Mario",
     .cognome = "Rossi",
-    .matricole = 12345,
+    .matricola = 12345,
 };
 ```
 In questa modalità l'ordine degli elementi non è importante, ma è necessario specificare il nome di tutti i membri. Questo metodo è molto utile quando si hanno strutture con molti membri e si vuole inizializzare solo alcuni di essi.
@@ -300,7 +300,7 @@ Il codice sopra riportato definisce la struttura `struct giocatore` e vi associa
 
 ### Memorizzare la lista dei giocatori
 
-La struct `Giocatore` è di fatto un tipo di dato, possiamo quindi creare un array di esami dove memorizzare la formazione:
+La struct `Giocatore` è di fatto un tipo di dato, possiamo quindi creare un array di giocatori dove memorizzare la formazione:
 
 ```c
 #define NUM 22
@@ -503,7 +503,7 @@ Adesso si può passare la struttura come argomento di una funzione:
 
 ```c
 void stampa_array(IntArray a) { /*<1>*/
-    for (int i = 0; i < a.length; i++) { /*<2>*/ 
+    for (int i = 0; i < a.length; i++) { /*<2>*/
         printf("%d ", a.array[i]);
     }
     printf("\n");
