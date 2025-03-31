@@ -14,7 +14,7 @@ Le lezioni sono organizzate in maniera da illustrare di volta in volta un argome
 |------|------------------|----------|
 | 13/03/2025 | Introduzione al corso e fondamenti di C | 1-7 |
 | 20/03/2025 | Funzioni, array e ricorsione | 8-9 |
-| 27/04/2025 | Puntatori e stringhe | 11-13 |
+| 27/03/2025 | Puntatori e stringhe | 11-13 |
 | 03/04/2025 | Struct e puntatori | 15-16 |
 | 10/04/2025 | Memoria dinamica | 17 |
 | 17/04/2025 | Operatori bitwise | 20 |
