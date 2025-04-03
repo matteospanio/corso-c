@@ -370,12 +370,12 @@ MathJax = {
 <li><code>int checkPalindrome(Nodo*lis);</code></li>
 </ul>
 <p>Delle ultime due viene fornito lo pseudocodice:</p>
-<div id="alg-listEncodec" class="pseudocode-container" data-indent-size="1.2em" data-alg-title="Algorithm" data-comment-delimiter="//" data-no-end="true" data-pseudocode-index="1">
+<div id="alg-listEncodec" class="pseudocode-container" data-no-end="true" data-alg-title="Algorithm" data-pseudocode-index="1" data-indent-size="1.2em" data-comment-delimiter="//">
 <div class="pseudocode">
 \begin{algorithm} \caption{copyReversed} \begin{algorithmic} \State \textbf{Input:} lis (una lista), copy (una lista vuota) \State \textbf{Output:} Nessuno. \textbf{Side effect}: copy contiene una lista di lunghezza uguale a lis, in cui i nodi contengono gli stessi caratteri di quelli di lis ma in ordine inverso. \If{$list = \text{nil}$} \Return \EndIf \State $copyReversed$(lista a partire dal nodo successivo di lis, $copy$) \State $add$($copy$, carattere contenuto nel primo nodo di lis) \end{algorithmic} \end{algorithm}
 </div>
 </div>
-<div id="alg-encodec" class="pseudocode-container" data-indent-size="1.2em" data-alg-title="Algorithm" data-comment-delimiter="//" data-no-end="false" data-pseudocode-index="2">
+<div id="alg-encodec" class="pseudocode-container" data-no-end="false" data-alg-title="Algorithm" data-pseudocode-index="2" data-indent-size="1.2em" data-comment-delimiter="//">
 <div class="pseudocode">
 \begin{algorithm} \caption{checkPalindrome} \begin{algorithmic} \State \textbf{Input:} lis (una lista) \State \textbf{Output:} TRUE se la lista passata contiene una sequenza di caratteri palindroma, FALSE altrimenti \State $inv \leftarrow$ nuova lista vuota \State $copyReversed(lis, inv)$ \Return $compareLists(lis, inv)$ \end{algorithmic} \end{algorithm}
 </div>
