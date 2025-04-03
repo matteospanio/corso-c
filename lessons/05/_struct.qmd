@@ -265,6 +265,12 @@ Spesso si usano macro o costanti, ma è più chiaro usare enumerazioni:
 
 Ora le variabili `s1` e `s2` possono assumere solo uno dei quattro valori definiti.
 
+## Esercizio
+
+Si vuole implementare il sistema informatico in C per rappresentare una squadra pokemon e ordinare la squadra per i nomi dei pokemon in ordine alfabetico.
+
+[Scarica il main dell'esercizio](./code/esercizio.c)
+
 # Strutture dati
 
 ## Strutture dati

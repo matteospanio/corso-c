@@ -471,6 +471,16 @@ enum {
 
 Se non si assegna un valore, C assegna il valore dell'elemento precedente più uno.
 
+## Esercizio
+
+Si vuole implementare il sistema informatico in C per rappresentare una squadra pokemon e ordinare la squadra per i nomi dei pokemon in ordine alfabetico.
+
+Se stai consultando questa guida in formato HTML, puoi scaricare il codice sorgente da modificare cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a [questo link](https://github.com/matteospanio/corso-c/blob/master/lessons/05/code/esercizio.c).
+
+::: {.content-visible when-format="html"}
+{{< downloadthis ./code/esercizio.c dname="esercizio" label="Scarica l'esempio completo" >}}
+:::
+
 # Strutture dati
 
 Le strutture sono molto utili per definire strutture dati. Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code...
