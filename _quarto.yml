@@ -61,7 +61,7 @@ website:
         - lessons/03/index.qmd
         - lessons/04/index.qmd
         - lessons/05/index.qmd
-        # - lessons/06/index.qmd
+        - lessons/06/index.qmd
 
     - id: exercises
       title: Esercizi

@@ -48,6 +48,21 @@ int append(IntArray *a, int value) {
 }
 ```
 
+1. `append` prende come argomento un puntatore a `IntArray` e un intero da aggiungere all'array, l'array è passato *by reference* perché i suoi campi vengono modificati
+2. Prima di effettuare l'inserimento viene controllato che l'array non sia già pieno, per accedere ai membri di un puntatore a una struttura si usa l'operatore `->`, che è una forma abbreviata di `(*p).membro`
+
+## Esercizio
+
+Per esercizio si implementino le funzioni:
+
+`int get(IntArray a, int index)` che restituisce l'elemento in posizione `index`, `int insert(IntArray *a, int index, int value)` che inserisce l'elemento `value` in posizione `index`, `int remove(IntArray *a, int index)` che rimuove l'elemento in posizione `index`.
+
+[Scarica il main dell'esercizio](./code/int_array.c)
+
+::: {.callout-tip}
+Si noti che le funzioni `insert` e `remove` possono fallire se l'array è pieno o vuoto, rispettivamente, inoltre è necessario spostare tutti gli elementi dell'array.
+:::
+
 ## Array con strutture
 
 L'implementazione che abbiamo visto ha due grossi problemi:
