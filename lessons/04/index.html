@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,8 +74,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-36d195c590ea66258dc4a75ed3adf062.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -214,6 +214,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../lessons/05/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Uso avanzato dei puntatori</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Memoria dinamica</span></a>
   </div>
 </li>
     </ul>
@@ -581,7 +587,7 @@ Nota
 <h2 class="anchored" data-anchor-id="esercizio">Esercizio</h2>
 <p>Scrivere una funzione che trovi il minimo e il massimo in un array di interi.</p>
 <p>Il prototipo della funzione è: <code>void minmax(const int *a, int n, int *min, int *max);</code></p>
-<p><a href="#dnldts45495" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CiNkZWZpbmUgQVJSQVlfU0laRSAxMAoKdm9pZCBtaW5tYXgoY29uc3QgaW50ICphLCBpbnQgbiwgaW50ICptaW4sIGludCAqbWF4KTsKCmludCBtYWluKHZvaWQpCnsKICAgIGludCBhcnJheVtBUlJBWV9TSVpFXSA9IHsxLCAyLCAzLCA0LCA1LCA2LCA3LCA4LCA5LCAxMH07CiAgICBpbnQgbWluLCBtYXg7CgogICAgbWlubWF4KGFycmF5LCBBUlJBWV9TSVpFLCAmbWluLCAmbWF4KTsKCiAgICBwcmludGYoIm1pbjogJWRcbiIsIG1pbik7CiAgICBwcmludGYoIm1heDogJWRcbiIsIG1heCk7CgogICAgcmV0dXJuIDA7Cn0KCnZvaWQgbWlubWF4KGNvbnN0IGludCAqYSwgaW50IG4sIGludCAqbWluLCBpbnQgKm1heCkKewogICAgKm1pbiA9IGFbMF07CiAgICAqbWF4ID0gYVswXTsKCiAgICBmb3IgKGludCBpID0gMTsgaSA8IG47IGkrKykKICAgIHsKICAgICAgICBpZiAoYVtpXSA8ICptaW4pCiAgICAgICAgewogICAgICAgICAgICAqbWluID0gYVtpXTsKICAgICAgICB9CiAgICAgICAgaWYgKGFbaV0gPiAqbWF4KQogICAgICAgIHsKICAgICAgICAgICAgKm1heCA9IGFbaV07CiAgICAgICAgfQogICAgfQp9Cg==').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts57677" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CiNkZWZpbmUgQVJSQVlfU0laRSAxMAoKdm9pZCBtaW5tYXgoY29uc3QgaW50ICphLCBpbnQgbiwgaW50ICptaW4sIGludCAqbWF4KTsKCmludCBtYWluKHZvaWQpCnsKICAgIGludCBhcnJheVtBUlJBWV9TSVpFXSA9IHsxLCAyLCAzLCA0LCA1LCA2LCA3LCA4LCA5LCAxMH07CiAgICBpbnQgbWluLCBtYXg7CgogICAgbWlubWF4KGFycmF5LCBBUlJBWV9TSVpFLCAmbWluLCAmbWF4KTsKCiAgICBwcmludGYoIm1pbjogJWRcbiIsIG1pbik7CiAgICBwcmludGYoIm1heDogJWRcbiIsIG1heCk7CgogICAgcmV0dXJuIDA7Cn0KCnZvaWQgbWlubWF4KGNvbnN0IGludCAqYSwgaW50IG4sIGludCAqbWluLCBpbnQgKm1heCkKewogICAgKm1pbiA9IGFbMF07CiAgICAqbWF4ID0gYVswXTsKCiAgICBmb3IgKGludCBpID0gMTsgaSA8IG47IGkrKykKICAgIHsKICAgICAgICBpZiAoYVtpXSA8ICptaW4pCiAgICAgICAgewogICAgICAgICAgICAqbWluID0gYVtpXTsKICAgICAgICB9CiAgICAgICAgaWYgKGFbaV0gPiAqbWF4KQogICAgICAgIHsKICAgICAgICAgICAgKm1heCA9IGFbaV07CiAgICAgICAgfQogICAgfQp9Cg==').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -589,7 +595,7 @@ Nota
       a.download = 'soluzione_min_max.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts45495"><i class="bi bi-download"></i> Scarica la soluzione </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts57677"><i class="bi bi-download"></i> Scarica la soluzione </button></a></p>
 </section>
 </section>
 <section id="puntatori-di-puntatori-4" class="level1">

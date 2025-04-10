@@ -7,15 +7,15 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
 <script src="../../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
 <link href="../../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+  <meta name="generator" content="quarto-1.6.43">
 
   <meta name="author" content="Matteo Spanio">
   <meta name="author" content="Giulio Pitteri">
-  <title>Hello C 2025 – Memoria dinamica e operatori bitwise</title>
+  <title>Hello C 2025 – Memoria dinamica</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -217,7 +217,7 @@
     <div class="slides">
 
 <section id="title-slide" data-transition="convex" class="quarto-title-block center">
-  <h1 class="title">Memoria dinamica e operatori bitwise</h1>
+  <h1 class="title">Memoria dinamica</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -238,7 +238,7 @@ Giulio Pitteri <a href="https://orcid.org/0000-0002-7595-017X" class="quarto-tit
 </div>
 </div>
 
-  <p class="date">23 aprile 2024</p>
+  <p class="date">10 aprile 2025</p>
 </section>
 <section>
 <section id="strutture-dati" class="title-slide slide level1 center">
@@ -282,6 +282,29 @@ Giulio Pitteri <a href="https://orcid.org/0000-0002-7595-017X" class="quarto-tit
 <span id="cb3-6"><a></a>    <span class="op">}</span></span>
 <span id="cb3-7"><a></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
 <span id="cb3-8"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li><code>append</code> prende come argomento un puntatore a <code>IntArray</code> e un intero da aggiungere all’array, l’array è passato <em>by reference</em> perché i suoi campi vengono modificati</li>
+<li>Prima di effettuare l’inserimento viene controllato che l’array non sia già pieno, per accedere ai membri di un puntatore a una struttura si usa l’operatore <code>-&gt;</code>, che è una forma abbreviata di <code>(*p).membro</code></li>
+</ol>
+</section>
+<section id="esercizio" class="slide level2">
+<h2>Esercizio</h2>
+<p>Per esercizio si implementino le funzioni:</p>
+<p><code>int get(IntArray a, int index)</code> che restituisce l’elemento in posizione <code>index</code>, <code>int insert(IntArray *a, int index, int value)</code> che inserisce l’elemento <code>value</code> in posizione <code>index</code>, <code>int remove(IntArray *a, int index)</code> che rimuove l’elemento in posizione <code>index</code>.</p>
+<p><a href="./code/int_array.c">Scarica il main dell’esercizio</a></p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Consiglio</strong></p>
+</div>
+<div class="callout-content">
+<p>Si noti che le funzioni <code>insert</code> e <code>remove</code> possono fallire se l’array è pieno o vuoto, rispettivamente, inoltre è necessario spostare tutti gli elementi dell’array.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="array-con-strutture-3" class="slide level2">
 <h2>Array con strutture</h2>
@@ -417,221 +440,6 @@ Giulio Pitteri <a href="https://orcid.org/0000-0002-7595-017X" class="quarto-tit
 <li>recursive_list_print</li>
 <li>recursive_list_delete</li>
 </ul>
-</section></section>
-<section>
-<section id="operazioni-bitwise" class="title-slide slide level1 center">
-<h1>Operazioni bitwise</h1>
-
-</section>
-<section id="operatori-bitwise" class="slide level2">
-<h2>Operatori bitwise</h2>
-<p>Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili.</p>
-<p>Gli operatori bitwise in C sono:</p>
-<ul>
-<li><code>&amp;</code> AND</li>
-<li><code>|</code> OR</li>
-<li><code>^</code> XOR</li>
-<li><code>~</code> NOT</li>
-<li><code>&lt;&lt;</code> Shift a sinistra</li>
-<li><code>&gt;&gt;</code> Shift a destra</li>
-</ul>
-</section>
-<section id="calcoli" class="slide level2">
-<h2>Calcoli</h2>
-<p>Questi operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>A</th>
-<th>B</th>
-<th>A &amp; B</th>
-<th>A</th>
-<th>B</th>
-<th>A ^ B</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="la-rappresentazione-dei-numeri" class="slide level2">
-<h2>La rappresentazione dei numeri</h2>
-<p>Per effettuare le operazioni bitwise conviene sempre cercare di rappresentare i numeri in binario.</p>
-<p>C permette di dichiarare numeri in binario utilizzando il prefisso <code>0b</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="bn">0b00001000</span><span class="op">;</span></span>
-<span id="cb8-2"><a></a><span class="co">// è equivalente a</span></span>
-<span id="cb8-3"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="or" class="slide level2">
-<h2>OR</h2>
-<p>L’operatore OR viene spesso usato per unire due insiemi di bit. Ad esempio, se si ha una variabile <code>switches</code> che rappresenta lo stato di accensione di 8 interruttori, si può accendere un interruttore utilizzando l’operatore OR:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a></a><span class="co">// switches = 0b00001000</span></span>
-<span id="cb9-2"><a></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="bn">0b00000100</span><span class="op">;</span></span>
-<span id="cb9-3"><a></a><span class="co">// oppure</span></span>
-<span id="cb9-4"><a></a>switches <span class="op">=</span> switches <span class="op">|</span> <span class="dv">4</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ora il valore di <code>switches</code> sarà <code>0b00001100</code>. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.</p>
-</section>
-<section id="and" class="slide level2">
-<h2>AND</h2>
-<p>Per spegnere tutti gli interruttori si può utilizzare l’operatore AND:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="bn">0b00000000</span><span class="op">;</span></span>
-<span id="cb10-2"><a></a><span class="co">// oppure</span></span>
-<span id="cb10-3"><a></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb10-4"><a></a><span class="co">// switches: 0b00000000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="esercizio" class="slide level2">
-<h2>Esercizio</h2>
-<p>Scrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb11-2"><a></a><span class="dt">void</span> print_lsb<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
-<span id="cb11-3"><a></a></span>
-<span id="cb11-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb11-5"><a></a><span class="op">{</span></span>
-<span id="cb11-6"><a></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">127</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">128</span><span class="op">;</span></span>
-<span id="cb11-7"><a></a></span>
-<span id="cb11-8"><a></a>    print_lsb<span class="op">(</span>a<span class="op">);</span></span>
-<span id="cb11-9"><a></a>    print_lsb<span class="op">(</span>b<span class="op">);</span></span>
-<span id="cb11-10"><a></a><span class="op">}</span></span>
-<span id="cb11-11"><a></a></span>
-<span id="cb11-12"><a></a><span class="dt">void</span> print_lsb<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span></span>
-<span id="cb11-13"><a></a><span class="op">{</span></span>
-<span id="cb11-14"><a></a>    printf<span class="op">(</span><span class="st">"The least significant bit of </span><span class="sc">%d</span><span class="st"> is: "</span><span class="op">,</span> n<span class="op">);</span></span>
-<span id="cb11-15"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n <span class="op">&amp;</span> <span class="dv">1</span><span class="op">);</span></span>
-<span id="cb11-16"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="esercizio-1" class="slide level2">
-<h2>Esercizio</h2>
-<p>Scrivere una funzione che dato un numero intero <span class="math inline">\(n\)</span>, restituisca true se <span class="math inline">\(n\)</span> è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdbool.h&gt;</span></span>
-<span id="cb12-2"><a></a><span class="dt">bool</span> is_even<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
-<span id="cb12-3"><a></a></span>
-<span id="cb12-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb12-5"><a></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">55</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">48</span><span class="op">;</span></span>
-<span id="cb12-6"><a></a></span>
-<span id="cb12-7"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> is_even<span class="op">(</span>a<span class="op">));</span></span>
-<span id="cb12-8"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> b<span class="op">,</span> is_even<span class="op">(</span>b<span class="op">));</span></span>
-<span id="cb12-9"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="xor" class="slide level2">
-<h2>XOR</h2>
-<p>L’operatore XOR è molto utile per invertire lo stato di un bit.</p>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Nota</strong></p>
-</div>
-<div class="callout-content">
-<p>Eseguire l’operazione di XOR due volte su un bit restituisce il valore originale.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a></a><span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
-<span id="cb13-2"><a></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
-<span id="cb13-3"><a></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
-<span id="cb13-4"><a></a><span class="co">// c: 'A'</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="esempio" class="slide level2">
-<h2>Esempio</h2>
-<p><code>65: 0b01000001</code></p>
-<p><code>73: 0b01001001</code></p>
-<p><code>08: 0b00001000</code></p>
-<p>65 ^ 73 = 8</p>
-<p>8 ^ 73 = 65</p>
-<p>‘A’ ^ ‘I’ = ’</p>
-</section>
-<section id="esempio-1" class="slide level2">
-<h2>Esempio</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb14-2"><a></a><span class="pp">#define KEY </span><span class="ch">'h'</span></span>
-<span id="cb14-3"><a></a></span>
-<span id="cb14-4"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb14-5"><a></a><span class="op">{</span></span>
-<span id="cb14-6"><a></a>    <span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
-<span id="cb14-7"><a></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
-<span id="cb14-8"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
-<span id="cb14-9"><a></a></span>
-<span id="cb14-10"><a></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
-<span id="cb14-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
-<span id="cb14-12"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="esercizi" class="slide level2">
-<h2>Esercizi</h2>
-<p>Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.</p>
-<p><a href="./code/xor_crypt.c">Scarica il main dell’esercizio</a></p>
-</section>
-<section id="shift" class="slide level2">
-<h2>Shift</h2>
-<p>Gli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a></a><span class="dt">unsigned</span> <span class="dt">char</span> c <span class="op">=</span> <span class="bn">0b00000001</span><span class="op">;</span></span>
-<span id="cb15-2"><a></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb15-3"><a></a><span class="co">// c: 0b00000010</span></span>
-<span id="cb15-4"><a></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb15-5"><a></a><span class="co">// c: 0b00010000</span></span>
-<span id="cb15-6"><a></a>c <span class="op">=</span> c <span class="op">&gt;&gt;</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb15-7"><a></a><span class="co">// c: 0b00000100</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="esempio-shift" class="slide level2">
-<h2>Esempio Shift</h2>
-<p>Scrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb16-2"><a></a></span>
-<span id="cb16-3"><a></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb16-4"><a></a><span class="op">{</span></span>
-<span id="cb16-5"><a></a>    <span class="dt">int</span> n <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
-<span id="cb16-6"><a></a>    n <span class="op">=</span> n <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb16-7"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n<span class="op">);</span></span>
-<span id="cb16-8"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="esercizi-1" class="slide level2">
-<h2>Esercizi</h2>
-<p>Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char.</p>
-<p>Ad esempio, se il valore di <code>c</code> è 5, il programma dovrà stampare <code>00000101</code>.</p>
-</section>
-<section id="esercizi-2" class="slide level2">
-<h2>Esercizi</h2>
-<p>Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:</p>
-<ol type="1">
-<li>Accenda il led più a destra;</li>
-<li>Accenda il led più a sinistra;</li>
-<li>Inverta lo stato di tutti i led;</li>
-<li>Spenga tutti i led.</li>
-</ol>
-<p><a href="./code/simple_led.c">Scarica il main dell’esercizio</a></p>
 
 
 </section></section>

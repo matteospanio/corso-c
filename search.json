@@ -339,401 +339,274 @@
   {
     "objectID": "lessons/06/index.html",
     "href": "lessons/06/index.html",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "",
-    "text": "Le strutture sono molto utili per definire… strutture dati. Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…\nGli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza a mano, ad esempio passandola come argomento di una funzione.\nSi può creare una struttura che contenga un array e la sua lunghezza:\n\n\n\nLista 1: Implementazione di un array di interi con lunghezza variabile.\n\n\n#define MAX 1024 /* &lt;1&gt; */\n\ntypedef struct intarray {\n    int array[MAX]; /* &lt;2&gt; */\n    int length; /* &lt;3&gt; */\n} IntArray;\n\n\n\n\nDefiniamo una costante MAX che rappresenta il numero massimo di elementi che possono essere memorizzati nell’array;\nLa struttura dati contiene l’array di interi (che, in questo caso, è di dimensione \\(1024 \\times 4 = 4096\\) byte)\nLa struttura contiene anche un intero che rappresenta la lunghezza attuale dell’array: cioè il numero di elementi effettivamente contenuti dall’array.\n\nSi noti che il membro lenght è aggiornato solo quando si aggiungono o rimuovono elementi dall’array.\nAdesso si può passare la struttura come argomento di una funzione, senza dover tenere traccia in maniera esplicita della lunghezza dell’array:\n\n\n\nLista 2: Implementazione della funzione per stampare un IntArray.\n\n\nvoid stampa_array(IntArray a) {\n    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\n\n\n\nLa routine per aggiungere un elemento all’array è la seguente:\n1int append(IntArray *a, int value) {\n2    if (a-&gt;length &lt; MAX) {\n3        a-&gt;array[a-&gt;length] = value;\n4        a-&gt;length++;\n5        return 0;\n    }\n6    return 1;\n}\n\n1\n\nLa funzione append prende come argomento un puntatore a IntArray e un intero da aggiungere all’array, l’array è passato by reference perché i suoi campi vengono modificati;\n\n2\n\nPrima di effettuare l’inserimento viene controllato che l’array non sia già pieno, per accedere ai membri di un puntatore a una struttura si usa l’operatore -&gt;, che è una forma abbreviata di (*p).membro;\n\n3\n\nSi aggiunge il valore all’array;\n\n4\n\nSi incrementa la lunghezza dell’array;\n\n5\n\nLa funzione restituisce 0 se l’inserimento è andato a buon fine;\n\n6\n\nRestituisce 1 se l’array è pieno.\n\n\n\n\nPer esercizio si implementino le funzioni: 1. int get(IntArray a, int index) che restituisce l’elemento in posizione index dell’array a; 2. int insert(IntArray *a, int index, int value) che inserisce l’elemento value in posizione index dell’array a; 3. int remove(IntArray *a, int index) che rimuove l’elemento in posizione index dell’array a.\n\n\n\n\n\n\nConsiglio\n\n\n\nSi noti che le funzioni insert e remove possono fallire se l’array è pieno o vuoto, rispettivamente, inoltre è necessario spostare tutti gli elementi dell’array."
+    "text": "Le strutture sono molto utili per definire… strutture dati. Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…\nGli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza a mano, ad esempio passandola come argomento di una funzione.\nSi può creare una struttura che contenga un array e la sua lunghezza:\n\n\n\nLista 1: Implementazione di un array di interi con lunghezza variabile.\n\n\n#define MAX 1024 /* &lt;1&gt; */\n\ntypedef struct intarray {\n    int array[MAX]; /* &lt;2&gt; */\n    int length; /* &lt;3&gt; */\n} IntArray;\n\n\n\n\nDefiniamo una costante MAX che rappresenta il numero massimo di elementi che possono essere memorizzati nell’array;\nLa struttura dati contiene l’array di interi (che, in questo caso, è di dimensione \\(1024 \\times 4 = 4096\\) byte)\nLa struttura contiene anche un intero che rappresenta la lunghezza attuale dell’array: cioè il numero di elementi effettivamente contenuti dall’array.\n\nSi noti che il membro lenght è aggiornato solo quando si aggiungono o rimuovono elementi dall’array.\nAdesso si può passare la struttura come argomento di una funzione, senza dover tenere traccia in maniera esplicita della lunghezza dell’array:\n\n\n\nLista 2: Implementazione della funzione per stampare un IntArray.\n\n\nvoid stampa_array(IntArray a) {\n    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\n\n\n\nLa routine per aggiungere un elemento all’array è la seguente:\n1int append(IntArray *a, int value) {\n2    if (a-&gt;length &lt; MAX) {\n3        a-&gt;array[a-&gt;length] = value;\n4        a-&gt;length++;\n5        return 0;\n    }\n6    return 1;\n}\n\n1\n\nLa funzione append prende come argomento un puntatore a IntArray e un intero da aggiungere all’array, l’array è passato by reference perché i suoi campi vengono modificati;\n\n2\n\nPrima di effettuare l’inserimento viene controllato che l’array non sia già pieno, per accedere ai membri di un puntatore a una struttura si usa l’operatore -&gt;, che è una forma abbreviata di (*p).membro;\n\n3\n\nSi aggiunge il valore all’array;\n\n4\n\nSi incrementa la lunghezza dell’array;\n\n5\n\nLa funzione restituisce 0 se l’inserimento è andato a buon fine;\n\n6\n\nRestituisce 1 se l’array è pieno.\n\n\n\n\nPer esercizio si implementino le funzioni:\n\nint get(IntArray a, int index) che restituisce l’elemento in posizione index dell’array a;\nint insert(IntArray *a, int index, int value) che inserisce l’elemento value in posizione index dell’array a;\nint remove(IntArray *a, int index) che rimuove l’elemento in posizione index dell’array a.\n\n\n\n\n\n\n\nConsiglio\n\n\n\nSi noti che le funzioni insert e remove possono fallire se l’array è pieno o vuoto, rispettivamente, inoltre è necessario spostare tutti gli elementi dell’array.",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
-    "objectID": "lessons/06/index.html#esercizio-2",
-    "href": "lessons/06/index.html#esercizio-2",
-    "title": "Memoria dinamica e operatori bitwise",
+    "objectID": "lessons/06/index.html#esercizio-1",
+    "href": "lessons/06/index.html#esercizio-1",
+    "title": "Memoria dinamica",
     "section": "",
-    "text": "Per esercizio si implementino le funzioni: 1. int get(IntArray a, int index) che restituisce l’elemento in posizione index dell’array a; 2. int insert(IntArray *a, int index, int value) che inserisce l’elemento value in posizione index dell’array a; 3. int remove(IntArray *a, int index) che rimuove l’elemento in posizione index dell’array a.\n\n\n\n\n\n\nConsiglio\n\n\n\nSi noti che le funzioni insert e remove possono fallire se l’array è pieno o vuoto, rispettivamente, inoltre è necessario spostare tutti gli elementi dell’array."
+    "text": "Per esercizio si implementino le funzioni:\n\nint get(IntArray a, int index) che restituisce l’elemento in posizione index dell’array a;\nint insert(IntArray *a, int index, int value) che inserisce l’elemento value in posizione index dell’array a;\nint remove(IntArray *a, int index) che rimuove l’elemento in posizione index dell’array a.\n\n\n\n\n\n\n\nConsiglio\n\n\n\nSi noti che le funzioni insert e remove possono fallire se l’array è pieno o vuoto, rispettivamente, inoltre è necessario spostare tutti gli elementi dell’array.",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/index.html#malloc-1",
     "href": "lessons/06/index.html#malloc-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "malloc",
-    "text": "malloc\nvoid* malloc(size_t size);\nSupponendo di voler creare un array di interi di dimensione variabile, c’è bisogno di creare un puntatore ad interi e poi assegnargli l’indirizzo della nuova zona di memoria:\nint *a;\na = malloc(10 * sizeof(int));\nLa funzione malloc accetta come argomento il numero di byte da allocare. L’esempio crea 10 cellette di memoria, ciascuna grande quanto un intero (4 byte)."
+    "text": "malloc\nvoid* malloc(size_t size);\nSupponendo di voler creare un array di interi di dimensione variabile, c’è bisogno di creare un puntatore ad interi e poi assegnargli l’indirizzo della nuova zona di memoria:\nint *a;\na = malloc(10 * sizeof(int));\nLa funzione malloc accetta come argomento il numero di byte da allocare. L’esempio crea 10 cellette di memoria, ciascuna grande quanto un intero (4 byte).",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/index.html#calloc-1",
     "href": "lessons/06/index.html#calloc-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "calloc",
-    "text": "calloc\nvoid* calloc(size_t num, size_t size);\n\nPer inizializzare array torna comoda anche la funzione calloc, che ha due parametri: numero di membri e dimensione (in byte) dei membri\nInoltre ha come effetto aggiuntivo di porre a zero tutti i byte interessati (quindi tutti i membri dell’array che creo)\n\ndouble *a;\na = calloc(10, sizeof(double));\nL’effetto di questo codice è lo stesso del precedente (con la malloc), ma con tutti i membri dell’array inizializzati a 0."
+    "text": "calloc\nvoid* calloc(size_t num, size_t size);\n\nPer inizializzare array torna comoda anche la funzione calloc, che ha due parametri: numero di membri e dimensione (in byte) dei membri\nInoltre ha come effetto aggiuntivo di porre a zero tutti i byte interessati (quindi tutti i membri dell’array che creo)\n\ndouble *a;\na = calloc(10, sizeof(double));\nL’effetto di questo codice è lo stesso del precedente (con la malloc), ma con tutti i membri dell’array inizializzati a 0.",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/index.html#realloc-1",
     "href": "lessons/06/index.html#realloc-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "realloc",
-    "text": "realloc\nvoid* realloc(void* ptr, size_t size);\n\nQuesta funzione cambia la dimensione di uno spazio allocato dinamicamente.\nL’argomento ptr deve essere un puntatore ottenuto da una funzione ..alloc, altrimenti porta a comportamento non definito.\nI dati già presenti nella zona di memoria vengono mantenuti."
+    "text": "realloc\nvoid* realloc(void* ptr, size_t size);\n\nQuesta funzione cambia la dimensione di uno spazio allocato dinamicamente.\nL’argomento ptr deve essere un puntatore ottenuto da una funzione ..alloc, altrimenti porta a comportamento non definito.\nI dati già presenti nella zona di memoria vengono mantenuti.",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/index.html#null-1",
     "href": "lessons/06/index.html#null-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "NULL",
-    "text": "NULL\n\nQuando si usa la memoria dinamica, è importante controllare che l’allocazione sia andata a buon fine.\nSe malloc, calloc o realloc non riescono a trovare spazio in memoria, restituiscono NULL.\nNULL è una costante che rappresenta un puntatore all’indirizzo 0x0. NULL è definito in stdlib.h."
+    "text": "NULL\n\nQuando si usa la memoria dinamica, è importante controllare che l’allocazione sia andata a buon fine.\nSe malloc, calloc o realloc non riescono a trovare spazio in memoria, restituiscono NULL.\nNULL è una costante che rappresenta un puntatore all’indirizzo 0x0. NULL è definito in stdlib.h.",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/index.html#malloc-calloc-realloc-1",
     "href": "lessons/06/index.html#malloc-calloc-realloc-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "malloc, calloc, realloc",
-    "text": "malloc, calloc, realloc\n\nQueste funzioni scrivono in una zona di memoria nota come heap;\nLe variabili locali e i parametri delle funzioni sono invece memorizzati nello stack;\nUsando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile\nOccorre quindi fare uso oculato della memoria e pulire quella usata che non serve più"
+    "text": "malloc, calloc, realloc\n\nQueste funzioni scrivono in una zona di memoria nota come heap;\nLe variabili locali e i parametri delle funzioni sono invece memorizzati nello stack;\nUsando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile\nOccorre quindi fare uso oculato della memoria e pulire quella usata che non serve più",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/index.html#free-1",
     "href": "lessons/06/index.html#free-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "free",
-    "text": "free\nvoid free(void* ptr);\n\nLa funzione free permette di liberare un blocco di memoria (e quindi renderlo disponibile per un’altra allocazione)\nptr dopo l’esecuzione di free continua a puntare alla stessa zona di memoria, ma il contenuto di quella zona non è più garantito, si chiama dangling pointer\nOccorre, subito dopo la free, assegnare a ptr il valore NULL (oppure una nuova memoria)\naccedere un blocco deallocato è un gravissimo errore"
+    "text": "free\nvoid free(void* ptr);\n\nLa funzione free permette di liberare un blocco di memoria (e quindi renderlo disponibile per un’altra allocazione)\nptr dopo l’esecuzione di free continua a puntare alla stessa zona di memoria, ma il contenuto di quella zona non è più garantito, si chiama dangling pointer\nOccorre, subito dopo la free, assegnare a ptr il valore NULL (oppure una nuova memoria)\naccedere un blocco deallocato è un gravissimo errore",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/index.html#array-dinamico-1",
     "href": "lessons/06/index.html#array-dinamico-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Array dinamico",
-    "text": "Array dinamico\nUn array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.\nPer implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:\ntypedef struct {\n    int *array;\n    int capacity;\n    int length;\n} ArrayList;"
+    "text": "Array dinamico\nUn array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.\nPer implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:\ntypedef struct {\n    int *array;\n    int capacity;\n    int length;\n} ArrayList;",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/index.html#arraylist-1",
     "href": "lessons/06/index.html#arraylist-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "ArrayList",
-    "text": "ArrayList\nIl nuovo tipo ArrayList ha tre membri:\n\narray è un puntatore ad interi, che punta all’array dinamico\ncapacity è la dimensione massima dell’array\nlength è il numero di elementi attualmente presenti nell’array\n\nQuando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.\n Scarica l'implementazione dell'arraylist"
+    "text": "ArrayList\nIl nuovo tipo ArrayList ha tre membri:\n\narray è un puntatore ad interi, che punta all’array dinamico\ncapacity è la dimensione massima dell’array\nlength è il numero di elementi attualmente presenti nell’array\n\nQuando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.\n Scarica l'implementazione dell'arraylist",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/index.html#linked-list-2",
     "href": "lessons/06/index.html#linked-list-2",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Linked list",
-    "text": "Linked list\n\nUna lista concatenata è una struttura dati composta da nodi, ciascuno dei quali contiene un valore e un puntatore al nodo successivo.\nLa differenza con un array è che i nodi non sono memorizzati in posizioni contigue di memoria.\nLa lista concatenata è una struttura ricorsiva: un nodo contiene un valore e un puntatore al nodo successivo."
+    "text": "Linked list\n\nUna lista concatenata è una struttura dati composta da nodi, ciascuno dei quali contiene un valore e un puntatore al nodo successivo.\nLa differenza con un array è che i nodi non sono memorizzati in posizioni contigue di memoria.\nLa lista concatenata è una struttura ricorsiva: un nodo contiene un valore e un puntatore al nodo successivo.",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/index.html#linked-list-3",
     "href": "lessons/06/index.html#linked-list-3",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Linked list",
-    "text": "Linked list\nL’implementazione classica della lista concatenata in C è:\ntypedef struct node {\n    int value;\n    struct node *next;\n} Node;\n Scarica l'implementazione dell'arraylist \nUn esempio completo in cui vengono implementate le classi ArrayList e LinkedList, oltre all’interfaccia List, è disponibile qui."
-  },
-  {
-    "objectID": "lessons/06/index.html#calcoli-1",
-    "href": "lessons/06/index.html#calcoli-1",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Calcoli",
-    "text": "Calcoli\nQuesti operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.\n\n\n\nA\nB\nA AND B\nA OR B\nA XOR B\n\n\n\n\n0\n0\n0\n0\n0\n\n\n0\n1\n0\n1\n1\n\n\n1\n0\n0\n1\n1\n\n\n1\n1\n1\n1\n0"
-  },
-  {
-    "objectID": "lessons/06/index.html#esempi",
-    "href": "lessons/06/index.html#esempi",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esempi",
-    "text": "Esempi\nIn elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l’interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo char:\nunsigned char switches = 0b00001000;\n// oppure\nunsigned char switches = 8;\nIn questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.\nIpotizzando di voler accendere un altro interruttore, si può utilizzare l’operatore OR:\n// switches = 0b00001000\nswitches = switches | 0b00000100;\n// oppure\nswitches = switches | 4;\nOra il valore di switches sarà 0b00001100. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.\nPer spegnere tutti gli interruttori si può utilizzare l’operatore AND:\nswitches = switches & 0b00000000;\n// oppure\nswitches = switches & 0;\n// switches: 0b00000000"
-  },
-  {
-    "objectID": "lessons/06/index.html#esercizio-3",
-    "href": "lessons/06/index.html#esercizio-3",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esercizio",
-    "text": "Esercizio\nScrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.\n#include &lt;stdio.h&gt;\nvoid print_lsb(int n);\n\nint main(void)\n{\n    int a = 127, b = 128;\n\n    print_lsb(a);\n    print_lsb(b);\n}\n\nvoid print_lsb(int n)\n{\n    printf(\"The least significant bit of %d is: \", n);\n    printf(\"%d\\n\", n & 1);\n}"
-  },
-  {
-    "objectID": "lessons/06/index.html#esercizio-4",
-    "href": "lessons/06/index.html#esercizio-4",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esercizio",
-    "text": "Esercizio\nScrivere una funzione che dato un numero intero \\(n\\), restituisca true se \\(n\\) è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.\n#include &lt;stdbool.h&gt;\nbool is_even(int n);\n\nint main(void) {\n    int a = 55, b = 48;\n\n    printf(\"%d is even: %d\\n\", a, is_even(a));\n    printf(\"%d is even: %d\\n\", b, is_even(b));\n}\nL’operatore XOR è molto utile per invertire lo stato di un bit.\n\n\n\n\n\n\nNota\n\n\n\nEseguire l’operazione di XOR due volte su un bit restituisce il valore originale.\nchar c = 'A';\nc = c ^ 'h';\nc = c ^ 'h';\n// c: 'A'"
-  },
-  {
-    "objectID": "lessons/06/index.html#esempio-2",
-    "href": "lessons/06/index.html#esempio-2",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esempio",
-    "text": "Esempio\n65: 0b01000001\n73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n‘A’ ^ ‘I’ = ’"
-  },
-  {
-    "objectID": "lessons/06/index.html#esempio-3",
-    "href": "lessons/06/index.html#esempio-3",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esempio",
-    "text": "Esempio\n#include &lt;stdio.h&gt;\n#define KEY 'h'\n\nint main(void)\n{\n    char c = 'A';\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n}"
-  },
-  {
-    "objectID": "lessons/06/index.html#esercizi-3",
-    "href": "lessons/06/index.html#esercizi-3",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esercizi",
-    "text": "Esercizi\nScrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\n Scarica il main dell'esercizio"
-  },
-  {
-    "objectID": "lessons/06/index.html#shift-1",
-    "href": "lessons/06/index.html#shift-1",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Shift",
-    "text": "Shift\nGli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.\nunsigned char c = 0b00000001;\nc = c &lt;&lt; 1;\n// c: 0b00000010\nc = c &lt;&lt; 3;\n// c: 0b00010000\nc = c &gt;&gt; 2;\n// c: 0b00000100"
-  },
-  {
-    "objectID": "lessons/06/index.html#esempio-shift-1",
-    "href": "lessons/06/index.html#esempio-shift-1",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esempio Shift",
-    "text": "Esempio Shift\nScrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int n = 5;\n    n = n &lt;&lt; 1;\n    printf(\"%d\\n\", n);\n}"
-  },
-  {
-    "objectID": "lessons/06/index.html#esercizi-4",
-    "href": "lessons/06/index.html#esercizi-4",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esercizi",
-    "text": "Esercizi\nScrivere un programma che stampi a monitor la codifica in binario di un unsigned char.\nAd esempio, se il valore di c è 5, il programma dovrà stampare 00000101."
-  },
-  {
-    "objectID": "lessons/06/index.html#esercizi-5",
-    "href": "lessons/06/index.html#esercizi-5",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esercizi",
-    "text": "Esercizi\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\n Scarica il main dell'esercizio"
+    "text": "Linked list\nL’implementazione classica della lista concatenata in C è:\ntypedef struct node {\n    int value;\n    struct node *next;\n} Node;\n Scarica l'implementazione dell'arraylist \nUn esempio completo in cui vengono implementate le classi ArrayList e LinkedList, oltre all’interfaccia List, è disponibile qui.",
+    "crumbs": [
+      "Lezioni",
+      "Memoria dinamica"
+    ]
   },
   {
     "objectID": "lessons/06/slide.html#strutture-dati-1",
     "href": "lessons/06/slide.html#strutture-dati-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Strutture dati",
     "text": "Strutture dati\nLe strutture sono molto utili per definire… strutture dati.\nPer esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…"
   },
   {
     "objectID": "lessons/06/slide.html#array-con-strutture",
     "href": "lessons/06/slide.html#array-con-strutture",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Array con strutture",
     "text": "Array con strutture\nGli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza a mano…\nSi può creare una struttura che contenga un array e la sua lunghezza:\n#define MAX 1024\n\ntypedef struct intarray {\n    int array[MAX];\n    int length;\n} IntArray;"
   },
   {
     "objectID": "lessons/06/slide.html#array-con-strutture-1",
     "href": "lessons/06/slide.html#array-con-strutture-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Array con strutture",
     "text": "Array con strutture\nAdesso si può passare la struttura come argomento di una funzione:\nvoid stampa_array(IntArray a) {\n    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento."
   },
   {
     "objectID": "lessons/06/slide.html#array-con-strutture-2",
     "href": "lessons/06/slide.html#array-con-strutture-2",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Array con strutture",
-    "text": "Array con strutture\nint append(IntArray *a, int value) {\n    if (a-&gt;length &lt; MAX) {\n        a-&gt;array[a-&gt;length] = value;\n        a-&gt;length++;\n        return 0;\n    }\n    return 1;\n}"
+    "text": "Array con strutture\nint append(IntArray *a, int value) {\n    if (a-&gt;length &lt; MAX) {\n        a-&gt;array[a-&gt;length] = value;\n        a-&gt;length++;\n        return 0;\n    }\n    return 1;\n}\n\nappend prende come argomento un puntatore a IntArray e un intero da aggiungere all’array, l’array è passato by reference perché i suoi campi vengono modificati\nPrima di effettuare l’inserimento viene controllato che l’array non sia già pieno, per accedere ai membri di un puntatore a una struttura si usa l’operatore -&gt;, che è una forma abbreviata di (*p).membro"
+  },
+  {
+    "objectID": "lessons/06/slide.html#esercizio",
+    "href": "lessons/06/slide.html#esercizio",
+    "title": "Memoria dinamica",
+    "section": "Esercizio",
+    "text": "Esercizio\nPer esercizio si implementino le funzioni:\nint get(IntArray a, int index) che restituisce l’elemento in posizione index, int insert(IntArray *a, int index, int value) che inserisce l’elemento value in posizione index, int remove(IntArray *a, int index) che rimuove l’elemento in posizione index.\nScarica il main dell’esercizio\n\n\n\n\n\n\nConsiglio\n\n\nSi noti che le funzioni insert e remove possono fallire se l’array è pieno o vuoto, rispettivamente, inoltre è necessario spostare tutti gli elementi dell’array."
   },
   {
     "objectID": "lessons/06/slide.html#array-con-strutture-3",
     "href": "lessons/06/slide.html#array-con-strutture-3",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Array con strutture",
     "text": "Array con strutture\nL’implementazione che abbiamo visto ha due grossi problemi:\n\nla dimensione dell’array è fissa\nla struttura IntArray funziona solo con array di interi, per fare array di float, char, ecc. bisogna creare ogni volta una nuova struttura"
   },
   {
     "objectID": "lessons/06/slide.html#memoria-dinamica-1",
     "href": "lessons/06/slide.html#memoria-dinamica-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Memoria dinamica",
     "text": "Memoria dinamica\n\nLe strutture dati in C hanno dimensione fissa. Infatti gli array vengono inizializzati con un valore costante.\nEsistono però dei comandi che permettono di allocare dinamicamente zone di memoria, permettendo di fare strutture che crescono o si rimpiccioliscono durante l’esecuzione del programma."
   },
   {
     "objectID": "lessons/06/slide.html#memoria-dinamica-2",
     "href": "lessons/06/slide.html#memoria-dinamica-2",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Memoria dinamica",
     "text": "Memoria dinamica\nLe operazioni per gestire la memoria dinamica si trovano nella libreria stdlib.h e sono:\n\nmalloc (memory allocation): alloca una zona di memoria di una certa dimensione\ncalloc (clear allocation): alloca una zona di memoria di una certa dimensione e la inizializza a 0\nrealloc (reallocate): cambia la dimensione di una zona di memoria già allocata"
   },
   {
     "objectID": "lessons/06/slide.html#puntatore-a-void",
     "href": "lessons/06/slide.html#puntatore-a-void",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Puntatore a void",
     "text": "Puntatore a void\nmalloc, calloc e realloc restituiscono un puntatore a void, che è un puntatore generico.\nQuesto puntatore non fa riferimento a un certo tipo di dato, ma solo a un indirizzo di memoria."
   },
   {
     "objectID": "lessons/06/slide.html#malloc",
     "href": "lessons/06/slide.html#malloc",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "malloc",
     "text": "malloc\nvoid* malloc(size_t size);\nSupponendo di voler creare un array di interi di dimensione variabile, c’è bisogno di creare un puntatore ad interi e poi assegnargli l’indirizzo della nuova zona di memoria:\nint *a;\na = malloc(10 * sizeof(int));\nLa funzione malloc accetta come argomento il numero di byte da allocare. L’esempio crea 10 cellette di memoria, ciascuna grande quanto un intero (4 byte)."
   },
   {
     "objectID": "lessons/06/slide.html#calloc",
     "href": "lessons/06/slide.html#calloc",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "calloc",
     "text": "calloc\nvoid* calloc(size_t num, size_t size);\n\nPer inizializzare array torna comoda anche la funzione calloc, che ha due parametri: numero di membri e dimensione (in byte) dei membri\nInoltre ha come effetto aggiuntivo di porre a zero tutti i byte interessati (quindi tutti i membri dell’array che creo)\n\ndouble *a;\na = calloc(10, sizeof(double));\nL’effetto di questo codice è lo stesso del precedente (con la malloc), ma con tutti i membri dell’array inizializzati a 0."
   },
   {
     "objectID": "lessons/06/slide.html#realloc",
     "href": "lessons/06/slide.html#realloc",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "realloc",
     "text": "realloc\nvoid* realloc(void* ptr, size_t size);\n\nQuesta funzione cambia la dimensione di uno spazio allocato dinamicamente.\nL’argomento ptr deve essere un puntatore ottenuto da una funzione ..alloc, altrimenti porta a comportamento non definito.\nI dati già presenti nella zona di memoria vengono mantenuti."
   },
   {
     "objectID": "lessons/06/slide.html#null",
     "href": "lessons/06/slide.html#null",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "NULL",
     "text": "NULL\n\nQuando si usa la memoria dinamica, è importante controllare che l’allocazione sia andata a buon fine.\nSe malloc, calloc o realloc non riescono a trovare spazio in memoria, restituiscono NULL.\nNULL è una costante che rappresenta un puntatore all’indirizzo 0x0. NULL è definito in stdlib.h."
   },
   {
     "objectID": "lessons/06/slide.html#malloc-calloc-realloc",
     "href": "lessons/06/slide.html#malloc-calloc-realloc",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "malloc, calloc, realloc",
     "text": "malloc, calloc, realloc\n\nQueste funzioni scrivono in una zona di memoria nota come heap;\nLe variabili locali e i parametri delle funzioni sono invece memorizzati nello stack;\nUsando ricorsione e molta memoria dinamica si può esaurire la memoria disponibile\nOccorre quindi fare uso oculato della memoria e pulire quella usata che non serve più"
   },
   {
     "objectID": "lessons/06/slide.html#free",
     "href": "lessons/06/slide.html#free",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "free",
     "text": "free\nvoid free(void* ptr);\n\nLa funzione free permette di liberare un blocco di memoria (e quindi renderlo disponibile per un’altra allocazione)\nptr dopo l’esecuzione di free continua a puntare alla stessa zona di memoria, ma il contenuto di quella zona non è più garantito, si chiama dangling pointer\nOccorre, subito dopo la free, assegnare a ptr il valore NULL (oppure una nuova memoria)\naccedere un blocco deallocato è un gravissimo errore"
   },
   {
     "objectID": "lessons/06/slide.html#array-dinamico",
     "href": "lessons/06/slide.html#array-dinamico",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Array dinamico",
     "text": "Array dinamico\nUn array dinamico è un array la cui dimensione può cambiare durante l’esecuzione del programma.\nPer implementare un array dinamico si può usare una struttura che contiene un puntatore all’array e la sua lunghezza:\ntypedef struct {\n    int *array;\n    int capacity;\n    int length;\n} ArrayList;"
   },
   {
     "objectID": "lessons/06/slide.html#arraylist",
     "href": "lessons/06/slide.html#arraylist",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "ArrayList",
     "text": "ArrayList\nIl nuovo tipo ArrayList ha tre membri:\n\narray è un puntatore ad interi, che punta all’array dinamico\ncapacity è la dimensione massima dell’array\nlength è il numero di elementi attualmente presenti nell’array\n\nQuando length raggiunge capacity, bisogna riallocare la memoria per l’array, aumentando la sua dimensione.\nScarica l’implementazione dell’arraylist"
   },
   {
     "objectID": "lessons/06/slide.html#linked-list",
     "href": "lessons/06/slide.html#linked-list",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Linked list",
     "text": "Linked list\n\nUna lista concatenata è una struttura dati composta da nodi, ciascuno dei quali contiene un valore e un puntatore al nodo successivo.\nLa differenza con un array è che i nodi non sono memorizzati in posizioni contigue di memoria.\nLa lista concatenata è una struttura ricorsiva: un nodo contiene un valore e un puntatore al nodo successivo."
   },
   {
     "objectID": "lessons/06/slide.html#linked-list-1",
     "href": "lessons/06/slide.html#linked-list-1",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Linked list",
     "text": "Linked list\nL’implementazione classica della lista concatenata in C è:\ntypedef struct node {\n    int value;\n    struct node *next;\n} Node;\nScarica l’implementazione della linked list"
   },
   {
     "objectID": "lessons/06/slide.html#esercizio-lista-concatenata",
     "href": "lessons/06/slide.html#esercizio-lista-concatenata",
-    "title": "Memoria dinamica e operatori bitwise",
+    "title": "Memoria dinamica",
     "section": "Esercizio: lista concatenata",
     "text": "Esercizio: lista concatenata\nDato il file con il main e i prototipi delle funzioni, implementare:\n\nrecursive_list_print\nrecursive_list_delete"
-  },
-  {
-    "objectID": "lessons/06/slide.html#operatori-bitwise",
-    "href": "lessons/06/slide.html#operatori-bitwise",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Operatori bitwise",
-    "text": "Operatori bitwise\nGli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili.\nGli operatori bitwise in C sono:\n\n& AND\n| OR\n^ XOR\n~ NOT\n&lt;&lt; Shift a sinistra\n&gt;&gt; Shift a destra"
-  },
-  {
-    "objectID": "lessons/06/slide.html#calcoli",
-    "href": "lessons/06/slide.html#calcoli",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Calcoli",
-    "text": "Calcoli\nQuesti operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.\n\n\n\nA\nB\nA & B\nA\nB\nA ^ B\n\n\n\n\n0\n0\n0\n0\n0\n1\n\n\n0\n1\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n1\n0\n\n\n1\n1\n1\n1\n0\n1"
-  },
-  {
-    "objectID": "lessons/06/slide.html#la-rappresentazione-dei-numeri",
-    "href": "lessons/06/slide.html#la-rappresentazione-dei-numeri",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "La rappresentazione dei numeri",
-    "text": "La rappresentazione dei numeri\nPer effettuare le operazioni bitwise conviene sempre cercare di rappresentare i numeri in binario.\nC permette di dichiarare numeri in binario utilizzando il prefisso 0b:\nunsigned char switches = 0b00001000;\n// è equivalente a\nunsigned char switches = 8;"
-  },
-  {
-    "objectID": "lessons/06/slide.html#or",
-    "href": "lessons/06/slide.html#or",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "OR",
-    "text": "OR\nL’operatore OR viene spesso usato per unire due insiemi di bit. Ad esempio, se si ha una variabile switches che rappresenta lo stato di accensione di 8 interruttori, si può accendere un interruttore utilizzando l’operatore OR:\n// switches = 0b00001000\nswitches = switches | 0b00000100;\n// oppure\nswitches = switches | 4;\nOra il valore di switches sarà 0b00001100. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi."
-  },
-  {
-    "objectID": "lessons/06/slide.html#and",
-    "href": "lessons/06/slide.html#and",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "AND",
-    "text": "AND\nPer spegnere tutti gli interruttori si può utilizzare l’operatore AND:\nswitches = switches & 0b00000000;\n// oppure\nswitches = switches & 0;\n// switches: 0b00000000"
-  },
-  {
-    "objectID": "lessons/06/slide.html#esercizio",
-    "href": "lessons/06/slide.html#esercizio",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esercizio",
-    "text": "Esercizio\nScrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.\n#include &lt;stdio.h&gt;\nvoid print_lsb(int n);\n\nint main(void)\n{\n    int a = 127, b = 128;\n\n    print_lsb(a);\n    print_lsb(b);\n}\n\nvoid print_lsb(int n)\n{\n    printf(\"The least significant bit of %d is: \", n);\n    printf(\"%d\\n\", n & 1);\n}"
-  },
-  {
-    "objectID": "lessons/06/slide.html#esercizio-1",
-    "href": "lessons/06/slide.html#esercizio-1",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esercizio",
-    "text": "Esercizio\nScrivere una funzione che dato un numero intero \\(n\\), restituisca true se \\(n\\) è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.\n#include &lt;stdbool.h&gt;\nbool is_even(int n);\n\nint main(void) {\n    int a = 55, b = 48;\n\n    printf(\"%d is even: %d\\n\", a, is_even(a));\n    printf(\"%d is even: %d\\n\", b, is_even(b));\n}"
-  },
-  {
-    "objectID": "lessons/06/slide.html#xor",
-    "href": "lessons/06/slide.html#xor",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "XOR",
-    "text": "XOR\nL’operatore XOR è molto utile per invertire lo stato di un bit.\n\n\n\n\n\n\nNota\n\n\nEseguire l’operazione di XOR due volte su un bit restituisce il valore originale.\nchar c = 'A';\nc = c ^ 'h';\nc = c ^ 'h';\n// c: 'A'"
-  },
-  {
-    "objectID": "lessons/06/slide.html#esempio",
-    "href": "lessons/06/slide.html#esempio",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esempio",
-    "text": "Esempio\n65: 0b01000001\n73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n‘A’ ^ ‘I’ = ’"
-  },
-  {
-    "objectID": "lessons/06/slide.html#esempio-1",
-    "href": "lessons/06/slide.html#esempio-1",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esempio",
-    "text": "Esempio\n#include &lt;stdio.h&gt;\n#define KEY 'h'\n\nint main(void)\n{\n    char c = 'A';\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n}"
-  },
-  {
-    "objectID": "lessons/06/slide.html#esercizi",
-    "href": "lessons/06/slide.html#esercizi",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esercizi",
-    "text": "Esercizi\nScrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\nScarica il main dell’esercizio"
-  },
-  {
-    "objectID": "lessons/06/slide.html#shift",
-    "href": "lessons/06/slide.html#shift",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Shift",
-    "text": "Shift\nGli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.\nunsigned char c = 0b00000001;\nc = c &lt;&lt; 1;\n// c: 0b00000010\nc = c &lt;&lt; 3;\n// c: 0b00010000\nc = c &gt;&gt; 2;\n// c: 0b00000100"
-  },
-  {
-    "objectID": "lessons/06/slide.html#esempio-shift",
-    "href": "lessons/06/slide.html#esempio-shift",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esempio Shift",
-    "text": "Esempio Shift\nScrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int n = 5;\n    n = n &lt;&lt; 1;\n    printf(\"%d\\n\", n);\n}"
-  },
-  {
-    "objectID": "lessons/06/slide.html#esercizi-1",
-    "href": "lessons/06/slide.html#esercizi-1",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esercizi",
-    "text": "Esercizi\nScrivere un programma che stampi a monitor la codifica in binario di un unsigned char.\nAd esempio, se il valore di c è 5, il programma dovrà stampare 00000101."
-  },
-  {
-    "objectID": "lessons/06/slide.html#esercizi-2",
-    "href": "lessons/06/slide.html#esercizi-2",
-    "title": "Memoria dinamica e operatori bitwise",
-    "section": "Esercizi",
-    "text": "Esercizi\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\nScarica il main dell’esercizio"
   },
   {
     "objectID": "lessons/02/index.html",
