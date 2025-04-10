@@ -17,6 +17,7 @@ int append(IntArray *a, int value);
 
 int main(void)
 {
+
     IntArray a;
     int err;
     a.length = 0;
