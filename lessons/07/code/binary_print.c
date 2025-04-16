@@ -6,7 +6,7 @@ void print_binary(unsigned int n)
     // TODO
     // implementare la funzione print_binary
     // che stampa la rappresentazione binaria di n
-    // usando la ricorsione e l'operatore di bitwise shift
+    // usando l'operatore di bitwise shift
 }
 
 // argc è il numero di argomenti passati al programma
