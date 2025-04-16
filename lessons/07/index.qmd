@@ -1,0 +1,14 @@
+---
+title: Operatori bitwise
+date: 04/17/2025
+abstract-title: Argomenti trattati
+abstract: In questa lezione si approfindisce la conoscenza degli operatori bitwise in C.
+---
+
+::: {.content-visible when-format="revealjs"}
+{{< include _bitwise.qmd >}}
+:::
+
+::: {.content-visible unless-format="revealjs"}
+{{< include _bit_text.qmd >}}
+:::

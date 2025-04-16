@@ -5,12 +5,14 @@
 
 typedef char *String;
 
-// Scrivere l'implementazione delle funzioni string_encodec e new_string
+// Scrivere l'implementazione delle funzioni string_encodec, new_string e string_delete
 // Hint1: new_string deve allocare la memoria per la stringa text
 // Hint2: string_encodec deve cifrare la stringa message con la chiave key tramite XOR
+// Hint3: la funzione strlen restituisce la lunghezza della stringa
+// Hint4: la funzione strcpy copia una stringa in un puntatore a char (vedi man strcpy)
 //
-// Optional: make the KEY a command line argument to be parsed
-// The usage of the program should be:
+// Optional: rendere la chiave KEY un argomento della riga di comando
+// L'uso del programma deve essere:
 // ./xor_encodec key message
 String new_string(String text);
 void string_encodec(String message, char key);
@@ -26,10 +28,10 @@ int main(void)
 
     printf("%s\n", s);
 
-    string_encodec(s, KEY);
+    string_encodec(s, KEY); // Cifrare
     printf("%s\n", s);
 
-    string_encodec(s, KEY);
+    string_encodec(s, KEY); // Decifrare
     printf("%s\n", s);
 
     string_delete(s);
@@ -48,4 +50,5 @@ String new_string(String text)
 void string_delete(String str)
 {
     free(str);
+    *str = NULL;
 }

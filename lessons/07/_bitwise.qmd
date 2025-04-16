@@ -17,12 +17,12 @@ Gli operatori bitwise in C sono:
 
 Questi operatori applicano le regole dell'algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.
 
-| A | B | A & B | A | B | A ^ B | ~A |
+| A | B | A and B | A or B | A ^ B | ~A |
 |---|---|---------|--------|---------|---|
 | 0 | 0 |    0    |   0    |    0    |   1    |
-| 0 | 1 |    0    |   1    |    1    |  0    |
+| 0 | 1 |    0    |   1    |    1    |  1    |
 | 1 | 0 |    0    |   1    |    1    | 0    |
-| 1 | 1 |    1    |   1    |    0    | 1    |
+| 1 | 1 |    1    |   1    |    0    | 0    |
 
 ## La rappresentazione dei numeri
 
@@ -78,8 +78,7 @@ int main(void)
 
 void print_lsb(int n)
 {
-    printf("The least significant bit of %d is: ", n);
-    printf("%d\n", n & 1);
+    // TODO
 }
 ```
 
@@ -96,6 +95,10 @@ int main(void) {
 
     printf("%d is even: %d\n", a, is_even(a));
     printf("%d is even: %d\n", b, is_even(b));
+}
+
+bool is_even(int n) {
+    // TODO
 }
 ```
 
@@ -197,3 +200,13 @@ Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, 
 4. Spenga tutti i led.
 
 [Scarica il main dell'esercizio](./code/simple_led.c)
+
+## XOR Linked
+
+Nei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l'operatore XOR.
+In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori `next` e `prev` per ogni nodo.
+
+Ogni nodo della lista contiene un campo `link` che è il risultato dell'operazione XOR tra i puntatori `next` e `prev`.
+Per calcolare il puntatore `next` o `prev` di un nodo, è sufficiente eseguire l'operazione XOR tra il puntatore `link` e il puntatore del nodo corrente.
+
+[Vedi un esempio di implementazione di una lista doppiamente concatenata usando XOR](./code/xor_ll.c).

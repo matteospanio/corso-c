@@ -81,6 +81,7 @@ void print_lsb(int n)
 Scrivere una funzione che dato un numero intero $n$, restituisca true se $n$ è pari, false altrimenti. Usare l'operatore AND per verificare se un numero è pari.
 
 ```c
+#include <stdio.h>
 #include <stdbool.h>
 bool is_even(int n);
 
@@ -189,3 +190,13 @@ Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, 
 4. Spenga tutti i led.
 
 {{< downloadthis ./code/simple_led.c dname="simple_led.c" label="Scarica il main dell'esercizio" >}}
+
+## XOR Linked
+
+Nei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l'operatore XOR.
+In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori `next` e `prev` per ogni nodo.
+
+Ogni nodo della lista contiene un campo `link` che è il risultato dell'operazione XOR tra i puntatori `next` e `prev`.
+Per calcolare il puntatore `next` o `prev` di un nodo, è sufficiente eseguire l'operazione XOR tra il puntatore `link` e il puntatore del nodo corrente.
+
+{{< downloadthis ./code/xor_ll.c dname="xor_ll.c" label="Scarica il codice d'esempio" >}}
