@@ -10,7 +10,7 @@ Gli operatori bitwise in C sono:
 - `<<` Shift a sinistra
 - `>>` Shift a destra
 
-## Calcoli
+## Tabelle di verità
 
 Questi operatori applicano le regole dell'algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.
 
@@ -21,7 +21,7 @@ Questi operatori applicano le regole dell'algebra booleana, pertanto sarà impor
 | 1 | 0 |    0    |   1    |    1    |
 | 1 | 1 |    1    |   1    |    0    |
 
-## Esempi
+## Rappresentazione in base 2 in C
 
 In elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l'interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo `char`:
 
@@ -53,7 +53,7 @@ switches = switches & 0;
 // switches: 0b00000000
 ```
 
-## Esercizio
+### Esempio di esercizio
 
 Scrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.
 
@@ -76,22 +76,7 @@ void print_lsb(int n)
 }
 ```
 
-## Esercizio
-
-Scrivere una funzione che dato un numero intero $n$, restituisca true se $n$ è pari, false altrimenti. Usare l'operatore AND per verificare se un numero è pari.
-
-```c
-#include <stdio.h>
-#include <stdbool.h>
-bool is_even(int n);
-
-int main(void) {
-    int a = 55, b = 48;
-
-    printf("%d is even: %d\n", a, is_even(a));
-    printf("%d is even: %d\n", b, is_even(b));
-}
-```
+## XOR
 
 L'operatore XOR è molto utile per invertire lo stato di un bit.
 
@@ -106,11 +91,14 @@ c = c ^ 'h';
 ```
 :::
 
-## Esempio
+### Esempio
 
-`65: 0b01000001`
+Vediamo ora un esempio di aritmetica con XOR: volendo fare encoding e decoding di un carattere, possiamo utilizzare l'operatore XOR.
+Supponiamo di voler cifrare il carattere `'A'` utilizzando la chiave `'I'`. La chiave è un carattere ASCII, quindi possiamo rappresentarla in binario:
 
-`73: 0b01001001`
+`A -> 65: 0b01000001`
+
+`I -> 73: 0b01001001`
 
 `08: 0b00001000`
 
@@ -118,9 +106,9 @@ c = c ^ 'h';
 
 8 ^ 73 = 65
 
-'A' ^ 'I' = '\b'
+`'A' ^ 'I' = '\b'`
 
-## Esempio
+Ora possiamo implementare un semplice programma di crittografia in C.
 
 ```c
 #include <stdio.h>
@@ -137,13 +125,6 @@ int main(void)
 }
 
 ```
-
-## Esercizi
-
-Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l'operatore XOR.
-
-{{< downloadthis ./code/xor_crypt.c dname="xor_crypt.c" label="Scarica il main dell'esercizio" >}}
-
 
 ## Shift
 
@@ -174,24 +155,23 @@ int main(void)
 }
 ```
 
-## Esercizi
+## Double Linked List
 
-Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char.
+Abbiamo visto le liste concatenate in precedenza, uno dei limiti di questa struttura dati è che non permette di navigare la lista in entrambe le direzioni.
+Per superare questo limite, è possibile implementare una lista doppiamente concatenata, in cui ogni nodo contiene un puntatore al nodo successivo e un puntatore al nodo precedente.
+In questo modo è possibile navigare la lista in entrambe le direzioni.
 
-Ad esempio, se il valore di `c` è 5, il programma dovrà stampare `00000101`.
+```c
+typedef struct node {
+    struct node *prev;
+    struct node *next;
+    int data;
+} Node;
+```
 
-## Esercizi
+Ovviamente questo approccio ha un costo in termini di memoria, poiché ogni nodo deve memorizzare due puntatori invece di uno.
 
-Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:
-
-1. Accenda il led più a destra;
-2. Accenda il led più a sinistra;
-3. Inverta lo stato di tutti i led;
-4. Spenga tutti i led.
-
-{{< downloadthis ./code/simple_led.c dname="simple_led.c" label="Scarica il main dell'esercizio" >}}
-
-## XOR Linked
+### XOR Linked List
 
 Nei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l'operatore XOR.
 In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori `next` e `prev` per ogni nodo.
@@ -199,4 +179,47 @@ In questo modo si può risparmiare memoria, poiché non è necessario memorizzar
 Ogni nodo della lista contiene un campo `link` che è il risultato dell'operazione XOR tra i puntatori `next` e `prev`.
 Per calcolare il puntatore `next` o `prev` di un nodo, è sufficiente eseguire l'operazione XOR tra il puntatore `link` e il puntatore del nodo corrente.
 
+```c
+typedef struct node {
+    struct node *link;
+    int data;
+} Node;
+```
+
 {{< downloadthis ./code/xor_ll.c dname="xor_ll.c" label="Scarica il codice d'esempio" >}}
+
+## Esercizi
+
+1. Scrivere una funzione che dato un numero intero $n$, restituisca true se $n$ è pari, false altrimenti. Usare l'operatore AND per verificare se un numero è pari.
+
+    ```c
+    #include <stdio.h>
+    #include <stdbool.h>
+    bool is_even(int n);
+
+    int main(void) {
+        int a = 55, b = 48;
+
+        printf("%d is even: %d\n", a, is_even(a));
+        printf("%d is even: %d\n", b, is_even(b));
+    }
+
+    bool is_even(int n) {
+        // TODO
+    }
+    ```
+
+2. Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l'operatore XOR.
+
+    {{< downloadthis ./code/xor_crypt.c dname="xor_crypt.c" label="Scarica il main dell'esercizio" >}}
+
+3. Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char. Ad esempio, se il valore di `c` è 5, il programma dovrà stampare `00000000 00000000 00000000 00000101`.
+
+4. Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:
+
+    1. Accenda il led più a destra;
+    2. Accenda il led più a sinistra;
+    3. Inverta lo stato di tutti i led;
+    4. Spenga tutti i led.
+
+    {{< downloadthis ./code/simple_led.c dname="simple_led.c" label="Scarica il main dell'esercizio" >}}

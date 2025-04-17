@@ -125,11 +125,11 @@ c = c ^ 'h';
 
 `08: 0b00001000`
 
-65 ^ 73 = 8
+`65 ^ 73 = 8`
 
-8 ^ 73 = 65
+`8 ^ 73 = 65`
 
-'A' ^ 'I' = '\b'
+`'A' ^ 'I' = '\b'` (man ascii)
 
 ## Esempio
 
@@ -188,7 +188,9 @@ int main(void)
 
 Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char.
 
-Ad esempio, se il valore di `c` è 5, il programma dovrà stampare `00000101`.
+Ad esempio, se il valore di `c` è 5, il programma dovrà stampare `00000000 00000000 00000000 00000101`.
+
+[Scarica il main dell'esercizio](./code/binary_print.c)
 
 ## Esercizi
 
@@ -201,12 +203,28 @@ Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, 
 
 [Scarica il main dell'esercizio](./code/simple_led.c)
 
-## XOR Linked
+## Double Linked List
+Le liste doppiamente concatenate sono una struttura dati che permette di memorizzare una sequenza di nodi, in cui ogni nodo contiene un puntatore al nodo successivo e un puntatore al nodo precedente.
+In questo modo è possibile navigare la lista in entrambe le direzioni.
+
+```c
+typedef struct node {
+    struct node *prev;
+    struct node *next;
+    int data;
+} Node;
+```
+
+## XOR Linked List
 
 Nei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l'operatore XOR.
 In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori `next` e `prev` per ogni nodo.
 
-Ogni nodo della lista contiene un campo `link` che è il risultato dell'operazione XOR tra i puntatori `next` e `prev`.
-Per calcolare il puntatore `next` o `prev` di un nodo, è sufficiente eseguire l'operazione XOR tra il puntatore `link` e il puntatore del nodo corrente.
+```c
+typedef struct node {
+    struct node *link;
+    int data;
+} Node;
+```
 
 [Vedi un esempio di implementazione di una lista doppiamente concatenata usando XOR](./code/xor_ll.c).
