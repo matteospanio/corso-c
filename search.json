@@ -959,407 +959,303 @@
     "text": "Esercizio: FizzBuzz\nScrivere un programma che stampi i numeri da 1 a 100, ma per i multipli di 3 stampi “Fizz” e per i multipli di 5 stampi “Buzz”. Per i numeri che sono sia multipli di 3 che di 5 stampi “FizzBuzz”.\n\n\n\n\n\n\nSuggerimento\n\n\nL’operatore modulo % restituisce il resto della divisione tra due numeri. Ad esempio, 5 % 3 restituisce 2, perché 5 diviso 3 dà 1 con un resto di 2."
   },
   {
-    "objectID": "lessons/05/index.html",
-    "href": "lessons/05/index.html",
-    "title": "Uso avanzato dei puntatori",
+    "objectID": "lessons/07/index.html",
+    "href": "lessons/07/index.html",
+    "title": "Operatori bitwise",
     "section": "",
-    "text": "Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:\n\nStrutture: insieme di dati\nUnioni: alternative tra tipi diversi\nEnumerazioni: insieme di costanti\n\n\n\nUna struttura è un insieme di dati, si differenzia dagli array perché:\n\ngli elementi possono essere di tipo diverso;\ngli elementi sono identificati da un nome;\n\nDi seguito un esempio di dichiarazione di una struttura:\nstruct studente {\n    char nome[20];\n    char cognome[20];\n    int matricola;\n};\nCome si può vedere dall’esempio, la dichiarazione di una struttura è introdotta dalla parola chiave struct, seguita dal nome della struttura e da una lista di dichiarazioni di variabili. Ricorda fortemente la dichiarazione di una classe in Java, in questo caso però non ci sono metodi, e i dati non si chiamano campi o attributi, ma membri. I membri hanno un nome e un tipo, possono essere di qualsiasi tipo, anche un’altra struttura. La grossa differenza con Java è che i membri sono sempre pubblici e non c’è modo di dichiararli privati.\n\n\nSi possono inizializzare le strutture quando vengono dichiarate:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\nSi possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0 (nel caso delle stringhe l’inizializzazione a zero equivale a dire stringa vuota \"\").\n\n\n\n\n\n\nAvviso\n\n\n\nIl tipo di una variabile struct è struct nome_struct, omettere la parola struct è un errore.\n\n\nUn modo alternativo di inizializzare una struttura è quello di specificare il nome dei membri:\nstruct studente s = {\n    .nome = \"Mario\",\n    .cognome = \"Rossi\",\n    .matricola = 12345,\n};\nIn questa modalità l’ordine degli elementi non è importante, ma è necessario specificare il nome di tutti i membri. Questo metodo è molto utile quando si hanno strutture con molti membri e si vuole inizializzare solo alcuni di essi.\n\n\n\nPer accedere ai singoli membri di una struttura si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;\n\n\n\nSi può copiare interamente una struttura usando una variabile dello stesso tipo:\nstruct studente a, b = {\"Matteo\", \"Spanio\", 56789};\na = b;\nIn questo caso si può notare una delle principali differenze con gli array:\n1int a[] = {1, 2, 3, 4, 5};\n2int *b;\n3b = a;\n\n1\n\na è un array di interi;\n\n2\n\nb è un puntatore a intero;\n\n3\n\nb = a non è una copia dell’array a ma assegna a b l’indirizzo di a, pertanto qualsiasi modifica dei dati di a si riflette anche in b (e viceversa). Cioè a e b puntano alla stessa area di memoria.\n\n\nUtilizzando le strutture invece, la copia è effettiva:\nstruct array {\n    int dati[5];\n};\n1struct array a = {{1, 2, 3, 4, 5}};\n2struct array b;\n3b = a;\n\n1\n\na inizializzo a con un array di interi;\n\n2\n\nb dichiaro b come struttura;\n\n3\n\nb = a copio a in b, vengono effettivamente copiati i dati dell’array a.dati in b.dati. Cioè a e b si trovano in aree di memoria diverse.\n\n\n\n\n\n\n\n\nImportante\n\n\n\nSolo l’operatore = è valido tra 2 struct, gli operatori == e != NON si possono usare per vedere se due strutture sono uguali.\n\n\n\n\n\nLe stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.\nLe strutture col nome, detto structure tag, si dichiarano come abbiamo già visto:\nstruct nome {\n    type member_name;\n};\n\n\n\nNel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:\nstruct { int x; int y; } punto;\npunto.x = 12;\npunto.y = 18;\nCosì facendo la struttura non ha un nome e non può essere riutilizzata facilmente, ogni volta che si vuole dichiarare una variabile di quel tipo bisogna riscrivere la struttura.\n\n\n\ntypedef è un operatore che permette di definire alias per i tipi:\ntypedef int Bool;\ntypedef float Euro;\ntypedef char* String;\nQueste dichiarazioni permettono scrivere codice più chiaro.\nLo stesso effetto si può ottenere dichiarando delle macro:\n#define BOOL int\n#define EURO float\n#define STRING char*\nIn generale si preferisce usare typedef perché è più chiaro e il compilatore può fare dei controlli sui tipi.\nDal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave struct per riferirsi al tipo delle strutture grazie a typedef:\ntypedef struct {\n    int x;\n    int y;\n} Point;\nPoint punto = {\n    .x = 1,\n    .y = 2,\n};\nIn questo modo si può dichiarare una variabile di tipo Point senza usare la parola chiave struct.\n\n\n\nUna volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:\ntypedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint s;\ns = (Point) { .x = 1, .y = 2 };\nA prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:\n#include &lt;math.h&gt;\ntypedef struct point {\n    int x;\n    int y;\n} Point;\n\nPoint somma(Point a, struct point b) {\n    return (Point) { .x = a.x + b.x, .y = a.y + b.y };\n}\n\nfloat distanza(Point a, Point b) {\n    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));\n}\n\n\n\nSi possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):\nstruct point *p;\nPoint *p1;\n\nvoid foo(Point* p);\n\n\n\n\nSi possono creare array di strutture:\nPoint punti[10];\npunti[0].x = 1;\nSi può inserire un array in una struttura:\nstruct libretto {\n    int voti[10];\n    int num_voti;\n};\nSi può inserire una struttura in un’altra struttura:\nstruct data {\n    int giorno;\n    int mese;\n    int anno;\n};\n\nstruct persona {\n    char nome[20];\n    char cognome[20];\n    struct data data_nascita;\n};\nsi possono anche innestare struct anonime:\nstruct {\n    char nome[20];\n    char cognome[20];\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data_nascita;\n} persona;\nSi possono inserire unioni1 in una struttura:\nstruct {\n    char nome[20];\n    char cognome[20];\n    union {\n        int matricola;\n        char codice_fiscale[16];\n    } id;\n} persona;\nSi può inserire strutture in unioni:\nunion {\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data;\n    int intero;\n} u;\n\n\n\nVediamo ora un esempio di programma basato sulle strutture.\nSi vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:\n\nimplementare una struttura dati per memorizzare i dati di un giocatore di calcio;\nmemorizzare l’elenco dei giocatori della squadra;\nordinare i giocatori in base numero di maglia.\n\nUn giocatore è identificabile da nome, cognome e numero di maglia (chiaramente si potrebbero aggiungere molti altri dati, come la data di nascita, il ruolo, ecc.). Si può quindi definire una struttura Giocatore che contenga questi dati:\n#define BUFFER_SIZE 128 // dimensione massima di un buffer\ntypedef struct giocatore\n{\n    char nome[BUFFER_SIZE];\n    char cognome[BUFFER_SIZE];\n    unsigned int numero_maglia; // non esistono numeri di maglia negativi\n} Giocatore;\nIl codice sopra riportato definisce la struttura struct giocatore e vi associa il nuovo tipo Giocatore. La struttura contiene tre membri: nome, cognome e numero_maglia, in quanto stringhe, il nome e cognome sono di tipo char[], mentre il numero di maglia è un intero senza segno. Si noti che gli array vengono dichiarati con una dimensione massima BUFFER_SIZE, ciò vuol dire che il nome e il cognome possono avere una lunghezza massima di BUFFER_SIZE - 1 caratteri, purtroppo C non controlla che questa condizione sia rispettata. In altre parole, all’interno del programma posso inizializzare una struttura Giocatore con un nome o cognome più lungo di BUFFER_SIZE - 1 caratteri, ma il comportamento del programma in questo caso è indefinito. Questo è uno dei più grandi problemi di C.\n\n\nLa struct Giocatore è di fatto un tipo di dato, possiamo quindi creare un array di giocatori dove memorizzare la formazione:\n#define NUM 22\nGiocatore squadra[NUM];\nLa squadra è composta da 22 giocatori (11 titolari, 5 in panchina e 6 riserve). Questa dichiarazione crea un array di 22 elementi di tipo Giocatore e lo assegna alla variabile squadra. Quando si dichiara un array di strutture, si può accedere ai membri di ciascuna struttura usando la notazione . (punto):\nsquadra[0].numero_maglia = 1;\nQuesto perchè squadra[0] è una struttura di tipo Giocatore e numero_maglia è un membro di questa struttura, quando invece si ha un puntatore a una struttura, si usa l’operatore -&gt; (freccia):\nGiocatore *p = &squadra[0];\np-&gt;numero_maglia = 1;\nL’operatore -&gt; è una comodità sintattica, infatti p-&gt;numero_maglia è equivalente a (*p).numero_maglia.\n\n\n\nPer ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:\nIl più intuitivo (ma non il più efficiente) è il Bubble Sort, di seguito una descrizione dell’algoritmo in pseudocodice:\nRepeat n-1 times\n    For i from 0 to n–2\n        If numbers[i] and numbers[i+1] out of order\n            Swap them\n    If no swaps\n        Quit\nL’idea è quella di scorrere l’array di numeri e scambiare i numeri adiacenti se non sono in ordine. Questo processo viene ripetuto finché non si è completato un passaggio senza scambi. Questo algoritmo è molto inefficiente, ma è molto semplice da implementare. La complessità computazionale del Bubble Sort è \\(O(n^2)\\).\nL’implementazione dello pseudocodice è molto semplice, infatti si tratta di due cicli annidati e uno scambio di due elementi:\n\nSi scorre l’array squadra NUM - 1 volte;\nSi scorre l’array squadra da 0 a NUM - 2;\nSi controlla se squadra[i] e squadra[i + 1] sono fuori ordine, in tal caso si scambiano. La funzione swap l’abbiamo già vista nella lezione sui puntatori.\n\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n            }\n        }\n    }\n}\nPer ottimizzare il codice, si può usare un flag per controllare se durante un passaggio non si è effettuato alcuno scambio, in tal caso si può uscire dal ciclo:\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        int scambiato = 0;\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n                scambiato = 1;\n            }\n        }\n        if (!scambiato)\n        {\n            break;\n        }\n    }\n}\nDi seguito un’animazione che mostra come funziona il Bubble Sort:\n\nSe stai consultando questa guida in formato HTML, puoi scaricare una versione completa del codice sorgente cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo \n\n\n\n\nLe unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso, la differenza sta nel fatto che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta:\nunion {\n    int i;\n    double d;\n} u;\n\nstruct {\n    int i;\n    double d;\n} s;\nIn questo caso u occupa in memoria lo spazio necessario per la variabile più grande, in questo caso double (8 byte), mentre s occupa lo spazio necessario per entrambi i membri (4 + 8 byte).\nSi può inizializzare solo un elemento di una union:\nunion {\n    int i;\n    double d;\n} u = { .i = 3 };\nSi presti molta attenzione a non leggere mai un membro di una union che non è stato inizializzato, il comportamento del programma in questo caso è indefinito.\nCome per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef.\n\n\n\nIn molti programmi si usano interi come “codici” per indicare varie cose. Un caso comune sono per esempio i codici di errore.\nSpesso si usano macro o costanti, ma è più chiaro usare enumerazioni:\nenum {\n    CUORI,\n    QUADRI,\n    FIORI,\n    PICCHE\n} s1, s2;`\nOra le variabili s1 e s2 possono assumere solo uno dei quattro valori definiti.\nUn esempio molto comune è la definizione del tipo booleano:\ntypedef enum {\n    FALSE,\n    TRUE\n} Bool;\nIn questo modo si può usare Bool come tipo di variabile, e assegnare solo i valori FALSE e TRUE. Solitamente gli elementi di un’enumerazione sono scritti in maiuscolo, per distinguerli dalle variabili. In questo caso FALSE e TRUE sono costanti, FALSE ha valore 0 e TRUE ha valore 1.\nDi default C assegna dei valori interi crescenti agli elementi dell’enumerazione, ma si possono assegnare valori specifici:\nenum {\n    LUN = 1,\n    MAR = 2,\n    MER = 3,\n    GIO = 4,\n    VEN = 5,\n    SAB = 6,\n    DOM = 7\n} giorno;\nSe non si assegna un valore, C assegna il valore dell’elemento precedente più uno.\n\n\n\nSi vuole implementare il sistema informatico in C per rappresentare una squadra pokemon e ordinare la squadra per i nomi dei pokemon in ordine alfabetico.\nSe stai consultando questa guida in formato HTML, puoi scaricare il codice sorgente da modificare cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo",
+    "text": "Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili. Questi operatori sono molto utili quando si deve lavorare con i registri di un microcontrollore o con i dati grezzi provenienti da un sensore.\nGli operatori bitwise in C sono: - & AND - | OR - ^ XOR - ~ NOT - &lt;&lt; Shift a sinistra - &gt;&gt; Shift a destra\n\n\nQuesti operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.\n\n\n\nA\nB\nA AND B\nA OR B\nA XOR B\n\n\n\n\n0\n0\n0\n0\n0\n\n\n0\n1\n0\n1\n1\n\n\n1\n0\n0\n1\n1\n\n\n1\n1\n1\n1\n0\n\n\n\n\n\n\nIn elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l’interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo char:\nunsigned char switches = 0b00001000;\n// oppure\nunsigned char switches = 8;\nIn questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.\nIpotizzando di voler accendere un altro interruttore, si può utilizzare l’operatore OR:\n// switches = 0b00001000\nswitches = switches | 0b00000100;\n// oppure\nswitches = switches | 4;\nOra il valore di switches sarà 0b00001100. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.\nPer spegnere tutti gli interruttori si può utilizzare l’operatore AND:\nswitches = switches & 0b00000000;\n// oppure\nswitches = switches & 0;\n// switches: 0b00000000\n\n\n\nScrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.\n#include &lt;stdio.h&gt;\nvoid print_lsb(int n);\n\nint main(void)\n{\n    int a = 127, b = 128;\n\n    print_lsb(a);\n    print_lsb(b);\n}\n\nvoid print_lsb(int n)\n{\n    printf(\"The least significant bit of %d is: \", n);\n    printf(\"%d\\n\", n & 1);\n}\n\n\n\nScrivere una funzione che dato un numero intero \\(n\\), restituisca true se \\(n\\) è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.\n#include &lt;stdio.h&gt;\n#include &lt;stdbool.h&gt;\nbool is_even(int n);\n\nint main(void) {\n    int a = 55, b = 48;\n\n    printf(\"%d is even: %d\\n\", a, is_even(a));\n    printf(\"%d is even: %d\\n\", b, is_even(b));\n}\nL’operatore XOR è molto utile per invertire lo stato di un bit.\n\n\n\n\n\n\nNota\n\n\n\nEseguire l’operazione di XOR due volte su un bit restituisce il valore originale.\nchar c = 'A';\nc = c ^ 'h';\nc = c ^ 'h';\n// c: 'A'\n\n\n\n\n\n65: 0b01000001\n73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n‘A’ ^ ‘I’ = ’\n\n\n\n#include &lt;stdio.h&gt;\n#define KEY 'h'\n\nint main(void)\n{\n    char c = 'A';\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n}\n\n\n\nScrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\n Scarica il main dell'esercizio \n\n\n\nGli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.\nunsigned char c = 0b00000001;\nc = c &lt;&lt; 1;\n// c: 0b00000010\nc = c &lt;&lt; 3;\n// c: 0b00010000\nc = c &gt;&gt; 2;\n// c: 0b00000100\n\n\n\nScrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int n = 5;\n    n = n &lt;&lt; 1;\n    printf(\"%d\\n\", n);\n}\n\n\n\nScrivere un programma che stampi a monitor la codifica in binario di un unsigned char.\nAd esempio, se il valore di c è 5, il programma dovrà stampare 00000101.\n\n\n\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\n Scarica il main dell'esercizio \n\n\n\nNei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori next e prev per ogni nodo.\nOgni nodo della lista contiene un campo link che è il risultato dell’operazione XOR tra i puntatori next e prev. Per calcolare il puntatore next o prev di un nodo, è sufficiente eseguire l’operazione XOR tra il puntatore link e il puntatore del nodo corrente.\n Scarica il codice d'esempio",
     "crumbs": [
       "Lezioni",
-      "Uso avanzato dei puntatori"
+      "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#struct-3",
-    "href": "lessons/05/index.html#struct-3",
-    "title": "Uso avanzato dei puntatori",
+    "objectID": "lessons/07/index.html#calcoli-1",
+    "href": "lessons/07/index.html#calcoli-1",
+    "title": "Operatori bitwise",
     "section": "",
-    "text": "Una struttura è un insieme di dati, si differenzia dagli array perché:\n\ngli elementi possono essere di tipo diverso;\ngli elementi sono identificati da un nome;\n\nDi seguito un esempio di dichiarazione di una struttura:\nstruct studente {\n    char nome[20];\n    char cognome[20];\n    int matricola;\n};\nCome si può vedere dall’esempio, la dichiarazione di una struttura è introdotta dalla parola chiave struct, seguita dal nome della struttura e da una lista di dichiarazioni di variabili. Ricorda fortemente la dichiarazione di una classe in Java, in questo caso però non ci sono metodi, e i dati non si chiamano campi o attributi, ma membri. I membri hanno un nome e un tipo, possono essere di qualsiasi tipo, anche un’altra struttura. La grossa differenza con Java è che i membri sono sempre pubblici e non c’è modo di dichiararli privati.\n\n\nSi possono inizializzare le strutture quando vengono dichiarate:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\nSi possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0 (nel caso delle stringhe l’inizializzazione a zero equivale a dire stringa vuota \"\").\n\n\n\n\n\n\nAvviso\n\n\n\nIl tipo di una variabile struct è struct nome_struct, omettere la parola struct è un errore.\n\n\nUn modo alternativo di inizializzare una struttura è quello di specificare il nome dei membri:\nstruct studente s = {\n    .nome = \"Mario\",\n    .cognome = \"Rossi\",\n    .matricola = 12345,\n};\nIn questa modalità l’ordine degli elementi non è importante, ma è necessario specificare il nome di tutti i membri. Questo metodo è molto utile quando si hanno strutture con molti membri e si vuole inizializzare solo alcuni di essi.\n\n\n\nPer accedere ai singoli membri di una struttura si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;\n\n\n\nSi può copiare interamente una struttura usando una variabile dello stesso tipo:\nstruct studente a, b = {\"Matteo\", \"Spanio\", 56789};\na = b;\nIn questo caso si può notare una delle principali differenze con gli array:\n1int a[] = {1, 2, 3, 4, 5};\n2int *b;\n3b = a;\n\n1\n\na è un array di interi;\n\n2\n\nb è un puntatore a intero;\n\n3\n\nb = a non è una copia dell’array a ma assegna a b l’indirizzo di a, pertanto qualsiasi modifica dei dati di a si riflette anche in b (e viceversa). Cioè a e b puntano alla stessa area di memoria.\n\n\nUtilizzando le strutture invece, la copia è effettiva:\nstruct array {\n    int dati[5];\n};\n1struct array a = {{1, 2, 3, 4, 5}};\n2struct array b;\n3b = a;\n\n1\n\na inizializzo a con un array di interi;\n\n2\n\nb dichiaro b come struttura;\n\n3\n\nb = a copio a in b, vengono effettivamente copiati i dati dell’array a.dati in b.dati. Cioè a e b si trovano in aree di memoria diverse.\n\n\n\n\n\n\n\n\nImportante\n\n\n\nSolo l’operatore = è valido tra 2 struct, gli operatori == e != NON si possono usare per vedere se due strutture sono uguali.\n\n\n\n\n\nLe stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.\nLe strutture col nome, detto structure tag, si dichiarano come abbiamo già visto:\nstruct nome {\n    type member_name;\n};\n\n\n\nNel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:\nstruct { int x; int y; } punto;\npunto.x = 12;\npunto.y = 18;\nCosì facendo la struttura non ha un nome e non può essere riutilizzata facilmente, ogni volta che si vuole dichiarare una variabile di quel tipo bisogna riscrivere la struttura.\n\n\n\ntypedef è un operatore che permette di definire alias per i tipi:\ntypedef int Bool;\ntypedef float Euro;\ntypedef char* String;\nQueste dichiarazioni permettono scrivere codice più chiaro.\nLo stesso effetto si può ottenere dichiarando delle macro:\n#define BOOL int\n#define EURO float\n#define STRING char*\nIn generale si preferisce usare typedef perché è più chiaro e il compilatore può fare dei controlli sui tipi.\nDal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave struct per riferirsi al tipo delle strutture grazie a typedef:\ntypedef struct {\n    int x;\n    int y;\n} Point;\nPoint punto = {\n    .x = 1,\n    .y = 2,\n};\nIn questo modo si può dichiarare una variabile di tipo Point senza usare la parola chiave struct.\n\n\n\nUna volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:\ntypedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint s;\ns = (Point) { .x = 1, .y = 2 };\nA prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:\n#include &lt;math.h&gt;\ntypedef struct point {\n    int x;\n    int y;\n} Point;\n\nPoint somma(Point a, struct point b) {\n    return (Point) { .x = a.x + b.x, .y = a.y + b.y };\n}\n\nfloat distanza(Point a, Point b) {\n    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));\n}\n\n\n\nSi possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):\nstruct point *p;\nPoint *p1;\n\nvoid foo(Point* p);",
+    "text": "Questi operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.\n\n\n\nA\nB\nA AND B\nA OR B\nA XOR B\n\n\n\n\n0\n0\n0\n0\n0\n\n\n0\n1\n0\n1\n1\n\n\n1\n0\n0\n1\n1\n\n\n1\n1\n1\n1\n0",
     "crumbs": [
       "Lezioni",
-      "Uso avanzato dei puntatori"
+      "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#array-di-struct",
-    "href": "lessons/05/index.html#array-di-struct",
-    "title": "Uso avanzato dei puntatori",
+    "objectID": "lessons/07/index.html#esempi",
+    "href": "lessons/07/index.html#esempi",
+    "title": "Operatori bitwise",
     "section": "",
-    "text": "Si possono creare array di strutture:\nPoint punti[10];\npunti[0].x = 1;\nSi può inserire un array in una struttura:\nstruct libretto {\n    int voti[10];\n    int num_voti;\n};\nSi può inserire una struttura in un’altra struttura:\nstruct data {\n    int giorno;\n    int mese;\n    int anno;\n};\n\nstruct persona {\n    char nome[20];\n    char cognome[20];\n    struct data data_nascita;\n};\nsi possono anche innestare struct anonime:\nstruct {\n    char nome[20];\n    char cognome[20];\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data_nascita;\n} persona;\nSi possono inserire unioni1 in una struttura:\nstruct {\n    char nome[20];\n    char cognome[20];\n    union {\n        int matricola;\n        char codice_fiscale[16];\n    } id;\n} persona;\nSi può inserire strutture in unioni:\nunion {\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data;\n    int intero;\n} u;",
+    "text": "In elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l’interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo char:\nunsigned char switches = 0b00001000;\n// oppure\nunsigned char switches = 8;\nIn questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.\nIpotizzando di voler accendere un altro interruttore, si può utilizzare l’operatore OR:\n// switches = 0b00001000\nswitches = switches | 0b00000100;\n// oppure\nswitches = switches | 4;\nOra il valore di switches sarà 0b00001100. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.\nPer spegnere tutti gli interruttori si può utilizzare l’operatore AND:\nswitches = switches & 0b00000000;\n// oppure\nswitches = switches & 0;\n// switches: 0b00000000",
     "crumbs": [
       "Lezioni",
-      "Uso avanzato dei puntatori"
+      "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#esempio-mondiali-1982",
-    "href": "lessons/05/index.html#esempio-mondiali-1982",
-    "title": "Uso avanzato dei puntatori",
+    "objectID": "lessons/07/index.html#esercizio-2",
+    "href": "lessons/07/index.html#esercizio-2",
+    "title": "Operatori bitwise",
     "section": "",
-    "text": "Vediamo ora un esempio di programma basato sulle strutture.\nSi vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:\n\nimplementare una struttura dati per memorizzare i dati di un giocatore di calcio;\nmemorizzare l’elenco dei giocatori della squadra;\nordinare i giocatori in base numero di maglia.\n\nUn giocatore è identificabile da nome, cognome e numero di maglia (chiaramente si potrebbero aggiungere molti altri dati, come la data di nascita, il ruolo, ecc.). Si può quindi definire una struttura Giocatore che contenga questi dati:\n#define BUFFER_SIZE 128 // dimensione massima di un buffer\ntypedef struct giocatore\n{\n    char nome[BUFFER_SIZE];\n    char cognome[BUFFER_SIZE];\n    unsigned int numero_maglia; // non esistono numeri di maglia negativi\n} Giocatore;\nIl codice sopra riportato definisce la struttura struct giocatore e vi associa il nuovo tipo Giocatore. La struttura contiene tre membri: nome, cognome e numero_maglia, in quanto stringhe, il nome e cognome sono di tipo char[], mentre il numero di maglia è un intero senza segno. Si noti che gli array vengono dichiarati con una dimensione massima BUFFER_SIZE, ciò vuol dire che il nome e il cognome possono avere una lunghezza massima di BUFFER_SIZE - 1 caratteri, purtroppo C non controlla che questa condizione sia rispettata. In altre parole, all’interno del programma posso inizializzare una struttura Giocatore con un nome o cognome più lungo di BUFFER_SIZE - 1 caratteri, ma il comportamento del programma in questo caso è indefinito. Questo è uno dei più grandi problemi di C.\n\n\nLa struct Giocatore è di fatto un tipo di dato, possiamo quindi creare un array di giocatori dove memorizzare la formazione:\n#define NUM 22\nGiocatore squadra[NUM];\nLa squadra è composta da 22 giocatori (11 titolari, 5 in panchina e 6 riserve). Questa dichiarazione crea un array di 22 elementi di tipo Giocatore e lo assegna alla variabile squadra. Quando si dichiara un array di strutture, si può accedere ai membri di ciascuna struttura usando la notazione . (punto):\nsquadra[0].numero_maglia = 1;\nQuesto perchè squadra[0] è una struttura di tipo Giocatore e numero_maglia è un membro di questa struttura, quando invece si ha un puntatore a una struttura, si usa l’operatore -&gt; (freccia):\nGiocatore *p = &squadra[0];\np-&gt;numero_maglia = 1;\nL’operatore -&gt; è una comodità sintattica, infatti p-&gt;numero_maglia è equivalente a (*p).numero_maglia.\n\n\n\nPer ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:\nIl più intuitivo (ma non il più efficiente) è il Bubble Sort, di seguito una descrizione dell’algoritmo in pseudocodice:\nRepeat n-1 times\n    For i from 0 to n–2\n        If numbers[i] and numbers[i+1] out of order\n            Swap them\n    If no swaps\n        Quit\nL’idea è quella di scorrere l’array di numeri e scambiare i numeri adiacenti se non sono in ordine. Questo processo viene ripetuto finché non si è completato un passaggio senza scambi. Questo algoritmo è molto inefficiente, ma è molto semplice da implementare. La complessità computazionale del Bubble Sort è \\(O(n^2)\\).\nL’implementazione dello pseudocodice è molto semplice, infatti si tratta di due cicli annidati e uno scambio di due elementi:\n\nSi scorre l’array squadra NUM - 1 volte;\nSi scorre l’array squadra da 0 a NUM - 2;\nSi controlla se squadra[i] e squadra[i + 1] sono fuori ordine, in tal caso si scambiano. La funzione swap l’abbiamo già vista nella lezione sui puntatori.\n\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n            }\n        }\n    }\n}\nPer ottimizzare il codice, si può usare un flag per controllare se durante un passaggio non si è effettuato alcuno scambio, in tal caso si può uscire dal ciclo:\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        int scambiato = 0;\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n                scambiato = 1;\n            }\n        }\n        if (!scambiato)\n        {\n            break;\n        }\n    }\n}\nDi seguito un’animazione che mostra come funziona il Bubble Sort:\n\nSe stai consultando questa guida in formato HTML, puoi scaricare una versione completa del codice sorgente cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo",
+    "text": "Scrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.\n#include &lt;stdio.h&gt;\nvoid print_lsb(int n);\n\nint main(void)\n{\n    int a = 127, b = 128;\n\n    print_lsb(a);\n    print_lsb(b);\n}\n\nvoid print_lsb(int n)\n{\n    printf(\"The least significant bit of %d is: \", n);\n    printf(\"%d\\n\", n & 1);\n}",
     "crumbs": [
       "Lezioni",
-      "Uso avanzato dei puntatori"
+      "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#unioni-2",
-    "href": "lessons/05/index.html#unioni-2",
-    "title": "Uso avanzato dei puntatori",
+    "objectID": "lessons/07/index.html#esercizio-3",
+    "href": "lessons/07/index.html#esercizio-3",
+    "title": "Operatori bitwise",
     "section": "",
-    "text": "Le unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso, la differenza sta nel fatto che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta:\nunion {\n    int i;\n    double d;\n} u;\n\nstruct {\n    int i;\n    double d;\n} s;\nIn questo caso u occupa in memoria lo spazio necessario per la variabile più grande, in questo caso double (8 byte), mentre s occupa lo spazio necessario per entrambi i membri (4 + 8 byte).\nSi può inizializzare solo un elemento di una union:\nunion {\n    int i;\n    double d;\n} u = { .i = 3 };\nSi presti molta attenzione a non leggere mai un membro di una union che non è stato inizializzato, il comportamento del programma in questo caso è indefinito.\nCome per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef.",
+    "text": "Scrivere una funzione che dato un numero intero \\(n\\), restituisca true se \\(n\\) è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.\n#include &lt;stdio.h&gt;\n#include &lt;stdbool.h&gt;\nbool is_even(int n);\n\nint main(void) {\n    int a = 55, b = 48;\n\n    printf(\"%d is even: %d\\n\", a, is_even(a));\n    printf(\"%d is even: %d\\n\", b, is_even(b));\n}\nL’operatore XOR è molto utile per invertire lo stato di un bit.\n\n\n\n\n\n\nNota\n\n\n\nEseguire l’operazione di XOR due volte su un bit restituisce il valore originale.\nchar c = 'A';\nc = c ^ 'h';\nc = c ^ 'h';\n// c: 'A'",
     "crumbs": [
       "Lezioni",
-      "Uso avanzato dei puntatori"
+      "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#enumerazioni-1",
-    "href": "lessons/05/index.html#enumerazioni-1",
-    "title": "Uso avanzato dei puntatori",
+    "objectID": "lessons/07/index.html#esempio-2",
+    "href": "lessons/07/index.html#esempio-2",
+    "title": "Operatori bitwise",
     "section": "",
-    "text": "In molti programmi si usano interi come “codici” per indicare varie cose. Un caso comune sono per esempio i codici di errore.\nSpesso si usano macro o costanti, ma è più chiaro usare enumerazioni:\nenum {\n    CUORI,\n    QUADRI,\n    FIORI,\n    PICCHE\n} s1, s2;`\nOra le variabili s1 e s2 possono assumere solo uno dei quattro valori definiti.\nUn esempio molto comune è la definizione del tipo booleano:\ntypedef enum {\n    FALSE,\n    TRUE\n} Bool;\nIn questo modo si può usare Bool come tipo di variabile, e assegnare solo i valori FALSE e TRUE. Solitamente gli elementi di un’enumerazione sono scritti in maiuscolo, per distinguerli dalle variabili. In questo caso FALSE e TRUE sono costanti, FALSE ha valore 0 e TRUE ha valore 1.\nDi default C assegna dei valori interi crescenti agli elementi dell’enumerazione, ma si possono assegnare valori specifici:\nenum {\n    LUN = 1,\n    MAR = 2,\n    MER = 3,\n    GIO = 4,\n    VEN = 5,\n    SAB = 6,\n    DOM = 7\n} giorno;\nSe non si assegna un valore, C assegna il valore dell’elemento precedente più uno.",
+    "text": "65: 0b01000001\n73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n‘A’ ^ ‘I’ = ’",
     "crumbs": [
       "Lezioni",
-      "Uso avanzato dei puntatori"
+      "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#esercizio-1",
-    "href": "lessons/05/index.html#esercizio-1",
-    "title": "Uso avanzato dei puntatori",
+    "objectID": "lessons/07/index.html#esempio-3",
+    "href": "lessons/07/index.html#esempio-3",
+    "title": "Operatori bitwise",
     "section": "",
-    "text": "Si vuole implementare il sistema informatico in C per rappresentare una squadra pokemon e ordinare la squadra per i nomi dei pokemon in ordine alfabetico.\nSe stai consultando questa guida in formato HTML, puoi scaricare il codice sorgente da modificare cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo",
+    "text": "#include &lt;stdio.h&gt;\n#define KEY 'h'\n\nint main(void)\n{\n    char c = 'A';\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n}",
     "crumbs": [
       "Lezioni",
-      "Uso avanzato dei puntatori"
+      "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#array-con-strutture-2",
-    "href": "lessons/05/index.html#array-con-strutture-2",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Array con strutture",
-    "text": "Array con strutture\nGli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza a mano, per questo è una pratica comune creare una struttura che contenga un array e la sua lunghezza:\n#define MAX 1024\n\ntypedef struct intarray {\n    int array[MAX];\n    int length;\n} IntArray;\nQuesta struttura dati si comporta come segue: array è un array con una dimensione massima di MAX elementi, length è il numero di elementi effettivamente presenti nell’array, ciò vuol dire che length è sempre minore o uguale a MAX. Di seguito un esempio di utilizzo:\n1IntArray a = {.length=0};\n2a.array[a.length++] = 1;\n3printf(\"%d, %d\\n\", a.array[0], a.length);\n\n1\n\nInizializzo la struttura a con length=0, non c’è bisogno di inizializzare l’array perchè si presuppone che prima di accedere all’array si verifichi sempre fino a che indice è valido l’array tramite length;\n\n2\n\nInizializzo il primo elemento dell’array con il valore 1 e incremento length, si noti che l’espressione a.length++ restituisce il valore di a.length prima dell’incremento;\n\n3\n\nStampo il primo elemento dell’array e la lunghezza dell’array.\n\n\nAdesso si può passare la struttura come argomento di una funzione:\n1void stampa_array(IntArray a) {\n2    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\n\n1\n\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.\n\n2\n\nSi può usare a.length per scorrere l’array, pertanto se la dimensione è 0 il ciclo non viene eseguito, ecco perchè non c’è bisogno di inizializzare i valori dell’array se length è 0.\n\n\nSe stai consultando questa guida in formato HTML, puoi scaricare un esempio di codice sorgente in cui si utilizza questa struttura dati cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo",
+    "objectID": "lessons/07/index.html#esercizi-3",
+    "href": "lessons/07/index.html#esercizi-3",
+    "title": "Operatori bitwise",
+    "section": "",
+    "text": "Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\n Scarica il main dell'esercizio",
     "crumbs": [
       "Lezioni",
-      "Uso avanzato dei puntatori"
+      "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/05/index.html#footnotes",
-    "href": "lessons/05/index.html#footnotes",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Note",
-    "text": "Note\n\n\nSi veda la sezione seguente per informazioni dettagliate sulle unioni.↩︎",
+    "objectID": "lessons/07/index.html#shift-1",
+    "href": "lessons/07/index.html#shift-1",
+    "title": "Operatori bitwise",
+    "section": "",
+    "text": "Gli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.\nunsigned char c = 0b00000001;\nc = c &lt;&lt; 1;\n// c: 0b00000010\nc = c &lt;&lt; 3;\n// c: 0b00010000\nc = c &gt;&gt; 2;\n// c: 0b00000100",
     "crumbs": [
       "Lezioni",
-      "Uso avanzato dei puntatori"
+      "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/05/slide.html#strutture-in-c",
-    "href": "lessons/05/slide.html#strutture-in-c",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Strutture in C",
-    "text": "Strutture in C\nIl C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi per aggregare dati:\n\nStrutture: insieme di dati\nUnioni: alternative tra tipi diversi\nEnumerazioni: insieme di costanti"
+    "objectID": "lessons/07/index.html#esempio-shift-1",
+    "href": "lessons/07/index.html#esempio-shift-1",
+    "title": "Operatori bitwise",
+    "section": "",
+    "text": "Scrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int n = 5;\n    n = n &lt;&lt; 1;\n    printf(\"%d\\n\", n);\n}",
+    "crumbs": [
+      "Lezioni",
+      "Operatori bitwise"
+    ]
   },
   {
-    "objectID": "lessons/05/slide.html#struct",
-    "href": "lessons/05/slide.html#struct",
-    "title": "Uso avanzato dei puntatori",
-    "section": "struct",
-    "text": "struct\nUna struttura è un insieme di dati, si differenzia dagli array perché:\n\ngli elementi possono essere di tipo diverso\ngli elementi sono identificati da un nome\n\nstruct studente {\n    char nome[20];\n    char cognome[20];\n    int matricola;\n};"
+    "objectID": "lessons/07/index.html#esercizi-4",
+    "href": "lessons/07/index.html#esercizi-4",
+    "title": "Operatori bitwise",
+    "section": "",
+    "text": "Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char.\nAd esempio, se il valore di c è 5, il programma dovrà stampare 00000101.",
+    "crumbs": [
+      "Lezioni",
+      "Operatori bitwise"
+    ]
   },
   {
-    "objectID": "lessons/05/slide.html#inizializzazione",
-    "href": "lessons/05/slide.html#inizializzazione",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Inizializzazione",
-    "text": "Inizializzazione\nSi possono inizializzare le strutture quando vengono dichiarate:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\nSi possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0.\nUn modo alternativo di inizializzare:\nstruct studente s = {\n    .nome = \"Mario\",\n    .cognome = \"Rossi\",\n    .matricole = 12345,\n};"
+    "objectID": "lessons/07/index.html#esercizi-5",
+    "href": "lessons/07/index.html#esercizi-5",
+    "title": "Operatori bitwise",
+    "section": "",
+    "text": "Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\n Scarica il main dell'esercizio",
+    "crumbs": [
+      "Lezioni",
+      "Operatori bitwise"
+    ]
   },
   {
-    "objectID": "lessons/05/slide.html#accedere-agli-elementi",
-    "href": "lessons/05/slide.html#accedere-agli-elementi",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Accedere agli elementi",
-    "text": "Accedere agli elementi\nPer accedere ai singoli elementi di una struttura (detti anche membri) si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;"
+    "objectID": "lessons/07/index.html#xor-linked-1",
+    "href": "lessons/07/index.html#xor-linked-1",
+    "title": "Operatori bitwise",
+    "section": "",
+    "text": "Nei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori next e prev per ogni nodo.\nOgni nodo della lista contiene un campo link che è il risultato dell’operazione XOR tra i puntatori next e prev. Per calcolare il puntatore next o prev di un nodo, è sufficiente eseguire l’operazione XOR tra il puntatore link e il puntatore del nodo corrente.\n Scarica il codice d'esempio",
+    "crumbs": [
+      "Lezioni",
+      "Operatori bitwise"
+    ]
   },
   {
-    "objectID": "lessons/05/slide.html#copie-di-strutture",
-    "href": "lessons/05/slide.html#copie-di-strutture",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Copie di strutture",
-    "text": "Copie di strutture\nSi può copiare interamente una struttura usando una variabile dello stesso tipo:\nstruct studente a, b = {\"Matteo\", \"Spanio\", 56789};\na = b;\n\n\n\n\n\n\nImportante\n\n\nSolo l’operatore = è valido tra 2 struct, gli operatori == e != NON si possono usare per vedere se due strutture sono uguali."
+    "objectID": "lessons/07/slide.html#operatori-bitwise",
+    "href": "lessons/07/slide.html#operatori-bitwise",
+    "title": "Operatori bitwise",
+    "section": "Operatori bitwise",
+    "text": "Operatori bitwise\nGli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili.\nGli operatori bitwise in C sono:\n\n& AND\n| OR\n^ XOR\n~ NOT\n&lt;&lt; Shift a sinistra\n&gt;&gt; Shift a destra"
   },
   {
-    "objectID": "lessons/05/slide.html#dare-i-nomi-alle-strutture",
-    "href": "lessons/05/slide.html#dare-i-nomi-alle-strutture",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Dare i nomi alle strutture",
-    "text": "Dare i nomi alle strutture\nLe stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.\nLe strutture col nome, detto structure tag, si dichiarano come abbiamo già visto:\nstruct nome {\n    type member_name;\n};\n\n\n\n\n\n\nAvviso\n\n\nIl tipo di una variabile struct è struct nome_struct, omettere la parola struct è un errore."
+    "objectID": "lessons/07/slide.html#calcoli",
+    "href": "lessons/07/slide.html#calcoli",
+    "title": "Operatori bitwise",
+    "section": "Calcoli",
+    "text": "Calcoli\nQuesti operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.\n\n\n\nA\nB\nA and B\nA or B\nA ^ B\n~A\n\n\n\n\n0\n0\n0\n0\n0\n1\n\n\n0\n1\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n1\n0\n\n\n1\n1\n1\n1\n0\n0"
   },
   {
-    "objectID": "lessons/05/slide.html#strutture-anonime",
-    "href": "lessons/05/slide.html#strutture-anonime",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Strutture anonime",
-    "text": "Strutture anonime\nNel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:\nstruct { int x; int y; } punto;\npunto.x = 12;\npunto.y = 18;"
+    "objectID": "lessons/07/slide.html#la-rappresentazione-dei-numeri",
+    "href": "lessons/07/slide.html#la-rappresentazione-dei-numeri",
+    "title": "Operatori bitwise",
+    "section": "La rappresentazione dei numeri",
+    "text": "La rappresentazione dei numeri\nPer effettuare le operazioni bitwise conviene sempre cercare di rappresentare i numeri in binario.\nC permette di dichiarare numeri in binario utilizzando il prefisso 0b:\nunsigned char switches = 0b00001000;\n// è equivalente a\nunsigned char switches = 8;"
   },
   {
-    "objectID": "lessons/05/slide.html#typedef",
-    "href": "lessons/05/slide.html#typedef",
-    "title": "Uso avanzato dei puntatori",
-    "section": "typedef",
-    "text": "typedef\ntypedef è un operatore che permette di definire alias per i tipi:\ntypedef int Bool;\ntypedef float Euro;\ntypedef char* String;\nQueste dichiarazioni permettono scrivere codice più chiaro."
+    "objectID": "lessons/07/slide.html#or",
+    "href": "lessons/07/slide.html#or",
+    "title": "Operatori bitwise",
+    "section": "OR",
+    "text": "OR\nL’operatore OR viene spesso usato per unire due insiemi di bit. Ad esempio, se si ha una variabile switches che rappresenta lo stato di accensione di 8 interruttori, si può accendere un interruttore utilizzando l’operatore OR:\n// switches = 0b00001000\nswitches = switches | 0b00000100;\n// oppure\nswitches = switches | 4;\nOra il valore di switches sarà 0b00001100. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi."
   },
   {
-    "objectID": "lessons/05/slide.html#strutture-con-typedef",
-    "href": "lessons/05/slide.html#strutture-con-typedef",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Strutture con typedef",
-    "text": "Strutture con typedef\nDal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave struct per riferirsi al tipo delle strutture grazie a typedef:\ntypedef struct {\n    int x;\n    int y;\n} Point;\nPoint punto = {\n    .x = 1,\n    .y = 2,\n};"
+    "objectID": "lessons/07/slide.html#and",
+    "href": "lessons/07/slide.html#and",
+    "title": "Operatori bitwise",
+    "section": "AND",
+    "text": "AND\nPer spegnere tutti gli interruttori si può utilizzare l’operatore AND:\nswitches = switches & 0b00000000;\n// oppure\nswitches = switches & 0;\n// switches: 0b00000000"
   },
   {
-    "objectID": "lessons/05/slide.html#cast-a-strutture",
-    "href": "lessons/05/slide.html#cast-a-strutture",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Cast a strutture",
-    "text": "Cast a strutture\nUna volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:\ntypedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint s;\ns = (Point) { .x = 1, .y = 2 };"
-  },
-  {
-    "objectID": "lessons/05/slide.html#struct-1",
-    "href": "lessons/05/slide.html#struct-1",
-    "title": "Uso avanzato dei puntatori",
-    "section": "struct",
-    "text": "struct\nA prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:\n#include &lt;math.h&gt;\ntypedef struct point {\n    int x;\n    int y;\n} Point;\n\nPoint somma(Point a, struct point b) {\n    return (Point) { .x = a.x + b.x, .y = a.y + b.y };\n}\n\nfloat distanza(Point a, Point b) {\n    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));\n}"
-  },
-  {
-    "objectID": "lessons/05/slide.html#struct-e-puntatori",
-    "href": "lessons/05/slide.html#struct-e-puntatori",
-    "title": "Uso avanzato dei puntatori",
-    "section": "struct e puntatori",
-    "text": "struct e puntatori\nSi possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):\nstruct point *p;\nPoint *p1;\n\nvoid foo(Point* p);"
-  },
-  {
-    "objectID": "lessons/05/slide.html#struct-2",
-    "href": "lessons/05/slide.html#struct-2",
-    "title": "Uso avanzato dei puntatori",
-    "section": "struct",
-    "text": "struct\n\nSi possono creare array di strutture:\n\nPoint punti[10];\npunti[0].x = 1;\n\nInserire un array in una struttura\nInserire una struttura in un’altra struttura\nInserire unioni in una struttura\nInserire strutture in unioni"
-  },
-  {
-    "objectID": "lessons/05/slide.html#esempio",
-    "href": "lessons/05/slide.html#esempio",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Esempio",
-    "text": "Esempio\nSi vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:\n\nimplementare una struttura dati per memorizzare i dati di un giocatore di calcio;\nmemorizzare l’elenco dei giocatori della squadra;\nordinare i giocatori in base numero di maglia."
-  },
-  {
-    "objectID": "lessons/05/slide.html#memorizzare-un-giocatore",
-    "href": "lessons/05/slide.html#memorizzare-un-giocatore",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Memorizzare un giocatore",
-    "text": "Memorizzare un giocatore\nAi fini della classifica è necessario memorizzare il nome della squadra e i punti ottenuti:\n#define BUFFER_SIZE 128\ntypedef struct giocatore\n{\n    char nome[BUFFER_SIZE];\n    char cognome[BUFFER_SIZE];\n    unsigned int numero_maglia; // non esistono numeri di maglia negativi\n} Giocatore;"
-  },
-  {
-    "objectID": "lessons/05/slide.html#memorizzare-la-lista-dei-giocatori",
-    "href": "lessons/05/slide.html#memorizzare-la-lista-dei-giocatori",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Memorizzare la lista dei giocatori",
-    "text": "Memorizzare la lista dei giocatori\nLa struct Giocatore è di fatto un tipo di dato, possiamo quindi creare un array di esami dove memorizzare la formazione:\n#define NUM 22\nGiocatore squadra[NUM];"
-  },
-  {
-    "objectID": "lessons/05/slide.html#ordinare-i-giocatori",
-    "href": "lessons/05/slide.html#ordinare-i-giocatori",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Ordinare i giocatori",
-    "text": "Ordinare i giocatori\nPer ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:\nIl più intuitivo, ma non il più efficiente, è il Bubble Sort:\n\nScarica l’esempio completo"
-  },
-  {
-    "objectID": "lessons/05/slide.html#unioni",
-    "href": "lessons/05/slide.html#unioni",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Unioni",
-    "text": "Unioni\n\nLe unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso\nLa differenza è che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta\n\nunion {\n    int i;\n    double d;\n} u;\n\nstruct {\n    int i;\n    double d;\n} s;"
-  },
-  {
-    "objectID": "lessons/05/slide.html#unioni-1",
-    "href": "lessons/05/slide.html#unioni-1",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Unioni",
-    "text": "Unioni\nSi può inizializzare solo un elemento di una union:\nunion {\n    int i;\n    double d;\n} u = { .i = 3 };\n\nu.d = 5.7\nCome per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef."
-  },
-  {
-    "objectID": "lessons/05/slide.html#enumerazioni",
-    "href": "lessons/05/slide.html#enumerazioni",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Enumerazioni",
-    "text": "Enumerazioni\nIn molti programmi si usano interi come “codici” per indicare varie cose. Un caso comune sono per esempio i codici di errore.\nSpesso si usano macro o costanti, ma è più chiaro usare enumerazioni:\nenum {CUORI, QUADRI, FIORI, PICCHE} s1, s2;\nOra le variabili s1 e s2 possono assumere solo uno dei quattro valori definiti."
-  },
-  {
-    "objectID": "lessons/05/slide.html#esercizio",
-    "href": "lessons/05/slide.html#esercizio",
-    "title": "Uso avanzato dei puntatori",
+    "objectID": "lessons/07/slide.html#esercizio",
+    "href": "lessons/07/slide.html#esercizio",
+    "title": "Operatori bitwise",
     "section": "Esercizio",
-    "text": "Esercizio\nSi vuole implementare il sistema informatico in C per rappresentare una squadra pokemon e ordinare la squadra per i nomi dei pokemon in ordine alfabetico.\nScarica il main dell’esercizio"
+    "text": "Esercizio\nScrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.\n#include &lt;stdio.h&gt;\nvoid print_lsb(int n);\n\nint main(void)\n{\n    int a = 127, b = 128;\n\n    print_lsb(a);\n    print_lsb(b);\n}\n\nvoid print_lsb(int n)\n{\n    // TODO\n}"
   },
   {
-    "objectID": "lessons/05/slide.html#strutture-dati-1",
-    "href": "lessons/05/slide.html#strutture-dati-1",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Strutture dati",
-    "text": "Strutture dati\nLe strutture sono molto utili per definire… strutture dati.\nPer esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…"
+    "objectID": "lessons/07/slide.html#esercizio-1",
+    "href": "lessons/07/slide.html#esercizio-1",
+    "title": "Operatori bitwise",
+    "section": "Esercizio",
+    "text": "Esercizio\nScrivere una funzione che dato un numero intero \\(n\\), restituisca true se \\(n\\) è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.\n#include &lt;stdbool.h&gt;\nbool is_even(int n);\n\nint main(void) {\n    int a = 55, b = 48;\n\n    printf(\"%d is even: %d\\n\", a, is_even(a));\n    printf(\"%d is even: %d\\n\", b, is_even(b));\n}\n\nbool is_even(int n) {\n    // TODO\n}"
   },
   {
-    "objectID": "lessons/05/slide.html#array-con-strutture",
-    "href": "lessons/05/slide.html#array-con-strutture",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Array con strutture",
-    "text": "Array con strutture\nGli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza a mano…\nSi può creare una struttura che contenga un array e la sua lunghezza:\n#define MAX 1024\n\ntypedef struct intarray {\n    int array[MAX];\n    int length;\n} IntArray;"
+    "objectID": "lessons/07/slide.html#xor",
+    "href": "lessons/07/slide.html#xor",
+    "title": "Operatori bitwise",
+    "section": "XOR",
+    "text": "XOR\nL’operatore XOR è molto utile per invertire lo stato di un bit.\n\n\n\n\n\n\nNota\n\n\nEseguire l’operazione di XOR due volte su un bit restituisce il valore originale.\nchar c = 'A';\nc = c ^ 'h';\nc = c ^ 'h';\n// c: 'A'"
   },
   {
-    "objectID": "lessons/05/slide.html#array-con-strutture-1",
-    "href": "lessons/05/slide.html#array-con-strutture-1",
-    "title": "Uso avanzato dei puntatori",
-    "section": "Array con strutture",
-    "text": "Array con strutture\nAdesso si può passare la struttura come argomento di una funzione:\nvoid stampa_array(IntArray a) {\n    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.\nScarica l’esempio completo"
+    "objectID": "lessons/07/slide.html#esempio",
+    "href": "lessons/07/slide.html#esempio",
+    "title": "Operatori bitwise",
+    "section": "Esempio",
+    "text": "Esempio\n65: 0b01000001\n73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n‘A’ ^ ‘I’ = ’"
   },
   {
-    "objectID": "faq.html",
-    "href": "faq.html",
-    "title": "FAQ",
+    "objectID": "lessons/07/slide.html#esempio-1",
+    "href": "lessons/07/slide.html#esempio-1",
+    "title": "Operatori bitwise",
+    "section": "Esempio",
+    "text": "Esempio\n#include &lt;stdio.h&gt;\n#define KEY 'h'\n\nint main(void)\n{\n    char c = 'A';\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n}"
+  },
+  {
+    "objectID": "lessons/07/slide.html#esercizi",
+    "href": "lessons/07/slide.html#esercizi",
+    "title": "Operatori bitwise",
+    "section": "Esercizi",
+    "text": "Esercizi\nScrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\nScarica il main dell’esercizio"
+  },
+  {
+    "objectID": "lessons/07/slide.html#shift",
+    "href": "lessons/07/slide.html#shift",
+    "title": "Operatori bitwise",
+    "section": "Shift",
+    "text": "Shift\nGli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.\nunsigned char c = 0b00000001;\nc = c &lt;&lt; 1;\n// c: 0b00000010\nc = c &lt;&lt; 3;\n// c: 0b00010000\nc = c &gt;&gt; 2;\n// c: 0b00000100"
+  },
+  {
+    "objectID": "lessons/07/slide.html#esempio-shift",
+    "href": "lessons/07/slide.html#esempio-shift",
+    "title": "Operatori bitwise",
+    "section": "Esempio Shift",
+    "text": "Esempio Shift\nScrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int n = 5;\n    n = n &lt;&lt; 1;\n    printf(\"%d\\n\", n);\n}"
+  },
+  {
+    "objectID": "lessons/07/slide.html#esercizi-1",
+    "href": "lessons/07/slide.html#esercizi-1",
+    "title": "Operatori bitwise",
+    "section": "Esercizi",
+    "text": "Esercizi\nScrivere un programma che stampi a monitor la codifica in binario di un unsigned char.\nAd esempio, se il valore di c è 5, il programma dovrà stampare 00000101."
+  },
+  {
+    "objectID": "lessons/07/slide.html#esercizi-2",
+    "href": "lessons/07/slide.html#esercizi-2",
+    "title": "Operatori bitwise",
+    "section": "Esercizi",
+    "text": "Esercizi\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\nScarica il main dell’esercizio"
+  },
+  {
+    "objectID": "lessons/07/slide.html#xor-linked",
+    "href": "lessons/07/slide.html#xor-linked",
+    "title": "Operatori bitwise",
+    "section": "XOR Linked",
+    "text": "XOR Linked\nNei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori next e prev per ogni nodo.\nOgni nodo della lista contiene un campo link che è il risultato dell’operazione XOR tra i puntatori next e prev. Per calcolare il puntatore next o prev di un nodo, è sufficiente eseguire l’operazione XOR tra il puntatore link e il puntatore del nodo corrente.\nVedi un esempio di implementazione di una lista doppiamente concatenata usando XOR."
+  },
+  {
+    "objectID": "lessons/04/index.html",
+    "href": "lessons/04/index.html",
+    "title": "Puntatori",
     "section": "",
-    "text": "Io conosco Python, Ruby, Haskell, Kotlin, Perl e ieri ho implementato un compilatore per il mio unico e innovativo linguaggio di programmazione. Perché dovrei imparare C?\n\nAffermazioni del tipo “Il nostro linguaggio è veloce quasi quanto il C, ma è più facile da scrivere” sono così comuni da diventare quasi cliché. Bene, C è sicuramente veloce quanto C, e lo scopo del corso è facilitare la comprensione di un linguaggio spesso conosciuto come ostico. La comprensione di un linguaggio che non astrae molti concetti e lascia molta responsabilità al programmatore è importante per avere delle solide basi su concetti che pervadono tutti i linguaggi di programmazione.\n\nIl mio telefono ha 6 GB di RAM, quindi perché i libri di testo dedicano così tante pagine a tecniche per risparmiare kilobytes di peso ai file eseguibili?\nIl mio vecchissimo computer riesce ad eseguire 3,200,000,000 istruzioni al secondo, perché dovrei interessarmi se un’operazione confronta 8 o 16 bit?\n\nDovremmo scrivere codice che possiamo scrivere velocemente e che sia leggibile dai nostri simili. Stiamo ancora scrivendo in C, quindi il nostro codice leggibile ma non perfettamente ottimizzato verrà comunque eseguito un ordine di grandezza più velocemente che se avessimo scritto codice comparabile in un numero qualsiasi di linguaggi alternativi.",
-    "crumbs": [
-      "Risorse",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "faq.html#come-si-svolge-lesame",
-    "href": "faq.html#come-si-svolge-lesame",
-    "title": "FAQ",
-    "section": "Come si svolge l’esame?",
-    "text": "Come si svolge l’esame?\nL’esame del corso di Dati e Algoritmi è scritto, in presenza e si svolge in 3 parti:\n\ndomande: verifica della conoscenza teorica in programma, semplici dimostrazioni;\nesercizi: capacità di risolvere problemi di progetto e analisi di algoritmi (simili a quelli affrontati durante il corso);\ncodice: scrittura in linguaggio C di algoritmi che utilizzano strutture dati;\n\nogni parte dell’esame dura 45 minuti, per un totale di 2 ore e 15 minuti.",
-    "crumbs": [
-      "Risorse",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "faq.html#come-si-calcola-il-voto-finale",
-    "href": "faq.html#come-si-calcola-il-voto-finale",
-    "title": "FAQ",
-    "section": "Come si calcola il voto finale?",
-    "text": "Come si calcola il voto finale?\nOgnuna delle tre parti dell’esame è valutata al massimo 11 punti, il voto è la somma delle tre parti.\n\n\n\n\n\n\nImportante\n\n\n\nSe in una delle tre parti si ottiene una valutazione inferiore a 4, l’esame è da considerarsi non superato nella sua interezza.\n\n\nCon 33 punti si ottiene la lode.\nDi seguito è riportato l’algoritmo di calcolo del voto finale:\n// algoritmo per calcolare il voto dell'esame\nint voto_finale(int domande, int esercizi, int codice)\n{\n    int voto = domande + esercizi + codice;\n\n    // se una delle tre parti è inferiore a 4,\n    // l'esame è da considerarsi non superato\n    if (domande &lt; 4 || esercizi &lt; 4 || codice &lt; 4)\n    {\n        voto = 0;\n    }\n\n    switch (voto)\n    {\n        case 31:\n        case 32:\n            voto = 30;\n            break;\n\n        case 33:\n            voto = 31; // 31 equivale a 30 e lode\n            break;\n\n        case default:\n            break;\n    }\n\n  return voto;\n}",
-    "crumbs": [
-      "Risorse",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "faq.html#posso-usare-il-mio-computer-per-scrivere-codice",
-    "href": "faq.html#posso-usare-il-mio-computer-per-scrivere-codice",
-    "title": "FAQ",
-    "section": "Posso usare il mio computer per scrivere codice?",
-    "text": "Posso usare il mio computer per scrivere codice?\nNo, la parte di scrittura di codice si svolge tramite i computer del laboratorio.",
-    "crumbs": [
-      "Risorse",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "faq.html#non-ho-un-computer-posso-svolgere-lesame",
-    "href": "faq.html#non-ho-un-computer-posso-svolgere-lesame",
-    "title": "FAQ",
-    "section": "Non ho un computer, posso svolgere l’esame?",
-    "text": "Non ho un computer, posso svolgere l’esame?\nSì, tuttavia per poter svolgere gli esercizi di programmazione è necessario avere una buona dimestichezza con l’uso di un computer ed è fortemente consigliato fare pratica a casa.",
-    "crumbs": [
-      "Risorse",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Risorse",
-    "section": "",
-    "text": "Questa sezione è dedicata a risorse che possono essere utili da consultare per avere dei riferimenti ma non è necessario studiarle.\nIn particolare ci sono:\n\nuna sezione dedicata ai libri di testo in cui si può consultare una lista di letture suggerite oltre ad avere informazioni sul libro di testo ufficiale del corso;\nuna guida alla scrittura di codice chiaro in C, non è un requisito del corso scrivere seguendo questi criteri, è comunque consigliato applicare delle regole di formattazione per scrivere codice chiaro e coerente;\nuna sezione dedicata a domande e risposte frequenti in cui, in particolare, vengono descritte le modalità d’esame.",
+    "text": "Il termine puntatore produce sempre un po’ di confusione tra i principianti del C, in realtà, una volta capito il concetto, si tratta di una feature molto potente e utile del linguaggio. Non sono effettivamente complicati, ma è facile fare confusione, spero che questa guida possa aiutare a chiarire le idee…\nQuando si dichiara una variabile si comunica al compilatore il suo tipo e il suo nome prima del suo utilizzo, questo è fondamentale perché la dichiarazione permette al compilatore di allocare un blocco di memoria per immagazzinare la variabile. Quindi:",
     "crumbs": [
       "Lezioni",
-      "Risorse"
+      "Puntatori"
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Hello C 2025",
-    "section": "",
-    "text": "Dispense per l’introduzione al linguaggio di programmazione C. Questa è la pagina web della parte di programmazione in C del corso di dati e algoritmi per la laurea triennale in ingegneria elettronica presso l’Università di Padova.\n\nQuesto sito\nIl sito è organizzato per 3 macro aree:\n\nlezioni\nesercizi\nrisorse\n\nLa sezione lezioni raccoglie tutti i contenuti presentati a lezione, ogni lezione è riportata in formato html e pdf, inoltre è possibile consultare anche le diapositive viste a lezione in formato RevealJS. Oltre ai contenuti visti in classe sono presenti brevi guide sull’utilizzo/installazione di software o approfondimenti.\nLa sezione esercizi raccoglie molti esercizi per ripassare gli argomenti visti in classe e prepararsi all’esame, in generale vi sono esercizi di varia difficoltà.\nLa sezione risorse contiene materiali vari:\n\nuna guida sull’installazione dell’ambiente di sviluppo per scrivere programmi C\nuna guida all’uso di GNU debugger\nuna guida sull’uso dei Makefile\nuna lista di letture consigliate sul linguaggio C oltre al libro di testo del corso\nun elenco di materiali didattici reperibili online, domande e risposte comuni sull’esame\n\n\n\nProgramma del corso\nDi seguito il programma del corso, tutti gli argomenti elencati potranno essere inclusi negli esercizi d’esame.\n\nBasi di C\n\nIntroduzione al linguaggio C\nStruttura di un programma\ncompilatore gcc\n\nSintassi del linguaggio\n\nTipi di dato di base\nOperatori (precedenza e associatività)\nStrutture di controllo (if-else, switch, for, while)\nFunzioni\nRicorsione\n\nArray, puntatori e stringhe\n\nArray\nPuntatori\nstringhe e funzioni di libreria\noperatori di indirizzamento ( & e * )\nallocazione dinamica di memoria\n\nStrutture dati\n\nstruct\nunion\ntypedef\nliste concatenate\nalberi binari\n\nAlgoritmi\n\nvisite di alberi (preorder, inorder, postorder)\nricerca binaria\nvisita di liste"
+    "objectID": "lessons/04/index.html#esempio-di-utilizzo",
+    "href": "lessons/04/index.html#esempio-di-utilizzo",
+    "title": "Puntatori",
+    "section": "Esempio di utilizzo",
+    "text": "Esempio di utilizzo\nSpesso un esempio chiarisce meglio il concetto, di seguito si introducono due esempi per chiarire il concetto di puntatore, e la sintassi\n1int i, j, *p;\n2i = 5;\n3p = &i;\n4j = *p;\n5printf(\"%d\\n\", j); // stampa 5\n\n1\n\nSi dichiarano tre variabili: i, j e p, p è un puntatore a un intero.\n\n2\n\nSi assegna il valore 5 a i.\n\n3\n\nSi assegna l’indirizzo di i a p, l’operatore & è usato per ottenere l’indirizzo di i.\n\n4\n\nSi assegna il valore puntato da p a j, l’operatore * è usato per accedere al valore puntato da p.\n\n5\n\nSi stampa il valore di j, che è 5.\n\n\n// esempio 2\nint *p, *q, i;\np = &i;\n*p = 6;\nq = p;\n(*q)++;\nprintf(\"%d\\n\", i); // stampa 7\nIl secondo esempio è un po’ più complesso, ma il concetto è lo stesso. Si dichiarano due puntatori p e q e una variabile i. Si assegna l’indirizzo di i a p, si assegna il valore 6 a i tramite *p, si assegna p a q e si incrementa il valore puntato da q di 1. L’espressione (*q)++ è equivalente a *q = *q + 1, servono le parentesi perché l’operatore ++ ha una precedenza maggiore rispetto all’operatore *.",
+    "crumbs": [
+      "Lezioni",
+      "Puntatori"
+    ]
   },
   {
-    "objectID": "CODE_OF_CONDUCT.html",
-    "href": "CODE_OF_CONDUCT.html",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.\n\n\n\nExamples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting\n\n\n\n\nCommunity leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.\n\n\n\nThis Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.\n\n\n\nInstances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at spanio@dei.unipd.it. All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident.\n\n\n\nCommunity leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community.\n\n\n\n\nThis Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
+    "objectID": "lessons/04/index.html#esempio-di-utilizzo-di-puntatori-con-funzioni",
+    "href": "lessons/04/index.html#esempio-di-utilizzo-di-puntatori-con-funzioni",
+    "title": "Puntatori",
+    "section": "Esempio di utilizzo di puntatori con funzioni",
+    "text": "Esempio di utilizzo di puntatori con funzioni\nScrivere una funzione che scambi il valore di due variabili.\nIl prototipo della funzione è: void swap(int *a, int *b);\nVerrebbe spontaneo risolvere il problema senza usare i puntatori:\nvoid swap(int a, int b) {\n1    int temp = a;\n2    a = b;\n3    b = temp;\n    printf(\"a = %d, b = %d\\n\", a, b);\n}\n\n1\n\nSi salva il valore di a in una variabile temporanea.\n\n2\n\nSi assegna il valore di b a a.\n\n3\n\nSi assegna il valore salvato in precedenza a b.\n\n\nAll’ultima riga il codice effettivamente ha scambiato i valori di a e b, ma si tratta di variabili locali alla funzione, quindi i valori di a e b all’esterno della funzione non sono stati modificati. Per rendere la modifica permanente si devono usare i puntatori:\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n    printf(\"a = %d, b = %d\\n\", *a, *b);\n}\nLa soluzione è identica alla precedente, ma questa volta i valori di a e b vengono modificati direttamente, ciò vuol dire che i valori di a e b all’esterno della funzione saranno modificati.",
+    "crumbs": [
+      "Lezioni",
+      "Puntatori"
+    ]
   },
   {
-    "objectID": "CODE_OF_CONDUCT.html#our-pledge",
-    "href": "CODE_OF_CONDUCT.html#our-pledge",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#our-standards",
-    "href": "CODE_OF_CONDUCT.html#our-standards",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "Examples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting"
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#enforcement-responsibilities",
-    "href": "CODE_OF_CONDUCT.html#enforcement-responsibilities",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#scope",
-    "href": "CODE_OF_CONDUCT.html#scope",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#enforcement",
-    "href": "CODE_OF_CONDUCT.html#enforcement",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at spanio@dei.unipd.it. All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#enforcement-guidelines",
-    "href": "CODE_OF_CONDUCT.html#enforcement-guidelines",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "Community leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#attribution",
-    "href": "CODE_OF_CONDUCT.html#attribution",
-    "title": "Contributor Covenant Code of Conduct",
-    "section": "",
-    "text": "This Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
-  },
-  {
-    "objectID": "exercises.html",
-    "href": "exercises.html",
-    "title": "Esercizi",
-    "section": "",
-    "text": "Gli esercizi sono divisi per lezione. Ogni lezione tratta un numero variabile di argomenti, quindi gli esercizi sono divisi in base a questi argomenti. Gli esercizi di lezioni più avanzate fanno spesso riferimento a concetti appresi in lezioni precedenti, quindi è consigliabile svolgerli in ordine.\nPer compilare gli esercizi si suggerisce di usare il comando gcc con i warning attivati e l’opzione -std=c99 per compilare in standard C99. Di seguito il comando che si può usare per compilare un file sorgente esercizio.c:\ngcc -std=c99 -Wall -Wextra -pedantic -Werror -g -o esercizio esercizio.c\nTalvolta può essere utile usare un file Makefile per compilare più file sorgente. Di seguito un esempio di Makefile:\n\n\n Scarica il file \nFILES=esercizio.c\nEXECUTABLE=esercizio\n\nCC=gcc\nCFLAGS=-std=c99 -Wall -Wextra -pedantic -Werror -g\n\n$(EXECUTABLE): $(FILES)\n    $(CC) $(CFLAGS) -o $@ $^"
+    "objectID": "lessons/04/index.html#esercizio",
+    "href": "lessons/04/index.html#esercizio",
+    "title": "Puntatori",
+    "section": "Esercizio",
+    "text": "Esercizio\nScrivere una funzione che trovi il minimo e il massimo in un array di interi.\nIl prototipo della funzione è: void minmax(const int *a, int n, int *min, int *max);\n Scarica la soluzione",
+    "crumbs": [
+      "Lezioni",
+      "Puntatori"
+    ]
   },
   {
     "objectID": "lessons/04/slide.html#la-memoria",
@@ -1558,47 +1454,406 @@
     "text": "Risorse aggiuntive\n\nhttps://cs50.harvard.edu/x/2025/weeks/4/\nhttps://cs50.harvard.edu/x/2025/shorts/pointers/\nhttps://www.youtube.com/watch?v=3uLKjb973HU"
   },
   {
-    "objectID": "lessons/04/index.html",
-    "href": "lessons/04/index.html",
-    "title": "Puntatori",
+    "objectID": "exercises.html",
+    "href": "exercises.html",
+    "title": "Esercizi",
     "section": "",
-    "text": "Il termine puntatore produce sempre un po’ di confusione tra i principianti del C, in realtà, una volta capito il concetto, si tratta di una feature molto potente e utile del linguaggio. Non sono effettivamente complicati, ma è facile fare confusione, spero che questa guida possa aiutare a chiarire le idee…\nQuando si dichiara una variabile si comunica al compilatore il suo tipo e il suo nome prima del suo utilizzo, questo è fondamentale perché la dichiarazione permette al compilatore di allocare un blocco di memoria per immagazzinare la variabile. Quindi:",
+    "text": "Gli esercizi sono divisi per lezione. Ogni lezione tratta un numero variabile di argomenti, quindi gli esercizi sono divisi in base a questi argomenti. Gli esercizi di lezioni più avanzate fanno spesso riferimento a concetti appresi in lezioni precedenti, quindi è consigliabile svolgerli in ordine.\nPer compilare gli esercizi si suggerisce di usare il comando gcc con i warning attivati e l’opzione -std=c99 per compilare in standard C99. Di seguito il comando che si può usare per compilare un file sorgente esercizio.c:\ngcc -std=c99 -Wall -Wextra -pedantic -Werror -g -o esercizio esercizio.c\nTalvolta può essere utile usare un file Makefile per compilare più file sorgente. Di seguito un esempio di Makefile:\n\n\n Scarica il file \nFILES=esercizio.c\nEXECUTABLE=esercizio\n\nCC=gcc\nCFLAGS=-std=c99 -Wall -Wextra -pedantic -Werror -g\n\n$(EXECUTABLE): $(FILES)\n    $(CC) $(CFLAGS) -o $@ $^"
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html",
+    "href": "CODE_OF_CONDUCT.html",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.\n\n\n\nExamples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting\n\n\n\n\nCommunity leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.\n\n\n\nThis Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.\n\n\n\nInstances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at spanio@dei.unipd.it. All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident.\n\n\n\nCommunity leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community.\n\n\n\n\nThis Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#our-pledge",
+    "href": "CODE_OF_CONDUCT.html#our-pledge",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#our-standards",
+    "href": "CODE_OF_CONDUCT.html#our-standards",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Examples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting"
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#enforcement-responsibilities",
+    "href": "CODE_OF_CONDUCT.html#enforcement-responsibilities",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#scope",
+    "href": "CODE_OF_CONDUCT.html#scope",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#enforcement",
+    "href": "CODE_OF_CONDUCT.html#enforcement",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at spanio@dei.unipd.it. All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#enforcement-guidelines",
+    "href": "CODE_OF_CONDUCT.html#enforcement-guidelines",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "Community leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#attribution",
+    "href": "CODE_OF_CONDUCT.html#attribution",
+    "title": "Contributor Covenant Code of Conduct",
+    "section": "",
+    "text": "This Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hello C 2025",
+    "section": "",
+    "text": "Dispense per l’introduzione al linguaggio di programmazione C. Questa è la pagina web della parte di programmazione in C del corso di dati e algoritmi per la laurea triennale in ingegneria elettronica presso l’Università di Padova.\n\nQuesto sito\nIl sito è organizzato per 3 macro aree:\n\nlezioni\nesercizi\nrisorse\n\nLa sezione lezioni raccoglie tutti i contenuti presentati a lezione, ogni lezione è riportata in formato html e pdf, inoltre è possibile consultare anche le diapositive viste a lezione in formato RevealJS. Oltre ai contenuti visti in classe sono presenti brevi guide sull’utilizzo/installazione di software o approfondimenti.\nLa sezione esercizi raccoglie molti esercizi per ripassare gli argomenti visti in classe e prepararsi all’esame, in generale vi sono esercizi di varia difficoltà.\nLa sezione risorse contiene materiali vari:\n\nuna guida sull’installazione dell’ambiente di sviluppo per scrivere programmi C\nuna guida all’uso di GNU debugger\nuna guida sull’uso dei Makefile\nuna lista di letture consigliate sul linguaggio C oltre al libro di testo del corso\nun elenco di materiali didattici reperibili online, domande e risposte comuni sull’esame\n\n\n\nProgramma del corso\nDi seguito il programma del corso, tutti gli argomenti elencati potranno essere inclusi negli esercizi d’esame.\n\nBasi di C\n\nIntroduzione al linguaggio C\nStruttura di un programma\ncompilatore gcc\n\nSintassi del linguaggio\n\nTipi di dato di base\nOperatori (precedenza e associatività)\nStrutture di controllo (if-else, switch, for, while)\nFunzioni\nRicorsione\n\nArray, puntatori e stringhe\n\nArray\nPuntatori\nstringhe e funzioni di libreria\noperatori di indirizzamento ( & e * )\nallocazione dinamica di memoria\n\nStrutture dati\n\nstruct\nunion\ntypedef\nliste concatenate\nalberi binari\n\nAlgoritmi\n\nvisite di alberi (preorder, inorder, postorder)\nricerca binaria\nvisita di liste"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Risorse",
+    "section": "",
+    "text": "Questa sezione è dedicata a risorse che possono essere utili da consultare per avere dei riferimenti ma non è necessario studiarle.\nIn particolare ci sono:\n\nuna sezione dedicata ai libri di testo in cui si può consultare una lista di letture suggerite oltre ad avere informazioni sul libro di testo ufficiale del corso;\nuna guida alla scrittura di codice chiaro in C, non è un requisito del corso scrivere seguendo questi criteri, è comunque consigliato applicare delle regole di formattazione per scrivere codice chiaro e coerente;\nuna sezione dedicata a domande e risposte frequenti in cui, in particolare, vengono descritte le modalità d’esame.",
     "crumbs": [
       "Lezioni",
-      "Puntatori"
+      "Risorse"
     ]
   },
   {
-    "objectID": "lessons/04/index.html#esempio-di-utilizzo",
-    "href": "lessons/04/index.html#esempio-di-utilizzo",
-    "title": "Puntatori",
-    "section": "Esempio di utilizzo",
-    "text": "Esempio di utilizzo\nSpesso un esempio chiarisce meglio il concetto, di seguito si introducono due esempi per chiarire il concetto di puntatore, e la sintassi\n1int i, j, *p;\n2i = 5;\n3p = &i;\n4j = *p;\n5printf(\"%d\\n\", j); // stampa 5\n\n1\n\nSi dichiarano tre variabili: i, j e p, p è un puntatore a un intero.\n\n2\n\nSi assegna il valore 5 a i.\n\n3\n\nSi assegna l’indirizzo di i a p, l’operatore & è usato per ottenere l’indirizzo di i.\n\n4\n\nSi assegna il valore puntato da p a j, l’operatore * è usato per accedere al valore puntato da p.\n\n5\n\nSi stampa il valore di j, che è 5.\n\n\n// esempio 2\nint *p, *q, i;\np = &i;\n*p = 6;\nq = p;\n(*q)++;\nprintf(\"%d\\n\", i); // stampa 7\nIl secondo esempio è un po’ più complesso, ma il concetto è lo stesso. Si dichiarano due puntatori p e q e una variabile i. Si assegna l’indirizzo di i a p, si assegna il valore 6 a i tramite *p, si assegna p a q e si incrementa il valore puntato da q di 1. L’espressione (*q)++ è equivalente a *q = *q + 1, servono le parentesi perché l’operatore ++ ha una precedenza maggiore rispetto all’operatore *.",
+    "objectID": "faq.html",
+    "href": "faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "Io conosco Python, Ruby, Haskell, Kotlin, Perl e ieri ho implementato un compilatore per il mio unico e innovativo linguaggio di programmazione. Perché dovrei imparare C?\n\nAffermazioni del tipo “Il nostro linguaggio è veloce quasi quanto il C, ma è più facile da scrivere” sono così comuni da diventare quasi cliché. Bene, C è sicuramente veloce quanto C, e lo scopo del corso è facilitare la comprensione di un linguaggio spesso conosciuto come ostico. La comprensione di un linguaggio che non astrae molti concetti e lascia molta responsabilità al programmatore è importante per avere delle solide basi su concetti che pervadono tutti i linguaggi di programmazione.\n\nIl mio telefono ha 6 GB di RAM, quindi perché i libri di testo dedicano così tante pagine a tecniche per risparmiare kilobytes di peso ai file eseguibili?\nIl mio vecchissimo computer riesce ad eseguire 3,200,000,000 istruzioni al secondo, perché dovrei interessarmi se un’operazione confronta 8 o 16 bit?\n\nDovremmo scrivere codice che possiamo scrivere velocemente e che sia leggibile dai nostri simili. Stiamo ancora scrivendo in C, quindi il nostro codice leggibile ma non perfettamente ottimizzato verrà comunque eseguito un ordine di grandezza più velocemente che se avessimo scritto codice comparabile in un numero qualsiasi di linguaggi alternativi.",
     "crumbs": [
-      "Lezioni",
-      "Puntatori"
+      "Risorse",
+      "FAQ"
     ]
   },
   {
-    "objectID": "lessons/04/index.html#esempio-di-utilizzo-di-puntatori-con-funzioni",
-    "href": "lessons/04/index.html#esempio-di-utilizzo-di-puntatori-con-funzioni",
-    "title": "Puntatori",
-    "section": "Esempio di utilizzo di puntatori con funzioni",
-    "text": "Esempio di utilizzo di puntatori con funzioni\nScrivere una funzione che scambi il valore di due variabili.\nIl prototipo della funzione è: void swap(int *a, int *b);\nVerrebbe spontaneo risolvere il problema senza usare i puntatori:\nvoid swap(int a, int b) {\n1    int temp = a;\n2    a = b;\n3    b = temp;\n    printf(\"a = %d, b = %d\\n\", a, b);\n}\n\n1\n\nSi salva il valore di a in una variabile temporanea.\n\n2\n\nSi assegna il valore di b a a.\n\n3\n\nSi assegna il valore salvato in precedenza a b.\n\n\nAll’ultima riga il codice effettivamente ha scambiato i valori di a e b, ma si tratta di variabili locali alla funzione, quindi i valori di a e b all’esterno della funzione non sono stati modificati. Per rendere la modifica permanente si devono usare i puntatori:\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n    printf(\"a = %d, b = %d\\n\", *a, *b);\n}\nLa soluzione è identica alla precedente, ma questa volta i valori di a e b vengono modificati direttamente, ciò vuol dire che i valori di a e b all’esterno della funzione saranno modificati.",
+    "objectID": "faq.html#come-si-svolge-lesame",
+    "href": "faq.html#come-si-svolge-lesame",
+    "title": "FAQ",
+    "section": "Come si svolge l’esame?",
+    "text": "Come si svolge l’esame?\nL’esame del corso di Dati e Algoritmi è scritto, in presenza e si svolge in 3 parti:\n\ndomande: verifica della conoscenza teorica in programma, semplici dimostrazioni;\nesercizi: capacità di risolvere problemi di progetto e analisi di algoritmi (simili a quelli affrontati durante il corso);\ncodice: scrittura in linguaggio C di algoritmi che utilizzano strutture dati;\n\nogni parte dell’esame dura 45 minuti, per un totale di 2 ore e 15 minuti.",
     "crumbs": [
-      "Lezioni",
-      "Puntatori"
+      "Risorse",
+      "FAQ"
     ]
   },
   {
-    "objectID": "lessons/04/index.html#esercizio",
-    "href": "lessons/04/index.html#esercizio",
-    "title": "Puntatori",
+    "objectID": "faq.html#come-si-calcola-il-voto-finale",
+    "href": "faq.html#come-si-calcola-il-voto-finale",
+    "title": "FAQ",
+    "section": "Come si calcola il voto finale?",
+    "text": "Come si calcola il voto finale?\nOgnuna delle tre parti dell’esame è valutata al massimo 11 punti, il voto è la somma delle tre parti.\n\n\n\n\n\n\nImportante\n\n\n\nSe in una delle tre parti si ottiene una valutazione inferiore a 4, l’esame è da considerarsi non superato nella sua interezza.\n\n\nCon 33 punti si ottiene la lode.\nDi seguito è riportato l’algoritmo di calcolo del voto finale:\n// algoritmo per calcolare il voto dell'esame\nint voto_finale(int domande, int esercizi, int codice)\n{\n    int voto = domande + esercizi + codice;\n\n    // se una delle tre parti è inferiore a 4,\n    // l'esame è da considerarsi non superato\n    if (domande &lt; 4 || esercizi &lt; 4 || codice &lt; 4)\n    {\n        voto = 0;\n    }\n\n    switch (voto)\n    {\n        case 31:\n        case 32:\n            voto = 30;\n            break;\n\n        case 33:\n            voto = 31; // 31 equivale a 30 e lode\n            break;\n\n        case default:\n            break;\n    }\n\n  return voto;\n}",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "faq.html#posso-usare-il-mio-computer-per-scrivere-codice",
+    "href": "faq.html#posso-usare-il-mio-computer-per-scrivere-codice",
+    "title": "FAQ",
+    "section": "Posso usare il mio computer per scrivere codice?",
+    "text": "Posso usare il mio computer per scrivere codice?\nNo, la parte di scrittura di codice si svolge tramite i computer del laboratorio.",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "faq.html#non-ho-un-computer-posso-svolgere-lesame",
+    "href": "faq.html#non-ho-un-computer-posso-svolgere-lesame",
+    "title": "FAQ",
+    "section": "Non ho un computer, posso svolgere l’esame?",
+    "text": "Non ho un computer, posso svolgere l’esame?\nSì, tuttavia per poter svolgere gli esercizi di programmazione è necessario avere una buona dimestichezza con l’uso di un computer ed è fortemente consigliato fare pratica a casa.",
+    "crumbs": [
+      "Risorse",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "lessons/05/slide.html#strutture-in-c",
+    "href": "lessons/05/slide.html#strutture-in-c",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Strutture in C",
+    "text": "Strutture in C\nIl C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi per aggregare dati:\n\nStrutture: insieme di dati\nUnioni: alternative tra tipi diversi\nEnumerazioni: insieme di costanti"
+  },
+  {
+    "objectID": "lessons/05/slide.html#struct",
+    "href": "lessons/05/slide.html#struct",
+    "title": "Uso avanzato dei puntatori",
+    "section": "struct",
+    "text": "struct\nUna struttura è un insieme di dati, si differenzia dagli array perché:\n\ngli elementi possono essere di tipo diverso\ngli elementi sono identificati da un nome\n\nstruct studente {\n    char nome[20];\n    char cognome[20];\n    int matricola;\n};"
+  },
+  {
+    "objectID": "lessons/05/slide.html#inizializzazione",
+    "href": "lessons/05/slide.html#inizializzazione",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Inizializzazione",
+    "text": "Inizializzazione\nSi possono inizializzare le strutture quando vengono dichiarate:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\nSi possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0.\nUn modo alternativo di inizializzare:\nstruct studente s = {\n    .nome = \"Mario\",\n    .cognome = \"Rossi\",\n    .matricole = 12345,\n};"
+  },
+  {
+    "objectID": "lessons/05/slide.html#accedere-agli-elementi",
+    "href": "lessons/05/slide.html#accedere-agli-elementi",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Accedere agli elementi",
+    "text": "Accedere agli elementi\nPer accedere ai singoli elementi di una struttura (detti anche membri) si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;"
+  },
+  {
+    "objectID": "lessons/05/slide.html#copie-di-strutture",
+    "href": "lessons/05/slide.html#copie-di-strutture",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Copie di strutture",
+    "text": "Copie di strutture\nSi può copiare interamente una struttura usando una variabile dello stesso tipo:\nstruct studente a, b = {\"Matteo\", \"Spanio\", 56789};\na = b;\n\n\n\n\n\n\nImportante\n\n\nSolo l’operatore = è valido tra 2 struct, gli operatori == e != NON si possono usare per vedere se due strutture sono uguali."
+  },
+  {
+    "objectID": "lessons/05/slide.html#dare-i-nomi-alle-strutture",
+    "href": "lessons/05/slide.html#dare-i-nomi-alle-strutture",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Dare i nomi alle strutture",
+    "text": "Dare i nomi alle strutture\nLe stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.\nLe strutture col nome, detto structure tag, si dichiarano come abbiamo già visto:\nstruct nome {\n    type member_name;\n};\n\n\n\n\n\n\nAvviso\n\n\nIl tipo di una variabile struct è struct nome_struct, omettere la parola struct è un errore."
+  },
+  {
+    "objectID": "lessons/05/slide.html#strutture-anonime",
+    "href": "lessons/05/slide.html#strutture-anonime",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Strutture anonime",
+    "text": "Strutture anonime\nNel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:\nstruct { int x; int y; } punto;\npunto.x = 12;\npunto.y = 18;"
+  },
+  {
+    "objectID": "lessons/05/slide.html#typedef",
+    "href": "lessons/05/slide.html#typedef",
+    "title": "Uso avanzato dei puntatori",
+    "section": "typedef",
+    "text": "typedef\ntypedef è un operatore che permette di definire alias per i tipi:\ntypedef int Bool;\ntypedef float Euro;\ntypedef char* String;\nQueste dichiarazioni permettono scrivere codice più chiaro."
+  },
+  {
+    "objectID": "lessons/05/slide.html#strutture-con-typedef",
+    "href": "lessons/05/slide.html#strutture-con-typedef",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Strutture con typedef",
+    "text": "Strutture con typedef\nDal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave struct per riferirsi al tipo delle strutture grazie a typedef:\ntypedef struct {\n    int x;\n    int y;\n} Point;\nPoint punto = {\n    .x = 1,\n    .y = 2,\n};"
+  },
+  {
+    "objectID": "lessons/05/slide.html#cast-a-strutture",
+    "href": "lessons/05/slide.html#cast-a-strutture",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Cast a strutture",
+    "text": "Cast a strutture\nUna volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:\ntypedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint s;\ns = (Point) { .x = 1, .y = 2 };"
+  },
+  {
+    "objectID": "lessons/05/slide.html#struct-1",
+    "href": "lessons/05/slide.html#struct-1",
+    "title": "Uso avanzato dei puntatori",
+    "section": "struct",
+    "text": "struct\nA prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:\n#include &lt;math.h&gt;\ntypedef struct point {\n    int x;\n    int y;\n} Point;\n\nPoint somma(Point a, struct point b) {\n    return (Point) { .x = a.x + b.x, .y = a.y + b.y };\n}\n\nfloat distanza(Point a, Point b) {\n    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));\n}"
+  },
+  {
+    "objectID": "lessons/05/slide.html#struct-e-puntatori",
+    "href": "lessons/05/slide.html#struct-e-puntatori",
+    "title": "Uso avanzato dei puntatori",
+    "section": "struct e puntatori",
+    "text": "struct e puntatori\nSi possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):\nstruct point *p;\nPoint *p1;\n\nvoid foo(Point* p);"
+  },
+  {
+    "objectID": "lessons/05/slide.html#struct-2",
+    "href": "lessons/05/slide.html#struct-2",
+    "title": "Uso avanzato dei puntatori",
+    "section": "struct",
+    "text": "struct\n\nSi possono creare array di strutture:\n\nPoint punti[10];\npunti[0].x = 1;\n\nInserire un array in una struttura\nInserire una struttura in un’altra struttura\nInserire unioni in una struttura\nInserire strutture in unioni"
+  },
+  {
+    "objectID": "lessons/05/slide.html#esempio",
+    "href": "lessons/05/slide.html#esempio",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Esempio",
+    "text": "Esempio\nSi vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:\n\nimplementare una struttura dati per memorizzare i dati di un giocatore di calcio;\nmemorizzare l’elenco dei giocatori della squadra;\nordinare i giocatori in base numero di maglia."
+  },
+  {
+    "objectID": "lessons/05/slide.html#memorizzare-un-giocatore",
+    "href": "lessons/05/slide.html#memorizzare-un-giocatore",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Memorizzare un giocatore",
+    "text": "Memorizzare un giocatore\nAi fini della classifica è necessario memorizzare il nome della squadra e i punti ottenuti:\n#define BUFFER_SIZE 128\ntypedef struct giocatore\n{\n    char nome[BUFFER_SIZE];\n    char cognome[BUFFER_SIZE];\n    unsigned int numero_maglia; // non esistono numeri di maglia negativi\n} Giocatore;"
+  },
+  {
+    "objectID": "lessons/05/slide.html#memorizzare-la-lista-dei-giocatori",
+    "href": "lessons/05/slide.html#memorizzare-la-lista-dei-giocatori",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Memorizzare la lista dei giocatori",
+    "text": "Memorizzare la lista dei giocatori\nLa struct Giocatore è di fatto un tipo di dato, possiamo quindi creare un array di esami dove memorizzare la formazione:\n#define NUM 22\nGiocatore squadra[NUM];"
+  },
+  {
+    "objectID": "lessons/05/slide.html#ordinare-i-giocatori",
+    "href": "lessons/05/slide.html#ordinare-i-giocatori",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Ordinare i giocatori",
+    "text": "Ordinare i giocatori\nPer ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:\nIl più intuitivo, ma non il più efficiente, è il Bubble Sort:\n\nScarica l’esempio completo"
+  },
+  {
+    "objectID": "lessons/05/slide.html#unioni",
+    "href": "lessons/05/slide.html#unioni",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Unioni",
+    "text": "Unioni\n\nLe unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso\nLa differenza è che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta\n\nunion {\n    int i;\n    double d;\n} u;\n\nstruct {\n    int i;\n    double d;\n} s;"
+  },
+  {
+    "objectID": "lessons/05/slide.html#unioni-1",
+    "href": "lessons/05/slide.html#unioni-1",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Unioni",
+    "text": "Unioni\nSi può inizializzare solo un elemento di una union:\nunion {\n    int i;\n    double d;\n} u = { .i = 3 };\n\nu.d = 5.7\nCome per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef."
+  },
+  {
+    "objectID": "lessons/05/slide.html#enumerazioni",
+    "href": "lessons/05/slide.html#enumerazioni",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Enumerazioni",
+    "text": "Enumerazioni\nIn molti programmi si usano interi come “codici” per indicare varie cose. Un caso comune sono per esempio i codici di errore.\nSpesso si usano macro o costanti, ma è più chiaro usare enumerazioni:\nenum {CUORI, QUADRI, FIORI, PICCHE} s1, s2;\nOra le variabili s1 e s2 possono assumere solo uno dei quattro valori definiti."
+  },
+  {
+    "objectID": "lessons/05/slide.html#esercizio",
+    "href": "lessons/05/slide.html#esercizio",
+    "title": "Uso avanzato dei puntatori",
     "section": "Esercizio",
-    "text": "Esercizio\nScrivere una funzione che trovi il minimo e il massimo in un array di interi.\nIl prototipo della funzione è: void minmax(const int *a, int n, int *min, int *max);\n Scarica la soluzione",
+    "text": "Esercizio\nSi vuole implementare il sistema informatico in C per rappresentare una squadra pokemon e ordinare la squadra per i nomi dei pokemon in ordine alfabetico.\nScarica il main dell’esercizio"
+  },
+  {
+    "objectID": "lessons/05/slide.html#strutture-dati-1",
+    "href": "lessons/05/slide.html#strutture-dati-1",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Strutture dati",
+    "text": "Strutture dati\nLe strutture sono molto utili per definire… strutture dati.\nPer esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…"
+  },
+  {
+    "objectID": "lessons/05/slide.html#array-con-strutture",
+    "href": "lessons/05/slide.html#array-con-strutture",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Array con strutture",
+    "text": "Array con strutture\nGli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza a mano…\nSi può creare una struttura che contenga un array e la sua lunghezza:\n#define MAX 1024\n\ntypedef struct intarray {\n    int array[MAX];\n    int length;\n} IntArray;"
+  },
+  {
+    "objectID": "lessons/05/slide.html#array-con-strutture-1",
+    "href": "lessons/05/slide.html#array-con-strutture-1",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Array con strutture",
+    "text": "Array con strutture\nAdesso si può passare la struttura come argomento di una funzione:\nvoid stampa_array(IntArray a) {\n    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.\nScarica l’esempio completo"
+  },
+  {
+    "objectID": "lessons/05/index.html",
+    "href": "lessons/05/index.html",
+    "title": "Uso avanzato dei puntatori",
+    "section": "",
+    "text": "Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi:\n\nStrutture: insieme di dati\nUnioni: alternative tra tipi diversi\nEnumerazioni: insieme di costanti\n\n\n\nUna struttura è un insieme di dati, si differenzia dagli array perché:\n\ngli elementi possono essere di tipo diverso;\ngli elementi sono identificati da un nome;\n\nDi seguito un esempio di dichiarazione di una struttura:\nstruct studente {\n    char nome[20];\n    char cognome[20];\n    int matricola;\n};\nCome si può vedere dall’esempio, la dichiarazione di una struttura è introdotta dalla parola chiave struct, seguita dal nome della struttura e da una lista di dichiarazioni di variabili. Ricorda fortemente la dichiarazione di una classe in Java, in questo caso però non ci sono metodi, e i dati non si chiamano campi o attributi, ma membri. I membri hanno un nome e un tipo, possono essere di qualsiasi tipo, anche un’altra struttura. La grossa differenza con Java è che i membri sono sempre pubblici e non c’è modo di dichiararli privati.\n\n\nSi possono inizializzare le strutture quando vengono dichiarate:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\nSi possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0 (nel caso delle stringhe l’inizializzazione a zero equivale a dire stringa vuota \"\").\n\n\n\n\n\n\nAvviso\n\n\n\nIl tipo di una variabile struct è struct nome_struct, omettere la parola struct è un errore.\n\n\nUn modo alternativo di inizializzare una struttura è quello di specificare il nome dei membri:\nstruct studente s = {\n    .nome = \"Mario\",\n    .cognome = \"Rossi\",\n    .matricola = 12345,\n};\nIn questa modalità l’ordine degli elementi non è importante, ma è necessario specificare il nome di tutti i membri. Questo metodo è molto utile quando si hanno strutture con molti membri e si vuole inizializzare solo alcuni di essi.\n\n\n\nPer accedere ai singoli membri di una struttura si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;\n\n\n\nSi può copiare interamente una struttura usando una variabile dello stesso tipo:\nstruct studente a, b = {\"Matteo\", \"Spanio\", 56789};\na = b;\nIn questo caso si può notare una delle principali differenze con gli array:\n1int a[] = {1, 2, 3, 4, 5};\n2int *b;\n3b = a;\n\n1\n\na è un array di interi;\n\n2\n\nb è un puntatore a intero;\n\n3\n\nb = a non è una copia dell’array a ma assegna a b l’indirizzo di a, pertanto qualsiasi modifica dei dati di a si riflette anche in b (e viceversa). Cioè a e b puntano alla stessa area di memoria.\n\n\nUtilizzando le strutture invece, la copia è effettiva:\nstruct array {\n    int dati[5];\n};\n1struct array a = {{1, 2, 3, 4, 5}};\n2struct array b;\n3b = a;\n\n1\n\na inizializzo a con un array di interi;\n\n2\n\nb dichiaro b come struttura;\n\n3\n\nb = a copio a in b, vengono effettivamente copiati i dati dell’array a.dati in b.dati. Cioè a e b si trovano in aree di memoria diverse.\n\n\n\n\n\n\n\n\nImportante\n\n\n\nSolo l’operatore = è valido tra 2 struct, gli operatori == e != NON si possono usare per vedere se due strutture sono uguali.\n\n\n\n\n\nLe stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.\nLe strutture col nome, detto structure tag, si dichiarano come abbiamo già visto:\nstruct nome {\n    type member_name;\n};\n\n\n\nNel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:\nstruct { int x; int y; } punto;\npunto.x = 12;\npunto.y = 18;\nCosì facendo la struttura non ha un nome e non può essere riutilizzata facilmente, ogni volta che si vuole dichiarare una variabile di quel tipo bisogna riscrivere la struttura.\n\n\n\ntypedef è un operatore che permette di definire alias per i tipi:\ntypedef int Bool;\ntypedef float Euro;\ntypedef char* String;\nQueste dichiarazioni permettono scrivere codice più chiaro.\nLo stesso effetto si può ottenere dichiarando delle macro:\n#define BOOL int\n#define EURO float\n#define STRING char*\nIn generale si preferisce usare typedef perché è più chiaro e il compilatore può fare dei controlli sui tipi.\nDal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave struct per riferirsi al tipo delle strutture grazie a typedef:\ntypedef struct {\n    int x;\n    int y;\n} Point;\nPoint punto = {\n    .x = 1,\n    .y = 2,\n};\nIn questo modo si può dichiarare una variabile di tipo Point senza usare la parola chiave struct.\n\n\n\nUna volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:\ntypedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint s;\ns = (Point) { .x = 1, .y = 2 };\nA prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:\n#include &lt;math.h&gt;\ntypedef struct point {\n    int x;\n    int y;\n} Point;\n\nPoint somma(Point a, struct point b) {\n    return (Point) { .x = a.x + b.x, .y = a.y + b.y };\n}\n\nfloat distanza(Point a, Point b) {\n    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));\n}\n\n\n\nSi possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):\nstruct point *p;\nPoint *p1;\n\nvoid foo(Point* p);\n\n\n\n\nSi possono creare array di strutture:\nPoint punti[10];\npunti[0].x = 1;\nSi può inserire un array in una struttura:\nstruct libretto {\n    int voti[10];\n    int num_voti;\n};\nSi può inserire una struttura in un’altra struttura:\nstruct data {\n    int giorno;\n    int mese;\n    int anno;\n};\n\nstruct persona {\n    char nome[20];\n    char cognome[20];\n    struct data data_nascita;\n};\nsi possono anche innestare struct anonime:\nstruct {\n    char nome[20];\n    char cognome[20];\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data_nascita;\n} persona;\nSi possono inserire unioni1 in una struttura:\nstruct {\n    char nome[20];\n    char cognome[20];\n    union {\n        int matricola;\n        char codice_fiscale[16];\n    } id;\n} persona;\nSi può inserire strutture in unioni:\nunion {\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data;\n    int intero;\n} u;\n\n\n\nVediamo ora un esempio di programma basato sulle strutture.\nSi vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:\n\nimplementare una struttura dati per memorizzare i dati di un giocatore di calcio;\nmemorizzare l’elenco dei giocatori della squadra;\nordinare i giocatori in base numero di maglia.\n\nUn giocatore è identificabile da nome, cognome e numero di maglia (chiaramente si potrebbero aggiungere molti altri dati, come la data di nascita, il ruolo, ecc.). Si può quindi definire una struttura Giocatore che contenga questi dati:\n#define BUFFER_SIZE 128 // dimensione massima di un buffer\ntypedef struct giocatore\n{\n    char nome[BUFFER_SIZE];\n    char cognome[BUFFER_SIZE];\n    unsigned int numero_maglia; // non esistono numeri di maglia negativi\n} Giocatore;\nIl codice sopra riportato definisce la struttura struct giocatore e vi associa il nuovo tipo Giocatore. La struttura contiene tre membri: nome, cognome e numero_maglia, in quanto stringhe, il nome e cognome sono di tipo char[], mentre il numero di maglia è un intero senza segno. Si noti che gli array vengono dichiarati con una dimensione massima BUFFER_SIZE, ciò vuol dire che il nome e il cognome possono avere una lunghezza massima di BUFFER_SIZE - 1 caratteri, purtroppo C non controlla che questa condizione sia rispettata. In altre parole, all’interno del programma posso inizializzare una struttura Giocatore con un nome o cognome più lungo di BUFFER_SIZE - 1 caratteri, ma il comportamento del programma in questo caso è indefinito. Questo è uno dei più grandi problemi di C.\n\n\nLa struct Giocatore è di fatto un tipo di dato, possiamo quindi creare un array di giocatori dove memorizzare la formazione:\n#define NUM 22\nGiocatore squadra[NUM];\nLa squadra è composta da 22 giocatori (11 titolari, 5 in panchina e 6 riserve). Questa dichiarazione crea un array di 22 elementi di tipo Giocatore e lo assegna alla variabile squadra. Quando si dichiara un array di strutture, si può accedere ai membri di ciascuna struttura usando la notazione . (punto):\nsquadra[0].numero_maglia = 1;\nQuesto perchè squadra[0] è una struttura di tipo Giocatore e numero_maglia è un membro di questa struttura, quando invece si ha un puntatore a una struttura, si usa l’operatore -&gt; (freccia):\nGiocatore *p = &squadra[0];\np-&gt;numero_maglia = 1;\nL’operatore -&gt; è una comodità sintattica, infatti p-&gt;numero_maglia è equivalente a (*p).numero_maglia.\n\n\n\nPer ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:\nIl più intuitivo (ma non il più efficiente) è il Bubble Sort, di seguito una descrizione dell’algoritmo in pseudocodice:\nRepeat n-1 times\n    For i from 0 to n–2\n        If numbers[i] and numbers[i+1] out of order\n            Swap them\n    If no swaps\n        Quit\nL’idea è quella di scorrere l’array di numeri e scambiare i numeri adiacenti se non sono in ordine. Questo processo viene ripetuto finché non si è completato un passaggio senza scambi. Questo algoritmo è molto inefficiente, ma è molto semplice da implementare. La complessità computazionale del Bubble Sort è \\(O(n^2)\\).\nL’implementazione dello pseudocodice è molto semplice, infatti si tratta di due cicli annidati e uno scambio di due elementi:\n\nSi scorre l’array squadra NUM - 1 volte;\nSi scorre l’array squadra da 0 a NUM - 2;\nSi controlla se squadra[i] e squadra[i + 1] sono fuori ordine, in tal caso si scambiano. La funzione swap l’abbiamo già vista nella lezione sui puntatori.\n\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n            }\n        }\n    }\n}\nPer ottimizzare il codice, si può usare un flag per controllare se durante un passaggio non si è effettuato alcuno scambio, in tal caso si può uscire dal ciclo:\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        int scambiato = 0;\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n                scambiato = 1;\n            }\n        }\n        if (!scambiato)\n        {\n            break;\n        }\n    }\n}\nDi seguito un’animazione che mostra come funziona il Bubble Sort:\n\nSe stai consultando questa guida in formato HTML, puoi scaricare una versione completa del codice sorgente cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo \n\n\n\n\nLe unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso, la differenza sta nel fatto che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta:\nunion {\n    int i;\n    double d;\n} u;\n\nstruct {\n    int i;\n    double d;\n} s;\nIn questo caso u occupa in memoria lo spazio necessario per la variabile più grande, in questo caso double (8 byte), mentre s occupa lo spazio necessario per entrambi i membri (4 + 8 byte).\nSi può inizializzare solo un elemento di una union:\nunion {\n    int i;\n    double d;\n} u = { .i = 3 };\nSi presti molta attenzione a non leggere mai un membro di una union che non è stato inizializzato, il comportamento del programma in questo caso è indefinito.\nCome per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef.\n\n\n\nIn molti programmi si usano interi come “codici” per indicare varie cose. Un caso comune sono per esempio i codici di errore.\nSpesso si usano macro o costanti, ma è più chiaro usare enumerazioni:\nenum {\n    CUORI,\n    QUADRI,\n    FIORI,\n    PICCHE\n} s1, s2;`\nOra le variabili s1 e s2 possono assumere solo uno dei quattro valori definiti.\nUn esempio molto comune è la definizione del tipo booleano:\ntypedef enum {\n    FALSE,\n    TRUE\n} Bool;\nIn questo modo si può usare Bool come tipo di variabile, e assegnare solo i valori FALSE e TRUE. Solitamente gli elementi di un’enumerazione sono scritti in maiuscolo, per distinguerli dalle variabili. In questo caso FALSE e TRUE sono costanti, FALSE ha valore 0 e TRUE ha valore 1.\nDi default C assegna dei valori interi crescenti agli elementi dell’enumerazione, ma si possono assegnare valori specifici:\nenum {\n    LUN = 1,\n    MAR = 2,\n    MER = 3,\n    GIO = 4,\n    VEN = 5,\n    SAB = 6,\n    DOM = 7\n} giorno;\nSe non si assegna un valore, C assegna il valore dell’elemento precedente più uno.\n\n\n\nSi vuole implementare il sistema informatico in C per rappresentare una squadra pokemon e ordinare la squadra per i nomi dei pokemon in ordine alfabetico.\nSe stai consultando questa guida in formato HTML, puoi scaricare il codice sorgente da modificare cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo",
     "crumbs": [
       "Lezioni",
-      "Puntatori"
+      "Uso avanzato dei puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/05/index.html#struct-3",
+    "href": "lessons/05/index.html#struct-3",
+    "title": "Uso avanzato dei puntatori",
+    "section": "",
+    "text": "Una struttura è un insieme di dati, si differenzia dagli array perché:\n\ngli elementi possono essere di tipo diverso;\ngli elementi sono identificati da un nome;\n\nDi seguito un esempio di dichiarazione di una struttura:\nstruct studente {\n    char nome[20];\n    char cognome[20];\n    int matricola;\n};\nCome si può vedere dall’esempio, la dichiarazione di una struttura è introdotta dalla parola chiave struct, seguita dal nome della struttura e da una lista di dichiarazioni di variabili. Ricorda fortemente la dichiarazione di una classe in Java, in questo caso però non ci sono metodi, e i dati non si chiamano campi o attributi, ma membri. I membri hanno un nome e un tipo, possono essere di qualsiasi tipo, anche un’altra struttura. La grossa differenza con Java è che i membri sono sempre pubblici e non c’è modo di dichiararli privati.\n\n\nSi possono inizializzare le strutture quando vengono dichiarate:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\nSi possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0 (nel caso delle stringhe l’inizializzazione a zero equivale a dire stringa vuota \"\").\n\n\n\n\n\n\nAvviso\n\n\n\nIl tipo di una variabile struct è struct nome_struct, omettere la parola struct è un errore.\n\n\nUn modo alternativo di inizializzare una struttura è quello di specificare il nome dei membri:\nstruct studente s = {\n    .nome = \"Mario\",\n    .cognome = \"Rossi\",\n    .matricola = 12345,\n};\nIn questa modalità l’ordine degli elementi non è importante, ma è necessario specificare il nome di tutti i membri. Questo metodo è molto utile quando si hanno strutture con molti membri e si vuole inizializzare solo alcuni di essi.\n\n\n\nPer accedere ai singoli membri di una struttura si usa l’operatore . (punto) dopo il nome della variabile:\nstruct studente s = {\"Mario\", \"Rossi\", 12345};\n\nprintf(\"Nome: %s\\n\", s.nome);\nprintf(\"Cognome: %s\\n\", s.cognome);\ns.matricola = 54321;\n\n\n\nSi può copiare interamente una struttura usando una variabile dello stesso tipo:\nstruct studente a, b = {\"Matteo\", \"Spanio\", 56789};\na = b;\nIn questo caso si può notare una delle principali differenze con gli array:\n1int a[] = {1, 2, 3, 4, 5};\n2int *b;\n3b = a;\n\n1\n\na è un array di interi;\n\n2\n\nb è un puntatore a intero;\n\n3\n\nb = a non è una copia dell’array a ma assegna a b l’indirizzo di a, pertanto qualsiasi modifica dei dati di a si riflette anche in b (e viceversa). Cioè a e b puntano alla stessa area di memoria.\n\n\nUtilizzando le strutture invece, la copia è effettiva:\nstruct array {\n    int dati[5];\n};\n1struct array a = {{1, 2, 3, 4, 5}};\n2struct array b;\n3b = a;\n\n1\n\na inizializzo a con un array di interi;\n\n2\n\nb dichiaro b come struttura;\n\n3\n\nb = a copio a in b, vengono effettivamente copiati i dati dell’array a.dati in b.dati. Cioè a e b si trovano in aree di memoria diverse.\n\n\n\n\n\n\n\n\nImportante\n\n\n\nSolo l’operatore = è valido tra 2 struct, gli operatori == e != NON si possono usare per vedere se due strutture sono uguali.\n\n\n\n\n\nLe stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.\nLe strutture col nome, detto structure tag, si dichiarano come abbiamo già visto:\nstruct nome {\n    type member_name;\n};\n\n\n\nNel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:\nstruct { int x; int y; } punto;\npunto.x = 12;\npunto.y = 18;\nCosì facendo la struttura non ha un nome e non può essere riutilizzata facilmente, ogni volta che si vuole dichiarare una variabile di quel tipo bisogna riscrivere la struttura.\n\n\n\ntypedef è un operatore che permette di definire alias per i tipi:\ntypedef int Bool;\ntypedef float Euro;\ntypedef char* String;\nQueste dichiarazioni permettono scrivere codice più chiaro.\nLo stesso effetto si può ottenere dichiarando delle macro:\n#define BOOL int\n#define EURO float\n#define STRING char*\nIn generale si preferisce usare typedef perché è più chiaro e il compilatore può fare dei controlli sui tipi.\nDal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave struct per riferirsi al tipo delle strutture grazie a typedef:\ntypedef struct {\n    int x;\n    int y;\n} Point;\nPoint punto = {\n    .x = 1,\n    .y = 2,\n};\nIn questo modo si può dichiarare una variabile di tipo Point senza usare la parola chiave struct.\n\n\n\nUna volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:\ntypedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint s;\ns = (Point) { .x = 1, .y = 2 };\nA prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:\n#include &lt;math.h&gt;\ntypedef struct point {\n    int x;\n    int y;\n} Point;\n\nPoint somma(Point a, struct point b) {\n    return (Point) { .x = a.x + b.x, .y = a.y + b.y };\n}\n\nfloat distanza(Point a, Point b) {\n    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));\n}\n\n\n\nSi possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):\nstruct point *p;\nPoint *p1;\n\nvoid foo(Point* p);",
+    "crumbs": [
+      "Lezioni",
+      "Uso avanzato dei puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/05/index.html#array-di-struct",
+    "href": "lessons/05/index.html#array-di-struct",
+    "title": "Uso avanzato dei puntatori",
+    "section": "",
+    "text": "Si possono creare array di strutture:\nPoint punti[10];\npunti[0].x = 1;\nSi può inserire un array in una struttura:\nstruct libretto {\n    int voti[10];\n    int num_voti;\n};\nSi può inserire una struttura in un’altra struttura:\nstruct data {\n    int giorno;\n    int mese;\n    int anno;\n};\n\nstruct persona {\n    char nome[20];\n    char cognome[20];\n    struct data data_nascita;\n};\nsi possono anche innestare struct anonime:\nstruct {\n    char nome[20];\n    char cognome[20];\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data_nascita;\n} persona;\nSi possono inserire unioni1 in una struttura:\nstruct {\n    char nome[20];\n    char cognome[20];\n    union {\n        int matricola;\n        char codice_fiscale[16];\n    } id;\n} persona;\nSi può inserire strutture in unioni:\nunion {\n    struct {\n        int giorno;\n        int mese;\n        int anno;\n    } data;\n    int intero;\n} u;",
+    "crumbs": [
+      "Lezioni",
+      "Uso avanzato dei puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/05/index.html#esempio-mondiali-1982",
+    "href": "lessons/05/index.html#esempio-mondiali-1982",
+    "title": "Uso avanzato dei puntatori",
+    "section": "",
+    "text": "Vediamo ora un esempio di programma basato sulle strutture.\nSi vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:\n\nimplementare una struttura dati per memorizzare i dati di un giocatore di calcio;\nmemorizzare l’elenco dei giocatori della squadra;\nordinare i giocatori in base numero di maglia.\n\nUn giocatore è identificabile da nome, cognome e numero di maglia (chiaramente si potrebbero aggiungere molti altri dati, come la data di nascita, il ruolo, ecc.). Si può quindi definire una struttura Giocatore che contenga questi dati:\n#define BUFFER_SIZE 128 // dimensione massima di un buffer\ntypedef struct giocatore\n{\n    char nome[BUFFER_SIZE];\n    char cognome[BUFFER_SIZE];\n    unsigned int numero_maglia; // non esistono numeri di maglia negativi\n} Giocatore;\nIl codice sopra riportato definisce la struttura struct giocatore e vi associa il nuovo tipo Giocatore. La struttura contiene tre membri: nome, cognome e numero_maglia, in quanto stringhe, il nome e cognome sono di tipo char[], mentre il numero di maglia è un intero senza segno. Si noti che gli array vengono dichiarati con una dimensione massima BUFFER_SIZE, ciò vuol dire che il nome e il cognome possono avere una lunghezza massima di BUFFER_SIZE - 1 caratteri, purtroppo C non controlla che questa condizione sia rispettata. In altre parole, all’interno del programma posso inizializzare una struttura Giocatore con un nome o cognome più lungo di BUFFER_SIZE - 1 caratteri, ma il comportamento del programma in questo caso è indefinito. Questo è uno dei più grandi problemi di C.\n\n\nLa struct Giocatore è di fatto un tipo di dato, possiamo quindi creare un array di giocatori dove memorizzare la formazione:\n#define NUM 22\nGiocatore squadra[NUM];\nLa squadra è composta da 22 giocatori (11 titolari, 5 in panchina e 6 riserve). Questa dichiarazione crea un array di 22 elementi di tipo Giocatore e lo assegna alla variabile squadra. Quando si dichiara un array di strutture, si può accedere ai membri di ciascuna struttura usando la notazione . (punto):\nsquadra[0].numero_maglia = 1;\nQuesto perchè squadra[0] è una struttura di tipo Giocatore e numero_maglia è un membro di questa struttura, quando invece si ha un puntatore a una struttura, si usa l’operatore -&gt; (freccia):\nGiocatore *p = &squadra[0];\np-&gt;numero_maglia = 1;\nL’operatore -&gt; è una comodità sintattica, infatti p-&gt;numero_maglia è equivalente a (*p).numero_maglia.\n\n\n\nPer ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:\nIl più intuitivo (ma non il più efficiente) è il Bubble Sort, di seguito una descrizione dell’algoritmo in pseudocodice:\nRepeat n-1 times\n    For i from 0 to n–2\n        If numbers[i] and numbers[i+1] out of order\n            Swap them\n    If no swaps\n        Quit\nL’idea è quella di scorrere l’array di numeri e scambiare i numeri adiacenti se non sono in ordine. Questo processo viene ripetuto finché non si è completato un passaggio senza scambi. Questo algoritmo è molto inefficiente, ma è molto semplice da implementare. La complessità computazionale del Bubble Sort è \\(O(n^2)\\).\nL’implementazione dello pseudocodice è molto semplice, infatti si tratta di due cicli annidati e uno scambio di due elementi:\n\nSi scorre l’array squadra NUM - 1 volte;\nSi scorre l’array squadra da 0 a NUM - 2;\nSi controlla se squadra[i] e squadra[i + 1] sono fuori ordine, in tal caso si scambiano. La funzione swap l’abbiamo già vista nella lezione sui puntatori.\n\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n            }\n        }\n    }\n}\nPer ottimizzare il codice, si può usare un flag per controllare se durante un passaggio non si è effettuato alcuno scambio, in tal caso si può uscire dal ciclo:\nvoid bubble_sort(Giocatore *squadra, size_t n)\n{\n    for (size_t i = 0; i &lt; n - 1; i++)\n    {\n        int scambiato = 0;\n        for (size_t j = 0; j &lt; n - 2; j++)\n        {\n            if (squadra[j].numero_maglia &gt; squadra[j + 1].numero_maglia)\n            {\n                swap(&squadra[j], &squadra[j + 1], sizeof(Giocatore));\n                scambiato = 1;\n            }\n        }\n        if (!scambiato)\n        {\n            break;\n        }\n    }\n}\nDi seguito un’animazione che mostra come funziona il Bubble Sort:\n\nSe stai consultando questa guida in formato HTML, puoi scaricare una versione completa del codice sorgente cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo",
+    "crumbs": [
+      "Lezioni",
+      "Uso avanzato dei puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/05/index.html#unioni-2",
+    "href": "lessons/05/index.html#unioni-2",
+    "title": "Uso avanzato dei puntatori",
+    "section": "",
+    "text": "Le unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso, la differenza sta nel fatto che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta:\nunion {\n    int i;\n    double d;\n} u;\n\nstruct {\n    int i;\n    double d;\n} s;\nIn questo caso u occupa in memoria lo spazio necessario per la variabile più grande, in questo caso double (8 byte), mentre s occupa lo spazio necessario per entrambi i membri (4 + 8 byte).\nSi può inizializzare solo un elemento di una union:\nunion {\n    int i;\n    double d;\n} u = { .i = 3 };\nSi presti molta attenzione a non leggere mai un membro di una union che non è stato inizializzato, il comportamento del programma in questo caso è indefinito.\nCome per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef.",
+    "crumbs": [
+      "Lezioni",
+      "Uso avanzato dei puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/05/index.html#enumerazioni-1",
+    "href": "lessons/05/index.html#enumerazioni-1",
+    "title": "Uso avanzato dei puntatori",
+    "section": "",
+    "text": "In molti programmi si usano interi come “codici” per indicare varie cose. Un caso comune sono per esempio i codici di errore.\nSpesso si usano macro o costanti, ma è più chiaro usare enumerazioni:\nenum {\n    CUORI,\n    QUADRI,\n    FIORI,\n    PICCHE\n} s1, s2;`\nOra le variabili s1 e s2 possono assumere solo uno dei quattro valori definiti.\nUn esempio molto comune è la definizione del tipo booleano:\ntypedef enum {\n    FALSE,\n    TRUE\n} Bool;\nIn questo modo si può usare Bool come tipo di variabile, e assegnare solo i valori FALSE e TRUE. Solitamente gli elementi di un’enumerazione sono scritti in maiuscolo, per distinguerli dalle variabili. In questo caso FALSE e TRUE sono costanti, FALSE ha valore 0 e TRUE ha valore 1.\nDi default C assegna dei valori interi crescenti agli elementi dell’enumerazione, ma si possono assegnare valori specifici:\nenum {\n    LUN = 1,\n    MAR = 2,\n    MER = 3,\n    GIO = 4,\n    VEN = 5,\n    SAB = 6,\n    DOM = 7\n} giorno;\nSe non si assegna un valore, C assegna il valore dell’elemento precedente più uno.",
+    "crumbs": [
+      "Lezioni",
+      "Uso avanzato dei puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/05/index.html#esercizio-1",
+    "href": "lessons/05/index.html#esercizio-1",
+    "title": "Uso avanzato dei puntatori",
+    "section": "",
+    "text": "Si vuole implementare il sistema informatico in C per rappresentare una squadra pokemon e ordinare la squadra per i nomi dei pokemon in ordine alfabetico.\nSe stai consultando questa guida in formato HTML, puoi scaricare il codice sorgente da modificare cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo",
+    "crumbs": [
+      "Lezioni",
+      "Uso avanzato dei puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/05/index.html#array-con-strutture-2",
+    "href": "lessons/05/index.html#array-con-strutture-2",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Array con strutture",
+    "text": "Array con strutture\nGli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza a mano, per questo è una pratica comune creare una struttura che contenga un array e la sua lunghezza:\n#define MAX 1024\n\ntypedef struct intarray {\n    int array[MAX];\n    int length;\n} IntArray;\nQuesta struttura dati si comporta come segue: array è un array con una dimensione massima di MAX elementi, length è il numero di elementi effettivamente presenti nell’array, ciò vuol dire che length è sempre minore o uguale a MAX. Di seguito un esempio di utilizzo:\n1IntArray a = {.length=0};\n2a.array[a.length++] = 1;\n3printf(\"%d, %d\\n\", a.array[0], a.length);\n\n1\n\nInizializzo la struttura a con length=0, non c’è bisogno di inizializzare l’array perchè si presuppone che prima di accedere all’array si verifichi sempre fino a che indice è valido l’array tramite length;\n\n2\n\nInizializzo il primo elemento dell’array con il valore 1 e incremento length, si noti che l’espressione a.length++ restituisce il valore di a.length prima dell’incremento;\n\n3\n\nStampo il primo elemento dell’array e la lunghezza dell’array.\n\n\nAdesso si può passare la struttura come argomento di una funzione:\n1void stampa_array(IntArray a) {\n2    for (int i = 0; i &lt; a.length; i++) {\n        printf(\"%d \", a.array[i]);\n    }\n    printf(\"\\n\");\n}\n\n1\n\nSi nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.\n\n2\n\nSi può usare a.length per scorrere l’array, pertanto se la dimensione è 0 il ciclo non viene eseguito, ecco perchè non c’è bisogno di inizializzare i valori dell’array se length è 0.\n\n\nSe stai consultando questa guida in formato HTML, puoi scaricare un esempio di codice sorgente in cui si utilizza questa struttura dati cliccando sul pulsante qui sotto, altrimenti puoi scaricarlo collegandoti a questo link.\n Scarica l'esempio completo",
+    "crumbs": [
+      "Lezioni",
+      "Uso avanzato dei puntatori"
+    ]
+  },
+  {
+    "objectID": "lessons/05/index.html#footnotes",
+    "href": "lessons/05/index.html#footnotes",
+    "title": "Uso avanzato dei puntatori",
+    "section": "Note",
+    "text": "Note\n\n\nSi veda la sezione seguente per informazioni dettagliate sulle unioni.↩︎",
+    "crumbs": [
+      "Lezioni",
+      "Uso avanzato dei puntatori"
     ]
   },
   {
