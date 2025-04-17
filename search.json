@@ -963,15 +963,15 @@
     "href": "lessons/07/index.html",
     "title": "Operatori bitwise",
     "section": "",
-    "text": "Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili. Questi operatori sono molto utili quando si deve lavorare con i registri di un microcontrollore o con i dati grezzi provenienti da un sensore.\nGli operatori bitwise in C sono: - & AND - | OR - ^ XOR - ~ NOT - &lt;&lt; Shift a sinistra - &gt;&gt; Shift a destra\n\n\nQuesti operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.\n\n\n\nA\nB\nA AND B\nA OR B\nA XOR B\n\n\n\n\n0\n0\n0\n0\n0\n\n\n0\n1\n0\n1\n1\n\n\n1\n0\n0\n1\n1\n\n\n1\n1\n1\n1\n0\n\n\n\n\n\n\nIn elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l’interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo char:\nunsigned char switches = 0b00001000;\n// oppure\nunsigned char switches = 8;\nIn questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.\nIpotizzando di voler accendere un altro interruttore, si può utilizzare l’operatore OR:\n// switches = 0b00001000\nswitches = switches | 0b00000100;\n// oppure\nswitches = switches | 4;\nOra il valore di switches sarà 0b00001100. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.\nPer spegnere tutti gli interruttori si può utilizzare l’operatore AND:\nswitches = switches & 0b00000000;\n// oppure\nswitches = switches & 0;\n// switches: 0b00000000\n\n\n\nScrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.\n#include &lt;stdio.h&gt;\nvoid print_lsb(int n);\n\nint main(void)\n{\n    int a = 127, b = 128;\n\n    print_lsb(a);\n    print_lsb(b);\n}\n\nvoid print_lsb(int n)\n{\n    printf(\"The least significant bit of %d is: \", n);\n    printf(\"%d\\n\", n & 1);\n}\n\n\n\nScrivere una funzione che dato un numero intero \\(n\\), restituisca true se \\(n\\) è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.\n#include &lt;stdio.h&gt;\n#include &lt;stdbool.h&gt;\nbool is_even(int n);\n\nint main(void) {\n    int a = 55, b = 48;\n\n    printf(\"%d is even: %d\\n\", a, is_even(a));\n    printf(\"%d is even: %d\\n\", b, is_even(b));\n}\nL’operatore XOR è molto utile per invertire lo stato di un bit.\n\n\n\n\n\n\nNota\n\n\n\nEseguire l’operazione di XOR due volte su un bit restituisce il valore originale.\nchar c = 'A';\nc = c ^ 'h';\nc = c ^ 'h';\n// c: 'A'\n\n\n\n\n\n65: 0b01000001\n73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n‘A’ ^ ‘I’ = ’\n\n\n\n#include &lt;stdio.h&gt;\n#define KEY 'h'\n\nint main(void)\n{\n    char c = 'A';\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n}\n\n\n\nScrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\n Scarica il main dell'esercizio \n\n\n\nGli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.\nunsigned char c = 0b00000001;\nc = c &lt;&lt; 1;\n// c: 0b00000010\nc = c &lt;&lt; 3;\n// c: 0b00010000\nc = c &gt;&gt; 2;\n// c: 0b00000100\n\n\n\nScrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int n = 5;\n    n = n &lt;&lt; 1;\n    printf(\"%d\\n\", n);\n}\n\n\n\nScrivere un programma che stampi a monitor la codifica in binario di un unsigned char.\nAd esempio, se il valore di c è 5, il programma dovrà stampare 00000101.\n\n\n\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\n Scarica il main dell'esercizio \n\n\n\nNei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori next e prev per ogni nodo.\nOgni nodo della lista contiene un campo link che è il risultato dell’operazione XOR tra i puntatori next e prev. Per calcolare il puntatore next o prev di un nodo, è sufficiente eseguire l’operazione XOR tra il puntatore link e il puntatore del nodo corrente.\n Scarica il codice d'esempio",
+    "text": "Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili. Questi operatori sono molto utili quando si deve lavorare con i registri di un microcontrollore o con i dati grezzi provenienti da un sensore.\nGli operatori bitwise in C sono: - & AND - | OR - ^ XOR - ~ NOT - &lt;&lt; Shift a sinistra - &gt;&gt; Shift a destra\n\n\nQuesti operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.\n\n\n\nA\nB\nA AND B\nA OR B\nA XOR B\n\n\n\n\n0\n0\n0\n0\n0\n\n\n0\n1\n0\n1\n1\n\n\n1\n0\n0\n1\n1\n\n\n1\n1\n1\n1\n0\n\n\n\n\n\n\nIn elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l’interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo char:\nunsigned char switches = 0b00001000;\n// oppure\nunsigned char switches = 8;\nIn questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.\nIpotizzando di voler accendere un altro interruttore, si può utilizzare l’operatore OR:\n// switches = 0b00001000\nswitches = switches | 0b00000100;\n// oppure\nswitches = switches | 4;\nOra il valore di switches sarà 0b00001100. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.\nPer spegnere tutti gli interruttori si può utilizzare l’operatore AND:\nswitches = switches & 0b00000000;\n// oppure\nswitches = switches & 0;\n// switches: 0b00000000\n\n\nScrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.\n#include &lt;stdio.h&gt;\nvoid print_lsb(int n);\n\nint main(void)\n{\n    int a = 127, b = 128;\n\n    print_lsb(a);\n    print_lsb(b);\n}\n\nvoid print_lsb(int n)\n{\n    printf(\"The least significant bit of %d is: \", n);\n    printf(\"%d\\n\", n & 1);\n}\n\n\n\n\nL’operatore XOR è molto utile per invertire lo stato di un bit.\n\n\n\n\n\n\nNota\n\n\n\nEseguire l’operazione di XOR due volte su un bit restituisce il valore originale.\nchar c = 'A';\nc = c ^ 'h';\nc = c ^ 'h';\n// c: 'A'\n\n\n\n\nVediamo ora un esempio di aritmetica con XOR: volendo fare encoding e decoding di un carattere, possiamo utilizzare l’operatore XOR. Supponiamo di voler cifrare il carattere 'A' utilizzando la chiave 'I'. La chiave è un carattere ASCII, quindi possiamo rappresentarla in binario:\nA -&gt; 65: 0b01000001\nI -&gt; 73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n'A' ^ 'I' = '\\b'\nOra possiamo implementare un semplice programma di crittografia in C.\n#include &lt;stdio.h&gt;\n#define KEY 'h'\n\nint main(void)\n{\n    char c = 'A';\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n}\n\n\n\n\nGli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.\nunsigned char c = 0b00000001;\nc = c &lt;&lt; 1;\n// c: 0b00000010\nc = c &lt;&lt; 3;\n// c: 0b00010000\nc = c &gt;&gt; 2;\n// c: 0b00000100\n\n\n\nScrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int n = 5;\n    n = n &lt;&lt; 1;\n    printf(\"%d\\n\", n);\n}\n\n\n\nAbbiamo visto le liste concatenate in precedenza, uno dei limiti di questa struttura dati è che non permette di navigare la lista in entrambe le direzioni. Per superare questo limite, è possibile implementare una lista doppiamente concatenata, in cui ogni nodo contiene un puntatore al nodo successivo e un puntatore al nodo precedente. In questo modo è possibile navigare la lista in entrambe le direzioni.\ntypedef struct node {\n    struct node *prev;\n    struct node *next;\n    int data;\n} Node;\nOvviamente questo approccio ha un costo in termini di memoria, poiché ogni nodo deve memorizzare due puntatori invece di uno.\n\n\nNei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori next e prev per ogni nodo.\nOgni nodo della lista contiene un campo link che è il risultato dell’operazione XOR tra i puntatori next e prev. Per calcolare il puntatore next o prev di un nodo, è sufficiente eseguire l’operazione XOR tra il puntatore link e il puntatore del nodo corrente.\ntypedef struct node {\n    struct node *link;\n    int data;\n} Node;\n Scarica il codice d'esempio \n\n\n\n\n\nScrivere una funzione che dato un numero intero \\(n\\), restituisca true se \\(n\\) è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.\n#include &lt;stdio.h&gt;\n#include &lt;stdbool.h&gt;\nbool is_even(int n);\n\nint main(void) {\n    int a = 55, b = 48;\n\n    printf(\"%d is even: %d\\n\", a, is_even(a));\n    printf(\"%d is even: %d\\n\", b, is_even(b));\n}\n\nbool is_even(int n) {\n    // TODO\n}\nScrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\n Scarica il main dell'esercizio \nScrivere un programma che stampi a monitor la codifica in binario di un unsigned char. Ad esempio, se il valore di c è 5, il programma dovrà stampare 00000000 00000000 00000000 00000101.\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\n Scarica il main dell'esercizio",
     "crumbs": [
       "Lezioni",
       "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/07/index.html#calcoli-1",
-    "href": "lessons/07/index.html#calcoli-1",
+    "objectID": "lessons/07/index.html#tabelle-di-verità",
+    "href": "lessons/07/index.html#tabelle-di-verità",
     "title": "Operatori bitwise",
     "section": "",
     "text": "Questi operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.\n\n\n\nA\nB\nA AND B\nA OR B\nA XOR B\n\n\n\n\n0\n0\n0\n0\n0\n\n\n0\n1\n0\n1\n1\n\n\n1\n0\n0\n1\n1\n\n\n1\n1\n1\n1\n0",
@@ -981,66 +981,22 @@
     ]
   },
   {
-    "objectID": "lessons/07/index.html#esempi",
-    "href": "lessons/07/index.html#esempi",
+    "objectID": "lessons/07/index.html#rappresentazione-in-base-2-in-c",
+    "href": "lessons/07/index.html#rappresentazione-in-base-2-in-c",
     "title": "Operatori bitwise",
     "section": "",
-    "text": "In elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l’interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo char:\nunsigned char switches = 0b00001000;\n// oppure\nunsigned char switches = 8;\nIn questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.\nIpotizzando di voler accendere un altro interruttore, si può utilizzare l’operatore OR:\n// switches = 0b00001000\nswitches = switches | 0b00000100;\n// oppure\nswitches = switches | 4;\nOra il valore di switches sarà 0b00001100. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.\nPer spegnere tutti gli interruttori si può utilizzare l’operatore AND:\nswitches = switches & 0b00000000;\n// oppure\nswitches = switches & 0;\n// switches: 0b00000000",
+    "text": "In elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l’interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo char:\nunsigned char switches = 0b00001000;\n// oppure\nunsigned char switches = 8;\nIn questa configurazione il quarto bit interruttore è acceso, mentre gli altri sono spenti.\nIpotizzando di voler accendere un altro interruttore, si può utilizzare l’operatore OR:\n// switches = 0b00001000\nswitches = switches | 0b00000100;\n// oppure\nswitches = switches | 4;\nOra il valore di switches sarà 0b00001100. Il che rappresenta il fatto che gli interruttori 3 e 4 sono accesi.\nPer spegnere tutti gli interruttori si può utilizzare l’operatore AND:\nswitches = switches & 0b00000000;\n// oppure\nswitches = switches & 0;\n// switches: 0b00000000\n\n\nScrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.\n#include &lt;stdio.h&gt;\nvoid print_lsb(int n);\n\nint main(void)\n{\n    int a = 127, b = 128;\n\n    print_lsb(a);\n    print_lsb(b);\n}\n\nvoid print_lsb(int n)\n{\n    printf(\"The least significant bit of %d is: \", n);\n    printf(\"%d\\n\", n & 1);\n}",
     "crumbs": [
       "Lezioni",
       "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/07/index.html#esercizio-2",
-    "href": "lessons/07/index.html#esercizio-2",
+    "objectID": "lessons/07/index.html#xor-1",
+    "href": "lessons/07/index.html#xor-1",
     "title": "Operatori bitwise",
     "section": "",
-    "text": "Scrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.\n#include &lt;stdio.h&gt;\nvoid print_lsb(int n);\n\nint main(void)\n{\n    int a = 127, b = 128;\n\n    print_lsb(a);\n    print_lsb(b);\n}\n\nvoid print_lsb(int n)\n{\n    printf(\"The least significant bit of %d is: \", n);\n    printf(\"%d\\n\", n & 1);\n}",
-    "crumbs": [
-      "Lezioni",
-      "Operatori bitwise"
-    ]
-  },
-  {
-    "objectID": "lessons/07/index.html#esercizio-3",
-    "href": "lessons/07/index.html#esercizio-3",
-    "title": "Operatori bitwise",
-    "section": "",
-    "text": "Scrivere una funzione che dato un numero intero \\(n\\), restituisca true se \\(n\\) è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.\n#include &lt;stdio.h&gt;\n#include &lt;stdbool.h&gt;\nbool is_even(int n);\n\nint main(void) {\n    int a = 55, b = 48;\n\n    printf(\"%d is even: %d\\n\", a, is_even(a));\n    printf(\"%d is even: %d\\n\", b, is_even(b));\n}\nL’operatore XOR è molto utile per invertire lo stato di un bit.\n\n\n\n\n\n\nNota\n\n\n\nEseguire l’operazione di XOR due volte su un bit restituisce il valore originale.\nchar c = 'A';\nc = c ^ 'h';\nc = c ^ 'h';\n// c: 'A'",
-    "crumbs": [
-      "Lezioni",
-      "Operatori bitwise"
-    ]
-  },
-  {
-    "objectID": "lessons/07/index.html#esempio-2",
-    "href": "lessons/07/index.html#esempio-2",
-    "title": "Operatori bitwise",
-    "section": "",
-    "text": "65: 0b01000001\n73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n‘A’ ^ ‘I’ = ’",
-    "crumbs": [
-      "Lezioni",
-      "Operatori bitwise"
-    ]
-  },
-  {
-    "objectID": "lessons/07/index.html#esempio-3",
-    "href": "lessons/07/index.html#esempio-3",
-    "title": "Operatori bitwise",
-    "section": "",
-    "text": "#include &lt;stdio.h&gt;\n#define KEY 'h'\n\nint main(void)\n{\n    char c = 'A';\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n}",
-    "crumbs": [
-      "Lezioni",
-      "Operatori bitwise"
-    ]
-  },
-  {
-    "objectID": "lessons/07/index.html#esercizi-3",
-    "href": "lessons/07/index.html#esercizi-3",
-    "title": "Operatori bitwise",
-    "section": "",
-    "text": "Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\n Scarica il main dell'esercizio",
+    "text": "L’operatore XOR è molto utile per invertire lo stato di un bit.\n\n\n\n\n\n\nNota\n\n\n\nEseguire l’operazione di XOR due volte su un bit restituisce il valore originale.\nchar c = 'A';\nc = c ^ 'h';\nc = c ^ 'h';\n// c: 'A'\n\n\n\n\nVediamo ora un esempio di aritmetica con XOR: volendo fare encoding e decoding di un carattere, possiamo utilizzare l’operatore XOR. Supponiamo di voler cifrare il carattere 'A' utilizzando la chiave 'I'. La chiave è un carattere ASCII, quindi possiamo rappresentarla in binario:\nA -&gt; 65: 0b01000001\nI -&gt; 73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n'A' ^ 'I' = '\\b'\nOra possiamo implementare un semplice programma di crittografia in C.\n#include &lt;stdio.h&gt;\n#define KEY 'h'\n\nint main(void)\n{\n    char c = 'A';\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n\n    c = c ^ KEY;\n    printf(\"%c\\n\", c);\n}",
     "crumbs": [
       "Lezioni",
       "Operatori bitwise"
@@ -1069,33 +1025,22 @@
     ]
   },
   {
-    "objectID": "lessons/07/index.html#esercizi-4",
-    "href": "lessons/07/index.html#esercizi-4",
+    "objectID": "lessons/07/index.html#double-linked-list-1",
+    "href": "lessons/07/index.html#double-linked-list-1",
     "title": "Operatori bitwise",
     "section": "",
-    "text": "Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char.\nAd esempio, se il valore di c è 5, il programma dovrà stampare 00000101.",
+    "text": "Abbiamo visto le liste concatenate in precedenza, uno dei limiti di questa struttura dati è che non permette di navigare la lista in entrambe le direzioni. Per superare questo limite, è possibile implementare una lista doppiamente concatenata, in cui ogni nodo contiene un puntatore al nodo successivo e un puntatore al nodo precedente. In questo modo è possibile navigare la lista in entrambe le direzioni.\ntypedef struct node {\n    struct node *prev;\n    struct node *next;\n    int data;\n} Node;\nOvviamente questo approccio ha un costo in termini di memoria, poiché ogni nodo deve memorizzare due puntatori invece di uno.\n\n\nNei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori next e prev per ogni nodo.\nOgni nodo della lista contiene un campo link che è il risultato dell’operazione XOR tra i puntatori next e prev. Per calcolare il puntatore next o prev di un nodo, è sufficiente eseguire l’operazione XOR tra il puntatore link e il puntatore del nodo corrente.\ntypedef struct node {\n    struct node *link;\n    int data;\n} Node;\n Scarica il codice d'esempio",
     "crumbs": [
       "Lezioni",
       "Operatori bitwise"
     ]
   },
   {
-    "objectID": "lessons/07/index.html#esercizi-5",
-    "href": "lessons/07/index.html#esercizi-5",
+    "objectID": "lessons/07/index.html#esercizi-3",
+    "href": "lessons/07/index.html#esercizi-3",
     "title": "Operatori bitwise",
     "section": "",
-    "text": "Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\n Scarica il main dell'esercizio",
-    "crumbs": [
-      "Lezioni",
-      "Operatori bitwise"
-    ]
-  },
-  {
-    "objectID": "lessons/07/index.html#xor-linked-1",
-    "href": "lessons/07/index.html#xor-linked-1",
-    "title": "Operatori bitwise",
-    "section": "",
-    "text": "Nei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori next e prev per ogni nodo.\nOgni nodo della lista contiene un campo link che è il risultato dell’operazione XOR tra i puntatori next e prev. Per calcolare il puntatore next o prev di un nodo, è sufficiente eseguire l’operazione XOR tra il puntatore link e il puntatore del nodo corrente.\n Scarica il codice d'esempio",
+    "text": "Scrivere una funzione che dato un numero intero \\(n\\), restituisca true se \\(n\\) è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.\n#include &lt;stdio.h&gt;\n#include &lt;stdbool.h&gt;\nbool is_even(int n);\n\nint main(void) {\n    int a = 55, b = 48;\n\n    printf(\"%d is even: %d\\n\", a, is_even(a));\n    printf(\"%d is even: %d\\n\", b, is_even(b));\n}\n\nbool is_even(int n) {\n    // TODO\n}\nScrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.\n Scarica il main dell'esercizio \nScrivere un programma che stampi a monitor la codifica in binario di un unsigned char. Ad esempio, se il valore di c è 5, il programma dovrà stampare 00000000 00000000 00000000 00000101.\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\n Scarica il main dell'esercizio",
     "crumbs": [
       "Lezioni",
       "Operatori bitwise"
@@ -1162,7 +1107,7 @@
     "href": "lessons/07/slide.html#esempio",
     "title": "Operatori bitwise",
     "section": "Esempio",
-    "text": "Esempio\n65: 0b01000001\n73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n‘A’ ^ ‘I’ = ’"
+    "text": "Esempio\n65: 0b01000001\n73: 0b01001001\n08: 0b00001000\n65 ^ 73 = 8\n8 ^ 73 = 65\n'A' ^ 'I' = '\\b' (man ascii)"
   },
   {
     "objectID": "lessons/07/slide.html#esempio-1",
@@ -1197,7 +1142,7 @@
     "href": "lessons/07/slide.html#esercizi-1",
     "title": "Operatori bitwise",
     "section": "Esercizi",
-    "text": "Esercizi\nScrivere un programma che stampi a monitor la codifica in binario di un unsigned char.\nAd esempio, se il valore di c è 5, il programma dovrà stampare 00000101."
+    "text": "Esercizi\nScrivere un programma che stampi a monitor la codifica in binario di un unsigned char.\nAd esempio, se il valore di c è 5, il programma dovrà stampare 00000000 00000000 00000000 00000101.\nScarica il main dell’esercizio"
   },
   {
     "objectID": "lessons/07/slide.html#esercizi-2",
@@ -1207,11 +1152,18 @@
     "text": "Esercizi\nImmaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:\n\nAccenda il led più a destra;\nAccenda il led più a sinistra;\nInverta lo stato di tutti i led;\nSpenga tutti i led.\n\nScarica il main dell’esercizio"
   },
   {
-    "objectID": "lessons/07/slide.html#xor-linked",
-    "href": "lessons/07/slide.html#xor-linked",
+    "objectID": "lessons/07/slide.html#double-linked-list",
+    "href": "lessons/07/slide.html#double-linked-list",
     "title": "Operatori bitwise",
-    "section": "XOR Linked",
-    "text": "XOR Linked\nNei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori next e prev per ogni nodo.\nOgni nodo della lista contiene un campo link che è il risultato dell’operazione XOR tra i puntatori next e prev. Per calcolare il puntatore next o prev di un nodo, è sufficiente eseguire l’operazione XOR tra il puntatore link e il puntatore del nodo corrente.\nVedi un esempio di implementazione di una lista doppiamente concatenata usando XOR."
+    "section": "Double Linked List",
+    "text": "Double Linked List\nLe liste doppiamente concatenate sono una struttura dati che permette di memorizzare una sequenza di nodi, in cui ogni nodo contiene un puntatore al nodo successivo e un puntatore al nodo precedente. In questo modo è possibile navigare la lista in entrambe le direzioni.\ntypedef struct node {\n    struct node *prev;\n    struct node *next;\n    int data;\n} Node;"
+  },
+  {
+    "objectID": "lessons/07/slide.html#xor-linked-list",
+    "href": "lessons/07/slide.html#xor-linked-list",
+    "title": "Operatori bitwise",
+    "section": "XOR Linked List",
+    "text": "XOR Linked List\nNei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori next e prev per ogni nodo.\ntypedef struct node {\n    struct node *link;\n    int data;\n} Node;\nVedi un esempio di implementazione di una lista doppiamente concatenata usando XOR."
   },
   {
     "objectID": "lessons/04/index.html",

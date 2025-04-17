@@ -268,18 +268,22 @@ window.Quarto = {
   <ul>
   <li><a href="#operazioni-bitwise-1" id="toc-operazioni-bitwise-1" class="nav-link active" data-scroll-target="#operazioni-bitwise-1">Operazioni bitwise</a>
   <ul class="collapse">
-  <li><a href="#calcoli-1" id="toc-calcoli-1" class="nav-link" data-scroll-target="#calcoli-1">Calcoli</a></li>
-  <li><a href="#esempi" id="toc-esempi" class="nav-link" data-scroll-target="#esempi">Esempi</a></li>
-  <li><a href="#esercizio-2" id="toc-esercizio-2" class="nav-link" data-scroll-target="#esercizio-2">Esercizio</a></li>
-  <li><a href="#esercizio-3" id="toc-esercizio-3" class="nav-link" data-scroll-target="#esercizio-3">Esercizio</a></li>
+  <li><a href="#tabelle-di-verità" id="toc-tabelle-di-verità" class="nav-link" data-scroll-target="#tabelle-di-verità">Tabelle di verità</a></li>
+  <li><a href="#rappresentazione-in-base-2-in-c" id="toc-rappresentazione-in-base-2-in-c" class="nav-link" data-scroll-target="#rappresentazione-in-base-2-in-c">Rappresentazione in base 2 in C</a>
+  <ul class="collapse">
+  <li><a href="#esempio-di-esercizio" id="toc-esempio-di-esercizio" class="nav-link" data-scroll-target="#esempio-di-esercizio">Esempio di esercizio</a></li>
+  </ul></li>
+  <li><a href="#xor-1" id="toc-xor-1" class="nav-link" data-scroll-target="#xor-1">XOR</a>
+  <ul class="collapse">
   <li><a href="#esempio-2" id="toc-esempio-2" class="nav-link" data-scroll-target="#esempio-2">Esempio</a></li>
-  <li><a href="#esempio-3" id="toc-esempio-3" class="nav-link" data-scroll-target="#esempio-3">Esempio</a></li>
-  <li><a href="#esercizi-3" id="toc-esercizi-3" class="nav-link" data-scroll-target="#esercizi-3">Esercizi</a></li>
+  </ul></li>
   <li><a href="#shift-1" id="toc-shift-1" class="nav-link" data-scroll-target="#shift-1">Shift</a></li>
   <li><a href="#esempio-shift-1" id="toc-esempio-shift-1" class="nav-link" data-scroll-target="#esempio-shift-1">Esempio Shift</a></li>
-  <li><a href="#esercizi-4" id="toc-esercizi-4" class="nav-link" data-scroll-target="#esercizi-4">Esercizi</a></li>
-  <li><a href="#esercizi-5" id="toc-esercizi-5" class="nav-link" data-scroll-target="#esercizi-5">Esercizi</a></li>
-  <li><a href="#xor-linked-1" id="toc-xor-linked-1" class="nav-link" data-scroll-target="#xor-linked-1">XOR Linked</a></li>
+  <li><a href="#double-linked-list-1" id="toc-double-linked-list-1" class="nav-link" data-scroll-target="#double-linked-list-1">Double Linked List</a>
+  <ul class="collapse">
+  <li><a href="#xor-linked-list-1" id="toc-xor-linked-list-1" class="nav-link" data-scroll-target="#xor-linked-list-1">XOR Linked List</a></li>
+  </ul></li>
+  <li><a href="#esercizi-3" id="toc-esercizi-3" class="nav-link" data-scroll-target="#esercizi-3">Esercizi</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -329,8 +333,8 @@ window.Quarto = {
 <h1>Operazioni bitwise</h1>
 <p>Gli operatori bitwise permettono di effettuare calcoli al livello dei bit delle variabili. Questi operatori sono molto utili quando si deve lavorare con i registri di un microcontrollore o con i dati grezzi provenienti da un sensore.</p>
 <p>Gli operatori bitwise in C sono: - <code>&amp;</code> AND - <code>|</code> OR - <code>^</code> XOR - <code>~</code> NOT - <code>&lt;&lt;</code> Shift a sinistra - <code>&gt;&gt;</code> Shift a destra</p>
-<section id="calcoli-1" class="level2">
-<h2 class="anchored" data-anchor-id="calcoli-1">Calcoli</h2>
+<section id="tabelle-di-verità" class="level2">
+<h2 class="anchored" data-anchor-id="tabelle-di-verità">Tabelle di verità</h2>
 <p>Questi operatori applicano le regole dell’algebra booleana, pertanto sarà importante conoscere le tabelle di verità delle operazioni AND, OR e XOR.</p>
 <table class="caption-top table">
 <thead>
@@ -374,8 +378,8 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="esempi" class="level2">
-<h2 class="anchored" data-anchor-id="esempi">Esempi</h2>
+<section id="rappresentazione-in-base-2-in-c" class="level2">
+<h2 class="anchored" data-anchor-id="rappresentazione-in-base-2-in-c">Rappresentazione in base 2 in C</h2>
 <p>In elettronica digitale, spesso si utilizzano serie di bit per rappresentare lo stato di un sistema. Ad esempio, si può utilizzare un byte per rappresentare lo stato di 8 interruttori. Supponiamo che l’interruttore 3 sia acceso e gli altri spenti. Per rappresentare lo stato degli interruttori si può utilizzare una variabile di tipo <code>char</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">char</span> switches <span class="op">=</span> <span class="bn">0b00001000</span><span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// oppure</span></span>
@@ -392,9 +396,8 @@ window.Quarto = {
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">// oppure</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>switches <span class="op">=</span> switches <span class="op">&amp;</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">// switches: 0b00000000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="esercizio-2" class="level2">
-<h2 class="anchored" data-anchor-id="esercizio-2">Esercizio</h2>
+<section id="esempio-di-esercizio" class="level3">
+<h3 class="anchored" data-anchor-id="esempio-di-esercizio">Esempio di esercizio</h3>
 <p>Scrivere un programma che stampi a monitor il valore del bit meno significativo di un numero intero.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> print_lsb<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
@@ -413,19 +416,9 @@ window.Quarto = {
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n <span class="op">&amp;</span> <span class="dv">1</span><span class="op">);</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="esercizio-3" class="level2">
-<h2 class="anchored" data-anchor-id="esercizio-3">Esercizio</h2>
-<p>Scrivere una funzione che dato un numero intero <span class="math inline">\(n\)</span>, restituisca true se <span class="math inline">\(n\)</span> è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdbool.h&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> is_even<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">55</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">48</span><span class="op">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> is_even<span class="op">(</span>a<span class="op">));</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> b<span class="op">,</span> is_even<span class="op">(</span>b<span class="op">));</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="xor-1" class="level2">
+<h2 class="anchored" data-anchor-id="xor-1">XOR</h2>
 <p>L’operatore XOR è molto utile per invertire lo stato di un bit.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -438,102 +431,77 @@ Nota
 </div>
 <div class="callout-body-container callout-body">
 <p>Eseguire l’operazione di XOR due volte su un bit restituisce il valore originale.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">// c: 'A'</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">^</span> <span class="ch">'h'</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">// c: 'A'</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</section>
-<section id="esempio-2" class="level2">
-<h2 class="anchored" data-anchor-id="esempio-2">Esempio</h2>
-<p><code>65: 0b01000001</code></p>
-<p><code>73: 0b01001001</code></p>
+<section id="esempio-2" class="level3">
+<h3 class="anchored" data-anchor-id="esempio-2">Esempio</h3>
+<p>Vediamo ora un esempio di aritmetica con XOR: volendo fare encoding e decoding di un carattere, possiamo utilizzare l’operatore XOR. Supponiamo di voler cifrare il carattere <code>'A'</code> utilizzando la chiave <code>'I'</code>. La chiave è un carattere ASCII, quindi possiamo rappresentarla in binario:</p>
+<p><code>A -&gt; 65: 0b01000001</code></p>
+<p><code>I -&gt; 73: 0b01001001</code></p>
 <p><code>08: 0b00001000</code></p>
 <p>65 ^ 73 = 8</p>
 <p>8 ^ 73 = 65</p>
-<p>‘A’ ^ ‘I’ = ’</p>
+<p><code>'A' ^ 'I' = '\b'</code></p>
+<p>Ora possiamo implementare un semplice programma di crittografia in C.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY </span><span class="ch">'h'</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="esempio-3" class="level2">
-<h2 class="anchored" data-anchor-id="esempio-3">Esempio</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY </span><span class="ch">'h'</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> c <span class="op">=</span> <span class="ch">'A'</span><span class="op">;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> c <span class="op">^</span> KEY<span class="op">;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%c\n</span><span class="st">"</span><span class="op">,</span> c<span class="op">);</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="esercizi-3" class="level2">
-<h2 class="anchored" data-anchor-id="esercizi-3">Esercizi</h2>
-<p>Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.</p>
-<p><a href="#dnldts17754" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CiNpbmNsdWRlIDxzdGRsaWIuaD4KI2luY2x1ZGUgPHN0cmluZy5oPgojZGVmaW5lIEtFWSAnJCcKCnR5cGVkZWYgY2hhciAqU3RyaW5nOwoKLy8gU2NyaXZlcmUgbCdpbXBsZW1lbnRhemlvbmUgZGVsbGUgZnVuemlvbmkgc3RyaW5nX2VuY29kZWMsIG5ld19zdHJpbmcgZSBzdHJpbmdfZGVsZXRlCi8vIEhpbnQxOiBuZXdfc3RyaW5nIGRldmUgYWxsb2NhcmUgbGEgbWVtb3JpYSBwZXIgbGEgc3RyaW5nYSB0ZXh0Ci8vIEhpbnQyOiBzdHJpbmdfZW5jb2RlYyBkZXZlIGNpZnJhcmUgbGEgc3RyaW5nYSBtZXNzYWdlIGNvbiBsYSBjaGlhdmUga2V5IHRyYW1pdGUgWE9SCi8vIEhpbnQzOiBsYSBmdW56aW9uZSBzdHJsZW4gcmVzdGl0dWlzY2UgbGEgbHVuZ2hlenphIGRlbGxhIHN0cmluZ2EKLy8gSGludDQ6IGxhIGZ1bnppb25lIHN0cmNweSBjb3BpYSB1bmEgc3RyaW5nYSBpbiB1biBwdW50YXRvcmUgYSBjaGFyICh2ZWRpIG1hbiBzdHJjcHkpCi8vCi8vIE9wdGlvbmFsOiByZW5kZXJlIGxhIGNoaWF2ZSBLRVkgdW4gYXJnb21lbnRvIGRlbGxhIHJpZ2EgZGkgY29tYW5kbwovLyBMJ3VzbyBkZWwgcHJvZ3JhbW1hIGRldmUgZXNzZXJlOgovLyAuL3hvcl9lbmNvZGVjIGtleSBtZXNzYWdlClN0cmluZyBuZXdfc3RyaW5nKFN0cmluZyB0ZXh0KTsKdm9pZCBzdHJpbmdfZW5jb2RlYyhTdHJpbmcgbWVzc2FnZSwgY2hhciBrZXkpOwp2b2lkIHN0cmluZ19kZWxldGUoU3RyaW5nIHN0cik7CgppbnQgbWFpbih2b2lkKQp7CiAgICBTdHJpbmcgcyA9IG5ld19zdHJpbmcoIkhlbGxvIHdvcmxkISIpOwogICAgaWYgKHMgPT0gTlVMTCkKICAgIHsKICAgICAgICBleGl0KEVYSVRfRkFJTFVSRSk7CiAgICB9CgogICAgcHJpbnRmKCIlc1xuIiwgcyk7CgogICAgc3RyaW5nX2VuY29kZWMocywgS0VZKTsgLy8gQ2lmcmFyZQogICAgcHJpbnRmKCIlc1xuIiwgcyk7CgogICAgc3RyaW5nX2VuY29kZWMocywgS0VZKTsgLy8gRGVjaWZyYXJlCiAgICBwcmludGYoIiVzXG4iLCBzKTsKCiAgICBzdHJpbmdfZGVsZXRlKHMpOwp9Cgp2b2lkIHN0cmluZ19lbmNvZGVjKFN0cmluZyBtZXNzYWdlLCBjaGFyIGtleSkKewogICAgLy8gVE9ETwp9CgpTdHJpbmcgbmV3X3N0cmluZyhTdHJpbmcgdGV4dCkKewogICAgLy8gVE9ETwp9Cgp2b2lkIHN0cmluZ19kZWxldGUoU3RyaW5nIHN0cikKewogICAgZnJlZShzdHIpOwogICAgKnN0ciA9IE5VTEw7Cn0K').then(res => res.blob()).then(blob => {
-      const downloadURL = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      document.body.appendChild(a);
-      a.href = downloadURL;
-      a.download = 'xor_crypt.c.c'; a.click();
-      window.URL.revokeObjectURL(downloadURL);
-      document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts17754"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p>
 </section>
 <section id="shift-1" class="level2">
 <h2 class="anchored" data-anchor-id="shift-1">Shift</h2>
 <p>Gli operatori di shift permettono di spostare i bit di una variabile a sinistra o a destra.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">char</span> c <span class="op">=</span> <span class="bn">0b00000001</span><span class="op">;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">// c: 0b00000010</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">// c: 0b00010000</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">&gt;&gt;</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">// c: 0b00000100</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">char</span> c <span class="op">=</span> <span class="bn">0b00000001</span><span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">// c: 0b00000010</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">&lt;&lt;</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">// c: 0b00010000</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">&gt;&gt;</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">// c: 0b00000100</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="esempio-shift-1" class="level2">
 <h2 class="anchored" data-anchor-id="esempio-shift-1">Esempio Shift</h2>
 <p>Scrivere un programma che moltiplichi un numero intero per 2 utilizzando l’operatore di shift.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> n <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> n <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n<span class="op">);</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> n <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> n <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> n<span class="op">);</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="esercizi-4" class="level2">
-<h2 class="anchored" data-anchor-id="esercizi-4">Esercizi</h2>
-<p>Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char.</p>
-<p>Ad esempio, se il valore di <code>c</code> è 5, il programma dovrà stampare <code>00000101</code>.</p>
-</section>
-<section id="esercizi-5" class="level2">
-<h2 class="anchored" data-anchor-id="esercizi-5">Esercizi</h2>
-<p>Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:</p>
-<ol type="1">
-<li>Accenda il led più a destra;</li>
-<li>Accenda il led più a sinistra;</li>
-<li>Inverta lo stato di tutti i led;</li>
-<li>Spenga tutti i led.</li>
-</ol>
-<p><a href="#dnldts5312" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgovLyBJbXBsZW1lbnQgdGhlIGZ1bmN0aW9uczoKLy8gLSBwcmludF9sZWRzOiBwcmludCB0aGUgbGVkcyBhcyBhIHNlcXVlbmNlIG9mIDEgYW5kIC4KLy8gLSBhY2NlbmRpX2xlZDogdHVybiBvbiB0aGUgbGVkIGF0IHRoZSBnaXZlbiBwb3NpdGlvbgovLyAtIHNwZWduaV9sZWQ6IHR1cm4gb2ZmIHRoZSBsZWQgYXQgdGhlIGdpdmVuIHBvc2l0aW9uCi8vIC0gaW52ZXJ0aV90dXR0aV9sZWQ6IGludmVydCBhbGwgdGhlIGxlZHMKLy8gLSBhY2NlbmRpX3R1dHRpX2xlZDogdHVybiBvbiBhbGwgdGhlIGxlZHMKLy8gLSBzcGVnbmlfdHV0dGlfbGVkOiB0dXJuIG9mZiBhbGwgdGhlIGxlZHMKCnZvaWQgcHJpbnRfbGVkcyh1bnNpZ25lZCBjaGFyIGxlZHMpOwp1bnNpZ25lZCBjaGFyIGFjY2VuZGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcywgaW50IHBvc2l6aW9uZSk7CnVuc2lnbmVkIGNoYXIgc3BlZ25pX2xlZCh1bnNpZ25lZCBjaGFyIGxlZHMsIGludCBwb3NpemlvbmUpOwp1bnNpZ25lZCBjaGFyIGludmVydGlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CnVuc2lnbmVkIGNoYXIgYWNjZW5kaV90dXR0aV9sZWQodW5zaWduZWQgY2hhciBsZWRzKTsKdW5zaWduZWQgY2hhciBzcGVnbmlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CgppbnQgbWFpbih2b2lkKQp7CiAgICB1bnNpZ25lZCBjaGFyIGxlZHMgPSAwOwoKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IGFjY2VuZGlfbGVkKGxlZHMsIDApOwogICAgcHJpbnRfbGVkcyhsZWRzKTsKCiAgICBsZWRzID0gYWNjZW5kaV9sZWQobGVkcywgNyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwoKICAgIGxlZHMgPSBpbnZlcnRpX3R1dHRpX2xlZChsZWRzKTsKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IHNwZWduaV90dXR0aV9sZWQobGVkcyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwp9Cg==').then(res => res.blob()).then(blob => {
-      const downloadURL = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      document.body.appendChild(a);
-      a.href = downloadURL;
-      a.download = 'simple_led.c.c'; a.click();
-      window.URL.revokeObjectURL(downloadURL);
-      document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts5312"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p>
-</section>
-<section id="xor-linked-1" class="level2">
-<h2 class="anchored" data-anchor-id="xor-linked-1">XOR Linked</h2>
+<section id="double-linked-list-1" class="level2">
+<h2 class="anchored" data-anchor-id="double-linked-list-1">Double Linked List</h2>
+<p>Abbiamo visto le liste concatenate in precedenza, uno dei limiti di questa struttura dati è che non permette di navigare la lista in entrambe le direzioni. Per superare questo limite, è possibile implementare una lista doppiamente concatenata, in cui ogni nodo contiene un puntatore al nodo successivo e un puntatore al nodo precedente. In questo modo è possibile navigare la lista in entrambe le direzioni.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> node <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>prev<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>next<span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> data<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Node<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ovviamente questo approccio ha un costo in termini di memoria, poiché ogni nodo deve memorizzare due puntatori invece di uno.</p>
+<section id="xor-linked-list-1" class="level3">
+<h3 class="anchored" data-anchor-id="xor-linked-list-1">XOR Linked List</h3>
 <p>Nei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori <code>next</code> e <code>prev</code> per ogni nodo.</p>
 <p>Ogni nodo della lista contiene un campo <code>link</code> che è il risultato dell’operazione XOR tra i puntatori <code>next</code> e <code>prev</code>. Per calcolare il puntatore <code>next</code> o <code>prev</code> di un nodo, è sufficiente eseguire l’operazione XOR tra il puntatore <code>link</code> e il puntatore del nodo corrente.</p>
-<p><a href="#dnldts35001" onclick="fetch('data:text/plain;base64,Ly8geG9yIGxpbmtlZCBsaXN0cwojaW5jbHVkZSA8c3RkaW50Lmg+CiNpbmNsdWRlIDxzdGRpby5oPgojaW5jbHVkZSA8c3RkbGliLmg+CgovLyBYT1IgbGlua2VkIGxpc3QgaW1wbGVtZW50YXRpb24KLy8gTGEgWE9SIGxpbmtlZCBsaXN0IMOoIHVuYSBzdHJ1dHR1cmEgZGF0aSBjaGUgdXRpbGl6emEgbCdvcGVyYXppb25lIFhPUiBwZXIgbWVtb3JpenphcmUgZ2xpIGluZGlyaXp6aSBkZWkgbm9kaS4KLy8gSW4gcXVlc3RvIG1vZG8sIG9nbmkgbm9kbyBtZW1vcml6emEgc29sbyB1biBpbmRpcml6em8gaW52ZWNlIGRpIGR1ZSwgcmlkdWNlbmRvIGwndXNvIGRlbGxhIG1lbW9yaWEuCgp0eXBlZGVmIHN0cnVjdCBub2RlCnsKICAgIGludCBkYXRhOwogICAgc3RydWN0IG5vZGUgKmxpbms7Cn0gTm9kZTsKCnR5cGVkZWYgc3RydWN0IHhvcmxpc3QKewogICAgTm9kZSAqaGVhZDsKfSBYb3JMaXN0OwoKLyoqCiAqIFhPUiBmdW5jdGlvbiB0byBnZXQgdGhlIGFkZHJlc3Mgb2YgdGhlIG5leHQgbm9kZQogKiBAcGFyYW0gY3VyciBQb2ludGVyIHRvIHRoZSBmaXJzdCBub2RlCiAqIEBwYXJhbSBuZXh0IFBvaW50ZXIgdG8gdGhlIHNlY29uZCBub2RlCiAqIEByZXR1cm4gWE9SIG9mIHRoZSB0d28gcG9pbnRlcnMKICovCk5vZGUgKlhPUihOb2RlICpjdXJyLCBOb2RlICpuZXh0KTsKCi8qKgogKiBQcmVwZW5kIGEgbmV3IG5vZGUgdG8gdGhlIFhPUiBsaW5rZWQgbGlzdAogKiBAcGFyYW0gbGlzdCBQb2ludGVyIHRvIHRoZSBYT1IgbGlua2VkIGxpc3QKICogQHBhcmFtIGRhdGEgRGF0YSB0byBiZSBzdG9yZWQgaW4gdGhlIG5ldyBub2RlCiAqLwp2b2lkIGxpc3RfcHJlcGVuZChYb3JMaXN0ICpsaXN0LCBpbnQgZGF0YSk7CnZvaWQgbGlzdF9yZWN1cnNpdmVfcHJpbnQoWG9yTGlzdCBsaXN0KTsKdm9pZCBsaXN0X2RlbGV0ZShYb3JMaXN0ICpsaXN0KTsKCmludCBtYWluKCkKewogICAgWG9yTGlzdCBsaXN0ID0ge05VTEx9OwogICAgbGlzdF9wcmVwZW5kKCZsaXN0LCAxMCk7CiAgICBsaXN0X3ByZXBlbmQoJmxpc3QsIDIwKTsKICAgIGxpc3RfcHJlcGVuZCgmbGlzdCwgMzApOwogICAgbGlzdF9wcmVwZW5kKCZsaXN0LCA0MCk7CiAgICBsaXN0X3ByZXBlbmQoJmxpc3QsIDUwKTsKICAgIGxpc3RfcmVjdXJzaXZlX3ByaW50KGxpc3QpOwogICAgbGlzdF9kZWxldGUoJmxpc3QpOwoKICAgIHJldHVybiAwOwp9Cgp2b2lkIGF1eF9yZWNfcHJpbnQoTm9kZSAqcHJldiwgTm9kZSAqY3VycikKewogICAgaWYgKGN1cnIgPT0gTlVMTCkKICAgICAgICByZXR1cm47CgogICAgcHJpbnRmKCIlZCAiLCBjdXJyLT5kYXRhKTsKICAgIE5vZGUgKm5leHQgPSBYT1IocHJldiwgY3Vyci0+bGluayk7CiAgICBhdXhfcmVjX3ByaW50KGN1cnIsIG5leHQpOwp9Cgp2b2lkIGxpc3RfcmVjdXJzaXZlX3ByaW50KFhvckxpc3QgbGlzdCkKewogICAgYXV4X3JlY19wcmludChOVUxMLCBsaXN0LmhlYWQpOwogICAgcHJpbnRmKCJcbiIpOwp9CgpOb2RlICpYT1IoTm9kZSAqYSwgTm9kZSAqYikKewogICAgcmV0dXJuIChOb2RlICopKCh1aW50NjRfdClhIF4gKHVpbnQ2NF90KWIpOwp9Cgp2b2lkIGxpc3RfcHJlcGVuZChYb3JMaXN0ICpsaXN0LCBpbnQgZGF0YSkKewogICAgTm9kZSAqbmV3X25vZGUgPSAoTm9kZSAqKWNhbGxvYygxLCBzaXplb2YoTm9kZSkpOwogICAgbmV3X25vZGUtPmRhdGEgPSBkYXRhOwogICAgbmV3X25vZGUtPmxpbmsgPSBYT1IobGlzdC0+aGVhZCwgTlVMTCk7CiAgICBpZiAobGlzdC0+aGVhZCAhPSBOVUxMKQogICAgewogICAgICAgIE5vZGUgKm5leHQgPSBYT1IobGlzdC0+aGVhZC0+bGluaywgTlVMTCk7CiAgICAgICAgbGlzdC0+aGVhZC0+bGluayA9IFhPUihuZXdfbm9kZSwgbmV4dCk7CiAgICB9CiAgICBsaXN0LT5oZWFkID0gbmV3X25vZGU7Cn0KCnZvaWQgbGlzdF9kZWxldGUoWG9yTGlzdCAqbGlzdCkKewogICAgTm9kZSAqcHJldiA9IE5VTEw7CiAgICBOb2RlICpjdXJyID0gbGlzdC0+aGVhZDsKICAgIE5vZGUgKm5leHQ7CiAgICB3aGlsZSAoY3VyciAhPSBOVUxMKQogICAgewogICAgICAgIG5leHQgPSBYT1IocHJldiwgY3Vyci0+bGluayk7CiAgICAgICAgZnJlZShjdXJyKTsKICAgICAgICBwcmV2ID0gY3VycjsKICAgICAgICBjdXJyID0gbmV4dDsKICAgIH0KICAgIGxpc3QtPmhlYWQgPSBOVUxMOwp9Cg==').then(res => res.blob()).then(blob => {
+<div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> node <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>link<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> data<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Node<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="#dnldts29843" onclick="fetch('data:text/plain;base64,Ly8geG9yIGxpbmtlZCBsaXN0cwojaW5jbHVkZSA8c3RkaW50Lmg+CiNpbmNsdWRlIDxzdGRpby5oPgojaW5jbHVkZSA8c3RkbGliLmg+CgovLyBYT1IgbGlua2VkIGxpc3QgaW1wbGVtZW50YXRpb24KLy8gTGEgWE9SIGxpbmtlZCBsaXN0IMOoIHVuYSBzdHJ1dHR1cmEgZGF0aSBjaGUgdXRpbGl6emEgbCdvcGVyYXppb25lIFhPUiBwZXIgbWVtb3JpenphcmUgZ2xpIGluZGlyaXp6aSBkZWkgbm9kaS4KLy8gSW4gcXVlc3RvIG1vZG8sIG9nbmkgbm9kbyBtZW1vcml6emEgc29sbyB1biBpbmRpcml6em8gaW52ZWNlIGRpIGR1ZSwgcmlkdWNlbmRvIGwndXNvIGRlbGxhIG1lbW9yaWEuCgp0eXBlZGVmIHN0cnVjdCBub2RlCnsKICAgIGludCBkYXRhOwogICAgc3RydWN0IG5vZGUgKmxpbms7Cn0gTm9kZTsKCnR5cGVkZWYgc3RydWN0IHhvcmxpc3QKewogICAgTm9kZSAqaGVhZDsKfSBYb3JMaXN0OwoKLyoqCiAqIFhPUiBmdW5jdGlvbiB0byBnZXQgdGhlIGFkZHJlc3Mgb2YgdGhlIG5leHQgbm9kZQogKiBAcGFyYW0gY3VyciBQb2ludGVyIHRvIHRoZSBmaXJzdCBub2RlCiAqIEBwYXJhbSBuZXh0IFBvaW50ZXIgdG8gdGhlIHNlY29uZCBub2RlCiAqIEByZXR1cm4gWE9SIG9mIHRoZSB0d28gcG9pbnRlcnMKICovCk5vZGUgKlhPUihOb2RlICpjdXJyLCBOb2RlICpuZXh0KTsKCi8qKgogKiBQcmVwZW5kIGEgbmV3IG5vZGUgdG8gdGhlIFhPUiBsaW5rZWQgbGlzdAogKiBAcGFyYW0gbGlzdCBQb2ludGVyIHRvIHRoZSBYT1IgbGlua2VkIGxpc3QKICogQHBhcmFtIGRhdGEgRGF0YSB0byBiZSBzdG9yZWQgaW4gdGhlIG5ldyBub2RlCiAqLwp2b2lkIGxpc3RfcHJlcGVuZChYb3JMaXN0ICpsaXN0LCBpbnQgZGF0YSk7CnZvaWQgbGlzdF9yZWN1cnNpdmVfcHJpbnQoWG9yTGlzdCBsaXN0KTsKdm9pZCBsaXN0X2RlbGV0ZShYb3JMaXN0ICpsaXN0KTsKCmludCBtYWluKCkKewogICAgWG9yTGlzdCBsaXN0ID0ge05VTEx9OwogICAgbGlzdF9wcmVwZW5kKCZsaXN0LCAxMCk7CiAgICBsaXN0X3ByZXBlbmQoJmxpc3QsIDIwKTsKICAgIGxpc3RfcHJlcGVuZCgmbGlzdCwgMzApOwogICAgbGlzdF9wcmVwZW5kKCZsaXN0LCA0MCk7CiAgICBsaXN0X3ByZXBlbmQoJmxpc3QsIDUwKTsKICAgIGxpc3RfcmVjdXJzaXZlX3ByaW50KGxpc3QpOwogICAgbGlzdF9kZWxldGUoJmxpc3QpOwoKICAgIHJldHVybiAwOwp9Cgp2b2lkIGF1eF9yZWNfcHJpbnQoTm9kZSAqcHJldiwgTm9kZSAqY3VycikKewogICAgaWYgKGN1cnIgPT0gTlVMTCkKICAgICAgICByZXR1cm47CgogICAgcHJpbnRmKCIlZCAiLCBjdXJyLT5kYXRhKTsKICAgIE5vZGUgKm5leHQgPSBYT1IocHJldiwgY3Vyci0+bGluayk7CiAgICBhdXhfcmVjX3ByaW50KGN1cnIsIG5leHQpOwp9Cgp2b2lkIGxpc3RfcmVjdXJzaXZlX3ByaW50KFhvckxpc3QgbGlzdCkKewogICAgYXV4X3JlY19wcmludChOVUxMLCBsaXN0LmhlYWQpOwogICAgcHJpbnRmKCJcbiIpOwp9CgpOb2RlICpYT1IoTm9kZSAqYSwgTm9kZSAqYikKewogICAgcmV0dXJuIChOb2RlICopKCh1aW50NjRfdClhIF4gKHVpbnQ2NF90KWIpOwp9Cgp2b2lkIGxpc3RfcHJlcGVuZChYb3JMaXN0ICpsaXN0LCBpbnQgZGF0YSkKewogICAgTm9kZSAqbmV3X25vZGUgPSAoTm9kZSAqKWNhbGxvYygxLCBzaXplb2YoTm9kZSkpOwogICAgbmV3X25vZGUtPmRhdGEgPSBkYXRhOwogICAgbmV3X25vZGUtPmxpbmsgPSBYT1IobGlzdC0+aGVhZCwgTlVMTCk7CiAgICBpZiAobGlzdC0+aGVhZCAhPSBOVUxMKQogICAgewogICAgICAgIE5vZGUgKm5leHQgPSBYT1IobGlzdC0+aGVhZC0+bGluaywgTlVMTCk7CiAgICAgICAgbGlzdC0+aGVhZC0+bGluayA9IFhPUihuZXdfbm9kZSwgbmV4dCk7CiAgICB9CiAgICBsaXN0LT5oZWFkID0gbmV3X25vZGU7Cn0KCnZvaWQgbGlzdF9kZWxldGUoWG9yTGlzdCAqbGlzdCkKewogICAgTm9kZSAqcHJldiA9IE5VTEw7CiAgICBOb2RlICpjdXJyID0gbGlzdC0+aGVhZDsKICAgIE5vZGUgKm5leHQ7CiAgICB3aGlsZSAoY3VyciAhPSBOVUxMKQogICAgewogICAgICAgIG5leHQgPSBYT1IocHJldiwgY3Vyci0+bGluayk7CiAgICAgICAgZnJlZShjdXJyKTsKICAgICAgICBwcmV2ID0gY3VycjsKICAgICAgICBjdXJyID0gbmV4dDsKICAgIH0KICAgIGxpc3QtPmhlYWQgPSBOVUxMOwp9Cg==').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -541,7 +509,55 @@ Nota
       a.download = 'xor_ll.c.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts35001"><i class="bi bi-download"></i> Scarica il codice d'esempio </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts29843"><i class="bi bi-download"></i> Scarica il codice d'esempio </button></a></p>
+</section>
+</section>
+<section id="esercizi-3" class="level2">
+<h2 class="anchored" data-anchor-id="esercizi-3">Esercizi</h2>
+<ol type="1">
+<li><p>Scrivere una funzione che dato un numero intero <span class="math inline">\(n\)</span>, restituisca true se <span class="math inline">\(n\)</span> è pari, false altrimenti. Usare l’operatore AND per verificare se un numero è pari.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdbool.h&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> is_even<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">55</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">48</span><span class="op">;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> is_even<span class="op">(</span>a<span class="op">));</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> is even: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> b<span class="op">,</span> is_even<span class="op">(</span>b<span class="op">));</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> is_even<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.</p>
+<p><a href="#dnldts43971" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CiNpbmNsdWRlIDxzdGRsaWIuaD4KI2luY2x1ZGUgPHN0cmluZy5oPgojZGVmaW5lIEtFWSAnJCcKCnR5cGVkZWYgY2hhciAqU3RyaW5nOwoKLy8gU2NyaXZlcmUgbCdpbXBsZW1lbnRhemlvbmUgZGVsbGUgZnVuemlvbmkgc3RyaW5nX2VuY29kZWMsIG5ld19zdHJpbmcgZSBzdHJpbmdfZGVsZXRlCi8vIEhpbnQxOiBuZXdfc3RyaW5nIGRldmUgYWxsb2NhcmUgbGEgbWVtb3JpYSBwZXIgbGEgc3RyaW5nYSB0ZXh0Ci8vIEhpbnQyOiBzdHJpbmdfZW5jb2RlYyBkZXZlIGNpZnJhcmUgbGEgc3RyaW5nYSBtZXNzYWdlIGNvbiBsYSBjaGlhdmUga2V5IHRyYW1pdGUgWE9SCi8vIEhpbnQzOiBsYSBmdW56aW9uZSBzdHJsZW4gcmVzdGl0dWlzY2UgbGEgbHVuZ2hlenphIGRlbGxhIHN0cmluZ2EKLy8gSGludDQ6IGxhIGZ1bnppb25lIHN0cmNweSBjb3BpYSB1bmEgc3RyaW5nYSBpbiB1biBwdW50YXRvcmUgYSBjaGFyICh2ZWRpIG1hbiBzdHJjcHkpCi8vCi8vIE9wdGlvbmFsOiByZW5kZXJlIGxhIGNoaWF2ZSBLRVkgdW4gYXJnb21lbnRvIGRlbGxhIHJpZ2EgZGkgY29tYW5kbwovLyBMJ3VzbyBkZWwgcHJvZ3JhbW1hIGRldmUgZXNzZXJlOgovLyAuL3hvcl9lbmNvZGVjIGtleSBtZXNzYWdlClN0cmluZyBuZXdfc3RyaW5nKFN0cmluZyB0ZXh0KTsKdm9pZCBzdHJpbmdfZW5jb2RlYyhTdHJpbmcgbWVzc2FnZSwgY2hhciBrZXkpOwp2b2lkIHN0cmluZ19kZWxldGUoU3RyaW5nIHN0cik7CgppbnQgbWFpbih2b2lkKQp7CiAgICBTdHJpbmcgcyA9IG5ld19zdHJpbmcoIkhlbGxvIHdvcmxkISIpOwogICAgaWYgKHMgPT0gTlVMTCkKICAgIHsKICAgICAgICBleGl0KEVYSVRfRkFJTFVSRSk7CiAgICB9CgogICAgcHJpbnRmKCIlc1xuIiwgcyk7CgogICAgc3RyaW5nX2VuY29kZWMocywgS0VZKTsgLy8gQ2lmcmFyZQogICAgcHJpbnRmKCIlc1xuIiwgcyk7CgogICAgc3RyaW5nX2VuY29kZWMocywgS0VZKTsgLy8gRGVjaWZyYXJlCiAgICBwcmludGYoIiVzXG4iLCBzKTsKCiAgICBzdHJpbmdfZGVsZXRlKHMpOwp9Cgp2b2lkIHN0cmluZ19lbmNvZGVjKFN0cmluZyBtZXNzYWdlLCBjaGFyIGtleSkKewogICAgLy8gVE9ETwp9CgpTdHJpbmcgbmV3X3N0cmluZyhTdHJpbmcgdGV4dCkKewogICAgLy8gVE9ETwp9Cgp2b2lkIHN0cmluZ19kZWxldGUoU3RyaW5nIHN0cikKewogICAgZnJlZShzdHIpOwogICAgKnN0ciA9IE5VTEw7Cn0K').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'xor_crypt.c.c'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-default downloadthis  " id="dnldts43971"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p></li>
+<li><p>Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char. Ad esempio, se il valore di <code>c</code> è 5, il programma dovrà stampare <code>00000000 00000000 00000000 00000101</code>.</p></li>
+<li><p>Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:</p>
+<ol type="1">
+<li>Accenda il led più a destra;</li>
+<li>Accenda il led più a sinistra;</li>
+<li>Inverta lo stato di tutti i led;</li>
+<li>Spenga tutti i led.</li>
+</ol>
+<p><a href="#dnldts8602" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgovLyBJbXBsZW1lbnQgdGhlIGZ1bmN0aW9uczoKLy8gLSBwcmludF9sZWRzOiBwcmludCB0aGUgbGVkcyBhcyBhIHNlcXVlbmNlIG9mIDEgYW5kIC4KLy8gLSBhY2NlbmRpX2xlZDogdHVybiBvbiB0aGUgbGVkIGF0IHRoZSBnaXZlbiBwb3NpdGlvbgovLyAtIHNwZWduaV9sZWQ6IHR1cm4gb2ZmIHRoZSBsZWQgYXQgdGhlIGdpdmVuIHBvc2l0aW9uCi8vIC0gaW52ZXJ0aV90dXR0aV9sZWQ6IGludmVydCBhbGwgdGhlIGxlZHMKLy8gLSBhY2NlbmRpX3R1dHRpX2xlZDogdHVybiBvbiBhbGwgdGhlIGxlZHMKLy8gLSBzcGVnbmlfdHV0dGlfbGVkOiB0dXJuIG9mZiBhbGwgdGhlIGxlZHMKCnZvaWQgcHJpbnRfbGVkcyh1bnNpZ25lZCBjaGFyIGxlZHMpOwp1bnNpZ25lZCBjaGFyIGFjY2VuZGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcywgaW50IHBvc2l6aW9uZSk7CnVuc2lnbmVkIGNoYXIgc3BlZ25pX2xlZCh1bnNpZ25lZCBjaGFyIGxlZHMsIGludCBwb3NpemlvbmUpOwp1bnNpZ25lZCBjaGFyIGludmVydGlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CnVuc2lnbmVkIGNoYXIgYWNjZW5kaV90dXR0aV9sZWQodW5zaWduZWQgY2hhciBsZWRzKTsKdW5zaWduZWQgY2hhciBzcGVnbmlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CgppbnQgbWFpbih2b2lkKQp7CiAgICB1bnNpZ25lZCBjaGFyIGxlZHMgPSAwOwoKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IGFjY2VuZGlfbGVkKGxlZHMsIDApOwogICAgcHJpbnRfbGVkcyhsZWRzKTsKCiAgICBsZWRzID0gYWNjZW5kaV9sZWQobGVkcywgNyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwoKICAgIGxlZHMgPSBpbnZlcnRpX3R1dHRpX2xlZChsZWRzKTsKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IHNwZWduaV90dXR0aV9sZWQobGVkcyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwp9Cg==').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'simple_led.c.c'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-default downloadthis  " id="dnldts8602"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p></li>
+</ol>
 
 
 </section>

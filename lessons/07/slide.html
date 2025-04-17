@@ -395,9 +395,9 @@ Giulio Pitteri <a href="https://orcid.org/0000-0002-7595-017X" class="quarto-tit
 <p><code>65: 0b01000001</code></p>
 <p><code>73: 0b01001001</code></p>
 <p><code>08: 0b00001000</code></p>
-<p>65 ^ 73 = 8</p>
-<p>8 ^ 73 = 65</p>
-<p>‘A’ ^ ‘I’ = ’</p>
+<p><code>65 ^ 73 = 8</code></p>
+<p><code>8 ^ 73 = 65</code></p>
+<p><code>'A' ^ 'I' = '\b'</code> (man ascii)</p>
 </section>
 <section id="esempio-1" class="slide level2">
 <h2>Esempio</h2>
@@ -445,7 +445,8 @@ Giulio Pitteri <a href="https://orcid.org/0000-0002-7595-017X" class="quarto-tit
 <section id="esercizi-1" class="slide level2">
 <h2>Esercizi</h2>
 <p>Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char.</p>
-<p>Ad esempio, se il valore di <code>c</code> è 5, il programma dovrà stampare <code>00000101</code>.</p>
+<p>Ad esempio, se il valore di <code>c</code> è 5, il programma dovrà stampare <code>00000000 00000000 00000000 00000101</code>.</p>
+<p><a href="./code/binary_print.c">Scarica il main dell’esercizio</a></p>
 </section>
 <section id="esercizi-2" class="slide level2">
 <h2>Esercizi</h2>
@@ -458,10 +459,22 @@ Giulio Pitteri <a href="https://orcid.org/0000-0002-7595-017X" class="quarto-tit
 </ol>
 <p><a href="./code/simple_led.c">Scarica il main dell’esercizio</a></p>
 </section>
-<section id="xor-linked" class="slide level2">
-<h2>XOR Linked</h2>
+<section id="double-linked-list" class="slide level2">
+<h2>Double Linked List</h2>
+<p>Le liste doppiamente concatenate sono una struttura dati che permette di memorizzare una sequenza di nodi, in cui ogni nodo contiene un puntatore al nodo successivo e un puntatore al nodo precedente. In questo modo è possibile navigare la lista in entrambe le direzioni.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> node <span class="op">{</span></span>
+<span id="cb10-2"><a></a>    <span class="kw">struct</span> node <span class="op">*</span>prev<span class="op">;</span></span>
+<span id="cb10-3"><a></a>    <span class="kw">struct</span> node <span class="op">*</span>next<span class="op">;</span></span>
+<span id="cb10-4"><a></a>    <span class="dt">int</span> data<span class="op">;</span></span>
+<span id="cb10-5"><a></a><span class="op">}</span> Node<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="xor-linked-list" class="slide level2">
+<h2>XOR Linked List</h2>
 <p>Nei sistemi con poca disponibilità di memoria, è possibile implementare una lista doppiamente concatenata utilizzando l’operatore XOR. In questo modo si può risparmiare memoria, poiché non è necessario memorizzare i puntatori <code>next</code> e <code>prev</code> per ogni nodo.</p>
-<p>Ogni nodo della lista contiene un campo <code>link</code> che è il risultato dell’operazione XOR tra i puntatori <code>next</code> e <code>prev</code>. Per calcolare il puntatore <code>next</code> o <code>prev</code> di un nodo, è sufficiente eseguire l’operazione XOR tra il puntatore <code>link</code> e il puntatore del nodo corrente.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> node <span class="op">{</span></span>
+<span id="cb11-2"><a></a>    <span class="kw">struct</span> node <span class="op">*</span>link<span class="op">;</span></span>
+<span id="cb11-3"><a></a>    <span class="dt">int</span> data<span class="op">;</span></span>
+<span id="cb11-4"><a></a><span class="op">}</span> Node<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><a href="./code/xor_ll.c">Vedi un esempio di implementazione di una lista doppiamente concatenata usando XOR</a>.</p>
 
 
