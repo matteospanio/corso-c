@@ -1,0 +1,49 @@
+# Ripasso
+
+## Sintassi del linguaggio
+
+```{.c}
+int a = 5; // definizione di variabile
+int a[10]; // array
+int *a = malloc(10 * sizeof(int)); // allocazione dinamica
+free(a); // deallocazione
+foo(a); // chiamata di funzione
+for (int i = 0; i < 10; i++) {...} // for loop
+while (a < 10) {...} // while loop
+if (a == 5) {...} // if statement
+typedef struct {...} MyStruct; // typedef
+NULL; // null pointer
+int *p = &a; // puntatore
+*p = 5; // dereferenziazione
+1 ^ 2; 1 | 2; 1 & 2; // operazioni bitwise
+```
+
+## Liste
+
+Fino ad ora abbiamo visto alcune implementazioni di liste:
+
+- array list
+- linked list
+- doubly linked list
+- xor linked list
+
+
+[Vedi un esempio di implementazione di una lista doppiamente concatenata](./code/linked_list.c).
+
+## Stack
+
+Le liste possono essere usate per implementare uno stack, una struttura dati LIFO (Last In First Out). In questo caso l'operazione di push viene eseguita in O(1) e l'operazione di pop in O(1).
+
+[Vedi un esempio di implementazione di uno stack](./code/stack.c).
+
+## Queue
+
+Le liste possono essere usate per implementare una coda, una struttura dati FIFO (First In First Out). In questo caso l'operazione di enqueue viene eseguita in O(1) e l'operazione di dequeue in O(1).
+
+[Vedi un esempio di implementazione di una queue](./code/queue.c).
+
+## Alberi
+
+Gli alberi sono una struttura dati gerarchica in cui ogni nodo ha un valore e può avere zero o più figli. Gli alberi sono usati per rappresentare strutture dati complesse come i file system, i database e le strutture di dati in memoria.
+
+[Vedi un esempio di implementazione di un albero](./code/albero.c).

@@ -1,0 +1,8 @@
+---
+title: Strutture dati
+date: 05/08/2025
+abstract-title: Argomenti trattati
+abstract: In questa lezione si propone un ripasso alle strutture dati già viste aggiungendo l'implementazione di base degli alberi.
+---
+
+{{< include _summary.qmd >}}
