@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.43">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lessons/08/index.html" rel="next">
 <link href="../../lessons/06/index.html" rel="prev">
 <link href="../../assets/images/dec_pdp1120.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -73,12 +74,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-36d195c590ea66258dc4a75ed3adf062.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-bf8dae65810def7c8f97efb4134dc6f3.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-df8bd87e6a598f0274270fc6125e8be0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-9529a2555af4e598eabee24dc727bfd3.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -254,6 +255,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../lessons/07/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Operatori bitwise</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strutture dati</span></a>
   </div>
 </li>
     </ul>
@@ -501,7 +508,7 @@ Nota
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>link<span class="op">;</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> data<span class="op">;</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Node<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><a href="#dnldts29843" onclick="fetch('data:text/plain;base64,Ly8geG9yIGxpbmtlZCBsaXN0cwojaW5jbHVkZSA8c3RkaW50Lmg+CiNpbmNsdWRlIDxzdGRpby5oPgojaW5jbHVkZSA8c3RkbGliLmg+CgovLyBYT1IgbGlua2VkIGxpc3QgaW1wbGVtZW50YXRpb24KLy8gTGEgWE9SIGxpbmtlZCBsaXN0IMOoIHVuYSBzdHJ1dHR1cmEgZGF0aSBjaGUgdXRpbGl6emEgbCdvcGVyYXppb25lIFhPUiBwZXIgbWVtb3JpenphcmUgZ2xpIGluZGlyaXp6aSBkZWkgbm9kaS4KLy8gSW4gcXVlc3RvIG1vZG8sIG9nbmkgbm9kbyBtZW1vcml6emEgc29sbyB1biBpbmRpcml6em8gaW52ZWNlIGRpIGR1ZSwgcmlkdWNlbmRvIGwndXNvIGRlbGxhIG1lbW9yaWEuCgp0eXBlZGVmIHN0cnVjdCBub2RlCnsKICAgIGludCBkYXRhOwogICAgc3RydWN0IG5vZGUgKmxpbms7Cn0gTm9kZTsKCnR5cGVkZWYgc3RydWN0IHhvcmxpc3QKewogICAgTm9kZSAqaGVhZDsKfSBYb3JMaXN0OwoKLyoqCiAqIFhPUiBmdW5jdGlvbiB0byBnZXQgdGhlIGFkZHJlc3Mgb2YgdGhlIG5leHQgbm9kZQogKiBAcGFyYW0gY3VyciBQb2ludGVyIHRvIHRoZSBmaXJzdCBub2RlCiAqIEBwYXJhbSBuZXh0IFBvaW50ZXIgdG8gdGhlIHNlY29uZCBub2RlCiAqIEByZXR1cm4gWE9SIG9mIHRoZSB0d28gcG9pbnRlcnMKICovCk5vZGUgKlhPUihOb2RlICpjdXJyLCBOb2RlICpuZXh0KTsKCi8qKgogKiBQcmVwZW5kIGEgbmV3IG5vZGUgdG8gdGhlIFhPUiBsaW5rZWQgbGlzdAogKiBAcGFyYW0gbGlzdCBQb2ludGVyIHRvIHRoZSBYT1IgbGlua2VkIGxpc3QKICogQHBhcmFtIGRhdGEgRGF0YSB0byBiZSBzdG9yZWQgaW4gdGhlIG5ldyBub2RlCiAqLwp2b2lkIGxpc3RfcHJlcGVuZChYb3JMaXN0ICpsaXN0LCBpbnQgZGF0YSk7CnZvaWQgbGlzdF9yZWN1cnNpdmVfcHJpbnQoWG9yTGlzdCBsaXN0KTsKdm9pZCBsaXN0X2RlbGV0ZShYb3JMaXN0ICpsaXN0KTsKCmludCBtYWluKCkKewogICAgWG9yTGlzdCBsaXN0ID0ge05VTEx9OwogICAgbGlzdF9wcmVwZW5kKCZsaXN0LCAxMCk7CiAgICBsaXN0X3ByZXBlbmQoJmxpc3QsIDIwKTsKICAgIGxpc3RfcHJlcGVuZCgmbGlzdCwgMzApOwogICAgbGlzdF9wcmVwZW5kKCZsaXN0LCA0MCk7CiAgICBsaXN0X3ByZXBlbmQoJmxpc3QsIDUwKTsKICAgIGxpc3RfcmVjdXJzaXZlX3ByaW50KGxpc3QpOwogICAgbGlzdF9kZWxldGUoJmxpc3QpOwoKICAgIHJldHVybiAwOwp9Cgp2b2lkIGF1eF9yZWNfcHJpbnQoTm9kZSAqcHJldiwgTm9kZSAqY3VycikKewogICAgaWYgKGN1cnIgPT0gTlVMTCkKICAgICAgICByZXR1cm47CgogICAgcHJpbnRmKCIlZCAiLCBjdXJyLT5kYXRhKTsKICAgIE5vZGUgKm5leHQgPSBYT1IocHJldiwgY3Vyci0+bGluayk7CiAgICBhdXhfcmVjX3ByaW50KGN1cnIsIG5leHQpOwp9Cgp2b2lkIGxpc3RfcmVjdXJzaXZlX3ByaW50KFhvckxpc3QgbGlzdCkKewogICAgYXV4X3JlY19wcmludChOVUxMLCBsaXN0LmhlYWQpOwogICAgcHJpbnRmKCJcbiIpOwp9CgpOb2RlICpYT1IoTm9kZSAqYSwgTm9kZSAqYikKewogICAgcmV0dXJuIChOb2RlICopKCh1aW50NjRfdClhIF4gKHVpbnQ2NF90KWIpOwp9Cgp2b2lkIGxpc3RfcHJlcGVuZChYb3JMaXN0ICpsaXN0LCBpbnQgZGF0YSkKewogICAgTm9kZSAqbmV3X25vZGUgPSAoTm9kZSAqKWNhbGxvYygxLCBzaXplb2YoTm9kZSkpOwogICAgbmV3X25vZGUtPmRhdGEgPSBkYXRhOwogICAgbmV3X25vZGUtPmxpbmsgPSBYT1IobGlzdC0+aGVhZCwgTlVMTCk7CiAgICBpZiAobGlzdC0+aGVhZCAhPSBOVUxMKQogICAgewogICAgICAgIE5vZGUgKm5leHQgPSBYT1IobGlzdC0+aGVhZC0+bGluaywgTlVMTCk7CiAgICAgICAgbGlzdC0+aGVhZC0+bGluayA9IFhPUihuZXdfbm9kZSwgbmV4dCk7CiAgICB9CiAgICBsaXN0LT5oZWFkID0gbmV3X25vZGU7Cn0KCnZvaWQgbGlzdF9kZWxldGUoWG9yTGlzdCAqbGlzdCkKewogICAgTm9kZSAqcHJldiA9IE5VTEw7CiAgICBOb2RlICpjdXJyID0gbGlzdC0+aGVhZDsKICAgIE5vZGUgKm5leHQ7CiAgICB3aGlsZSAoY3VyciAhPSBOVUxMKQogICAgewogICAgICAgIG5leHQgPSBYT1IocHJldiwgY3Vyci0+bGluayk7CiAgICAgICAgZnJlZShjdXJyKTsKICAgICAgICBwcmV2ID0gY3VycjsKICAgICAgICBjdXJyID0gbmV4dDsKICAgIH0KICAgIGxpc3QtPmhlYWQgPSBOVUxMOwp9Cg==').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts2750" onclick="fetch('data:text/plain;base64,Ly8geG9yIGxpbmtlZCBsaXN0cwojaW5jbHVkZSA8c3RkaW50Lmg+CiNpbmNsdWRlIDxzdGRpby5oPgojaW5jbHVkZSA8c3RkbGliLmg+CgovLyBYT1IgbGlua2VkIGxpc3QgaW1wbGVtZW50YXRpb24KLy8gTGEgWE9SIGxpbmtlZCBsaXN0IMOoIHVuYSBzdHJ1dHR1cmEgZGF0aSBjaGUgdXRpbGl6emEgbCdvcGVyYXppb25lIFhPUiBwZXIgbWVtb3JpenphcmUgZ2xpIGluZGlyaXp6aSBkZWkgbm9kaS4KLy8gSW4gcXVlc3RvIG1vZG8sIG9nbmkgbm9kbyBtZW1vcml6emEgc29sbyB1biBpbmRpcml6em8gaW52ZWNlIGRpIGR1ZSwgcmlkdWNlbmRvIGwndXNvIGRlbGxhIG1lbW9yaWEuCgp0eXBlZGVmIHN0cnVjdCBub2RlCnsKICAgIGludCBkYXRhOwogICAgc3RydWN0IG5vZGUgKmxpbms7Cn0gTm9kZTsKCnR5cGVkZWYgc3RydWN0IHhvcmxpc3QKewogICAgTm9kZSAqaGVhZDsKfSBYb3JMaXN0OwoKLyoqCiAqIFhPUiBmdW5jdGlvbiB0byBnZXQgdGhlIGFkZHJlc3Mgb2YgdGhlIG5leHQgbm9kZQogKiBAcGFyYW0gY3VyciBQb2ludGVyIHRvIHRoZSBmaXJzdCBub2RlCiAqIEBwYXJhbSBuZXh0IFBvaW50ZXIgdG8gdGhlIHNlY29uZCBub2RlCiAqIEByZXR1cm4gWE9SIG9mIHRoZSB0d28gcG9pbnRlcnMKICovCk5vZGUgKlhPUihOb2RlICpjdXJyLCBOb2RlICpuZXh0KTsKCi8qKgogKiBQcmVwZW5kIGEgbmV3IG5vZGUgdG8gdGhlIFhPUiBsaW5rZWQgbGlzdAogKiBAcGFyYW0gbGlzdCBQb2ludGVyIHRvIHRoZSBYT1IgbGlua2VkIGxpc3QKICogQHBhcmFtIGRhdGEgRGF0YSB0byBiZSBzdG9yZWQgaW4gdGhlIG5ldyBub2RlCiAqLwp2b2lkIGxpc3RfcHJlcGVuZChYb3JMaXN0ICpsaXN0LCBpbnQgZGF0YSk7CnZvaWQgbGlzdF9yZWN1cnNpdmVfcHJpbnQoWG9yTGlzdCBsaXN0KTsKdm9pZCBsaXN0X2RlbGV0ZShYb3JMaXN0ICpsaXN0KTsKCmludCBtYWluKCkKewogICAgWG9yTGlzdCBsaXN0ID0ge05VTEx9OwogICAgbGlzdF9wcmVwZW5kKCZsaXN0LCAxMCk7CiAgICBsaXN0X3ByZXBlbmQoJmxpc3QsIDIwKTsKICAgIGxpc3RfcHJlcGVuZCgmbGlzdCwgMzApOwogICAgbGlzdF9wcmVwZW5kKCZsaXN0LCA0MCk7CiAgICBsaXN0X3ByZXBlbmQoJmxpc3QsIDUwKTsKICAgIGxpc3RfcmVjdXJzaXZlX3ByaW50KGxpc3QpOwogICAgbGlzdF9kZWxldGUoJmxpc3QpOwoKICAgIHJldHVybiAwOwp9Cgp2b2lkIGF1eF9yZWNfcHJpbnQoTm9kZSAqcHJldiwgTm9kZSAqY3VycikKewogICAgaWYgKGN1cnIgPT0gTlVMTCkKICAgICAgICByZXR1cm47CgogICAgcHJpbnRmKCIlZCAiLCBjdXJyLT5kYXRhKTsKICAgIE5vZGUgKm5leHQgPSBYT1IocHJldiwgY3Vyci0+bGluayk7CiAgICBhdXhfcmVjX3ByaW50KGN1cnIsIG5leHQpOwp9Cgp2b2lkIGxpc3RfcmVjdXJzaXZlX3ByaW50KFhvckxpc3QgbGlzdCkKewogICAgYXV4X3JlY19wcmludChOVUxMLCBsaXN0LmhlYWQpOwogICAgcHJpbnRmKCJcbiIpOwp9CgpOb2RlICpYT1IoTm9kZSAqYSwgTm9kZSAqYikKewogICAgcmV0dXJuIChOb2RlICopKCh1aW50NjRfdClhIF4gKHVpbnQ2NF90KWIpOwp9Cgp2b2lkIGxpc3RfcHJlcGVuZChYb3JMaXN0ICpsaXN0LCBpbnQgZGF0YSkKewogICAgTm9kZSAqbmV3X25vZGUgPSAoTm9kZSAqKWNhbGxvYygxLCBzaXplb2YoTm9kZSkpOwogICAgbmV3X25vZGUtPmRhdGEgPSBkYXRhOwogICAgbmV3X25vZGUtPmxpbmsgPSBYT1IobGlzdC0+aGVhZCwgTlVMTCk7CiAgICBpZiAobGlzdC0+aGVhZCAhPSBOVUxMKQogICAgewogICAgICAgIE5vZGUgKm5leHQgPSBYT1IobGlzdC0+aGVhZC0+bGluaywgTlVMTCk7CiAgICAgICAgbGlzdC0+aGVhZC0+bGluayA9IFhPUihuZXdfbm9kZSwgbmV4dCk7CiAgICB9CiAgICBsaXN0LT5oZWFkID0gbmV3X25vZGU7Cn0KCnZvaWQgbGlzdF9kZWxldGUoWG9yTGlzdCAqbGlzdCkKewogICAgTm9kZSAqcHJldiA9IE5VTEw7CiAgICBOb2RlICpjdXJyID0gbGlzdC0+aGVhZDsKICAgIE5vZGUgKm5leHQ7CiAgICB3aGlsZSAoY3VyciAhPSBOVUxMKQogICAgewogICAgICAgIG5leHQgPSBYT1IocHJldiwgY3Vyci0+bGluayk7CiAgICAgICAgZnJlZShjdXJyKTsKICAgICAgICBwcmV2ID0gY3VycjsKICAgICAgICBjdXJyID0gbmV4dDsKICAgIH0KICAgIGxpc3QtPmhlYWQgPSBOVUxMOwp9Cg==').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -509,7 +516,7 @@ Nota
       a.download = 'xor_ll.c.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts29843"><i class="bi bi-download"></i> Scarica il codice d'esempio </button></a></p>
+        });"><button class="btn btn-default downloadthis  " id="dnldts2750"><i class="bi bi-download"></i> Scarica il codice d'esempio </button></a></p>
 </section>
 </section>
 <section id="esercizi-3" class="level2">
@@ -531,7 +538,7 @@ Nota
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span></span>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Scrivere un programma di semplice crittografia in grado di cifrare e decifrare una stringa utilizzando l’operatore XOR.</p>
-<p><a href="#dnldts43971" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CiNpbmNsdWRlIDxzdGRsaWIuaD4KI2luY2x1ZGUgPHN0cmluZy5oPgojZGVmaW5lIEtFWSAnJCcKCnR5cGVkZWYgY2hhciAqU3RyaW5nOwoKLy8gU2NyaXZlcmUgbCdpbXBsZW1lbnRhemlvbmUgZGVsbGUgZnVuemlvbmkgc3RyaW5nX2VuY29kZWMsIG5ld19zdHJpbmcgZSBzdHJpbmdfZGVsZXRlCi8vIEhpbnQxOiBuZXdfc3RyaW5nIGRldmUgYWxsb2NhcmUgbGEgbWVtb3JpYSBwZXIgbGEgc3RyaW5nYSB0ZXh0Ci8vIEhpbnQyOiBzdHJpbmdfZW5jb2RlYyBkZXZlIGNpZnJhcmUgbGEgc3RyaW5nYSBtZXNzYWdlIGNvbiBsYSBjaGlhdmUga2V5IHRyYW1pdGUgWE9SCi8vIEhpbnQzOiBsYSBmdW56aW9uZSBzdHJsZW4gcmVzdGl0dWlzY2UgbGEgbHVuZ2hlenphIGRlbGxhIHN0cmluZ2EKLy8gSGludDQ6IGxhIGZ1bnppb25lIHN0cmNweSBjb3BpYSB1bmEgc3RyaW5nYSBpbiB1biBwdW50YXRvcmUgYSBjaGFyICh2ZWRpIG1hbiBzdHJjcHkpCi8vCi8vIE9wdGlvbmFsOiByZW5kZXJlIGxhIGNoaWF2ZSBLRVkgdW4gYXJnb21lbnRvIGRlbGxhIHJpZ2EgZGkgY29tYW5kbwovLyBMJ3VzbyBkZWwgcHJvZ3JhbW1hIGRldmUgZXNzZXJlOgovLyAuL3hvcl9lbmNvZGVjIGtleSBtZXNzYWdlClN0cmluZyBuZXdfc3RyaW5nKFN0cmluZyB0ZXh0KTsKdm9pZCBzdHJpbmdfZW5jb2RlYyhTdHJpbmcgbWVzc2FnZSwgY2hhciBrZXkpOwp2b2lkIHN0cmluZ19kZWxldGUoU3RyaW5nIHN0cik7CgppbnQgbWFpbih2b2lkKQp7CiAgICBTdHJpbmcgcyA9IG5ld19zdHJpbmcoIkhlbGxvIHdvcmxkISIpOwogICAgaWYgKHMgPT0gTlVMTCkKICAgIHsKICAgICAgICBleGl0KEVYSVRfRkFJTFVSRSk7CiAgICB9CgogICAgcHJpbnRmKCIlc1xuIiwgcyk7CgogICAgc3RyaW5nX2VuY29kZWMocywgS0VZKTsgLy8gQ2lmcmFyZQogICAgcHJpbnRmKCIlc1xuIiwgcyk7CgogICAgc3RyaW5nX2VuY29kZWMocywgS0VZKTsgLy8gRGVjaWZyYXJlCiAgICBwcmludGYoIiVzXG4iLCBzKTsKCiAgICBzdHJpbmdfZGVsZXRlKHMpOwp9Cgp2b2lkIHN0cmluZ19lbmNvZGVjKFN0cmluZyBtZXNzYWdlLCBjaGFyIGtleSkKewogICAgLy8gVE9ETwp9CgpTdHJpbmcgbmV3X3N0cmluZyhTdHJpbmcgdGV4dCkKewogICAgLy8gVE9ETwp9Cgp2b2lkIHN0cmluZ19kZWxldGUoU3RyaW5nIHN0cikKewogICAgZnJlZShzdHIpOwogICAgKnN0ciA9IE5VTEw7Cn0K').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts12196" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CiNpbmNsdWRlIDxzdGRsaWIuaD4KI2luY2x1ZGUgPHN0cmluZy5oPgojZGVmaW5lIEtFWSAnJCcKCnR5cGVkZWYgY2hhciAqU3RyaW5nOwoKLy8gU2NyaXZlcmUgbCdpbXBsZW1lbnRhemlvbmUgZGVsbGUgZnVuemlvbmkgc3RyaW5nX2VuY29kZWMsIG5ld19zdHJpbmcgZSBzdHJpbmdfZGVsZXRlCi8vIEhpbnQxOiBuZXdfc3RyaW5nIGRldmUgYWxsb2NhcmUgbGEgbWVtb3JpYSBwZXIgbGEgc3RyaW5nYSB0ZXh0Ci8vIEhpbnQyOiBzdHJpbmdfZW5jb2RlYyBkZXZlIGNpZnJhcmUgbGEgc3RyaW5nYSBtZXNzYWdlIGNvbiBsYSBjaGlhdmUga2V5IHRyYW1pdGUgWE9SCi8vIEhpbnQzOiBsYSBmdW56aW9uZSBzdHJsZW4gcmVzdGl0dWlzY2UgbGEgbHVuZ2hlenphIGRlbGxhIHN0cmluZ2EKLy8gSGludDQ6IGxhIGZ1bnppb25lIHN0cmNweSBjb3BpYSB1bmEgc3RyaW5nYSBpbiB1biBwdW50YXRvcmUgYSBjaGFyICh2ZWRpIG1hbiBzdHJjcHkpCi8vCi8vIE9wdGlvbmFsOiByZW5kZXJlIGxhIGNoaWF2ZSBLRVkgdW4gYXJnb21lbnRvIGRlbGxhIHJpZ2EgZGkgY29tYW5kbwovLyBMJ3VzbyBkZWwgcHJvZ3JhbW1hIGRldmUgZXNzZXJlOgovLyAuL3hvcl9lbmNvZGVjIGtleSBtZXNzYWdlClN0cmluZyBuZXdfc3RyaW5nKFN0cmluZyB0ZXh0KTsKdm9pZCBzdHJpbmdfZW5jb2RlYyhTdHJpbmcgbWVzc2FnZSwgY2hhciBrZXkpOwp2b2lkIHN0cmluZ19kZWxldGUoU3RyaW5nIHN0cik7CgppbnQgbWFpbih2b2lkKQp7CiAgICBTdHJpbmcgcyA9IG5ld19zdHJpbmcoIkhlbGxvIHdvcmxkISIpOwogICAgaWYgKHMgPT0gTlVMTCkKICAgIHsKICAgICAgICBleGl0KEVYSVRfRkFJTFVSRSk7CiAgICB9CgogICAgcHJpbnRmKCIlc1xuIiwgcyk7CgogICAgc3RyaW5nX2VuY29kZWMocywgS0VZKTsgLy8gQ2lmcmFyZQogICAgcHJpbnRmKCIlc1xuIiwgcyk7CgogICAgc3RyaW5nX2VuY29kZWMocywgS0VZKTsgLy8gRGVjaWZyYXJlCiAgICBwcmludGYoIiVzXG4iLCBzKTsKCiAgICBzdHJpbmdfZGVsZXRlKHMpOwp9Cgp2b2lkIHN0cmluZ19lbmNvZGVjKFN0cmluZyBtZXNzYWdlLCBjaGFyIGtleSkKewogICAgLy8gVE9ETwp9CgpTdHJpbmcgbmV3X3N0cmluZyhTdHJpbmcgdGV4dCkKewogICAgLy8gVE9ETwp9Cgp2b2lkIHN0cmluZ19kZWxldGUoU3RyaW5nIHN0cikKewogICAgZnJlZShzdHIpOwogICAgKnN0ciA9IE5VTEw7Cn0K').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -539,7 +546,7 @@ Nota
       a.download = 'xor_crypt.c.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts43971"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p></li>
+        });"><button class="btn btn-default downloadthis  " id="dnldts12196"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p></li>
 <li><p>Scrivere un programma che stampi a monitor la codifica in binario di un unsigned char. Ad esempio, se il valore di <code>c</code> è 5, il programma dovrà stampare <code>00000000 00000000 00000000 00000101</code>.</p></li>
 <li><p>Immaginando che una serie di 8 bit rappresenti lo stato di accensione di 8 led, scrivere un programma che:</p>
 <ol type="1">
@@ -548,7 +555,7 @@ Nota
 <li>Inverta lo stato di tutti i led;</li>
 <li>Spenga tutti i led.</li>
 </ol>
-<p><a href="#dnldts8602" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgovLyBJbXBsZW1lbnQgdGhlIGZ1bmN0aW9uczoKLy8gLSBwcmludF9sZWRzOiBwcmludCB0aGUgbGVkcyBhcyBhIHNlcXVlbmNlIG9mIDEgYW5kIC4KLy8gLSBhY2NlbmRpX2xlZDogdHVybiBvbiB0aGUgbGVkIGF0IHRoZSBnaXZlbiBwb3NpdGlvbgovLyAtIHNwZWduaV9sZWQ6IHR1cm4gb2ZmIHRoZSBsZWQgYXQgdGhlIGdpdmVuIHBvc2l0aW9uCi8vIC0gaW52ZXJ0aV90dXR0aV9sZWQ6IGludmVydCBhbGwgdGhlIGxlZHMKLy8gLSBhY2NlbmRpX3R1dHRpX2xlZDogdHVybiBvbiBhbGwgdGhlIGxlZHMKLy8gLSBzcGVnbmlfdHV0dGlfbGVkOiB0dXJuIG9mZiBhbGwgdGhlIGxlZHMKCnZvaWQgcHJpbnRfbGVkcyh1bnNpZ25lZCBjaGFyIGxlZHMpOwp1bnNpZ25lZCBjaGFyIGFjY2VuZGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcywgaW50IHBvc2l6aW9uZSk7CnVuc2lnbmVkIGNoYXIgc3BlZ25pX2xlZCh1bnNpZ25lZCBjaGFyIGxlZHMsIGludCBwb3NpemlvbmUpOwp1bnNpZ25lZCBjaGFyIGludmVydGlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CnVuc2lnbmVkIGNoYXIgYWNjZW5kaV90dXR0aV9sZWQodW5zaWduZWQgY2hhciBsZWRzKTsKdW5zaWduZWQgY2hhciBzcGVnbmlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CgppbnQgbWFpbih2b2lkKQp7CiAgICB1bnNpZ25lZCBjaGFyIGxlZHMgPSAwOwoKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IGFjY2VuZGlfbGVkKGxlZHMsIDApOwogICAgcHJpbnRfbGVkcyhsZWRzKTsKCiAgICBsZWRzID0gYWNjZW5kaV9sZWQobGVkcywgNyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwoKICAgIGxlZHMgPSBpbnZlcnRpX3R1dHRpX2xlZChsZWRzKTsKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IHNwZWduaV90dXR0aV9sZWQobGVkcyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwp9Cg==').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts19298" onclick="fetch('data:text/plain;base64,I2luY2x1ZGUgPHN0ZGlvLmg+CgovLyBJbXBsZW1lbnQgdGhlIGZ1bmN0aW9uczoKLy8gLSBwcmludF9sZWRzOiBwcmludCB0aGUgbGVkcyBhcyBhIHNlcXVlbmNlIG9mIDEgYW5kIC4KLy8gLSBhY2NlbmRpX2xlZDogdHVybiBvbiB0aGUgbGVkIGF0IHRoZSBnaXZlbiBwb3NpdGlvbgovLyAtIHNwZWduaV9sZWQ6IHR1cm4gb2ZmIHRoZSBsZWQgYXQgdGhlIGdpdmVuIHBvc2l0aW9uCi8vIC0gaW52ZXJ0aV90dXR0aV9sZWQ6IGludmVydCBhbGwgdGhlIGxlZHMKLy8gLSBhY2NlbmRpX3R1dHRpX2xlZDogdHVybiBvbiBhbGwgdGhlIGxlZHMKLy8gLSBzcGVnbmlfdHV0dGlfbGVkOiB0dXJuIG9mZiBhbGwgdGhlIGxlZHMKCnZvaWQgcHJpbnRfbGVkcyh1bnNpZ25lZCBjaGFyIGxlZHMpOwp1bnNpZ25lZCBjaGFyIGFjY2VuZGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcywgaW50IHBvc2l6aW9uZSk7CnVuc2lnbmVkIGNoYXIgc3BlZ25pX2xlZCh1bnNpZ25lZCBjaGFyIGxlZHMsIGludCBwb3NpemlvbmUpOwp1bnNpZ25lZCBjaGFyIGludmVydGlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CnVuc2lnbmVkIGNoYXIgYWNjZW5kaV90dXR0aV9sZWQodW5zaWduZWQgY2hhciBsZWRzKTsKdW5zaWduZWQgY2hhciBzcGVnbmlfdHV0dGlfbGVkKHVuc2lnbmVkIGNoYXIgbGVkcyk7CgppbnQgbWFpbih2b2lkKQp7CiAgICB1bnNpZ25lZCBjaGFyIGxlZHMgPSAwOwoKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IGFjY2VuZGlfbGVkKGxlZHMsIDApOwogICAgcHJpbnRfbGVkcyhsZWRzKTsKCiAgICBsZWRzID0gYWNjZW5kaV9sZWQobGVkcywgNyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwoKICAgIGxlZHMgPSBpbnZlcnRpX3R1dHRpX2xlZChsZWRzKTsKICAgIHByaW50X2xlZHMobGVkcyk7CgogICAgbGVkcyA9IHNwZWduaV90dXR0aV9sZWQobGVkcyk7CiAgICBwcmludF9sZWRzKGxlZHMpOwp9Cg==').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -556,7 +563,7 @@ Nota
       a.download = 'simple_led.c.c'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts8602"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p></li>
+        });"><button class="btn btn-default downloadthis  " id="dnldts19298"><i class="bi bi-download"></i> Scarica il main dell'esercizio </button></a></p></li>
 </ol>
 
 
@@ -1132,6 +1139,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../lessons/08/index.html" class="pagination-link" aria-label="Strutture dati">
+        <span class="nav-page-text">Strutture dati</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

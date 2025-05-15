@@ -15,7 +15,7 @@
 
   <meta name="author" content="Matteo Spanio">
   <meta name="author" content="Giulio Pitteri">
-  <title>Hello C 2025 – Uso avanzato dei puntatori</title>
+  <title>Hello C 2025 – Strutture dati</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -217,7 +217,7 @@
     <div class="slides">
 
 <section id="title-slide" data-transition="convex" class="quarto-title-block center">
-  <h1 class="title">Uso avanzato dei puntatori</h1>
+  <h1 class="title">Strutture dati</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -238,277 +238,54 @@ Giulio Pitteri <a href="https://orcid.org/0000-0002-7595-017X" class="quarto-tit
 </div>
 </div>
 
-  <p class="date">3 aprile 2025</p>
+  <p class="date">8 maggio 2025</p>
 </section>
 <section>
-<section id="strutture" class="title-slide slide level1 center">
-<h1>Strutture</h1>
+<section id="ripasso" class="title-slide slide level1 center">
+<h1>Ripasso</h1>
 
 </section>
-<section id="strutture-in-c" class="slide level2">
-<h2>Strutture in C</h2>
-<p>Il C non permette di definire Classi e oggetti, si possono comunque definire dei tipi aggiuntivi per aggregare dati:</p>
+<section id="sintassi-del-linguaggio" class="slide level2">
+<h2>Sintassi del linguaggio</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a></a><span class="dt">int</span> a <span class="op">=</span> <span class="dv">5</span><span class="op">;</span> <span class="co">// definizione di variabile</span></span>
+<span id="cb1-2"><a></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">10</span><span class="op">];</span> <span class="co">// array</span></span>
+<span id="cb1-3"><a></a><span class="dt">int</span> <span class="op">*</span>a <span class="op">=</span> malloc<span class="op">(</span><span class="dv">10</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span> <span class="co">// allocazione dinamica</span></span>
+<span id="cb1-4"><a></a>free<span class="op">(</span>a<span class="op">);</span> <span class="co">// deallocazione</span></span>
+<span id="cb1-5"><a></a>foo<span class="op">(</span>a<span class="op">);</span> <span class="co">// chiamata di funzione</span></span>
+<span id="cb1-6"><a></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">10</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{...}</span> <span class="co">// for loop</span></span>
+<span id="cb1-7"><a></a><span class="cf">while</span> <span class="op">(</span>a <span class="op">&lt;</span> <span class="dv">10</span><span class="op">)</span> <span class="op">{...}</span> <span class="co">// while loop</span></span>
+<span id="cb1-8"><a></a><span class="cf">if</span> <span class="op">(</span>a <span class="op">==</span> <span class="dv">5</span><span class="op">)</span> <span class="op">{...}</span> <span class="co">// if statement</span></span>
+<span id="cb1-9"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{...}</span> MyStruct<span class="op">;</span> <span class="co">// typedef</span></span>
+<span id="cb1-10"><a></a>NULL<span class="op">;</span> <span class="co">// null pointer</span></span>
+<span id="cb1-11"><a></a><span class="dt">int</span> <span class="op">*</span>p <span class="op">=</span> <span class="op">&amp;</span>a<span class="op">;</span> <span class="co">// puntatore</span></span>
+<span id="cb1-12"><a></a><span class="op">*</span>p <span class="op">=</span> <span class="dv">5</span><span class="op">;</span> <span class="co">// dereferenziazione</span></span>
+<span id="cb1-13"><a></a><span class="dv">1</span> <span class="op">^</span> <span class="dv">2</span><span class="op">;</span> <span class="dv">1</span> <span class="op">|</span> <span class="dv">2</span><span class="op">;</span> <span class="dv">1</span> <span class="op">&amp;</span> <span class="dv">2</span><span class="op">;</span> <span class="co">// operazioni bitwise</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="liste" class="slide level2">
+<h2>Liste</h2>
+<p>Fino ad ora abbiamo visto alcune implementazioni di liste:</p>
 <ul>
-<li>Strutture: insieme di dati</li>
-<li>Unioni: alternative tra tipi diversi</li>
-<li>Enumerazioni: insieme di costanti</li>
+<li>array list</li>
+<li>linked list</li>
+<li>doubly linked list</li>
+<li>xor linked list</li>
 </ul>
+<p><a href="./code/linked_list.c">Vedi un esempio di implementazione di una lista doppiamente concatenata</a>.</p>
 </section>
-<section id="struct" class="slide level2">
-<h2><code>struct</code></h2>
-<p>Una struttura è un insieme di dati, si differenzia dagli array perché:</p>
-<ul>
-<li>gli elementi possono essere di tipo diverso</li>
-<li>gli elementi sono identificati da un nome</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a></a><span class="kw">struct</span> studente <span class="op">{</span></span>
-<span id="cb1-2"><a></a>    <span class="dt">char</span> nome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
-<span id="cb1-3"><a></a>    <span class="dt">char</span> cognome<span class="op">[</span><span class="dv">20</span><span class="op">];</span></span>
-<span id="cb1-4"><a></a>    <span class="dt">int</span> matricola<span class="op">;</span></span>
-<span id="cb1-5"><a></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="stack-pila" class="slide level2">
+<h2>Stack (Pila)</h2>
+<p>Le liste possono essere usate per implementare uno stack, una struttura dati LIFO (Last In First Out). In questo caso l’operazione di push viene eseguita in O(1) e l’operazione di pop in O(1).</p>
+<p><a href="./code/stack.c">Vedi un esempio di implementazione di uno stack</a>.</p>
 </section>
-<section id="inizializzazione" class="slide level2">
-<h2>Inizializzazione</h2>
-<p>Si possono inizializzare le strutture quando vengono dichiarate:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span><span class="st">"Mario"</span><span class="op">,</span> <span class="st">"Rossi"</span><span class="op">,</span> <span class="dv">12345</span><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Si possono inizializzare meno elementi rispetto a quelli dichiarati, in questo caso gli elementi non inizializzati vengono impostati a 0.</p>
-<p>Un modo alternativo di inizializzare:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb3-2"><a></a>    <span class="op">.</span>nome <span class="op">=</span> <span class="st">"Mario"</span><span class="op">,</span></span>
-<span id="cb3-3"><a></a>    <span class="op">.</span>cognome <span class="op">=</span> <span class="st">"Rossi"</span><span class="op">,</span></span>
-<span id="cb3-4"><a></a>    <span class="op">.</span>matricole <span class="op">=</span> <span class="dv">12345</span><span class="op">,</span></span>
-<span id="cb3-5"><a></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="queue" class="slide level2">
+<h2>Queue</h2>
+<p>Le liste possono essere usate per implementare una coda, una struttura dati FIFO (First In First Out). In questo caso l’operazione di enqueue viene eseguita in O(1) e l’operazione di dequeue in O(1).</p>
+<p><a href="./code/queue.c">Vedi un esempio di implementazione di una queue</a>.</p>
 </section>
-<section id="accedere-agli-elementi" class="slide level2">
-<h2>Accedere agli elementi</h2>
-<p>Per accedere ai singoli elementi di una struttura (detti anche membri) si usa l’operatore <code>.</code> (punto) dopo il nome della variabile:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a></a><span class="kw">struct</span> studente s <span class="op">=</span> <span class="op">{</span><span class="st">"Mario"</span><span class="op">,</span> <span class="st">"Rossi"</span><span class="op">,</span> <span class="dv">12345</span><span class="op">};</span></span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a>printf<span class="op">(</span><span class="st">"Nome: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> s<span class="op">.</span>nome<span class="op">);</span></span>
-<span id="cb4-4"><a></a>printf<span class="op">(</span><span class="st">"Cognome: </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> s<span class="op">.</span>cognome<span class="op">);</span></span>
-<span id="cb4-5"><a></a>s<span class="op">.</span>matricola <span class="op">=</span> <span class="dv">54321</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="copie-di-strutture" class="slide level2">
-<h2>Copie di strutture</h2>
-<p>Si può copiare interamente una struttura usando una variabile dello stesso tipo:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a></a><span class="kw">struct</span> studente a<span class="op">,</span> b <span class="op">=</span> <span class="op">{</span><span class="st">"Matteo"</span><span class="op">,</span> <span class="st">"Spanio"</span><span class="op">,</span> <span class="dv">56789</span><span class="op">};</span></span>
-<span id="cb5-2"><a></a>a <span class="op">=</span> b<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Importante</strong></p>
-</div>
-<div class="callout-content">
-<p>Solo l’operatore <code>=</code> è valido tra 2 struct, gli operatori <code>==</code> e <code>!=</code> NON si possono usare per vedere se due strutture sono uguali.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="dare-i-nomi-alle-strutture" class="slide level2">
-<h2>Dare i nomi alle strutture</h2>
-<p>Le stutture possono avere un nome, gli si può associare un tipo, oppure possono essere anonime.</p>
-<p>Le strutture col nome, detto <em>structure tag</em>, si dichiarano come abbiamo già visto:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a></a><span class="kw">struct</span> nome <span class="op">{</span></span>
-<span id="cb6-2"><a></a>    type member_name<span class="op">;</span></span>
-<span id="cb6-3"><a></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Avviso</strong></p>
-</div>
-<div class="callout-content">
-<p>Il tipo di una variabile <code>struct</code> è <code>struct nome_struct</code>, omettere la parola struct è un errore.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="strutture-anonime" class="slide level2">
-<h2>Strutture anonime</h2>
-<p>Nel caso in cui un si voglia usare una struct solo in un punto specifico del codice non è necessario associarvi un nome, si può dichiarare e associare direttamente:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a></a><span class="kw">struct</span> <span class="op">{</span> <span class="dt">int</span> x<span class="op">;</span> <span class="dt">int</span> y<span class="op">;</span> <span class="op">}</span> punto<span class="op">;</span></span>
-<span id="cb7-2"><a></a>punto<span class="op">.</span>x <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
-<span id="cb7-3"><a></a>punto<span class="op">.</span>y <span class="op">=</span> <span class="dv">18</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="typedef" class="slide level2">
-<h2>typedef</h2>
-<p><code>typedef</code> è un operatore che permette di definire alias per i tipi:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a></a><span class="kw">typedef</span> <span class="dt">int</span> Bool<span class="op">;</span></span>
-<span id="cb8-2"><a></a><span class="kw">typedef</span> <span class="dt">float</span> Euro<span class="op">;</span></span>
-<span id="cb8-3"><a></a><span class="kw">typedef</span> <span class="dt">char</span><span class="op">*</span> String<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Queste dichiarazioni permettono scrivere codice più chiaro.</p>
-</section>
-<section id="strutture-con-typedef" class="slide level2">
-<h2>Strutture con typedef</h2>
-<p>Dal momento che le strutture sono usate moltissimo e i programmatori sono pigri, solitamente, si preferisce omettere la parola chiave <code>struct</code> per riferirsi al tipo delle strutture grazie a typedef:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
-<span id="cb9-2"><a></a>    <span class="dt">int</span> x<span class="op">;</span></span>
-<span id="cb9-3"><a></a>    <span class="dt">int</span> y<span class="op">;</span></span>
-<span id="cb9-4"><a></a><span class="op">}</span> Point<span class="op">;</span></span>
-<span id="cb9-5"><a></a>Point punto <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb9-6"><a></a>    <span class="op">.</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb9-7"><a></a>    <span class="op">.</span>y <span class="op">=</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb9-8"><a></a><span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="cast-a-strutture" class="slide level2">
-<h2>Cast a strutture</h2>
-<p>Una volta definito il tipo con typedef, si può popolare una struttura con la stessa sintassi dell’inizializzazione, occorre fare un cast esplicito però:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
-<span id="cb10-2"><a></a>    <span class="dt">int</span> x<span class="op">;</span></span>
-<span id="cb10-3"><a></a>    <span class="dt">int</span> y<span class="op">;</span></span>
-<span id="cb10-4"><a></a><span class="op">}</span> Point<span class="op">;</span></span>
-<span id="cb10-5"><a></a></span>
-<span id="cb10-6"><a></a>Point s<span class="op">;</span></span>
-<span id="cb10-7"><a></a>s <span class="op">=</span> <span class="op">(</span>Point<span class="op">)</span> <span class="op">{</span> <span class="op">.</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">.</span>y <span class="op">=</span> <span class="dv">2</span> <span class="op">};</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="struct-1" class="slide level2">
-<h2><code>struct</code></h2>
-<p>A prescindere da quale metodo di definizione si scelga, le strutture possono essere argomenti di funzioni e restituite da funzioni:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a></a><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></span>
-<span id="cb11-2"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> point <span class="op">{</span></span>
-<span id="cb11-3"><a></a>    <span class="dt">int</span> x<span class="op">;</span></span>
-<span id="cb11-4"><a></a>    <span class="dt">int</span> y<span class="op">;</span></span>
-<span id="cb11-5"><a></a><span class="op">}</span> Point<span class="op">;</span></span>
-<span id="cb11-6"><a></a></span>
-<span id="cb11-7"><a></a>Point somma<span class="op">(</span>Point a<span class="op">,</span> <span class="kw">struct</span> point b<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb11-8"><a></a>    <span class="cf">return</span> <span class="op">(</span>Point<span class="op">)</span> <span class="op">{</span> <span class="op">.</span>x <span class="op">=</span> a<span class="op">.</span>x <span class="op">+</span> b<span class="op">.</span>x<span class="op">,</span> <span class="op">.</span>y <span class="op">=</span> a<span class="op">.</span>y <span class="op">+</span> b<span class="op">.</span>y <span class="op">};</span></span>
-<span id="cb11-9"><a></a><span class="op">}</span></span>
-<span id="cb11-10"><a></a></span>
-<span id="cb11-11"><a></a><span class="dt">float</span> distanza<span class="op">(</span>Point a<span class="op">,</span> Point b<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb11-12"><a></a>    <span class="cf">return</span> sqrt<span class="op">(</span>pow<span class="op">(</span>a<span class="op">.</span>x <span class="op">-</span> b<span class="op">.</span>x<span class="op">,</span> <span class="dv">2</span><span class="op">)</span> <span class="op">+</span> pow<span class="op">(</span>a<span class="op">.</span>y <span class="op">-</span> b<span class="op">.</span>y<span class="op">,</span> <span class="dv">2</span><span class="op">));</span></span>
-<span id="cb11-13"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="struct-e-puntatori" class="slide level2">
-<h2><code>struct</code> e puntatori</h2>
-<p>Si possono creare puntatori a strutture (come per qualsiasi altro tipo di dato):</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a></a><span class="kw">struct</span> point <span class="op">*</span>p<span class="op">;</span></span>
-<span id="cb12-2"><a></a>Point <span class="op">*</span>p1<span class="op">;</span></span>
-<span id="cb12-3"><a></a></span>
-<span id="cb12-4"><a></a><span class="dt">void</span> foo<span class="op">(</span>Point<span class="op">*</span> p<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="struct-2" class="slide level2">
-<h2><code>struct</code></h2>
-<ul>
-<li>Si possono creare array di strutture:</li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a></a>Point punti<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
-<span id="cb13-2"><a></a>punti<span class="op">[</span><span class="dv">0</span><span class="op">].</span>x <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Inserire un array in una struttura</li>
-<li>Inserire una struttura in un’altra struttura</li>
-<li>Inserire unioni in una struttura</li>
-<li>Inserire strutture in unioni</li>
-</ul>
-</section>
-<section id="esempio" class="slide level2">
-<h2>Esempio</h2>
-<p>Si vuole creare un sistema informatico per la gestione squadra della nazionale Italiana di calcio che giocò ai mondiali del 1982:</p>
-<ol type="1">
-<li>implementare una struttura dati per memorizzare i dati di un giocatore di calcio;</li>
-<li>memorizzare l’elenco dei giocatori della squadra;</li>
-<li>ordinare i giocatori in base numero di maglia.</li>
-</ol>
-</section>
-<section id="memorizzare-un-giocatore" class="slide level2">
-<h2>Memorizzare un giocatore</h2>
-<p>Ai fini della classifica è necessario memorizzare il nome della squadra e i punti ottenuti:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a></a><span class="pp">#define BUFFER_SIZE </span><span class="dv">128</span></span>
-<span id="cb14-2"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> giocatore</span>
-<span id="cb14-3"><a></a><span class="op">{</span></span>
-<span id="cb14-4"><a></a>    <span class="dt">char</span> nome<span class="op">[</span>BUFFER_SIZE<span class="op">];</span></span>
-<span id="cb14-5"><a></a>    <span class="dt">char</span> cognome<span class="op">[</span>BUFFER_SIZE<span class="op">];</span></span>
-<span id="cb14-6"><a></a>    <span class="dt">unsigned</span> <span class="dt">int</span> numero_maglia<span class="op">;</span> <span class="co">// non esistono numeri di maglia negativi</span></span>
-<span id="cb14-7"><a></a><span class="op">}</span> Giocatore<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="memorizzare-la-lista-dei-giocatori" class="slide level2">
-<h2>Memorizzare la lista dei giocatori</h2>
-<p>La struct <code>Giocatore</code> è di fatto un tipo di dato, possiamo quindi creare un array di esami dove memorizzare la formazione:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a></a><span class="pp">#define NUM </span><span class="dv">22</span></span>
-<span id="cb15-2"><a></a>Giocatore squadra<span class="op">[</span>NUM<span class="op">];</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="ordinare-i-giocatori" class="slide level2">
-<h2>Ordinare i giocatori</h2>
-<p>Per ordinare i giocatori in base al numero di maglia, bisogna introdurre un algoritmo di ordinamento:</p>
-<p>Il più intuitivo, ma non il più efficiente, è il Bubble Sort:</p>
-
-<img data-src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif" class="r-stretch"><p><a href="./code/mondiali1982.c">Scarica l’esempio completo</a></p>
-</section>
-<section id="unioni" class="slide level2">
-<h2>Unioni</h2>
-<ul>
-<li>Le unioni sono simili alle strutture, nel senso che permettono di usare membri di tipo diverso</li>
-<li>La differenza è che una struttura tiene tutti i membri in memoria, mentre una union tiene solo un membro alla volta</li>
-</ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a></a><span class="kw">union</span> <span class="op">{</span></span>
-<span id="cb16-2"><a></a>    <span class="dt">int</span> i<span class="op">;</span></span>
-<span id="cb16-3"><a></a>    <span class="dt">double</span> d<span class="op">;</span></span>
-<span id="cb16-4"><a></a><span class="op">}</span> u<span class="op">;</span></span>
-<span id="cb16-5"><a></a></span>
-<span id="cb16-6"><a></a><span class="kw">struct</span> <span class="op">{</span></span>
-<span id="cb16-7"><a></a>    <span class="dt">int</span> i<span class="op">;</span></span>
-<span id="cb16-8"><a></a>    <span class="dt">double</span> d<span class="op">;</span></span>
-<span id="cb16-9"><a></a><span class="op">}</span> s<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="unioni-1" class="slide level2">
-<h2>Unioni</h2>
-<p>Si può inizializzare solo un elemento di una union:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb17-1"><a></a><span class="kw">union</span> <span class="op">{</span></span>
-<span id="cb17-2"><a></a>    <span class="dt">int</span> i<span class="op">;</span></span>
-<span id="cb17-3"><a></a>    <span class="dt">double</span> d<span class="op">;</span></span>
-<span id="cb17-4"><a></a><span class="op">}</span> u <span class="op">=</span> <span class="op">{</span> <span class="op">.</span>i <span class="op">=</span> <span class="dv">3</span> <span class="op">};</span></span>
-<span id="cb17-5"><a></a></span>
-<span id="cb17-6"><a></a>u<span class="op">.</span>d <span class="op">=</span> <span class="fl">5.7</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Come per le strutture, posso dare nomi alle unioni tramite tag oppure con typedef.</p>
-</section>
-<section id="enumerazioni" class="slide level2">
-<h2>Enumerazioni</h2>
-<p>In molti programmi si usano interi come “<em>codici</em>” per indicare varie cose. Un caso comune sono per esempio i codici di errore.</p>
-<p>Spesso si usano macro o costanti, ma è più chiaro usare enumerazioni:</p>
-<p><code>enum {CUORI, QUADRI, FIORI, PICCHE} s1, s2;</code></p>
-<p>Ora le variabili <code>s1</code> e <code>s2</code> possono assumere solo uno dei quattro valori definiti.</p>
-</section>
-<section id="esercizio" class="slide level2">
-<h2>Esercizio</h2>
-<p>Si vuole implementare il sistema informatico in C per rappresentare una squadra pokemon e ordinare la squadra per i nomi dei pokemon in ordine alfabetico.</p>
-<p><a href="./code/esercizio.c">Scarica il main dell’esercizio</a></p>
-</section></section>
-<section>
-<section id="strutture-dati" class="title-slide slide level1 center">
-<h1>Strutture dati</h1>
-
-</section>
-<section id="strutture-dati-1" class="slide level2">
-<h2>Strutture dati</h2>
-<p>Le strutture sono molto utili per definire… strutture dati.</p>
-<p>Per esempio si possono definire array dinamici, liste concatenate, alberi, pile, code…</p>
-</section>
-<section id="array-con-strutture" class="slide level2">
-<h2>Array con strutture</h2>
-<p>Gli array in C sono molto limitati, infatti dobbiamo gestire la loro lunghezza <em>a mano</em>…</p>
-<p>Si può creare una struttura che contenga un array e la sua lunghezza:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a></a><span class="pp">#define MAX </span><span class="dv">1024</span></span>
-<span id="cb18-2"><a></a></span>
-<span id="cb18-3"><a></a><span class="kw">typedef</span> <span class="kw">struct</span> intarray <span class="op">{</span></span>
-<span id="cb18-4"><a></a>    <span class="dt">int</span> array<span class="op">[</span>MAX<span class="op">];</span></span>
-<span id="cb18-5"><a></a>    <span class="dt">int</span> length<span class="op">;</span></span>
-<span id="cb18-6"><a></a><span class="op">}</span> IntArray<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="array-con-strutture-1" class="slide level2">
-<h2>Array con strutture</h2>
-<p>Adesso si può passare la struttura come argomento di una funzione:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a></a><span class="dt">void</span> stampa_array<span class="op">(</span>IntArray a<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb19-2"><a></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> a<span class="op">.</span>length<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb19-3"><a></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> "</span><span class="op">,</span> a<span class="op">.</span>array<span class="op">[</span>i<span class="op">]);</span></span>
-<span id="cb19-4"><a></a>    <span class="op">}</span></span>
-<span id="cb19-5"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
-<span id="cb19-6"><a></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Si nota subito che non abbiamo più bisogno di passare la lunghezza dell’array come argomento.</p>
-<p><a href="./code/array_struct.c">Scarica l’esempio completo</a></p>
+<section id="alberi" class="slide level2">
+<h2>Alberi</h2>
+<p>Gli alberi sono una struttura dati gerarchica in cui ogni nodo ha un valore e può avere zero o più figli. Gli alberi sono usati per rappresentare strutture dati complesse come i file system, i database e le strutture di dati in memoria.</p>
+<p><a href="./code/albero.c">Vedi un esempio di implementazione di un albero</a>.</p>
 
 
 </section></section>

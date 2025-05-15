@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Matteo Spanio">
+<meta name="author" content="Giulio Pitteri">
 
-<title>word counter – Hello C 2025</title>
+<title>Strutture dati – Hello C 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../exercises/extra/secrets.html" rel="next">
-<link href="../../exercises/extra/palindromi.html" rel="prev">
+<link href="../../lessons/07/index.html" rel="prev">
 <link href="../../assets/images/dec_pdp1120.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -78,9 +79,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-df8bd87e6a598f0274270fc6125e8be0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark-9529a2555af4e598eabee24dc727bfd3.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script src="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
-<link href="../../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -120,54 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
-<script>
-MathJax = {
-  loader: {
-    load: ['[tex]/boldsymbol']
-  },
-  tex: {
-    tags: "all",
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\\[','\\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    packages: {
-      '[+]': ['boldsymbol']
-    }
-  }
-};
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -221,7 +172,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/extra/palindromi.html">Preparazione esame</a></li><li class="breadcrumb-item"><a href="../../exercises/extra/lista_di_stringhe.html">word count</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/08/index.html">Strutture dati</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -233,279 +184,408 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/01/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Basi di C</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../exercises/01/somma_interi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Somma di interi</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/01/somma_razionale.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Somma razionale</span></a>
+  <a href="../../lessons/02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Strutture di controllo e tipi di base</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/01/cambio_valuta.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Cambio valuta</span></a>
+  <a href="../../lessons/03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Array e Funzioni</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/01/libretto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Libretto universitario</span></a>
+  <a href="../../lessons/04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Puntatori</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Espressioni e strutture di controllo</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/02/power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Elevamento a potenza</span></a>
+  <a href="../../lessons/05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uso avanzato dei puntatori</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/02/lista_della_spesa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lista della spesa</span></a>
+  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Memoria dinamica</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/02/fizzbuzz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FizzBuzz</span></a>
+  <a href="../../lessons/07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operatori bitwise</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Array e funzioni</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/02/sum_matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Somma di righe e colonne</span></a>
+  <a href="../../lessons/08/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Strutture dati</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../exercises/02/word_average.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lunghezza media delle parole</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../exercises/02/deal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Una mano a poker</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Preparazione esame</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../exercises/extra/palindromi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Palindromi</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../exercises/extra/lista_di_stringhe.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">word count</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../exercises/extra/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">XOR cipher</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../exercises/extra/torneo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Torneo di pallavolo</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="lista_di_stringhe.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">In questa pagina</h2>
+   
+  <ul>
+  <li><a href="#liste-1" id="toc-liste-1" class="nav-link active" data-scroll-target="#liste-1">Liste</a>
+  <ul class="collapse">
+  <li><a href="#implementazione" id="toc-implementazione" class="nav-link" data-scroll-target="#implementazione">Implementazione</a></li>
+  <li><a href="#funzioni-principali" id="toc-funzioni-principali" class="nav-link" data-scroll-target="#funzioni-principali">Funzioni principali</a></li>
+  </ul></li>
+  <li><a href="#stack-pila-1" id="toc-stack-pila-1" class="nav-link" data-scroll-target="#stack-pila-1">Stack (Pila)</a>
+  <ul class="collapse">
+  <li><a href="#implementazione-1" id="toc-implementazione-1" class="nav-link" data-scroll-target="#implementazione-1">Implementazione</a></li>
+  <li><a href="#funzioni-principali-1" id="toc-funzioni-principali-1" class="nav-link" data-scroll-target="#funzioni-principali-1">Funzioni principali</a></li>
+  </ul></li>
+  <li><a href="#queue-1" id="toc-queue-1" class="nav-link" data-scroll-target="#queue-1">Queue</a>
+  <ul class="collapse">
+  <li><a href="#implementazione-2" id="toc-implementazione-2" class="nav-link" data-scroll-target="#implementazione-2">Implementazione</a></li>
+  <li><a href="#funzioni-principali-2" id="toc-funzioni-principali-2" class="nav-link" data-scroll-target="#funzioni-principali-2">Funzioni principali</a></li>
+  </ul></li>
+  <li><a href="#alberi-1" id="toc-alberi-1" class="nav-link" data-scroll-target="#alberi-1">Alberi</a>
+  <ul class="collapse">
+  <li><a href="#implementazione-3" id="toc-implementazione-3" class="nav-link" data-scroll-target="#implementazione-3">Implementazione</a></li>
+  <li><a href="#funzioni-principali-3" id="toc-funzioni-principali-3" class="nav-link" data-scroll-target="#funzioni-principali-3">Funzioni principali</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="slide.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/extra/palindromi.html">Preparazione esame</a></li><li class="breadcrumb-item"><a href="../../exercises/extra/lista_di_stringhe.html">word count</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">word counter</h1>
+<h1 class="title">Strutture dati</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autori</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://matteospanio.github.io/">Matteo Spanio</a> <a href="mailto:spanio@dei.unipd.it" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-2436-7208" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+             <p>Giulio Pitteri <a href="mailto:giulio.pitteri@phd.unipd.it" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-7595-017X" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">8 maggio 2025</p>
+    </div>
+  </div>
   
     
   </div>
   
+<div>
+  <div class="abstract">
+    <div class="block-title">Argomenti trattati</div>
+    In questa lezione si propone un ripasso alle strutture dati già viste aggiungendo l’implementazione di base degli alberi.
+  </div>
+</div>
 
 
 </header>
 
 
-<p>Nei sistemi operativi Unix-like, il comando <code>wc</code> consente di contare il numero di righe, parole, caratteri e byte di ciascun file o input standard e stampare il risultato.</p>
-<p>Ad esempio il comando:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ciao mondo\n"</span> <span class="kw">|</span> <span class="fu">wc</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>stamperà:</p>
-<pre><code>1 2 11</code></pre>
-<p>Il primo numero rappresenta il numero di righe, il secondo il numero di parole e il terzo il numero di caratteri.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Consiglio
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Per avere una panoramica completa delle opzioni del comando <code>wc</code> si può consultare la pagina del manuale digitando <code>man wc</code> nel terminale.</p>
-</div>
-</div>
-<hr>
-<p>Si vuole implementare in C una funzione <code>wc</code> che, data una stringa, restituisca il numero di righe, parole e caratteri totali.</p>
-<p>Il prototipo della funzione è il seguente:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> wc<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>string<span class="op">,</span> Stats <span class="op">*</span>counter<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>dove:</p>
+<section id="liste-1" class="level2">
+<h2 class="anchored" data-anchor-id="liste-1">Liste</h2>
+<p>Fino ad ora abbiamo visto alcune implementazioni di liste:</p>
 <ul>
-<li><code>string</code> è una stringa;</li>
-<li><code>counter</code> è un puntatore ad una struttura <code>Stats</code> definita come segue:</li>
+<li>array list</li>
+<li>linked list</li>
+<li>doubly linked list</li>
+<li>xor linked list</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> lines<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> words<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> chars<span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Stats<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>La funzione deve calcolare il numero di righe, parole e caratteri della stringa <code>string</code> e memorizzarli nella struttura <code>Stats</code> puntata da <code>counter</code>.</p>
-<p>Si assuma che:</p>
+<p>Le liste sono strutture dati lineari in cui gli elementi sono collegati tra loro tramite puntatori. Una delle varianti più comuni è la lista doppiamente concatenata.</p>
+<section id="implementazione" class="level3">
+<h3 class="anchored" data-anchor-id="implementazione">Implementazione</h3>
+<p>Vediamo di seguito un esempio di implementazione di una lista doppiamente concatenata. La lista è composta da nodi, ognuno dei quali contiene un valore e due puntatori: uno al nodo successivo e uno al nodo precedente. In questo modo, è possibile navigare sia in avanti che all’indietro nella lista.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> node <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> value<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>next<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>prev<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Node<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> list <span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    Node <span class="op">*</span>head<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    Node <span class="op">*</span>tail<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> size<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> List<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ogni nodo contiene:</p>
 <ul>
-<li>una riga è una sequenza di caratteri terminata da un carattere di nuova riga (<code>\n</code>);</li>
-<li>una parola è una sequenza di caratteri separata da spazi o da caratteri di nuova riga; <code>"a b"</code> sono due parole, <code>"a\nb"</code> sono due parole parola, <code>"a,b"</code> è una parola;</li>
+<li>un valore intero (int value)</li>
+<li>un puntatore al nodo successivo (*next)</li>
+<li>un puntatore al nodo precedente (*prev)</li>
+<li>La lista mantiene un puntatore alla testa e alla coda, oltre alla dimensione.</li>
 </ul>
-<p>Se necessario, si possono aggiungere funzioni di supporto, ma è necessario che le funzioni richieste siano implementate esattamente con i prototipi forniti.</p>
-<p><a href="#dnldts18375" onclick="fetch('data:application/zip;base64,UEsDBAoAAAAAAHlnwlgAAAAAAAAAAAAAAAADABwAd2MvVVQJAAOlUFxmS3NLZnV4CwABBOgDAAAE6AMAAFBLAwQUAAAACABBZsJYTghvu44AAAC7AAAACwAcAHdjL01ha2VmaWxlVVQJAANZTlxmUnNLZnV4CwABBOgDAAAE6AMAAEVNPQvCMBCde7/ihgztkDg3UKgGrEKxpRnERQjXKEKsUgP6871W0eXxPnnGYIFnIjDrellZFnLvQkD5iH1BeY7y7ns3xAtx4F9xdNB2TcW9J4HtzEwUAfBIo0inMAP4ksnhUgaJSI3JWH1umB1R3lCUbNXbleVGqRa/uWo3ze6gkYJ3A8yoIRmvKE//jzdQSwMEFAAAAAgAfGfCWMeioghkBAAAOwwAAAcAHAB3Yy93Yy5jVVQJAAOrUFxmRpJUZnV4CwABBOgDAAAE6AMAALVWzW4jRRC+z1NUjJLYXuMk9oJEQlaKHG/WIsQoCewBS1Znph23mOme7enBJLt+AyQuHOHOI3DnTXgBXoGq7vnxTMYBDkwSpbu6fr6qr7pmPhLSD9OAw+eJCYTqL195nnmIecAXkBid+sZ77wE+QhoIheTJSbFdKR1sbP0l07hdw41hBheed3AAR32YRHHIIy4Ng5DBIpWPQkkOKx8tOPiKDkQIMo24VhAI0OJ+yXsQM61CDqjCNDOGawGSh+gCcQl5zyBgaMkpCj4Rj5QWj4/WlxZJGiIKVVqkxqSaYbhUoqs+WQ22YosxgJknlIcFiasoRs8SIhUoAiSk+k+gM5RPgNgk+rZU36DyQviIlkMqCwcc/vgN9wqSmCE6UNXDgAKsiJm+RyyIZM6j2Dy0iQ7wOxl9mmNUtIPTU9jHnw8fsvVM7iNnnve9EgFy0kY+EscldBFtz7EJ3Qxv7g/x3k7Pp2R50O160IWr6RV8OT2fvJ6Mzq7HMLmEEe5GYxi9GcPN+OLr8c7ODinS3yTEAgTC5668/D61aSaWs8TXwuD/GMtjOMowTaxpxo4AUZBmuFUK93nCtS/wuE/eL7O9YY5OykkkqJyokJEht6Tsl45qEbTwl4InTs9icI6/ssFKM+ceKUglMaqxythJGCV1J1JJSit3p4DdhwKzxAsnjUBDcuqrKNZcBsQmtlQGwuLEzuJFpWyVEDshOfC8TaKuxzfjWziF1uxwOPz2MGqd1I7Pi8PhUf304no8virPB3Tu2mHjGrRdG9S6wCos2q1LGgzHsBtAq1dcMTstOicVxbc0MuqKdo7UFEc0TEhxJjc07YjplP2qkWczz07bzZ2abT9+ZfFgnocnVbkN3yC3wZx8XSmIZqu5m0H125LHXC0FtlPbiUjgxHZSLpw8v3yd4qTU2SzEDAuQ1SZ/0PrFi6oo99qpSKserdfUEFinW3Wx9p6ueJjwbfiaPZW2GyjXVEAaTraV5vxdysKMLZYPmLvapGL9jK9TuMuWe3sozdgiqVtaacYVSfPXUEYZXd5/Gmr5nv8Qc9/woISy2V55X7mccFRaT6W0eBFq22abuZaBihC5PhKH+vUuydnfTf785ee/fv8Jpl/QjbFXdaPaudotJomhkZNjmLVadY3Njq3SVXRZq2wzR2FBfSOoX3+E12c44hETDpf/E9HTAzPOangMT/26YVWvctX+QiEo+2yz71a5XldG025is8aJ6yYRUR4xIdvUb3nrVMZlhsK2YssXTOFnhAzUTC7xLaToOyoM0Ode0SXucnTeD3rwsgeDwToD4jy8IasevCWznUa7IzTqwdGwaneldMTc6wxWwixnMmLyYSbt7erDmQzm+I3h86TR57AHn/Zg+FnVZ6PqYQ/ot6qZ2Nemi/4c6FqydI+0wwt3IZPfgcW4zQOVq5Y25B+M22zwt5YVzORzNoMmm5l8Nk6jTfEp+++hFciabZrDUKtviYBEvaxrYypbvaP+J2vb+H8DUEsBAh4DCgAAAAAAeWfCWAAAAAAAAAAAAAAAAAMAGAAAAAAAAAAQAP1BAAAAAHdjL1VUBQADpVBcZnV4CwABBOgDAAAE6AMAAFBLAQIeAxQAAAAIAEFmwlhOCG+7jgAAALsAAAALABgAAAAAAAEAAAC0gT0AAAB3Yy9NYWtlZmlsZVVUBQADWU5cZnV4CwABBOgDAAAE6AMAAFBLAQIeAxQAAAAIAHxnwljHoqIIZAQAADsMAAAHABgAAAAAAAEAAAC0gRABAAB3Yy93Yy5jVVQFAAOrUFxmdXgLAAEE6AMAAAToAwAAUEsFBgAAAAADAAMA5wAAALUFAAAAAA==').then(res => res.blob()).then(blob => {
-      const downloadURL = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      document.body.appendChild(a);
-      a.href = downloadURL;
-      a.download = 'wc.zip'; a.click();
-      window.URL.revokeObjectURL(downloadURL);
-      document.body.removeChild(a);
-        });"><button class="btn btn-default downloadthis  " id="dnldts18375"><i class="bi bi-download"></i> Scarica i file per svolgere l'esercizio </button></a></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Soluzione (fare click per visualizzare)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Esistono diversi modi in C per implementare il codice richiesto, la soluzione proposta utilizza un ciclo <code>while</code> per iterare su tutti i caratteri della stringa e contare il numero di righe, parole e caratteri, utilizzando una variabile <code>prev</code> per tenere traccia del carattere precedente. La soluzione ha complessità <span class="math inline">\(O(n)\)</span>, dove <span class="math inline">\(n\)</span> è la lunghezza della stringa.</p>
-<p>La soluzione proposta è la seguente:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> wc<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>str<span class="op">,</span> Stats <span class="op">*</span>counter<span class="op">)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// se la stringa è vuota non c'è nulla da contare</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(*</span>str <span class="op">==</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">)</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">// dal momento che il contador è inizializzato a 0 non è necessario fare nulla</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> prev <span class="op">=</span> <span class="ch">' '</span><span class="op">;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// se la stringa non è vuota, ci sarà almeno una riga</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    counter<span class="op">-&gt;</span>lines<span class="op">++;</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// iteriamo su tutti i caratteri della stringa</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(*</span>str <span class="op">!=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">)</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="co">// a ogni carattere incrementiamo il contatore dei caratteri</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        counter<span class="op">-&gt;</span>chars<span class="op">++;</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(*</span>str <span class="op">==</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">)</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>            <span class="co">// se il carattere è un carattere di nuova riga incrementiamo</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            <span class="co">// il contatore delle righe</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>            counter<span class="op">-&gt;</span>lines<span class="op">++;</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>is_empty<span class="op">(*</span>str<span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>is_empty<span class="op">(</span>prev<span class="op">))</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>            <span class="co">// se il carattere corrente è uno spazio e il carattere precedente</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>            <span class="co">// non era uno spazio, incrementiamo il contatore delle parole</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>            counter<span class="op">-&gt;</span>words<span class="op">++;</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="co">// salviamo il carattere corrente per il prossimo ciclo</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        prev <span class="op">=</span> <span class="op">*</span>str<span class="op">;</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        str<span class="op">++;</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// se l'ultimo carattere della stringa non è uno spazio</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">// non è stato incrementato il contatore delle parole</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">// quindi è necessario effettuare un controllo aggiuntivo</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">// per incrementare il contatore delle parole</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>is_empty<span class="op">(</span>prev<span class="op">))</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        counter<span class="op">-&gt;</span>words<span class="op">++;</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
+</section>
+<section id="funzioni-principali" class="level3">
+<h3 class="anchored" data-anchor-id="funzioni-principali">Funzioni principali</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Node <span class="op">*</span>new_node<span class="op">(</span><span class="dt">int</span> value<span class="op">);</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>List <span class="op">*</span>new_list<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> append<span class="op">(</span>List <span class="op">*</span>list<span class="op">,</span> <span class="dt">int</span> value<span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> prepend<span class="op">(</span>List <span class="op">*</span>list<span class="op">,</span> <span class="dt">int</span> value<span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> insert<span class="op">(</span>List <span class="op">*</span>list<span class="op">,</span> <span class="dt">int</span> index<span class="op">,</span> <span class="dt">int</span> value<span class="op">);</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> free_list<span class="op">(</span>List <span class="op">*</span>list<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Funzione</th>
+<th>Descrizione</th>
+<th>Complessità</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>new_node</td>
+<td>Crea un nuovo nodo con il valore specificato.</td>
+<td>O(1)</td>
+</tr>
+<tr class="even">
+<td>new_list</td>
+<td>Crea una nuova lista vuota.</td>
+<td>O(1)</td>
+</tr>
+<tr class="odd">
+<td>append</td>
+<td>Aggiunge un nuovo nodo alla fine della lista.</td>
+<td>O(1)</td>
+</tr>
+<tr class="even">
+<td>prepend</td>
+<td>Aggiunge un nuovo nodo all’inizio della lista.</td>
+<td>O(1)</td>
+</tr>
+<tr class="odd">
+<td>insert</td>
+<td>Inserisce un nuovo nodo in una posizione specificata.</td>
+<td>O(n)</td>
+</tr>
+<tr class="even">
+<td>free_list</td>
+<td>Libera la memoria allocata per la lista.</td>
+<td>O(n)</td>
+</tr>
+</tbody>
+</table>
+<p><a href="./code/linked_list.c">Vedi un esempio di implementazione di una lista doppiamente concatenata</a>.</p>
+</section>
+</section>
+<section id="stack-pila-1" class="level2">
+<h2 class="anchored" data-anchor-id="stack-pila-1">Stack (Pila)</h2>
+<p>Le liste possono essere usate per implementare uno stack, una struttura dati LIFO (Last In First Out).</p>
+<section id="implementazione-1" class="level3">
+<h3 class="anchored" data-anchor-id="implementazione-1">Implementazione</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> node <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> value<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>next<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Node<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> stack <span class="op">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    Node <span class="op">*</span>top<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> size<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Stack<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ogni nodo contiene:</p>
+<ul>
+<li>un valore intero (int value)</li>
+<li>un puntatore al nodo successivo (*next)</li>
+<li>La lista mantiene un puntatore alla testa, che rappresenta l’elemento in cima allo stack.</li>
+</ul>
+</section>
+<section id="funzioni-principali-1" class="level3">
+<h3 class="anchored" data-anchor-id="funzioni-principali-1">Funzioni principali</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> push<span class="op">(</span>Stack <span class="op">*</span>stack<span class="op">,</span> <span class="dt">int</span> value<span class="op">);</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> pop<span class="op">(</span>Stack <span class="op">*</span>stack<span class="op">);</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> is_empty<span class="op">(</span>Stack <span class="op">*</span>stack<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Funzione</th>
+<th>Descrizione</th>
+<th>Complessità</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>push</td>
+<td>Aggiunge un nuovo nodo in cima allo stack.</td>
+<td>O(1)</td>
+</tr>
+<tr class="even">
+<td>pop</td>
+<td>Rimuove e restituisce il nodo in cima allo stack.</td>
+<td>O(1)</td>
+</tr>
+<tr class="odd">
+<td>is_empty</td>
+<td>Controlla se lo stack è vuoto.</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+<p><a href="./code/stack.c">Vedi un esempio di implementazione di uno stack</a>.</p>
+</section>
+</section>
+<section id="queue-1" class="level2">
+<h2 class="anchored" data-anchor-id="queue-1">Queue</h2>
+<p>Le liste possono essere usate per implementare una coda, una struttura dati FIFO (First In First Out).</p>
+<section id="implementazione-2" class="level3">
+<h3 class="anchored" data-anchor-id="implementazione-2">Implementazione</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> node <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> value<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>next<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Node<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> queue <span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    Node <span class="op">*</span>front<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    Node <span class="op">*</span>rear<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> size<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Queue<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ogni nodo contiene:</p>
+<ul>
+<li>un valore intero (int value)</li>
+<li>un puntatore al nodo successivo (*next)</li>
+<li>La lista mantiene due puntatori: uno alla testa (front) e uno alla coda (rear).</li>
+</ul>
+</section>
+<section id="funzioni-principali-2" class="level3">
+<h3 class="anchored" data-anchor-id="funzioni-principali-2">Funzioni principali</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> enqueue<span class="op">(</span>Queue <span class="op">*</span>queue<span class="op">,</span> <span class="dt">int</span> value<span class="op">);</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dequeue<span class="op">(</span>Queue <span class="op">*</span>queue<span class="op">);</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> is_empty<span class="op">(</span>Queue <span class="op">*</span>queue<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Funzione</th>
+<th>Descrizione</th>
+<th>Complessità</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>enqueue</td>
+<td>Aggiunge un nuovo nodo alla fine della coda.</td>
+<td>O(1)</td>
+</tr>
+<tr class="even">
+<td>dequeue</td>
+<td>Rimuove e restituisce il nodo in testa alla coda.</td>
+<td>O(1)</td>
+</tr>
+<tr class="odd">
+<td>is_empty</td>
+<td>Controlla se la coda è vuota.</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+<p><a href="./code/queue.c">Vedi un esempio di implementazione di una queue</a>.</p>
+</section>
+</section>
+<section id="alberi-1" class="level2">
+<h2 class="anchored" data-anchor-id="alberi-1">Alberi</h2>
+<p>Gli alberi sono una struttura dati gerarchica in cui ogni nodo ha un valore e può avere zero o più figli. Gli alberi sono usati per rappresentare strutture dati complesse come i file system, i database e le strutture di dati in memoria.</p>
+<section id="implementazione-3" class="level3">
+<h3 class="anchored" data-anchor-id="implementazione-3">Implementazione</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> node <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> value<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>parent<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>left<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> node <span class="op">*</span>right<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Node<span class="op">;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ogni nodo contiene:</p>
+<ul>
+<li>un valore intero (int value)</li>
+<li>un puntatore al nodo padre (*parent)</li>
+<li>un puntatore al nodo sinistro (*left)</li>
+<li>un puntatore al nodo destro (*right)</li>
+</ul>
+</section>
+<section id="funzioni-principali-3" class="level3">
+<h3 class="anchored" data-anchor-id="funzioni-principali-3">Funzioni principali</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Node <span class="op">*</span>new_node<span class="op">(</span><span class="dt">int</span> value<span class="op">);</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Node <span class="op">*</span>insert_left<span class="op">(</span>Node <span class="op">*</span>parent<span class="op">,</span> <span class="dt">int</span> value<span class="op">);</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Node <span class="op">*</span>insert_right<span class="op">(</span>Node <span class="op">*</span>parent<span class="op">,</span> <span class="dt">int</span> value<span class="op">);</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> inorder_traversal<span class="op">(</span>Node <span class="op">*</span>node<span class="op">);</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> preorder_traversal<span class="op">(</span>Node <span class="op">*</span>node<span class="op">);</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> postorder_traversal<span class="op">(</span>Node <span class="op">*</span>node<span class="op">);</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Funzione</th>
+<th>Descrizione</th>
+<th>Complessità</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>new_node</td>
+<td>Crea un nuovo nodo con il valore specificato.</td>
+<td>O(1)</td>
+</tr>
+<tr class="even">
+<td>insert_left</td>
+<td>Inserisce un nuovo nodo a sinistra del nodo padre.</td>
+<td>O(1)</td>
+</tr>
+<tr class="odd">
+<td>insert_right</td>
+<td>Inserisce un nuovo nodo a destra del nodo padre.</td>
+<td>O(1)</td>
+</tr>
+<tr class="even">
+<td>inorder_traversal</td>
+<td>Visita i nodi in ordine (sinistra, radice, destra).</td>
+<td>O(n)</td>
+</tr>
+<tr class="odd">
+<td>preorder_traversal</td>
+<td>Visita i nodi in preordine (radice, sinistra, destra).</td>
+<td>O(n)</td>
+</tr>
+<tr class="even">
+<td>postorder_traversal</td>
+<td>Visita i nodi in postordine (sinistra, destra, radice).</td>
+<td>O(n)</td>
+</tr>
+</tbody>
+</table>
+<p><a href="./code/albero.c">Vedi un esempio di implementazione di un albero</a>.</p>
 
 
+</section>
+</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Riutilizzare</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.it">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1069,14 +1149,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../exercises/extra/palindromi.html" class="pagination-link" aria-label="Palindromi">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Palindromi</span>
+      <a href="../../lessons/07/index.html" class="pagination-link" aria-label="Operatori bitwise">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Operatori bitwise</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../exercises/extra/secrets.html" class="pagination-link" aria-label="XOR cipher">
-        <span class="nav-page-text">XOR cipher</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -1103,7 +1180,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/matteospanio/corso-c/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -1116,30 +1193,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-    <script type="text/javascript">
-    (function(d) {
-      d.querySelectorAll(".pseudocode-container").forEach(function(el) {
-        let pseudocodeOptions = {
-          indentSize: el.dataset.indentSize || "1.2em",
-          commentDelimiter: el.dataset.commentDelimiter || "//",
-          lineNumber: el.dataset.lineNumber === "true" ? true : false,
-          lineNumberPunc: el.dataset.lineNumberPunc || ":",
-          noEnd: el.dataset.noEnd === "true" ? true : false,
-          titlePrefix: el.dataset.algTitle || "Algorithm"
-        };
-        pseudocode.renderElement(el.querySelector(".pseudocode"), pseudocodeOptions);
-      });
-    })(document);
-    (function(d) {
-      d.querySelectorAll(".pseudocode-container").forEach(function(el) {
-        titleSpan = el.querySelector(".ps-root > .ps-algorithm > .ps-line > .ps-keyword")
-        titlePrefix = el.dataset.algTitle;
-        titleIndex = el.dataset.chapterLevel ? el.dataset.chapterLevel + "." + el.dataset.pseudocodeIndex : el.dataset.pseudocodeIndex;
-        titleSpan.innerHTML = titlePrefix + " " + titleIndex + " ";
-      });
-    })(document);
-    </script>
-  
 
 
 
