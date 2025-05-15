@@ -5,4 +5,10 @@ abstract-title: Argomenti trattati
 abstract: In questa lezione si propone un ripasso alle strutture dati già viste aggiungendo l'implementazione di base degli alberi.
 ---
 
+::: {.content-visible when-format="revealjs"}
 {{< include _summary.qmd >}}
+:::
+
+::: {.content-visible unless-format="revealjs"}
+{{< include _summary_txt.qmd >}}
+:::

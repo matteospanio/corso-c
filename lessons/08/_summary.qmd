@@ -30,7 +30,7 @@ Fino ad ora abbiamo visto alcune implementazioni di liste:
 
 [Vedi un esempio di implementazione di una lista doppiamente concatenata](./code/linked_list.c).
 
-## Stack
+## Stack (Pila)
 
 Le liste possono essere usate per implementare uno stack, una struttura dati LIFO (Last In First Out). In questo caso l'operazione di push viene eseguita in O(1) e l'operazione di pop in O(1).
 
